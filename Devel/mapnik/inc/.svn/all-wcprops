@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/19410/applications/rendering/mapnik/inc
+END
+settings.xml.inc.template
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/18879/applications/rendering/mapnik/inc/settings.xml.inc.template
+END
+layer-aerialways.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/18132/applications/rendering/mapnik/inc/layer-aerialways.xml.inc
+END
+layer-ferry-routes.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/18132/applications/rendering/mapnik/inc/layer-ferry-routes.xml.inc
+END
+layer-placenames.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/18140/applications/rendering/mapnik/inc/layer-placenames.xml.inc
+END
+layer-amenity-stations.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/18146/applications/rendering/mapnik/inc/layer-amenity-stations.xml.inc
+END
+entities.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/18132/applications/rendering/mapnik/inc/entities.xml.inc
+END
+layer-buildings.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/18275/applications/rendering/mapnik/inc/layer-buildings.xml.inc
+END
+layer-amenity-points.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/19410/applications/rendering/mapnik/inc/layer-amenity-points.xml.inc
+END
+fontset-settings.xml.inc.template
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/18879/applications/rendering/mapnik/inc/fontset-settings.xml.inc.template
+END
+layer-water_features.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/18187/applications/rendering/mapnik/inc/layer-water_features.xml.inc
+END
+layer-water.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/18477/applications/rendering/mapnik/inc/layer-water.xml.inc
+END
+layer-shapefiles.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/18132/applications/rendering/mapnik/inc/layer-shapefiles.xml.inc
+END
+layer-addressing.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/18132/applications/rendering/mapnik/inc/layer-addressing.xml.inc
+END
+layers.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/18187/applications/rendering/mapnik/inc/layers.xml.inc
+END
+layer-citywall.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/18132/applications/rendering/mapnik/inc/layer-citywall.xml.inc
+END
+layer-admin.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/18137/applications/rendering/mapnik/inc/layer-admin.xml.inc
+END
+datasource-settings.xml.inc.template
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/18879/applications/rendering/mapnik/inc/datasource-settings.xml.inc.template
+END
+layer-power.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/18132/applications/rendering/mapnik/inc/layer-power.xml.inc
+END
+layer-amenity-symbols.xml.inc
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/18275/applications/rendering/mapnik/inc/layer-amenity-symbols.xml.inc
+END
