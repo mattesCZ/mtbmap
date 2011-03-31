@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="1010" height="300" viewBox="0 0 1010 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <rect x="0" y="0" width="1010" height="300" fill="white" />
+    <rect x="35" y="30" width="950" height="246" fill="none" stroke="black" stroke-width="1" />
+    <path fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 35 55 L 59 125 L 82 155 L 106 168 L 130 190 L 154 212 L 177 251 L 201 251 L 225 251 L 249 251 L 272 251 L 296 251 L 320 251 L 344 251 L 367 255 L 391 255 L 415 246 L 439 181 L 462 190 L 486 185 L 510 177 L 534 172 L 557 172 L 581 168 L 605 172 L 629 177 L 652 172 L 676 168 L 700 181 L 724 190 L 747 190 L 771 212 L 795 220 L 819 225 L 842 238 L 866 242 L 890 242 L 914 255 L 937 255 L 961 207 L 985 212 L 985 212 L  "/>
+    <text fill="black" text-anchor="end" x="30" y="256">234</text>
+    <line stroke = "red" stroke-dasharray="2,2" x1="35" y1="255" x2="985" y2="255"/>
+    <text fill="black" text-anchor="end" x="30" y="59">280</text>
+    <line stroke = "red" stroke-dasharray="2,2" x1="35" y1="55" x2="985" y2="55"/>
+    <text fill="black" text-anchor="middle" x="985" y="288">4.0 km</text>
+    <text fill="black" text-anchor="middle" x="35" y="288">0</text>
+    <line stroke ="black" x1="272.0" y1="276" x2="272.0" y2="269"/>
+    <text fill="black" text-anchor="middle" x="272.0" y="288">1</text>
+    <line stroke ="black" x1="509.0" y1="276" x2="509.0" y2="269"/>
+    <text fill="black" text-anchor="middle" x="509.0" y="288">2</text>
+    <line stroke ="black" x1="746.0" y1="276" x2="746.0" y2="269"/>
+    <text fill="black" text-anchor="middle" x="746.0" y="288">3</text>
+    <text fill="black" x="450" y="20">Ascending: 35</text>
+    <text fill="black" x="550" y="20">Descending: 71</text>
+    <text fill="black" x="2" y="25">Height (m)</text>
+</svg>

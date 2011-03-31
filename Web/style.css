@@ -1,0 +1,46 @@
+body {
+  background-color: #aaaaff;
+}
+
+#box {
+	width: 100%;
+}
+
+#text {
+	background-color: #dddddd;
+	float: left;
+	color: #00008b;
+	width: 22%;
+	height: 100%;
+	text-align: center;
+	border:2px solid;
+	border-color: #00008b;
+	padding-left: 1%;
+	padding-right: 1%;
+}
+
+#map {
+	float: right;
+	width: 74%;
+	height: 100%;
+	border: 2px solid;
+	border-color: #00008b;
+}
+
+hr {
+	color: #00008b;
+	width: 100%;
+	size: 1px;
+}
+#controlToggle {
+   padding-left: 1em;
+   text-align: left;
+}
+
+#controlToggle li {
+   list-style: none;
+}
+
+#info {
+	font-size: small;
+}
