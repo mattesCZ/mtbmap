@@ -29,7 +29,7 @@
             </PolygonSymbolizer>
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">0.4</CssParameter>
+                <CssParameter name="stroke-width">0.8</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule>
@@ -41,7 +41,7 @@
             </PolygonSymbolizer>
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">0.8</CssParameter>
+                <CssParameter name="stroke-width">1.4</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule>
@@ -52,7 +52,7 @@
             </PolygonSymbolizer>
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">1.2</CssParameter>
+                <CssParameter name="stroke-width">2.0</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule>
@@ -64,7 +64,7 @@
             </PolygonSymbolizer>
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">0.4</CssParameter>
+                <CssParameter name="stroke-width">0.8</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule>
@@ -76,7 +76,7 @@
             </PolygonSymbolizer>
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">0.8</CssParameter>
+                <CssParameter name="stroke-width">1.4</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule>
@@ -87,7 +87,7 @@
             </PolygonSymbolizer>
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">1.2</CssParameter>
+                <CssParameter name="stroke-width">2.0</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule>
@@ -99,7 +99,7 @@
             </PolygonSymbolizer>
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">0.4</CssParameter>
+                <CssParameter name="stroke-width">0.8</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule>
@@ -111,7 +111,7 @@
             </PolygonSymbolizer>
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">0.8</CssParameter>
+                <CssParameter name="stroke-width">1.4</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule>
@@ -122,7 +122,7 @@
             </PolygonSymbolizer>
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">1.2</CssParameter>
+                <CssParameter name="stroke-width">2.0</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule>
@@ -143,6 +143,83 @@
             </PolygonSymbolizer>
     </Rule>
 </Style>
+
+<Style name="water_areas_fill">
+    <Rule>
+            <Filter>(((((([waterway]='dock') or ([landuse]='reservoir')) or ([landuse]='water')) or ([waterway]='mill_pond')) or ([waterway]='riverbank')) or ([waterway]='canal'))</Filter>
+            &maxscale_zoom9;
+            &minscale_zoom10;
+            <PolygonSymbolizer>
+                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
+            </PolygonSymbolizer>
+    </Rule>
+    <Rule>
+            <Filter>(((((([waterway]='dock') or ([landuse]='reservoir')) or ([landuse]='water')) or ([waterway]='mill_pond')) or ([waterway]='riverbank')) or ([waterway]='canal'))</Filter>
+            &maxscale_zoom11;
+            &minscale_zoom13;
+            <PolygonSymbolizer>
+                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
+            </PolygonSymbolizer>
+    </Rule>
+    <Rule>
+            <Filter>(((((([waterway]='dock') or ([landuse]='reservoir')) or ([landuse]='water')) or ([waterway]='mill_pond')) or ([waterway]='riverbank')) or ([waterway]='canal'))</Filter>
+            &maxscale_zoom14;
+            <PolygonSymbolizer>
+                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
+            </PolygonSymbolizer>
+    </Rule>
+    <Rule>
+            <Filter>([landuse]='basin')</Filter>
+            &maxscale_zoom7;
+            &minscale_zoom10;
+            <PolygonSymbolizer>
+                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
+            </PolygonSymbolizer>
+    </Rule>
+    <Rule>
+            <Filter>([landuse]='basin')</Filter>
+            &maxscale_zoom11;
+            &minscale_zoom13;
+            <PolygonSymbolizer>
+                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
+            </PolygonSymbolizer>
+    </Rule>
+    <Rule>
+            <Filter>([landuse]='basin')</Filter>
+            &maxscale_zoom14;
+            <PolygonSymbolizer>
+                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
+            </PolygonSymbolizer>
+            <LineSymbolizer>
+                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke-width">1.2</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule>
+            <Filter>(([natural]='lake') or ([natural]='water'))</Filter>
+            &maxscale_zoom6;
+            &minscale_zoom10;
+            <PolygonSymbolizer>
+                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
+            </PolygonSymbolizer>
+    </Rule>
+    <Rule>
+            <Filter>(([natural]='lake') or ([natural]='water'))</Filter>
+            &maxscale_zoom11;
+            &minscale_zoom13;
+            <PolygonSymbolizer>
+                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
+            </PolygonSymbolizer>
+    </Rule>
+    <Rule>
+            <Filter>(([natural]='lake') or ([natural]='water'))</Filter>
+            &maxscale_zoom14;
+            <PolygonSymbolizer>
+                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
+            </PolygonSymbolizer>
+    </Rule>
+</Style>
+
 <Style name="water_lines_fill">
     <Rule>
             <Filter>([waterway]='weir')</Filter>

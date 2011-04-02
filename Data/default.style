@@ -1,74 +1,34 @@
-# This is the style file that matches the old version of osm2pgsql, 
-which
-
-# did not make distinctions between tags for nodes and for ways. There 
-are a
-
-# number of optimisations that can be applied here. Firstly, certain 
-tags
-
-# only apply to only nodes or only ways. By fixing this we reduce the 
-amount
-
+# This is the style file that matches the old version of osm2pgsql, which
+# did not make distinctions between tags for nodes and for ways. There are a
+# number of optimisations that can be applied here. Firstly, certain tags
+# only apply to only nodes or only ways. By fixing this we reduce the amount
 # of useless data loaded into the DB, which is a good thing. Possible
-
 # optimisations for the future:
 
-
-
-# 1. Generate this file directly from the mapnik XML config, so it's 
-always
-
+# 1. Generate this file directly from the mapnik XML config, so it's always
 # optimal
 
-
-
-# 2. Extend it so it can understand that highway=tertiary is for ways 
-and
-
+# 2. Extend it so it can understand that highway=tertiary is for ways and
 # highway=bus_stop is for nodes
 
+# Flags field isn't used much yet, expect if it contains the text "polygon"
 
-
-# Flags field isn't used much yet, expect if it contains the text 
-"polygon"
-
-# it indicates the shape is candidate for the polygon table. In the 
-future I
-
+# it indicates the shape is candidate for the polygon table. In the future I
 # would like to be able to add directives like "nocache" which tells
-
-# osm2pgsql that it is unlikely this node will be used by a way and so 
-it
-
+# osm2pgsql that it is unlikely this node will be used by a way and so it
 # doesn't need to be stored (eg coastline nodes). While in essence an
-
-# optimisation hack, for --slim mode it doesn't matter if you're wrong, 
-but
-
+# optimisation hack, for --slim mode it doesn't matter if you're wrong, but
 # in non-slim you might break something!
 
-
-
-# Also possibly an ignore flag, for things like "note" and "source" 
-which
-
-# can simply be deleted. (In slim mode this is, does not apply to 
-non-slim
-
+# Also possibly an ignore flag, for things like "note" and "source" which
+# can simply be deleted. (In slim mode this is, does not apply to non-slim
 # obviously)
-
-
 
 # OsmType  Tag          DataType     Flags
 
-node,way   note         text         delete   # These tags can be long 
-but are useless for rendering
+node,way   note         text         delete   # These tags can be long but are useless for rendering
 
-node,way   source       text         delete   # This indicates that we 
-shouldn't store them
-
-
+node,way   source       text         delete   # This indicates that we shouldn't store them
 
 node,way   access       text         linear
 
@@ -86,8 +46,7 @@ node,way   aeroway      text         polygon
 
 node,way   amenity      text         nocache,polygon
 
-node,way   area         text         # hard coded support for area=1/yes 
-=> polygon is in osm2pgsql
+node,way   area         text         # hard coded support for area=1/yes => polygon is in osm2pgsql
 
 node,way   barrier      text         linear
 
@@ -139,8 +98,7 @@ node,way   motorcar     text         linear
 
 node,way   name         text         linear
 
-node,way   natural      text         polygon  # natural=coastline tags 
-are discarded by a hard coded rule in osm2pgsql
+node,way   natural      text         polygon  # natural=coastline tags are discarded by a hard coded rule in osm2pgsql
 
 node,way   oneway       text         linear
 
@@ -179,19 +137,12 @@ node,way   width        text         linear
 
 node,way   wood         text         linear
 
-node,way   z_order      int4         linear # This is calculated during 
-import
+node,way   z_order      int4         linear # This is calculated during import
 
-way        way_area     real                # This is calculated during 
-import
+way        way_area     real                # This is calculated during import
 
-
-
-# If you're interested in bicycle routes, you may want the following 
-fields
-
-# To make these work you need slim mode or the necessary data won't be 
-remembered.
+# If you're interested in bicycle routes, you may want the following fields
+# To make these work you need slim mode or the necessary data won't be remembered.
 
 way       lcn_ref      text     linear
 
@@ -255,12 +206,7 @@ way       cycleway:width       text     linear
 
 way       surface      text     linear
 
-
-
 #navic podle Bartone
-
- 
-
 # Czech style hiking tracks.
 
 way kct_yellow text linear
@@ -270,8 +216,6 @@ way kct_red text linear
 way kct_green text linear
 
 way kct_blue text linear
-
-
 
 # Slovak style hiking tracks.
 
@@ -292,8 +236,6 @@ way marked_trail_blue text linear
 way network text linear
 
 way iwn text linear
-
-
 
 # Signposts.
 

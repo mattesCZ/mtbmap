@@ -6601,6 +6601,20 @@
       &datasource-settings;
     </Datasource>
 </Layer>
+<Layer name="water_areas_fill" srs="&srs900913;">
+<StyleName>water_areas_fill</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,"natural",waterway,landuse,name
+      from planet_osm_polygon
+      where waterway in ('dock','mill_pond','riverbank','canal')
+         or landuse in ('reservoir','water','basin')
+         or "natural" in ('lake','water','land','marsh','scrub','wetland','glacier')
+      order by z_order,way_area desc
+      ) as water_areas_fill</Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
 <!-- hraze prehrad -->
 <Layer name="dam" srs="&srs900913;">
 <StyleName>dam</StyleName>
