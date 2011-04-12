@@ -61,7 +61,6 @@ if __name__ == "__main__":
             os.chdir(homepath + '/Data')
         except OSError, msg:
             raise UpdateError(1, msg)
-
     
         if (os.system('wget ' + url)==0):
             try:
