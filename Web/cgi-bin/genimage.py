@@ -10,7 +10,7 @@ from mapnik import *
 import sys, os, string
 
 def main():
-    mapfile = "/home/xtesar7/Devel/mapnik/my_styles/MTB-main.xml"
+    mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/MTB-main.xml"
     map_uri = "../img/export.png"
     # handle input string
     rawinput = str(sys.stdin.readlines())

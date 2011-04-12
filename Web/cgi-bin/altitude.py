@@ -11,7 +11,7 @@ def main():
     # geometry is an OpenLayers geometry object received via http protocol
     geometry = sys.stdin.readlines()
     strGeom = str(geometry)
-#    strGeom="['geometry=LINESTRING%2814.449063110355+48.20762555376%2C15.605274963377+49.230723012117%2C15.467259216312+49.263444605425%29']"
+#    strGeom="['geometry=LINESTRING%2814.449063110355+48.20762555376%2C15.605274963377+49.230723012117%2C15.467259216312+50.263444605425%29']"
 #    strGeom="['geometry=LINESTRING%2814.449063110355+48.20762555376%2C14.449063110355+48.20762555376%29']"
 #    strGeom="['geometry=LINESTRING%2815.15420+50.09320%2C15.15459+50.09350%2C15.15472+50.09326%2C15.15420+50.09326%29']"
 
@@ -126,7 +126,7 @@ def appendHeights(nodes):
     10-90 degrees north and longitudes 10-99 degrees east.
     """
     hgtArrays = {}
-    zip_path = '/home/xtesar7/Data/shadingdata/'
+    zip_path = '/home/xtesar7/Devel/mtbmap-czechrep/Data/shadingdata/'
     for i in range(len(nodes)):
         key = 'N' + str(int(math.floor(nodes[i][0]))) + 'E0' + str(int(math.floor(nodes[i][1])))
         if not (hgtArrays.has_key(key)):

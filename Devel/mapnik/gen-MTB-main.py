@@ -23,7 +23,7 @@ if __name__ == "__main__":
         mapfile = "my_styles/MTB-main.xml"
     map_uri = "im_MTB-main.png"
 
-    ll = (16.50, 49.23, 16.60, 49.27)
+    ll = (16.50, 49.22, 16.52, 49.24)
     z = 10
     imgx = 100 * z
     imgy = 100 * z

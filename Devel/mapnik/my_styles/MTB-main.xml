@@ -7337,6 +7337,65 @@
       &datasource-settings;
     </Datasource>
 </Layer>
+<!-- zastavky tramvaji, mene vyznamna nadrazi,  -->
+<Layer name="amenity-stations" srs="&srs900913;">
+<StyleName>stations</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,name,railway,aerialway,disused
+      from planet_osm_point
+      where railway in ('station','halt','tram_stop')
+         or aerialway='station'
+      ) as stations
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+<!-- vetsinou hlavni zeleznicni nadrazi -->
+<Layer name="amenity-stations-poly" srs="&srs900913;">
+<StyleName>stations</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,name,railway,aerialway,disused
+      from planet_osm_polygon
+      where railway in ('station','halt','tram_stop')
+         or aerialway='station'
+      ) as stations
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+<!-- elektricke vedeni -->
+<Layer name="power" srs="&srs900913;">
+<StyleName>power</StyleName>
+    <Datasource>
+      <Parameter name="table">(select way from planet_osm_line where "power"='line') as power</Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+<!-- stozary elektrickeho vedeni -->
+<Layer name="power_towers" srs="&srs900913;">
+<StyleName>power_towers</StyleName>
+    <Datasource>
+      <Parameter name="table">(select way from planet_osm_point where power='tower') as power_towers</Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+<!-- smerove sipky jednosmerek -->
+<Layer name="directions" srs="&srs900913;">
+<StyleName>directions</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,
+       case when oneway in ('yes','true','1') then 'yes'::text else oneway end as oneway
+       from planet_osm_line
+       where oneway is not null
+         and (highway is not null or railway is not null or waterway is not null)
+      ) as directions
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
 
 <!-- administrativni hranice
 admin 0 - nemecke obvody
@@ -7377,17 +7436,16 @@ admin 8 - uzemi samostatnych obci
 </Layer>
  -->
 
-<!-- jmena zemi, kraju, hlavnich mest -->
-<Layer name="placenames-large" srs="&srs900913;" clear_label_cache="yes">
-<StyleName>country</StyleName>
-<StyleName>state</StyleName>
-<StyleName>capital</StyleName>
+<!-- jmena mestskych casti, malych obci, samot, pojmenovanych lokalit -->
+<Layer name="placenames-small" srs="&srs900913;" clear_label_cache="yes">
+<StyleName>suburb</StyleName>
+<StyleName>village</StyleName>
+<StyleName>hamlet</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,place,upper(name),name,ref
+      (select way,place,name
       from planet_osm_point
-      where place in ('country','state')
-         or (place in ('city','metropolis') and capital='yes')
+      where place in ('suburb','village','large_village','hamlet','locality')
       ) as placenames</Parameter>
       &datasource-settings;
     </Datasource>
@@ -7406,45 +7464,18 @@ admin 8 - uzemi samostatnych obci
       &datasource-settings;
     </Datasource>
 </Layer>
-<!-- jmena mestskych casti, malych obci, samot, pojmenovanych lokalit -->
-<Layer name="placenames-small" srs="&srs900913;" clear_label_cache="yes">
-<StyleName>suburb</StyleName>
-<StyleName>village</StyleName>
-<StyleName>hamlet</StyleName>
+<!-- jmena zemi, kraju, hlavnich mest -->
+<Layer name="placenames-large" srs="&srs900913;" clear_label_cache="yes">
+<StyleName>country</StyleName>
+<StyleName>state</StyleName>
+<StyleName>capital</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,place,name
+      (select way,place,upper(name),name,ref
       from planet_osm_point
-      where place in ('suburb','village','large_village','hamlet','locality')
+      where place in ('country','state')
+         or (place in ('city','metropolis') and capital='yes')
       ) as placenames</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<!-- zastavky tramvaji, mene vyznamna nadrazi,  -->
-<Layer name="amenity-stations" srs="&srs900913;">
-<StyleName>stations</StyleName>
-    <Datasource>
-      <Parameter name="table">
-      (select way,name,railway,aerialway,disused
-      from planet_osm_point
-      where railway in ('station','halt','tram_stop')
-         or aerialway='station'
-      ) as stations
-      </Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<!-- vetsinou hlavni zeleznicni nadrazi -->
-<Layer name="amenity-stations-poly" srs="&srs900913;">
-<StyleName>stations</StyleName>
-    <Datasource>
-      <Parameter name="table">
-      (select way,name,railway,aerialway,disused
-      from planet_osm_polygon
-      where railway in ('station','halt','tram_stop')
-         or aerialway='station'
-      ) as stations
-      </Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
@@ -7464,37 +7495,6 @@ admin 8 - uzemi samostatnych obci
     <StyleName>points</StyleName>
     <Datasource>
       <Parameter name="table">(select * from &prefix;_polygon where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or power_source is NOT NULL or man_made is NOT NULL or shop is NOT NULL) as amenity</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<!-- elektricke vedeni -->
-<Layer name="power" srs="&srs900913;">
-<StyleName>power</StyleName>
-    <Datasource>
-      <Parameter name="table">(select way from planet_osm_line where "power"='line') as power</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<!-- stozary elektrickeho vedeni -->
-<Layer name="power_towers" srs="&srs900913;">
-<StyleName>power_towers</StyleName>
-    <Datasource>
-      <Parameter name="table">(select way from planet_osm_point where power='tower') as power_towers</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<!-- smerove sipky jednosmerek -->
-<Layer name="directions" srs="&srs900913;">
-<StyleName>directions</StyleName>
-    <Datasource>
-      <Parameter name="table">
-      (select way,
-       case when oneway in ('yes','true','1') then 'yes'::text else oneway end as oneway
-       from planet_osm_line
-       where oneway is not null
-         and (highway is not null or railway is not null or waterway is not null)
-      ) as directions
-      </Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>

@@ -3,20 +3,24 @@
 <svg width="1010" height="300" viewBox="0 0 1010 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <rect x="0" y="0" width="1010" height="300" fill="white" />
     <rect x="35" y="30" width="950" height="246" fill="none" stroke="black" stroke-width="1" />
-    <path fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 35 55 L 59 125 L 82 155 L 106 168 L 130 190 L 154 212 L 177 251 L 201 251 L 225 251 L 249 251 L 272 251 L 296 251 L 320 251 L 344 251 L 367 255 L 391 255 L 415 246 L 439 181 L 462 190 L 486 185 L 510 177 L 534 172 L 557 172 L 581 168 L 605 172 L 629 177 L 652 172 L 676 168 L 700 181 L 724 190 L 747 190 L 771 212 L 795 220 L 819 225 L 842 238 L 866 242 L 890 242 L 914 255 L 937 255 L 961 207 L 985 212 L 985 212 L  "/>
-    <text fill="black" text-anchor="end" x="30" y="256">234</text>
+    <path fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 35 255 L 55 244 L 75 252 L 94 252 L 114 226 L 134 221 L 154 209 L 174 209 L 193 195 L 213 192 L 233 178 L 253 149 L 273 155 L 292 144 L 312 126 L 332 115 L 352 118 L 371 101 L 391 89 L 411 72 L 431 66 L 451 64 L 470 121 L 490 141 L 510 166 L 530 164 L 550 152 L 569 138 L 589 132 L 609 132 L 629 144 L 649 124 L 668 106 L 688 106 L 708 89 L 728 55 L 748 78 L 767 84 L 787 104 L 807 121 L 827 146 L 846 158 L 866 169 L 886 172 L 906 155 L 926 132 L 945 115 L 965 118 L 985 129 L 985 129 L  "/>
+    <text fill="black" text-anchor="end" x="30" y="256">250</text>
     <line stroke = "red" stroke-dasharray="2,2" x1="35" y1="255" x2="985" y2="255"/>
-    <text fill="black" text-anchor="end" x="30" y="59">280</text>
+    <text fill="black" text-anchor="end" x="30" y="59">320</text>
     <line stroke = "red" stroke-dasharray="2,2" x1="35" y1="55" x2="985" y2="55"/>
-    <text fill="black" text-anchor="middle" x="985" y="288">4.0 km</text>
+    <text fill="black" text-anchor="middle" x="985" y="288">4.9 km</text>
+    <line stroke = "black" stroke-dasharray="2,2" x1="35" y1="112" x2="985" y2="112"/>
+    <text fill="black" text-anchor="end" x="30" y="116">300</text>
     <text fill="black" text-anchor="middle" x="35" y="288">0</text>
-    <line stroke ="black" x1="272.0" y1="276" x2="272.0" y2="269"/>
-    <text fill="black" text-anchor="middle" x="272.0" y="288">1</text>
-    <line stroke ="black" x1="509.0" y1="276" x2="509.0" y2="269"/>
-    <text fill="black" text-anchor="middle" x="509.0" y="288">2</text>
-    <line stroke ="black" x1="746.0" y1="276" x2="746.0" y2="269"/>
-    <text fill="black" text-anchor="middle" x="746.0" y="288">3</text>
-    <text fill="black" x="450" y="20">Ascending: 35</text>
-    <text fill="black" x="550" y="20">Descending: 71</text>
+    <line stroke ="black" x1="231.0" y1="276" x2="231.0" y2="269"/>
+    <text fill="black" text-anchor="middle" x="231.0" y="288">1</text>
+    <line stroke ="black" x1="427.0" y1="276" x2="427.0" y2="269"/>
+    <text fill="black" text-anchor="middle" x="427.0" y="288">2</text>
+    <line stroke ="black" x1="622.0" y1="276" x2="622.0" y2="269"/>
+    <text fill="black" text-anchor="middle" x="622.0" y="288">3</text>
+    <line stroke ="black" x1="818.0" y1="276" x2="818.0" y2="269"/>
+    <text fill="black" text-anchor="middle" x="818.0" y="288">4</text>
+    <text fill="black" x="450" y="20">Ascending: 136</text>
+    <text fill="black" x="550" y="20">Descending: 92</text>
     <text fill="black" x="2" y="25">Height (m)</text>
 </svg>

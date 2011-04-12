@@ -50,7 +50,7 @@
 
 <!ENTITY height-styles SYSTEM "height-styles.xml.inc">
 <!ENTITY admin-styles SYSTEM "admin-styles.xml.inc">
-<!ENTITY symbols-path "/home/xtesar7/Devel/mapnik/symbols/">
+<!ENTITY symbols-path "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/">
 <!ENTITY mtb-styles SYSTEM "mtb-styles.xml.inc">
 <!ENTITY kct-styles SYSTEM "kct-styles.xml.inc">
 <!ENTITY water-styles SYSTEM "water-styles.xml.inc">
