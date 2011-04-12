@@ -6,11 +6,10 @@
 # vector data import. It's necessary to run with superuser privilegies.
 
 # change this for the root directory of your future OSM system
-OSMROOT="/home/xtesar7"
 USER="xtesar7"
 DATABASE="gisczech"
 
-cd $OSMROOT
+cd $MTBMAP_DIRECTORY
 mkdir sw Data
 
 # install this packages with all dependencies
@@ -48,7 +47,7 @@ psql -d $DATABASE -f /usr/share/postgresql/8.4/contrib/_int.sql
 
 sudo apt-get install autoconf
 sudo apt-get install libbz2-dev
-cd $OSMROOT/sw
+cd $MTBMAP_DIRECTORY/sw
 svn co http://svn.openstreetmap.org/applications/utils/export/osm2pgsql
 cd osm2pgsql
 ./autogen.sh
@@ -58,5 +57,5 @@ make
 # include "Google Mercator" projection
 psql -d $DATABASE -f 900913.sql
 
-# now you can upload OSM data using Osm2pgsql or updatemtbmap.py script,
+# now you can upload OSM data using Osm2pgsql or updatemap.py script,
 

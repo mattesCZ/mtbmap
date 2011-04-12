@@ -54,7 +54,7 @@
     </Rule>
     <Rule>
             <Filter>(([place]='city') or ([place]='metropolis'))</Filter>
-            &minscale_zoom14;
+            &minscale_zoom12;
             &maxscale_zoom11;
             <TextSymbolizer name="upper" fontset_name="book-fonts" size="24" fill="rgb(0,0,0)" halo_radius="1"></TextSymbolizer>
     </Rule>
@@ -76,15 +76,9 @@
     </Rule>
     <Rule>
             <Filter>(([place]='city') or ([place]='metropolis'))</Filter>
-            &minscale_zoom14;
+            &minscale_zoom13;
             &maxscale_zoom12;
             <TextSymbolizer name="upper" fontset_name="book-fonts" size="20" fill="rgb(0,0,0)" halo_radius="1"></TextSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([place]='city') or ([place]='metropolis'))</Filter>
-            &maxscale_zoom15;
-            &minscale_zoom15;
-            <TextSymbolizer name="upper" fontset_name="book-fonts" size="24" fill="rgb(0,0,0)" halo_radius="1"></TextSymbolizer>
     </Rule>
 
 </Style>

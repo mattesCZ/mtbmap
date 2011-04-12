@@ -3,11 +3,9 @@
 # script installs programs that are necessary for maps to be available
 # on the internet
 
-OSMROOT="/home/xtesar7"
-
 sudo apt-get install apache2
 sudo apt-get install apache2-threaded-dev
-cd $OSMROOT/sw
+cd $MTBMAP_DIRECTORY/sw
 svn co http://svn.openstreetmap.org/applications/utils/mod_tile/
 cd mod_tile
 

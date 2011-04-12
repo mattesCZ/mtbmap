@@ -4817,258 +4817,6 @@
     </Rule>
 </Style>
 <Style name="roads-text">
-<!--     <Rule>
-            <Filter>(([highway]='motorway') and ([length]=1))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;mot_shield1.png" type="png" width="17" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='motorway') and ([length]=2))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;mot_shield2.png" type="png" width="24" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='motorway') and ([length]=3))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;mot_shield3.png" type="png" width="31" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='motorway') and ([length]=4))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;mot_shield4.png" type="png" width="38" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='motorway') and ([length]=5))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;mot_shield5.png" type="png" width="45" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='motorway') and ([length]=6))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;mot_shield6.png" type="png" width="52" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='motorway') and ([length]=7))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;mot_shield6.png" type="png" width="52" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='motorway') and ([length]=8))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;mot_shield7.png" type="png" width="59" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='trunk') and ([length]=1))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;sec_shield1.png" type="png" width="17" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='trunk') and ([length]=2))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;sec_shield2.png" type="png" width="24" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='trunk') and ([length]=3))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="24" file="&symbols-path;sec_shield3.png" type="png" width="31" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='trunk') and ([length]=4))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;sec_shield4.png" type="png" width="38" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='trunk') and ([length]=5))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;sec_shield5.png" type="png" width="45" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='trunk') and ([length]=6))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;sec_shield6.png" type="png" width="52" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='trunk') and ([length]=7))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;sec_shield7.png" type="png" width="59" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='trunk') and ([length]=8))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;sec_shield8.png" type="png" width="66" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='primary') and ([length]=1))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;sec_shield1.png" type="png" width="17" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='primary') and ([length]=2))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;sec_shield2.png" type="png" width="24" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='primary') and ([length]=3))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;sec_shield3.png" type="png" width="31" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='primary') and ([length]=4))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;sec_shield4.png" type="png" width="38" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='primary') and ([length]=5))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;sec_shield5.png" type="png" width="45" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='primary') and ([length]=6))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;sec_shield6.png" type="png" width="52" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='primary') and ([length]=7))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;sec_shield7.png" type="png" width="59" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([highway]='primary') and ([length]=8))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="30" file="&symbols-path;sec_shield8.png" type="png" width="66" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='secondary') and ([length]=1)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;sec_shield1.png" type="png" width="17" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='secondary') and ([length]=2)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;sec_shield2.png" type="png" width="24" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='secondary') and ([length]=3)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;sec_shield3.png" type="png" width="31" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='secondary') and ([length]=4)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;sec_shield4.png" type="png" width="38" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='secondary') and ([length]=5)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;sec_shield5.png" type="png" width="45" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='secondary') and ([length]=6)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;sec_shield6.png" type="png" width="52" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='secondary') and ([length]=7)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;sec_shield7.png" type="png" width="59" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='secondary') and ([length]=8)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;sec_shield8.png" type="png" width="66" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='tertiary') and ([length]=1)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;ter_shield1.png" type="png" width="17" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='tertiary') and ([length]=2)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;ter_shield2.png" type="png" width="24" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='tertiary') and ([length]=3)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;ter_shield3.png" type="png" width="31" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='tertiary') and ([length]=4)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;ter_shield4.png" type="png" width="38" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='tertiary') and ([length]=5)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;ter_shield5.png" type="png" width="45" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='tertiary') and ([length]=6)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;ter_shield6.png" type="png" width="52" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='tertiary') and ([length]=7)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;ter_shield7.png" type="png" width="59" height="17"></ShieldSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([highway]='tertiary') and ([length]=8)) and not (([bridge]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <ShieldSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(255,255,255)" placement="line" spacing="750" min_distance="40" file="&symbols-path;ter_shield8.png" type="png" width="66" height="17"></ShieldSymbolizer>
-    </Rule>
- -->
-<!--     <Rule>
-            <Filter>((([highway]='unclassified') or ([highway]='residential')) and not (([bridge]='yes')))</Filter>
-            &maxscale_zoom15;
-            <TextSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(0,0,0)" halo_radius="1" spacing="750" min_distance="18"></TextSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>((([aeroway]='runway') or ([aeroway]='taxiway')) and not (([bridge]='yes')))</Filter>
-            &maxscale_zoom15;
-            <TextSymbolizer name="ref" fontset_name="book-fonts" size="10" fill="rgb(51,51,51)" placement="line" halo_radius="1" spacing="750" min_distance="18"></TextSymbolizer>
-    </Rule>
- --> 
     <Rule>
             <Filter>(([highway]='trunk') or ([highway]='primary'))</Filter>
             &minscale_zoom13;
@@ -6839,7 +6587,7 @@
       &datasource-settings;
     </Datasource>
 </Layer>
-<!--<Layer name="water_lines_fill" srs="&srs900913;">
+<Layer name="water_lines_fill" srs="&srs900913;">
 <StyleName>water_lines_fill</StyleName>
     <Datasource>
       <Parameter name="table">
@@ -6853,7 +6601,21 @@
       &datasource-settings;
     </Datasource>
 </Layer>
---><!-- hraze prehrad -->
+<Layer name="water_areas_fill" srs="&srs900913;">
+<StyleName>water_areas_fill</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,"natural",waterway,landuse,name
+      from planet_osm_polygon
+      where waterway in ('dock','mill_pond','riverbank','canal')
+         or landuse in ('reservoir','water','basin')
+         or "natural" in ('lake','water','land','marsh','scrub','wetland','glacier')
+      order by z_order,way_area desc
+      ) as water_areas_fill</Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+<!-- hraze prehrad -->
 <Layer name="dam" srs="&srs900913;">
 <StyleName>dam</StyleName>
     <Datasource>
@@ -7575,6 +7337,34 @@
       &datasource-settings;
     </Datasource>
 </Layer>
+<!-- zastavky tramvaji, mene vyznamna nadrazi,  -->
+<Layer name="amenity-stations" srs="&srs900913;">
+<StyleName>stations</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,name,railway,aerialway,disused
+      from planet_osm_point
+      where railway in ('station','halt','tram_stop')
+         or aerialway='station'
+      ) as stations
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+<!-- vetsinou hlavni zeleznicni nadrazi -->
+<Layer name="amenity-stations-poly" srs="&srs900913;">
+<StyleName>stations</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,name,railway,aerialway,disused
+      from planet_osm_polygon
+      where railway in ('station','halt','tram_stop')
+         or aerialway='station'
+      ) as stations
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
 
 <!-- administrativni hranice
 admin 0 - nemecke obvody
@@ -7655,34 +7445,6 @@ admin 8 - uzemi samostatnych obci
       from planet_osm_point
       where place in ('suburb','village','large_village','hamlet','locality')
       ) as placenames</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<!-- zastavky tramvaji, mene vyznamna nadrazi,  -->
-<Layer name="amenity-stations" srs="&srs900913;">
-<StyleName>stations</StyleName>
-    <Datasource>
-      <Parameter name="table">
-      (select way,name,railway,aerialway,disused
-      from planet_osm_point
-      where railway in ('station','halt','tram_stop')
-         or aerialway='station'
-      ) as stations
-      </Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<!-- vetsinou hlavni zeleznicni nadrazi -->
-<Layer name="amenity-stations-poly" srs="&srs900913;">
-<StyleName>stations</StyleName>
-    <Datasource>
-      <Parameter name="table">
-      (select way,name,railway,aerialway,disused
-      from planet_osm_polygon
-      where railway in ('station','halt','tram_stop')
-         or aerialway='station'
-      ) as stations
-      </Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
