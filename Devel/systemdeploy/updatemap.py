@@ -95,7 +95,7 @@ if __name__ == "__main__":
         else:
             raise UpdateError('An error occured while downloading from given URLs ')
 
-    except UpdateError as ue:
+    except UpdateError, ue:
         print ue.msg
         print 'Map data was not uploaded. '
 
