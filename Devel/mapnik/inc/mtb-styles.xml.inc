@@ -172,13 +172,13 @@
   <Rule>
     &maxscale_zoom13;
     &minscale_zoom18;
-    <Filter>(([mtb:scale:uphill]='3' or [mtb:scale:uphill]='4' or [mtb:scale:uphill]='5')and([incline]='up'))</Filter>
+    <Filter>(([mtb:scale:uphill]='3' or [mtb:scale:uphill]='4' or [mtb:scale:uphill]='5' or [mtb:scale]!='')and([incline]='up'))</Filter>
     <LinePatternSymbolizer width="20" height="12" type="png" file="../symbols/mtb_up.png"/>
   </Rule>
   <Rule>
     &maxscale_zoom13;
     &minscale_zoom18;
-    <Filter>(([mtb:scale:uphill]='3' or [mtb:scale:uphill]='4' or [mtb:scale:uphill]='5')and([incline]='down'))</Filter>
+    <Filter>(([mtb:scale:uphill]='3' or [mtb:scale:uphill]='4' or [mtb:scale:uphill]='5' or [mtb:scale]!='')and([incline]='down'))</Filter>
     <LinePatternSymbolizer width="20" height="12" type="png" file="../symbols/mtb_down.png"/>
   </Rule>
 </Style>

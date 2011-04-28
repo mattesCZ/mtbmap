@@ -20,13 +20,13 @@ if __name__ == "__main__":
     try:
         mapfile = os.environ['MAPNIK_MAP_FILE']
     except KeyError:
-        mapfile = "my_styles/MTB-main.xml"
+        mapfile = "my_styles/MTB-onlyMTBtracks.xml"
     map_uri = "im_MTB-main.png"
 
-    ll = (16.50, 49.22, 16.52, 49.24)
+    ll = (12.00, 48.50, 18.90, 51.10)
     z = 10
     imgx = 100 * z
-    imgy = 100 * z
+    imgy = 60 * z
 
     m = Map(imgx,imgy)
     load_map(m,mapfile)
