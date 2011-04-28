@@ -393,7 +393,7 @@
 </Style>
 <Style name="footbikecycle-tunnels">
     <Rule>
-            <Filter>(([highway]='bridleway') or (([highway]='path') and ([horse]='designated')))</Filter>
+            <Filter>(([highway]='bridleway') or ([highway]='path'))</Filter>
             &maxscale_zoom13;
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
@@ -439,7 +439,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule>
-            <Filter>(([highway]='path') and not (((([bicycle]='designated') or ([foot]='designated')) or ([horse]='designated'))))</Filter>
+            <Filter>(([highway]='path') and not (([bicycle]='designated') or ([foot]='designated')))</Filter>
             &maxscale_zoom13;
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
@@ -582,15 +582,6 @@
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(223,204,102)</CssParameter>
             </PolygonSymbolizer>
-    </Rule>
-</Style>
-<Style name="interpolation">
-    <Rule>
-            &maxscale_zoom17;
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(85,85,85)</CssParameter>
-                <CssParameter name="stroke-dasharray">2, 4</CssParameter>
-            </LineSymbolizer>
     </Rule>
 </Style>
 <Style name="leisure">
@@ -2683,7 +2674,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule>
-            <Filter>((([highway]='bridleway') or (([highway]='path') and ([horse]='designated'))) and not (([tunnel]='yes')))</Filter>
+            <Filter>((([highway]='bridleway') or ([highway]='path')) and not (([tunnel]='yes')))</Filter>
             &maxscale_zoom13;
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
@@ -2717,7 +2708,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule>
-            <Filter>((([highway]='path') and not (((([bicycle]='designated') or ([foot]='designated')) or ([horse]='designated')))) and not (([tunnel]='yes')))</Filter>
+            <Filter>((([highway]='path') and not (([bicycle]='designated') or ([foot]='designated'))) and not (([tunnel]='yes')))</Filter>
             &maxscale_zoom13;
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
@@ -3445,12 +3436,6 @@
             </LineSymbolizer>
     </Rule>
 </Style>
-<Style name="node_numbers">
-    <Rule>
-            &maxscale_zoom17;
-            <TextSymbolizer name="addr:housenumber" fontset_name="book-fonts" size="9" fill="rgb(85,85,85)" halo_radius="1" halo_fill="rgb(238,238,238)"></TextSymbolizer>
-    </Rule>
-</Style>
 <Style name="noncased-ways-bridges">
     <Rule>
             <Filter>([aeroway]='runway')</Filter>
@@ -3561,7 +3546,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule>
-            <Filter>(([highway]='bridleway') or (([highway]='path') and ([horse]='designated')))</Filter>
+            <Filter>(([highway]='bridleway') or ([highway]='path'))</Filter>
             &maxscale_zoom14;
             <LineSymbolizer>
                 <CssParameter name="stroke-width">5.5</CssParameter>
@@ -3599,7 +3584,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule>
-            <Filter>(([highway]='path') and not (((([bicycle]='designated') or ([foot]='designated')) or ([horse]='designated'))))</Filter>
+            <Filter>(([highway]='path') and not (([bicycle]='designated') or ([foot]='designated')))</Filter>
             &maxscale_zoom14;
             <LineSymbolizer>
                 <CssParameter name="stroke-width">4</CssParameter>
@@ -6403,12 +6388,6 @@
             <PointSymbolizer file="&symbols-path;turning_circle.19.png" type="png" width="19" height="19"></PointSymbolizer>
     </Rule>
 </Style>
-<Style name="way_numbers">
-    <Rule>
-            &maxscale_zoom17;
-            <TextSymbolizer name="addr:housenumber" fontset_name="book-fonts" size="9" fill="rgb(85,85,85)"></TextSymbolizer>
-    </Rule>
-</Style>
 <Style name="world">
     <Rule>
             &minscale_zoom9;
@@ -6676,7 +6655,7 @@
 <StyleName>footbikecycle-tunnels</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,highway,horse,foot,bicycle from planet_osm_line where highway in ('bridleway','footway','cycleway','path') and tunnel in ('yes','true','1') order by z_order) as roads
+      (select way,highway,foot,bicycle from planet_osm_line where highway in ('bridleway','footway','cycleway','path') and tunnel in ('yes','true','1') order by z_order) as roads
       </Parameter>
       &datasource-settings;
     </Datasource>
@@ -6784,7 +6763,7 @@
 <StyleName>minor-roads-fill</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,highway,horse,bicycle,foot,construction,aeroway,service,
+      (select way,highway,bicycle,foot,construction,aeroway,service,
        case when tunnel in ('yes','true','1') then 'yes'::text else tunnel end as tunnel,
        case when bridge in ('yes','true','1') then 'yes'::text else bridge end as bridge,
        case when railway in ('spur','siding')
@@ -6869,7 +6848,7 @@
 <StyleName>mwaybridge_layer5_fill</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,highway,aeroway,railway,layer,horse,bicycle,foot,bridge
+      (select way,highway,aeroway,railway,layer,bicycle,foot,bridge
        from planet_osm_line
        where (highway is not null
               or aeroway in ('runway','taxiway')
@@ -7227,9 +7206,10 @@
     <StyleName>mtb_incline</StyleName>
     <Datasource>
         <Parameter name="table">
-        (select osm_id,way,incline,"mtb:scale:uphill"
+        (select osm_id,way,incline,"mtb:scale:uphill", "mtb:scale"
         from planet_osm_line
-        where ("mtb:scale:uphill" is not null and incline in ('up','down'))) as mtb_basic
+        where (("mtb:scale:uphill" in ('3', '4', '5') and incline in ('up','down'))
+        or ("mtb:scale" in ('2-', '2', '2+', '3-', '3', '3+', '4-', '4', '4+', '5-', '5', '5+') and incline in ('up','down')))) as mtb_incline
         </Parameter>
         &datasource-settings;
     </Datasource>
@@ -7604,32 +7584,6 @@ admin 8 - uzemi samostatnych obci
         &datasource-settings;
     </Datasource>
 </Layer>
-<!-- neco co souvisi s adresami budov, nepodstatne - odvozeni cisel domu z neuplnych zaznamu podle vzorce -->
-<!-- <Layer name="interpolation_lines" srs="&srs900913;">
-<StyleName>interpolation</StyleName>
-    <Datasource>
-      <Parameter name="table">
-       (select way from planet_osm_line where "addr:interpolation" is not null) as interpolation
-      </Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer> -->
-<!-- cisla popisna budov -->
-<!-- <Layer name="housenumb_ways" srs="&srs900913;">
-<StyleName>way_numbers</StyleName>
-    <Datasource>
-      <Parameter name="table">(select way,"addr:housenumber" from planet_osm_polygon where "addr:housenumber" is not null and building is not null) as way_numbers</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<Layer name="housenumb_nodes" srs="&srs900913;">
-<StyleName>node_numbers</StyleName>
-    <Datasource>
-      <Parameter name="table">(select way,"addr:housenumber" from planet_osm_point where "addr:housenumber" is not null) as node_numbers</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
- -->
 <!-- hranice narodnich parku -->
 <Layer name="misc_boundaries" srs="&srs900913;">
 <StyleName>boundary</StyleName>
