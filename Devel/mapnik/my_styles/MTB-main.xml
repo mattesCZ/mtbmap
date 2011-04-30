@@ -7202,6 +7202,17 @@
 </Layer>
 
 <!-- MTB znacky klasifikace terenu -->
+<Layer name="nobicycle" srs="&srs900913;">
+    <StyleName>nobicycle</StyleName>
+    <Datasource>
+        <Parameter name="table">
+        (select osm_id,way
+        from planet_osm_line
+        where (bicycle = 'no')) as nobicycle
+        </Parameter>
+        &datasource-settings;
+    </Datasource>
+</Layer>
 <Layer name="mtbincline" srs="&srs900913;">
     <StyleName>mtb_incline</StyleName>
     <Datasource>
