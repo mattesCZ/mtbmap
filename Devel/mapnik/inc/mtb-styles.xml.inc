@@ -182,3 +182,10 @@
     <LinePatternSymbolizer width="20" height="12" type="png" file="../symbols/mtb_down.png"/>
   </Rule>
 </Style>
+<Style name="nobicycle">
+  <Rule>
+    &maxscale_zoom13;
+    &minscale_zoom18;
+    <ShieldSymbolizer name="osm_id" face_name="DejaVu Sans Bold" no_text="true" size="0" placement="line" file= "../symbols/noBicycle.png" type="png" width="12" height="12" min_distance="10" spacing="100"/>
+  </Rule>
+</Style>
