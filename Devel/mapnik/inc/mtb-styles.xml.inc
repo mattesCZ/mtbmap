@@ -186,6 +186,6 @@
   <Rule>
     &maxscale_zoom13;
     &minscale_zoom18;
-    <ShieldSymbolizer name="osm_id" face_name="DejaVu Sans Bold" no_text="true" size="0" placement="line" file= "../symbols/noBicycle.png" type="png" width="12" height="12" min_distance="10" spacing="100"/>
+    <ShieldSymbolizer name="osm_id" face_name="DejaVu Sans Bold" no_text="true" size="0" placement="line" file= "../symbols/noBicycle.png" type="png" width="8" height="8" min_distance="10" spacing="20"/>
   </Rule>
 </Style>

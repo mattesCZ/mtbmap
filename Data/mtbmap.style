@@ -71,7 +71,7 @@ node,way   shelter      text         linear #zastavka s pristreskem
 node,way   shop         text         polygon
 node,way   sport        text         polygon
 node,way   tourism      text         polygon
-node       tower:type   text         linear
+node       tower:type   text         polygon
 way        tracktype    text         linear
 way        tunnel       text         linear
 node,way   waterway     text         polygon

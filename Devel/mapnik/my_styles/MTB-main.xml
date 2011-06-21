@@ -5035,9 +5035,9 @@
             <PointSymbolizer file="&symbols-path;windmill.png" type="png" width="10" height="15"></PointSymbolizer>
     </Rule>
     <Rule>
-            <Filter>([man_made]='mast')</Filter>
-            &maxscale_zoom17;
-            <PointSymbolizer file="&symbols-path;communications.p.20.png" type="png" width="20" height="20"></PointSymbolizer>
+            <Filter>([man_made]='mast' or [man_made]='tower')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;communications.p.20.png" type="png" width="13" height="18"></PointSymbolizer>
     </Rule>
     <Rule>
             <Filter>([highway]='mini_roundabout')</Filter>
@@ -5125,12 +5125,12 @@
             &maxscale_zoom16;
             <PointSymbolizer file="&symbols-path;windmill.png" type="png" width="10" height="15"></PointSymbolizer>
     </Rule>
-    <Rule>
-            <Filter>([man_made]='mast')</Filter>
-            &maxscale_zoom17;
+<!--    <Rule>
+            <Filter>([man_made]='mast' or ([man_made]='tower' and ([tower:type]='communication' or [tower:type]='bts')))</Filter>
+            &maxscale_zoom14;
             <PointSymbolizer file="&symbols-path;communications.p.20.png" type="png" width="20" height="20"></PointSymbolizer>
     </Rule>
-    <Rule>
+-->    <Rule>
             <Filter>([highway]='mini_roundabout')</Filter>
             &maxscale_zoom15;
             <PointSymbolizer file="&symbols-path;mini_round.png" type="png" width="9" height="9"></PointSymbolizer>
