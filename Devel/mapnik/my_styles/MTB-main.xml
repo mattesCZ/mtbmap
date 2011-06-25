@@ -117,20 +117,6 @@
 </Style>
 <Style name="boundary">
     <Rule>
-            &minscale_zoom9;
-            &maxscale_zoom7;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(0,128,0)</CssParameter>
-                <CssParameter name="fill-opacity">0.05</CssParameter>
-            </PolygonSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(0,128,0)</CssParameter>
-                <CssParameter name="stroke-width">1.5</CssParameter>
-                <CssParameter name="stroke-opacity">0.15</CssParameter>
-                <CssParameter name="stroke-dasharray">4, 2</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule>
             &minscale_zoom12;
             &maxscale_zoom10;
             <PolygonSymbolizer>
@@ -153,11 +139,6 @@
                 <CssParameter name="stroke-opacity">0.15</CssParameter>
                 <CssParameter name="stroke-dasharray">6, 2</CssParameter>
             </LineSymbolizer>
-    </Rule>
-    <Rule>
-            &minscale_zoom9;
-            &maxscale_zoom8;
-            <TextSymbolizer name="name" fontset_name="bold-fonts" size="8" fill="rgb(153,204,153)" dy="-8" vertical_alignment="top" halo_radius="1" wrap_width="14"></TextSymbolizer>
     </Rule>
     <Rule>
             &minscale_zoom11;
@@ -617,7 +598,7 @@
     </Rule>
     <Rule>
             <Filter>([tourism]='attraction')</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(242,202,234)</CssParameter>
             </PolygonSymbolizer>
@@ -634,7 +615,7 @@
     <Rule>
             <Filter>(([leisure]='nature_reserve') or ([landuse]='vineyard'))</Filter>
             &minscale_zoom12;
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(171,223,150)</CssParameter>
             </PolygonSymbolizer>
@@ -664,7 +645,7 @@
     <Rule>
             <Filter>((([landuse]='cemetery') or ([landuse]='grave_yard')) or ([amenity]='grave_yard'))</Filter>
             &minscale_zoom14;
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(170,203,175)</CssParameter>
             </PolygonSymbolizer>
@@ -672,7 +653,7 @@
     <Rule>
             <Filter>([landuse]='residential')</Filter>
             &minscale_zoom18;
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(221,221,221)</CssParameter>
             </PolygonSymbolizer>
@@ -680,7 +661,7 @@
     <Rule>
             <Filter>([military]='barracks')</Filter>
             &minscale_zoom18;
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(255,143,143)</CssParameter>
             </PolygonSymbolizer>
@@ -688,7 +669,7 @@
     <Rule>
             <Filter>([landuse]='military')</Filter>
             &minscale_zoom18;
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(255,168,168)</CssParameter>
                 <CssParameter name="fill-opacity">0.4</CssParameter>
@@ -697,7 +678,7 @@
     <Rule>
             <Filter>(([landuse]='field') or ([natural]='field'))</Filter>
             &minscale_zoom13;
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(102,102,0)</CssParameter>
                 <CssParameter name="fill-opacity">0.2</CssParameter>
@@ -719,15 +700,6 @@
     </Rule>
     <Rule>
             <Filter>([military]='danger_area')</Filter>
-            &minscale_zoom10;
-            &maxscale_zoom9;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(255,192,203)</CssParameter>
-                <CssParameter name="fill-opacity">0.3</CssParameter>
-            </PolygonSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>([military]='danger_area')</Filter>
             &minscale_zoom18;
             &maxscale_zoom11;
             <PolygonPatternSymbolizer file="&symbols-path;danger.png" type="png" width="30" height="30"></PolygonPatternSymbolizer>
@@ -739,14 +711,14 @@
     </Rule>
     <Rule>
             <Filter>(([landuse]='meadow') or ([landuse]='grass'))</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(207,236,168)</CssParameter>
             </PolygonSymbolizer>
     </Rule>
     <Rule>
             <Filter>(([leisure]='park') or ([leisure]='recreation_ground'))</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(182,253,182)</CssParameter>
                 <CssParameter name="fill-opacity">0.6</CssParameter>
@@ -754,33 +726,33 @@
     </Rule>
     <Rule>
             <Filter>([tourism]='zoo')</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonPatternSymbolizer file="&symbols-path;zoo.png" type="png" width="21" height="24"></PolygonPatternSymbolizer>
     </Rule>
     <Rule>
             <Filter>([leisure]='common')</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(207,236,168)</CssParameter>
             </PolygonSymbolizer>
     </Rule>
     <Rule>
             <Filter>([leisure]='garden')</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(207,236,168)</CssParameter>
             </PolygonSymbolizer>
     </Rule>
     <Rule>
             <Filter>([leisure]='golf_course')</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(181,227,181)</CssParameter>
             </PolygonSymbolizer>
     </Rule>
     <Rule>
             <Filter>([landuse]='allotments')</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(200,176,132)</CssParameter>
             </PolygonSymbolizer>
@@ -794,21 +766,21 @@
     </Rule>
     <Rule>
             <Filter>([landuse]='farmyard')</Filter>
-            &maxscale_zoom9;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(221,191,146)</CssParameter>
             </PolygonSymbolizer>
     </Rule>
     <Rule>
             <Filter>(([landuse]='farm') or ([landuse]='farmland'))</Filter>
-            &maxscale_zoom9;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(234,216,189)</CssParameter>
             </PolygonSymbolizer>
     </Rule>
     <Rule>
             <Filter>(([landuse]='recreation_ground') or ([landuse]='conservation'))</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(207,236,168)</CssParameter>
             </PolygonSymbolizer>
@@ -822,7 +794,7 @@
     </Rule>
     <Rule>
             <Filter>([landuse]='retail')</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(241,218,218)</CssParameter>
             </PolygonSymbolizer>
@@ -837,7 +809,7 @@
     </Rule>
     <Rule>
             <Filter>(([landuse]='industrial') or ([landuse]='railway'))</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(223,209,214)</CssParameter>
             </PolygonSymbolizer>
@@ -845,7 +817,7 @@
     <Rule>
             <Filter>([power]='station')</Filter>
             &minscale_zoom11;
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(187,187,187)</CssParameter>
             </PolygonSymbolizer>
@@ -874,35 +846,35 @@
     </Rule>
     <Rule>
             <Filter>([landuse]='commercial')</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(239,200,200)</CssParameter>
             </PolygonSymbolizer>
     </Rule>
     <Rule>
             <Filter>(((([landuse]='brownfield') or ([landuse]='landfill')) or ([landuse]='greenfield')) or ([landuse]='construction'))</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(157,157,108)</CssParameter>
             </PolygonSymbolizer>
     </Rule>
     <Rule>
             <Filter>(([natural]='wood') or ([landuse]='wood'))</Filter>
-            &maxscale_zoom9;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(174,209,160)</CssParameter>
             </PolygonSymbolizer>
     </Rule>
     <Rule>
             <Filter>([natural]='heath')</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(255,255,192)</CssParameter>
             </PolygonSymbolizer>
     </Rule>
     <Rule>
             <Filter>((((([amenity]='university') or ([amenity]='college')) or ([amenity]='school')) or ([amenity]='hospital')) or ([amenity]='kindergarten'))</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(240,240,216)</CssParameter>
             </PolygonSymbolizer>
@@ -917,7 +889,7 @@
     </Rule>
     <Rule>
             <Filter>([amenity]='parking')</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(247,239,183)</CssParameter>
             </PolygonSymbolizer>
@@ -961,7 +933,7 @@
     </Rule>
     <Rule>
             <Filter>([leisure]='pitch')</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(138,211,175)</CssParameter>
             </PolygonSymbolizer>
@@ -5115,11 +5087,11 @@
             &maxscale_zoom17;
             <PointSymbolizer file="&symbols-path;tree2.png" type="png" width="5" height="5"></PointSymbolizer>
     </Rule>
-    <Rule>
+<!--    <Rule>
             <Filter>(([man_made]='power_wind') or (([power]='generator') and ([power_source]='wind')))</Filter>
             &maxscale_zoom15;
             <PointSymbolizer file="&symbols-path;power_wind.png" type="png" width="16" height="26"></PointSymbolizer>
-    </Rule>
+    </Rule>-->
     <Rule>
             <Filter>([man_made]='windmill')</Filter>
             &maxscale_zoom16;
@@ -5155,7 +5127,7 @@
     <Rule>
             <Filter>([place]='island')</Filter>
             &minscale_zoom18;
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <TextSymbolizer name="name" fontset_name="oblique-fonts" size="9" fill="rgb(0,0,0)" halo_radius="1"></TextSymbolizer>
     </Rule>
     <Rule>
@@ -5368,7 +5340,7 @@
     <Rule>
             <Filter>([place]='island')</Filter>
             &minscale_zoom18;
-            &maxscale_zoom10;
+            &maxscale_zoom11;
             <TextSymbolizer name="name" fontset_name="oblique-fonts" size="9" fill="rgb(0,0,0)" halo_radius="1"></TextSymbolizer>
     </Rule>
     <Rule>
@@ -7395,7 +7367,7 @@ admin 2 - staty
 admin 3 - nejake nemecke obvody
 admin 4 - kraje 
  -->
-<Layer name="admin-01234" srs="&srs900913;">
+<Layer name="admin-01234" srs="&srs900913;" clear_label_cache="yes">
 <StyleName>admin-01234</StyleName>
     <Datasource>
       <Parameter name="table">
@@ -7447,7 +7419,7 @@ admin 8 - uzemi samostatnych obci
 <StyleName>town</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,place,upper(name),name
+      (select way,place,upper(name),name,population
       from planet_osm_point
       where place in ('city','metropolis','town','large_town','small_town')
         and (capital is null or capital&lt;&gt;'yes')
@@ -7471,7 +7443,7 @@ admin 8 - uzemi samostatnych obci
     </Datasource>
 </Layer>
 <!-- zajimave body - zastavky autobusu, hrady, zamky, kostely, skoly, obchody, letiste, vrcholy, rozcesti, parkoviste -->
-<Layer name="amenity" status="on" srs="&srs900913;">
+<Layer name="amenity" status="on" srs="&srs900913;" clear_label_cache="yes">
     <StyleName>stations</StyleName>    
     <StyleName>symbols</StyleName>
     <StyleName>points</StyleName>
@@ -7485,7 +7457,7 @@ admin 8 - uzemi samostatnych obci
     <StyleName>symbols-poly</StyleName>
     <StyleName>points</StyleName>
     <Datasource>
-      <Parameter name="table">(select * from &prefix;_polygon where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or power_source is NOT NULL or man_made is NOT NULL or shop is NOT NULL) as amenity</Parameter>
+      <Parameter name="table">(select * from &prefix;_polygon where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or man_made is NOT NULL or shop is NOT NULL) as amenity</Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
@@ -7576,6 +7548,8 @@ admin 8 - uzemi samostatnych obci
        where name is not null
          and (waterway is null or waterway &lt;&gt; 'riverbank')
          and admin_level is null
+         and ("natural" is null or "natural" &lt;&gt; 'water')
+         and (landuse is null or landuse &lt;&gt; 'reservoir')
        order by z_order,way_area desc
       ) as text
       </Parameter>
