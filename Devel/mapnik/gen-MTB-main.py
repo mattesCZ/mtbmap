@@ -16,6 +16,15 @@
 from mapnik import *
 import sys, os
 
+def centerToBbox(lat, lon, zoom, imgx, imgy):
+    base = 0.000005364418 # longitude range of 1 pixel at zoom 18
+    west = lon - (imgx*base*(2**(18-zoom-1)))
+    east = lon + (imgx*base*(2**(18-zoom-1)))
+    north = lat + base
+    south = lat - base
+    print "range: ", (west, lat - (imgy*base*(2**(18-zoom-1))), east, lat + (imgy*base*(2**(18-zoom-1))))
+    return (west, south, east, north)
+
 if __name__ == "__main__":
     try:
         mapfile = os.environ['MAPNIK_MAP_FILE']
@@ -24,10 +33,15 @@ if __name__ == "__main__":
 #        mapfile = "my_styles/MTB-onlyMTBtracks.xml"
     map_uri = "im_MTB-main.png"
 
-    ll = (16.58, 49.25, 16.62, 49.27)
-    z = 10
-    imgx = 100 * z
-    imgy = 60 * z
+    lat = 50.0
+    lon = 14.4
+    zoom = 10
+    imgx = 1600
+    imgy = 1600
+
+    ll = centerToBbox(lat, lon, zoom, imgx, imgy)
+#    ll = (16.58, 49.25, 16.62, 49.27) #Brno, zoom
+#    ll = (12.10, 48.75, 18.9, 51.0) #Cela cr, 7
 
     m = Map(imgx,imgy)
     load_map(m,mapfile)
