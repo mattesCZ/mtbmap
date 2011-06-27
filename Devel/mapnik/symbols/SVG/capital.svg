@@ -14,10 +14,10 @@
    id="svg2815"
    version="1.1"
    inkscape:version="0.47 r22583"
-   inkscape:export-filename="/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/town12.png"
-   inkscape:export-xdpi="69.863297"
-   inkscape:export-ydpi="69.863297"
-   sodipodi:docname="town.svg">
+   inkscape:export-filename="/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/capital30.png"
+   inkscape:export-xdpi="179.8"
+   inkscape:export-ydpi="179.8"
+   sodipodi:docname="capital.svg">
   <defs
      id="defs2817">
     <inkscape:perspective
@@ -35,18 +35,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="32.247262"
+     inkscape:zoom="23.139589"
      inkscape:cx="1.1119742"
      inkscape:cy="8.0369232"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:grid-bbox="true"
      inkscape:document-units="px"
-     inkscape:window-width="1680"
-     inkscape:window-height="975"
-     inkscape:window-x="0"
-     inkscape:window-y="25"
-     inkscape:window-maximized="1" />
+     inkscape:window-width="1060"
+     inkscape:window-height="766"
+     inkscape:window-x="208"
+     inkscape:window-y="93"
+     inkscape:window-maximized="0" />
   <metadata
      id="metadata2820">
     <rdf:RDF>
@@ -63,24 +63,19 @@
      id="layer1"
      inkscape:label="Layer 1"
      inkscape:groupmode="layer">
-    <path
-       sodipodi:type="arc"
-       style="opacity:0.92808219000000003;fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       id="path2827"
-       sodipodi:cx="7.7572684"
-       sodipodi:cy="7.9834356"
-       sodipodi:rx="6.9793806"
-       sodipodi:ry="6.9793806"
-       d="m 14.736649,7.9834356 a 6.9793806,6.9793806 0 1 1 -13.95876118,0 6.9793806,6.9793806 0 1 1 13.95876118,0 z"
-       transform="translate(0.25929588,0)" />
-    <path
-       sodipodi:type="arc"
+    <rect
+       style="opacity:0.92808216000000021;fill:none;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       id="rect3607"
+       width="14.016694"
+       height="14.016694"
+       x="0.99233234"
+       y="0.99097359" />
+    <rect
        style="opacity:0.92808216000000021;fill:#000000;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1"
-       id="path3601"
-       sodipodi:cx="7.994956"
-       sodipodi:cy="7.9618278"
-       sodipodi:rx="4.0190859"
-       sodipodi:ry="4.0190859"
-       d="m 12.014042,7.9618278 a 4.0190859,4.0190859 0 1 1 -8.0381719,0 4.0190859,4.0190859 0 1 1 8.0381719,0 z" />
+       id="rect3611"
+       width="8.6208868"
+       height="8.6208868"
+       x="3.6902359"
+       y="3.6888771" />
   </g>
 </svg>

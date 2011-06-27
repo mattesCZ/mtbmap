@@ -5,35 +5,47 @@
     &minscale_zoom9;
     <LineSymbolizer>
       <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom10;
-    &minscale_zoom11;
+    &minscale_zoom10;
     <LineSymbolizer>
       <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom12;
-    &minscale_zoom12;
+    &maxscale_zoom11;
+    &minscale_zoom11;
     <LineSymbolizer>
       <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom12;
+    &minscale_zoom13;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -45,35 +57,47 @@
     &minscale_zoom9;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom10;
-    &minscale_zoom11;
+    &minscale_zoom10;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom12;
-    &minscale_zoom12;
+    &maxscale_zoom11;
+    &minscale_zoom11;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom12;
+    &minscale_zoom13;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -85,35 +109,47 @@
     &minscale_zoom9;
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom10;
-    &minscale_zoom11;
+    &minscale_zoom10;
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom12;
-    &minscale_zoom12;
+    &maxscale_zoom11;
+    &minscale_zoom11;
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom12;
+    &minscale_zoom13;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -125,35 +161,47 @@
     &minscale_zoom9;
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom10;
-    &minscale_zoom11;
+    &minscale_zoom10;
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom12;
-    &minscale_zoom12;
+    &maxscale_zoom11;
+    &minscale_zoom11;
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom12;
+    &minscale_zoom13;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -164,64 +212,66 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">1,1</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,1,1,0</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom10;
-    &minscale_zoom11;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">2,2</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom10;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,2,0</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    &maxscale_zoom11;
+    &minscale_zoom11;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-4</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom12;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">3,3</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom13;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,3,3,0</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">4,4</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,4,0</CssParameter>
+      <CssParameter name="stroke-offset">-7</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -232,64 +282,66 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">1,1</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,1,1,0</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom10;
-    &minscale_zoom11;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">2,2</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom10;
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,2,0</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    &maxscale_zoom11;
+    &minscale_zoom11;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-4</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom12;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">3,3</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom13;
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,3,3,0</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">4,4</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,4,0</CssParameter>
+      <CssParameter name="stroke-offset">-7</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -300,64 +352,66 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">1,1</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,1,1,0</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom10;
-    &minscale_zoom11;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">2,2</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom10;
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,2,0</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    &maxscale_zoom11;
+    &minscale_zoom11;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-4</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom12;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">3,3</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom13;
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,3,3,0</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">4,4</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,4,0</CssParameter>
+      <CssParameter name="stroke-offset">-7</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -369,63 +423,65 @@
     &minscale_zoom9;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">1,1</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,1,1,0</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom10;
+    &minscale_zoom10;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">2,2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,2,0</CssParameter>
+      <CssParameter name="stroke-offset">-4</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom12;
+    &minscale_zoom13;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">3,3</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,3,3,0</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">4,4</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,4,0</CssParameter>
+      <CssParameter name="stroke-offset">-7</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -437,63 +493,65 @@
     &minscale_zoom9;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">1,1</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,1,1,0</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom10;
+    &minscale_zoom10;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">2,2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,2,0</CssParameter>
+      <CssParameter name="stroke-offset">-4</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom12;
+    &minscale_zoom13;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">3,3</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,3,3,0</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">4,4</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,4,0</CssParameter>
+      <CssParameter name="stroke-offset">-7</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -504,64 +562,66 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">1,1</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,1,1,0</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom10;
-    &minscale_zoom11;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">2,2</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom10;
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,2,0</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    &maxscale_zoom11;
+    &minscale_zoom11;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-4</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom12;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">3,3</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom13;
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,3,3,0</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">4,4</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,4,0</CssParameter>
+      <CssParameter name="stroke-offset">-7</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -573,87 +633,83 @@
     &minscale_zoom9;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">1,2</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,1,1,1</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,1,0</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom10;
+    &minscale_zoom10;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">2,4</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,2,2</CssParameter>
+      <CssParameter name="stroke-offset">-4</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,2,0</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom12;
+    &minscale_zoom13;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">3,6</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,3,3,3</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,6,3,0</CssParameter>
+      <CssParameter name="stroke-offset">-9</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">4,8</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,4,4</CssParameter>
+      <CssParameter name="stroke-offset">-7</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,8,4,0</CssParameter>
+      <CssParameter name="stroke-offset">-11</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -664,88 +720,84 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">1,2</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,1,1,1</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,1,0</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom10;
-    &minscale_zoom11;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">2,4</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom10;
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,2,2</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    &maxscale_zoom11;
+    &minscale_zoom11;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-4</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,2,0</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom12;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">3,6</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom13;
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,3,3,3</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,6,3,0</CssParameter>
+      <CssParameter name="stroke-offset">-9</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">4,8</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,4,4</CssParameter>
+      <CssParameter name="stroke-offset">-7</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,8,4,0</CssParameter>
+      <CssParameter name="stroke-offset">-11</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -756,180 +808,172 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">1,2</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,1,1,1</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,1,0</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom10;
-    &minscale_zoom11;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">2,4</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom10;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,2,2</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    &maxscale_zoom11;
+    &minscale_zoom11;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-4</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,2,0</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom12;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">3,6</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom13;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,3,3,3</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,6,3,0</CssParameter>
+      <CssParameter name="stroke-offset">-9</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">4,8</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,4,4</CssParameter>
+      <CssParameter name="stroke-offset">-7</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,8,4,0</CssParameter>
+      <CssParameter name="stroke-offset">-11</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
 
-<!-- Style for yellow hiking tracks together with green and blue ones. -->
+<!-- Style for yellow hiking tracks together with green and red ones. -->
 <Style name="yellow-red-green-track">
   <Rule>
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">1,2</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,1,1,1</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,1,0</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom10;
-    &minscale_zoom11;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">2,4</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom10;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,2,2</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    &maxscale_zoom11;
+    &minscale_zoom11;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-4</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,2,0</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom12;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">3,6</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom13;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,3,3,3</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,6,3,0</CssParameter>
+      <CssParameter name="stroke-offset">-9</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">4,8</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,4,4</CssParameter>
+      <CssParameter name="stroke-offset">-7</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,8,4,0</CssParameter>
+      <CssParameter name="stroke-offset">-11</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -940,112 +984,102 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">1,3</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,1,1,2</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,1,1</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-dasharray">0,3,1,0</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom10;
-    &minscale_zoom11;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">2,6</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom10;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,2,2,4</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    &maxscale_zoom11;
+    &minscale_zoom11;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,2,2</CssParameter>
+      <CssParameter name="stroke-offset">-4</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,6,2,0</CssParameter>
+      <CssParameter name="stroke-offset">-8</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom12;
-    <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">3,9</CssParameter>
-    </LineSymbolizer>
+    &minscale_zoom13;
     <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,3,3,6</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-dasharray">0,6,3,3</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-9</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-dasharray">0,9,3,0</CssParameter>
+      <CssParameter name="stroke-offset">-12</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
-      <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">4,12</CssParameter>
-    </LineSymbolizer>
-    <LineSymbolizer>
       <CssParameter name="stroke">#dd0000</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,4,4,8</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#00dd00</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,8,4,4</CssParameter>
+      <CssParameter name="stroke-offset">-7</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-11</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">#0000dd</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-dasharray">0,12,4,0</CssParameter>
+      <CssParameter name="stroke-offset">-15</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
