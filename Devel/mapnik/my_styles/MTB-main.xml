@@ -6855,19 +6855,6 @@
     </Datasource>
 </Layer>
 
-<!-- Zakladni MTB stezky -->
-<Layer name="mtbasic" srs="&srs900913;">
-    <StyleName>mtb_basic</StyleName>
-    <Datasource>
-        <Parameter name="table">
-        (select osm_id,way,route,mtb,"mtb:scale","mtb:scale:uphill"
-        from planet_osm_line
-        where ("mtb:scale" is not null or mtb is not null or
-        "mtb:scale:uphill" is not null or route='mtb')) as mtb_basic
-        </Parameter>
-        &datasource-settings;
-    </Datasource>
-</Layer>
 <!-- MTB stezky dohromady s KCT znacenim, MTB je stranou -->
 <!-- <Layer name="mtboffset" srs="&srs900913;">
     <StyleName>mtb_offset</StyleName>
@@ -7173,6 +7160,19 @@
     </Datasource>
 </Layer>
 
+<!-- Zakladni MTB stezky -->
+<Layer name="mtbasic" srs="&srs900913;">
+    <StyleName>mtb_basic</StyleName>
+    <Datasource>
+        <Parameter name="table">
+        (select osm_id,way,route,mtb,"mtb:scale","mtb:scale:uphill"
+        from planet_osm_line
+        where ("mtb:scale" is not null or mtb is not null or
+        "mtb:scale:uphill" is not null or route='mtb')) as mtb_basic
+        </Parameter>
+        &datasource-settings;
+    </Datasource>
+</Layer>
 <!-- MTB znacky klasifikace terenu -->
 <Layer name="nobicycle" srs="&srs900913;">
     <StyleName>nobicycle</StyleName>

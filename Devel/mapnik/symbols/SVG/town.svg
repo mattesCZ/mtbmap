@@ -44,8 +44,8 @@
      inkscape:document-units="px"
      inkscape:window-width="1080"
      inkscape:window-height="723"
-     inkscape:window-x="440"
-     inkscape:window-y="110"
+     inkscape:window-x="472"
+     inkscape:window-y="223"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata2820">
@@ -55,7 +55,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -72,7 +72,10 @@
        sodipodi:rx="6.9793806"
        sodipodi:ry="6.9793806"
        d="m 14.736649,7.9834356 a 6.9793806,6.9793806 0 1 1 -13.95876118,0 6.9793806,6.9793806 0 1 1 13.95876118,0 z"
-       transform="matrix(0.85332215,0,0,0.85332215,1.3971153,1.1709932)" />
+       transform="matrix(0.85332215,0,0,0.85332215,1.3971153,1.1709932)"
+       inkscape:export-filename="/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/town10.png"
+       inkscape:export-xdpi="62.537697"
+       inkscape:export-ydpi="62.537697" />
     <path
        transform="matrix(0.85332215,0,0,0.85332215,1.3971153,1.1709932)"
        d="m 14.736649,7.9834356 a 6.9793806,6.9793806 0 1 1 -13.95876118,0 6.9793806,6.9793806 0 1 1 13.95876118,0 z"

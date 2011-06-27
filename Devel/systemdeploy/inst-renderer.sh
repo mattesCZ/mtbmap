@@ -24,6 +24,12 @@ sudo apt-get install curl libcurl4-gnutls-dev
 cd $MTBMAP_DIRECTORY/sw
 svn co http://svn.mapnik.org/tags/release-0.7.1/ mapnik
 cd mapnik
+
+# patch for offset lines rendering
+wget http://trac.mapnik.org/raw-attachment/ticket/180/mapnik0.7.1-offsets_v3.patch
+patch -p0 < mapnik0.7.1-offsets_v3.patch
+
+
 python scons/scons.py configure INPUT_PLUGINS=all OPTIMIZATION=3 SYSTEM_FONTS=/usr/share/fonts/truetype/ttf-dejavu/
 python scons/scons.py
 sudo python scons/scons.py install

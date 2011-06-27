@@ -33,11 +33,11 @@ if __name__ == "__main__":
 #        mapfile = "my_styles/MTB-onlyMTBtracks.xml"
     map_uri = "im_MTB-main.png"
 
-    lat = 50.0
-    lon = 14.4
-    zoom = 10
-    imgx = 1600
-    imgy = 1600
+    lat = 49.25
+    lon = 16.49
+    zoom = 15
+    imgx = 3200
+    imgy = 1800
 
     ll = centerToBbox(lat, lon, zoom, imgx, imgy)
 #    ll = (16.58, 49.25, 16.62, 49.27) #Brno, zoom
