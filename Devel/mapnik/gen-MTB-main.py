@@ -31,13 +31,14 @@ if __name__ == "__main__":
     except KeyError:
         mapfile = "my_styles/MTB-main.xml"
 #        mapfile = "my_styles/MTB-onlyMTBtracks.xml"
+#        mapfile = "my_styles/MTB-dolomites.xml"
     map_uri = "im_MTB-main.png"
 
-    lat = 49.25
-    lon = 16.49
-    zoom = 15
-    imgx = 3200
-    imgy = 1800
+    lat = 49.28
+    lon = 16.57
+    zoom = 14
+    imgx = 800
+    imgy = 800
 
     ll = centerToBbox(lat, lon, zoom, imgx, imgy)
 #    ll = (16.58, 49.25, 16.62, 49.27) #Brno, zoom

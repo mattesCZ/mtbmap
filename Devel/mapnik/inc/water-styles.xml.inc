@@ -1,5 +1,6 @@
+<!-- Water areas, rivers, glaciers -->
 <Style name="water_areas">
-    <Rule>
+    <Rule title="ledovec">
             <Filter>([natural]='glacier')</Filter>
             &minscale_zoom7;
             &maxscale_zoom6;
@@ -10,7 +11,7 @@
             </LineSymbolizer>
             <PolygonPatternSymbolizer file="&symbols-path;glacier.png" type="png" width="40" height="32"></PolygonPatternSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="ledovec">
             <Filter>([natural]='glacier')</Filter>
             &maxscale_zoom8;
             <LineSymbolizer>
@@ -20,8 +21,20 @@
             </LineSymbolizer>
             <PolygonPatternSymbolizer file="&symbols-path;glacier2.png" type="png" width="70" height="56"></PolygonPatternSymbolizer>
     </Rule>
-    <Rule>
-            <Filter>(((((([waterway]='dock') or ([landuse]='reservoir')) or ([landuse]='water')) or ([waterway]='mill_pond')) or ([waterway]='riverbank')) or ([waterway]='canal'))</Filter>
+    <Rule title="vodní plocha">
+            <Filter>(([natural]='lake') or ([natural]='water'))</Filter>
+            &maxscale_zoom6;
+            &minscale_zoom8;
+            <PolygonSymbolizer>
+                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
+            </PolygonSymbolizer>
+            <LineSymbolizer>
+                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke-width">0.4</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="vodní plocha">
+            <Filter>(((((([natural]='lake') or ([natural]='water') or ([landuse]='basin') or ([waterway]='dock') or ([landuse]='reservoir')) or ([landuse]='water')) or ([waterway]='mill_pond')) or ([waterway]='riverbank')) or ([waterway]='canal'))</Filter>
             &maxscale_zoom9;
             &minscale_zoom10;
             <PolygonSymbolizer>
@@ -32,8 +45,8 @@
                 <CssParameter name="stroke-width">0.4</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
-            <Filter>(((((([waterway]='dock') or ([landuse]='reservoir')) or ([landuse]='water')) or ([waterway]='mill_pond')) or ([waterway]='riverbank')) or ([waterway]='canal'))</Filter>
+    <Rule title="vodní plocha">
+            <Filter>(((((([natural]='lake') or ([natural]='water') or ([landuse]='basin') or ([waterway]='dock') or ([landuse]='reservoir')) or ([landuse]='water')) or ([waterway]='mill_pond')) or ([waterway]='riverbank')) or ([waterway]='canal'))</Filter>
             &maxscale_zoom11;
             &minscale_zoom13;
             <PolygonSymbolizer>
@@ -44,8 +57,8 @@
                 <CssParameter name="stroke-width">1.4</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
-            <Filter>(((((([waterway]='dock') or ([landuse]='reservoir')) or ([landuse]='water')) or ([waterway]='mill_pond')) or ([waterway]='riverbank')) or ([waterway]='canal'))</Filter>
+    <Rule title="vodní plocha">
+            <Filter>(((((([natural]='lake') or ([natural]='water') or ([landuse]='basin') or ([waterway]='dock') or ([landuse]='reservoir')) or ([landuse]='water')) or ([waterway]='mill_pond')) or ([waterway]='riverbank')) or ([waterway]='canal'))</Filter>
             &maxscale_zoom14;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(114,155,249)</CssParameter>
@@ -55,87 +68,17 @@
                 <CssParameter name="stroke-width">2.0</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
-            <Filter>([landuse]='basin')</Filter>
-            &maxscale_zoom7;
-            &minscale_zoom10;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
-            </PolygonSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">0.4</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>([landuse]='basin')</Filter>
-            &maxscale_zoom11;
-            &minscale_zoom13;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
-            </PolygonSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">1.4</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>([landuse]='basin')</Filter>
-            &maxscale_zoom14;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
-            </PolygonSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">2.0</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([natural]='lake') or ([natural]='water'))</Filter>
-            &maxscale_zoom6;
-            &minscale_zoom10;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
-            </PolygonSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">0.4</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([natural]='lake') or ([natural]='water'))</Filter>
-            &maxscale_zoom11;
-            &minscale_zoom13;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
-            </PolygonSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">1.4</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([natural]='lake') or ([natural]='water'))</Filter>
-            &maxscale_zoom14;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
-            </PolygonSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">2.0</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule>
+    <Rule title="zamokřená půda">
             <Filter>(([natural]='marsh') or ([natural]='wetland'))</Filter>
             &maxscale_zoom13;
             <PolygonPatternSymbolizer file="&symbols-path;marsh.png" type="png" width="30" height="30"></PolygonPatternSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="strniště">
             <Filter>([natural]='scrub')</Filter>
             &maxscale_zoom13;
             <PolygonPatternSymbolizer file="&symbols-path;scrub.png" type="png" width="30" height="30"></PolygonPatternSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="!ostrov">
             <Filter>([natural]='land')</Filter>
             &maxscale_zoom10;
             <PolygonSymbolizer>
@@ -144,68 +87,11 @@
     </Rule>
 </Style>
 
+<!-- vrstva navic, ktera umoznila plynule napojeni rek a vodnich ploch i s okrajem -->
 <Style name="water_areas_fill">
-    <Rule>
-            <Filter>(((((([waterway]='dock') or ([landuse]='reservoir')) or ([landuse]='water')) or ([waterway]='mill_pond')) or ([waterway]='riverbank')) or ([waterway]='canal'))</Filter>
+    <Rule title="vodní plocha">
+            <Filter>(((((([natural]='lake') or ([natural]='water') or ([landuse]='basin') or ([waterway]='dock') or ([landuse]='reservoir')) or ([landuse]='water')) or ([waterway]='mill_pond')) or ([waterway]='riverbank')) or ([waterway]='canal'))</Filter>
             &maxscale_zoom11;
-            &minscale_zoom13;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
-            </PolygonSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(((((([waterway]='dock') or ([landuse]='reservoir')) or ([landuse]='water')) or ([waterway]='mill_pond')) or ([waterway]='riverbank')) or ([waterway]='canal'))</Filter>
-            &maxscale_zoom14;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
-            </PolygonSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>([landuse]='basin')</Filter>
-            &maxscale_zoom7;
-            &minscale_zoom10;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
-            </PolygonSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>([landuse]='basin')</Filter>
-            &maxscale_zoom11;
-            &minscale_zoom13;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
-            </PolygonSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>([landuse]='basin')</Filter>
-            &maxscale_zoom14;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
-            </PolygonSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
-                <CssParameter name="stroke-width">1.2</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([natural]='lake') or ([natural]='water'))</Filter>
-            &maxscale_zoom6;
-            &minscale_zoom10;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
-            </PolygonSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([natural]='lake') or ([natural]='water'))</Filter>
-            &maxscale_zoom11;
-            &minscale_zoom13;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
-            </PolygonSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([natural]='lake') or ([natural]='water'))</Filter>
-            &maxscale_zoom14;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(114,155,249)</CssParameter>
             </PolygonSymbolizer>
@@ -213,7 +99,7 @@
 </Style>
 
 <Style name="water_lines_fill">
-    <Rule>
+    <Rule title="stavidlo">
             <Filter>([waterway]='weir')</Filter>
             &minscale_zoom18;
             &maxscale_zoom15;
@@ -224,7 +110,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom8;
             &maxscale_zoom8;
@@ -235,7 +121,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom10;
             &maxscale_zoom9;
@@ -246,7 +132,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom12;
             &maxscale_zoom11;
@@ -257,7 +143,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom13;
             &maxscale_zoom13;
@@ -268,7 +154,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom14;
             &maxscale_zoom14;
@@ -279,7 +165,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom16;
             &maxscale_zoom15;
@@ -290,7 +176,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom17;
             &maxscale_zoom17;
@@ -301,7 +187,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom18;
             &maxscale_zoom18;
@@ -312,8 +198,8 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
-            <Filter>(([waterway]='canal') and not (([disused]='yes')))</Filter>
+    <Rule title="plavební kanál">
+            <Filter>([waterway]='canal')</Filter>
             &minscale_zoom12;
             &maxscale_zoom11;
             <LineSymbolizer>
@@ -323,8 +209,8 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
-            <Filter>(([waterway]='canal') and not (([disused]='yes')))</Filter>
+    <Rule title="plavební kanál">
+            <Filter>([waterway]='canal')</Filter>
             &minscale_zoom13;
             &maxscale_zoom13;
             <LineSymbolizer>
@@ -335,7 +221,7 @@
             </LineSymbolizer>
             <TextSymbolizer name="name" fontset_name="book-fonts" size="8" fill="rgb(102,153,204)" placement="line" halo_radius="1"></TextSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="ostatní vodní tok">
             <ElseFilter/>
             &minscale_zoom14;
             &maxscale_zoom13;
@@ -343,7 +229,7 @@
                 <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka pod povrchem">
             <Filter>(([waterway]='river') and ([tunnel]='yes'))</Filter>
             &minscale_zoom14;
             &maxscale_zoom14;
@@ -358,7 +244,7 @@
             </LineSymbolizer>
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(102,153,204)" placement="line" halo_radius="1" min_distance="200"></TextSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka pod povrchem">
             <Filter>(([waterway]='river') and ([tunnel]='yes'))</Filter>
             &minscale_zoom16;
             &maxscale_zoom15;
@@ -373,7 +259,7 @@
             </LineSymbolizer>
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(102,153,204)" placement="line" halo_radius="1" min_distance="200"></TextSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka pod povrchem">
             <Filter>(([waterway]='river') and ([tunnel]='yes'))</Filter>
             &minscale_zoom17;
             &maxscale_zoom17;
@@ -388,7 +274,7 @@
             </LineSymbolizer>
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(102,153,204)" placement="line" halo_radius="1" min_distance="200"></TextSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka pod povrchem">
             <Filter>(([waterway]='river') and ([tunnel]='yes'))</Filter>
             &maxscale_zoom18;
             <LineSymbolizer>
@@ -402,7 +288,7 @@
             </LineSymbolizer>
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(102,153,204)" placement="line" halo_radius="1" min_distance="200"></TextSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="plavební kanál pod povrchem">
             <Filter>(([waterway]='canal') and ([tunnel]='yes'))</Filter>
             &minscale_zoom16;
             &maxscale_zoom14;
@@ -417,8 +303,8 @@
             </LineSymbolizer>
             <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="rgb(102,153,204)" placement="line" halo_radius="1"></TextSymbolizer>
     </Rule>
-    <Rule>
-            <Filter>(([waterway]='canal') and not ((([tunnel]='yes') or ([disused]='yes'))))</Filter>
+    <Rule title="plavební kanál">
+            <Filter>(([waterway]='canal') and not ([tunnel]='yes'))</Filter>
             &minscale_zoom16;
             &maxscale_zoom14;
             <LineSymbolizer>
@@ -429,7 +315,7 @@
             </LineSymbolizer>
             <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="rgb(102,153,204)" placement="line" halo_radius="1"></TextSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="plavební kanál pod povrchem">
             <Filter>(([waterway]='canal') and ([tunnel]='yes'))</Filter>
             &minscale_zoom18;
             &maxscale_zoom17;
@@ -444,8 +330,8 @@
             </LineSymbolizer>
             <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="rgb(102,153,204)" placement="line" halo_radius="1"></TextSymbolizer>
     </Rule>
-    <Rule>
-            <Filter>(([waterway]='canal') and not ((([tunnel]='yes') or ([disused]='yes'))))</Filter>
+    <Rule title="plavební kanál">
+            <Filter>(([waterway]='canal') and not ([tunnel]='yes'))</Filter>
             &minscale_zoom18;
             &maxscale_zoom17;
             <LineSymbolizer>
@@ -456,48 +342,7 @@
             </LineSymbolizer>
             <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="rgb(102,153,204)" placement="line" halo_radius="1"></TextSymbolizer>
     </Rule>
-    <Rule>
-            <Filter>(([waterway]='derelict_canal') or (([waterway]='canal') and ([disused]='yes')))</Filter>
-            &minscale_zoom12;
-            &maxscale_zoom11;
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(181,228,208)</CssParameter>
-                <CssParameter name="stroke-width">1.0</CssParameter>
-                <CssParameter name="stroke-opacity">0.5</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-                <CssParameter name="stroke-dasharray">4, 4</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([waterway]='derelict_canal') or (([waterway]='canal') and ([disused]='yes')))</Filter>
-            &minscale_zoom13;
-            &maxscale_zoom13;
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(181,228,208)</CssParameter>
-                <CssParameter name="stroke-width">2</CssParameter>
-                <CssParameter name="stroke-opacity">0.5</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-                <CssParameter name="stroke-dasharray">4, 6</CssParameter>
-            </LineSymbolizer>
-            <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="rgb(128,209,174)" placement="line" halo_radius="1" spacing="600"></TextSymbolizer>
-    </Rule>
-    <Rule>
-            <Filter>(([waterway]='derelict_canal') or (([waterway]='canal') and ([disused]='yes')))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom14;
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(181,228,208)</CssParameter>
-                <CssParameter name="stroke-width">3.8</CssParameter>
-                <CssParameter name="stroke-opacity">0.5</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-                <CssParameter name="stroke-dasharray">4, 8</CssParameter>
-            </LineSymbolizer>
-            <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(128,209,174)" placement="line" halo_radius="1" spacing="600"></TextSymbolizer>
-    </Rule>
-    <Rule>
+    <Rule title="potok pod povrchem">
             <Filter>((([waterway]='stream') or ([waterway]='drain')) and ([tunnel]='yes'))</Filter>
             &minscale_zoom18;
             &maxscale_zoom15;
@@ -511,7 +356,7 @@
                 <CssParameter name="stroke-width">1.2</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="potok">
             <Filter>((([waterway]='stream') or ([waterway]='drain')) and not (([tunnel]='yes')))</Filter>
             &minscale_zoom18;
             &maxscale_zoom15;
@@ -521,7 +366,7 @@
             </LineSymbolizer>
             <TextSymbolizer name="name" fontset_name="book-fonts" size="8" fill="rgb(102,153,204)" placement="line" halo_radius="1" spacing="600"></TextSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="ostatní vodní tok">
             <ElseFilter/>
             &minscale_zoom18;
             &maxscale_zoom15;
@@ -532,7 +377,7 @@
     </Rule>
 </Style>
 <Style name="water_lines_casing">
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom8;
             &maxscale_zoom8;
@@ -543,7 +388,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom10;
             &maxscale_zoom9;
@@ -554,7 +399,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom12;
             &maxscale_zoom11;
@@ -565,7 +410,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom13;
             &maxscale_zoom13;
@@ -576,7 +421,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom14;
             &maxscale_zoom14;
@@ -587,7 +432,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom16;
             &maxscale_zoom15;
@@ -598,7 +443,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom17;
             &maxscale_zoom17;
@@ -609,7 +454,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom18;
             &maxscale_zoom18;
@@ -620,8 +465,8 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
-            <Filter>(([waterway]='canal') and not (([disused]='yes')))</Filter>
+    <Rule title="plavební kanál">
+            <Filter>([waterway]='canal')</Filter>
             &minscale_zoom12;
             &maxscale_zoom11;
             <LineSymbolizer>
@@ -631,8 +476,8 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
-            <Filter>(([waterway]='canal') and not (([disused]='yes')))</Filter>
+    <Rule title="plavební kanál">
+            <Filter>([waterway]='canal')</Filter>
             &minscale_zoom13;
             &maxscale_zoom13;
             <LineSymbolizer>
@@ -642,7 +487,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="ostatní vodní tok">
             <ElseFilter/>
             &minscale_zoom14;
             &maxscale_zoom13;
@@ -650,7 +495,7 @@
                 <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka pod povrchem">
             <Filter>(([waterway]='river') and ([tunnel]='yes'))</Filter>
             &minscale_zoom14;
             &maxscale_zoom14;
@@ -660,7 +505,7 @@
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka pod povrchem">
             <Filter>(([waterway]='river') and ([tunnel]='yes'))</Filter>
             &minscale_zoom16;
             &maxscale_zoom15;
@@ -670,7 +515,7 @@
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka pod povrchem">
             <Filter>(([waterway]='river') and ([tunnel]='yes'))</Filter>
             &minscale_zoom17;
             &maxscale_zoom17;
@@ -680,7 +525,7 @@
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="řeka pod povrchem">
             <Filter>(([waterway]='river') and ([tunnel]='yes'))</Filter>
             &maxscale_zoom18;
             <LineSymbolizer>
@@ -689,7 +534,7 @@
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="plavební kanál pod povrchem">
             <Filter>(([waterway]='canal') and ([tunnel]='yes'))</Filter>
             &minscale_zoom16;
             &maxscale_zoom14;
@@ -699,8 +544,8 @@
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
-            <Filter>(([waterway]='canal') and not ((([tunnel]='yes') or ([disused]='yes'))))</Filter>
+    <Rule title="plavební kanál">
+            <Filter>(([waterway]='canal') and not ([tunnel]='yes'))</Filter>
             &minscale_zoom16;
             &maxscale_zoom14;
             <LineSymbolizer>
@@ -710,7 +555,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="plavební kanál pod povrchem">
             <Filter>(([waterway]='canal') and ([tunnel]='yes'))</Filter>
             &minscale_zoom18;
             &maxscale_zoom17;
@@ -720,8 +565,8 @@
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
-            <Filter>(([waterway]='canal') and not ((([tunnel]='yes') or ([disused]='yes'))))</Filter>
+    <Rule title="plavební kanál">
+            <Filter>(([waterway]='canal') and not ([tunnel]='yes'))</Filter>
             &minscale_zoom18;
             &maxscale_zoom17;
             <LineSymbolizer>
@@ -731,7 +576,7 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="potok pod povrchem">
             <Filter>((([waterway]='stream') or ([waterway]='drain')) and ([tunnel]='yes'))</Filter>
             &minscale_zoom18;
             &maxscale_zoom15;
@@ -741,7 +586,7 @@
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="potok">
             <Filter>((([waterway]='stream') or ([waterway]='drain')) and not (([tunnel]='yes')))</Filter>
             &minscale_zoom18;
             &maxscale_zoom15;
@@ -752,7 +597,7 @@
     </Rule>
 </Style>
 <Style name="waterway-bridges">
-    <Rule>
+    <Rule title="!akvadukt">
             &minscale_zoom16;
             &maxscale_zoom14;
             <LineSymbolizer>
@@ -767,7 +612,7 @@
             </LineSymbolizer>
             <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="rgb(102,153,204)" placement="line" halo_radius="1"></TextSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="!akvadukt">
             &minscale_zoom18;
             &maxscale_zoom17;
             <LineSymbolizer>
