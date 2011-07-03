@@ -1,6 +1,6 @@
 <!-- Style for yellow hiking tracks. -->
 <Style name="yellow-track">
-  <Rule>
+  <Rule title="žlutá turistická trasa">
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
@@ -9,7 +9,7 @@
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="žlutá turistická trasa">
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
@@ -18,7 +18,7 @@
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="žlutá turistická trasa">
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
@@ -28,7 +28,7 @@
       <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="žlutá turistická trasa">
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
@@ -38,7 +38,7 @@
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="žlutá turistická trasa">
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
@@ -52,7 +52,7 @@
 
 <!-- Style for red hiking tracks. -->
 <Style name="red-track">
-  <Rule>
+  <Rule title="červená turistická trasa">
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
@@ -61,7 +61,7 @@
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="červená turistická trasa">
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
@@ -70,7 +70,7 @@
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="červená turistická trasa">
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
@@ -80,7 +80,7 @@
       <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="červená turistická trasa">
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
@@ -90,7 +90,7 @@
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="červená turistická trasa">
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
@@ -104,7 +104,7 @@
 
 <!-- Style for green hiking tracks. -->
 <Style name="green-track">
-  <Rule>
+  <Rule title="zelená turistická trasa">
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
@@ -113,7 +113,7 @@
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="zelená turistická trasa">
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
@@ -122,7 +122,7 @@
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="zelená turistická trasa">
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
@@ -132,7 +132,7 @@
       <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="zelená turistická trasa">
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
@@ -142,7 +142,7 @@
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="zelená turistická trasa">
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
@@ -156,7 +156,7 @@
 
 <!-- Style for blue hiking tracks. -->
 <Style name="blue-track">
-  <Rule>
+  <Rule title="modrá turistická trasa">
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
@@ -165,7 +165,7 @@
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="modrá turistická trasa">
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
@@ -174,7 +174,7 @@
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="modrá turistická trasa">
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
@@ -184,7 +184,7 @@
       <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="modrá turistická trasa">
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
@@ -194,7 +194,7 @@
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule>
+  <Rule title="modrá turistická trasa">
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
@@ -1080,6 +1080,58 @@
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+</Style>
+
+<!-- Style for international hiking tracks. -->
+<Style name="international-track">
+  <Rule title="mezinárodní turistická trasa">
+    &maxscale_zoom9;
+    &minscale_zoom9;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">1</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="mezinárodní turistická trasa">
+    &maxscale_zoom10;
+    &minscale_zoom10;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="mezinárodní turistická trasa">
+    &maxscale_zoom11;
+    &minscale_zoom11;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="mezinárodní turistická trasa">
+    &maxscale_zoom12;
+    &minscale_zoom13;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="mezinárodní turistická trasa">
+    &maxscale_zoom14;
+    &minscale_zoom18;
+    <LineSymbolizer>
+      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>

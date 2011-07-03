@@ -36,7 +36,7 @@ su postgres
 createuser $USER
 exit
 createdb -E UTF8 -O $USER $DATABASE
-createlang plpgsql gisczech
+createlang plpgsql $DATABASE
 psql -d $DATABASE -f /usr/share/postgresql/8.4/contrib/postgis-1.5/postgis.sql
 echo "ALTER TABLE geometry_columns OWNER TO $USER; \
       ALTER TABLE spatial_ref_sys OWNER TO $USER;" \

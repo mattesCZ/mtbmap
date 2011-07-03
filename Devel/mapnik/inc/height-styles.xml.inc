@@ -1,6 +1,6 @@
 <!-- Style for shading. -->
 <Style name="shading">
-    <Rule>
+    <Rule title="!stínování reliéfu">
       &maxscale_zoom7;
       &minscale_zoom12;
       <RasterSymbolizer>
@@ -9,7 +9,7 @@
         <CssParameter name="scaling">bilinear8</CssParameter>
       </RasterSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="!stínování reliéfu">
       &maxscale_zoom13;
       &minscale_zoom14;
       <RasterSymbolizer>
@@ -18,7 +18,7 @@
         <CssParameter name="scaling">bilinear8</CssParameter>
       </RasterSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="!stínování reliéfu">
       &maxscale_zoom15;
       &minscale_zoom18;
       <RasterSymbolizer>
@@ -30,8 +30,8 @@
 </Style>
 <!-- Style for hypsometry. -->
 <Style name="hypsometry">
-    <Rule>
-      &maxscale_zoom7;
+    <Rule title="výškopis">
+      &maxscale_zoom0;
       &minscale_zoom10;
       <RasterSymbolizer>
         <CssParameter name="opacity">0.6</CssParameter>
@@ -42,7 +42,7 @@
 </Style>
 <!-- Contour lines styles. -->
 <Style name="contours5">
-    <Rule>
+    <Rule title="vrstevnice po 5 metrech">
       &maxscale_zoom15;
       &minscale_zoom18;
       <LineSymbolizer>
@@ -52,7 +52,7 @@
     </Rule>
 </Style>
 <Style name="contours10">
-    <Rule>
+    <Rule title="vrstevnice po 10 metrech">
       &maxscale_zoom13;
       &minscale_zoom18;
       <LineSymbolizer>
@@ -62,7 +62,7 @@
     </Rule>
 </Style>
 <Style name="contours20">
-    <Rule>
+    <Rule title="vrstevnice po 20 metrech">
       &maxscale_zoom12;
       &minscale_zoom12;
       <LineSymbolizer>
@@ -72,7 +72,7 @@
     </Rule>
 </Style>
 <Style name="contours25">
-    <Rule>
+    <Rule title="vrstevnice po 25 metrech">
       &maxscale_zoom15;
       &minscale_zoom18;
       <LineSymbolizer>
@@ -82,7 +82,7 @@
     </Rule>
 </Style>
 <Style name="contours50">
-    <Rule>
+    <Rule title="vrstevnice po 50 metrech">
       &maxscale_zoom11;
       &minscale_zoom11;
       <LineSymbolizer>
@@ -100,7 +100,7 @@
     </Rule>
 </Style>
 <Style name="contours100">
-    <Rule>
+    <Rule title="vrstevnice po 100 metrech">
       &maxscale_zoom11;
       &minscale_zoom14;
       <LineSymbolizer>
@@ -112,7 +112,7 @@
 
 <!-- Style for contour lines heights. -->
 <Style name="contours-text25">
-    <Rule>
+    <Rule title="!popis vrstevnic po 25 metrech">
       &maxscale_zoom15;
       &minscale_zoom18;
       <TextSymbolizer name="height" face_name="DejaVu Sans Book" size="8" fill="rgb(170,71,30)" halo_radius="1" placement="line" />
@@ -120,14 +120,14 @@
 </Style>
 
 <Style name="contours-text50">
-    <Rule>
+    <Rule title="!popis vrstevnic po 50 metrech">
       &maxscale_zoom13;
       &minscale_zoom14;
       <TextSymbolizer name="height" face_name="DejaVu Sans Book" size="8" fill="rgb(170,71,30)" halo_radius="1" placement="line" />
     </Rule>
 </Style>
 <Style name="contours-text100">
-    <Rule>
+    <Rule title="!popis vrstevnic po 100 metrech">
       &maxscale_zoom11;
       &minscale_zoom14;
       <TextSymbolizer name="height" face_name="DejaVu Sans Book" size="8" fill="rgb(170,71,30)" halo_radius="1" placement="line" />

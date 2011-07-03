@@ -1,3 +1,5 @@
+<!-- styles for placenames - countries, cities, villages etc. -->
+
 <!-- large -->
 <Style name="country">
     <Rule>

@@ -1,12 +1,10 @@
 <!ENTITY % settings SYSTEM "settings.xml.inc">
 %settings;
-<!ENTITY datasource-settings SYSTEM "datasource-settings.xml.inc">
+<!ENTITY datasource-settings SYSTEM "temp-datasource-settings.xml.inc">
 <!ENTITY latlon-datasource-settings SYSTEM "latlon-datasource-settings.xml.inc">
 <!ENTITY fontset-settings SYSTEM "fontset-settings.xml.inc">
 <!ENTITY srs900913 "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
 <!ENTITY srsmercator "+proj=merc +datum=WGS84 +over">
-<!ENTITY srs4326 "+init=epsg:4326">
-
 <!ENTITY maxscale_zoom0 "<MaxScaleDenominator>250000000000</MaxScaleDenominator>">
 <!ENTITY maxscale_zoom1 "<MaxScaleDenominator>500000000</MaxScaleDenominator>">
 <!ENTITY minscale_zoom1 "<MinScaleDenominator>200000000</MinScaleDenominator>">
@@ -52,17 +50,8 @@
 
 <!ENTITY height-styles SYSTEM "height-styles.xml.inc">
 <!ENTITY admin-styles SYSTEM "admin-styles.xml.inc">
+<!ENTITY symbols-path "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/">
 <!ENTITY mtb-styles SYSTEM "mtb-styles.xml.inc">
 <!ENTITY kct-styles SYSTEM "kct-styles.xml.inc">
 <!ENTITY water-styles SYSTEM "water-styles.xml.inc">
 <!ENTITY placenames-styles SYSTEM "placenames-styles.xml.inc">
-<!ENTITY shapefiles-styles SYSTEM "shapefiles-styles.xml.inc">
-<!ENTITY highway-railway-styles SYSTEM "highway-railway-styles.xml.inc">
-<!ENTITY tracks-styles SYSTEM "tracks-styles.xml.inc">
-<!ENTITY amenity-poi-styles SYSTEM "amenity-poi-styles.xml.inc">
-<!ENTITY text-styles SYSTEM "text-styles.xml.inc">
-<!ENTITY landuse-styles SYSTEM "landuse-styles.xml.inc">
-
-<!ENTITY symbols-path "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/">
-<!ENTITY shapefiles "/home/xtesar7/Devel/mtbmap-czechrep/Data/shapefile">
-<!ENTITY hgtdata "/home/xtesar7/Devel/mtbmap-czechrep/Data/shadingdata">
