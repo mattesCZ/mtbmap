@@ -19,20 +19,20 @@
 &text-styles;
 &landuse-styles;
 
-<Layer name="world" status="on" srs="&srs900913;">
+<!--<Layer name="world" status="on" srs="&srs900913;">
     <StyleName>world</StyleName>
     <Datasource>
       <Parameter name="type">shape</Parameter>
       <Parameter name="file">&shapefiles;/shoreline_300.shp</Parameter>
     </Datasource>
-</Layer>
+</Layer>-->
 
 <!-- Hypsometry layer. -->
 <Layer name="hypsometry" status="on" srs="&srs900913;">
     <StyleName>hypsometry</StyleName>
     <Datasource>
       <Parameter name="type">gdal</Parameter>
-      <Parameter name="file">&hgtdata;/hypsometryEurope.tif</Parameter>
+      <Parameter name="file">&hgtdata;/hypsometry150.tif</Parameter>
       <Parameter name="format">tiff</Parameter>
     </Datasource>
 </Layer>
