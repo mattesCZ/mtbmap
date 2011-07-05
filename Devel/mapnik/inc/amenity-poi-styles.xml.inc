@@ -249,11 +249,6 @@
             &maxscale_zoom14;
             <PointSymbolizer file="&symbols-path;library.p.20.png" type="png" width="20" height="20"></PointSymbolizer>
     </Rule>
-    <Rule title="stožár">
-            <Filter>([man_made]='mast')</Filter>
-            &maxscale_zoom17;
-            <PointSymbolizer file="&symbols-path;communications.p.20.png" type="png" width="20" height="20"></PointSymbolizer>
-    </Rule>
     <Rule title="muzeum">
             <Filter>([tourism]='museum')</Filter>
             &maxscale_zoom14;
@@ -488,7 +483,7 @@
             <PointSymbolizer file="&symbols-path;windmill.png" type="png" width="10" height="15"></PointSymbolizer>
     </Rule>
     <Rule title="vysílač">
-            <Filter>([man_made]='mast' or [man_made]='tower')</Filter>
+            <Filter>(([man_made]='tower') and ([tower:type]='communication'))</Filter>
             &maxscale_zoom14;
             <PointSymbolizer file="&symbols-path;communications.p.20.png" type="png" width="13" height="18"></PointSymbolizer>
     </Rule>
@@ -579,7 +574,7 @@
             <PointSymbolizer file="&symbols-path;windmill.png" type="png" width="10" height="15"></PointSymbolizer>
     </Rule>
     <Rule title="!vysílač">
-            <Filter>([man_made]='mast' or ([man_made]='tower'))</Filter>
+            <Filter>(([man_made]='tower') and ([tower:type]='communication'))</Filter>
             &maxscale_zoom14;
             <PointSymbolizer file="&symbols-path;communications.p.20.png" type="png" width="20" height="20"></PointSymbolizer>
     </Rule>

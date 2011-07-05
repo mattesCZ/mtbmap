@@ -162,7 +162,7 @@
 <StyleName>water_areas</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,"natural",waterway,landuse,name
+      (select way,"natural",waterway,landuse,name,way_area
       from planet_osm_polygon
       where waterway in ('dock','mill_pond','riverbank','canal')
          or landuse in ('reservoir','water','basin')
@@ -1151,20 +1151,32 @@ admin 8 - uzemi samostatnych obci
       &datasource-settings;
     </Datasource>
 </Layer>
-<!-- popisy arealu - zoo, vozovny, parky, ale i katastralni uzemi -->
+<!-- popisy arealu - vodni plochy, zoo, vozovny, parky, ale i katastralni uzemi -->
 <Layer name="area-text" srs="&srs900913;">
 <StyleName>area-text</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,way_area,name
+      (select way,way_area,name, landuse, "natural"
        from planet_osm_polygon
        where name is not null
          and (waterway is null or waterway &lt;&gt; 'riverbank')
          and admin_level is null
-         and ("natural" is null or "natural" &lt;&gt; 'water')
-         and (landuse is null or landuse &lt;&gt; 'reservoir')
        order by z_order,way_area desc
       ) as text
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+
+<!-- popisy vodnich toku -->
+<Layer name="water-lines-text" srs="&srs900913;">
+    <StyleName>water-lines-text</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,waterway,name
+      from planet_osm_line
+      where waterway in ('river','canal','stream','drain')
+      ) as water_lines_text
       </Parameter>
       &datasource-settings;
     </Datasource>

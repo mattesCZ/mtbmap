@@ -145,7 +145,7 @@
             <Filter>([military]='danger_area' or [landuse]='military')</Filter>
             &minscale_zoom18;
             &maxscale_zoom11;
-            <PolygonPatternSymbolizer file="&symbols-path;military_red_hz2.png" type="png" width="30" height="30"></PolygonPatternSymbolizer>
+            <PolygonPatternSymbolizer file="&symbols-path;military_red_hz2.png" type="png" width="24" height="24"></PolygonPatternSymbolizer>
             <LineSymbolizer>
               <CssParameter name="stroke">#f55</CssParameter>
               <CssParameter name="stroke-width">3</CssParameter>
