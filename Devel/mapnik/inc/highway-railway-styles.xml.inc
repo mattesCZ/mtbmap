@@ -816,6 +816,22 @@
                 <CssParameter name="stroke-dasharray">6, 4</CssParameter>
             </LineSymbolizer>
     </Rule>
+    <Rule title="zrušená silnice">
+            <Filter>([highway]='abandoned')</Filter>
+            &minscale_zoom15;
+            &maxscale_zoom13;
+            <LineSymbolizer>
+                <CssParameter name="stroke">rgb(151,151,151)</CssParameter>
+                <CssParameter name="stroke-width">4</CssParameter>
+                <CssParameter name="stroke-opacity">0.5</CssParameter>
+            </LineSymbolizer>
+            <LineSymbolizer>
+                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke-width">3.5</CssParameter>
+                <CssParameter name="stroke-dasharray">6, 4</CssParameter>
+                <CssParameter name="stroke-opacity">0.5</CssParameter>
+            </LineSymbolizer>
+    </Rule>
     <Rule title="silnice ve výstavbě">
             <Filter>(([highway]='construction') and not (([construction]&lt;&gt;'')))</Filter>
             &minscale_zoom18;
@@ -898,6 +914,22 @@
                 <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
                 <CssParameter name="stroke-width">7</CssParameter>
                 <CssParameter name="stroke-dasharray">8, 6</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="zrušená silnice">
+            <Filter>([highway]='abandoned')</Filter>
+            &minscale_zoom18;
+            &maxscale_zoom16;
+            <LineSymbolizer>
+                <CssParameter name="stroke">rgb(151,151,151)</CssParameter>
+                <CssParameter name="stroke-width">8</CssParameter>
+                <CssParameter name="stroke-opacity">0.5</CssParameter>
+            </LineSymbolizer>
+            <LineSymbolizer>
+                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke-width">7</CssParameter>
+                <CssParameter name="stroke-dasharray">8, 6</CssParameter>
+                <CssParameter name="stroke-opacity">0.5</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="dálnice, rychlostní silnice">

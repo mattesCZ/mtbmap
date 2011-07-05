@@ -80,7 +80,7 @@
 </Style>
 <Style name="cycleway-text">
   <Rule>
-    &maxscale_zoom13;
+    &maxscale_zoom14;
     &minscale_zoom18;
     <TextSymbolizer name="ref" fontset_name="bold-fonts" size="10" fill="rgb(0,0,0)" placement="line" halo_radius="1" spacing="275" min_distance="28"></TextSymbolizer>
   </Rule>
