@@ -9,6 +9,12 @@
     <Rule>
             <Filter>(([way_area]&gt;=5000000) and (([natural]='lake') or ([natural]='water') or ([landuse]='reservoir') or ([landuse]='water')))</Filter>
             &maxscale_zoom9;
+            &minscale_zoom9;
+            <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(80,109,177)" halo_radius="1" wrap_width="30" dy="7"></TextSymbolizer>
+    </Rule>
+    <Rule>
+            <Filter>(([way_area]&gt;=5000000) and (([natural]='lake') or ([natural]='water') or ([landuse]='reservoir') or ([landuse]='water')))</Filter>
+            &maxscale_zoom10;
             &minscale_zoom11;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(80,109,177)" halo_radius="1" wrap_width="30"></TextSymbolizer>
     </Rule>
@@ -318,6 +324,16 @@
             <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="rgb(0,0,51)" dy="16" vertical_alignment="bottom" halo_radius="2" wrap_width="12"></TextSymbolizer>
     </Rule>
     <Rule>
+            <Filter>(([man_made]='tower') and (([tower:type]='communication') or ([tower:type]='bts')))</Filter>
+            &maxscale_zoom15;
+            <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="rgb(0,0,0)" dy="12" vertical_alignment="bottom" halo_radius="1" wrap_width="20"></TextSymbolizer>
+    </Rule>
+    <Rule>
+            <Filter>(([man_made]='tower') and ([tower:type]='observation'))</Filter>
+            &maxscale_zoom15;
+            <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="rgb(0,0,0)" dy="12" vertical_alignment="bottom" halo_radius="1" wrap_width="20"></TextSymbolizer>
+    </Rule>
+    <Rule>
             <Filter>([man_made]='windmill')</Filter>
             &maxscale_zoom17;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="rgb(115,74,8)" dy="12" vertical_alignment="bottom" halo_radius="1" wrap_width="20"></TextSymbolizer>
@@ -367,12 +383,22 @@
             &maxscale_zoom14;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(172,57,172)" dy="10" vertical_alignment="bottom" halo_radius="1"></TextSymbolizer>
     </Rule>
+    <Rule title="!zřícenina">
+            <Filter>([historic]='ruins')</Filter>
+            &maxscale_zoom14;
+            <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(0,0,0)" dy="10" vertical_alignment="bottom" halo_radius="1" wrap_width="30"></TextSymbolizer>
+    </Rule>
+    <Rule title="!hrad, zámek">
+            <Filter>([historic]='castle')</Filter>
+            &maxscale_zoom14;
+            <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(0,0,0)" dy="10" vertical_alignment="bottom" halo_radius="1" wrap_width="30"></TextSymbolizer>
+    </Rule>
 </Style>
 <Style name="text-poly">
     <Rule>
             <Filter>([place]='island')</Filter>
             &minscale_zoom18;
-            &maxscale_zoom11;
+            &maxscale_zoom13;
             <TextSymbolizer name="name" fontset_name="oblique-fonts" size="9" fill="rgb(0,0,0)" halo_radius="1"></TextSymbolizer>
     </Rule>
     <Rule>
@@ -425,6 +451,11 @@
             &maxscale_zoom16;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="8" fill="rgb(80,109,177)" dy="10" vertical_alignment="bottom" halo_radius="1" wrap_width="20"></TextSymbolizer>
     </Rule>
+    <Rule title="!jeskyně">
+            <Filter>([natural]='cave_entrance')</Filter>
+            &maxscale_zoom15;
+            <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(0,0,0)" dy="10" vertical_alignment="bottom" halo_radius="1" wrap_width="30"></TextSymbolizer>
+    </Rule>
     <Rule>
             <Filter>([amenity]='bank')</Filter>
             &maxscale_zoom17;
@@ -474,68 +505,78 @@
             &maxscale_zoom14;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(172,57,172)" dy="10" vertical_alignment="bottom" halo_radius="1"></TextSymbolizer>
     </Rule>
+    <Rule title="!zřícenina">
+            <Filter>([historic]='ruins')</Filter>
+            &maxscale_zoom14;
+            <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(0,0,0)" dy="10" vertical_alignment="bottom" halo_radius="1" wrap_width="30"></TextSymbolizer>
+    </Rule>
+    <Rule title="!hrad, zámek">
+            <Filter>([historic]='castle')</Filter>
+            &maxscale_zoom14;
+            <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(0,0,0)" dy="10" vertical_alignment="bottom" halo_radius="1" wrap_width="30"></TextSymbolizer>
+    </Rule>
 </Style>
 <Style name="water-lines-text">
-    <Rule title="řeka">
+    <Rule title="!řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom10;
             &maxscale_zoom9;
     </Rule>
-    <Rule title="řeka">
+    <Rule title="!řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom12;
             &maxscale_zoom12;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(80,109,177)" placement="line" halo_radius="1" dy="7"></TextSymbolizer>
     </Rule>
-    <Rule title="řeka">
+    <Rule title="!řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom13;
             &maxscale_zoom13;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="rgb(80,109,177)" placement="line" halo_radius="1" dy="8"></TextSymbolizer>
     </Rule>
-    <Rule title="řeka">
+    <Rule title="!řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom14;
             &maxscale_zoom14;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(80,109,177)" placement="line" halo_radius="1" dy="9"></TextSymbolizer>
     </Rule>
-    <Rule title="řeka">
+    <Rule title="!řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom16;
             &maxscale_zoom15;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(80,109,177)" placement="line" halo_radius="1" dy="11"></TextSymbolizer>
     </Rule>
-    <Rule title="řeka">
+    <Rule title="!řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom17;
             &maxscale_zoom17;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(80,109,177)" placement="line" halo_radius="1" dy="13"></TextSymbolizer>
     </Rule>
-    <Rule title="řeka">
+    <Rule title="!řeka">
             <Filter>([waterway]='river')</Filter>
             &minscale_zoom18;
             &maxscale_zoom18;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(80,109,177)" placement="line" halo_radius="1" dy="16"></TextSymbolizer>
     </Rule>
-    <Rule title="plavební kanál">
+    <Rule title="!plavební kanál">
             <Filter>([waterway]='canal')</Filter>
             &minscale_zoom13;
             &maxscale_zoom13;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="rgb(80,109,177)" placement="line" halo_radius="1" dy="8"></TextSymbolizer>
     </Rule>
-    <Rule title="plavební kanál">
+    <Rule title="!plavební kanál">
             <Filter>([waterway]='canal')</Filter>
             &minscale_zoom16;
             &maxscale_zoom14;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(80,109,177)" placement="line" halo_radius="1" dy="11"></TextSymbolizer>
     </Rule>
-    <Rule title="plavební kanál">
+    <Rule title="!plavební kanál">
             <Filter>([waterway]='canal')</Filter>
             &minscale_zoom18;
             &maxscale_zoom17;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(80,109,177)" placement="line" halo_radius="1" dy="14"></TextSymbolizer>
     </Rule>
-    <Rule title="potok">
+    <Rule title="!potok">
             <Filter>(([waterway]='stream') or ([waterway]='drain'))</Filter>
             &minscale_zoom18;
             &maxscale_zoom15;

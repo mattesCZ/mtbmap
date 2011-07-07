@@ -350,8 +350,8 @@
             <PointSymbolizer file="&symbols-path;amenity_prison.p.20.png" type="png" width="20" height="20"></PointSymbolizer>
     </Rule>
     <Rule title="místo rozhledu">
-            <Filter>([tourism]='viewpoint')</Filter>
-            &maxscale_zoom15;
+            <Filter>([tourism]='viewpoint' and not [man_made]='tower')</Filter>
+            &maxscale_zoom14;
             <PointSymbolizer file="&symbols-path;view_point.p.16.png" type="png" width="16" height="16"></PointSymbolizer>
     </Rule>
     <Rule title="vodojem">
@@ -454,7 +454,7 @@
     <Rule title="rozcestí tras KČT">
       &maxscale_zoom14;
       <Filter>[amenity]='signpost' or [information]='guidepost'</Filter>
-      <PointSymbolizer file= "&symbols-path;signpost2.png" type="png" width="12" height="12"/>
+      <PointSymbolizer file= "&symbols-path;signpost2.png" type="png" width="12" height="24"/>
     </Rule>
     <Rule title="pramen">
             <Filter>([natural]='spring')</Filter>
@@ -472,6 +472,11 @@
             &maxscale_zoom17;
             <PointSymbolizer file="&symbols-path;tree2.png" type="png" width="5" height="5"></PointSymbolizer>
     </Rule>
+    <Rule title="jeskyně">
+            <Filter>([natural]='cave_entrance')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;cave20.png" type="png" width="20" height="15"></PointSymbolizer>
+    </Rule>
     <Rule title="větrná elektrárna">
             <Filter>(([man_made]='power_wind') or (([power]='generator') and ([power_source]='wind')))</Filter>
             &maxscale_zoom15;
@@ -483,9 +488,14 @@
             <PointSymbolizer file="&symbols-path;windmill.png" type="png" width="10" height="15"></PointSymbolizer>
     </Rule>
     <Rule title="vysílač">
-            <Filter>(([man_made]='tower') and ([tower:type]='communication'))</Filter>
-            &maxscale_zoom14;
-            <PointSymbolizer file="&symbols-path;communications.p.20.png" type="png" width="13" height="18"></PointSymbolizer>
+            <Filter>(([man_made]='tower') and (([tower:type]='communication') or ([tower:type]='bts')))</Filter>
+            &maxscale_zoom13;
+            <PointSymbolizer file="&symbols-path;communications.p.18.png" type="png" width="17" height="36"></PointSymbolizer>
+    </Rule>
+    <Rule title="rozhledna">
+            <Filter>(([man_made]='tower') and ([tower:type]='observation'))</Filter>
+            &maxscale_zoom13;
+            <PointSymbolizer file="&symbols-path;observation.p.18.png" type="png" width="11" height="36"></PointSymbolizer>
     </Rule>
     <Rule title="kruhový objezd">
             <Filter>([highway]='mini_roundabout')</Filter>
@@ -506,6 +516,16 @@
             <Filter>([shop]='bicycle')</Filter>
             &maxscale_zoom13;
             <PointSymbolizer file="&symbols-path;shop_bicycle.png" type="png" width="20" height="12"></PointSymbolizer>
+    </Rule>
+    <Rule title="zřícenina">
+            <Filter>([historic]='ruins')</Filter>
+            &maxscale_zoom13;
+            <PointSymbolizer file="&symbols-path;ruins12.png" type="png" width="12" height="24"></PointSymbolizer>
+    </Rule>
+    <Rule title="hrad, zámek">
+            <Filter>([historic]='castle')</Filter>
+            &maxscale_zoom13;
+            <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14"></PointSymbolizer>
     </Rule>
 </Style>
 <Style name="symbols-poly">
@@ -574,9 +594,14 @@
             <PointSymbolizer file="&symbols-path;windmill.png" type="png" width="10" height="15"></PointSymbolizer>
     </Rule>
     <Rule title="!vysílač">
-            <Filter>(([man_made]='tower') and ([tower:type]='communication'))</Filter>
-            &maxscale_zoom14;
-            <PointSymbolizer file="&symbols-path;communications.p.20.png" type="png" width="20" height="20"></PointSymbolizer>
+            <Filter>(([man_made]='tower') and (([tower:type]='communication') or ([tower:type]='bts')))</Filter>
+            &maxscale_zoom13;
+            <PointSymbolizer file="&symbols-path;communications.p.18.png" type="png" width="17" height="36"></PointSymbolizer>
+    </Rule>
+    <Rule title="!rozhledna">
+            <Filter>(([man_made]='tower') and ([tower:type]='observation'))</Filter>
+            &maxscale_zoom13;
+            <PointSymbolizer file="&symbols-path;observation.p.18.png" type="png" width="11" height="36"></PointSymbolizer>
     </Rule>
     <Rule title="!kruhový objezd">
             <Filter>([highway]='mini_roundabout')</Filter>
@@ -597,6 +622,16 @@
             <Filter>([shop]='bicycle')</Filter>
             &maxscale_zoom13;
             <PointSymbolizer file="&symbols-path;shop_bicycle.png" type="png" width="20" height="12"></PointSymbolizer>
+    </Rule>
+    <Rule title="zřícenina">
+            <Filter>([historic]='ruins')</Filter>
+            &maxscale_zoom13;
+            <PointSymbolizer file="&symbols-path;ruins12.png" type="png" width="12" height="24"></PointSymbolizer>
+    </Rule>
+    <Rule title="hrad, zámek">
+            <Filter>([historic]='castle')</Filter>
+            &maxscale_zoom13;
+            <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14"></PointSymbolizer>
     </Rule>
 </Style>
 

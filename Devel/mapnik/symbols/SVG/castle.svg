@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg3709"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   width="229"
+   height="220"
+   sodipodi:docname="castle.svg"
+   inkscape:export-filename="/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/castle14.png"
+   inkscape:export-xdpi="5.9430532"
+   inkscape:export-ydpi="5.9430532">
+  <metadata
+     id="metadata3715">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3713">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       id="perspective3717" />
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1296"
+     inkscape:window-height="764"
+     id="namedview3711"
+     showgrid="false"
+     inkscape:zoom="1.3558397"
+     inkscape:cx="83.426645"
+     inkscape:cy="129.89559"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3709" />
+  <rect
+     style="fill:#000000;fill-opacity:1;stroke:none"
+     id="rect3721"
+     width="196.34473"
+     height="78.898788"
+     x="16.414671"
+     y="135.4192" />
+  <path
+     sodipodi:type="star"
+     style="fill:#000000;fill-opacity:1;stroke:none"
+     id="path4233"
+     sodipodi:sides="3"
+     sodipodi:cx="-101.78194"
+     sodipodi:cy="13.485915"
+     sodipodi:r1="34.31789"
+     sodipodi:r2="17.158945"
+     sodipodi:arg1="0.52359878"
+     sodipodi:arg2="1.5707963"
+     inkscape:flatsided="false"
+     inkscape:rounded="0"
+     inkscape:randomized="0"
+     d="m -72.061772,30.64486 -29.720168,0 -29.72016,0 14.86008,-25.738417 14.86008,-25.738418 14.860085,25.7384172 14.860083,25.7384178 z"
+     transform="matrix(1.5181999,0,0,1.5181999,202.42001,33.93286)" />
+  <rect
+     style="fill:#000000;fill-opacity:1;stroke:none"
+     id="rect4235"
+     width="62.924576"
+     height="87.613739"
+     x="16.432381"
+     y="69.464005" />
+  <path
+     transform="matrix(1.5181999,0,0,1.5181999,335.81257,33.93286)"
+     d="m -72.061772,30.64486 -29.720168,0 -29.72016,0 14.86008,-25.738417 14.86008,-25.738418 14.860085,25.7384172 14.860083,25.7384178 z"
+     inkscape:randomized="0"
+     inkscape:rounded="0"
+     inkscape:flatsided="false"
+     sodipodi:arg2="1.5707963"
+     sodipodi:arg1="0.52359878"
+     sodipodi:r2="17.158945"
+     sodipodi:r1="34.31789"
+     sodipodi:cy="13.485915"
+     sodipodi:cx="-101.78194"
+     sodipodi:sides="3"
+     id="path4237"
+     style="fill:#000000;fill-opacity:1;stroke:none"
+     sodipodi:type="star" />
+  <rect
+     y="69.464005"
+     x="149.82494"
+     height="87.613739"
+     width="62.924576"
+     id="rect4239"
+     style="fill:#000000;fill-opacity:1;stroke:none" />
+</svg>
