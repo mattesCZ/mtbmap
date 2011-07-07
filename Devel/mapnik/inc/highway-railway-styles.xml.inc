@@ -1067,46 +1067,14 @@
             &minscale_zoom13;
             &maxscale_zoom13;
             <LineSymbolizer>
+                <CssParameter name="stroke">rgb(45,45,45)</CssParameter>
+                <CssParameter name="stroke-width">4</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+            </LineSymbolizer>
+            <LineSymbolizer>
                 <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
+                <CssParameter name="stroke-width">1</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-dasharray">1, 9</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(253,253,253)</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-dasharray">0, 1, 1, 8</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(236,236,236)</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-dasharray">0, 2, 1, 7</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(202,202,202)</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-dasharray">0, 3, 1, 6</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(175,175,175)</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-dasharray">0, 4, 1, 5</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(161,161,161)</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-dasharray">0, 5, 1, 4</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(155,155,155)</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-dasharray">0, 6, 1, 3</CssParameter>
             </LineSymbolizer>
     </Rule>
 <!--    <Rule title="">
@@ -1189,46 +1157,14 @@
             &minscale_zoom18;
             &maxscale_zoom14;
             <LineSymbolizer>
+                <CssParameter name="stroke">rgb(45,45,45)</CssParameter>
+                <CssParameter name="stroke-width">4</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+            </LineSymbolizer>
+            <LineSymbolizer>
                 <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
+                <CssParameter name="stroke-width">1</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-dasharray">1, 9</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(253,253,253)</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-dasharray">0, 1, 1, 8</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(236,236,236)</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-dasharray">0, 2, 1, 7</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(202,202,202)</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-dasharray">0, 3, 1, 6</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(175,175,175)</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-dasharray">0, 4, 1, 5</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(161,161,161)</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-dasharray">0, 5, 1, 4</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(155,155,155)</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-dasharray">0, 6, 1, 3</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="úzkorozchodná železnice">

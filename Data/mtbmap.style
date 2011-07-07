@@ -37,14 +37,16 @@ node,way   bridge       text         linear
 node,way   boundary     text         linear
 node,way   building     text         polygon
 node	   capital      text         linear
+node,way   castle_type  text         polygon
 node,way   construction text         linear
 node,way   disused      text         linear
 node       ele          text         linear
+way        electrified  text         linear
 # node,way   embankment   text         linear # nepouzivam, ale mozna bych mel
 node,way   foot         text         linear
 node,way   highway      text         linear
 node,way   historic     text         polygon
-node       information  text         linear
+node,way   information  text         linear
 node,way   landuse      text         polygon
 node,way   layer        text         linear
 node,way   leisure      text         polygon
@@ -65,6 +67,7 @@ node,way   ref          text         linear
 node,way   religion     text         nocache
 # node,way   residence    text         linear
 node,way   route        text         linear
+node,way   ruins        text         polygon
 way        sac_scale    text         linear
 node,way   service      text         linear
 node,way   shelter      text         linear #zastavka s pristreskem

@@ -186,6 +186,21 @@
       &datasource-settings;
     </Datasource>
 </Layer>
+
+<!-- popisy vodnich toku -->
+<Layer name="water-lines-text" srs="&srs900913;">
+    <StyleName>water-lines-text</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,waterway,name
+      from planet_osm_line
+      where waterway in ('river','canal','stream','drain')
+      ) as water_lines_text
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+
 <Layer name="water_areas_fill" srs="&srs900913;">
 <StyleName>water_areas_fill</StyleName>
     <Datasource>
@@ -1079,7 +1094,7 @@ admin 8 - uzemi samostatnych obci
     <StyleName>symbols</StyleName>
     <StyleName>points</StyleName>
     <Datasource>
-      <Parameter name="table">(select * from &prefix;_point where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or information is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or power_source is NOT NULL or man_made is NOT NULL or shop is NOT NULL) as amenity</Parameter>
+      <Parameter name="table">(select * from &prefix;_point where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or information is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or power_source is NOT NULL or man_made is NOT NULL or shop is NOT NULL or historic is NOT NULL) as amenity</Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
@@ -1088,7 +1103,7 @@ admin 8 - uzemi samostatnych obci
     <StyleName>symbols-poly</StyleName>
     <StyleName>points</StyleName>
     <Datasource>
-      <Parameter name="table">(select * from &prefix;_polygon where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or man_made is NOT NULL or shop is NOT NULL) as amenity</Parameter>
+      <Parameter name="table">(select * from &prefix;_polygon where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or man_made is NOT NULL or shop is NOT NULL or historic is NOT NULL) as amenity</Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
@@ -1111,7 +1126,7 @@ admin 8 - uzemi samostatnych obci
 <StyleName>text</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,amenity,highway,leisure,landuse,man_made,"natural",place,tourism,information,ele,name,ref,shop,military,aeroway,'yes'::text as point
+      (select way,amenity,highway,leisure,landuse,man_made,"tower:type","natural",place,tourism,information,ele,historic,name,ref,shop,military,aeroway,'yes'::text as point
        from planet_osm_point
        where amenity is not null
           or leisure is not null
@@ -1125,6 +1140,7 @@ admin 8 - uzemi samostatnych obci
           or military='danger_area'
           or aeroway='gate'
           or shop='bicycle'
+          or historic is not null
       ) as text
       </Parameter>
       &datasource-settings;
@@ -1135,7 +1151,7 @@ admin 8 - uzemi samostatnych obci
 <StyleName>text-poly</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,aeroway,amenity,highway,leisure,landuse,man_made,"natural",place,tourism,NULL as ele,name,ref,shop,military,'no'::text as point
+      (select way,aeroway,amenity,highway,leisure,landuse,man_made,"tower:type","natural",place,tourism,historic,NULL as ele,name,ref,shop,military,'no'::text as point
        from planet_osm_polygon
        where amenity is not null
           or leisure is not null
@@ -1146,6 +1162,7 @@ admin 8 - uzemi samostatnych obci
           or place='island'
           or military='danger_area'
           or shop='bicycle'
+          or historic is not null
       ) as text
       </Parameter>
       &datasource-settings;
@@ -1163,20 +1180,6 @@ admin 8 - uzemi samostatnych obci
          and admin_level is null
        order by z_order,way_area desc
       ) as text
-      </Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-
-<!-- popisy vodnich toku -->
-<Layer name="water-lines-text" srs="&srs900913;">
-    <StyleName>water-lines-text</StyleName>
-    <Datasource>
-      <Parameter name="table">
-      (select way,waterway,name
-      from planet_osm_line
-      where waterway in ('river','canal','stream','drain')
-      ) as water_lines_text
       </Parameter>
       &datasource-settings;
     </Datasource>

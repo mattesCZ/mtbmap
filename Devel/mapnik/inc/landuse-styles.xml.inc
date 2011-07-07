@@ -202,7 +202,7 @@
             <Filter>([landuse]='forest')</Filter>
             &maxscale_zoom11;
             <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(141,197,108)</CssParameter>
+                <CssParameter name="fill">rgb(181,219,143)</CssParameter>
             </PolygonSymbolizer>
     </Rule>
     <Rule title="farma">
