@@ -1062,10 +1062,21 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
+    <Rule title="elektrifikovaná železnice">
+            <Filter>([railway]='rail' and ([electrified]='yes' or [electrified]='contact_line'))</Filter>
+            &minscale_zoom13;
+            &maxscale_zoom12;
+            <LineSymbolizer>
+                <CssParameter name="stroke">rgb(45,45,45)</CssParameter>
+                <CssParameter name="stroke-width">6</CssParameter>
+                <CssParameter name="stroke-linejoin">bevel</CssParameter>
+                <CssParameter name="stroke-dasharray">0, 8, 1, 9, 1, 1</CssParameter>
+            </LineSymbolizer>
+    </Rule>
     <Rule title="železniční tunel">
             <Filter>(([railway]='rail') and ([tunnel]='yes'))</Filter>
             &minscale_zoom13;
-            &maxscale_zoom13;
+            &maxscale_zoom12;
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(45,45,45)</CssParameter>
                 <CssParameter name="stroke-width">4</CssParameter>
@@ -1111,7 +1122,7 @@
     <Rule title="železnice">
             <Filter>(([railway]='rail') and not (([tunnel]='yes')))</Filter>
             &minscale_zoom13;
-            &maxscale_zoom13;
+            &maxscale_zoom12;
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(45,45,45)</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
@@ -1121,6 +1132,17 @@
                 <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-dasharray">8, 12</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="elektrifikovaná železnice">
+            <Filter>([railway]='rail' and ([electrified]='yes' or [electrified]='contact_line'))</Filter>
+            &minscale_zoom18;
+            &maxscale_zoom14;
+            <LineSymbolizer>
+                <CssParameter name="stroke">rgb(45,45,45)</CssParameter>
+                <CssParameter name="stroke-width">7</CssParameter>
+                <CssParameter name="stroke-linejoin">bevel</CssParameter>
+                <CssParameter name="stroke-dasharray">1,9,1,9</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="železniční most">
@@ -2645,47 +2667,30 @@
     </Rule>
     <Rule title="železnice">
             <Filter>([railway]='rail')</Filter>
-            &minscale_zoom8;
-            &maxscale_zoom6;
+            &minscale_zoom9;
+            &maxscale_zoom8;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(170,170,170)</CssParameter>
-                <CssParameter name="stroke-width">0.6</CssParameter>
+                <CssParameter name="stroke">rgb(45,45,45)</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="elektrifikovaná železnice">
+            <Filter>([railway]='rail' and ([electrified]='yes' or [electrified]='contact_line'))</Filter>
+            &minscale_zoom11;
+            &maxscale_zoom10;
+            <LineSymbolizer>
+                <CssParameter name="stroke">rgb(45,45,45)</CssParameter>
+                <CssParameter name="stroke-width">3.4</CssParameter>
+                <CssParameter name="stroke-linejoin">bevel</CssParameter>
+                <CssParameter name="stroke-dasharray">1, 8</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="železnice">
-            <Filter>(([railway]='rail') and not (([tunnel]='yes')))</Filter>
-            &minscale_zoom9;
-            &maxscale_zoom9;
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(170,170,170)</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule title="železniční tunel">
-            <Filter>(([railway]='rail') and ([tunnel]='yes'))</Filter>
-            &minscale_zoom9;
-            &maxscale_zoom9;
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(170,170,170)</CssParameter>
-                <CssParameter name="stroke-dasharray">5, 2</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule title="železnice">
-            <Filter>(([railway]='rail') and not (([tunnel]='yes')))</Filter>
-            &minscale_zoom12;
+            <Filter>([railway]='rail')</Filter>
+            &minscale_zoom11;
             &maxscale_zoom10;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(170,170,170)</CssParameter>
-                <CssParameter name="stroke-width">2</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule title="železniční tunel">
-            <Filter>(([railway]='rail') and ([tunnel]='yes'))</Filter>
-            &minscale_zoom12;
-            &maxscale_zoom10;
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(170,170,170)</CssParameter>
-                <CssParameter name="stroke-width">2</CssParameter>
-                <CssParameter name="stroke-dasharray">5, 2</CssParameter>
+                <CssParameter name="stroke">rgb(45,45,45)</CssParameter>
+                <CssParameter name="stroke-width">1.2</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="úzkorozchodná železnice">
@@ -2693,7 +2698,7 @@
             &minscale_zoom12;
             &maxscale_zoom10;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(170,170,170)</CssParameter>
+                <CssParameter name="stroke">rgb(45,45,45)</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="">
@@ -2701,7 +2706,7 @@
             &minscale_zoom12;
             &maxscale_zoom12;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(170,170,170)</CssParameter>
+                <CssParameter name="stroke">rgb(45,45,45)</CssParameter>
                 <CssParameter name="stroke-width">1.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
             </LineSymbolizer>
@@ -2728,11 +2733,21 @@
             &maxscale_zoom13;
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(68,68,68)</CssParameter>
+                <CssParameter name="stroke-width">3</CssParameter>
+                <CssParameter name="stroke-dasharray">1, 8</CssParameter>
+            </LineSymbolizer>
+            <LineSymbolizer>
+                <CssParameter name="stroke">rgb(68,68,68)</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="koleje tramvají">
             &minscale_zoom18;
             &maxscale_zoom15;
+            <LineSymbolizer>
+                <CssParameter name="stroke">rgb(68,68,68)</CssParameter>
+                <CssParameter name="stroke-width">5</CssParameter>
+                <CssParameter name="stroke-dasharray">1, 8</CssParameter>
+            </LineSymbolizer>
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(68,68,68)</CssParameter>
                 <CssParameter name="stroke-width">2</CssParameter>

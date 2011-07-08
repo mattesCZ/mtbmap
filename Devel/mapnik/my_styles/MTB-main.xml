@@ -384,7 +384,7 @@
 <StyleName>minor-roads-fill</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,highway,bicycle,foot,construction,aeroway,service,
+      (select way,highway,bicycle,foot,construction,aeroway,service,electrified,
        case when tunnel in ('yes','true','1') then 'yes'::text else tunnel end as tunnel,
        case when bridge in ('yes','true','1') then 'yes'::text else bridge end as bridge,
        case when railway in ('spur','siding')
@@ -414,8 +414,11 @@
 <StyleName>roads</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,highway,railway,
-       case when tunnel in ('yes','true','1') then 'yes'::text else tunnel end as tunnel
+      (select way,highway,service,electrified,
+       case when tunnel in ('yes','true','1') then 'yes'::text else tunnel end as tunnel,
+       case when railway in ('spur','siding')
+              or (railway='rail' and service in ('spur','siding','yard'))
+            then 'spur-siding-yard'::text else railway end as railway
        from planet_osm_roads
        where highway is not null
           or railway is not null

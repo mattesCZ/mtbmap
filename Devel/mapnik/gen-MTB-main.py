@@ -34,11 +34,11 @@ if __name__ == "__main__":
 #        mapfile = "my_styles/MTB-dolomites.xml"
     map_uri = "im_MTB-main.png"
 
-    lat = 49.38
-    lon = 16.73
-    zoom = 14
-    imgx = 1400
-    imgy = 1400
+    lat = 49.22
+    lon = 16.59
+    zoom = 11
+    imgx = 1000
+    imgy = 1000
 
     ll = centerToBbox(lat, lon, zoom, imgx, imgy)
 #    ll = (16.58, 49.25, 16.62, 49.27) #Brno, zoom
