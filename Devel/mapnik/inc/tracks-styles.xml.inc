@@ -7,11 +7,11 @@
                 <CssParameter name="stroke-width">5</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3.5</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">2.5</CssParameter>
                 <CssParameter name="stroke-opacity">0.7</CssParameter>
             </LineSymbolizer>
@@ -23,13 +23,13 @@
                 <CssParameter name="stroke-width">4.5</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">1.8</CssParameter>
                 <CssParameter name="stroke-opacity">0.9</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
@@ -44,13 +44,13 @@
                 <CssParameter name="stroke-width">4.5</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">2</CssParameter>
                 <CssParameter name="stroke-opacity">0.9</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
@@ -65,13 +65,13 @@
                 <CssParameter name="stroke-width">4.5</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">2</CssParameter>
                 <CssParameter name="stroke-opacity">0.9</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
@@ -86,13 +86,13 @@
                 <CssParameter name="stroke-width">4.5</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">2</CssParameter>
                 <CssParameter name="stroke-opacity">0.9</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
@@ -107,13 +107,13 @@
                 <CssParameter name="stroke-width">4.5</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">1.8</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">butt</CssParameter>
@@ -126,12 +126,12 @@
             <Filter>([tracktype]='grade1')</Filter>
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3.5</CssParameter>
                 <CssParameter name="stroke-opacity">0.4</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">2.5</CssParameter>
                 <CssParameter name="stroke-opacity">0.9</CssParameter>
             </LineSymbolizer>
@@ -140,14 +140,14 @@
             <Filter>([tracktype]='grade2')</Filter>
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-opacity">0.4</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">1.8</CssParameter>
                 <CssParameter name="stroke-opacity">0.9</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
@@ -159,14 +159,14 @@
             <Filter>([tracktype]='grade3')</Filter>
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-opacity">0.4</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">1.8</CssParameter>
                 <CssParameter name="stroke-opacity">0.9</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
@@ -178,14 +178,14 @@
             <Filter>([tracktype]='grade4')</Filter>
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-opacity">0.4</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">2</CssParameter>
                 <CssParameter name="stroke-opacity">0.9</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
@@ -197,14 +197,14 @@
             <Filter>([tracktype]='grade5')</Filter>
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-opacity">0.4</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">2</CssParameter>
                 <CssParameter name="stroke-opacity">0.9</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
@@ -216,14 +216,14 @@
             <ElseFilter/>
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-opacity">0.4</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">1.8</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">butt</CssParameter>
@@ -236,16 +236,16 @@
             <Filter>([tracktype]='grade1')</Filter>
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
+                <CssParameter name="stroke">&color_track_tunnel;</CssParameter>
                 <CssParameter name="stroke-width">5</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3.5</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">2.5</CssParameter>
                 <CssParameter name="stroke-opacity">0.5</CssParameter>
             </LineSymbolizer>
@@ -254,18 +254,18 @@
             <Filter>([tracktype]='grade2')</Filter>
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
+                <CssParameter name="stroke">&color_track_tunnel;</CssParameter>
                 <CssParameter name="stroke-width">4.5</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">1.8</CssParameter>
                 <CssParameter name="stroke-opacity">0.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
@@ -277,18 +277,18 @@
             <Filter>([tracktype]='grade3')</Filter>
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
+                <CssParameter name="stroke">&color_track_tunnel;</CssParameter>
                 <CssParameter name="stroke-width">4.5</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">2</CssParameter>
                 <CssParameter name="stroke-opacity">0.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
@@ -300,18 +300,18 @@
             <Filter>([tracktype]='grade4')</Filter>
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
+                <CssParameter name="stroke">&color_track_tunnel;</CssParameter>
                 <CssParameter name="stroke-width">4.5</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">2</CssParameter>
                 <CssParameter name="stroke-opacity">0.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
@@ -323,18 +323,18 @@
             <Filter>([tracktype]='grade5')</Filter>
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
+                <CssParameter name="stroke">&color_track_tunnel;</CssParameter>
                 <CssParameter name="stroke-width">4.5</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">2</CssParameter>
                 <CssParameter name="stroke-opacity">0.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
@@ -346,18 +346,18 @@
             <ElseFilter/>
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
+                <CssParameter name="stroke">&color_track_tunnel;</CssParameter>
                 <CssParameter name="stroke-width">4.5</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(72,72,72)</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
                 <CssParameter name="stroke-width">1.8</CssParameter>
                 <CssParameter name="stroke-opacity">0.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>

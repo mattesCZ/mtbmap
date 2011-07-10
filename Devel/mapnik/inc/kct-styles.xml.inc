@@ -4,7 +4,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -13,7 +13,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -22,7 +22,7 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
@@ -32,7 +32,7 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
@@ -42,7 +42,7 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
@@ -56,7 +56,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -65,7 +65,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -74,7 +74,7 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
@@ -84,7 +84,7 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
@@ -94,7 +94,7 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
@@ -108,7 +108,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -117,7 +117,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -126,7 +126,7 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
@@ -136,7 +136,7 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
@@ -146,7 +146,7 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
@@ -160,7 +160,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -169,7 +169,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -178,7 +178,7 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
@@ -188,7 +188,7 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
@@ -198,7 +198,7 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
@@ -212,7 +212,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -221,7 +221,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -230,13 +230,13 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-4</CssParameter>
@@ -246,13 +246,13 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
@@ -262,13 +262,13 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
@@ -282,7 +282,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -291,7 +291,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -300,13 +300,13 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-4</CssParameter>
@@ -316,13 +316,13 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
@@ -332,13 +332,13 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
@@ -352,7 +352,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -361,7 +361,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -370,13 +370,13 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-4</CssParameter>
@@ -386,13 +386,13 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
@@ -402,13 +402,13 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
@@ -422,7 +422,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -431,7 +431,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -440,13 +440,13 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-4</CssParameter>
@@ -456,13 +456,13 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
@@ -472,13 +472,13 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
@@ -492,7 +492,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -501,7 +501,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -510,13 +510,13 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-4</CssParameter>
@@ -526,13 +526,13 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
@@ -542,13 +542,13 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
@@ -562,7 +562,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -571,7 +571,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -580,13 +580,13 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-4</CssParameter>
@@ -596,13 +596,13 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
@@ -612,13 +612,13 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
@@ -632,7 +632,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -641,7 +641,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -650,19 +650,19 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-4</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
@@ -672,19 +672,19 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-9</CssParameter>
@@ -694,19 +694,19 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
@@ -720,7 +720,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -729,7 +729,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -738,19 +738,19 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-4</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
@@ -760,19 +760,19 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-9</CssParameter>
@@ -782,19 +782,19 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
@@ -808,7 +808,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -817,7 +817,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -826,19 +826,19 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-4</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
@@ -848,19 +848,19 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-9</CssParameter>
@@ -870,19 +870,19 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
@@ -896,7 +896,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -905,7 +905,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -914,19 +914,19 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-4</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
@@ -936,19 +936,19 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-9</CssParameter>
@@ -958,19 +958,19 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
@@ -984,7 +984,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -993,7 +993,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -1002,25 +1002,25 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-4</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-8</CssParameter>
@@ -1030,25 +1030,25 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-9</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-12</CssParameter>
@@ -1058,25 +1058,25 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#00dd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#dddd00</CssParameter>
+      <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
     </LineSymbolizer>
     <LineSymbolizer>
-      <CssParameter name="stroke">#0000dd</CssParameter>
+      <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
@@ -1090,7 +1090,7 @@
     &maxscale_zoom9;
     &minscale_zoom9;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_international;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
     </LineSymbolizer>
@@ -1099,7 +1099,7 @@
     &maxscale_zoom10;
     &minscale_zoom10;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_international;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
     </LineSymbolizer>
@@ -1108,7 +1108,7 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_international;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
@@ -1118,7 +1118,7 @@
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_international;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
@@ -1128,7 +1128,7 @@
     &maxscale_zoom14;
     &minscale_zoom18;
     <LineSymbolizer>
-      <CssParameter name="stroke">#dd0000</CssParameter>
+      <CssParameter name="stroke">&color_kct_international;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
