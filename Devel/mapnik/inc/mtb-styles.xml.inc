@@ -61,8 +61,9 @@
     &minscale_zoom13;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_cycleway;</CssParameter>
-      <CssParameter name="stroke-opacity">0.3</CssParameter>
-      <CssParameter name="stroke-width">10</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">2.5</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
     </LineSymbolizer>
@@ -71,8 +72,9 @@
     &maxscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_cycleway;</CssParameter>
-      <CssParameter name="stroke-opacity">0.3</CssParameter>
-      <CssParameter name="stroke-width">12</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">3</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
     </LineSymbolizer>
@@ -151,6 +153,33 @@
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+</Style>
+<Style name="cycleway-mtb">
+  <Rule>
+    <Filter>([network]='rcn' or [network]='ncn' or [network]='lcn')</Filter>
+    &maxscale_zoom13;
+    &maxscale_zoom13;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_cycleway;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">5.5</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule>
+    <Filter>([network]='rcn' or [network]='ncn' or [network]='lcn')</Filter>
+    &maxscale_zoom14;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_cycleway;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">7</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
     </LineSymbolizer>

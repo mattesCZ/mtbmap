@@ -495,7 +495,6 @@
         &datasource-settings;
     </Datasource>
 </Layer>
-
 <!-- MTB stezky dohromady s KCT znacenim, MTB je stranou -->
 <!-- <Layer name="mtboffset" srs="&srs900913;">
     <StyleName>mtb_offset</StyleName>
@@ -806,10 +805,22 @@
     <StyleName>mtb_basic</StyleName>
     <Datasource>
         <Parameter name="table">
-        (select osm_id,way,route,mtb,"mtb:scale","mtb:scale:uphill"
+        (select osm_id,way,route,mtb,"mtb:scale","mtb:scale:uphill", network
         from planet_osm_line
         where ("mtb:scale" is not null or mtb is not null or
         "mtb:scale:uphill" is not null or route='mtb')) as mtb_basic
+        </Parameter>
+        &datasource-settings;
+    </Datasource>
+</Layer>
+<Layer name="cycleway-mtb" srs="&srs900913;">
+    <StyleName>cycleway-mtb</StyleName>
+    <Datasource>
+        <Parameter name="table">
+        (select osm_id,way,route,mtb,"mtb:scale","mtb:scale:uphill", network
+        from planet_osm_track_rels
+        where ("mtb:scale" is not null or mtb is not null or
+        "mtb:scale:uphill" is not null or route='mtb')) as cyclewaymtb
         </Parameter>
         &datasource-settings;
     </Datasource>
