@@ -5,7 +5,7 @@
             &minscale_zoom7;
             &maxscale_zoom6;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(153,204,255)</CssParameter>
+                <CssParameter name="stroke">&color_glacier;</CssParameter>
                 <CssParameter name="stroke-width">1.5</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
@@ -15,7 +15,7 @@
             <Filter>([natural]='glacier')</Filter>
             &maxscale_zoom8;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(153,204,255)</CssParameter>
+                <CssParameter name="stroke">&color_glacier;</CssParameter>
                 <CssParameter name="stroke-width">1.5</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
@@ -26,10 +26,10 @@
             &maxscale_zoom7;
             &minscale_zoom8;
             <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
+                <CssParameter name="fill">&color_water_fill;</CssParameter>
             </PolygonSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">0.4</CssParameter>
             </LineSymbolizer>
     </Rule>
@@ -38,10 +38,10 @@
             &maxscale_zoom9;
             &minscale_zoom10;
             <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
+                <CssParameter name="fill">&color_water_fill;</CssParameter>
             </PolygonSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">0.4</CssParameter>
             </LineSymbolizer>
     </Rule>
@@ -50,10 +50,10 @@
             &maxscale_zoom11;
             &minscale_zoom13;
             <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
+                <CssParameter name="fill">&color_water_fill;</CssParameter>
             </PolygonSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">1.4</CssParameter>
             </LineSymbolizer>
     </Rule>
@@ -61,10 +61,10 @@
             <Filter>(([natural]='lake') or ([natural]='water') or ([landuse]='basin') or ([waterway]='dock') or ([landuse]='reservoir') or ([landuse]='water') or ([waterway]='mill_pond') or ([waterway]='riverbank') or ([waterway]='canal'))</Filter>
             &maxscale_zoom14;
             <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
+                <CssParameter name="fill">&color_water_fill;</CssParameter>
             </PolygonSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">2.0</CssParameter>
             </LineSymbolizer>
     </Rule>
@@ -82,7 +82,7 @@
             <Filter>([natural]='land')</Filter>
             &maxscale_zoom10;
             <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(242,239,233)</CssParameter>
+                <CssParameter name="fill">&color_island;</CssParameter>
             </PolygonSymbolizer>
     </Rule>
 </Style>
@@ -93,18 +93,18 @@
             <Filter>(([natural]='lake') or ([natural]='water') or ([landuse]='basin') or ([waterway]='dock') or ([landuse]='reservoir') or ([landuse]='water') or ([waterway]='mill_pond') or ([waterway]='riverbank') or ([waterway]='canal'))</Filter>
             &maxscale_zoom11;
             <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(114,155,249)</CssParameter>
+                <CssParameter name="fill">&color_water_fill;</CssParameter>
             </PolygonSymbolizer>
     </Rule>
 </Style>
 
 <Style name="water_lines_fill">
-    <Rule title="stavidlo">
+    <Rule title="jez">
             <Filter>([waterway]='weir')</Filter>
             &minscale_zoom18;
             &maxscale_zoom15;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(170,170,170)</CssParameter>
+                <CssParameter name="stroke">&color_water_weir;</CssParameter>
                 <CssParameter name="stroke-width">2</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -115,7 +115,7 @@
             &minscale_zoom8;
             &maxscale_zoom7;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">0.4</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -126,7 +126,7 @@
             &minscale_zoom10;
             &maxscale_zoom9;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">0.8</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -137,7 +137,7 @@
             &minscale_zoom12;
             &maxscale_zoom11;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">1.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -148,7 +148,7 @@
             &minscale_zoom13;
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">2.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -159,7 +159,7 @@
             &minscale_zoom14;
             &maxscale_zoom14;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">4</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -170,7 +170,7 @@
             &minscale_zoom16;
             &maxscale_zoom15;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -181,7 +181,7 @@
             &minscale_zoom17;
             &maxscale_zoom17;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">9</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -192,7 +192,7 @@
             &minscale_zoom18;
             &maxscale_zoom18;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">11</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -203,7 +203,7 @@
             &minscale_zoom12;
             &maxscale_zoom11;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">2.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -214,7 +214,7 @@
             &minscale_zoom13;
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">3.2</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -225,7 +225,7 @@
             &minscale_zoom14;
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="řeka pod povrchem">
@@ -233,12 +233,12 @@
             &minscale_zoom14;
             &maxscale_zoom14;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">5</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill_tunnel;</CssParameter>
                 <CssParameter name="stroke-width">4</CssParameter>
             </LineSymbolizer>
     </Rule>
@@ -247,12 +247,12 @@
             &minscale_zoom16;
             &maxscale_zoom15;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">6</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill_tunnel;</CssParameter>
                 <CssParameter name="stroke-width">4</CssParameter>
             </LineSymbolizer>
     </Rule>
@@ -261,12 +261,12 @@
             &minscale_zoom17;
             &maxscale_zoom17;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">10</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill_tunnel;</CssParameter>
                 <CssParameter name="stroke-width">7</CssParameter>
             </LineSymbolizer>
     </Rule>
@@ -274,12 +274,12 @@
             <Filter>(([waterway]='river') and ([tunnel]='yes'))</Filter>
             &maxscale_zoom18;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">12</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill_tunnel;</CssParameter>
                 <CssParameter name="stroke-width">9</CssParameter>
             </LineSymbolizer>
     </Rule>
@@ -288,12 +288,12 @@
             &minscale_zoom16;
             &maxscale_zoom14;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">6</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill_tunnel;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
             </LineSymbolizer>
     </Rule>
@@ -302,7 +302,7 @@
             &minscale_zoom16;
             &maxscale_zoom14;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">6</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -313,12 +313,12 @@
             &minscale_zoom18;
             &maxscale_zoom17;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">10</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill_tunnel;</CssParameter>
                 <CssParameter name="stroke-width">7</CssParameter>
             </LineSymbolizer>
     </Rule>
@@ -327,7 +327,7 @@
             &minscale_zoom18;
             &maxscale_zoom17;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">10</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -338,12 +338,12 @@
             &minscale_zoom18;
             &maxscale_zoom15;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">2.0</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(243,247,247)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill_tunnel;</CssParameter>
                 <CssParameter name="stroke-width">1.2</CssParameter>
             </LineSymbolizer>
     </Rule>
@@ -352,7 +352,7 @@
             &minscale_zoom18;
             &maxscale_zoom15;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">1</CssParameter>
             </LineSymbolizer>
     </Rule>
@@ -361,7 +361,7 @@
             &minscale_zoom18;
             &maxscale_zoom15;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">2</CssParameter>
             </LineSymbolizer>
     </Rule>
@@ -372,7 +372,7 @@
             &minscale_zoom8;
             &maxscale_zoom7;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">0.8</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -383,7 +383,7 @@
             &minscale_zoom10;
             &maxscale_zoom9;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">1.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -394,7 +394,7 @@
             &minscale_zoom12;
             &maxscale_zoom11;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">2.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -405,7 +405,7 @@
             &minscale_zoom13;
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">3.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -416,7 +416,7 @@
             &minscale_zoom14;
             &maxscale_zoom14;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">5.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -427,7 +427,7 @@
             &minscale_zoom16;
             &maxscale_zoom15;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">6.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -438,7 +438,7 @@
             &minscale_zoom17;
             &maxscale_zoom17;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">11</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -449,7 +449,7 @@
             &minscale_zoom18;
             &maxscale_zoom18;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">13</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -460,7 +460,7 @@
             &minscale_zoom12;
             &maxscale_zoom11;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">3.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -471,7 +471,7 @@
             &minscale_zoom13;
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">4.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -482,7 +482,7 @@
             &minscale_zoom14;
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="řeka pod povrchem">
@@ -490,7 +490,7 @@
             &minscale_zoom14;
             &maxscale_zoom14;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">6.5</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
@@ -500,7 +500,7 @@
             &minscale_zoom16;
             &maxscale_zoom15;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">7.5</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
@@ -510,7 +510,7 @@
             &minscale_zoom17;
             &maxscale_zoom17;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">12</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
@@ -519,7 +519,7 @@
             <Filter>(([waterway]='river') and ([tunnel]='yes'))</Filter>
             &maxscale_zoom18;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">14</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
@@ -529,7 +529,7 @@
             &minscale_zoom16;
             &maxscale_zoom14;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">7.5</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
@@ -539,7 +539,7 @@
             &minscale_zoom16;
             &maxscale_zoom14;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">7.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -550,7 +550,7 @@
             &minscale_zoom18;
             &maxscale_zoom17;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">12</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
@@ -560,7 +560,7 @@
             &minscale_zoom18;
             &maxscale_zoom17;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">12</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -571,7 +571,7 @@
             &minscale_zoom18;
             &maxscale_zoom15;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">2.9</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
@@ -581,7 +581,7 @@
             &minscale_zoom18;
             &maxscale_zoom15;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
+                <CssParameter name="stroke">&color_water_stroke;</CssParameter>
                 <CssParameter name="stroke-width">2</CssParameter>
             </LineSymbolizer>
     </Rule>
@@ -595,12 +595,12 @@
                 <CssParameter name="stroke-linejoin">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">6</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
-            <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="rgb(102,153,204)" placement="line" halo_radius="1"></TextSymbolizer>
+            <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="&color_water_text;" placement="line" halo_radius="1"></TextSymbolizer>
     </Rule>
     <Rule title="!akvadukt">
             &minscale_zoom18;
@@ -610,11 +610,11 @@
                 <CssParameter name="stroke-linejoin">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
+                <CssParameter name="stroke">&color_water_fill;</CssParameter>
                 <CssParameter name="stroke-width">10</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
-            <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="rgb(102,153,204)" placement="line" halo_radius="1"></TextSymbolizer>
+            <TextSymbolizer name="name" fontset_name="book-fonts" size="9" fill="&color_water_text;" placement="line" halo_radius="1"></TextSymbolizer>
     </Rule>
 </Style>

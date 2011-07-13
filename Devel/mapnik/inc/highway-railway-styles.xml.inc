@@ -32,24 +32,24 @@
             <Filter>([oneway]='yes')</Filter>
             &maxscale_zoom16;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(108,112,213)</CssParameter>
+                <CssParameter name="stroke">&color_oneway_arrow;</CssParameter>
                 <CssParameter name="stroke-linejoin">bevel</CssParameter>
                 <CssParameter name="stroke-dasharray">0, 12, 10, 152</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(108,112,213)</CssParameter>
+                <CssParameter name="stroke">&color_oneway_arrow;</CssParameter>
                 <CssParameter name="stroke-width">2</CssParameter>
                 <CssParameter name="stroke-linejoin">bevel</CssParameter>
                 <CssParameter name="stroke-dasharray">0, 12, 9, 153</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(108,112,213)</CssParameter>
+                <CssParameter name="stroke">&color_oneway_arrow;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-linejoin">bevel</CssParameter>
                 <CssParameter name="stroke-dasharray">0, 18, 2, 154</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(108,112,213)</CssParameter>
+                <CssParameter name="stroke">&color_oneway_arrow;</CssParameter>
                 <CssParameter name="stroke-width">4</CssParameter>
                 <CssParameter name="stroke-linejoin">bevel</CssParameter>
                 <CssParameter name="stroke-dasharray">0, 18, 1, 155</CssParameter>
@@ -59,24 +59,24 @@
             <Filter>([oneway]='-1')</Filter>
             &maxscale_zoom16;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(108,112,213)</CssParameter>
+                <CssParameter name="stroke">&color_oneway_arrow;</CssParameter>
                 <CssParameter name="stroke-linejoin">bevel</CssParameter>
                 <CssParameter name="stroke-dasharray">0, 12, 10, 152</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(108,112,213)</CssParameter>
+                <CssParameter name="stroke">&color_oneway_arrow;</CssParameter>
                 <CssParameter name="stroke-width">2</CssParameter>
                 <CssParameter name="stroke-linejoin">bevel</CssParameter>
                 <CssParameter name="stroke-dasharray">0, 13, 9, 152</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(108,112,213)</CssParameter>
+                <CssParameter name="stroke">&color_oneway_arrow;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-linejoin">bevel</CssParameter>
                 <CssParameter name="stroke-dasharray">0, 14, 2, 158</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(108,112,213)</CssParameter>
+                <CssParameter name="stroke">&color_oneway_arrow;</CssParameter>
                 <CssParameter name="stroke-width">4</CssParameter>
                 <CssParameter name="stroke-linejoin">bevel</CssParameter>
                 <CssParameter name="stroke-dasharray">0, 15, 1, 158</CssParameter>
@@ -164,7 +164,7 @@
             <Filter>((([highway]='pedestrian') or ([highway]='service')) or ([highway]='footway'))</Filter>
             &maxscale_zoom14;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
+                <CssParameter name="stroke">rgb(237,237,237)</CssParameter>
             </LineSymbolizer>
     </Rule>
 </Style>
@@ -1187,6 +1187,22 @@
                 <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
                 <CssParameter name="stroke-width">1</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="vedlejší kolej">
+            <Filter>([railway]='spur-siding-yard')</Filter>
+            &minscale_zoom18;
+            &maxscale_zoom14;
+            <LineSymbolizer>
+                <CssParameter name="stroke">rgb(45,45,45)</CssParameter>
+                <CssParameter name="stroke-width">2</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+            </LineSymbolizer>
+            <LineSymbolizer>
+                <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
+                <CssParameter name="stroke-width">0.7</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-dasharray">0, 11, 8, 1</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="úzkorozchodná železnice">

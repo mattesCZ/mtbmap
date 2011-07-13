@@ -50,6 +50,8 @@
 <!ENTITY font_size_big "22">
 <!ENTITY font_size_huge "26">
 
+<!ENTITY % color-entities SYSTEM "color-entities.xml.inc">
+%color-entities;
 <!ENTITY height-styles SYSTEM "height-styles.xml.inc">
 <!ENTITY admin-styles SYSTEM "admin-styles.xml.inc">
 <!ENTITY mtb-styles SYSTEM "mtb-styles.xml.inc">
@@ -63,6 +65,6 @@
 <!ENTITY text-styles SYSTEM "text-styles.xml.inc">
 <!ENTITY landuse-styles SYSTEM "landuse-styles.xml.inc">
 
-<!ENTITY symbols-path "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/">
+<!ENTITY symbols-path "../symbols/">
 <!ENTITY shapefiles "/home/xtesar7/Devel/mtbmap-czechrep/Data/shapefile">
 <!ENTITY hgtdata "/home/xtesar7/Devel/mtbmap-czechrep/Data/shadingdata">

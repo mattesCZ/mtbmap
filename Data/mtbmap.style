@@ -30,6 +30,7 @@ node,way   access       text         linear
 way        admin_level  text         linear
 node,way   aerialway    text         linear
 node,way   aeroway      text         polygon
+way        area         text         polygon
 node,way   amenity      text         nocache,polygon
 node,way   barrier      text         linear
 node,way   bicycle      text         nocache
