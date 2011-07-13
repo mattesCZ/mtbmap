@@ -799,28 +799,28 @@
       &datasource-settings;
     </Datasource>
 </Layer>
-
-<!-- Zakladni MTB stezky -->
-<Layer name="mtbasic" srs="&srs900913;">
-    <StyleName>mtb_basic</StyleName>
-    <Datasource>
-        <Parameter name="table">
-        (select osm_id,way,route,mtb,"mtb:scale","mtb:scale:uphill", network
-        from planet_osm_line
-        where ("mtb:scale" is not null or mtb is not null or
-        "mtb:scale:uphill" is not null or route='mtb')) as mtb_basic
-        </Parameter>
-        &datasource-settings;
-    </Datasource>
-</Layer>
+<!-- cyklostezky paralelne s MTB trasami -->
 <Layer name="cycleway-mtb" srs="&srs900913;">
     <StyleName>cycleway-mtb</StyleName>
     <Datasource>
         <Parameter name="table">
         (select osm_id,way,route,mtb,"mtb:scale","mtb:scale:uphill", network
         from planet_osm_track_rels
-        where ("mtb:scale" is not null or mtb is not null or
+        where ("mtb:scale" is not null or
         "mtb:scale:uphill" is not null or route='mtb')) as cyclewaymtb
+        </Parameter>
+        &datasource-settings;
+    </Datasource>
+</Layer>
+<!-- Zakladni MTB stezky -->
+<Layer name="mtbasic" srs="&srs900913;">
+    <StyleName>mtb_basic</StyleName>
+    <Datasource>
+        <Parameter name="table">
+        (select osm_id,way,route,"mtb:scale","mtb:scale:uphill", network
+        from planet_osm_line
+        where ("mtb:scale" is not null or
+        "mtb:scale:uphill" is not null or route='mtb')) as mtb_basic
         </Parameter>
         &datasource-settings;
     </Datasource>
@@ -855,7 +855,7 @@
         <Parameter name="table">
         (select osm_id,way
         from planet_osm_line
-        where ("mtb:scale" is not null or mtb is not null or
+        where ("mtb:scale" is not null or
         "mtb:scale:uphill" is not null or route='mtb') and "mtb:scale" in ('5','5+','5-')) as mtb_basic
         </Parameter>
         &datasource-settings;
@@ -867,7 +867,7 @@
         <Parameter name="table">
         (select osm_id,way
         from planet_osm_line
-        where ("mtb:scale" is not null or mtb is not null or
+        where ("mtb:scale" is not null or
         "mtb:scale:uphill" is not null or route='mtb') and "mtb:scale" in ('4','4+','4-')) as mtb_basic
         </Parameter>
         &datasource-settings;
@@ -879,7 +879,7 @@
         <Parameter name="table">
         (select osm_id,way
         from planet_osm_line
-        where ("mtb:scale" is not null or mtb is not null or
+        where ("mtb:scale" is not null or
         "mtb:scale:uphill" is not null or route='mtb') and "mtb:scale" in ('3','3+','3-')) as mtb_basic
         </Parameter>
         &datasource-settings;
@@ -891,7 +891,7 @@
         <Parameter name="table">
         (select osm_id,way
         from planet_osm_line
-        where ("mtb:scale" is not null or mtb is not null or
+        where ("mtb:scale" is not null or
         "mtb:scale:uphill" is not null or route='mtb') and "mtb:scale" in ('2','2+','2-')) as mtb_basic
         </Parameter>
         &datasource-settings;
@@ -903,7 +903,7 @@
         <Parameter name="table">
         (select osm_id,way
         from planet_osm_line
-        where ("mtb:scale" is not null or mtb is not null or
+        where ("mtb:scale" is not null or
         "mtb:scale:uphill" is not null or route='mtb') and "mtb:scale" in ('1','1+','1-')) as mtb_basic
         </Parameter>
         &datasource-settings;
@@ -915,7 +915,7 @@
         <Parameter name="table">
         (select osm_id,way
         from planet_osm_line
-        where ("mtb:scale" is not null or mtb is not null or
+        where ("mtb:scale" is not null or
         "mtb:scale:uphill" is not null or route='mtb') and "mtb:scale" in ('0','0+')) as mtb_basic
         </Parameter>
         &datasource-settings;

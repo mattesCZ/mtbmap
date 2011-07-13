@@ -30,7 +30,7 @@
   </Rule>
   <Rule title="žlutá turistická trasa">
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -39,7 +39,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule title="žlutá turistická trasa">
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
@@ -82,7 +82,7 @@
   </Rule>
   <Rule title="červená turistická trasa">
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -91,7 +91,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule title="červená turistická trasa">
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
@@ -134,7 +134,7 @@
   </Rule>
   <Rule title="zelená turistická trasa">
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -143,7 +143,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule title="zelená turistická trasa">
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
@@ -186,7 +186,7 @@
   </Rule>
   <Rule title="modrá turistická trasa">
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -195,7 +195,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule title="modrá turistická trasa">
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
@@ -244,7 +244,7 @@
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -259,7 +259,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
@@ -314,7 +314,7 @@
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -329,7 +329,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
@@ -384,7 +384,7 @@
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -399,7 +399,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
@@ -454,7 +454,7 @@
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -469,7 +469,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
@@ -524,7 +524,7 @@
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -539,7 +539,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
@@ -594,7 +594,7 @@
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -609,7 +609,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
@@ -670,7 +670,7 @@
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -691,7 +691,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
@@ -758,7 +758,7 @@
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -779,7 +779,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
@@ -846,7 +846,7 @@
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -867,7 +867,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
@@ -934,7 +934,7 @@
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -955,7 +955,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
@@ -1028,7 +1028,7 @@
   </Rule>
   <Rule>
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -1055,7 +1055,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule>
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
@@ -1116,7 +1116,7 @@
   </Rule>
   <Rule title="mezinárodní turistická trasa">
     &maxscale_zoom12;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_international;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
@@ -1125,7 +1125,7 @@
     </LineSymbolizer>
   </Rule>
   <Rule title="mezinárodní turistická trasa">
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_international;</CssParameter>

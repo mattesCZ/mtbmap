@@ -47,34 +47,35 @@
   </Rule>
   <Rule title="cyklostezka">
     &maxscale_zoom12;
-    &minscale_zoom12;
-    <LineSymbolizer>
-      <CssParameter name="stroke">&color_cycleway;</CssParameter>
-      <CssParameter name="stroke-opacity">0.3</CssParameter>
-      <CssParameter name="stroke-width">8</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
-    </LineSymbolizer>
-  </Rule>
-  <Rule title="cyklostezka">
-    &maxscale_zoom13;
     &minscale_zoom13;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_cycleway;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-offset">2.5</CssParameter>
+      <CssParameter name="stroke-offset">3</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="cyklostezka">
     &maxscale_zoom14;
+    &minscale_zoom14;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_cycleway;</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">4.5</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="cyklostezka">
+    &maxscale_zoom15;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_cycleway;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-offset">3</CssParameter>
+      <CssParameter name="stroke-offset">6</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
     </LineSymbolizer>
@@ -136,18 +137,18 @@
   </Rule>
   <Rule title="MTB stezka">
     &maxscale_zoom13;
-    &minscale_zoom13;
+    &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_mtb_track;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-offset">2.5</CssParameter>
+      <CssParameter name="stroke-offset">3</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="MTB stezka">
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_mtb_track;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -162,19 +163,19 @@
   <Rule>
     <Filter>([network]='rcn' or [network]='ncn' or [network]='lcn')</Filter>
     &maxscale_zoom13;
-    &maxscale_zoom13;
+    &maxscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_cycleway;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-offset">5.5</CssParameter>
+      <CssParameter name="stroke-offset">6</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>
     <Filter>([network]='rcn' or [network]='ncn' or [network]='lcn')</Filter>
-    &maxscale_zoom14;
+    &maxscale_zoom15;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_cycleway;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>

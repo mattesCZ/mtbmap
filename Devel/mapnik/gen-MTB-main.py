@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
     lat = 49.28
     lon = 16.606
-    zoom = 13
+    zoom = 15
     imgx = 1600
     imgy = 1600
 
