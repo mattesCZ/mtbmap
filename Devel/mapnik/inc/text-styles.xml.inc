@@ -226,7 +226,12 @@
     <Rule>
             <Filter>[amenity]='signpost' or [information]='guidepost'</Filter>
             &maxscale_zoom14;
-            <TextSymbolizer name="name" fontset_name="oblique-fonts" size="10" fill="#000000" dy="5" vertical_alignment="bottom" allow_overlap="true" halo_radius="1" wrap_width="30"/>
+            <TextSymbolizer name="name" fontset_name="oblique-fonts" size="10" fill="#000000" dy="-16" vertical_alignment="top" allow_overlap="true" halo_radius="1" wrap_width="30"/>
+    </Rule>
+    <Rule>
+            <Filter>[amenity]='signpost' or [information]='guidepost'</Filter>
+            &maxscale_zoom16;
+            <TextSymbolizer name="ele" fontset_name="oblique-fonts" size="10" fill="#000000" dy="5" vertical_alignment="bottom" allow_overlap="true" halo_radius="1" wrap_width="30"/>
     </Rule>
     <Rule>
             <Filter>((([leisure]&lt;&gt;'') or ([landuse]&lt;&gt;'')) and ([point]='yes'))</Filter>
@@ -384,7 +389,7 @@
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(172,57,172)" dy="10" vertical_alignment="bottom" halo_radius="1"></TextSymbolizer>
     </Rule>
     <Rule title="!zřícenina">
-            <Filter>([historic]='ruins')</Filter>
+            <Filter>(([historic]='ruins') or ([historic]='castle' and [ruins]='yes'))</Filter>
             &maxscale_zoom14;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(0,0,0)" dy="10" vertical_alignment="bottom" halo_radius="1" wrap_width="30"></TextSymbolizer>
     </Rule>
@@ -506,7 +511,7 @@
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(172,57,172)" dy="10" vertical_alignment="bottom" halo_radius="1"></TextSymbolizer>
     </Rule>
     <Rule title="!zřícenina">
-            <Filter>([historic]='ruins')</Filter>
+            <Filter>(([historic]='ruins') or ([historic]='castle' and [ruins]='yes'))</Filter>
             &maxscale_zoom14;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(0,0,0)" dy="10" vertical_alignment="bottom" halo_radius="1" wrap_width="30"></TextSymbolizer>
     </Rule>

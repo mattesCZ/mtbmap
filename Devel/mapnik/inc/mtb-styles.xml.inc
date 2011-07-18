@@ -41,8 +41,8 @@
       <CssParameter name="stroke-opacity">0.6</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">2</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="cyklostezka">
@@ -53,8 +53,8 @@
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="cyklostezka">
@@ -65,8 +65,8 @@
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">4.5</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="cyklostezka">
@@ -143,8 +143,8 @@
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="MTB stezka">
@@ -169,8 +169,8 @@
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">6</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule>

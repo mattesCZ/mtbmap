@@ -459,7 +459,7 @@
     <Rule title="pramen">
             <Filter>([natural]='spring')</Filter>
             &maxscale_zoom14;
-            <PointSymbolizer file="&symbols-path;spring.png" type="png" width="5" height="7"></PointSymbolizer>
+            <PointSymbolizer file="&symbols-path;spring09.png" type="png" width="9" height="9"></PointSymbolizer>
     </Rule>
     <Rule title="památný strom">
             <Filter>([natural]='tree')</Filter>
@@ -518,9 +518,9 @@
             <PointSymbolizer file="&symbols-path;shop_bicycle.png" type="png" width="20" height="12"></PointSymbolizer>
     </Rule>
     <Rule title="zřícenina">
-            <Filter>([historic]='ruins')</Filter>
+            <Filter>(([historic]='ruins') or ([historic]='castle' and [ruins]='yes'))</Filter>
             &maxscale_zoom13;
-            <PointSymbolizer file="&symbols-path;ruins12.png" type="png" width="12" height="24"></PointSymbolizer>
+            <PointSymbolizer file="&symbols-path;ruins12.png" type="png" width="12" height="12"></PointSymbolizer>
     </Rule>
     <Rule title="hrad, zámek">
             <Filter>(([historic]='castle') and ([castle_type]='stately' or [castle_type]='schloss'))</Filter>
@@ -536,6 +536,21 @@
             <Filter>([historic]='castle')</Filter>
             &maxscale_zoom13;
             <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14"></PointSymbolizer>
+    </Rule>
+    <Rule title="informační tabule">
+            <Filter>([information]='board')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;infoBoard12.png" type="png" width="12" height="12"></PointSymbolizer>
+    </Rule>
+    <Rule title="tabule s mapou">
+            <Filter>([information]='map')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;infoMap14.png" type="png" width="14" height="14"></PointSymbolizer>
+    </Rule>
+    <Rule title="infocentrum">
+            <Filter>([information]='office')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;infoOffice14.png" type="png" width="14" height="14"></PointSymbolizer>
     </Rule>
 </Style>
 <Style name="symbols-poly">
@@ -580,7 +595,7 @@
     <Rule title="!pramen">
             <Filter>([natural]='spring')</Filter>
             &maxscale_zoom14;
-            <PointSymbolizer file="&symbols-path;spring.png" type="png" width="5" height="7"></PointSymbolizer>
+            <PointSymbolizer file="&symbols-path;spring09.png" type="png" width="9" height="9"></PointSymbolizer>
     </Rule>
     <Rule title="!památný strom">
             <Filter>([natural]='tree')</Filter>
@@ -634,9 +649,9 @@
             <PointSymbolizer file="&symbols-path;shop_bicycle.png" type="png" width="20" height="12"></PointSymbolizer>
     </Rule>
     <Rule title="zřícenina">
-            <Filter>([historic]='ruins')</Filter>
+            <Filter>(([historic]='ruins') or ([historic]='castle' and [ruins]='yes'))</Filter>
             &maxscale_zoom13;
-            <PointSymbolizer file="&symbols-path;ruins12.png" type="png" width="12" height="24"></PointSymbolizer>
+            <PointSymbolizer file="&symbols-path;ruins12.png" type="png" width="12" height="12"></PointSymbolizer>
     </Rule>
     <Rule title="hrad, zámek">
             <Filter>(([historic]='castle') and ([castle_type]='stately' or [castle_type]='schloss'))</Filter>
@@ -652,6 +667,21 @@
             <Filter>([historic]='castle')</Filter>
             &maxscale_zoom13;
             <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14"></PointSymbolizer>
+    </Rule>
+    <Rule title="informační tabule">
+            <Filter>([information]='board')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;infoBoard12.png" type="png" width="12" height="12"></PointSymbolizer>
+    </Rule>
+    <Rule title="tabule s mapou">
+            <Filter>([information]='map')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;infoMap14.png" type="png" width="14" height="14"></PointSymbolizer>
+    </Rule>
+    <Rule title="infocentrum">
+            <Filter>([information]='office')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;infoOffice14.png" type="png" width="14" height="14"></PointSymbolizer>
     </Rule>
 </Style>
 
