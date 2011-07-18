@@ -488,9 +488,9 @@
     <StyleName>cycleway</StyleName>
     <Datasource>
         <Parameter name="table">
-        (select bicycle, lcn_ref, lwn_ref, rcn_ref, rwn_ref, ncn_ref, nwn_ref, lcn, lwn, rcn, rwn, ncn, nwn, osm_id, route, way, highway, ref
+        (select bicycle, lcn_ref, rcn_ref, ncn_ref, lcn, rcn, ncn, osm_id, route, way, highway, ref
         from planet_osm_line
-        where ((highway='cycleway') or (lcn_ref is not null) or (lwn_ref is not null) or (rcn_ref is not null) or (rwn_ref is not null) or (ncn_ref is not null) or (nwn_ref is not null) or (lcn is not null) or (lwn is not null) or (rcn is not null) or (rwn is not null) or (ncn is not null) or (nwn is not null))) as cycleway
+        where ((highway='cycleway') or (lcn_ref is not null) or (rcn_ref is not null) or (ncn_ref is not null) or (lcn is not null) or (rcn is not null) or (ncn is not null))) as cycleway
         </Parameter>
         &datasource-settings;
     </Datasource>
@@ -1108,7 +1108,7 @@ admin 8 - uzemi samostatnych obci
     <StyleName>symbols</StyleName>
     <StyleName>points</StyleName>
     <Datasource>
-      <Parameter name="table">(select * from &prefix;_point where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or information is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or power_source is NOT NULL or man_made is NOT NULL or shop is NOT NULL or historic is NOT NULL) as amenity</Parameter>
+      <Parameter name="table">(select * from &prefix;_point where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or information is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or power_source is NOT NULL or man_made is NOT NULL or shop is NOT NULL or historic is NOT NULL or ruins='yes') as amenity</Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
@@ -1117,7 +1117,7 @@ admin 8 - uzemi samostatnych obci
     <StyleName>symbols-poly</StyleName>
     <StyleName>points</StyleName>
     <Datasource>
-      <Parameter name="table">(select * from &prefix;_polygon where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or man_made is NOT NULL or shop is NOT NULL or historic is NOT NULL) as amenity</Parameter>
+      <Parameter name="table">(select * from &prefix;_polygon where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or information is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or man_made is NOT NULL or shop is NOT NULL or historic is NOT NULL or ruins='yes') as amenity</Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
@@ -1140,7 +1140,7 @@ admin 8 - uzemi samostatnych obci
 <StyleName>text</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,amenity,highway,leisure,landuse,man_made,"tower:type","natural",place,tourism,information,ele,historic,name,ref,shop,military,aeroway,'yes'::text as point
+      (select way,amenity,highway,leisure,landuse,man_made,"tower:type","natural",place,tourism,information,ele,historic,ruins,name,ref,shop,military,aeroway,'yes'::text as point
        from planet_osm_point
        where amenity is not null
           or leisure is not null
@@ -1155,6 +1155,7 @@ admin 8 - uzemi samostatnych obci
           or aeroway='gate'
           or shop='bicycle'
           or historic is not null
+          or ruins='yes'
       ) as text
       </Parameter>
       &datasource-settings;
@@ -1165,7 +1166,7 @@ admin 8 - uzemi samostatnych obci
 <StyleName>text-poly</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,aeroway,amenity,highway,leisure,landuse,man_made,"tower:type","natural",place,tourism,historic,NULL as ele,name,ref,shop,military,'no'::text as point
+      (select way,aeroway,amenity,highway,leisure,landuse,man_made,"tower:type","natural",place,tourism,historic,ruins,NULL as ele,name,ref,shop,military,'no'::text as point
        from planet_osm_polygon
        where amenity is not null
           or leisure is not null
@@ -1177,6 +1178,7 @@ admin 8 - uzemi samostatnych obci
           or military='danger_area'
           or shop='bicycle'
           or historic is not null
+          or ruins='yes'
       ) as text
       </Parameter>
       &datasource-settings;
