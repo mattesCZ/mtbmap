@@ -2,6 +2,7 @@
 <!DOCTYPE Map [
 <!ENTITY % entities SYSTEM "../inc/entities.xml.inc">
 %entities;
+%color-entities;
 ]>
 <Map srs="&srs900913;" bgcolor="rgb(255,255,255)">
     &fontset-settings;
@@ -410,6 +411,20 @@
     </Datasource>
 </Layer>
 <!-- cesty do zoomu 11; pomocne koleje, do tovaren, na nadrazich -->
+<Layer name="roads-casing" srs="&srs900913;">
+<StyleName>roads-casing</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,highway
+       from planet_osm_roads
+       where highway in ('motorway', 'trunk', 'primary', 'secondary', 'motorway_link', 'trunk_link', 'primary_link', 'secondary_link')
+       order by z_order
+      ) as roads
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+<!-- cesty do zoomu 11; pomocne koleje, do tovaren, na nadrazich -->
 <Layer name="roads" srs="&srs900913;">
 <StyleName>roads</StyleName>
     <Datasource>
@@ -420,7 +435,7 @@
               or (railway='rail' and service in ('spur','siding','yard'))
             then 'spur-siding-yard'::text else railway end as railway
        from planet_osm_roads
-       where highway is not null
+       where highway in ('motorway', 'trunk', 'primary', 'secondary', 'motorway_link', 'trunk_link', 'primary_link', 'secondary_link')
           or railway is not null
        order by z_order
       ) as roads
@@ -1075,7 +1090,6 @@ admin 8 - uzemi samostatnych obci
 </Layer>
 <!-- jmena mest, mensich mest -->
 <Layer name="placenames-medium" srs="&srs900913;" clear_label_cache="yes">
-<StyleName>city</StyleName>
 <StyleName>town</StyleName>
     <Datasource>
       <Parameter name="table">
@@ -1097,7 +1111,7 @@ admin 8 - uzemi samostatnych obci
       (select way,place,upper(name),name,ref
       from planet_osm_point
       where place in ('country','state')
-         or (place in ('city','metropolis') and capital='yes')
+         or (place in ('city','metropolis','town') and capital='yes')
       ) as placenames</Parameter>
       &datasource-settings;
     </Datasource>
