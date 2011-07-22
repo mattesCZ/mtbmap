@@ -1088,6 +1088,19 @@ admin 8 - uzemi samostatnych obci
       &datasource-settings;
     </Datasource>
 </Layer>
+<!-- symboly mest, mensich mest v malych zoomech -->
+<Layer name="placenames-medium-symbols" srs="&srs900913;" clear_label_cache="yes">
+<StyleName>town-symbols</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,place,population
+      from planet_osm_point
+      where place in ('city','metropolis','town','large_town','small_town')
+        and (capital is null or capital&lt;&gt;'yes')
+      order by population desc) as placenamessymbols</Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
 <!-- jmena mest, mensich mest -->
 <Layer name="placenames-medium" srs="&srs900913;" clear_label_cache="yes">
 <StyleName>town</StyleName>
@@ -1097,7 +1110,7 @@ admin 8 - uzemi samostatnych obci
       from planet_osm_point
       where place in ('city','metropolis','town','large_town','small_town')
         and (capital is null or capital&lt;&gt;'yes')
-      ) as placenames</Parameter>
+      order by population) as placenames</Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
