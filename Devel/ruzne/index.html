@@ -42,9 +42,11 @@ type="text/javascript"></script>
 
 
     function init(){
+        graticule = new OpenLayers.Control.Graticule({layerName: "Zeměpisná síť"});
         map = new OpenLayers.Map("map",
         {
         controls:[new OpenLayers.Control.Navigation(),
+                  graticule,
                   new OpenLayers.Control.PanZoomBar(),
                   new OpenLayers.Control.Attribution(),
                   new OpenLayers.Control.Permalink(),
@@ -79,6 +81,8 @@ type="text/javascript"></script>
 // standard OpenStreetMap layers
         map.addLayer(new OpenLayers.Layer.OSM.Mapnik("OpenStreetMap"));
         map.addLayer(new OpenLayers.Layer.OSM.CycleMap("OpenCycleMap"));
+
+        map.getLayersByName("Zeměpisná síť")[0].setVisibility(false);
 
 // draw altitude style
         var sketchSymbolizers = {

@@ -105,6 +105,12 @@
             &maxscale_zoom9;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="13" fill="&color_placenames_text;" halo_radius="1" dx="10" horizontal_alignment="right" allow_overlap="true"></TextSymbolizer>
     </Rule>
+    <Rule title="město 10 001-50 000 obyv.">
+            <Filter>(([population]&gt;10000) and not ([population]&gt;50000))</Filter>
+            &minscale_zoom9;
+            &maxscale_zoom9;
+            <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="&color_placenames_text;" halo_radius="1" wrap_width="30" dx="10" horizontal_alignment="right" allow_overlap="true"></TextSymbolizer>
+    </Rule>
     <Rule title="město s více než 100 000 obyv.">
             <Filter>([population]&gt;100000)</Filter>
             &minscale_zoom10;
@@ -226,6 +232,12 @@
             &minscale_zoom9;
             &maxscale_zoom9;
             <PointSymbolizer file="&symbols-path;city15.png" type="png" width="15" height="15"></PointSymbolizer>
+    </Rule>
+    <Rule title="město 10 001-50 000 obyv.">
+            <Filter>(([population]&gt;10000) and not ([population]&gt;50000))</Filter>
+            &minscale_zoom9;
+            &maxscale_zoom9;
+            <PointSymbolizer file="&symbols-path;town12.png" type="png" width="12" height="12" allow_overlap="true" ></PointSymbolizer>
     </Rule>
     <Rule title="město s více než 100 000 obyv.">
             <Filter>([population]&gt;100000)</Filter>
