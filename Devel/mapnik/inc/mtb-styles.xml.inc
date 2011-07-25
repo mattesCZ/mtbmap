@@ -48,13 +48,36 @@
   <Rule title="cyklostezka">
     &maxscale_zoom12;
     &minscale_zoom13;
+    <Filter>([highway]='cycleway')</Filter>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_cycleway;</CssParameter>
       <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="cyklostezka">
+    &maxscale_zoom12;
+    &minscale_zoom13;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_cycleway;</CssParameter>
+      <CssParameter name="stroke-opacity">0.8</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 6</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="cyklostezka">
+    &maxscale_zoom14;
+    &minscale_zoom14;
+    <Filter>([highway]='cycleway')</Filter>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_cycleway;</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="cyklostezka">
@@ -62,22 +85,30 @@
     &minscale_zoom14;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_cycleway;</CssParameter>
-      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
-      <CssParameter name="stroke-offset">4.5</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 6</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="cyklostezka">
+    &maxscale_zoom15;
+    <Filter>([highway]='cycleway')</Filter>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_cycleway;</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="cyklostezka">
     &maxscale_zoom15;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_cycleway;</CssParameter>
-      <CssParameter name="stroke-opacity">0.8</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
-      <CssParameter name="stroke-offset">6</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 8</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -135,9 +166,10 @@
       <CssParameter name="stroke-linecap">round</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule title="MTB stezka">
+  <Rule title="MTB stezka obtížnosti 0">
     &maxscale_zoom13;
     &minscale_zoom14;
+    <Filter>([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-')</Filter>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_mtb_track;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -147,8 +179,74 @@
       <CssParameter name="stroke-linecap">butt</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule title="MTB stezka">
+  <Rule title="MTB stezka obtížnosti 1">
+    &maxscale_zoom13;
+    &minscale_zoom14;
+    <Filter>([mtb:scale]='1' or [mtb:scale]='1+' or [mtb:scale]='1-')</Filter>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_mtb_track;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">3</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-dasharray">8,4</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="MTB stezka obtížnosti 2">
+    &maxscale_zoom13;
+    &minscale_zoom14;
+    <Filter>([mtb:scale]='2' or [mtb:scale]='2+' or [mtb:scale]='2-')</Filter>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_mtb_track;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">3</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-dasharray">3,3</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="MTB stezka obtížnosti 3">
+    &maxscale_zoom13;
+    &minscale_zoom14;
+    <Filter>([mtb:scale]='3' or [mtb:scale]='3+' or [mtb:scale]='3-')</Filter>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_mtb_track;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">3</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-dasharray">6,2</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_mtb_track;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">6</CssParameter>
+      <CssParameter name="stroke-offset">3</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-dasharray">0,2,2,4</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="MTB stezka obtížnosti 4 a 5">
+    &maxscale_zoom13;
+    &minscale_zoom14;
+    <Filter>([mtb:scale]='4' or [mtb:scale]='4+' or [mtb:scale]='4-' or [mtb:scale]='5' or [mtb:scale]='5+' or [mtb:scale]='5-')</Filter>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_mtb_track;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">5</CssParameter>
+      <CssParameter name="stroke-offset">3</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-dasharray">0,2,1,2</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="MTB stezka obtížnosti 0">
     &maxscale_zoom15;
+    <Filter>([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-')</Filter>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_mtb_track;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -156,6 +254,80 @@
       <CssParameter name="stroke-offset">3</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="MTB stezka obtížnosti 1">
+    &maxscale_zoom15;
+    <Filter>([mtb:scale]='1' or [mtb:scale]='1+' or [mtb:scale]='1-')</Filter>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_mtb_track;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">3</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-dasharray">11,5</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="MTB stezka obtížnosti 2">
+    &maxscale_zoom15;
+    <Filter>([mtb:scale]='2' or [mtb:scale]='2+' or [mtb:scale]='2-')</Filter>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_mtb_track;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">3</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-dasharray">4,5</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="MTB stezka obtížnosti 3">
+    &maxscale_zoom15;
+    <Filter>([mtb:scale]='3' or [mtb:scale]='3+' or [mtb:scale]='3-')</Filter>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_mtb_track;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">3</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-dasharray">6,2</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_mtb_track;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">6</CssParameter>
+      <CssParameter name="stroke-offset">3</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-dasharray">0,2,2,4</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="MTB stezka obtížnosti 4 a 5">
+    &maxscale_zoom15;
+    <Filter>([mtb:scale]='4' or [mtb:scale]='4+' or [mtb:scale]='4-' or [mtb:scale]='5' or [mtb:scale]='5+' or [mtb:scale]='5-')</Filter>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_mtb_track;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">6</CssParameter>
+      <CssParameter name="stroke-offset">3</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-dasharray">0,2,2,2</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="MTB stezka bez značení obtížnosti">
+    &maxscale_zoom15;
+    <ElseFilter />
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_mtb_track;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">3</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-dasharray">4,4,8,4</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>

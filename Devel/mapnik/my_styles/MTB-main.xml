@@ -498,6 +498,16 @@
       &datasource-settings;
     </Datasource>
 </Layer>
+<!-- tramvajove koleje -->
+<Layer name="trams" srs="&srs900913;">
+<StyleName>trams</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way from planet_osm_line where railway='tram' and (tunnel is null or tunnel not in ('yes','true','1'))) as trams
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
 <!-- Cyklostezky, zpravidla zpevnene, v realu oznacene zlutymi cedulkami -->
 <Layer name="cycleways" srs="&srs900913;">
     <StyleName>cycleway</StyleName>
@@ -815,7 +825,7 @@
     </Datasource>
 </Layer>
 <!-- cyklostezky paralelne s MTB trasami -->
-<Layer name="cycleway-mtb" srs="&srs900913;">
+<!--<Layer name="cycleway-mtb" srs="&srs900913;">
     <StyleName>cycleway-mtb</StyleName>
     <Datasource>
         <Parameter name="table">
@@ -826,7 +836,7 @@
         </Parameter>
         &datasource-settings;
     </Datasource>
-</Layer>
+</Layer>-->
 <!-- Zakladni MTB stezky -->
 <Layer name="mtbasic" srs="&srs900913;">
     <StyleName>mtb_basic</StyleName>
@@ -864,7 +874,7 @@
         &datasource-settings;
     </Datasource>
 </Layer>
-<Layer name="mtb5" srs="&srs900913;" clear_label_cache="yes">
+<!--<Layer name="mtb5" srs="&srs900913;" clear_label_cache="yes">
     <StyleName>mtb_shield5</StyleName>
     <Datasource>
         <Parameter name="table">
@@ -935,7 +945,7 @@
         </Parameter>
         &datasource-settings;
     </Datasource>
-</Layer>
+</Layer>-->
 
 <!-- zpravidla pomocne cesty v arealech, nepristupne -->
 <Layer name="access" srs="&srs900913;">
@@ -943,16 +953,6 @@
     <Datasource>
       <Parameter name="table">
       (select way,access,highway from planet_osm_line where access is not null) as access
-      </Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<!-- tramvajove koleje -->
-<Layer name="trams" srs="&srs900913;">
-<StyleName>trams</StyleName>
-    <Datasource>
-      <Parameter name="table">
-      (select way from planet_osm_line where railway='tram' and (tunnel is null or tunnel not in ('yes','true','1'))) as trams
       </Parameter>
       &datasource-settings;
     </Datasource>
