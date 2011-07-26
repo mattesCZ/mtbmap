@@ -36,13 +36,23 @@
   <Rule title="cyklostezka">
     &maxscale_zoom11;
     &minscale_zoom11;
+    <Filter>([highway]='cycleway')</Filter>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_cycleway;</CssParameter>
-      <CssParameter name="stroke-opacity">0.6</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-offset">2</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
+    </LineSymbolizer>
+  </Rule>
+  <Rule title="cyklostezka">
+    &maxscale_zoom11;
+    &minscale_zoom11;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_cycleway;</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 4</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="cyklostezka">
