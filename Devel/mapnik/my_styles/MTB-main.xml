@@ -10,6 +10,7 @@
 &height-styles;
 &admin-styles;
 &mtb-styles;
+&cycleways-styles;
 &kct-styles;
 &water-styles;
 &placenames-styles;
@@ -1233,7 +1234,7 @@ admin 8 - uzemi samostatnych obci
     <StyleName>cycleway-text</StyleName>
     <Datasource>
         <Parameter name="table">
-        (select way, ref, name, lcn, ncn, rcn
+        (select way, ref, name, lcn, ncn, rcn, rcn_ref, ncn_ref, lcn_ref, network
         from planet_osm_line
         where ref is not null and (lcn is not null or ncn is not null or rcn is not null)) as cycleway
         </Parameter>

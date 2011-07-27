@@ -45,12 +45,14 @@
 <!ENTITY color_residential_casing '#ffffff'>
 <!ENTITY color_residential_fill '#ffffff'>
 
+<!ENTITY color_road 'rgb(180,180,180)'>
 <!ENTITY color_residential 'rgb(255,255,255)'>
 <!ENTITY color_tertiary 'rgb(255,255,253)'>
 <!ENTITY color_secondary 'rgb(252,252,181)'>
 <!ENTITY color_primary 'rgb(254,255,107)'>
 <!ENTITY color_motorway 'rgb(252,152,53)'>
 
+<!ENTITY color_road_tunnel 'rgb(150,150,150)'>
 <!ENTITY color_residential_tunnel 'rgb(255,255,255)'>
 <!ENTITY color_tertiary_tunnel 'rgb(231,231,231)'>
 <!ENTITY color_secondary_tunnel 'rgb(236,189,128)'>
@@ -58,6 +60,7 @@
 <!ENTITY color_motorway_tunnel 'rgb(224,139,56)'>
 
 <!ENTITY color_pedestrian_background 'rgb(128,128,128)'>
+<!ENTITY color_road_background '&color_residential_background;'>
 <!ENTITY color_residential_background 'rgb(120,120,120)'>
 <!ENTITY color_tertiary_background 'rgb(120,120,120)'>
 <!ENTITY color_secondary_background 'rgb(163,123,72)'>
