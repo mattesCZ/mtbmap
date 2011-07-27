@@ -55,6 +55,7 @@
 <!ENTITY admin-styles SYSTEM "admin-styles.xml.inc">
 <!ENTITY symbols-path "../symbols/">
 <!ENTITY mtb-styles SYSTEM "mtb-styles.xml.inc">
+<!ENTITY cycleways-styles SYSTEM "cycleways-styles.xml.inc">
 <!ENTITY kct-styles SYSTEM "kct-styles.xml.inc">
 <!ENTITY water-styles SYSTEM "water-styles.xml.inc">
 <!ENTITY placenames-styles SYSTEM "placenames-styles.xml.inc">

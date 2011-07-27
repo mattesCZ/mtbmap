@@ -199,10 +199,17 @@
             </PolygonSymbolizer>
     </Rule>
     <Rule title="les">
-            <Filter>([landuse]='forest' or [natural]='wood')</Filter>
+            <Filter>([landuse]='forest')</Filter>
             &maxscale_zoom11;
             <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(181,219,143)</CssParameter>
+                <CssParameter name="fill">rgb(181,219,160)</CssParameter>
+            </PolygonSymbolizer>
+    </Rule>
+    <Rule title="prales">
+            <Filter>([natural]='wood')</Filter>
+            &maxscale_zoom11;
+            <PolygonSymbolizer>
+                <CssParameter name="fill">rgb(141,194,124)</CssParameter>
             </PolygonSymbolizer>
     </Rule>
     <Rule title="farma">

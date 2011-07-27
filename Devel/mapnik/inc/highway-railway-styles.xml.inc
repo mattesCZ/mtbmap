@@ -332,11 +332,22 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="ostatní silnice">
-            <Filter>((((([highway]='living_street') or ([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) or ([highway]='road')) and not (([tunnel]='yes')))</Filter>
+            <Filter>((((([highway]='living_street') or ([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified'))) and not (([tunnel]='yes')))</Filter>
             &minscale_zoom13;
             &maxscale_zoom13;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_residential_background;</CssParameter>
+                <CssParameter name="stroke-width">3.5</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="silnice s chybějící klasifikací">
+            <Filter>(([highway]='road') and not ([tunnel]='yes'))</Filter>
+            &minscale_zoom13;
+            &maxscale_zoom13;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road_background;</CssParameter>
                 <CssParameter name="stroke-width">3.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -354,11 +365,22 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="ostatní silnice">
-            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') or ([highway]='road')) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
+            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified')) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
             &minscale_zoom14;
             &maxscale_zoom14;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_residential_background;</CssParameter>
+                <CssParameter name="stroke-width">4.5</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="silnice s chybějící klasifikací">
+            <Filter>(([highway]='road') and not ([tunnel]='yes'))</Filter>
+            &minscale_zoom14;
+            &maxscale_zoom14;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road_background;</CssParameter>
                 <CssParameter name="stroke-width">4.5</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -376,7 +398,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="ostatní silnice">
-            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') or ([highway]='road')) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
+            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') ) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
             &minscale_zoom15;
             &maxscale_zoom15;
             <LineSymbolizer>
@@ -387,11 +409,33 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="ostatní silnice">
-            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') or ([highway]='road')) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
+            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') ) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
             &minscale_zoom16;
             &maxscale_zoom16;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_residential_background;</CssParameter>
+                <CssParameter name="stroke-width">11</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="silnice s chybějící klasifikací">
+            <Filter>(([highway]='road') and not ([tunnel]='yes'))</Filter>
+            &minscale_zoom15;
+            &maxscale_zoom15;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road_background;</CssParameter>
+                <CssParameter name="stroke-width">8.1</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="silnice s chybějící klasifikací">
+            <Filter>(([highway]='road') and not ([tunnel]='yes'))</Filter>
+            &minscale_zoom16;
+            &maxscale_zoom16;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road_background;</CssParameter>
                 <CssParameter name="stroke-width">11</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -409,11 +453,22 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="ostatní silnice">
-            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') or ([highway]='road')) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
+            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') ) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
             &minscale_zoom18;
             &maxscale_zoom17;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_residential_background;</CssParameter>
+                <CssParameter name="stroke-width">15</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="silnice s chybějící klasifikací">
+            <Filter>(([highway]='road') and not ([tunnel]='yes'))</Filter>
+            &minscale_zoom18;
+            &maxscale_zoom17;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road_background;</CssParameter>
                 <CssParameter name="stroke-width">15</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -1292,61 +1347,6 @@
                 <CssParameter name="stroke-width">2</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule title="ostatní silnice">
-            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') or ([highway]='road')) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
-            &minscale_zoom13;
-            &maxscale_zoom13;
-            <LineSymbolizer>
-                <CssParameter name="stroke">&color_residential;</CssParameter>
-                <CssParameter name="stroke-width">2</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule title="ostatní silnice">
-            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') or ([highway]='road')) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
-            &minscale_zoom14;
-            &maxscale_zoom14;
-            <LineSymbolizer>
-                <CssParameter name="stroke">&color_residential;</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule title="ostatní silnice">
-            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') or ([highway]='road')) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
-            &minscale_zoom15;
-            &maxscale_zoom15;
-            <LineSymbolizer>
-                <CssParameter name="stroke">&color_residential;</CssParameter>
-                <CssParameter name="stroke-width">6.5</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule title="ostatní silnice">
-            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') or ([highway]='road')) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
-            &minscale_zoom16;
-            &maxscale_zoom16;
-            <LineSymbolizer>
-                <CssParameter name="stroke">&color_residential;</CssParameter>
-                <CssParameter name="stroke-width">9.4</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule title="ostatní silnice">
-            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') or ([highway]='road')) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom17;
-            <LineSymbolizer>
-                <CssParameter name="stroke">&color_residential;</CssParameter>
-                <CssParameter name="stroke-width">13</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-            </LineSymbolizer>
-    </Rule>
     <Rule title="silnice 3. třídy">
             <Filter>(([highway]='tertiary') and not (([tunnel]='yes')))</Filter>
             &minscale_zoom12;
@@ -1397,6 +1397,116 @@
             &maxscale_zoom17;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_tertiary;</CssParameter>
+                <CssParameter name="stroke-width">13</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="ostatní silnice">
+            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') ) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
+            &minscale_zoom13;
+            &maxscale_zoom13;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_residential;</CssParameter>
+                <CssParameter name="stroke-width">2</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="ostatní silnice">
+            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') ) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
+            &minscale_zoom14;
+            &maxscale_zoom14;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_residential;</CssParameter>
+                <CssParameter name="stroke-width">3</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="ostatní silnice">
+            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') ) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
+            &minscale_zoom15;
+            &maxscale_zoom15;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_residential;</CssParameter>
+                <CssParameter name="stroke-width">6.5</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="ostatní silnice">
+            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') ) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
+            &minscale_zoom16;
+            &maxscale_zoom16;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_residential;</CssParameter>
+                <CssParameter name="stroke-width">9.4</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="ostatní silnice">
+            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified') ) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
+            &minscale_zoom18;
+            &maxscale_zoom17;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_residential;</CssParameter>
+                <CssParameter name="stroke-width">13</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="silnice s chybějící klasifikací">
+            <Filter>(([highway]='road') and not ([tunnel]='yes'))</Filter>
+            &minscale_zoom13;
+            &maxscale_zoom13;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road;</CssParameter>
+                <CssParameter name="stroke-width">2</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="silnice s chybějící klasifikací">
+            <Filter>(([highway]='road') and not ([tunnel]='yes'))</Filter>
+            &minscale_zoom14;
+            &maxscale_zoom14;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road;</CssParameter>
+                <CssParameter name="stroke-width">3</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="silnice s chybějící klasifikací">
+            <Filter>(([highway]='road') and not ([tunnel]='yes'))</Filter>
+            &minscale_zoom15;
+            &maxscale_zoom15;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road;</CssParameter>
+                <CssParameter name="stroke-width">6.5</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="silnice s chybějící klasifikací">
+            <Filter>(([highway]='road') and not ([tunnel]='yes'))</Filter>
+            &minscale_zoom16;
+            &maxscale_zoom16;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road;</CssParameter>
+                <CssParameter name="stroke-width">9.4</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="silnice s chybějící klasifikací">
+            <Filter>(([highway]='road') and not ([tunnel]='yes'))</Filter>
+            &minscale_zoom18;
+            &maxscale_zoom17;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road;</CssParameter>
                 <CssParameter name="stroke-width">13</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -2510,7 +2620,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="most na ostatní silnici">
-            <Filter>((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified') or ([highway]='road') or ([highway]='service'))</Filter>
+            <Filter>((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')  or ([highway]='service'))</Filter>
             &minscale_zoom14;
             &maxscale_zoom14;
             <LineSymbolizer>
@@ -2521,7 +2631,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="most na ostatní silnici">
-            <Filter>((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified') or ([highway]='road') or ([highway]='service'))</Filter>
+            <Filter>((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')  or ([highway]='service'))</Filter>
             &minscale_zoom15;
             &maxscale_zoom15;
             <LineSymbolizer>
@@ -2532,7 +2642,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="most na ostatní silnici">
-            <Filter>((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified') or ([highway]='road') or ([highway]='service'))</Filter>
+            <Filter>((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')  or ([highway]='service'))</Filter>
             &minscale_zoom16;
             &maxscale_zoom16;
             <LineSymbolizer>
@@ -2543,11 +2653,55 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="most na ostatní silnici">
-            <Filter>((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified') or ([highway]='road') or ([highway]='service'))</Filter>
+            <Filter>((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')  or ([highway]='service'))</Filter>
             &minscale_zoom18;
             &maxscale_zoom17;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_residential;</CssParameter>
+                <CssParameter name="stroke-width">14</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="most na silnici s chybějící klasifikací">
+            <Filter>([highway]='road')</Filter>
+            &minscale_zoom14;
+            &maxscale_zoom14;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road;</CssParameter>
+                <CssParameter name="stroke-width">3.5</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="most na silnici s chybějící klasifikací">
+            <Filter>([highway]='road')</Filter>
+            &minscale_zoom15;
+            &maxscale_zoom15;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road;</CssParameter>
+                <CssParameter name="stroke-width">7.5</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="most na silnici s chybějící klasifikací">
+            <Filter>([highway]='road')</Filter>
+            &minscale_zoom16;
+            &maxscale_zoom16;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road;</CssParameter>
+                <CssParameter name="stroke-width">9.5</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="most na silnici s chybějící klasifikací">
+            <Filter>([highway]='road')</Filter>
+            &minscale_zoom18;
+            &maxscale_zoom17;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road;</CssParameter>
                 <CssParameter name="stroke-width">14</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -3047,7 +3201,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) or ([highway]='road'))</Filter>
+            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
             &minscale_zoom13;
             &maxscale_zoom13;
             <LineSymbolizer>
@@ -3057,11 +3211,31 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) or ([highway]='road'))</Filter>
+            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
             &minscale_zoom14;
             &maxscale_zoom14;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_residential_background;</CssParameter>
+                <CssParameter name="stroke-width">4.5</CssParameter>
+                <CssParameter name="stroke-dasharray">4, 2</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="tunel na silnici s chybějící klasifikací">
+            <Filter>([highway]='road')</Filter>
+            &minscale_zoom13;
+            &maxscale_zoom13;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road_background;</CssParameter>
+                <CssParameter name="stroke-width">3.5</CssParameter>
+                <CssParameter name="stroke-dasharray">4, 2</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="tunel na silnici s chybějící klasifikací">
+            <Filter>([highway]='road')</Filter>
+            &minscale_zoom14;
+            &maxscale_zoom14;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road_background;</CssParameter>
                 <CssParameter name="stroke-width">4.5</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
@@ -3077,7 +3251,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) or ([highway]='road'))</Filter>
+            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
             &minscale_zoom15;
             &maxscale_zoom15;
             <LineSymbolizer>
@@ -3087,11 +3261,31 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) or ([highway]='road'))</Filter>
+            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
             &minscale_zoom16;
             &maxscale_zoom16;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_residential_background;</CssParameter>
+                <CssParameter name="stroke-width">11</CssParameter>
+                <CssParameter name="stroke-dasharray">4, 2</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="tunel na silnici s chybějící klasifikací">
+            <Filter>([highway]='road')</Filter>
+            &minscale_zoom15;
+            &maxscale_zoom15;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road_background;</CssParameter>
+                <CssParameter name="stroke-width">8.1</CssParameter>
+                <CssParameter name="stroke-dasharray">4, 2</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="tunel na silnici s chybějící klasifikací">
+            <Filter>([highway]='road')</Filter>
+            &minscale_zoom16;
+            &maxscale_zoom16;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road_background;</CssParameter>
                 <CssParameter name="stroke-width">11</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
@@ -3107,11 +3301,21 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>((((([highway]='tertiary') or ([highway]='residential')) or ([highway]='minor')) or ([highway]='unclassified')) or ([highway]='road'))</Filter>
+            <Filter>((((([highway]='tertiary') or ([highway]='residential')) or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
             &minscale_zoom18;
             &maxscale_zoom17;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_residential_background;</CssParameter>
+                <CssParameter name="stroke-width">16</CssParameter>
+                <CssParameter name="stroke-dasharray">4, 2</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="tunel na silnici s chybějící klasifikací">
+            <Filter>([highway]='road')</Filter>
+            &minscale_zoom18;
+            &maxscale_zoom17;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road_background;</CssParameter>
                 <CssParameter name="stroke-width">16</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
@@ -3273,7 +3477,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) or ([highway]='road'))</Filter>
+            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
             &minscale_zoom13;
             &maxscale_zoom13;
             <LineSymbolizer>
@@ -3284,11 +3488,33 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) or ([highway]='road'))</Filter>
+            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
             &minscale_zoom14;
             &maxscale_zoom14;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_residential_tunnel;</CssParameter>
+                <CssParameter name="stroke-width">3</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="tunel na silnici s chybějící klasifikací">
+            <Filter>([highway]='road')</Filter>
+            &minscale_zoom13;
+            &maxscale_zoom13;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road_tunnel;</CssParameter>
+                <CssParameter name="stroke-width">2</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="tunel na silnici s chybějící klasifikací">
+            <Filter>([highway]='road')</Filter>
+            &minscale_zoom14;
+            &maxscale_zoom14;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road_tunnel;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
@@ -3317,7 +3543,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) or ([highway]='road'))</Filter>
+            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
             &minscale_zoom15;
             &maxscale_zoom15;
             <LineSymbolizer>
@@ -3328,7 +3554,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) or ([highway]='road'))</Filter>
+            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
             &minscale_zoom16;
             &maxscale_zoom16;
             <LineSymbolizer>
@@ -3338,12 +3564,45 @@
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
     </Rule>
+    <Rule title="tunel na silnici s chybějící klasifikací">
+            <Filter>([highway]='road')</Filter>
+            &minscale_zoom15;
+            &maxscale_zoom15;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road_tunnel;</CssParameter>
+                <CssParameter name="stroke-width">6.5</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="tunel na silnici s chybějící klasifikací">
+            <Filter>([highway]='road')</Filter>
+            &minscale_zoom16;
+            &maxscale_zoom16;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road_tunnel;</CssParameter>
+                <CssParameter name="stroke-width">9.4</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) or ([highway]='road'))</Filter>
+            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
             &minscale_zoom18;
             &maxscale_zoom17;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_residential_tunnel;</CssParameter>
+                <CssParameter name="stroke-width">13</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="tunel na silnici s chybějící klasifikací">
+            <Filter>([highway]='road')</Filter>
+            &minscale_zoom18;
+            &maxscale_zoom17;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_road_tunnel;</CssParameter>
                 <CssParameter name="stroke-width">13</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>

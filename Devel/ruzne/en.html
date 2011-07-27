@@ -43,9 +43,11 @@ type="text/javascript"></script>
 
 
     function init(){
+        graticule = new OpenLayers.Control.Graticule({layerName: "Graticule"});
         map = new OpenLayers.Map("map",
         {
         controls:[new OpenLayers.Control.Navigation(),
+                  graticule,
                   new OpenLayers.Control.PanZoomBar(),
                   new OpenLayers.Control.Attribution(),
                   new OpenLayers.Control.Permalink(),
@@ -79,6 +81,8 @@ type="text/javascript"></script>
 // standard OpenStreetMap layers
         map.addLayer(new OpenLayers.Layer.OSM.Mapnik("OpenStreetMap"));
         map.addLayer(new OpenLayers.Layer.OSM.CycleMap("OpenCycleMap"));
+
+        map.getLayersByName("Graticule")[0].setVisibility(false);
 
 // draw altitude style
         var sketchSymbolizers = {
@@ -221,6 +225,7 @@ return false;" href="">Legend</a>
           <span>Export current MTB map view</span>
               <form method="post" action="/cgi-bin/genimage.py" target="_blank">
                   <p>
+                  <input name="addscale" id="addscale" type="checkbox" value="ON" checked="yes">With scalebar<br>
                   <input name="center" id="center" 
 type="hidden" value="">
                   <input type="submit" value="Export" onclick="getCenter();"><br>
@@ -231,7 +236,7 @@ type="hidden" value="">
           <div id="footer">
             Data provided by <a href="http://openstreetmap.org/" >OpenStreetMap</a> and&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a><br>
 
-            Current: 2011-04-12 from <a href="http://osm.kyblsoft.cz/archiv/" >Kýblsoft</a>
+            Current: 2011-07-25 from <a href="http://osm.kyblsoft.cz/archiv/" >Kýblsoft</a>
             <hr>
             Author: Martin Tesař<br>osmmtb&nbsp;(at)&nbsp;gmail.com
           </div>

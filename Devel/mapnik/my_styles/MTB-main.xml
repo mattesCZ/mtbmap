@@ -10,6 +10,7 @@
 &height-styles;
 &admin-styles;
 &mtb-styles;
+&cycleways-styles;
 &kct-styles;
 &water-styles;
 &placenames-styles;
@@ -498,6 +499,16 @@
       &datasource-settings;
     </Datasource>
 </Layer>
+<!-- tramvajove koleje -->
+<Layer name="trams" srs="&srs900913;">
+<StyleName>trams</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way from planet_osm_line where railway='tram' and (tunnel is null or tunnel not in ('yes','true','1'))) as trams
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
 <!-- Cyklostezky, zpravidla zpevnene, v realu oznacene zlutymi cedulkami -->
 <Layer name="cycleways" srs="&srs900913;">
     <StyleName>cycleway</StyleName>
@@ -815,7 +826,7 @@
     </Datasource>
 </Layer>
 <!-- cyklostezky paralelne s MTB trasami -->
-<Layer name="cycleway-mtb" srs="&srs900913;">
+<!--<Layer name="cycleway-mtb" srs="&srs900913;">
     <StyleName>cycleway-mtb</StyleName>
     <Datasource>
         <Parameter name="table">
@@ -826,7 +837,7 @@
         </Parameter>
         &datasource-settings;
     </Datasource>
-</Layer>
+</Layer>-->
 <!-- Zakladni MTB stezky -->
 <Layer name="mtbasic" srs="&srs900913;">
     <StyleName>mtb_basic</StyleName>
@@ -864,7 +875,7 @@
         &datasource-settings;
     </Datasource>
 </Layer>
-<Layer name="mtb5" srs="&srs900913;" clear_label_cache="yes">
+<!--<Layer name="mtb5" srs="&srs900913;" clear_label_cache="yes">
     <StyleName>mtb_shield5</StyleName>
     <Datasource>
         <Parameter name="table">
@@ -935,7 +946,7 @@
         </Parameter>
         &datasource-settings;
     </Datasource>
-</Layer>
+</Layer>-->
 
 <!-- zpravidla pomocne cesty v arealech, nepristupne -->
 <Layer name="access" srs="&srs900913;">
@@ -943,16 +954,6 @@
     <Datasource>
       <Parameter name="table">
       (select way,access,highway from planet_osm_line where access is not null) as access
-      </Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<!-- tramvajove koleje -->
-<Layer name="trams" srs="&srs900913;">
-<StyleName>trams</StyleName>
-    <Datasource>
-      <Parameter name="table">
-      (select way from planet_osm_line where railway='tram' and (tunnel is null or tunnel not in ('yes','true','1'))) as trams
       </Parameter>
       &datasource-settings;
     </Datasource>
@@ -1088,6 +1089,19 @@ admin 8 - uzemi samostatnych obci
       &datasource-settings;
     </Datasource>
 </Layer>
+<!-- symboly mest, mensich mest v malych zoomech -->
+<Layer name="placenames-medium-symbols" srs="&srs900913;" clear_label_cache="yes">
+<StyleName>town-symbols</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,place,population
+      from planet_osm_point
+      where place in ('city','metropolis','town','large_town','small_town')
+        and (capital is null or capital&lt;&gt;'yes')
+      order by population desc) as placenamessymbols</Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
 <!-- jmena mest, mensich mest -->
 <Layer name="placenames-medium" srs="&srs900913;" clear_label_cache="yes">
 <StyleName>town</StyleName>
@@ -1097,7 +1111,7 @@ admin 8 - uzemi samostatnych obci
       from planet_osm_point
       where place in ('city','metropolis','town','large_town','small_town')
         and (capital is null or capital&lt;&gt;'yes')
-      ) as placenames</Parameter>
+      order by population) as placenames</Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
@@ -1220,7 +1234,7 @@ admin 8 - uzemi samostatnych obci
     <StyleName>cycleway-text</StyleName>
     <Datasource>
         <Parameter name="table">
-        (select way, ref, name, lcn, ncn, rcn
+        (select way, ref, name, lcn, ncn, rcn, rcn_ref, ncn_ref, lcn_ref, network
         from planet_osm_line
         where ref is not null and (lcn is not null or ncn is not null or rcn is not null)) as cycleway
         </Parameter>

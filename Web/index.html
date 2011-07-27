@@ -42,9 +42,11 @@ type="text/javascript"></script>
 
 
     function init(){
+        graticule = new OpenLayers.Control.Graticule({layerName: "Zeměpisná síť"});
         map = new OpenLayers.Map("map",
         {
         controls:[new OpenLayers.Control.Navigation(),
+                  graticule,
                   new OpenLayers.Control.PanZoomBar(),
                   new OpenLayers.Control.Attribution(),
                   new OpenLayers.Control.Permalink(),
@@ -79,6 +81,8 @@ type="text/javascript"></script>
 // standard OpenStreetMap layers
         map.addLayer(new OpenLayers.Layer.OSM.Mapnik("OpenStreetMap"));
         map.addLayer(new OpenLayers.Layer.OSM.CycleMap("OpenCycleMap"));
+
+        map.getLayersByName("Zeměpisná síť")[0].setVisibility(false);
 
 // draw altitude style
         var sketchSymbolizers = {
@@ -164,15 +168,29 @@ new OpenLayers.Projection('EPSG:4326'));
         var properties = new Array(extent.bottom, extent.left, extent.top, extent.right, size.w, size.h);
         document.getElementById('center').value=properties;
     }
-
         </script>
+
+<!-- Google Analytics code -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-24431945-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 
     </head>
     <body onload="init()">
 <!--      <div id="box"> -->
         <div id="text">
           <div id="title">
-            <h3>OSM MTB Mapa<br>Česká republika</h3>
+            <h3>OSM MTB Mapa<br>České republiky</h3>
             <a href="en.html" >English version</a>
           </div>
           <hr>
@@ -211,6 +229,7 @@ return false;">Zobrazit vysvětlivky</a>
           <span>Exportovat právě zobrazenou MTB mapu</span>
               <form method="post" action="/cgi-bin/genimage.py" target="_blank">
                   <p>
+                  <input name="addscale" id="addscale" type="checkbox" value="ON" checked="yes">Včetně měřítka<br>
                   <input name="center" id="center" 
 type="hidden" value="">
                   <input type="submit" value="Export" onclick="getCenter();"><br>
@@ -221,10 +240,14 @@ type="hidden" value="">
           <div id="footer">
             Data poskytuje <a href="http://openstreetmap.org/" >OpenStreetMap</a> a&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a><br>
 <<<<<<< HEAD:Web/index.html
+<<<<<<< HEAD:Web/index.html
             Verze: 2011-04-09 od <a href="http://osm.kyblsoft.cz/archiv/" >Kýblsoft</a>
 =======
             Verze: 2011-04-12 od <a href="http://osm.kyblsoft.cz/archiv/" >Kýblsoft</a>
 >>>>>>> c0488fcb303114a546be91b203b9ba66a58e02e9:Web/index.html
+=======
+            Verze: 2011-07-25 od <a href="http://osm.kyblsoft.cz/archiv/" >Kýblsoft</a>
+>>>>>>> f2a333adad994da6f902182182983c237f8f2baa:Web/index.html
             <hr>
             Autor: Martin Tesař<br>osmmtb&nbsp;(at)&nbsp;gmail.com
           </div>
