@@ -51,7 +51,7 @@
           or aeroway in ('apron','aerodrome')
           or amenity in ('parking','university','college','school','hospital','kindergarten','grave_yard')
           or military in ('barracks','danger_area')
-          or "natural" in ('field','beach','heath','mud','wood')
+          or "natural" in ('field','beach','heath','mud','wood','fell','scrub')
           or power in ('station','sub_station')
           or tourism in ('attraction','camp_site','caravan_site','picnic_site','zoo')
        order by z_order,way_area desc
@@ -168,7 +168,7 @@
       from planet_osm_polygon
       where waterway in ('dock','mill_pond','riverbank','canal')
          or landuse in ('reservoir','water','basin')
-         or "natural" in ('lake','water','land','marsh','scrub','wetland','glacier')
+         or "natural" in ('lake','water','land','marsh','wetland','glacier')
       order by z_order,way_area desc
       ) as water_areas</Parameter>
       &datasource-settings;

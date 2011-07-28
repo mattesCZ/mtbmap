@@ -85,31 +85,54 @@
 </Style>
 <Style name="footbikecycle-tunnels">
     <Rule title="!podchod">
-            <Filter>(([highway]='bridleway') or ([highway]='path'))</Filter>
-            &maxscale_zoom13;
+            <Filter>([highway]='path')</Filter>
+            &maxscale_zoom14;
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
-                <CssParameter name="stroke-width">5</CssParameter>
+                <CssParameter name="stroke">&color_track_tunnel;</CssParameter>
+                <CssParameter name="stroke-width">3.5</CssParameter>
                 <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">&color_white;</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
+                <CssParameter name="stroke-width">2.2</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
+                <CssParameter name="stroke-width">1.4</CssParameter>
+                <CssParameter name="stroke-opacity">0.9</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">butt</CssParameter>
+                <CssParameter name="stroke-dasharray">7, 3</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="!podchod">
+            <Filter>([highway]='bridleway')</Filter>
+            &maxscale_zoom13;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_track_tunnel;</CssParameter>
+                <CssParameter name="stroke-width">4.5</CssParameter>
+                <CssParameter name="stroke-dasharray">4, 2</CssParameter>
+            </LineSymbolizer>
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(0,128,0)</CssParameter>
+                <CssParameter name="stroke">&color_bridleway_fill;</CssParameter>
                 <CssParameter name="stroke-width">2</CssParameter>
-                <CssParameter name="stroke-opacity">0.5</CssParameter>
+                <CssParameter name="stroke-opacity">0.9</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-                <CssParameter name="stroke-dasharray">4, 2</CssParameter>
+                <CssParameter name="stroke-linecap">butt</CssParameter>
+                <CssParameter name="stroke-dasharray">7, 3</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="podchod">
-            <Filter>(([highway]='footway') or (([highway]='path') and ([foot]='designated')))</Filter>
-            &maxscale_zoom13;
+            <Filter>([highway]='footway')</Filter>
+            &maxscale_zoom14;
             <LineSymbolizer>
                 <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
                 <CssParameter name="stroke-width">5.5</CssParameter>
@@ -130,31 +153,10 @@
                 <CssParameter name="stroke-dasharray">1, 3</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule title="!podchod">
-            <Filter>(([highway]='path') and not (([bicycle]='designated') or ([foot]='designated')))</Filter>
-            &maxscale_zoom13;
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
-                <CssParameter name="stroke-width">5.5</CssParameter>
-                <CssParameter name="stroke-dasharray">4, 2</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">&color_white;</CssParameter>
-                <CssParameter name="stroke-opacity">0.4</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke-width">0.5</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-                <CssParameter name="stroke-dasharray">6, 3</CssParameter>
-            </LineSymbolizer>
-    </Rule>
 </Style>
 <Style name="highway-area-casing">
     <Rule title="!prostranství">
-            <Filter>(([highway]='residential') or ([highway]='unclassified'))</Filter>
+            <Filter>((([highway]='residential') or ([highway]='unclassified')) or ([highway]='service') or ([highway]='living_street'))</Filter>
             &maxscale_zoom14;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_residential_background;</CssParameter>
@@ -177,7 +179,7 @@
             </PolygonSymbolizer>
     </Rule>
     <Rule title="!pěší zóna">
-            <Filter>(([highway]='pedestrian') or ([highway]='footway'))</Filter>
+            <Filter>((([highway]='pedestrian') or ([highway]='service')) or ([highway]='footway'))</Filter>
             &maxscale_zoom14;
             <PolygonSymbolizer>
                 <CssParameter name="fill">&color_pedestrian;</CssParameter>
@@ -1585,25 +1587,47 @@
                 <CssParameter name="stroke-dasharray">2, 1</CssParameter>
             </LineSymbolizer>
     </Rule>
+    <Rule title="pěšina">
+            <Filter>(([highway]='path') and not ([tunnel]='yes'))</Filter>
+            &maxscale_zoom14;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
+                <CssParameter name="stroke-width">2.2</CssParameter>
+                <CssParameter name="stroke-opacity">0.4</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
+                <CssParameter name="stroke-width">1.4</CssParameter>
+                <CssParameter name="stroke-opacity">0.9</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">butt</CssParameter>
+                <CssParameter name="stroke-dasharray">7, 3</CssParameter>
+            </LineSymbolizer>
+    </Rule>
     <Rule title="!stezka např. pro koně">
-            <Filter>((([highway]='bridleway') or ([highway]='path')) and not (([tunnel]='yes')))</Filter>
+            <Filter>(([highway]='bridleway') and not ([tunnel]='yes'))</Filter>
             &maxscale_zoom13;
             <LineSymbolizer>
-                <CssParameter name="stroke">&color_white;</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
                 <CssParameter name="stroke-width">3</CssParameter>
                 <CssParameter name="stroke-opacity">0.4</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(0,128,0)</CssParameter>
-                <CssParameter name="stroke-width">1.2</CssParameter>
-                <CssParameter name="stroke-dasharray">4, 2</CssParameter>
+                <CssParameter name="stroke">&color_bridleway_fill;</CssParameter>
+                <CssParameter name="stroke-width">1.8</CssParameter>
+                <CssParameter name="stroke-opacity">0.9</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">butt</CssParameter>
+                <CssParameter name="stroke-dasharray">7, 3</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="chodník">
-            <Filter>((([highway]='footway') or (([highway]='path') and ([foot]='designated'))) and not (([tunnel]='yes')))</Filter>
-            &maxscale_zoom13;
+            <Filter>(([highway]='footway') and not (([tunnel]='yes')))</Filter>
+            &maxscale_zoom14;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_white;</CssParameter>
                 <CssParameter name="stroke-width">4</CssParameter>
@@ -1617,22 +1641,6 @@
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
                 <CssParameter name="stroke-dasharray">1, 3</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule title="!ostatní neurčené stezky">
-            <Filter>((([highway]='path') and not (([bicycle]='designated') or ([foot]='designated'))) and not (([tunnel]='yes')))</Filter>
-            &maxscale_zoom13;
-            <LineSymbolizer>
-                <CssParameter name="stroke">&color_white;</CssParameter>
-                <CssParameter name="stroke-opacity">0.4</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke-width">0.5</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-                <CssParameter name="stroke-dasharray">6, 3</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="nástupiště">
@@ -2158,26 +2166,50 @@
                 <CssParameter name="stroke-width">2</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule title="!stezka např. pro koně">
-            <Filter>(([highway]='bridleway') or ([highway]='path'))</Filter>
+    <Rule title="!stezka">
+            <Filter>([highway]='path')</Filter>
             &maxscale_zoom14;
             <LineSymbolizer>
-                <CssParameter name="stroke-width">5.5</CssParameter>
+                <CssParameter name="stroke-width">3.5</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">&color_white;</CssParameter>
-                <CssParameter name="stroke-width">4</CssParameter>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
+                <CssParameter name="stroke-width">2.2</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
             <LineSymbolizer>
-                <CssParameter name="stroke">rgb(0,128,0)</CssParameter>
-                <CssParameter name="stroke-width">1.5</CssParameter>
-                <CssParameter name="stroke-dasharray">4, 2</CssParameter>
+                <CssParameter name="stroke">&color_track_fill;</CssParameter>
+                <CssParameter name="stroke-width">1.4</CssParameter>
+                <CssParameter name="stroke-opacity">0.9</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">butt</CssParameter>
+                <CssParameter name="stroke-dasharray">7, 3</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="!stezka např. pro koně">
+            <Filter>([highway]='bridleway')</Filter>
+            &maxscale_zoom14;
+            <LineSymbolizer>
+                <CssParameter name="stroke-width">4.5</CssParameter>
+            </LineSymbolizer>
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_track_casing;</CssParameter>
+                <CssParameter name="stroke-width">3</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_bridleway_fill;</CssParameter>
+                <CssParameter name="stroke-width">2</CssParameter>
+                <CssParameter name="stroke-opacity">0.9</CssParameter>
+                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linecap">butt</CssParameter>
+                <CssParameter name="stroke-dasharray">7, 3</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="!chodník">
-            <Filter>(([highway]='footway') or (([highway]='path') and ([foot]='designated')))</Filter>
+            <Filter>([highway]='footway')</Filter>
             &maxscale_zoom14;
             <LineSymbolizer>
                 <CssParameter name="stroke-width">6</CssParameter>
@@ -2194,25 +2226,6 @@
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
                 <CssParameter name="stroke-dasharray">1, 3</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule title="!ostatní neurčené stezky">
-            <Filter>(([highway]='path') and not (([bicycle]='designated') or ([foot]='designated')))</Filter>
-            &maxscale_zoom14;
-            <LineSymbolizer>
-                <CssParameter name="stroke-width">4</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">&color_white;</CssParameter>
-                <CssParameter name="stroke-width">2.5</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-            </LineSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke-width">0.5</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-                <CssParameter name="stroke-dasharray">6, 3</CssParameter>
             </LineSymbolizer>
     </Rule>
 </Style>

@@ -23,7 +23,7 @@
 <!ENTITY color_footway "rgb(218, 151, 146)">
 <!ENTITY color_steps "&color_footway;">
 
-<!ENTITY color_bridleway "rgb(0,128,0)">
+<!ENTITY color_bridleway_fill "rgb(116,64,44)">
 <!ENTITY color_track_fill "rgb(72,72,72)">
 <!ENTITY color_track_casing "rgb(255,255,255)">
 <!ENTITY color_track_tunnel "rgb(128,128,128)">
@@ -104,10 +104,10 @@
 
 <!ENTITY color_attraction 'rgb(102,0,51)'>
 
-<!ENTITY color_forest '#cdf0b5'>
-<!ENTITY color_wood '#d0dec8'>
-<!ENTITY color_village_green 'rgb(207,236,168)'>
-<!ENTITY color_park 'rgb(182,253,182)'>
+<!ENTITY color_forest 'rgb(181,219,160)'>
+<!ENTITY color_wood 'rgb(141,194,124)'>
+<!ENTITY color_grass 'rgb(235,249,180)'>
+<!ENTITY color_park 'rgb(205,253,194)'>
 
 <!ENTITY color_building 'rgb(188,169,169)'>
 
