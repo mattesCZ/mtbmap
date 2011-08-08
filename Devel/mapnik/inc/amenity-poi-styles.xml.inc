@@ -371,7 +371,7 @@
     </Rule>
     <Rule title="posed">
             <Filter>([amenity]='hunting_stand')</Filter>
-            &maxscale_zoom9;
+            &maxscale_zoom15;
             <PointSymbolizer file="&symbols-path;hunting_stand.png" type="png" width="10" height="14"></PointSymbolizer>
     </Rule>
     <Rule title="místo rozhledu">
