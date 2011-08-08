@@ -51,7 +51,7 @@
           or aeroway in ('apron','aerodrome')
           or amenity in ('parking','university','college','school','hospital','kindergarten','grave_yard')
           or military in ('barracks','danger_area')
-          or "natural" in ('field','beach','heath','mud','wood')
+          or "natural" in ('field','beach','heath','mud','wood','fell','scrub')
           or power in ('station','sub_station')
           or tourism in ('attraction','camp_site','caravan_site','picnic_site','zoo')
        order by z_order,way_area desc
@@ -168,7 +168,7 @@
       from planet_osm_polygon
       where waterway in ('dock','mill_pond','riverbank','canal')
          or landuse in ('reservoir','water','basin')
-         or "natural" in ('lake','water','land','marsh','scrub','wetland','glacier')
+         or "natural" in ('lake','water','land','marsh','wetland','glacier')
       order by z_order,way_area desc
       ) as water_areas</Parameter>
       &datasource-settings;
@@ -527,7 +527,7 @@
     <Datasource>
         <Parameter name="table">
         (SELECT osm_id,way,route,name,ref,kct_blue,marked_trail_blue,"mtb:scale",
-        char_length(ref) AS length FROM &prefix;_track_rels WHERE
+        char_length(ref) AS length FROM &prefix;_routes WHERE
 	  (kct_yellow IS NOT NULL or marked_trail_yellow IS NOT NULL or
 	  kct_red IS NOT NULL or marked_trail_red IS NOT NULL or
 	  kct_green IS NOT NULL or marked_trail_green IS NOT NULL or
@@ -548,7 +548,7 @@
 			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
 			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
 			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,marked_trail_yellow,char_length(ref) AS length FROM &prefix;_track_rels WHERE
+			      (SELECT osm_id,way,route,name,ref,kct_yellow,marked_trail_yellow,char_length(ref) AS length FROM &prefix;_routes WHERE
 			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
 			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
 			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
@@ -565,7 +565,7 @@
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
 			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_red,marked_trail_red,char_length(ref) AS length FROM &prefix;_track_rels WHERE
+			      (SELECT osm_id,way,route,name,ref,kct_red,marked_trail_red,char_length(ref) AS length FROM &prefix;_routes WHERE
 			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
@@ -582,7 +582,7 @@
 			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
 			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_green,marked_trail_green,char_length(ref) AS length FROM &prefix;_track_rels WHERE
+			      (SELECT osm_id,way,route,name,ref,kct_green,marked_trail_green,char_length(ref) AS length FROM &prefix;_routes WHERE
 			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
 			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
@@ -599,7 +599,7 @@
 			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
 			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
 			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_blue,marked_trail_blue,char_length(ref) AS length FROM &prefix;_track_rels WHERE
+			      (SELECT osm_id,way,route,name,ref,kct_blue,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
 			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
 			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
 			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
@@ -617,7 +617,7 @@
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
 			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,marked_trail_yellow,marked_trail_red,char_length(ref) AS length FROM &prefix;_track_rels WHERE
+			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,marked_trail_yellow,marked_trail_red,char_length(ref) AS length FROM &prefix;_routes WHERE
 			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
@@ -635,7 +635,7 @@
 			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
 			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_green,marked_trail_yellow,marked_trail_green,char_length(ref) AS length FROM &prefix;_track_rels WHERE
+			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_green,marked_trail_yellow,marked_trail_green,char_length(ref) AS length FROM &prefix;_routes WHERE
 			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
 			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
@@ -653,7 +653,7 @@
 			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
 			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
 			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_blue,marked_trail_yellow,marked_trail_blue,char_length(ref) AS length FROM &prefix;_track_rels WHERE
+			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_blue,marked_trail_yellow,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
 			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
 			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
 			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
@@ -671,7 +671,7 @@
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
 			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_red,kct_green,marked_trail_red,marked_trail_green,char_length(ref) AS length FROM &prefix;_track_rels WHERE
+			      (SELECT osm_id,way,route,name,ref,kct_red,kct_green,marked_trail_red,marked_trail_green,char_length(ref) AS length FROM &prefix;_routes WHERE
 			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
@@ -689,7 +689,7 @@
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
 			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_red,kct_blue,marked_trail_red,marked_trail_blue,char_length(ref) AS length FROM &prefix;_track_rels WHERE
+			      (SELECT osm_id,way,route,name,ref,kct_red,kct_blue,marked_trail_red,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
 			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
@@ -707,7 +707,7 @@
 			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
 			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_green,kct_blue,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_track_rels WHERE
+			      (SELECT osm_id,way,route,name,ref,kct_green,kct_blue,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
 			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
 			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
@@ -726,7 +726,7 @@
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
 			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_red,kct_green,kct_blue,marked_trail_red,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_track_rels WHERE
+			      (SELECT osm_id,way,route,name,ref,kct_red,kct_green,kct_blue,marked_trail_red,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
 			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
@@ -745,7 +745,7 @@
 			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
 			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_green,kct_blue,marked_trail_yellow,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_track_rels WHERE
+			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_green,kct_blue,marked_trail_yellow,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
 			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
 			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
@@ -764,7 +764,7 @@
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
 			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,kct_blue,marked_trail_yellow,marked_trail_red,marked_trail_blue,char_length(ref) AS length FROM &prefix;_track_rels WHERE
+			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,kct_blue,marked_trail_yellow,marked_trail_red,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
 			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
@@ -783,7 +783,7 @@
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
 			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,kct_green,marked_trail_yellow,marked_trail_red,marked_trail_green,char_length(ref) AS length FROM &prefix;_track_rels WHERE
+			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,kct_green,marked_trail_yellow,marked_trail_red,marked_trail_green,char_length(ref) AS length FROM &prefix;_routes WHERE
 			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
@@ -803,7 +803,7 @@
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
 			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,kct_green,kct_blue,marked_trail_yellow,marked_trail_red,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_track_rels WHERE
+			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,kct_green,kct_blue,marked_trail_yellow,marked_trail_red,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
 			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
 			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
 			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
@@ -819,7 +819,7 @@
       <Parameter name="table">
         ((SELECT osm_id,way,route,name,ref,network,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
 	  route='foot' AND (network='e-road' OR network='nwn' OR network='iwn')) UNION
-        (SELECT osm_id,way,route,name,ref,network,char_length(ref) AS length from &prefix;_track_rels WHERE
+        (SELECT osm_id,way,route,name,ref,network,char_length(ref) AS length from &prefix;_routes WHERE
 	  route='foot' AND (network='e-road' OR network='nwn' OR network='iwn'))) as international_tacks
       </Parameter>
       &datasource-settings;
@@ -831,7 +831,7 @@
     <Datasource>
         <Parameter name="table">
         (select osm_id,way,route,mtb,"mtb:scale","mtb:scale:uphill", network
-        from planet_osm_track_rels
+        from planet_osm_routes
         where ("mtb:scale" is not null or
         "mtb:scale:uphill" is not null or route='mtb')) as cyclewaymtb
         </Parameter>
@@ -1136,7 +1136,7 @@ admin 8 - uzemi samostatnych obci
     <StyleName>symbols</StyleName>
     <StyleName>points</StyleName>
     <Datasource>
-      <Parameter name="table">(select * from &prefix;_point where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or information is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or power_source is NOT NULL or man_made is NOT NULL or shop is NOT NULL or historic is NOT NULL or ruins='yes') as amenity</Parameter>
+      <Parameter name="table">(select * from &prefix;_point where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or information is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or power_source is NOT NULL or man_made is NOT NULL or shop is NOT NULL or historic is NOT NULL or ruins='yes' or military='bunker') as amenity</Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
@@ -1145,7 +1145,7 @@ admin 8 - uzemi samostatnych obci
     <StyleName>symbols-poly</StyleName>
     <StyleName>points</StyleName>
     <Datasource>
-      <Parameter name="table">(select * from &prefix;_polygon where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or information is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or man_made is NOT NULL or shop is NOT NULL or historic is NOT NULL or ruins='yes') as amenity</Parameter>
+      <Parameter name="table">(select * from &prefix;_polygon where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or information is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or man_made is NOT NULL or shop is NOT NULL or historic is NOT NULL or ruins='yes' or military='bunker') as amenity</Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>

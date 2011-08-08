@@ -73,11 +73,6 @@
             &maxscale_zoom13;
             <PolygonPatternSymbolizer file="&symbols-path;marsh.png" type="png" width="30" height="30"></PolygonPatternSymbolizer>
     </Rule>
-    <Rule title="strniště">
-            <Filter>([natural]='scrub')</Filter>
-            &maxscale_zoom13;
-            <PolygonPatternSymbolizer file="&symbols-path;scrub.png" type="png" width="30" height="30"></PolygonPatternSymbolizer>
-    </Rule>
     <Rule title="!ostrov">
             <Filter>([natural]='land')</Filter>
             &maxscale_zoom10;

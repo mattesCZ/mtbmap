@@ -158,8 +158,8 @@
             &maxscale_zoom15;
             <PointSymbolizer file="&symbols-path;bar.p.20.png" type="png" width="20" height="20"></PointSymbolizer>
     </Rule>
-    <Rule title="půjčovna jízdních kol">
-            <Filter>([amenity]='bicycle_rental')</Filter>
+    <Rule title="stojany pro jízdní kola">
+            <Filter>([amenity]='bicycle_parking')</Filter>
             &maxscale_zoom14;
             <PointSymbolizer file="&symbols-path;rental_bicycle.p.20.png" type="png" width="20" height="20"></PointSymbolizer>
     </Rule>
@@ -188,6 +188,11 @@
             <Filter>([amenity]='cafe')</Filter>
             &maxscale_zoom15;
             <PointSymbolizer file="&symbols-path;cafe.p.16.png" type="png" width="16" height="16"></PointSymbolizer>
+    </Rule>
+    <Rule title="místo na piknik">
+            <Filter>([tourism]='picnic_site')</Filter>
+            &maxscale_zoom15;
+            <PointSymbolizer file="&symbols-path;picnic.n.16.png" type="png" width="16" height="16"></PointSymbolizer>
     </Rule>
     <Rule title="kemp">
             <Filter>([tourism]='camp_site')</Filter>
@@ -229,13 +234,23 @@
             &maxscale_zoom15;
             <PointSymbolizer file="&symbols-path;hospital.p.16.png" type="png" width="16" height="16"></PointSymbolizer>
     </Rule>
+    <Rule title="lékařské středisko">
+            <Filter>([amenity]='doctors')</Filter>
+            &maxscale_zoom16;
+            <PointSymbolizer file="&symbols-path;doctors.p.16.png" type="png" width="16" height="16"></PointSymbolizer>
+    </Rule>
+    <Rule title="horská služba">
+            <Filter>([amenity]='mountain_rescue')</Filter>
+            &maxscale_zoom15;
+            <PointSymbolizer file="&symbols-path;mountain_rescue.p.16.png" type="png" width="16" height="16"></PointSymbolizer>
+    </Rule>
     <Rule title="hostel">
-            <Filter>([tourism]='hostel')</Filter>
+            <Filter>([tourism]='hostel' or [tourism]='chalet')</Filter>
             &maxscale_zoom14;
             <PointSymbolizer file="&symbols-path;hostel.p.20.png" type="png" width="20" height="20"></PointSymbolizer>
     </Rule>
     <Rule title="hotel">
-            <Filter>([tourism]='hotel')</Filter>
+            <Filter>([tourism]='hotel' or [tourism]='motel')</Filter>
             &maxscale_zoom14;
             <PointSymbolizer file="&symbols-path;hotel2.p.20.png" type="png" width="20" height="20"></PointSymbolizer>
     </Rule>
@@ -253,6 +268,11 @@
             <Filter>([tourism]='museum')</Filter>
             &maxscale_zoom14;
             <PointSymbolizer file="&symbols-path;museum.p.16.png" type="png" width="16" height="16"></PointSymbolizer>
+    </Rule>
+    <Rule title="socha">
+            <Filter>([tourism]='artwork')</Filter>
+            &maxscale_zoom16;
+            <PointSymbolizer file="&symbols-path;artwork.p.16.png" type="png" width="16" height="16"></PointSymbolizer>
     </Rule>
     <Rule title="parkoviště">
             <Filter>(([amenity]='parking') and (([access]='public') or not (([access]&lt;&gt;''))))</Filter>
@@ -348,6 +368,11 @@
             <Filter>([amenity]='prison')</Filter>
             &maxscale_zoom16;
             <PointSymbolizer file="&symbols-path;amenity_prison.p.20.png" type="png" width="20" height="20"></PointSymbolizer>
+    </Rule>
+    <Rule title="posed">
+            <Filter>([amenity]='hunting_stand')</Filter>
+            &maxscale_zoom9;
+            <PointSymbolizer file="&symbols-path;hunting_stand.png" type="png" width="10" height="14"></PointSymbolizer>
     </Rule>
     <Rule title="místo rozhledu">
             <Filter>([tourism]='viewpoint' and not [man_made]='tower')</Filter>
@@ -522,20 +547,45 @@
             &maxscale_zoom13;
             <PointSymbolizer file="&symbols-path;ruins12.png" type="png" width="12" height="12"></PointSymbolizer>
     </Rule>
-    <Rule title="hrad, zámek">
+    <Rule title="zámek">
             <Filter>(([historic]='castle') and ([castle_type]='stately' or [castle_type]='schloss'))</Filter>
             &maxscale_zoom13;
             <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14"></PointSymbolizer>
     </Rule>
-    <Rule title="hrad, zámek">
+    <Rule title="hrad">
             <Filter>([historic]='castle' and ([castle_type]='burg' or [castle_type]='defensive'))</Filter>
             &maxscale_zoom13;
             <PointSymbolizer file="&symbols-path;burg18.png" type="png" width="17" height="18"></PointSymbolizer>
     </Rule>
-    <Rule title="hrad, zámek">
+    <Rule title="!hrad, zámek">
             <Filter>([historic]='castle')</Filter>
             &maxscale_zoom13;
             <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14"></PointSymbolizer>
+    </Rule>
+    <Rule title="pomník">
+            <Filter>([historic]='memorial')</Filter>
+            &maxscale_zoom15;
+            <PointSymbolizer file="&symbols-path;memorial.png" type="png" width="16" height="16"></PointSymbolizer>
+    </Rule>
+    <Rule title="památník">
+            <Filter>([historic]='monument')</Filter>
+            &maxscale_zoom15;
+            <PointSymbolizer file="&symbols-path;monument.png" type="png" width="16" height="16"></PointSymbolizer>
+    </Rule>
+    <Rule title="křížek">
+            <Filter>([historic]='wayside_cross' or [historic]='wayside_shrine')</Filter>
+            &maxscale_zoom15;
+            <PointSymbolizer file="&symbols-path;cross.png" type="png" width="9" height="12"></PointSymbolizer>
+    </Rule>
+    <Rule title="klášter">
+            <Filter>([historic]='monastery')</Filter>
+            &maxscale_zoom15;
+            <PointSymbolizer file="&symbols-path;monastery.png" type="png" width="16" height="16"></PointSymbolizer>
+    </Rule>
+    <Rule title="archeologické naleziště">
+            <Filter>([historic]='archeological_site')</Filter>
+            &maxscale_zoom15;
+            <PointSymbolizer file="&symbols-path;archeological.png" type="png" width="16" height="16"></PointSymbolizer>
     </Rule>
     <Rule title="informační tabule">
             <Filter>([information]='board')</Filter>
@@ -551,6 +601,11 @@
             <Filter>([information]='office')</Filter>
             &maxscale_zoom14;
             <PointSymbolizer file="&symbols-path;infoOffice14.png" type="png" width="14" height="14"></PointSymbolizer>
+    </Rule>
+    <Rule title="bunkr">
+            <Filter>([military]='bunker')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;bunker.png" type="png" width="14" height="14"></PointSymbolizer>
     </Rule>
 </Style>
 <Style name="symbols-poly">
@@ -653,20 +708,45 @@
             &maxscale_zoom13;
             <PointSymbolizer file="&symbols-path;ruins12.png" type="png" width="12" height="12"></PointSymbolizer>
     </Rule>
-    <Rule title="hrad, zámek">
+    <Rule title="zámek">
             <Filter>(([historic]='castle') and ([castle_type]='stately' or [castle_type]='schloss'))</Filter>
             &maxscale_zoom13;
             <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14"></PointSymbolizer>
     </Rule>
-    <Rule title="hrad, zámek">
+    <Rule title="hrad">
             <Filter>([historic]='castle' and ([castle_type]='burg' or [castle_type]='defensive'))</Filter>
             &maxscale_zoom13;
             <PointSymbolizer file="&symbols-path;burg18.png" type="png" width="17" height="18"></PointSymbolizer>
     </Rule>
-    <Rule title="hrad, zámek">
+    <Rule title="!hrad, zámek">
             <Filter>([historic]='castle')</Filter>
             &maxscale_zoom13;
             <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14"></PointSymbolizer>
+    </Rule>
+    <Rule title="pomník">
+            <Filter>([historic]='memorial')</Filter>
+            &maxscale_zoom15;
+            <PointSymbolizer file="&symbols-path;memorial.png" type="png" width="16" height="16"></PointSymbolizer>
+    </Rule>
+    <Rule title="památník">
+            <Filter>([historic]='monument')</Filter>
+            &maxscale_zoom15;
+            <PointSymbolizer file="&symbols-path;monument.png" type="png" width="16" height="16"></PointSymbolizer>
+    </Rule>
+    <Rule title="křížek">
+            <Filter>([historic]='wayside_cross' or [historic]='wayside_shrine')</Filter>
+            &maxscale_zoom15;
+            <PointSymbolizer file="&symbols-path;cross.png" type="png" width="16" height="16"></PointSymbolizer>
+    </Rule>
+    <Rule title="klášter">
+            <Filter>([historic]='monastery')</Filter>
+            &maxscale_zoom15;
+            <PointSymbolizer file="&symbols-path;monastery.png" type="png" width="16" height="16"></PointSymbolizer>
+    </Rule>
+    <Rule title="archeologické naleziště">
+            <Filter>([historic]='archeological_site')</Filter>
+            &maxscale_zoom15;
+            <PointSymbolizer file="&symbols-path;archeological.png" type="png" width="16" height="16"></PointSymbolizer>
     </Rule>
     <Rule title="informační tabule">
             <Filter>([information]='board')</Filter>
@@ -682,6 +762,11 @@
             <Filter>([information]='office')</Filter>
             &maxscale_zoom14;
             <PointSymbolizer file="&symbols-path;infoOffice14.png" type="png" width="14" height="14"></PointSymbolizer>
+    </Rule>
+    <Rule title="bunkr">
+            <Filter>([military]='bunker')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;bunker.png" type="png" width="14" height="14"></PointSymbolizer>
     </Rule>
 </Style>
 
