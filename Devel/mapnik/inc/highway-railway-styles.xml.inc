@@ -1599,11 +1599,11 @@
             </LineSymbolizer>
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_track_fill;</CssParameter>
-                <CssParameter name="stroke-width">1.4</CssParameter>
+                <CssParameter name="stroke-width">1.0</CssParameter>
                 <CssParameter name="stroke-opacity">0.9</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
+                <CssParameter name="stroke-linejoin">bevel</CssParameter>
                 <CssParameter name="stroke-linecap">butt</CssParameter>
-                <CssParameter name="stroke-dasharray">7, 3</CssParameter>
+                <CssParameter name="stroke-dasharray">3, 2</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="!stezka např. pro koně">
