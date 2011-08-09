@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16px"
+   height="16px"
+   id="svg2815"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   inkscape:export-filename="/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/picnic.png"
+   inkscape:export-xdpi="79.688499"
+   inkscape:export-ydpi="79.688499"
+   sodipodi:docname="doctors.svg">
+  <defs
+     id="defs2817">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 8 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="16 : 8 : 1"
+       inkscape:persp3d-origin="8 : 5.3333333 : 1"
+       id="perspective2823" />
+    <inkscape:perspective
+       id="perspective2982"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="12.509608"
+     inkscape:cx="-15.372709"
+     inkscape:cy="6.1796844"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1005"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata2820">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#dc0000;stroke-width:0.78031993;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3792"
+       width="14.674044"
+       height="25.433208"
+       x="0.59062296"
+       y="-10.151013"
+       inkscape:export-filename="/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/mountain_rescue.png"
+       inkscape:export-xdpi="61.168842"
+       inkscape:export-ydpi="61.168842" />
+    <path
+       style="fill:#787669;fill-opacity:1;stroke:none"
+       d="M 8.1396139,-8.3057915 8.8179151,-4.67302 7.630888,0.93950841 10.174517,0.24879931 13.735599,3.112278 11.305019,-1.6261795 10.965869,-5.1417648 8.1396139,-8.3057915 z"
+       id="path3827"
+       sodipodi:nodetypes="cccccccc"
+       inkscape:export-filename="/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/mountain_rescue.png"
+       inkscape:export-xdpi="61.168842"
+       inkscape:export-ydpi="61.168842" />
+    <path
+       style="fill:none;stroke:#dc0000;stroke-width:3.93725395;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 1.068248,7.9451737 13.718793,0"
+       id="path3782"
+       inkscape:export-filename="/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/mountain_rescue.png"
+       inkscape:export-xdpi="61.168842"
+       inkscape:export-ydpi="61.168842" />
+    <path
+       style="fill:none;stroke:#dc0000;stroke-width:3.88196707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 7.9276447,1.1306583 0,13.6290307"
+       id="path3784"
+       inkscape:export-filename="/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/mountain_rescue.png"
+       inkscape:export-xdpi="61.168842"
+       inkscape:export-ydpi="61.168842" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 1.6957529,3.0557529 6.7830116,-4.3490348 7.8569884,-9.153668 8.7048649,-4.6881854 7.065637,0.90779921"
+       id="path3815"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/mountain_rescue.png"
+       inkscape:export-xdpi="61.168842"
+       inkscape:export-ydpi="61.168842" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 8.0265637,-8.8710425 2.9393053,3.8437066 0.452201,3.2784556 2.826254,4.691583"
+       id="path3817"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/mountain_rescue.png"
+       inkscape:export-xdpi="61.168842"
+       inkscape:export-ydpi="61.168842" />
+  </g>
+</svg>

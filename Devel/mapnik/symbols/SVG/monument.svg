@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 13.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 14948)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   width="62.945px"
+   height="103.258px"
+   viewBox="0 0 62.945 103.258"
+   style=""
+   xml:space="preserve"
+   sodipodi:version="0.32"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="hunting_stand.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/symbols/monument.png"
+   inkscape:export-xdpi="16.812302"
+   inkscape:export-ydpi="16.812302"><metadata
+   id="metadata2479"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:contributor><cc:Agent><dc:title>http://openclipart.org/Xiph/files/johnny_automatic/6819</dc:title></cc:Agent></dc:contributor><cc:license
+         rdf:resource="http://creativecommons.org/licenses/publicdomain/" /><dc:title></dc:title></cc:Work><cc:License
+       rdf:about="http://creativecommons.org/licenses/publicdomain/"><cc:permits
+         rdf:resource="http://creativecommons.org/ns#Reproduction" /><cc:permits
+         rdf:resource="http://creativecommons.org/ns#Distribution" /><cc:permits
+         rdf:resource="http://creativecommons.org/ns#DerivativeWorks" /></cc:License></rdf:RDF></metadata><defs
+   id="defs2477"><inkscape:perspective
+     sodipodi:type="inkscape:persp3d"
+     inkscape:vp_x="0 : 51.629002 : 1"
+     inkscape:vp_y="0 : 1000 : 0"
+     inkscape:vp_z="62.945 : 51.629002 : 1"
+     inkscape:persp3d-origin="31.4725 : 34.419334 : 1"
+     id="perspective2481" /></defs><sodipodi:namedview
+   inkscape:window-height="675"
+   inkscape:window-width="975"
+   inkscape:pageshadow="2"
+   inkscape:pageopacity="0.0"
+   guidetolerance="10.0"
+   gridtolerance="10.0"
+   objecttolerance="10.0"
+   borderopacity="1.0"
+   bordercolor="#666666"
+   pagecolor="#ffffff"
+   id="base"
+   showgrid="false"
+   inkscape:zoom="3.3144131"
+   inkscape:cx="28.733899"
+   inkscape:cy="50.492761"
+   inkscape:window-x="22"
+   inkscape:window-y="25"
+   inkscape:current-layer="Layer_1"
+   inkscape:window-maximized="0" />
+
+<rect
+   style="fill:none;stroke:#000000;stroke-width:3.75342035;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+   id="rect2812"
+   width="35.641808"
+   height="10.297956"
+   x="14.160625"
+   y="83.928535" /><path
+   transform="translate(0,-1.8677442e-6)"
+   style="fill:#000000;fill-opacity:1;stroke:none"
+   d="m 25.645565,19.615128 6.03425,-3.810275 6.034251,3.810275 6.034252,64.634985 -24.137003,0 6.03425,-64.634985 z"
+   id="rect3586"
+   sodipodi:nodetypes="cccccc" /></svg>

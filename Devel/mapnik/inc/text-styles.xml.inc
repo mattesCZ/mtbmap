@@ -21,12 +21,18 @@
     <Rule>
             <Filter>(([way_area]&gt;=1000000) and (([natural]='lake') or ([natural]='water') or ([landuse]='reservoir') or ([landuse]='water')))</Filter>
             &maxscale_zoom12;
-            &minscale_zoom13;
+            &minscale_zoom12;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="&color_water_text;" halo_radius="1" wrap_width="30"></TextSymbolizer>
     </Rule>
     <Rule>
             <Filter>(([way_area]&gt;=500000) and (([natural]='lake') or ([natural]='water') or ([landuse]='reservoir') or ([landuse]='water')))</Filter>
-            &maxscale_zoom14;
+            &maxscale_zoom13;
+            &minscale_zoom14;
+            <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="&color_water_text;" halo_radius="1" wrap_width="30"></TextSymbolizer>
+    </Rule>
+    <Rule>
+            <Filter>(([way_area]&gt;=100000) and (([natural]='lake') or ([natural]='water') or ([landuse]='reservoir') or ([landuse]='water')))</Filter>
+            &maxscale_zoom15;
             &minscale_zoom15;
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="&color_water_text;" halo_radius="1" wrap_width="30"></TextSymbolizer>
     </Rule>
