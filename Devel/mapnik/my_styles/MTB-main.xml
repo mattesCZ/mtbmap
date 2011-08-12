@@ -2,7 +2,6 @@
 <!DOCTYPE Map [
 <!ENTITY % entities SYSTEM "../inc/entities.xml.inc">
 %entities;
-%color-entities;
 ]>
 <Map srs="&srs900913;" bgcolor="rgb(255,255,255)">
     &fontset-settings;
@@ -538,6 +537,21 @@
     </Datasource>
 </Layer>
  -->
+
+<!-- Mezinarodni zaceni pesich tras -->
+<Layer name="international-track" status="on" srs="&srs900913;">
+    <StyleName>international-track</StyleName>
+    <Datasource>
+      <Parameter name="table">
+        ((SELECT osm_id,way,route,name,ref,network,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
+	  route='foot' AND (network='e-road' OR network='nwn' OR network='iwn')) UNION
+        (SELECT osm_id,way,route,name,ref,network,char_length(ref) AS length from &prefix;_routes WHERE
+	  route='foot' AND (network='e-road' OR network='nwn' OR network='iwn'))) as international_tacks
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+
 <!-- Pesi znacene trasy KCT -->
 <Layer name="yellow-track" status="on" srs="&srs900913;">
     <StyleName>yellow-track</StyleName>
@@ -812,19 +826,6 @@
     </Datasource>
 </Layer>
 
-<!-- Mezinarodni zaceni pesich tras -->
-<Layer name="international-track" status="on" srs="&srs900913;">
-    <StyleName>international-track</StyleName>
-    <Datasource>
-      <Parameter name="table">
-        ((SELECT osm_id,way,route,name,ref,network,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-	  route='foot' AND (network='e-road' OR network='nwn' OR network='iwn')) UNION
-        (SELECT osm_id,way,route,name,ref,network,char_length(ref) AS length from &prefix;_routes WHERE
-	  route='foot' AND (network='e-road' OR network='nwn' OR network='iwn'))) as international_tacks
-      </Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
 <!-- cyklostezky paralelne s MTB trasami -->
 <!--<Layer name="cycleway-mtb" srs="&srs900913;">
     <StyleName>cycleway-mtb</StyleName>

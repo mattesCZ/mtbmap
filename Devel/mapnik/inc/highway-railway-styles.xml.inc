@@ -848,7 +848,7 @@
                 <CssParameter name="stroke-dasharray">6, 4</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule title="silnice 3.třídy ve výstavbě">
+    <Rule title="silnice 3. třídy ve výstavbě">
             <Filter>(([highway]='construction') and (([construction]='tertiary') or ([construction]='tertiary_link')))</Filter>
             &minscale_zoom15;
             &maxscale_zoom13;
@@ -3019,7 +3019,7 @@
                 <CssParameter name="stroke">&color_railway;</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule title="">
+    <Rule title="historická železnice">
             <Filter>([railway]='preserved')</Filter>
             &minscale_zoom12;
             &maxscale_zoom12;
