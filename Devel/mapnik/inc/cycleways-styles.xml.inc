@@ -44,7 +44,7 @@
       <CssParameter name="stroke-linecap">round</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule title="cyklostezka">
+  <Rule title="cyklotrasa">
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
@@ -67,7 +67,7 @@
       <CssParameter name="stroke-linecap">round</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule title="cyklostezka">
+  <Rule title="cyklotrasa">
     &maxscale_zoom12;
     &minscale_zoom13;
     <LineSymbolizer>
@@ -90,7 +90,7 @@
       <CssParameter name="stroke-linecap">round</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule title="cyklostezka">
+  <Rule title="cyklotrasa">
     &maxscale_zoom14;
     &minscale_zoom14;
     <LineSymbolizer>
@@ -111,7 +111,7 @@
       <CssParameter name="stroke-linecap">round</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule title="cyklostezka">
+  <Rule title="cyklotrasa">
     &maxscale_zoom15;
     <LineSymbolizer>
       <CssParameter name="stroke">&color_cycleway;</CssParameter>

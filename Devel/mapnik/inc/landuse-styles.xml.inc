@@ -208,13 +208,13 @@
                 <CssParameter name="fill">rgb(234,216,189)</CssParameter>
             </PolygonSymbolizer>
     </Rule>
-    <Rule title="">
+<!--    <Rule title="">
             <Filter>([landuse]='retail')</Filter>
             &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(241,218,218)</CssParameter>
             </PolygonSymbolizer>
-    </Rule>
+    </Rule> -->
     <Rule title="průmyslová plocha">
             <Filter>(([landuse]='industrial') or ([landuse]='railway'))</Filter>
             &maxscale_zoom11;
@@ -223,19 +223,8 @@
             </PolygonSymbolizer>
     </Rule>
     <Rule title="transformační stanice">
-            <Filter>([power]='station')</Filter>
+            <Filter>(([power]='station') or ([power]='sub_station'))</Filter>
             &maxscale_zoom12;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(187,187,187)</CssParameter>
-            </PolygonSymbolizer>
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(85,85,85)</CssParameter>
-                <CssParameter name="stroke-width">0.4</CssParameter>
-            </LineSymbolizer>
-    </Rule>
-    <Rule title="transformační stanice">
-            <Filter>([power]='sub_station')</Filter>
-            &maxscale_zoom13;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(187,187,187)</CssParameter>
             </PolygonSymbolizer>

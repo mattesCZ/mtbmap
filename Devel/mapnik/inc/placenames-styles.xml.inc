@@ -36,35 +36,35 @@
     </Rule>
 </Style>
 <Style name="capital">
-    <Rule>
+    <Rule title="hlavní město">
             <Filter>(([place]='city') or ([place]='metropolis') or ([place]='town'))</Filter>
             &minscale_zoom6;
             &maxscale_zoom6;
             <PointSymbolizer file="&symbols-path;capital12.png" type="png" width="12" height="12"></PointSymbolizer>
             <TextSymbolizer name="upper" fontset_name="book-fonts" size="14" fill="&color_placenames_text;" halo_radius="1" dy="-8" horizontal_alignment="right"></TextSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="hlavní město">
             <Filter>(([place]='city') or ([place]='metropolis') or ([place]='town'))</Filter>
             &minscale_zoom8;
             &maxscale_zoom7;
             <PointSymbolizer file="&symbols-path;capital16.png" type="png" width="16" height="16"></PointSymbolizer>
             <TextSymbolizer name="upper" fontset_name="book-fonts" size="18" fill="&color_placenames_text;" halo_radius="1" dy="-9" horizontal_alignment="right" allow_overlap="true"></TextSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="hlavní město">
             <Filter>(([place]='city') or ([place]='metropolis') or ([place]='town'))</Filter>
             &minscale_zoom9;
             &maxscale_zoom9;
             <PointSymbolizer file="&symbols-path;capital24.png" type="png" width="24" height="24"></PointSymbolizer>
             <TextSymbolizer name="upper" fontset_name="book-fonts" size="18" fill="&color_placenames_text;" halo_radius="1" dy="-14" horizontal_alignment="right" allow_overlap="true"></TextSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="hlavní město">
             <Filter>(([place]='city') or ([place]='metropolis') or ([place]='town'))</Filter>
             &minscale_zoom10;
             &maxscale_zoom10;
             <PointSymbolizer file="&symbols-path;capital30.png" type="png" width="30" height="30"></PointSymbolizer>
             <TextSymbolizer name="upper" fontset_name="book-fonts" size="20" fill="&color_placenames_text;" halo_radius="1" dy="-16" horizontal_alignment="right" allow_overlap="true"></TextSymbolizer>
     </Rule>
-    <Rule>
+    <Rule title="!hlavní město">
             <Filter>(([place]='city') or ([place]='metropolis') or ([place]='town'))</Filter>
             &minscale_zoom12;
             &maxscale_zoom11;
@@ -287,6 +287,7 @@
             <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="&color_placenames_text;" halo_radius="1" dy="15" wrap_width="30"></TextSymbolizer>
     </Rule>
     <Rule>
+
             <Filter>(([place]='village') or ([place]='large_village'))</Filter>
             &minscale_zoom14;
             &maxscale_zoom13;
