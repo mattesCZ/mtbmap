@@ -1,20 +1,29 @@
-#box {
-	width: 100%;
-}
-
-#text {
-	position: absolute;
+.box {
 	background-color: #dddddd;
-	float: left;
 	color: #00008b;
-	width: 320px;
-	height: 98%;
-	text-align: center;
 	border:2px solid;
 	border-color: #00008b;
 	padding-left: 5px;
 	padding-right: 5px;
-	z-index: 1007;
+	opacity: 0.9;
+	z-index: 1;
+}
+
+#text {
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	width: 300px;
+	text-align: center;
+	overflow: auto;
+}
+
+#imprint {
+	position: absolute;
+	bottom: 5px;
+	left: 5px;
+	width: 300px;
+	font-size: small;
 }
 
 #map {
@@ -31,6 +40,7 @@ hr {
 	width: 100%;
 	size: 1px;
 }
+
 #controlToggle {
    padding-left: 1em;
    text-align: left;
@@ -42,4 +52,18 @@ hr {
 
 #info {
 	font-size: small;
+}
+
+#profileButton {
+	display: none;
+}
+
+#title {
+	padding-left: 64px;
+}
+#headerimg {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	border: none;
 }
