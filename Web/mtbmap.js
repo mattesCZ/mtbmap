@@ -27,7 +27,6 @@
         controls:[new OpenLayers.Control.Navigation(),
                   graticule,
                   new OpenLayers.Control.PanZoomBar(),
-                  new OpenLayers.Control.Attribution(),
                   new OpenLayers.Control.Permalink(),
                   new OpenLayers.Control.MousePosition(),
                   new OpenLayers.Control.KeyboardDefaults(),
@@ -104,8 +103,10 @@
             "measurepartial": handleMeasurements
         });
         map.addControl(control);
-        document.getElementById('OpenLayers.Control.PanZoomBar_4').style.left = "354px";
-        document.getElementById('OpenLayers.Control.ScaleLine_9').style.left = "365px";
+        document.getElementById('OpenLayers.Control.PanZoomBar_4').style.left = "324px";
+//        document.getElementById('OpenLayers.Control.Permalink_5').style.right = "324px";
+//        document.getElementById('OpenLayers.Control.MousePosition_6').style.right = "324px";
+        document.getElementById('OpenLayers.Control.ScaleLine_8').style.left = "335px";
 
         document.getElementById('noneToggle').checked = true;
         if (!map.getCenter())
@@ -125,8 +126,10 @@
         for(key in measureControls) {
             var control = measureControls[key];
             if(element.value == key && element.checked) {
+                document.getElementById('profileButton').style.display = 'inline'
                 control.activate();
             } else {
+                document.getElementById('profileButton').style.display = 'none'
                 control.deactivate();
             }
         }

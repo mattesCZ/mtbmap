@@ -38,35 +38,33 @@ type="text/javascript"></script>
 
     </head>
     <body onload="init()">
-<!--      <div id="box"> -->
-        <div id="text">
-          <div id="title">
-            <h3>OSM MTB Mapa<br>České republiky</h3>
-<!--            <a href="en.html" >English version</a>
--->          </div>
+        <div id="text" class="box">
+          <div id="header">
+            <a href="."><img src="img/mtbmap_logo64.png" alt="" id="headerimg"></a>
+            <h3 id="title">OSM MTB Mapa<br>České republiky</h3>
+<!--            <a href="en.html" >English version</a>-->
+          </div>
           <hr>
           <div id="controls">
             <ul id="controlToggle">
-                <li>
-                    <input type="radio" name="type" value="none" id="noneToggle"
-                           onclick="toggleControl(this);" checked="checked">
-                    <label for="noneToggle">Navigace</label>
-                </li>
-            <li>
+              <li>
+                <input type="radio" name="type" value="none" id="noneToggle"
+                  onclick="toggleControl(this);" checked="checked">
+                <label for="noneToggle">Navigace</label>
+              </li>
+              <li>
                 <input type="radio" name="type" value="line" id="lineToggle" onclick="toggleControl(this);">
                 <label for="lineToggle">Kreslit profil</label>
                 <br><span>(Trasu vyberte klikáním na mapu, 
 ukončete dvojkliknutím. Navigace je 
 možná pomocí šipek.)</span>
-            </li>
-           </ul>
-           <form id="calculate" method="post" ACTION="/cgi-bin/altitude.py" target="_blank">
-               <p>
+              </li>
+            </ul>
+            <form id="calculate" method="post" ACTION="/cgi-bin/altitude.py" target="_blank">
                <input name="geometry" id="geometry" type="hidden" value="">
-               <input type="submit" onclick="fillHiddenField();" 
+               <input type="submit" id="profileButton" onclick="fillHiddenField();" 
 value="Spočítat profil">
-               </p>
-           </form>
+            </form>
 
           </div>
           <hr>
@@ -87,7 +85,7 @@ type="hidden" value="">
                   </p>
               </form>
           </div>
-          <hr>
+<!--          <hr>
           <div id="footer">
             Data poskytuje <a href="http://openstreetmap.org/" >OpenStreetMap</a> a&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a><br>
 <<<<<<< HEAD:Web/index.html
@@ -105,10 +103,16 @@ type="hidden" value="">
 >>>>>>> ba205faf1280d2b1ff2cd3f48b1dedc6cb1a2649:Web/index.html
             <hr>
             Autor: Martin Tesař<br>osmmtb&nbsp;(at)&nbsp;gmail.com
-          </div>
+          </div>-->
         </div>
         <div id="map"></div>
-<!--      </div> -->
+        <div id="imprint" class="box">
+        Autor: Martin Tesař - osmmtb&nbsp;(at)&nbsp;gmail.com<br>
+        Zobrazení: Konformní válcové - Mercatorovo<br>
+        Data poskytuje <a href="http://openstreetmap.org/" >OpenStreetMap</a> a&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a><br>
+        Verze: 2011-08-15 od <a href="http://osm.kyblsoft.cz/archiv/" >Kýblsoft</a><br>
+        Hardware poskytuje laboratoř <a href="http://sitola.fi.muni.cz" > SITOLA </a>
+        </div>
     </body>
 </html>
 
