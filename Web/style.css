@@ -1,5 +1,5 @@
 .box {
-	background-color: #dddddd;
+	background-color: #eeeeff;
 	color: #00008b;
 	border:2px solid;
 	border-color: #00008b;
@@ -24,6 +24,7 @@
 	left: 5px;
 	width: 300px;
 	font-size: small;
+	text-align: center;
 }
 
 #map {
