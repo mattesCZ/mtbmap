@@ -48,13 +48,13 @@
                 <CssParameter name="stroke-width">0.3</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule title="!turistická zajímavost">
+<!--    <Rule title="!turistická zajímavost">
             <Filter>([tourism]='attraction')</Filter>
             &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(242,202,234)</CssParameter>
             </PolygonSymbolizer>
-    </Rule>
+    </Rule>-->
     <Rule title="důl">
             <Filter>([landuse]='quarry')</Filter>
             &maxscale_zoom11;
@@ -86,6 +86,12 @@
     <Rule title="ovocný sad">
             <Filter>([landuse]='orchard')</Filter>
             &maxscale_zoom13;
+            &minscale_zoom14;
+            <PolygonPatternSymbolizer file="&symbols-path;orchard.png" type="png" width="19" height="21"></PolygonPatternSymbolizer>
+    </Rule>
+    <Rule title="ovocný sad">
+            <Filter>([landuse]='orchard')</Filter>
+            &maxscale_zoom15;
             <PolygonPatternSymbolizer file="&symbols-path;orchard.png" type="png" width="29" height="29"></PolygonPatternSymbolizer>
     </Rule>
     <Rule title="přírodní rezervace">
@@ -101,7 +107,7 @@
     </Rule>
     <Rule title="hřbitov">
             <Filter>(([landuse]='cemetery') or ([amenity]='grave_yard'))</Filter>
-            &minscale_zoom14;
+            &minscale_zoom12;
             &maxscale_zoom11;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(170,203,175)</CssParameter>
@@ -112,7 +118,7 @@
             &minscale_zoom18;
             &maxscale_zoom11;
             <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(221,221,221)</CssParameter>
+                <CssParameter name="fill">rgb(200,200,200)</CssParameter>
             </PolygonSymbolizer>
     </Rule>
     <Rule title="vojenský objekt">
@@ -129,14 +135,14 @@
             &maxscale_zoom11;
             <PolygonPatternSymbolizer file="&symbols-path;military_red_hz2.png" type="png" width="24" height="24"></PolygonPatternSymbolizer>
             <LineSymbolizer>
-              <CssParameter name="stroke">#f55</CssParameter>
+              <CssParameter name="stroke">#ff5555</CssParameter>
               <CssParameter name="stroke-width">3</CssParameter>
               <CssParameter name="stroke-opacity">0.329</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="hřbitov">
             <Filter>(([landuse]='cemetery') or ([amenity]='grave_yard'))</Filter>
-            &maxscale_zoom14;
+            &maxscale_zoom13;
             <PolygonPatternSymbolizer file="&symbols-path;grave_yard.png" type="png" width="16" height="16"></PolygonPatternSymbolizer>
     </Rule>
     <Rule title="louka">
@@ -169,16 +175,22 @@
     <Rule title="golfové hřiště">
             <Filter>([leisure]='golf_course')</Filter>
             &maxscale_zoom11;
-            <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(181,227,181)</CssParameter>
-            </PolygonSymbolizer>
+            <PolygonPatternSymbolizer file="&symbols-path;golf.png" type="png" width="21" height="21"></PolygonPatternSymbolizer>
+            <LineSymbolizer>
+                <CssParameter name="stroke">rgb(102,102,102)</CssParameter>
+                <CssParameter name="stroke-width">0.4</CssParameter>
+            </LineSymbolizer>
     </Rule>
     <Rule title="zahrádkářská kolonie">
             <Filter>([landuse]='allotments')</Filter>
             &maxscale_zoom11;
             <PolygonSymbolizer>
-                <CssParameter name="fill">rgb(200,176,132)</CssParameter>
+                <CssParameter name="fill">rgb(220,196,152)</CssParameter>
             </PolygonSymbolizer>
+            <LineSymbolizer>
+                <CssParameter name="stroke">rgb(102,102,102)</CssParameter>
+                <CssParameter name="stroke-width">0.4</CssParameter>
+            </LineSymbolizer>
     </Rule>
     <Rule title="les">
             <Filter>([landuse]='forest')</Filter>
@@ -329,9 +341,27 @@
 </Style>
 <Style name="power">
     <Rule title="elektrické vedení">
-            &maxscale_zoom14;
-            <LinePatternSymbolizer file="&symbols-path;power_line_cz.png" type="png" width="19" height="3">
-            </LinePatternSymbolizer>
+      &maxscale_zoom14;
+      <LineSymbolizer>
+        <CssParameter name="stroke">&color_powerline;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">round</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&color_powerline;</CssParameter>
+        <CssParameter name="stroke-width">5</CssParameter>
+        <CssParameter name="stroke-linejoin">bevel</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">1, 15</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&color_powerline;</CssParameter>
+        <CssParameter name="stroke-width">3</CssParameter>
+        <CssParameter name="stroke-linejoin">bevel</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,1,1,29,1,16</CssParameter>
+      </LineSymbolizer>
     </Rule>
 </Style>
 <Style name="power_towers">

@@ -15,16 +15,113 @@
 </Style>
 <Style name="aerialways">
     <Rule title="kabinová lanovka">
-            <Filter>(([aerialway]='cable_car') or ([aerialway]='gondola'))</Filter>
+            <Filter>([aerialway]='cable_car')</Filter>
             &minscale_zoom18;
             &maxscale_zoom12;
-            <LinePatternSymbolizer file="&symbols-path;cable_car.png" type="png" width="28" height="3"></LinePatternSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_aerialway;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">1</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_aerialway;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-dasharray">0,9,14,9</CssParameter>
+    </LineSymbolizer>
     </Rule>
-    <Rule title="sedačková lanovka, lyžařský vlek">
-            <Filter>(([aerialway]='chair_lift') or ([aerialway]='drag_lift'))</Filter>
+    <Rule title="gondolová lanovka">
+            <Filter>([aerialway]='gondola')</Filter>
             &minscale_zoom18;
             &maxscale_zoom12;
-            <LinePatternSymbolizer file="&symbols-path;chair_lift.png" type="png" width="30" height="5"></LinePatternSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_aerialway;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">1</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_aerialway;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">5</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-dasharray">0,8,1,7</CssParameter>
+    </LineSymbolizer>
+    </Rule>
+    <Rule title="sedačková lanovka">
+            <Filter>([aerialway]='chair_lift')</Filter>
+            &minscale_zoom18;
+            &maxscale_zoom12;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_aerialway;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">1</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_aerialway;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">5</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-dasharray">0,8,1,7</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-dasharray">0,8,1,7</CssParameter>
+    </LineSymbolizer>
+    </Rule>
+    <Rule title="lyžařský vlek">
+            <Filter>([aerialway]='drag_lift')</Filter>
+            &minscale_zoom18;
+            &maxscale_zoom13;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_aerialway;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">1</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_aerialway;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-dasharray">0,12,1,12</CssParameter>
+    </LineSymbolizer>
+    </Rule>
+    <Rule title="servisní lanovka">
+            <Filter>([aerialway]='goods')</Filter>
+            &minscale_zoom18;
+            &maxscale_zoom14;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_aerialway;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">1</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-dasharray">16,4</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_aerialway;</CssParameter>
+      <CssParameter name="stroke-opacity">1</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-dasharray">0,4,1,6,1,8</CssParameter>
+    </LineSymbolizer>
     </Rule>
 </Style>
 <Style name="directions">

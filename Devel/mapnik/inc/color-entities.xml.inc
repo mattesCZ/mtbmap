@@ -80,6 +80,8 @@
 
 <!ENTITY color_tram "rgb(90,90,90)">
 <!ENTITY color_railway "rgb(75,75,75)">
+<!ENTITY color_powerline "rgb(100,100,100)">
+<!ENTITY color_aerialway "rgb(70,70,70)">
 
 <!ENTITY color_non_bicycle_amenity '#6f6f6f'>
 <!ENTITY color_bicycle_amenity '#c800da'>
