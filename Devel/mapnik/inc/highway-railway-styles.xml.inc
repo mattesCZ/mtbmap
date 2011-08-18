@@ -83,7 +83,7 @@
     </LineSymbolizer>
     </Rule>
     <Rule title="lyžařský vlek">
-            <Filter>([aerialway]='drag_lift')</Filter>
+            <Filter>(([aerialway]='drag_lift') or ([aerialway]='t-bar') or ([aerialway]='platter'))</Filter>
             &minscale_zoom18;
             &maxscale_zoom13;
     <LineSymbolizer>

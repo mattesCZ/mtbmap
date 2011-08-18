@@ -1063,7 +1063,7 @@ admin 8 - uzemi samostatnych obci
 <StyleName>roads-text</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,highway,aeroway,name,ref,admin_level,char_length(ref) as length,
+      (select way,highway,aeroway,aerialway,name,ref,admin_level,char_length(ref) as length,
        case when bridge in ('yes','true','1') then 'yes'::text else bridge end as bridge
        from planet_osm_line
        where waterway IS NULL
