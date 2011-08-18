@@ -81,6 +81,11 @@
 </Style>
 <Style name="roads-text">
     <Rule>
+            <Filter>(([aerialway]='cable_car') or ([aerialway]='gondola') or ([aerialway]='chair_lift') or ([aerialway]='drag_lift') or ([aerialway]='t-bar') or ([aerialway]='platter') or ([aerialway]='goods'))</Filter>
+            &maxscale_zoom13;
+            <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(0,0,0)" halo_radius="1" placement="line" dy="8"></TextSymbolizer>
+    </Rule>
+    <Rule>
             <Filter>(([highway]='trunk') or ([highway]='primary'))</Filter>
             &minscale_zoom13;
             &maxscale_zoom13;
