@@ -20,7 +20,7 @@ def updateFromFile(filename):
         os.chdir('/home/xtesar7/sw/osm2pgsql')
     except OSError, msg:
         raise UpdateError('osm2pgsql is not present')
-    ret = os.system('./osm2pgsql -s -d gisczech ' + homepath + '/Data/' + filename + ' -S ' + homepath + '/Data/mtbmap.style -C 2000')
+    ret = os.system('./osm2pgsql -s -d gisczech ' + homepath + '/Data/' + filename + ' -S ' + homepath + '/Data/mtbmap.style -C 4096')
     if (ret != 0):
         raise UpdateError('An error occured, osm2pgsql returned ' + str(ret/256) + ' exit status')
     try:
