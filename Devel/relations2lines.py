@@ -4,9 +4,13 @@
 __author__="xtesar7"
 
 from psycopg2 import *
+import sys
 
 # Create connection to DB server.
-connection = connect("dbname='gisczech' user='xtesar7' password=''");
+if (len(sys.argv)>1):
+    connection = connect("dbname='" + sys.argv[1] + "' user='xtesar7' password=''");
+else:
+    connection = connect("dbname='gisczech' user='xtesar7' password=''");
 relation_cursor = connection.cursor()
 auxilary_cursor = connection.cursor()
 
@@ -14,7 +18,7 @@ auxilary_cursor = connection.cursor()
 copy_tags = {'kct_red' : True, 'kct_green' : True, 'kct_blue' : True,
   'kct_yellow' : True, 'marked_trail' : True, 'marked_trail_red' : True,
   'marked_trail_green' : True, 'marked_trail_blue' : True,
-  'marked_trail_yellow' : True, 'network' : True, 'route' : True, 'ref' : True, '"mtb:scale"' : True, '"mtb:scale:uphill"' : True }
+  'marked_trail_yellow' : True, 'network' : True, 'route' : True, 'ref' : True, '"mtb:scale"' : True, '"mtb:scale:uphill"' : True, '"osmc:symbol"' : True }
 
 # Way tags selected in style element <Layer> for cycle, mtb and kct tracks
 way_tags = {
@@ -36,7 +40,8 @@ way_tags = {
 'ncn_ref' : "is not null", 
 'rcn_ref' : "is not null", 
 'lcn_ref' : "is not null", 
-'highway' : "='cycleway'"
+'highway' : "='cycleway'",
+'osmc:symbol' : "is not null"
 }
 
 # Clean previous tracks.
@@ -96,7 +101,7 @@ auxilary_cursor = connection.cursor()
 
 # Add ways with cycleway tags
 where_keys_statement = " OR ".join(['"%s" %s' % (key, way_tags.get(key)) for key in way_tags.keys()])
-print where_keys_statement
+#print where_keys_statement
 
 auxilary_cursor.execute("""INSERT INTO planet_osm_routes SELECT * FROM """
         """planet_osm_line WHERE osm_id>0 AND NOT EXISTS (SELECT * FROM """

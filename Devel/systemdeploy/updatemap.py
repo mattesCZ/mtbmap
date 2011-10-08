@@ -1,41 +1,64 @@
+import datetime
 #!/usr/bin/python
 
-#-------------------------------------------------------------------------
-# script updates (or creates) database data with yesterdays Czech extract
-# from planet.osm file available on osm.kyblsoft.cz/archiv
-# Very simple solution, no update is performed on the 1st day of a month.
-#
-# Edit paths for your local settings, make sure you have relations2lines.py
-# script downloaded, if you need to display paralell tracks with Mapnik
-#
-# Edit osm2pgsql default.style file to upload attributes you need
-#
-# to download different dataset, more changes will be needed
+import sys, ConfigParser
+import string, os, re, shutil
 
-import os, sys, shutil
-import datetime, re, httplib
+def exists(name, path):
+    if os.path.exists(path):
+        print name + ' succesfully set to: ' + path
+    else:
+        print 'non-existing file or folder: ' + path
+        print 'correct variable ' + name + ' in configuration file'
+        raise UpdateError('Please, correct variable ' + name + ' in configuration file')
 
-def updateFromFile(filename):
-    try:
-        os.chdir('/home/xtesar7/sw/osm2pgsql')
-    except OSError, msg:
-        raise UpdateError('osm2pgsql is not present')
-    ret = os.system('./osm2pgsql -s -d gisczech ' + homepath + '/Data/' + filename + ' -S ' + homepath + '/Data/mtbmap.style -C 4096')
-    if (ret != 0):
-        raise UpdateError('An error occured, osm2pgsql returned ' + str(ret/256) + ' exit status')
-    try:
-        os.system(homepath + '/Devel/relations2lines.py')
-    except OSError, msg:
-        raise UpdateError('relations2lines.py failed, osm data uploaded')
-    refreshDate('index.html', str(date))
-    refreshDate('en.html', str(date))
-    # restart renderd:
-    try:
-        os.chdir('/home/xtesar7/sw/mod_tile')
-        os.system('kill $(pidof renderd)')
-        os.system('./renderd')
-    except OSError, msg:
-        raise UpdateError(msg + '\n problem with mod_tile/renderd only, data uploaded, ignore next line')
+def downloadFile(source):
+    os.chdir(datadir)
+    return os.system('wget -t 3 ' + source)
+
+
+def applyBBox(north, west, south, east, filename):
+    print 'applying bounding box for ' + filename
+    if (os.system('bzcat ' + datadir + file + ' | \
+        ' + osmosis + ' --read-xml file=- --bounding-box \
+        left="' + west + '" right="' + east +'" top="' + north +'" bottom="' + south + '" \
+        --write-xml file=' + datadir + 'bbox_' + filename)==0):
+        boundedFiles.append('bbox_' + filename)
+    else:
+        raise UpdateError('Error occured while applying bounding box with osmosis on file: ' + filename)
+
+def mergeFiles(boundedFiles):
+    if (sort=='yes'):
+        for file in boundedFiles:
+            print 'sorting file ' + file + ' for merge...'
+            res = os.system(osmosis + ' --read-xml file=' + datadir + file + ' --sort --write-xml file=' + datadir + 'sort_' + file)
+            if (res == 0):
+                os.remove(datadir + file)
+                os.rename(datadir + 'sort_' + file, datadir + file)
+            else:
+                raise UpdateError('Error occured while sorting file ' + file)
+    count = len(boundedFiles)
+    print str(count) + ' files needs ' + str(count-1) + ' merges...'
+    lastMerged = boundedFiles[0]
+    while (count>1):
+        mergedFile = str(count-1) + 'merged.xml.bz2'
+        mergeCommand = osmosis + ' --read-xml file=' + datadir + lastMerged + ' --read-xml file=' + datadir + boundedFiles[count-1] + ' --merge --write-xml file=' + datadir + mergedFile #+ ' omitmetadata=true'
+        print 'Merging file ' + boundedFiles[count-1] + ' to complete merge file...'
+        res = os.system(mergeCommand)
+        if (res!=0):
+            raise UpdateError('Error occured while merging data files with osmosis.')
+        else:
+            print 'Successful merge no. ' + str(len(boundedFiles) - count + 1) + '. ' + str(count-2) + ' of ' + str(len(boundedFiles) - 1) + ' merges left...'
+        #remove temporary merge file
+        if (count != len(boundedFiles)):
+            os.remove(datadir + lastMerged)
+        lastMerged = mergedFile
+        count -= 1
+    return mergedFile
+
+def loadDB(database, file, style, cache):
+    loadCommand = osm2pgsql + ' -s -d ' + database + ' ' + datadir + file + ' -S ' + style + ' -C ' + str(cache)
+    return os.system(loadCommand)
 
 def refreshDate(file,date):
     try:
@@ -53,56 +76,166 @@ def refreshDate(file,date):
         except IOError:
             print 'Problem with copying ' + file + ', check access privileges.'
 
+def restartRenderd():
+    os.system('kill $(pidof renderd)')
+    os.system(renderd)
+
 class UpdateError(Exception):
     def __init__(self, msg):
         self.msg = msg
 
 if __name__ == "__main__":
-    homepath = os.getenv('MTBMAP_DIRECTORY')
-    if (homepath == None):
-        homepath = '/home/xtesar7/Devel/mtbmap-czechrep'
 
-    date = datetime.date.today()
+    # set variables from configuration file passed as the command line parameter
+    # default is default.conf
+    if (len(sys.argv)>1):
+        configFile = sys.argv[1]
+        print "Reading configuration file: ", configFile
+    else:
+        configFile = 'default.conf'
+
+    if (os.path.exists(configFile)):
+        try:
+            config = ConfigParser.ConfigParser()
+            config.read(configFile)
+        except ConfigParser.Error:
+            print 'Configuration file is not well formed, nothing was done'
+            sys.exit(1)
+
+        try:
+            homepath = config.get('update', 'homepath')
+            exists('homepath', homepath)
+            datadir = config.get('update', 'datadir')
+            exists('datadir', datadir)
+            database = config.get('update', 'database')
+            print 'database name set to : ' + database
+            style = config.get('update', 'style')
+            exists('style', style)
+            cache = config.get('update', 'cache')
+            try:
+                float(cache)
+                print 'cache succesfully set to: ' + cache + 'MB'
+            except ValueError:
+                print 'variable cache must be a number, you have passed : ' + cache
+                cache = '2048'
+                print 'cache set to default: 2048MB'
+            osmosis = config.get('update', 'osmosis')
+            exists('osmosis', osmosis)
+            osm2pgsql = config.get('update', 'osm2pgsql')
+            exists('osm2pgsql', osm2pgsql)
+            relations2lines = config.get('update', 'relations2lines')
+            exists('relations2lines', relations2lines)
+            renderd = config.get('update', 'renderd')
+            exists('renderd', renderd)
+
+            boundingBox = config.get('bbox', 'boundingBox')
+            if (boundingBox=='yes'):
+                try:
+                    north = float(config.get('bbox', 'north'))
+                except ValueError, NoOptionError:
+                    print 'Bounding box value for north not set properly, using default 90'
+                    north = 90
+                try:
+                    west = float(config.get('bbox', 'west'))
+                except ValueError, NoOptionError:
+                    print 'Bounding box value for west not set properly, using default -180'
+                    west = -180
+                try:
+                    south = float(config.get('bbox', 'south'))
+                except ValueError, NoOptionError:
+                    print 'Bounding box value for south not set properly, using default -90'
+                    south = -90
+                try:
+                    east = float(config.get('bbox', 'east'))
+                except ValueError, NoOptionError:
+                    print 'Bounding box value for east not set properly, using default 180'
+                    east = 180
+                print 'Bounding box set to:'
+                print ' N: ' + str(north)
+                print ' W: ' + str(west)
+                print ' S: ' + str(south)
+                print ' E: ' + str(east)
+            else:
+                print 'No bounding box will be applied'
+
+            download = config.get('update', 'download')
+            sort = config.get('update', 'sort')
+            format = config.get('update', 'format')
+            configSources = config.items('mainSource')
+        except ConfigParser.Error:
+            print 'Some variables are missing in configuration file. Nothing was done.'
+            sys.exit(0)
+        except UpdateError, ue:
+            print ue.msg
+            print 'Nothing was done.'
+
+        sources = []
+        for configSource in configSources:
+            if (download=='yes'):
+                source = [configSource[1], string.split(configSource[1], '/')[-1]]
+                sources.append(source)
+            else:
+                sources.append(configSource[1])
+
+    else:
+        print "Missing configuration file, nothing was done"
+        sys.exit(1)
+
+    #data are probably from yesterdays planet file
+    date = datetime.date.today() - datetime.timedelta(days=1)
     try:
-        try:
-            connection = httplib.HTTPConnection('osm.kyblsoft.cz')
-            connection.request('HEAD', '/archiv/czech_republic-' + str(date) + '.osm.bz2')
-            response = connection.getresponse()
-            # if today's dataset doesn't exist, use yesterday's
-            if (response.status != 200):
-                date = date - datetime.timedelta(days=1)
-        except socket.error, msg:
-            print 'no connection to kyblsoft'
-            connection.close()
-
-        connection.close()
-
-        filename1 = 'czech_republic.osm.bz2'
-        url1 = 'http://download.geofabrik.de/osm/europe/czech_republic.osm.bz2'
-        filename2 = 'czech_republic-' + str(date) + '.osm.bz2'
-        url2 = 'http://osm.kyblsoft.cz/archiv/czech_republic-' + str(date) + '.osm.bz2'
-
-        try:
-            os.chdir(homepath + '/Data')
-        except OSError, msg:
-            raise UpdateError(homepath + '/Data directory is not present')
-
-    
-        if (os.system('wget -t 3 ' + url1)==0):
-            updateFromFile(filename1)
-        elif (os.system('wget -t 3 ' + url2)==0):
-            updateFromFile(filename2)
+        #download files
+        sourceFiles = []
+        if (download == 'yes'):
+            for source in sources:
+                print 'Downloading file ' + source[1] + ' from ' + source[0] + ' ...'
+                result = downloadFile(source[0])
+                if (result!=0):
+                    raise UpdateError('An error occured while downloading file ' + source[1])
+                else:
+                    sourceFiles.append(source[1])
+                    print 'File ' + source[1] + ' successfully downloaded.'
         else:
-            raise UpdateError('An error occured while downloading from given URLs ')
+            sourceFiles = sources
 
+        #apply bounding box on each file
+        if (boundingBox=='yes'):
+            boundedFiles = []
+            for file in sourceFiles:
+                applyBBox(str(north), str(west), str(south), str(east), file)
+            print 'Bounding box successfully applied'
+        else:
+            boundedFiles = sourceFiles
+
+        #merge files into one
+        if (len(boundedFiles)>1):
+            merged = mergeFiles(boundedFiles)
+            print 'Downloaded files were succesfully merged'
+        else:
+            merged = boundedFiles[0]
+
+        #osm2pgsql
+        if (loadDB(database, merged, style, cache) != 0):
+            raise UpdateError('An osm2pgsql error occured. Database was probably cleaned.')
+        else:
+            print 'OSM data successfully loaded to database, running relations2lines.py ...'
+        #relations2lines
+        os.system(relations2lines + ' ' + database)
+
+        #refresh date on webpages, restart renderd
+        refreshDate('index.html', str(date))
+        refreshDate('en.html', str(date))
+        restartRenderd()
     except UpdateError, ue:
         print ue.msg
-        print 'Map data was not uploaded. '
+        print 'Map data was not uploaded.'
 
     finally:
-        if (os.path.exists(homepath + '/Data/' + filename1)):
-            os.remove(homepath + '/Data/' + filename1)
-        if (os.path.exists(homepath + '/Data/' + filename2)):
-            os.remove(homepath + '/Data/' + filename2)
-
-
+        if (os.path.exists(datadir + merged)):
+                os.remove(datadir + merged)
+        for file in boundedFiles:
+            if (os.path.exists(datadir + file)):
+                os.remove(datadir + file)
+        for file in sourceFiles:
+            if (os.path.exists(datadir + file)):
+                os.remove(datadir + file)
