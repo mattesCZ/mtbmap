@@ -133,6 +133,7 @@ way marked_trail_blue text linear
 # International hiking tracks.
 way network text linear
 way iwn text linear
+way osmc:symbol text linear
 
 # The following entries can be used with the --extra-attributes option
 # to include the username, userid, version & timstamp in the DB
