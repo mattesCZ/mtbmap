@@ -164,7 +164,7 @@ if __name__ == "__main__":
             download = config.get('update', 'download')
             sort = config.get('update', 'sort')
             format = config.get('update', 'format')
-            if (format!='pbf' || format!='xml'):
+            if (format!='pbf' or format!='xml'):
                 raise UpdateError('Incorrect format, use xml or pbf.')
             else:
                 print 'Using ' + format + ' format.'
