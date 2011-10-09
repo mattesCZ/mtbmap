@@ -34,12 +34,12 @@ way_tags = {
 'mtb:scale:uphill' : "is not null",
 'network' : "in ('e-road', 'iwn', 'rwn', 'nwn', 'lwn')",
 'route' : "='mtb'",
-'ncn' : "is not null", 
-'rcn' : "is not null", 
-'lcn' : "is not null", 
-'ncn_ref' : "is not null", 
-'rcn_ref' : "is not null", 
-'lcn_ref' : "is not null", 
+'ncn' : "is not null",
+'rcn' : "is not null",
+'lcn' : "is not null",
+'ncn_ref' : "is not null",
+'rcn_ref' : "is not null",
+'lcn_ref' : "is not null",
 'highway' : "='cycleway'",
 'osmc:symbol' : "is not null"
 }
@@ -55,6 +55,7 @@ auxilary_cursor.execute("INSERT INTO geometry_columns VALUES ('', 'public', 'pla
 relation_cursor.execute("SELECT id, parts, tags FROM planet_osm_rels WHERE"
   " 'route' = ANY(tags) AND (%s)" % (" OR ".join(["'%s' = ANY(tags)" % (key,)
   for key in copy_tags.keys()])))
+updates = 0
 while True:
     # Fetch some of the result.
     rows = relation_cursor.fetchmany(100)
@@ -84,14 +85,17 @@ while True:
 
         # For each line in relation.
         if len(tags) and len(row[1]):
+            updates += 1
             # Update lines of the relation with its tags.
             set_statement = ", ".join(["%s = '%s'" % (key, tags[key]
               .replace('\'', '\\\'')) for key in tags.keys()])
+            if (updates % 100 == 0):
+                print str(updates) + ' relations updated.'
 #            print "Updating lines:", where_statement
 #            print "Set:", set_statement
             auxilary_cursor.execute("UPDATE planet_osm_routes SET %s WHERE"
               " osm_id IN (%s)" % (set_statement, where_statement))
-
+print 'Total amount of ' + str(updates) + ' relations updated.'
 
 auxilary_cursor.close()
 relation_cursor.close()
@@ -110,4 +114,3 @@ auxilary_cursor.execute("""INSERT INTO planet_osm_routes SELECT * FROM """
 
 auxilary_cursor.close()
 connection.commit()
-

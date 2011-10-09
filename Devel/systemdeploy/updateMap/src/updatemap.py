@@ -20,9 +20,9 @@ def downloadFile(source):
 def applyBBox(north, west, south, east, filename):
     print 'applying bounding box for ' + filename
     if (os.system('bzcat ' + datadir + file + ' | \
-        ' + osmosis + ' --read-xml file=- --bounding-box \
+        ' + osmosis + ' --read-' + format + ' file=- --bounding-box \
         left="' + west + '" right="' + east +'" top="' + north +'" bottom="' + south + '" \
-        --write-xml file=' + datadir + 'bbox_' + filename)==0):
+        --write-' + format + ' file=' + datadir + 'bbox_' + filename)==0):
         boundedFiles.append('bbox_' + filename)
     else:
         raise UpdateError('Error occured while applying bounding box with osmosis on file: ' + filename)
@@ -31,7 +31,7 @@ def mergeFiles(boundedFiles):
     if (sort=='yes'):
         for file in boundedFiles:
             print 'sorting file ' + file + ' for merge...'
-            res = os.system(osmosis + ' --read-xml file=' + datadir + file + ' --sort --write-xml file=' + datadir + 'sort_' + file)
+            res = os.system(osmosis + ' --read-' + format + ' file=' + datadir + file + ' --sort --write-' + format + ' file=' + datadir + 'sort_' + file)
             if (res == 0):
                 os.remove(datadir + file)
                 os.rename(datadir + 'sort_' + file, datadir + file)
@@ -41,8 +41,11 @@ def mergeFiles(boundedFiles):
     print str(count) + ' files needs ' + str(count-1) + ' merges...'
     lastMerged = boundedFiles[0]
     while (count>1):
-        mergedFile = str(count-1) + 'merged.xml.bz2'
-        mergeCommand = osmosis + ' --read-xml file=' + datadir + lastMerged + ' --read-xml file=' + datadir + boundedFiles[count-1] + ' --merge --write-xml file=' + datadir + mergedFile #+ ' omitmetadata=true'
+        if (format=='pbf'):
+            mergedFile = str(count-1) + 'merged.pbf'
+        else:
+            mergedFile = str(count-1) + 'merged.xml.bz2'
+        mergeCommand = osmosis + ' --read-' + format + ' file=' + datadir + lastMerged + ' --read-' + format + ' file=' + datadir + boundedFiles[count-1] + ' --merge --write-' + format + ' file=' + datadir + mergedFile #+ ' omitmetadata=true'
         print 'Merging file ' + boundedFiles[count-1] + ' to complete merge file...'
         res = os.system(mergeCommand)
         if (res!=0):
@@ -161,6 +164,10 @@ if __name__ == "__main__":
             download = config.get('update', 'download')
             sort = config.get('update', 'sort')
             format = config.get('update', 'format')
+            if (format!='pbf' || format!='xml'):
+                raise UpdateError('Incorrect format, use xml or pbf.')
+            else:
+                print 'Using ' + format + ' format.'
             configSources = config.items('mainSource')
         except ConfigParser.Error:
             print 'Some variables are missing in configuration file. Nothing was done.'
