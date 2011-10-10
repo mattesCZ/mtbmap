@@ -18,156 +18,7 @@ type="text/javascript"></script>
         <script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
         <script type="text/javascript" src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
         
-        <script type="text/javascript">
-
-// starting center coordinates and zoom for Brno
-/*    var lat=49.22
-    var lon=16.58
-    var zoom=12
-*/
-// for Czech Republic
-    var lat=49.82
-    var lon=15.50
-    var zoom=8
-
-    var map, vectors, controls, measureControls;
-
-    function getTileURL(bounds)
-    {
-      var res = this.map.getResolution();
-      var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
-      var y = Math.round((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
-      var z = this.map.getZoom();
-      return this.url + z + "/" + x + "/" + y + "." + this.type;
-    }
-
-
-    function init(){
-        graticule = new OpenLayers.Control.Graticule({layerName: "Graticule"});
-        map = new OpenLayers.Map("map",
-        {
-        controls:[new OpenLayers.Control.Navigation(),
-                  graticule,
-                  new OpenLayers.Control.PanZoomBar(),
-                  new OpenLayers.Control.Attribution(),
-                  new OpenLayers.Control.Permalink(),
-                  new OpenLayers.Control.MousePosition(),
-                  new OpenLayers.Control.KeyboardDefaults(),
-                  new OpenLayers.Control.ScaleLine(),
-                  new OpenLayers.Control.LayerSwitcher({'div': OpenLayers.Util.getElement('layerswitcher')})],
-        maxExtent: new OpenLayers.Bounds(-20037508.34,-20037508.34,20037508.34,20037508.34),
-        maxResolution: 156543.0399,
-        numZoomLevels: 19,
-        units: 'm',
-        projection: new OpenLayers.Projection("EPSG:900913"),
-        displayProjection: new OpenLayers.Projection("EPSG:4326")
-        });
-
-// basic MTB layers
-        map.addLayer(new OpenLayers.Layer.OSM("MTB Map", "mtbmap_tiles/", {type: 'png', numZoomLevels: 19, getURL: getTileURL}));
-//        map.addLayer(new OpenLayers.Layer.OSM("MTB Map Complete", "osm_tiles/", {type: 'png', numZoomLevels: 19, getURL: getTileURL}));
-//        map.addLayer(new OpenLayers.Layer.OSM("Shading + contours", "shade_tiles/", {type: 'png', numZoomLevels: 19, getURL: getTileURL}));
-
-// overlays
-        mtbonly = new OpenLayers.Layer.OSM("Mtb tracks", "mtbonly_tiles/", {type: 'png', numZoomLevels: 19, getURL: getTileURL});
-        mtbonly.setIsBaseLayer(false);
-        mtbonly.setVisibility(false);
-        map.addLayer(mtbonly);
-        textonly = new OpenLayers.Layer.OSM("text", "text_tiles/", {type: 'png', numZoomLevels: 19, getURL: getTileURL});
-        textonly.setIsBaseLayer(false);
-        textonly.setVisibility(false);
-        map.addLayer(textonly);
-
-// standard OpenStreetMap layers
-        map.addLayer(new OpenLayers.Layer.OSM.Mapnik("OpenStreetMap"));
-        map.addLayer(new OpenLayers.Layer.OSM.CycleMap("OpenCycleMap"));
-
-        map.getLayersByName("Graticule")[0].setVisibility(false);
-
-// draw altitude style
-        var sketchSymbolizers = {
-            "Point": {
-                pointRadius: 4,
-                fillColor: "white",
-                fillOpacity: 0.3,
-                strokeWidth: 1,
-                strokeOpacity: 1,
-                strokeColor: "#333333"
-            },
-            "Line": {
-                strokeWidth: 3,
-                strokeOpacity: 1,
-                strokeColor: "#ff0000",
-                strokeDashstyle: "dash"
-            }
-        };
-        var style = new OpenLayers.Style();
-        style.addRules([
-            new OpenLayers.Rule({symbolizer: sketchSymbolizers})
-        ]);
-        var styleMap = new OpenLayers.StyleMap({"default": style});
-
-// draw altitude control based on OpenLayers Measure feature
-        measureControls = {
-            line: new OpenLayers.Control.Measure(
-                OpenLayers.Handler.Path, {
-                    persist: true,
-                    handlerOptions: {
-                        layerOptions: {styleMap: styleMap}
-                    }
-                }
-            )
-        };
-
-        var control = measureControls['line'];
-        control.events.on({
-            "measure": handleMeasurements,
-            "measurepartial": handleMeasurements
-        });
-        map.addControl(control);
-
-        document.getElementById('noneToggle').checked = true;
-        if (!map.getCenter())
-        {
-          var lonLat = new OpenLayers.LonLat(lon, lat).transform(new OpenLayers.Projection("EPSG:4326"), map.getProjectionObject());
-          map.setCenter(lonLat, zoom);
-        }
-    }
-
-    var geometry;        
-
-    function handleMeasurements(event) {
-        geometry = event.geometry;
-    }
-
-    function toggleControl(element) {
-        for(key in measureControls) {
-            var control = measureControls[key];
-            if(element.value == key && element.checked) {
-                control.activate();
-            } else {
-                control.deactivate();
-            }
-        }
-    }
-// set values for altitude computing
-    function fillHiddenField(){
-        if (document.getElementById('geometry').value != geometry) {
-            geometry=geometry.transform(new OpenLayers.Projection('EPSG:900913'), 
-new OpenLayers.Projection('EPSG:4326'));
-            document.getElementById('geometry').value=geometry;
-        }
-    }
-// set values for image export    
-    function getCenter(){
-        center = map.getCenter().transform(new OpenLayers.Projection('EPSG:900913'), new OpenLayers.Projection('EPSG:4326'));
-        mapZoom = map.getZoom();
-        size = map.getSize();
-        scale = map.getScale()
-        extent = map.getExtent().transform(new OpenLayers.Projection('EPSG:900913'), new OpenLayers.Projection('EPSG:4326'));
-        var properties = new Array(extent.bottom, extent.left, extent.top, extent.right, size.w, size.h);
-        document.getElementById('center').value=properties;
-    }
+        <script type="text/javascript" src="mtbmap.js">
         </script>
 
 <!-- Google Analytics code -->
@@ -187,62 +38,65 @@ new OpenLayers.Projection('EPSG:4326'));
 
     </head>
     <body onload="init()">
-<!--      <div id="box"> -->
-        <div id="text">
-          <div id="title">
-            <h3>OSM MTB Map<br>Czech Republic</h3>
-            <a href="index.html" >Česká verze</a>
+        <div id="text" class="box">
+          <div id="header">
+            <a href="."><img src="img/mtbmap_logo64.png" alt="" id="headerimg"></a>
+            <h3 id="title">OSM MTB Map<br>Czech Republic</h3>
+            <a href="index.html" >Czech version</a>
           </div>
           <hr>
           <div id="controls">
             <ul id="controlToggle">
-                <li>
-                    <input type="radio" name="type" value="none" id="noneToggle"
-                           onclick="toggleControl(this);" checked="checked">
-                    <label for="noneToggle">Navigation</label>
-                </li>
-            <li>
+              <li>
+                <input type="radio" name="type" value="none" id="noneToggle"
+                  onclick="toggleControl(this);" checked="checked">
+                <label for="noneToggle">Navigation</label>
+              </li>
+              <li>
                 <input type="radio" name="type" value="line" id="lineToggle" onclick="toggleControl(this);">
-                <label for="lineToggle">Draw altitude</label>
-                <br><span>(Select your track by clicking on the map, end with doubleclick and press Calculate. Use arrows to navigate)</span>
-            </li>
-           </ul>
-           <form id="calculate" method="post" ACTION="/cgi-bin/altitude.py" target="_blank">
-               <p>
+                <label for="lineToggle">Draw altitude<!-- ()--></label>
+                <br><span>(select your track by clicking on the map, end with doubleclick and press Calculate.)</span>
+              </li>
+            </ul>
+            <form id="calculate" method="post" ACTION="/cgi-bin/altitude.py" target="_blank">
                <input name="geometry" id="geometry" type="hidden" value="">
-               <input type="submit" onclick="fillHiddenField();" value="Calculate">
-               </p>
-           </form>
+               <input type="submit" id="profileButton" onclick="fillHiddenField();" 
+value="Calculate">
+            </form>
 
           </div>
           <hr>
           <div id="legend">
-          <a onclick="window.open('legend_en.html','_blank','height=800,width=360'); 
-return false;" href="">Legend</a>
+          <a href="" onclick="window.open('legend.html','_blank','height=840,width=400');return false;">Show Legend</a>
           </div>
           <hr>
           <div id="export">
           <span>Export current MTB map view</span>
               <form method="post" action="/cgi-bin/genimage.py" target="_blank">
                   <p>
-                  <input name="addscale" id="addscale" type="checkbox" value="ON" checked="yes">With scalebar<br>
+                  <input name="addscale" id="addscale" type="checkbox" value="ON" checked="yes">With Scalebar<br>
                   <input name="center" id="center" 
 type="hidden" value="">
                   <input type="submit" value="Export" onclick="getCenter();"><br>
                   </p>
               </form>
           </div>
-          <hr>
+<!--          <hr>
           <div id="footer">
-            Data provided by <a href="http://openstreetmap.org/" >OpenStreetMap</a> and&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a><br>
-
-            Current: 2011-07-25 from <a href="http://osm.kyblsoft.cz/archiv/" >Kýblsoft</a>
+            Data poskytuje <a href="http://openstreetmap.org/" >OpenStreetMap</a> a&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a><br>
+            Verze: 2011-08-15 od <a href="http://osm.kyblsoft.cz/archiv/" >Kýblsoft</a>
             <hr>
-            Author: Martin Tesař<br>osmmtb&nbsp;(at)&nbsp;gmail.com
-          </div>
+            Autor: Martin Tesař<br>osmmtb&nbsp;(at)&nbsp;gmail.com
+          </div>-->
         </div>
         <div id="map"></div>
-<!--      </div> -->
+        <div id="imprint" class="box">
+        Author: Martin Tesař -- osmmtb&nbsp;(at)&nbsp;gmail.com<br>
+        Projection: Mercator -- Conformal cylindrical<br>
+        Data provided by <a href="http://openstreetmap.org/" >OpenStreetMap</a> and&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a><br>
+        Version: 2011-10-08 from <a href="http://download.geofabrik.de/osm/" >Geofabrik.de</a><br>
+        Hardware provided by <a href="http://sitola.fi.muni.cz" > SITOLA </a> laboratory.
+        </div>
     </body>
 </html>
 

@@ -164,10 +164,10 @@ if __name__ == "__main__":
             download = config.get('update', 'download')
             sort = config.get('update', 'sort')
             format = config.get('update', 'format')
-            if (format!='pbf' or format!='xml'):
-                raise UpdateError('Incorrect format, use xml or pbf.')
-            else:
+            if (format=='pbf' or format=='xml'):
                 print 'Using ' + format + ' format.'
+            else:
+                raise UpdateError('Incorrect format, use xml or pbf.')
             configSources = config.items('mainSource')
         except ConfigParser.Error:
             print 'Some variables are missing in configuration file. Nothing was done.'
