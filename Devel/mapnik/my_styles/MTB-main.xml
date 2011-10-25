@@ -538,290 +538,40 @@
 </Layer>
  -->
 
-<!-- Mezinarodni zaceni pesich tras -->
-<Layer name="international-track" status="on" srs="&srs900913;">
-    <StyleName>international-track</StyleName>
+<!-- OSMC tracks -->
+<Layer name="osmc-track3" status="on" srs="&srs900913;">
+    <StyleName>osmc-track3</StyleName>
     <Datasource>
       <Parameter name="table">
-        ((SELECT osm_id,way,route,name,ref,network,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-	  route='foot' AND (network='e-road' OR network='nwn' OR network='iwn')) UNION
-        (SELECT osm_id,way,route,name,ref,network,char_length(ref) AS length from &prefix;_routes WHERE
-	  route='foot' AND (network='e-road' OR network='nwn' OR network='iwn'))) as international_tacks
+        (SELECT osm_id,way,osmcsymbol3 FROM &prefix;_routes2 WHERE "osmcsymbol3" IS NOT NULL) as osmc_tracks
       </Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
-
-<!-- Pesi znacene trasy KCT -->
-<Layer name="yellow-track" status="on" srs="&srs900913;">
-    <StyleName>yellow-track</StyleName>
-    <!--<StyleName>yellow-shield</StyleName>-->
+<Layer name="osmc-track2" status="on" srs="&srs900913;">
+    <StyleName>osmc-track2</StyleName>
     <Datasource>
-      <Parameter name="table">((SELECT osm_id,way,route,name,ref,kct_yellow,marked_trail_yellow,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
-			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
-			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,marked_trail_yellow,char_length(ref) AS length FROM &prefix;_routes WHERE
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
-			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
-			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL)))) as yellow_track</Parameter>
+      <Parameter name="table">
+        (SELECT osm_id,way,osmcsymbol2 FROM &prefix;_routes2 WHERE "osmcsymbol2" IS NOT NULL) as osmc_tracks
+      </Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
-<Layer name="red-track" status="on" srs="&srs900913;">
-    <StyleName>red-track</StyleName>
-    <!--<StyleName>red-shield</StyleName>-->
+<Layer name="osmc-track1" status="on" srs="&srs900913;">
+    <StyleName>osmc-track1</StyleName>
     <Datasource>
-      <Parameter name="table">((SELECT osm_id,way,route,name,ref,kct_red,marked_trail_red,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
-			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_red,marked_trail_red,char_length(ref) AS length FROM &prefix;_routes WHERE
-			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
-			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL)))) as red_track</Parameter>
+      <Parameter name="table">
+        (SELECT osm_id,way,osmcsymbol1 FROM &prefix;_routes2 WHERE "osmcsymbol1" IS NOT NULL) as osmc_tracks
+      </Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
-<Layer name="green-track" status="on" srs="&srs900913;">
-    <StyleName>green-track</StyleName>
-    <!--<StyleName>green-shield</StyleName>-->
+<Layer name="osmc-track0" status="on" srs="&srs900913;">
+    <StyleName>osmc-track0</StyleName>
     <Datasource>
-      <Parameter name="table">((SELECT osm_id,way,route,name,ref,kct_green,marked_trail_green,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
-			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_green,marked_trail_green,char_length(ref) AS length FROM &prefix;_routes WHERE
-			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
-			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL)))) as green_track</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<Layer name="blue-track" status="on" srs="&srs900913;">
-    <StyleName>blue-track</StyleName>
-    <!--<StyleName>blue-shield</StyleName>-->
-    <Datasource>
-      <Parameter name="table">((SELECT osm_id,way,route,name,ref,kct_blue,marked_trail_blue,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
-			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
-			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_blue,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
-			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
-			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
-			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL)))) as blue_track</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<Layer name="yellow-red-track" status="on" srs="&srs900913;">
-    <StyleName>yellow-red-track</StyleName>
-    <!--<StyleName>yellow-shield</StyleName>-->
-    <!--<StyleName>red-shield</StyleName>-->
-    <Datasource>
-      <Parameter name="table">((SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,marked_trail_yellow,marked_trail_red,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
-			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,marked_trail_yellow,marked_trail_red,char_length(ref) AS length FROM &prefix;_routes WHERE
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
-			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL)))) as yellow_red_track</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<Layer name="yellow-green-track" status="on" srs="&srs900913;">
-    <StyleName>yellow-green-track</StyleName>
-    <!--<StyleName>yellow-shield</StyleName>-->
-    <!--<StyleName>green-shield</StyleName>-->
-    <Datasource>
-      <Parameter name="table">((SELECT osm_id,way,route,name,ref,kct_yellow,kct_green,marked_trail_yellow,marked_trail_green,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_green,marked_trail_yellow,marked_trail_green,char_length(ref) AS length FROM &prefix;_routes WHERE
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL)))) as yellow_green_track</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<Layer name="yellow-blue-track" status="on" srs="&srs900913;">
-    <StyleName>yellow-blue-track</StyleName>
-    <!--<StyleName>yellow-shield</StyleName>-->
-    <!--<StyleName>blue-shield</StyleName>-->
-    <Datasource>
-      <Parameter name="table">((SELECT osm_id,way,route,name,ref,kct_yellow,kct_blue,marked_trail_yellow,marked_trail_blue,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
-			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_blue,marked_trail_yellow,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
-			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL)))) as yellow_blue_track</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<Layer name="red-green-track" status="on" srs="&srs900913;">
-    <StyleName>red-green-track</StyleName>
-    <!--<StyleName>red-shield</StyleName>-->
-    <!--<StyleName>green-shield</StyleName>-->
-    <Datasource>
-      <Parameter name="table">((SELECT osm_id,way,route,name,ref,kct_red,kct_green,marked_trail_red,marked_trail_green,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_red,kct_green,marked_trail_red,marked_trail_green,char_length(ref) AS length FROM &prefix;_routes WHERE
-			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL)))) as red_green_track</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<Layer name="red-blue-track" status="on" srs="&srs900913;">
-    <StyleName>red-blue-track</StyleName>
-    <!--<StyleName>red-shield</StyleName>-->
-    <!--<StyleName>blue-shield</StyleName>-->
-    <Datasource>
-      <Parameter name="table">((SELECT osm_id,way,route,name,ref,kct_red,kct_blue,marked_trail_red,marked_trail_blue,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_red,kct_blue,marked_trail_red,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
-			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL)))) as red_blue_track</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<Layer name="green-blue-track" status="on" srs="&srs900913;">
-    <StyleName>green-blue-track</StyleName>
-    <!--<StyleName>green-shield</StyleName>-->
-    <!--<StyleName>blue-shield</StyleName>-->
-    <Datasource>
-      <Parameter name="table">((SELECT osm_id,way,route,name,ref,kct_green,kct_blue,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
-			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_green,kct_blue,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
-			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
-			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL)))) as green_blue_track</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<Layer name="red-green-blue-track" status="on" srs="&srs900913;">
-    <StyleName>red-green-blue-track</StyleName>
-    <!--<StyleName>red-shield</StyleName>-->
-    <!--<StyleName>green-shield</StyleName>-->
-    <!--<StyleName>blue-shield</StyleName>-->
-    <Datasource>
-      <Parameter name="table">((SELECT osm_id,way,route,name,ref,kct_red,kct_green,kct_blue,marked_trail_red,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_red,kct_green,kct_blue,marked_trail_red,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
-			      ((kct_yellow IS NULL) AND (marked_trail_yellow IS NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL)))) as red_green_blue_track</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<Layer name="yellow-green-blue-track" status="on" srs="&srs900913;">
-    <StyleName>yellow-green-blue-track</StyleName>
-    <!--<StyleName>yellow-shield</StyleName>-->
-    <!--<StyleName>green-shield</StyleName>-->
-    <!--<StyleName>blue-shield</StyleName>-->
-    <Datasource>
-      <Parameter name="table">((SELECT osm_id,way,route,name,ref,kct_yellow,kct_green,kct_blue,marked_trail_yellow,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_green,kct_blue,marked_trail_yellow,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NULL) AND (marked_trail_red IS NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL)))) as yellow_green_blue_track</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<Layer name="yellow-red-blue-track" status="on" srs="&srs900913;">
-    <StyleName>yellow-red-blue-track</StyleName>
-    <!--<StyleName>yellow-shield</StyleName>-->
-    <!--<StyleName>red-shield</StyleName>-->
-    <!--<StyleName>blue-shield</StyleName>-->
-    <Datasource>
-      <Parameter name="table">((SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,kct_blue,marked_trail_yellow,marked_trail_red,marked_trail_blue,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,kct_blue,marked_trail_yellow,marked_trail_red,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NULL) AND (marked_trail_green IS NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL)))) as yellow_red_blue_track</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<Layer name="yellow-red-green-track" status="on" srs="&srs900913;">
-    <StyleName>yellow-red-green-track</StyleName>
-    <!--<StyleName>yellow-shield</StyleName>-->
-    <!--<StyleName>red-shield</StyleName>-->
-    <!--<StyleName>green-shield</StyleName>-->
-    <Datasource>
-      <Parameter name="table">((SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,kct_green,marked_trail_yellow,marked_trail_red,marked_trail_green,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,kct_green,marked_trail_yellow,marked_trail_red,marked_trail_green,char_length(ref) AS length FROM &prefix;_routes WHERE
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NULL) AND (marked_trail_blue IS NULL)))) as yellow_red_green_track</Parameter>
-      &datasource-settings;
-    </Datasource>
-</Layer>
-<Layer name="yellow-red-green-blue-track" status="on" srs="&srs900913;">
-    <StyleName>yellow-red-green-blue-track</StyleName>
-    <!--<StyleName>yellow-shield</StyleName>-->
-    <!--<StyleName>red-shield</StyleName>-->
-    <!--<StyleName>green-shield</StyleName>-->
-    <!--<StyleName>blue-shield</StyleName>-->
-    <Datasource>
-      <Parameter name="table">((SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,kct_green,kct_blue,marked_trail_yellow,marked_trail_red,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_line WHERE osm_id > 0 AND
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL))) UNION
-			      (SELECT osm_id,way,route,name,ref,kct_yellow,kct_red,kct_green,kct_blue,marked_trail_yellow,marked_trail_red,marked_trail_green,marked_trail_blue,char_length(ref) AS length FROM &prefix;_routes WHERE
-			      ((kct_yellow IS NOT NULL) OR (marked_trail_yellow IS NOT NULL)) AND
-			      ((kct_red IS NOT NULL) OR (marked_trail_red IS NOT NULL)) AND
-			      ((kct_green IS NOT NULL) OR (marked_trail_green IS NOT NULL)) AND
-			      ((kct_blue IS NOT NULL) OR (marked_trail_blue IS NOT NULL)))) as yellow_red_green_blue_track</Parameter>
+      <Parameter name="table">
+        (SELECT osm_id,way,osmcsymbol0 FROM &prefix;_routes2 WHERE "osmcsymbol0" IS NOT NULL) as osmc_tracks
+      </Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>

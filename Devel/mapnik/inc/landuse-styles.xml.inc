@@ -87,7 +87,7 @@
             <Filter>([landuse]='orchard')</Filter>
             &maxscale_zoom13;
             &minscale_zoom14;
-            <PolygonPatternSymbolizer file="&symbols-path;orchard.png" type="png" width="19" height="21"></PolygonPatternSymbolizer>
+            <PolygonPatternSymbolizer file="&symbols-path;orchard_small.png" type="png" width="19" height="21"></PolygonPatternSymbolizer>
     </Rule>
     <Rule title="ovocný sad">
             <Filter>([landuse]='orchard')</Filter>

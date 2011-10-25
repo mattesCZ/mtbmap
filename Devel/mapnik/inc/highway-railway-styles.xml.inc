@@ -414,7 +414,7 @@
             &maxscale_zoom12;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_tertiary_background;</CssParameter>
-                <CssParameter name="stroke-width">2.5</CssParameter>
+                <CssParameter name="stroke-width">3.1</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
@@ -1452,7 +1452,7 @@
             &maxscale_zoom12;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_tertiary;</CssParameter>
-                <CssParameter name="stroke-width">1</CssParameter>
+                <CssParameter name="stroke-width">1.6</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
             </LineSymbolizer>
@@ -2868,7 +2868,7 @@
             &maxscale_zoom6;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_motorway_background;</CssParameter>
-                <CssParameter name="stroke-width">2.5</CssParameter>
+                <CssParameter name="stroke-width">3</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="dálnice, rychlostní silnice">
@@ -2877,7 +2877,7 @@
             &maxscale_zoom7;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_motorway_background;</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
+                <CssParameter name="stroke-width">3.5</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="dálnice, rychlostní silnice">
@@ -2886,7 +2886,7 @@
             &maxscale_zoom9;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_motorway_background;</CssParameter>
-                <CssParameter name="stroke-width">3.5</CssParameter>
+                <CssParameter name="stroke-width">3.8</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="dálnice, rychlostní silnice">
@@ -2895,7 +2895,7 @@
             &maxscale_zoom10;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_motorway_background;</CssParameter>
-                <CssParameter name="stroke-width">4</CssParameter>
+                <CssParameter name="stroke-width">4.4</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="dálnice, rychlostní silnice">
@@ -2913,7 +2913,7 @@
             &maxscale_zoom7;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_primary_background;</CssParameter>
-                <CssParameter name="stroke-width">2.4</CssParameter>
+                <CssParameter name="stroke-width">3</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="silnice 1. třídy">
@@ -2922,7 +2922,7 @@
             &maxscale_zoom9;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_primary_background;</CssParameter>
-                <CssParameter name="stroke-width">3</CssParameter>
+                <CssParameter name="stroke-width">3.3</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="silnice 1. třídy">
@@ -2931,7 +2931,7 @@
             &maxscale_zoom10;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_primary_background;</CssParameter>
-                <CssParameter name="stroke-width">3.5</CssParameter>
+                <CssParameter name="stroke-width">3.8</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="silnice 1. třídy">
@@ -2949,7 +2949,7 @@
             &maxscale_zoom9;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_secondary_background;</CssParameter>
-                <CssParameter name="stroke-width">2.5</CssParameter>
+                <CssParameter name="stroke-width">2.8</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="silnice 2. třídy">
@@ -2958,7 +2958,7 @@
             &maxscale_zoom10;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_secondary_background;</CssParameter>
-                <CssParameter name="stroke-width">2.8</CssParameter>
+                <CssParameter name="stroke-width">3.2</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="silnice 2. třídy">
@@ -2978,7 +2978,7 @@
             &maxscale_zoom6;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_motorway;</CssParameter>
-                <CssParameter name="stroke-width">1</CssParameter>
+                <CssParameter name="stroke-width">1.5</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="dálnice, rychlostní silnice">
@@ -2987,7 +2987,7 @@
             &maxscale_zoom7;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_motorway;</CssParameter>
-                <CssParameter name="stroke-width">1.5</CssParameter>
+                <CssParameter name="stroke-width">2</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="dálnice, rychlostní silnice">
@@ -2996,7 +2996,7 @@
             &maxscale_zoom9;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_motorway;</CssParameter>
-                <CssParameter name="stroke-width">2</CssParameter>
+                <CssParameter name="stroke-width">2.3</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="dálnice, rychlostní silnice">
@@ -3005,7 +3005,7 @@
             &maxscale_zoom10;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_motorway;</CssParameter>
-                <CssParameter name="stroke-width">2.5</CssParameter>
+                <CssParameter name="stroke-width">2.7</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="dálnice, rychlostní silnice">
@@ -3023,7 +3023,7 @@
             &maxscale_zoom7;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_primary;</CssParameter>
-                <CssParameter name="stroke-width">1</CssParameter>
+                <CssParameter name="stroke-width">1.5</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="silnice 1. třídy">
@@ -3032,7 +3032,7 @@
             &maxscale_zoom9;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_primary;</CssParameter>
-                <CssParameter name="stroke-width">1.5</CssParameter>
+                <CssParameter name="stroke-width">1.8</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="silnice 1. třídy">
@@ -3041,7 +3041,7 @@
             &maxscale_zoom10;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_primary;</CssParameter>
-                <CssParameter name="stroke-width">2</CssParameter>
+                <CssParameter name="stroke-width">2.3</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="silnice 1. třídy">
@@ -3059,7 +3059,7 @@
             &maxscale_zoom9;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_secondary;</CssParameter>
-                <CssParameter name="stroke-width">1.2</CssParameter>
+                <CssParameter name="stroke-width">1.5</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="silnice 2. třídy">
@@ -3068,7 +3068,7 @@
             &maxscale_zoom10;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_secondary;</CssParameter>
-                <CssParameter name="stroke-width">1.5</CssParameter>
+                <CssParameter name="stroke-width">1.9</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="silnice 2. třídy">

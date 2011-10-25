@@ -1,7 +1,7 @@
 <!-- Style for shading. -->
 <Style name="shading">
     <Rule title="!stínování reliéfu">
-      &maxscale_zoom7;
+      &maxscale_zoom5;
       &minscale_zoom12;
       <RasterSymbolizer>
         <CssParameter name="opacity">0.5</CssParameter>

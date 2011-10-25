@@ -61,11 +61,11 @@
 
 <!ENTITY color_pedestrian_background 'rgb(128,128,128)'>
 <!ENTITY color_road_background '&color_residential_background;'>
-<!ENTITY color_residential_background 'rgb(120,120,120)'>
-<!ENTITY color_tertiary_background 'rgb(120,120,120)'>
-<!ENTITY color_secondary_background 'rgb(163,123,72)'>
-<!ENTITY color_primary_background 'rgb(141,67,70)'>
-<!ENTITY color_motorway_background 'rgb(80,96,119)'>
+<!ENTITY color_residential_background 'rgb(80,80,80)'>
+<!ENTITY color_tertiary_background 'rgb(20,20,20)'>
+<!ENTITY color_secondary_background 'rgb(20,20,20)'>
+<!ENTITY color_primary_background 'rgb(20,20,20)'>
+<!ENTITY color_motorway_background 'rgb(20,20,20)'>
 
 <!ENTITY color_lozoom '#606060'>
 <!ENTITY color_residential_lozoom '&color_lozoom;'>
