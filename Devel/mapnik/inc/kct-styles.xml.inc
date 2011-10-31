@@ -88,6 +88,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -102,6 +108,12 @@
     &maxscale_zoom12;
     &minscale_zoom14;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
@@ -116,13 +128,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="modrá turistická trasa">
@@ -213,6 +231,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -227,6 +251,12 @@
     &maxscale_zoom12;
     &minscale_zoom14;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
@@ -241,13 +271,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="zelená turistická trasa">
@@ -338,6 +374,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -351,6 +393,12 @@
     <Filter>([osmcsymbol0] = 'green:white:green_dot')</Filter>
     &maxscale_zoom12;
     &minscale_zoom14;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -366,13 +414,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="žlutá turistická trasa">
@@ -463,6 +517,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-2</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -476,6 +536,12 @@
     <Filter>([osmcsymbol0] = 'yellow:white:yellow_dot')</Filter>
     &maxscale_zoom12;
     &minscale_zoom14;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -491,13 +557,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-3</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -544,6 +616,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-4</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -558,6 +636,12 @@
     &maxscale_zoom12;
     &minscale_zoom14;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
@@ -572,13 +656,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-7</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="modrá turistická trasa">
@@ -623,6 +713,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-4</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -637,6 +733,12 @@
     &maxscale_zoom12;
     &minscale_zoom14;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
@@ -651,13 +753,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-7</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="zelená turistická trasa">
@@ -702,6 +810,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-4</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -715,6 +829,12 @@
     <Filter>([osmcsymbol1] = 'green:white:green_dot')</Filter>
     &maxscale_zoom12;
     &minscale_zoom14;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
+    </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -730,13 +850,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-7</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="žlutá turistická trasa">
@@ -781,6 +907,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-4</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -794,6 +926,12 @@
     <Filter>([osmcsymbol1] = 'yellow:white:yellow_dot')</Filter>
     &maxscale_zoom12;
     &minscale_zoom14;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
+    </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -809,13 +947,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-7</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -863,6 +1007,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -877,6 +1027,12 @@
     &maxscale_zoom12;
     &minscale_zoom14;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-9</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
@@ -891,13 +1047,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-11</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="modrá turistická trasa">
@@ -942,6 +1104,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -956,6 +1124,12 @@
     &maxscale_zoom12;
     &minscale_zoom14;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-9</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
@@ -970,13 +1144,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-11</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="zelená turistická trasa">
@@ -1021,6 +1201,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -1034,6 +1220,12 @@
     <Filter>([osmcsymbol2] = 'green:white:green_dot')</Filter>
     &maxscale_zoom12;
     &minscale_zoom14;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-9</CssParameter>
+    </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -1049,13 +1241,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-11</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="žlutá turistická trasa">
@@ -1100,6 +1298,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-6</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -1113,6 +1317,12 @@
     <Filter>([osmcsymbol2] = 'yellow:white:yellow_dot')</Filter>
     &maxscale_zoom12;
     &minscale_zoom14;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-9</CssParameter>
+    </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -1128,13 +1338,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-11</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>
@@ -1181,6 +1397,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-8</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -1195,6 +1417,12 @@
     &maxscale_zoom12;
     &minscale_zoom14;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-12</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
@@ -1209,13 +1437,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-15</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="modrá turistická trasa">
@@ -1260,6 +1494,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-8</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -1274,6 +1514,12 @@
     &maxscale_zoom12;
     &minscale_zoom14;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-12</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
@@ -1288,13 +1534,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-15</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="zelená turistická trasa">
@@ -1339,6 +1591,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-8</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -1352,6 +1610,12 @@
     <Filter>([osmcsymbol3] = 'green:white:green_dot')</Filter>
     &maxscale_zoom12;
     &minscale_zoom14;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-12</CssParameter>
+    </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -1367,13 +1631,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-15</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
   <Rule title="žlutá turistická trasa">
@@ -1418,6 +1688,12 @@
     &maxscale_zoom11;
     &minscale_zoom11;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">2</CssParameter>
+      <CssParameter name="stroke-offset">-8</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
@@ -1431,6 +1707,12 @@
     <Filter>([osmcsymbol3] = 'yellow:white:yellow_dot')</Filter>
     &maxscale_zoom12;
     &minscale_zoom14;
+    <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">3</CssParameter>
+      <CssParameter name="stroke-offset">-12</CssParameter>
+    </LineSymbolizer>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -1446,13 +1728,19 @@
     &maxscale_zoom15;
     &minscale_zoom18;
     <LineSymbolizer>
+      <CssParameter name="stroke">&color_white;</CssParameter>
+      <CssParameter name="stroke-opacity">0.7</CssParameter>
+      <CssParameter name="stroke-width">4</CssParameter>
+      <CssParameter name="stroke-offset">-15</CssParameter>
+    </LineSymbolizer>
+    <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
       <CssParameter name="stroke-linejoin">round</CssParameter>
       <CssParameter name="stroke-linecap">round</CssParameter>
-      <CssParameter name="stroke-dasharray">1, 5</CssParameter>
+      <CssParameter name="stroke-dasharray">1, 7</CssParameter>
     </LineSymbolizer>
   </Rule>
 </Style>

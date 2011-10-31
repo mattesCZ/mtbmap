@@ -227,12 +227,12 @@
     <Rule>
             <Filter>([natural]='peak')</Filter>
             &maxscale_zoom13;
-            <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(116,64,44)" dy="-6" vertical_alignment="top" allow_overlap="true" halo_radius="1" wrap_width="30"></TextSymbolizer>
+            <TextSymbolizer name="name" fontset_name="book-fonts" size="10" fill="rgb(116,64,44)" dy="-6" vertical_alignment="top" allow_overlap="false" halo_radius="1" wrap_width="30"></TextSymbolizer>
     </Rule>
     <Rule>
             <Filter>([natural]='peak')</Filter>
             &maxscale_zoom14;
-            <TextSymbolizer name="ele" fontset_name="oblique-fonts" size="9" fill="rgb(116,64,44)" dy="6" vertical_alignment="bottom" allow_overlap="true" halo_radius="1"></TextSymbolizer>
+            <TextSymbolizer name="ele" fontset_name="oblique-fonts" size="9" fill="rgb(116,64,44)" dy="6" vertical_alignment="bottom" allow_overlap="false" halo_radius="1"></TextSymbolizer>
     </Rule>
     <Rule>
             <Filter>[amenity]='signpost' or [information]='guidepost'</Filter>
