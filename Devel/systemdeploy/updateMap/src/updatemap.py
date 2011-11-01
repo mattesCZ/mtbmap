@@ -20,24 +20,24 @@ def downloadFile(source):
 def applyBBox(north, west, south, east, filename, format):
     print 'applying bounding box for ' + filename
     if (format=='pbf'):
-        if (len(sourceFiles)>1):
-            outputFile = 'bbox_' + filename
-            bboxCommand = osmosis + ' --read-' + format + ' file=' + datadir + filename + ' --bounding-box \
-            left="' + west + '" right="' + east +'" top="' + north +'" bottom="' + south + '" \
-            --write-' + format + ' file=' + datadir + outputFile
-        else:
-            outputFile = 'bbox_' + string.replace(filename, '.pbf', '.bz2')
-            bboxCommand = osmosis + ' --read-' + format + ' file=' + datadir + filename + ' --bounding-box \
-            left="' + west + '" right="' + east +'" top="' + north +'" bottom="' + south + '" \
-            --write-xml file=' + datadir + outputFile
-            format = 'xml'
+#        if (len(sourceFiles)>1):
+        outputFile = 'bbox_' + filename
+        bboxCommand = osmosis + ' --read-' + format + ' file=' + datadir + filename + ' --bounding-box \
+                      left="' + west + '" right="' + east +'" top="' + north +'" bottom="' + south + '" \
+                      --write-' + format + ' file=' + datadir + outputFile
+#        else:
+#            outputFile = 'bbox_' + string.replace(filename, '.pbf', '.bz2')
+#            bboxCommand = osmosis + ' --read-' + format + ' file=' + datadir + filename + ' --bounding-box \
+#            left="' + west + '" right="' + east +'" top="' + north +'" bottom="' + south + '" \
+#            --write-xml file=' + datadir + outputFile
+#            format = 'xml'
         res = os.system(bboxCommand)
         boundedFiles.append(outputFile)
     else:
         res = os.system('bzcat ' + datadir + filename + ' | \
-        ' + osmosis + ' --read-' + format + ' file=- --bounding-box \
-        left="' + west + '" right="' + east +'" top="' + north +'" bottom="' + south + '" \
-        --write-' + format + ' file=' + datadir + 'bbox_' + filename)
+                        ' + osmosis + ' --read-' + format + ' file=- --bounding-box \
+                        left="' + west + '" right="' + east +'" top="' + north +'" bottom="' + south + '" \
+                        --write-' + format + ' file=' + datadir + 'bbox_' + filename)
         boundedFiles.append('bbox_' + filename)
     if (res==0):
         print 'Bounding box applied into file bbox_' + filename
@@ -58,15 +58,17 @@ def mergeFiles(boundedFiles):
     print str(count) + ' files needs ' + str(count-1) + ' merges...'
     lastMerged = boundedFiles[0]
     while (count>1):
-        if (count == 2): #last merge will be applied, save as .osm, osm2pgsql at debian Lenny does not support protobuf format
-            mergedFile = 'merged.osm.bz2'
-            mergeCommand = osmosis + ' --read-' + format + ' file=' + datadir + lastMerged + ' --read-' + format + ' file=' + datadir + boundedFiles[count-1] + ' --merge --write-xml file=' + datadir + mergedFile
-            format = 'xml'
-        elif (format=='pbf'):
-            mergedFile = str(count-1) + 'merged.pbf'
+        if (format=='pbf'):
+            if (count == 2):
+                mergedFile = 'merged.pbf'
+            else:
+                mergedFile = str(count-1) + 'merged.pbf'
             mergeCommand = osmosis + ' --read-' + format + ' file=' + datadir + lastMerged + ' --read-' + format + ' file=' + datadir + boundedFiles[count-1] + ' --merge --write-' + format + ' file=' + datadir + mergedFile
         else:
-            mergedFile = str(count-1) + 'merged.osm.bz2'
+            if (count == 2):
+                mergedFile = 'merged.osm.bz2'
+            else:
+                mergedFile = str(count-1) + 'merged.osm.bz2'
             mergeCommand = osmosis + ' --read-' + format + ' file=' + datadir + lastMerged + ' --read-' + format + ' file=' + datadir + boundedFiles[count-1] + ' --merge --write-' + format + ' file=' + datadir + mergedFile
         print 'Merging file ' + boundedFiles[count-1] + ' to complete merge file...'
         res = os.system(mergeCommand)
