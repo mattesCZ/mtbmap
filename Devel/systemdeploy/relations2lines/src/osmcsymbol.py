@@ -4,10 +4,10 @@
 __author__="xtesar7"
 
 #order is important
-acceptedWayColors = ['red', 'blue', 'green', 'yellow']
+acceptedWayColors = ['red', 'blue', 'green', 'yellow', 'mtb']
 acceptedBgColors = ['white']
 acceptedFgColors = acceptedWayColors
-acceptedSymbols = ['bar', 'dot']
+acceptedSymbols = ['bar', 'dot', 'mtb']
 # other symbols are now rendered as 'bar' for simplicity
 otherSymbols = ['backslash', 'bowl', 'L', 'turned_T', 'triangle', 'corner', 'diamond', 'cross', 'circle', 'fork', 'rectangle', 'lower', 'yes']
 
@@ -42,13 +42,10 @@ class OsmcSymbol:
             self.text = ':'.join(self.parts[3:])
 
     def isAccepted(self):
-        if ((self.wayColor in acceptedWayColors)
+        return ((self.wayColor in acceptedWayColors)
                 and (self.bgColor in acceptedBgColors)
                 and (self.fgColor == self.wayColor)
-                and (self.symbol in acceptedSymbols)):
-            return True
-        else:
-            return False
+                and (self.symbol in acceptedSymbols))
 
     def getStringValue(self, maxNumberOfParts=3):
         return ':'.join(self.parts[0:maxNumberOfParts])

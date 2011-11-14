@@ -14,7 +14,7 @@ def exists(name, path):
 
 def downloadFile(source):
     os.chdir(datadir)
-    return os.system('wget -t 3 ' + source)
+    return os.system('wget -t 3 -N ' + source)
 
 
 def applyBBox(north, west, south, east, filename, format):

@@ -9,24 +9,9 @@ from osmcsymbol import OsmcSymbol
 networkOrder = ['iwn', 'nwn', 'rwn', 'lwn']
 
 class LineElement:
-    def __init__(self, id, relation):
+    def __init__(self, relation):
         self.osmcSymbol = relation.osmcSymbol
         self.network = relation.network
-
-        # find previous and next element in relation
-#        i = relation.lines.index(id)
-#        if (i > 0):
-#            previous = relation.lines[i-1]
-#        else:
-#            previous = None
-#        if (i + 1 < len(relation.lines)):
-#            next = relation.lines[i+1]
-#        else:
-#            next = None
-#
-#        self.previous = previous
-#        self.next = next
-#        self.offset = None
 
     def __eq__(self, other):
         return self.osmcSymbol == other.osmcSymbol

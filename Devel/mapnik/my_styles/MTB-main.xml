@@ -543,7 +543,7 @@
     <StyleName>osmc-track3</StyleName>
     <Datasource>
       <Parameter name="table">
-        (SELECT osm_id,way,osmcsymbol3 FROM &prefix;_routes2 WHERE "osmcsymbol3" IS NOT NULL) as osmc_tracks
+        (SELECT osm_id,way,osmcsymbol3,offsetside FROM &prefix;_routes2 WHERE "osmcsymbol3" IS NOT NULL) as osmc_tracks
       </Parameter>
       &datasource-settings;
     </Datasource>
@@ -552,7 +552,7 @@
     <StyleName>osmc-track2</StyleName>
     <Datasource>
       <Parameter name="table">
-        (SELECT osm_id,way,osmcsymbol2 FROM &prefix;_routes2 WHERE "osmcsymbol2" IS NOT NULL) as osmc_tracks
+        (SELECT osm_id,way,osmcsymbol2,offsetside FROM &prefix;_routes2 WHERE "osmcsymbol2" IS NOT NULL) as osmc_tracks
       </Parameter>
       &datasource-settings;
     </Datasource>
@@ -561,7 +561,7 @@
     <StyleName>osmc-track1</StyleName>
     <Datasource>
       <Parameter name="table">
-        (SELECT osm_id,way,osmcsymbol1 FROM &prefix;_routes2 WHERE "osmcsymbol1" IS NOT NULL) as osmc_tracks
+        (SELECT osm_id,way,osmcsymbol1,offsetside FROM &prefix;_routes2 WHERE "osmcsymbol1" IS NOT NULL) as osmc_tracks
       </Parameter>
       &datasource-settings;
     </Datasource>
@@ -570,7 +570,7 @@
     <StyleName>osmc-track0</StyleName>
     <Datasource>
       <Parameter name="table">
-        (SELECT osm_id,way,osmcsymbol0 FROM &prefix;_routes2 WHERE "osmcsymbol0" IS NOT NULL) as osmc_tracks
+        (SELECT osm_id,way,osmcsymbol0,offsetside FROM &prefix;_routes2 WHERE "osmcsymbol0" IS NOT NULL) as osmc_tracks
       </Parameter>
       &datasource-settings;
     </Datasource>
@@ -594,10 +594,10 @@
     <StyleName>mtb_basic</StyleName>
     <Datasource>
         <Parameter name="table">
-        (select osm_id,way,route,"mtb:scale","mtb:scale:uphill", network
-        from planet_osm_line
+        (select osm_id,way,"mtb:scale","mtb:scale:uphill", offsetside, highway, tracktype
+        from planet_osm_routes2
         where ("mtb:scale" is not null or
-        "mtb:scale:uphill" is not null or route='mtb')) as mtb_basic
+        "mtb:scale:uphill" is not null or (tracktype='grade1' and highway='track'))) as mtb_basic
         </Parameter>
         &datasource-settings;
     </Datasource>
@@ -624,6 +624,13 @@
         or ("mtb:scale" in ('2-', '2', '2+', '3-', '3', '3+', '4-', '4', '4+', '5-', '5', '5+') and incline in ('up','down')))) as mtb_incline
         </Parameter>
         &datasource-settings;
+    </Datasource>
+</Layer>
+<Layer name="mtbwarning" status="on" srs="&srs900913;" clear_label_cache="yes">
+    <StyleName>mtbwarning</StyleName>
+    <Datasource>
+      <Parameter name="table">(select way from &prefix;_point where warning is not null) as mtbwarning</Parameter>
+      &datasource-settings;
     </Datasource>
 </Layer>
 <!--<Layer name="mtb5" srs="&srs900913;" clear_label_cache="yes">
