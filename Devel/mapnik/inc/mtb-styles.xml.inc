@@ -458,8 +458,8 @@
   </Rule>
 </Style>
 <Style name="mtbwarning">
-    &maxscale_zoom13;
     <Rule title="danger">
+            &maxscale_zoom13;
             <PointSymbolizer file="&symbols-path;warning.png" type="png" width="8" height="16" allow_overlap="true"></PointSymbolizer>
     </Rule>
 </Style>

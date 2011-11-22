@@ -99,7 +99,7 @@ def main():
             routes[r.id].highway = row[1]
             routes[r.id].tracktype = row[2]
             wayCursor.execute('''
-                SELECT nodes[1], nodes[array_length(nodes, 1)]
+                SELECT nodes[1], nodes[array_upper(nodes, 1)]
                     FROM planet_osm_ways
                     WHERE id=%s
             ''' % r.id)
@@ -141,7 +141,7 @@ def main():
         else:
             pointCursor.execute("select lat, lon from planet_osm_nodes where id=%s" % dnID)
             nodeLatLon = pointCursor.fetchone()
-            geometryCommand = "ST_GeomFromText(ST_SetSRID(ST_Point( %s, %s),900913)) " % (str(nodeLatLon[1]/100.0), str(nodeLatLon[0]/100.0))
+            geometryCommand = "ST_SetSRID(ST_Point( %s, %s),900913) " % (str(nodeLatLon[1]/100.0), str(nodeLatLon[0]/100.0))
             pointValues = str(dnID) + ", " + geometryCommand + ", " + str(dangerNodes[dnID])
             pointCursor.execute("INSERT INTO planet_osm_point (osm_id, way, warning) VALUES (%s)" % pointValues)
 
@@ -153,14 +153,14 @@ def main():
         nextRouteIDs.remove(routes[r].id)
         previousRouteIDs = deepcopy(nodes[routes[r].firstNode])
         previousRouteIDs.remove(routes[r].id)
-        if r==44013159:
-            print nextRouteIDs, previousRouteIDs
+#        if r==44013159:
+#            print nextRouteIDs, previousRouteIDs
         for rid in nextRouteIDs:
             routes[routes[r].id].nextRoutes.append(rid)
         for rid in previousRouteIDs:
             routes[routes[r].id].previousRoutes.append(rid)
 
-    print routes[44013159].nextRoutes, routes[44013159].previousRoutes
+#    print routes[44013159].nextRoutes, routes[44013159].previousRoutes
 
 
     print time.strftime("%H:%M:%S", time.localtime()), " - neighbours are found."
@@ -171,7 +171,7 @@ def main():
     listOfRoutes = sorted(routes.values(), key=lambda route: route.osmcSigns[0], reverse=True)
     setrecursionlimit(len(listOfRoutes))
     for r in listOfRoutes:
-        print "For cycle: ", r.id, r.osmcSigns[0]
+#        print "For cycle: ", r.id, r.osmcSigns[0]
         setOffset(routes, r.id, "next")
         setOffset(routes, r.id, "previous")
     print time.strftime("%H:%M:%S", time.localtime()), " - offset is found."
@@ -222,8 +222,8 @@ def main():
     print "Relations: ", len(relations)
     print "max Signs: ", maxSigns
     print "Routes:    ", len(routes)
-    print routes[39952857].nextRoutes, routes[44013159].previousRoutes
-    print nodes[559611826]
+#    print routes[39952857].nextRoutes, routes[44013159].previousRoutes
+#    print nodes[559611826]
 
     # commit the result into the database
     auxiliaryCursor.close()
@@ -261,7 +261,7 @@ def findNodes(routes):
 def setOffset(routes, currentId, direction):
     if (routes[currentId].offset == None):
         routes[currentId].offset = -1
-    print "Correct order: ", currentId
+#    print "Correct order: ", currentId
     if (direction == "next"):
         for nextID in routes[currentId].nextRoutes:
             if (routes[nextID].offset != None):
