@@ -2,15 +2,8 @@
 <Style name="access">
     <Rule title="soukromá komunikace">
             <Filter>(([access]='private') or ([access]='no'))</Filter>
-            &maxscale_zoom15;
-            <LineSymbolizer>
-                <CssParameter name="stroke">rgb(239,169,169)</CssParameter>
-                <CssParameter name="stroke-width">6</CssParameter>
-                <CssParameter name="stroke-opacity">0.5</CssParameter>
-                <CssParameter name="stroke-linejoin">round</CssParameter>
-                <CssParameter name="stroke-linecap">round</CssParameter>
-                <CssParameter name="stroke-dasharray">6, 8</CssParameter>
-            </LineSymbolizer>
+            &maxscale_zoom13;
+    <ShieldSymbolizer name="osm_id" face_name="DejaVu Sans Bold" no_text="true" size="0" placement="line" file= "../symbols/noAccess.png" type="png" width="6" height="6" min_distance="6" spacing="12"/>
     </Rule>
 </Style>
 <Style name="aerialways">
@@ -1685,7 +1678,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="pěšina">
-            <Filter>(([highway]='path') and not ([tunnel]='yes'))</Filter>
+            <Filter>((([highway]='path') or ([highway]='footway')) and not ([tunnel]='yes'))</Filter>
             &maxscale_zoom14;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_track_casing;</CssParameter>
@@ -1722,7 +1715,7 @@
                 <CssParameter name="stroke-dasharray">7, 3</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule title="chodník">
+<!--    <Rule title="chodník">
             <Filter>(([highway]='footway') and not (([tunnel]='yes')))</Filter>
             &maxscale_zoom14;
             <LineSymbolizer>
@@ -1740,6 +1733,7 @@
                 <CssParameter name="stroke-dasharray">1, 3</CssParameter>
             </LineSymbolizer>
     </Rule>
+-->
     <Rule title="nástupiště">
             <Filter>(([highway]='platform') or ([railway]='platform'))</Filter>
             &maxscale_zoom16;
@@ -2264,7 +2258,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="!stezka">
-            <Filter>([highway]='path')</Filter>
+            <Filter>(([highway]='path') or ([highway]='footway'))</Filter>
             &maxscale_zoom14;
             <LineSymbolizer>
                 <CssParameter name="stroke-width">3.5</CssParameter>
@@ -2305,7 +2299,7 @@
                 <CssParameter name="stroke-dasharray">7, 3</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule title="!chodník">
+<!--    <Rule title="!chodník">
             <Filter>([highway]='footway')</Filter>
             &maxscale_zoom14;
             <LineSymbolizer>
@@ -2325,6 +2319,7 @@
                 <CssParameter name="stroke-dasharray">1, 3</CssParameter>
             </LineSymbolizer>
     </Rule>
+-->
 </Style>
 <Style name="primarybridge_layer0_casing">
     <Rule title="most na silnici 1. třídy">

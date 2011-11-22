@@ -711,7 +711,7 @@
 <StyleName>access</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,access,highway from planet_osm_line where access is not null) as access
+      (select osm_id,way,access,highway from planet_osm_line where access is not null) as access
       </Parameter>
       &datasource-settings;
     </Datasource>
