@@ -445,13 +445,13 @@
 </Style>-->
 <Style name="mtb_incline">
   <Rule title="příkré stoupání">
-    &maxscale_zoom13;
+    &maxscale_zoom14;
     &minscale_zoom18;
     <Filter>(([mtb:scale:uphill]='3' or [mtb:scale:uphill]='4' or [mtb:scale:uphill]='5' or [mtb:scale]!='')and([incline]='up'))</Filter>
     <LinePatternSymbolizer width="20" height="12" type="png" file="../symbols/mtb_up.png"/>
   </Rule>
   <Rule title="prudké klesání">
-    &maxscale_zoom13;
+    &maxscale_zoom14;
     &minscale_zoom18;
     <Filter>(([mtb:scale:uphill]='3' or [mtb:scale:uphill]='4' or [mtb:scale:uphill]='5' or [mtb:scale]!='')and([incline]='down'))</Filter>
     <LinePatternSymbolizer width="20" height="12" type="png" file="../symbols/mtb_down.png"/>
@@ -459,7 +459,7 @@
 </Style>
 <Style name="mtbwarning">
     <Rule title="danger">
-            &maxscale_zoom13;
+            &maxscale_zoom14;
             <PointSymbolizer file="&symbols-path;warning.png" type="png" width="8" height="16" allow_overlap="true"></PointSymbolizer>
     </Rule>
 </Style>
