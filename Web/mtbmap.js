@@ -116,10 +116,32 @@
         }
     }
 
+    function getDistance(line) {
+        var ret = 0;
+        for (i=0; i < line.components.length - 1; i = i + 1) {
+            lat1 = line.components[i].y*Math.PI/180;
+            lon1 = line.components[i].x*Math.PI/180;
+            lat2 = line.components[i+1].y*Math.PI/180;
+            lon2 = line.components[i+1].x*Math.PI/180;
+            if (lat1 != lat2 || lon1 != lon2) {
+                ret += Math.acos(Math.sin(lat1)*Math.sin(lat2) + Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon1-lon2)) * 6370;
+            }
+        }
+        return ret;
+    }
+
     var geometry;        
 
     function handleMeasurements(event) {
         geometry = event.geometry;
+        var line = geometry.clone().transform(new OpenLayers.Projection('EPSG:900913'),new OpenLayers.Projection('EPSG:4326'));
+        var distance = getDistance(line);
+        var units = "km";
+        if (distance < 1) {
+            distance = distance*1000;
+            units = "m";
+        }
+        document.getElementById('length').innerHTML = distance.toFixed(2) + " " + units;
     }
 
     function toggleControl(element) {
@@ -127,9 +149,12 @@
             var control = measureControls[key];
             if(element.value == key && element.checked) {
                 document.getElementById('profileButton').style.display = 'inline'
+                document.getElementById('length').style.display = 'inline'
                 control.activate();
             } else {
                 document.getElementById('profileButton').style.display = 'none'
+                document.getElementById('length').style.display = 'none'
+                document.getElementById('length').innerHTML = ""
                 control.deactivate();
             }
         }
