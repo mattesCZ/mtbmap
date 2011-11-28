@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map [
+<!ENTITY % entities SYSTEM "../inc/entities.xml.inc">
+%entities;
+]>
+<Map srs="&srs900913;" bgcolor="rgba(255,255,255,0)">
+    &fontset-settings;
+
+<Style name="mtb_shield0">
+  <Rule title="MTB obtížnost 0">
+    &maxscale_zoom13;
+    &minscale_zoom18;
+    <ShieldSymbolizer name="osm_id" face_name="DejaVu Sans Bold" no_text="true" size="0" placement="line" file= "../symbols/mtb_sh_scale0.png" type="png" width="12" height="12" min_distance="10" spacing="100"/>
+  </Rule>
+</Style>
+<Style name="mtb_shield1">
+  <Rule title="MTB obtížnost 1">
+    &maxscale_zoom13;
+    &minscale_zoom18;
+    <ShieldSymbolizer name="osm_id" face_name="DejaVu Sans Bold" no_text="true" size="0" placement="line" file= "../symbols/mtb_sh_scale1.png" type="png" width="12" height="12" min_distance="10" spacing="100"/>
+  </Rule>
+</Style>
+<Style name="mtb_shield2">
+  <Rule title="MTB obtížnost 2">
+    &maxscale_zoom13;
+    &minscale_zoom18;
+    <ShieldSymbolizer name="osm_id" face_name="DejaVu Sans Bold" no_text="true" size="0" placement="line" file= "../symbols/mtb_sh_scale2.png" type="png" width="12" height="12" min_distance="10" spacing="100"/>
+  </Rule>
+</Style>
+<Style name="mtb_shield3">
+  <Rule title="MTB obtížnost 3">
+    &maxscale_zoom13;
+    &minscale_zoom18;
+    <ShieldSymbolizer name="osm_id" face_name="DejaVu Sans Bold" no_text="true" size="0" placement="line" file= "../symbols/mtb_sh_scale3.png" type="png" width="13" height="12" min_distance="10" spacing="100"/>
+  </Rule>
+</Style>
+<Style name="mtb_shield4">
+  <Rule title="MTB obtížnost 4">
+    &maxscale_zoom13;
+    &minscale_zoom18;
+    <ShieldSymbolizer name="osm_id" face_name="DejaVu Sans Bold" no_text="true" size="0" placement="line" file= "../symbols/mtb_sh_scale4.png" type="png" width="12" height="12" min_distance="10" spacing="100"/>
+  </Rule>
+</Style>
+<Style name="mtb_shield5">
+  <Rule title="MTB obtížnost 5">
+    &maxscale_zoom13;
+    &minscale_zoom18;
+    <ShieldSymbolizer name="osm_id" face_name="DejaVu Sans Bold" no_text="true" size="0" placement="line" file= "../symbols/mtb_sh_scale5.png" type="png" width="12" height="12" min_distance="10" spacing="100"/>
+  </Rule>
+</Style>
+
+<Layer name="mtb5" srs="&srs900913;" clear_label_cache="yes">
+    <StyleName>mtb_shield5</StyleName>
+    <Datasource>
+        <Parameter name="table">
+        (select osm_id,way
+        from planet_osm_routes2
+        where ("mtb:scale" is not null or
+        "mtb:scale:uphill" is not null) and "mtb:scale" in ('5','5+','5-')) as mtb_basic
+        </Parameter>
+        &datasource-settings;
+    </Datasource>
+</Layer>
+<Layer name="mtb4" srs="&srs900913;">
+    <StyleName>mtb_shield4</StyleName>
+    <Datasource>
+        <Parameter name="table">
+        (select osm_id,way
+        from planet_osm_routes2
+        where ("mtb:scale" is not null or
+        "mtb:scale:uphill" is not null) and "mtb:scale" in ('4','4+','4-')) as mtb_basic
+        </Parameter>
+        &datasource-settings;
+    </Datasource>
+</Layer>
+<Layer name="mtb3" srs="&srs900913;">
+    <StyleName>mtb_shield3</StyleName>
+    <Datasource>
+        <Parameter name="table">
+        (select osm_id,way
+        from planet_osm_routes2
+        where ("mtb:scale" is not null or
+        "mtb:scale:uphill" is not null) and "mtb:scale" in ('3','3+','3-')) as mtb_basic
+        </Parameter>
+        &datasource-settings;
+    </Datasource>
+</Layer>
+<Layer name="mtb2" srs="&srs900913;">
+    <StyleName>mtb_shield2</StyleName>
+    <Datasource>
+        <Parameter name="table">
+        (select osm_id,way
+        from planet_osm_routes2
+        where ("mtb:scale" is not null or
+        "mtb:scale:uphill" is not null) and "mtb:scale" in ('2','2+','2-')) as mtb_basic
+        </Parameter>
+        &datasource-settings;
+    </Datasource>
+</Layer>
+<Layer name="mtb1" srs="&srs900913;">
+    <StyleName>mtb_shield1</StyleName>
+    <Datasource>
+        <Parameter name="table">
+        (select osm_id,way
+        from planet_osm_routes2
+        where ("mtb:scale" is not null or
+        "mtb:scale:uphill" is not null) and "mtb:scale" in ('1','1+','1-')) as mtb_basic
+        </Parameter>
+        &datasource-settings;
+    </Datasource>
+</Layer>
+<Layer name="mtb0" srs="&srs900913;">
+    <StyleName>mtb_shield0</StyleName>
+    <Datasource>
+        <Parameter name="table">
+        (select osm_id,way
+        from planet_osm_routes2
+        where ("mtb:scale" is not null or
+        "mtb:scale:uphill" is not null) and "mtb:scale" in ('0','0+')) as mtb_basic
+        </Parameter>
+        &datasource-settings;
+    </Datasource>
+</Layer>
+</Map>
