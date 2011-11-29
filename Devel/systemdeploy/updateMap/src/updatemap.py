@@ -83,8 +83,8 @@ def mergeFiles(boundedFiles):
         count -= 1
     return mergedFile
 
-def loadDB(database, file, style, cache):
-    loadCommand = osm2pgsql + ' -s -d ' + database + ' ' + datadir + file + ' -S ' + style + ' -C ' + str(cache)
+def loadDB(database, file, style, cache, port):
+    loadCommand = osm2pgsql + ' -s -d ' + database + ' ' + datadir + file + ' -S ' + style + ' -C ' + str(cache) + ' -P ' + str(port)
     return os.system(loadCommand)
 
 def refreshDate(file,date):
@@ -136,6 +136,7 @@ if __name__ == "__main__":
             exists('datadir', datadir)
             database = config.get('update', 'database')
             print 'database name set to : ' + database
+            port = config.get('update', 'port')
             style = config.get('update', 'style')
             exists('style', style)
             cache = config.get('update', 'cache')
@@ -246,12 +247,12 @@ if __name__ == "__main__":
             merged = boundedFiles[0]
 
         #osm2pgsql
-        if (loadDB(database, merged, style, cache) != 0):
+        if (loadDB(database, merged, style, cache, port) != 0):
             raise UpdateError('An osm2pgsql error occured. Database was probably cleaned.')
         else:
             print 'OSM data successfully loaded to database, running relations2lines.py ...'
         #relations2lines
-        os.system(relations2lines + ' ' + database)
+        os.system(relations2lines + ' ' + database + ' ' + str(port))
 
         #refresh date on webpages, restart renderd
         refreshDate('index.html', str(date))
@@ -261,12 +262,12 @@ if __name__ == "__main__":
         print ue.msg
         print 'Map data was not uploaded.'
 
-    finally:
-        if (os.path.exists(datadir + merged)):
-                os.remove(datadir + merged)
-        for file in boundedFiles:
-            if (os.path.exists(datadir + file)):
-                os.remove(datadir + file)
-        for file in sourceFiles:
-            if (os.path.exists(datadir + file)):
-                os.remove(datadir + file)
+#    finally:
+#        if (os.path.exists(datadir + merged)):
+#                os.remove(datadir + merged)
+#        for file in boundedFiles:
+#            if (os.path.exists(datadir + file)):
+#                os.remove(datadir + file)
+#        for file in sourceFiles:
+#            if (os.path.exists(datadir + file)):
+#                os.remove(datadir + file)

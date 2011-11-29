@@ -16,10 +16,13 @@ def main():
     print time.strftime("%H:%M:%S", time.localtime()), " - script started"
     print "  Searching RelationIDs and Lines in planet_osm_line..."
     # Create connection to DB server.
-    if (len(sys.argv) > 1):
-        connection = connect("dbname='" + sys.argv[1] + "' user='xtesar7' password=''");
+    if (len(sys.argv) == 3):
+        connection = connect("dbname='" + sys.argv[1] + "' user='xtesar7' password='' port='" + sys.argv[2] + "'");
+    elif (len(sys.argv) <= 1):
+        print 'No arguments given, using default db=gisczech, port=5433'
+        connection = connect("dbname='gisczech' user='xtesar7' password='' port=5433");
     else:
-        connection = connect("dbname='gistemp' user='xtesar7' password=''");
+        print 'relations2lines takes exactly two arguments: database and port'
     relationCursor = connection.cursor()
     auxiliaryCursor = connection.cursor()
     wayCursor = connection.cursor()
@@ -219,9 +222,10 @@ def main():
             ''' % (row))
     print " Finished inserting routes into new table."
 
-    print "Relations: ", len(relations)
-    print "max Signs: ", maxSigns
-    print "Routes:    ", len(routes)
+    print "Relations:   ", len(relations)
+    print "max Signs:   ", maxSigns
+    print "Routes:      ", len(routes)
+    print "Danger nodes:", len(dangerNodes)
 #    print routes[39952857].nextRoutes, routes[44013159].previousRoutes
 #    print nodes[559611826]
 
@@ -288,12 +292,12 @@ def setOffset(routes, currentId, direction):
 def findDangerousNodes(nodes, routes):
     dangerNodes = {}
     for node in nodes:
-        mtbMin = 5
+        mtbMin = 6
         mtbMax = 0
         for line in nodes[node]:
             if routes[line].mtbScale:
                 try:
-                    mtbScale = int(routes[line].mtbScale)
+                    mtbScale = int(routes[line].mtbScale.replace('+', '').replace('-',''))
                     if mtbScale > mtbMax:
                         mtbMax = mtbScale
                     if mtbScale < mtbMin:
