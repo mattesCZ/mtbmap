@@ -2,7 +2,7 @@
 <Style name="access">
     <Rule title="soukromá komunikace">
             <Filter>(([access]='private') or ([access]='no'))</Filter>
-            &maxscale_zoom13;
+            &maxscale_zoom14;
     <ShieldSymbolizer name="osm_id" face_name="DejaVu Sans Bold" no_text="true" size="0" placement="line" file= "../symbols/noAccess.png" type="png" width="6" height="6" min_distance="6" spacing="12"/>
     </Rule>
 </Style>

@@ -748,7 +748,12 @@
 <Layer name="power" srs="&srs900913;">
 <StyleName>power</StyleName>
     <Datasource>
-      <Parameter name="table">(select way from planet_osm_line where "power"='line') as power</Parameter>
+      <Parameter name="table">(select way,power,
+      CASE WHEN CAST(voltage as integer)&lt;10000 THEN voltage||' V'
+           WHEN CAST(voltage as integer)>=10000 THEN replace(voltage, '000', '')||' kV'
+           WHEN CAST(voltage as integer)>=1000000 THEN voltage||' V'
+           ELSE voltage END AS voltage
+      from planet_osm_line where "power"='line' or "power"='minor_line') as power</Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
@@ -756,7 +761,7 @@
 <Layer name="power_towers" srs="&srs900913;">
 <StyleName>power_towers</StyleName>
     <Datasource>
-      <Parameter name="table">(select way from planet_osm_point where power='tower') as power_towers</Parameter>
+      <Parameter name="table">(select way,power from planet_osm_point where power='tower' or "power"='pole') as power_towers</Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
@@ -894,7 +899,7 @@ admin 8 - uzemi samostatnych obci
     <StyleName>symbols</StyleName>
     <StyleName>points</StyleName>
     <Datasource>
-      <Parameter name="table">(select * from &prefix;_point where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or information is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or power_source is NOT NULL or man_made is NOT NULL or shop is NOT NULL or historic is NOT NULL or ruins='yes' or military='bunker') as amenity</Parameter>
+      <Parameter name="table">(select * from &prefix;_point where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or information is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or power_source is NOT NULL or man_made is NOT NULL or shop is NOT NULL or historic is NOT NULL or ruins='yes' or military='bunker' or noexit in ('yes', 'no')) as amenity</Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>

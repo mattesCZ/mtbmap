@@ -602,10 +602,35 @@
             &maxscale_zoom14;
             <PointSymbolizer file="&symbols-path;infoOffice14.png" type="png" width="14" height="14"></PointSymbolizer>
     </Rule>
-    <Rule title="bunkr">
-            <Filter>([military]='bunker')</Filter>
+    <Rule title="řopík">
+            <Filter>([military]='bunker' and [bunker_type]='pillow' and not [ruins]='yes')</Filter>
             &maxscale_zoom14;
-            <PointSymbolizer file="&symbols-path;bunker.png" type="png" width="14" height="14"></PointSymbolizer>
+            <PointSymbolizer file="&symbols-path;bunker.png" type="png" width="9" height="7"></PointSymbolizer>
+    </Rule>
+    <Rule title="bunkr">
+            <Filter>([military]='bunker' and not [bunker_type]='pillow' and not [ruins]='yes')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;bunker15.png" type="png" width="15" height="11"></PointSymbolizer>
+    </Rule>
+    <Rule title="řopík">
+            <Filter>([military]='bunker' and [bunker_type]='pillow' and [ruins]='yes')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;bunker-ruins.png" type="png" width="9" height="7"></PointSymbolizer>
+    </Rule>
+    <Rule title="bunkr">
+            <Filter>([military]='bunker' and not [bunker_type]='pillow' and [ruins]='yes')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;bunker-ruins15.png" type="png" width="15" height="11"></PointSymbolizer>
+    </Rule>
+<!--    <Rule title="konec cesty">
+            <Filter>([noexit]='yes')</Filter>
+            &maxscale_zoom15;
+            <PointSymbolizer file="&symbols-path;noexitYes.png" type="png" width="12" height="12"></PointSymbolizer>
+    </Rule>-->
+    <Rule title="cesta pokračuje, pouze není zmapovaná">
+            <Filter>([noexit]='no')</Filter>
+            &maxscale_zoom15;
+            <PointSymbolizer file="&symbols-path;noexitNo.png" type="png" width="12" height="12"></PointSymbolizer>
     </Rule>
 </Style>
 <Style name="symbols-poly">
@@ -763,10 +788,25 @@
             &maxscale_zoom14;
             <PointSymbolizer file="&symbols-path;infoOffice14.png" type="png" width="14" height="14"></PointSymbolizer>
     </Rule>
-    <Rule title="!bunkr">
-            <Filter>([military]='bunker')</Filter>
+    <Rule title="řopík">
+            <Filter>([military]='bunker' and [bunker_type]='pillow' and not [ruins]='yes')</Filter>
             &maxscale_zoom14;
-            <PointSymbolizer file="&symbols-path;bunker.png" type="png" width="14" height="14"></PointSymbolizer>
+            <PointSymbolizer file="&symbols-path;bunker.png" type="png" width="9" height="7"></PointSymbolizer>
+    </Rule>
+    <Rule title="bunkr">
+            <Filter>([military]='bunker' and not [bunker_type]='pillow' and not [ruins]='yes')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;bunker15.png" type="png" width="15" height="11"></PointSymbolizer>
+    </Rule>
+    <Rule title="řopík">
+            <Filter>([military]='bunker' and [bunker_type]='pillow' and [ruins]='yes')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;bunker-ruins.png" type="png" width="9" height="7"></PointSymbolizer>
+    </Rule>
+    <Rule title="bunkr">
+            <Filter>([military]='bunker' and not [bunker_type]='pillow' and [ruins]='yes')</Filter>
+            &maxscale_zoom14;
+            <PointSymbolizer file="&symbols-path;bunker-ruins15.png" type="png" width="15" height="11"></PointSymbolizer>
     </Rule>
 </Style>
 

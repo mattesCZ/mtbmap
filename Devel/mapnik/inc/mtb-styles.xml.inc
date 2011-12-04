@@ -108,10 +108,10 @@
       <CssParameter name="stroke-dasharray">0,2,2,4</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule title="MTB stezka obtížnosti 4 a 5">
+  <Rule title="MTB stezka obtížnosti 4, 5 a 6">
     &maxscale_zoom13;
     &minscale_zoom14;
-    <Filter>([offsetside] = 1 and ([mtb:scale]='4' or [mtb:scale]='4+' or [mtb:scale]='4-' or [mtb:scale]='5' or [mtb:scale]='5+' or [mtb:scale]='5-'))</Filter>
+    <Filter>([offsetside] = 1 and ([mtb:scale]='4' or [mtb:scale]='4+' or [mtb:scale]='4-' or [mtb:scale]='5' or [mtb:scale]='5+' or [mtb:scale]='5-' or [mtb:scale]='6' or [mtb:scale]='6+' or [mtb:scale]='6-'))</Filter>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_mtb_track;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -196,9 +196,9 @@
       <CssParameter name="stroke-dasharray">0,2,2,4</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule title="MTB stezka obtížnosti 4 a 5">
+  <Rule title="MTB stezka obtížnosti 4, 5 a 6">
     &maxscale_zoom15;
-    <Filter>([offsetside] = 1 and ([mtb:scale]='4' or [mtb:scale]='4+' or [mtb:scale]='4-' or [mtb:scale]='5' or [mtb:scale]='5+' or [mtb:scale]='5-'))</Filter>
+    <Filter>([offsetside] = 1 and ([mtb:scale]='4' or [mtb:scale]='4+' or [mtb:scale]='4-' or [mtb:scale]='5' or [mtb:scale]='5+' or [mtb:scale]='5-' or [mtb:scale]='6' or [mtb:scale]='6+' or [mtb:scale]='6-'))</Filter>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_mtb_track;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -286,10 +286,10 @@
       <CssParameter name="stroke-dasharray">0,2,2,4</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule title="MTB stezka obtížnosti 4 a 5">
+  <Rule title="MTB stezka obtížnosti 4, 5 a 6">
     &maxscale_zoom13;
     &minscale_zoom14;
-    <Filter>([offsetside] = -1 and ([mtb:scale]='4' or [mtb:scale]='4+' or [mtb:scale]='4-' or [mtb:scale]='5' or [mtb:scale]='5+' or [mtb:scale]='5-'))</Filter>
+    <Filter>([offsetside] = -1 and ([mtb:scale]='4' or [mtb:scale]='4+' or [mtb:scale]='4-' or [mtb:scale]='5' or [mtb:scale]='5+' or [mtb:scale]='5-' or [mtb:scale]='6' or [mtb:scale]='6+' or [mtb:scale]='6-'))</Filter>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_mtb_track;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -374,9 +374,9 @@
       <CssParameter name="stroke-dasharray">0,2,2,4</CssParameter>
     </LineSymbolizer>
   </Rule>
-  <Rule title="MTB stezka obtížnosti 4 a 5">
+  <Rule title="MTB stezka obtížnosti 4, 5 a 6">
     &maxscale_zoom15;
-    <Filter>([offsetside] = -1 and ([mtb:scale]='4' or [mtb:scale]='4+' or [mtb:scale]='4-' or [mtb:scale]='5' or [mtb:scale]='5+' or [mtb:scale]='5-'))</Filter>
+    <Filter>([offsetside] = -1 and ([mtb:scale]='4' or [mtb:scale]='4+' or [mtb:scale]='4-' or [mtb:scale]='5' or [mtb:scale]='5+' or [mtb:scale]='5-' or [mtb:scale]='6' or [mtb:scale]='6+' or [mtb:scale]='6-'))</Filter>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_mtb_track;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>

@@ -340,7 +340,8 @@
     </Rule>
 </Style>
 <Style name="power">
-    <Rule title="elektrické vedení">
+    <Rule title="elektrické vedení vysokého napětí">
+      <Filter>([power]='line')</Filter>
       &maxscale_zoom14;
       <LineSymbolizer>
         <CssParameter name="stroke">&color_powerline;</CssParameter>
@@ -362,12 +363,44 @@
         <CssParameter name="stroke-linecap">butt</CssParameter>
         <CssParameter name="stroke-dasharray">0,1,1,29,1,16</CssParameter>
       </LineSymbolizer>
+      <TextSymbolizer name="voltage" fontset_name="book-fonts" size="8" fill="rgb(0,0,0)" placement="line" dy="5" spacing="800" halo_radius="1" halo_fill="rgb(252,252,255)"></TextSymbolizer>
+    </Rule>
+    <Rule title="elektrické vedení nízkého napětí">
+      <Filter>([power]='minor_line')</Filter>
+      &maxscale_zoom15;
+      <LineSymbolizer>
+        <CssParameter name="stroke">&color_powerline;</CssParameter>
+        <CssParameter name="stroke-width">1</CssParameter>
+        <CssParameter name="stroke-linejoin">round</CssParameter>
+        <CssParameter name="stroke-linecap">round</CssParameter>
+      </LineSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">&color_powerline;</CssParameter>
+        <CssParameter name="stroke-width">3.5</CssParameter>
+        <CssParameter name="stroke-linejoin">bevel</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">1, 15</CssParameter>
+      </LineSymbolizer>
+<!--      <LineSymbolizer>
+        <CssParameter name="stroke">&color_powerline;</CssParameter>
+        <CssParameter name="stroke-width">3</CssParameter>
+        <CssParameter name="stroke-linejoin">bevel</CssParameter>
+        <CssParameter name="stroke-linecap">butt</CssParameter>
+        <CssParameter name="stroke-dasharray">0,1,1,29,1,16</CssParameter>
+      </LineSymbolizer>-->
+      <TextSymbolizer name="voltage" fontset_name="book-fonts" size="8" fill="rgb(0,0,0)" placement="line" dy="4" spacing="600" halo_radius="1" halo_fill="rgb(252,252,255)"></TextSymbolizer>
     </Rule>
 </Style>
 <Style name="power_towers">
     <Rule title="sloup elektrického vedení">
             &maxscale_zoom14;
+            <Filter>([power]='tower')</Filter>
             <PointSymbolizer file="&symbols-path;power_tower_cz.png" type="png" width="5" height="5"></PointSymbolizer>
+    </Rule>
+    <Rule title="sloup elektrického vedení">
+            &maxscale_zoom15;
+            <Filter>([power]='pole')</Filter>
+            <PointSymbolizer file="&symbols-path;power_tower_cz.png" type="png" width="4" height="4"></PointSymbolizer>
     </Rule>
 </Style>
 
