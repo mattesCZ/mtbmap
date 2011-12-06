@@ -19,8 +19,8 @@ def main():
     if (len(sys.argv) == 3):
         connection = connect("dbname='" + sys.argv[1] + "' user='xtesar7' password='' port='" + sys.argv[2] + "'");
     elif (len(sys.argv) <= 1):
-        print 'No arguments given, using default db=gisczech, port=5433'
-        connection = connect("dbname='gisczech' user='xtesar7' password='' port=5433");
+        print 'No arguments given, using default db=gisczech, port=5432'
+        connection = connect("dbname='gisczech' user='xtesar7' password='' port=5432");
     else:
         print 'relations2lines takes exactly two arguments: database and port'
     relationCursor = connection.cursor()
@@ -32,12 +32,15 @@ def main():
     relationIDs = []
     relations = []
     relationCursor.execute('''
-        SELECT osm_id, "mtb:scale", "mtb:scale:uphill", network, "osmc:symbol"
+        SELECT osm_id, CASE WHEN ("highway"='track' AND "tracktype"='grade1' AND "mtb:scale" IS NULL) THEN 'grade1'
+                            ELSE "mtb:scale"
+                       END AS "mtb:scale"
+            , "mtb:scale:uphill", network, "osmc:symbol"
             FROM planet_osm_line
             WHERE (("osmc:symbol" IS NOT NULL OR kct_red IS NOT NULL
                 OR kct_blue IS NOT NULL OR kct_green IS NOT NULL
                 OR kct_yellow IS NOT NULL OR "mtb:scale" IS NOT NULL
-                OR "mtb:scale:uphill" IS NOT NULL))
+                OR "mtb:scale:uphill" IS NOT NULL OR ("highway"='track' AND "tracktype"='grade1')))
         ''')
     while True:
         # Fetch some of the result.
@@ -55,6 +58,7 @@ def main():
                 if not (row[0] in relationIDs):
                     relationIDs.append(-row[0])
             else:
+                # 0: osm_id; 1: mtb:scale; 2: mtb:scale:uphill; 3: network; 4: "osmc:symbol"
                 lineInfo = "LINE;" + str(row[0]) + ";" + str(row[1]) + ";" + str(row[2]) + ";" + str(row[3]) + ";" + str(row[4])
                 relations.append(relation.Relation(lineInfo))
 
@@ -118,53 +122,26 @@ def main():
     # Find end nodes and their routes
     nodes = findNodes(routes)
 
-    # Find nodeIDs, where track's attribute mtb:scale changes rapidly (difference >= 2),
-    # create new column warning in planet_osm_lines with the difference
-    dangerNodes = findDangerousNodes(nodes, routes)
-    pointCursor = connection.cursor()
-
-    pointCursor.execute('''
-        SELECT attname FROM pg_attribute WHERE attrelid=(SELECT oid FROM pg_class WHERE relname='planet_osm_point') AND attname='warning'
-        ''')
-    if pointCursor.fetchone():
-        pointCursor.execute('''
-            ALTER TABLE planet_osm_point
-                DROP COLUMN warning
-            ''')
-    pointCursor.execute('''
-            ALTER TABLE planet_osm_point
-                ADD "warning" integer
-        ''')
-    for dnID in dangerNodes:
-        pointCursor.execute("SELECT osm_id, way FROM planet_osm_point WHERE osm_id=%s" % dnID)
-        if pointCursor.fetchone():
-            pointCursor.execute('''
-                UPDATE planet_osm_point SET "warning"=%s WHERE osm_id=%s
-                ''' % (str(dangerNodes[dnID]), dnID))
-        else:
-            pointCursor.execute("select lat, lon from planet_osm_nodes where id=%s" % dnID)
-            nodeLatLon = pointCursor.fetchone()
-            geometryCommand = "ST_SetSRID(ST_Point( %s, %s),900913) " % (str(nodeLatLon[1]/100.0), str(nodeLatLon[0]/100.0))
-            pointValues = str(dnID) + ", " + geometryCommand + ", " + str(dangerNodes[dnID])
-            pointCursor.execute("INSERT INTO planet_osm_point (osm_id, way, warning) VALUES (%s)" % pointValues)
-
-    pointCursor.close()
-
     # Find previous and next route neighbours
     for r in routes:
         nextRouteIDs = deepcopy(nodes[routes[r].lastNode])
         nextRouteIDs.remove(routes[r].id)
         previousRouteIDs = deepcopy(nodes[routes[r].firstNode])
         previousRouteIDs.remove(routes[r].id)
-#        if r==44013159:
-#            print nextRouteIDs, previousRouteIDs
         for rid in nextRouteIDs:
             routes[routes[r].id].nextRoutes.append(rid)
         for rid in previousRouteIDs:
             routes[routes[r].id].previousRoutes.append(rid)
 
-#    print routes[44013159].nextRoutes, routes[44013159].previousRoutes
+    #remove unconnected tracks with highway=track and tracktype=grade1 and mtb:scale is null
+    routes = removeUnconnected(routes, nodes)
 
+    # Find nodeIDs, where track's attribute mtb:scale changes rapidly (difference >= 2),
+    # create new column warning in planet_osm_lines with the difference
+    dangerNodes = findDangerousNodes(nodes, routes)
+    pointCursor = connection.cursor()
+    insertDangerNodes(dangerNodes, pointCursor)
+    pointCursor.close()
 
     print time.strftime("%H:%M:%S", time.localtime()), " - neighbours are found."
     print "  Determining offset for each route..."
@@ -268,6 +245,8 @@ def setOffset(routes, currentId, direction):
 #    print "Correct order: ", currentId
     if (direction == "next"):
         for nextID in routes[currentId].nextRoutes:
+            if not (routes.has_key(nextID)):
+                return
             if (routes[nextID].offset != None):
                 return
             else:
@@ -279,6 +258,8 @@ def setOffset(routes, currentId, direction):
                     setOffset(routes, nextID, "previous")
     else:
         for nextID in routes[currentId].previousRoutes:
+            if not (routes.has_key(nextID)):
+                return
             if (routes[nextID].offset != None):
                 return
             else:
@@ -308,6 +289,87 @@ def findDangerousNodes(nodes, routes):
             dangerNodes[node] = mtbMax - mtbMin
     return dangerNodes
 
+def insertDangerNodes(nodes, cursor):
+    cursor.execute('''
+        SELECT attname FROM pg_attribute WHERE attrelid=(SELECT oid FROM pg_class WHERE relname='planet_osm_point') AND attname='warning'
+        ''')
+    if cursor.fetchone():
+        cursor.execute('''
+            ALTER TABLE planet_osm_point
+                DROP COLUMN warning
+            ''')
+    cursor.execute('''
+            ALTER TABLE planet_osm_point
+                ADD "warning" integer
+        ''')
+    for dnID in nodes:
+        cursor.execute("SELECT osm_id, way FROM planet_osm_point WHERE osm_id=%s" % dnID)
+        if cursor.fetchone():
+            cursor.execute('''
+                UPDATE planet_osm_point SET "warning"=%s WHERE osm_id=%s
+                ''' % (str(nodes[dnID]), dnID))
+        else:
+            cursor.execute("select lat, lon from planet_osm_nodes where id=%s" % dnID)
+            nodeLatLon = cursor.fetchone()
+            geometryCommand = "ST_SetSRID(ST_Point( %s, %s),900913) " % (str(nodeLatLon[1]/100.0), str(nodeLatLon[0]/100.0))
+            pointValues = str(dnID) + ", " + geometryCommand + ", " + str(nodes[dnID])
+            cursor.execute("INSERT INTO planet_osm_point (osm_id, way, warning) VALUES (%s)" % pointValues)
+
+def removeUnconnected(routes, nodes):
+    gradeOneIDs = []
+    for r in routes:
+        if routes[r].mtbScale == 'grade1':
+            gradeOneIDs.append(routes[r].id)
+    parsed = []
+    connectedGradeOne = []
+    disconnectedGradeOne = []
+    for gradeOneID in gradeOneIDs:
+        if gradeOneID in parsed:
+            continue
+        component = []
+        component.append(gradeOneID)
+        connected = False
+        parsed.append(gradeOneID)
+        neighbours = routes[gradeOneID].previousRoutes + routes[gradeOneID].nextRoutes
+        while neighbours:
+            n = neighbours.pop()
+            if n in parsed:
+                continue
+            if not (routes[n].mtbScale == None or routes[n].mtbScale == 'grade1'):
+                connected = True
+                parsed.append(n)
+                continue
+            if routes[n].mtbScale == 'grade1':
+                component.append(n)
+                newToSearch = routes[n].previousRoutes + routes[n].nextRoutes
+                for new in newToSearch:
+                    if not new in parsed:
+                        neighbours.append(new)
+            parsed.append(n)
+        if connected:
+            connectedGradeOne += component
+        else:
+            disconnectedGradeOne += component
+    for id in disconnectedGradeOne:
+        routes.pop(id)
+        #clear references to removed routes from nodes
+        for node in nodes:
+            if id in nodes[node]:
+                while id in nodes[node]:
+                    nodes[node].remove(id)
+    # remove nodes without routes
+    nodesRemove = []
+    for node in nodes:
+        if not len(nodes[node]):
+            nodesRemove.append(node)
+    for node in nodesRemove:
+        nodes.pop(node)
+
+    # set correct mtb:scale value
+    for id in connectedGradeOne:
+        routes[id].mtbScale = '0'
+    return routes
+            
 
 if __name__ == "__main__":
     main()

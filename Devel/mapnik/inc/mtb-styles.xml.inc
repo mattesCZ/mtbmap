@@ -47,7 +47,7 @@
   <Rule title="MTB stezka obtížnosti 0">
     &maxscale_zoom13;
     &minscale_zoom14;
-    <Filter>([offsetside] = 1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-' or ([highway]='track' and [tracktype]='grade1')))</Filter>
+    <Filter>([offsetside] = 1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-'))</Filter>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_mtb_track;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -138,7 +138,7 @@
   </Rule>-->
   <Rule title="MTB stezka obtížnosti 0">
     &maxscale_zoom15;
-    <Filter>([offsetside] = 1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-' or ([highway]='track' and [tracktype]='grade1')))</Filter>
+    <Filter>([offsetside] = 1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-'))</Filter>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_mtb_track;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -225,7 +225,7 @@
   <Rule title="MTB stezka obtížnosti 0">
     &maxscale_zoom13;
     &minscale_zoom14;
-    <Filter>([offsetside] = -1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-' or ([highway]='track' and [tracktype]='grade1')))</Filter>
+    <Filter>([offsetside] = -1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-'))</Filter>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_mtb_track;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
@@ -316,7 +316,7 @@
   </Rule>-->
   <Rule title="MTB stezka obtížnosti 0">
     &maxscale_zoom15;
-    <Filter>([offsetside] = -1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-' or ([highway]='track' and [tracktype]='grade1')))</Filter>
+    <Filter>([offsetside] = -1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-'))</Filter>
     <LineSymbolizer>
       <CssParameter name="stroke">&color_mtb_track;</CssParameter>
       <CssParameter name="stroke-opacity">1</CssParameter>
