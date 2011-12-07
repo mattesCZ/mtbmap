@@ -7,9 +7,9 @@ __author__="xtesar7"
 acceptedWayColors = ['red', 'blue', 'green', 'yellow', 'mtb']
 acceptedBgColors = ['white']
 acceptedFgColors = acceptedWayColors
-acceptedSymbols = ['bar', 'dot', 'mtb']
+acceptedSymbols = ['bar', 'dot', 'backslash', 'bowl', 'L', 'turned_T', 'triangle', 'corner', 'mtb']
 # other symbols are now rendered as 'bar' for simplicity
-otherSymbols = ['backslash', 'bowl', 'L', 'turned_T', 'triangle', 'corner', 'diamond', 'cross', 'circle', 'fork', 'rectangle', 'lower', 'yes']
+otherSymbols = ['diamond', 'cross', 'circle', 'fork', 'rectangle', 'lower', 'yes']
 
 class OsmcSymbol:
     def __init__(self, osmcString):

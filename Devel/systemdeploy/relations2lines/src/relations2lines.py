@@ -134,8 +134,11 @@ def main():
             routes[routes[r].id].previousRoutes.append(rid)
 
     #remove unconnected tracks with highway=track and tracktype=grade1 and mtb:scale is null
+    print time.strftime("%H:%M:%S", time.localtime()), "  Removing disconnected tracks."
     routes = removeUnconnected(routes, nodes)
+    print "  Tracks removed."
 
+    print time.strftime("%H:%M:%S", time.localtime()), "  Finding dangerous nodes (column warning)."
     # Find nodeIDs, where track's attribute mtb:scale changes rapidly (difference >= 2),
     # create new column warning in planet_osm_lines with the difference
     dangerNodes = findDangerousNodes(nodes, routes)
@@ -350,13 +353,27 @@ def removeUnconnected(routes, nodes):
             connectedGradeOne += component
         else:
             disconnectedGradeOne += component
+    print time.strftime("%H:%M:%S", time.localtime()), "  Components found, connection determined, now cleaning after removal..."
+    iterations = 0
     for id in disconnectedGradeOne:
         routes.pop(id)
-        #clear references to removed routes from nodes
-        for node in nodes:
-            if id in nodes[node]:
-                while id in nodes[node]:
-                    nodes[node].remove(id)
+#        #clear references to removed routes from nodes
+#        ends = 2 # every route has at most 2 ends ad they can even make a loop
+#        for node in nodes:
+#            iterations += 1
+#            if not ends:
+#                break
+#            if id in nodes[node]:
+#                while id in nodes[node]:
+#                    nodes[node].remove(id)
+#                    ends -= 1
+    for node in nodes:
+        ids = deepcopy(nodes[node])
+        for routeID in ids:
+            iterations += 1
+            if routeID in disconnectedGradeOne:
+                nodes[node].remove(routeID)
+    print "Num of iterations: ", iterations
     # remove nodes without routes
     nodesRemove = []
     for node in nodes:

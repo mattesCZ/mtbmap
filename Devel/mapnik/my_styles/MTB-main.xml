@@ -602,6 +602,43 @@
         &datasource-settings;
     </Datasource>
 </Layer>
+<!-- OSMC track shields -->
+<Layer name="osmcShield3" srs="&srs900913;">
+    <StyleName>osmc-shield3</StyleName>
+    <Datasource>
+      <Parameter name="table">
+        (SELECT osm_id,way,osmcsymbol3,offsetside FROM &prefix;_routes2 WHERE "osmcsymbol0" IS NOT NULL) as osmc_tracks
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+<Layer name="osmcShield2" srs="&srs900913;">
+    <StyleName>osmc-shield2</StyleName>
+    <Datasource>
+      <Parameter name="table">
+        (SELECT osm_id,way,osmcsymbol2,offsetside FROM &prefix;_routes2 WHERE "osmcsymbol0" IS NOT NULL) as osmc_tracks
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+<Layer name="osmcShield1" srs="&srs900913;">
+    <StyleName>osmc-shield1</StyleName>
+    <Datasource>
+      <Parameter name="table">
+        (SELECT osm_id,way,osmcsymbol1,offsetside FROM &prefix;_routes2 WHERE "osmcsymbol0" IS NOT NULL) as osmc_tracks
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+<Layer name="osmcShield0" srs="&srs900913;">
+    <StyleName>osmc-shield0</StyleName>
+    <Datasource>
+      <Parameter name="table">
+        (SELECT osm_id,way,osmcsymbol0,offsetside FROM &prefix;_routes2 WHERE "osmcsymbol0" IS NOT NULL) as osmc_tracks
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
 <!-- MTB znacky klasifikace terenu -->
 <Layer name="nobicycle" srs="&srs900913;">
     <StyleName>nobicycle</StyleName>
@@ -748,11 +785,7 @@
 <Layer name="power" srs="&srs900913;">
 <StyleName>power</StyleName>
     <Datasource>
-      <Parameter name="table">(select way,power,
-      CASE WHEN CAST(voltage as integer)&lt;10000 THEN voltage||' V'
-           WHEN CAST(voltage as integer)>=10000 THEN replace(voltage, '000', '')||' kV'
-           WHEN CAST(voltage as integer)>=1000000 THEN voltage||' V'
-           ELSE voltage END AS voltage
+      <Parameter name="table">(select way,power, voltage||' V' AS voltage
       from planet_osm_line where "power"='line' or "power"='minor_line') as power</Parameter>
       &datasource-settings;
     </Datasource>

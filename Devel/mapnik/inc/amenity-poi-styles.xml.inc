@@ -545,22 +545,22 @@
     <Rule title="zřícenina">
             <Filter>(([historic]='ruins') or ([historic]='castle' and [ruins]='yes'))</Filter>
             &maxscale_zoom13;
-            <PointSymbolizer file="&symbols-path;ruins12.png" type="png" width="12" height="12"></PointSymbolizer>
+            <PointSymbolizer file="&symbols-path;ruins12.png" type="png" width="12" height="12" allow_overlap="true"></PointSymbolizer>
     </Rule>
     <Rule title="zámek">
             <Filter>(([historic]='castle') and ([castle_type]='stately' or [castle_type]='schloss'))</Filter>
             &maxscale_zoom13;
-            <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14"></PointSymbolizer>
+            <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14" allow_overlap="true"></PointSymbolizer>
     </Rule>
     <Rule title="hrad">
             <Filter>([historic]='castle' and ([castle_type]='burg' or [castle_type]='defensive'))</Filter>
             &maxscale_zoom13;
-            <PointSymbolizer file="&symbols-path;burg18.png" type="png" width="17" height="18"></PointSymbolizer>
+            <PointSymbolizer file="&symbols-path;burg18.png" type="png" width="17" height="18" allow_overlap="true"></PointSymbolizer>
     </Rule>
     <Rule title="!hrad, zámek">
             <Filter>([historic]='castle')</Filter>
             &maxscale_zoom13;
-            <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14"></PointSymbolizer>
+            <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14" allow_overlap="true"></PointSymbolizer>
     </Rule>
     <Rule title="pomník">
             <Filter>([historic]='memorial')</Filter>
@@ -731,22 +731,22 @@
     <Rule title="!zřícenina">
             <Filter>(([historic]='ruins') or ([historic]='castle' and [ruins]='yes'))</Filter>
             &maxscale_zoom13;
-            <PointSymbolizer file="&symbols-path;ruins12.png" type="png" width="12" height="12"></PointSymbolizer>
+            <PointSymbolizer file="&symbols-path;ruins12.png" type="png" width="12" height="12" allow_overlap="true"></PointSymbolizer>
     </Rule>
     <Rule title="!zámek">
             <Filter>(([historic]='castle') and ([castle_type]='stately' or [castle_type]='schloss'))</Filter>
             &maxscale_zoom13;
-            <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14"></PointSymbolizer>
+            <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14" allow_overlap="true"></PointSymbolizer>
     </Rule>
     <Rule title="!hrad">
             <Filter>([historic]='castle' and ([castle_type]='burg' or [castle_type]='defensive'))</Filter>
             &maxscale_zoom13;
-            <PointSymbolizer file="&symbols-path;burg18.png" type="png" width="17" height="18"></PointSymbolizer>
+            <PointSymbolizer file="&symbols-path;burg18.png" type="png" width="17" height="18" allow_overlap="true"></PointSymbolizer>
     </Rule>
     <Rule title="!hrad, zámek">
             <Filter>([historic]='castle')</Filter>
             &maxscale_zoom13;
-            <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14"></PointSymbolizer>
+            <PointSymbolizer file="&symbols-path;castle14.png" type="png" width="15" height="14" allow_overlap="true"></PointSymbolizer>
     </Rule>
     <Rule title="!pomník">
             <Filter>([historic]='memorial')</Filter>
