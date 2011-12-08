@@ -84,7 +84,7 @@ def main():
     listOfRoutes = routes.values()
     listOfRoutes.sort()
     print time.strftime("%H:%M:%S", time.localtime()), " - routes now have osmc:symbols."
-    print "  Finding of firstNode and lastNode for each route in planet_osm_ways..."
+    print "  Finding firstNode and lastNode for each route in planet_osm_ways..."
 
     # Clean previous routes.
     auxiliaryCursor.execute("DROP TABLE IF EXISTS planet_osm_routes2")
@@ -205,6 +205,7 @@ def main():
     print "Relations:   ", len(relations)
     print "max Signs:   ", maxSigns
     print "Routes:      ", len(routes)
+    print "Nodes:       ", len(nodes)
     print "Danger nodes:", len(dangerNodes)
 #    print routes[39952857].nextRoutes, routes[44013159].previousRoutes
 #    print nodes[559611826]
@@ -356,31 +357,16 @@ def removeUnconnected(routes, nodes):
     print time.strftime("%H:%M:%S", time.localtime()), "  Components found, connection determined, now cleaning after removal..."
     iterations = 0
     for id in disconnectedGradeOne:
-        routes.pop(id)
-#        #clear references to removed routes from nodes
-#        ends = 2 # every route has at most 2 ends ad they can even make a loop
-#        for node in nodes:
-#            iterations += 1
-#            if not ends:
-#                break
-#            if id in nodes[node]:
-#                while id in nodes[node]:
-#                    nodes[node].remove(id)
-#                    ends -= 1
-    for node in nodes:
-        ids = deepcopy(nodes[node])
-        for routeID in ids:
-            iterations += 1
-            if routeID in disconnectedGradeOne:
-                nodes[node].remove(routeID)
-    print "Num of iterations: ", iterations
-    # remove nodes without routes
-    nodesRemove = []
-    for node in nodes:
-        if not len(nodes[node]):
-            nodesRemove.append(node)
-    for node in nodesRemove:
-        nodes.pop(node)
+        if len(routes[id].osmcSigns) <= 1:
+            r = routes.pop(id)
+            nodes[r.firstNode].remove(r.id)
+            if not len(nodes[r.firstNode]):
+                nodes.pop(r.firstNode)
+            nodes[r.lastNode].remove(r.id)
+            if not len(nodes[r.lastNode]):
+                nodes.pop(r.lastNode)
+        else:
+            routes[id].mtbScale = None
 
     # set correct mtb:scale value
     for id in connectedGradeOne:
