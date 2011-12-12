@@ -597,7 +597,7 @@
         (select osm_id,way,"mtb:scale","mtb:scale:uphill", offsetside, highway, tracktype
         from planet_osm_routes2
         where ("mtb:scale" is not null or
-        "mtb:scale:uphill" is not null or (tracktype='grade1' and highway='track'))) as mtb_basic
+        "mtb:scale:uphill" is not null)) as mtb_basic
         </Parameter>
         &datasource-settings;
     </Datasource>

@@ -106,8 +106,8 @@
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -123,8 +123,8 @@
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -142,8 +142,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">2</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -161,8 +161,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -180,8 +180,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -199,8 +199,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -362,8 +362,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -381,8 +381,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -506,8 +506,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -525,8 +525,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -650,8 +650,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -669,8 +669,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -794,8 +794,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -813,8 +813,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -938,8 +938,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -957,8 +957,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1082,8 +1082,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1101,8 +1101,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1212,8 +1212,8 @@
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1229,8 +1229,8 @@
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1248,8 +1248,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">2</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1267,8 +1267,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1286,8 +1286,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1305,8 +1305,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1468,8 +1468,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1487,8 +1487,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1612,8 +1612,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1631,8 +1631,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1756,8 +1756,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1775,8 +1775,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1900,8 +1900,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -1919,8 +1919,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2044,8 +2044,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2063,8 +2063,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2188,8 +2188,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2207,8 +2207,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2318,8 +2318,8 @@
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2335,8 +2335,8 @@
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2354,8 +2354,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">2</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2373,8 +2373,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2392,8 +2392,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2411,8 +2411,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2574,8 +2574,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2593,8 +2593,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2718,8 +2718,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2737,8 +2737,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2862,8 +2862,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -2881,8 +2881,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3006,8 +3006,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3025,8 +3025,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3150,8 +3150,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3169,8 +3169,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3294,8 +3294,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3313,8 +3313,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3424,8 +3424,8 @@
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">1</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3441,8 +3441,8 @@
     <LineSymbolizer>
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3460,8 +3460,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">2</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3479,8 +3479,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-2</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3498,8 +3498,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3517,8 +3517,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3680,8 +3680,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3699,8 +3699,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3824,8 +3824,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3843,8 +3843,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3968,8 +3968,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -3987,8 +3987,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4112,8 +4112,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4131,8 +4131,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4256,8 +4256,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4275,8 +4275,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4400,8 +4400,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4419,8 +4419,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-3</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4513,8 +4513,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">4</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4532,8 +4532,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-4</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4551,8 +4551,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4570,8 +4570,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4701,8 +4701,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4720,8 +4720,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4813,8 +4813,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4832,8 +4832,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4925,8 +4925,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -4944,8 +4944,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5037,8 +5037,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5056,8 +5056,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5149,8 +5149,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5168,8 +5168,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5261,8 +5261,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5280,8 +5280,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5371,8 +5371,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">4</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5390,8 +5390,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-4</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5409,8 +5409,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5428,8 +5428,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5559,8 +5559,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5578,8 +5578,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5671,8 +5671,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5690,8 +5690,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5783,8 +5783,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5802,8 +5802,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5895,8 +5895,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -5914,8 +5914,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6007,8 +6007,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6026,8 +6026,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6119,8 +6119,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6138,8 +6138,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6229,8 +6229,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">4</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6248,8 +6248,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-4</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6267,8 +6267,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6286,8 +6286,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6417,8 +6417,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6436,8 +6436,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6529,8 +6529,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6548,8 +6548,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6641,8 +6641,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6660,8 +6660,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6753,8 +6753,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6772,8 +6772,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6865,8 +6865,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6884,8 +6884,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6977,8 +6977,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -6996,8 +6996,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7087,8 +7087,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">4</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7106,8 +7106,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-4</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7125,8 +7125,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7144,8 +7144,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7275,8 +7275,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7294,8 +7294,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7387,8 +7387,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7406,8 +7406,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7499,8 +7499,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7518,8 +7518,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7611,8 +7611,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7630,8 +7630,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7723,8 +7723,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7742,8 +7742,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7835,8 +7835,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7854,8 +7854,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-7</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7948,8 +7948,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7967,8 +7967,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -7986,8 +7986,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">9</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8005,8 +8005,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-9</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8136,8 +8136,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8155,8 +8155,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8248,8 +8248,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8267,8 +8267,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8360,8 +8360,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8379,8 +8379,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8472,8 +8472,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8491,8 +8491,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8584,8 +8584,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8603,8 +8603,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8696,8 +8696,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8715,8 +8715,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8806,8 +8806,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8825,8 +8825,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8844,8 +8844,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">9</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8863,8 +8863,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-9</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -8994,8 +8994,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9013,8 +9013,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9106,8 +9106,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9125,8 +9125,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9218,8 +9218,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9237,8 +9237,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9330,8 +9330,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9349,8 +9349,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9442,8 +9442,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9461,8 +9461,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9554,8 +9554,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9573,8 +9573,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9664,8 +9664,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9683,8 +9683,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9702,8 +9702,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">9</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9721,8 +9721,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-9</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9852,8 +9852,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9871,8 +9871,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9964,8 +9964,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -9983,8 +9983,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10076,8 +10076,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10095,8 +10095,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10188,8 +10188,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10207,8 +10207,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10300,8 +10300,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10319,8 +10319,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10412,8 +10412,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10431,8 +10431,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10522,8 +10522,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10541,8 +10541,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-6</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10560,8 +10560,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">9</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10579,8 +10579,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-9</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10710,8 +10710,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10729,8 +10729,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10822,8 +10822,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10841,8 +10841,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10934,8 +10934,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -10953,8 +10953,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11046,8 +11046,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11065,8 +11065,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11158,8 +11158,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11177,8 +11177,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11270,8 +11270,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11289,8 +11289,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-11</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11383,8 +11383,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">8</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11402,8 +11402,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-8</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11421,8 +11421,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">12</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11440,8 +11440,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-12</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11571,8 +11571,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11590,8 +11590,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11683,8 +11683,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11702,8 +11702,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11795,8 +11795,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11814,8 +11814,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11907,8 +11907,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -11926,8 +11926,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12019,8 +12019,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12038,8 +12038,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12131,8 +12131,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12150,8 +12150,8 @@
       <CssParameter name="stroke">&color_kct_red;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12241,8 +12241,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">8</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12260,8 +12260,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-8</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12279,8 +12279,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">12</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12298,8 +12298,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-12</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12429,8 +12429,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12448,8 +12448,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12541,8 +12541,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12560,8 +12560,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12653,8 +12653,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12672,8 +12672,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12765,8 +12765,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12784,8 +12784,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12877,8 +12877,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12896,8 +12896,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -12989,8 +12989,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13008,8 +13008,8 @@
       <CssParameter name="stroke">&color_kct_blue;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13099,8 +13099,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">8</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13118,8 +13118,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-8</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13137,8 +13137,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">12</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13156,8 +13156,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-12</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13287,8 +13287,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13306,8 +13306,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13399,8 +13399,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13418,8 +13418,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13511,8 +13511,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13530,8 +13530,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13623,8 +13623,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13642,8 +13642,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13735,8 +13735,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13754,8 +13754,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13847,8 +13847,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13866,8 +13866,8 @@
       <CssParameter name="stroke">&color_kct_green;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13957,8 +13957,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">8</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13976,8 +13976,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">2</CssParameter>
       <CssParameter name="stroke-offset">-8</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -13995,8 +13995,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">12</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -14014,8 +14014,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">3</CssParameter>
       <CssParameter name="stroke-offset">-12</CssParameter>
-      <CssParameter name="stroke-linejoin">bevel</CssParameter>
-      <CssParameter name="stroke-linecap">butt</CssParameter>
+      <CssParameter name="stroke-linejoin">round</CssParameter>
+      <CssParameter name="stroke-linecap">round</CssParameter>
       <CssParameter name="stroke-dasharray">1,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -14145,8 +14145,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -14164,8 +14164,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -14257,8 +14257,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -14276,8 +14276,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -14369,8 +14369,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -14388,8 +14388,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -14481,8 +14481,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -14500,8 +14500,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -14593,8 +14593,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -14612,8 +14612,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -14705,8 +14705,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
@@ -14724,8 +14724,8 @@
       <CssParameter name="stroke">&color_kct_yellow;</CssParameter>
       <CssParameter name="stroke-width">4</CssParameter>
       <CssParameter name="stroke-offset">-15</CssParameter>
-      <CssParameter name="stroke-linejoin">round</CssParameter>
-      <CssParameter name="stroke-linecap">round</CssParameter>
+      <CssParameter name="stroke-linejoin">bevel</CssParameter>
+      <CssParameter name="stroke-linecap">butt</CssParameter>
       <CssParameter name="stroke-dasharray">11,5</CssParameter>
     </LineSymbolizer>
   </Rule>
