@@ -66,10 +66,22 @@
     </Rule>
     <Rule title="budova">
             <Filter>(((([building]&lt;&gt;'station') and ([building]&lt;&gt;'supermarket')) and ([building]&lt;&gt;'')) and (not (([amenity]&lt;&gt;'')) or ([amenity]&lt;&gt;'place_of_worship')))</Filter>
-            &maxscale_zoom10;
+            &maxscale_zoom11;
+            &minscale_zoom14;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(188,169,169)</CssParameter>
             </PolygonSymbolizer>
+    </Rule>
+    <Rule title="budova">
+            <Filter>(((([building]&lt;&gt;'station') and ([building]&lt;&gt;'supermarket')) and ([building]&lt;&gt;'')) and (not (([amenity]&lt;&gt;'')) or ([amenity]&lt;&gt;'place_of_worship')))</Filter>
+            &maxscale_zoom15;
+            <PolygonSymbolizer>
+                <CssParameter name="fill">rgb(188,169,169)</CssParameter>
+            </PolygonSymbolizer>
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_residential_background;</CssParameter>
+                <CssParameter name="stroke-width">0.5</CssParameter>
+            </LineSymbolizer>
     </Rule>
     <Rule title="!terminál letiště">
             <Filter>([aeroway]='terminal')</Filter>

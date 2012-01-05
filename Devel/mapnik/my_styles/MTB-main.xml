@@ -49,12 +49,24 @@
           or leisure is not null
           or aeroway in ('apron','aerodrome')
           or amenity in ('parking','university','college','school','hospital','kindergarten','grave_yard')
-          or military in ('barracks','danger_area')
+          or military = 'barracks'
           or "natural" in ('field','beach','heath','mud','wood','fell','scrub')
           or power in ('station','sub_station')
           or tourism in ('attraction','camp_site','caravan_site','picnic_site','zoo')
        order by z_order,way_area desc
       ) as leisure
+      </Parameter>
+      &datasource-settings;
+    </Datasource>
+</Layer>
+<Layer name="landuse_overlay" srs="&srs900913;">
+<StyleName>landuse_overlay</StyleName>
+    <Datasource>
+      <Parameter name="table">
+      (select way,landuse,leisure, military
+       from planet_osm_polygon
+       where (landuse = 'military' or leisure='nature_reserve' or military = 'danger_area') and building is null
+      ) as landuse_overlay
       </Parameter>
       &datasource-settings;
     </Datasource>

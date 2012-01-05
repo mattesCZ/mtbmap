@@ -253,7 +253,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="!pěší zóna">
-            <Filter>((([highway]='pedestrian') or ([highway]='service')) or ([highway]='footway'))</Filter>
+            <Filter>(([highway]='pedestrian') or ([highway]='footway'))</Filter>
             &maxscale_zoom14;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_pedestrian;</CssParameter>
@@ -269,7 +269,7 @@
             </PolygonSymbolizer>
     </Rule>
     <Rule title="!pěší zóna">
-            <Filter>((([highway]='pedestrian') or ([highway]='service')) or ([highway]='footway'))</Filter>
+            <Filter>(([highway]='pedestrian') or ([highway]='footway'))</Filter>
             &maxscale_zoom14;
             <PolygonSymbolizer>
                 <CssParameter name="fill">&color_pedestrian;</CssParameter>
@@ -424,7 +424,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="ostatní silnice">
-            <Filter>((((([highway]='living_street') or ([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified'))) and not (([tunnel]='yes')))</Filter>
+            <Filter>(((([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified')) and not ([tunnel]='yes')) or (([highway]='service') and not (([service]='parking_aisle') or ([tunnel]='yes'))))</Filter>
             &minscale_zoom13;
             &maxscale_zoom13;
             <LineSymbolizer>
@@ -1547,6 +1547,26 @@
                 <CssParameter name="stroke-width">13</CssParameter>
                 <CssParameter name="stroke-linejoin">round</CssParameter>
                 <CssParameter name="stroke-linecap">round</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="tunel ostatní silnice">
+            <Filter>(([highway]='service') and ([tunnel]='yes'))</Filter>
+            &minscale_zoom15;
+            &maxscale_zoom14;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_residential_background;</CssParameter>
+                <CssParameter name="stroke-width">2.5</CssParameter>
+                <CssParameter name="stroke-dasharray">4, 2</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="tunel ostatní silnice">
+            <Filter>(([highway]='service') and ([tunnel]='yes'))</Filter>
+            &minscale_zoom18;
+            &maxscale_zoom16;
+            <LineSymbolizer>
+                <CssParameter name="stroke">&color_residential_background;</CssParameter>
+                <CssParameter name="stroke-width">7</CssParameter>
+                <CssParameter name="stroke-dasharray">4, 2</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="silnice s chybějící klasifikací">
@@ -3306,7 +3326,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
+            <Filter>(([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified'))</Filter>
             &minscale_zoom13;
             &maxscale_zoom13;
             <LineSymbolizer>
@@ -3316,7 +3336,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
+            <Filter>(([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified'))</Filter>
             &minscale_zoom14;
             &maxscale_zoom14;
             <LineSymbolizer>
@@ -3356,7 +3376,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
+            <Filter>(([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified'))</Filter>
             &minscale_zoom15;
             &maxscale_zoom15;
             <LineSymbolizer>
@@ -3366,7 +3386,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
+            <Filter>(([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified'))</Filter>
             &minscale_zoom16;
             &maxscale_zoom16;
             <LineSymbolizer>
@@ -3406,7 +3426,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>((((([highway]='tertiary') or ([highway]='residential')) or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
+            <Filter>(([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified'))</Filter>
             &minscale_zoom18;
             &maxscale_zoom17;
             <LineSymbolizer>
@@ -3582,7 +3602,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
+            <Filter>(([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified'))</Filter>
             &minscale_zoom13;
             &maxscale_zoom13;
             <LineSymbolizer>
@@ -3593,7 +3613,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
+            <Filter>(([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified'))</Filter>
             &minscale_zoom14;
             &maxscale_zoom14;
             <LineSymbolizer>
@@ -3648,7 +3668,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
+            <Filter>(([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified'))</Filter>
             &minscale_zoom15;
             &maxscale_zoom15;
             <LineSymbolizer>
@@ -3659,7 +3679,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
+            <Filter>(([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified'))</Filter>
             &minscale_zoom16;
             &maxscale_zoom16;
             <LineSymbolizer>
@@ -3692,7 +3712,7 @@
             </LineSymbolizer>
     </Rule>
     <Rule title="tunel ostatní silnice">
-            <Filter>(((([highway]='residential') or ([highway]='minor')) or ([highway]='unclassified')) )</Filter>
+            <Filter>(([highway]='living_street') or ([highway]='residential') or ([highway]='minor') or ([highway]='unclassified'))</Filter>
             &minscale_zoom18;
             &maxscale_zoom17;
             <LineSymbolizer>

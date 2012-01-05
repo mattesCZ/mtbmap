@@ -17,6 +17,38 @@
             <LinePatternSymbolizer file="&symbols-path;cliff.png" type="png" width="10" height="4"></LinePatternSymbolizer>
     </Rule>
 </Style>
+<Style name="landuse_overlay">
+    <Rule title="vojenský prostor">
+            <Filter>([military]='danger_area' or [landuse]='military')</Filter>
+            &minscale_zoom18;
+            &maxscale_zoom11;
+            <PolygonPatternSymbolizer file="&symbols-path;military_red_hz2.png" type="png" width="24" height="24"></PolygonPatternSymbolizer>
+            <LineSymbolizer>
+              <CssParameter name="stroke">#ff5555</CssParameter>
+              <CssParameter name="stroke-width">3</CssParameter>
+              <CssParameter name="stroke-opacity">0.329</CssParameter>
+            </LineSymbolizer>
+    </Rule>
+    <Rule title="přírodní rezervace">
+            <Filter>([leisure]='nature_reserve')</Filter>
+            &minscale_zoom12;
+            &maxscale_zoom11;
+            <PolygonSymbolizer>
+                <CssParameter name="fill">rgb(171,223,150)</CssParameter>
+            </PolygonSymbolizer>
+    </Rule>
+    <Rule title="přírodní rezervace">
+            <Filter>([leisure]='nature_reserve')</Filter>
+            &minscale_zoom13;
+            &maxscale_zoom13;
+            <PolygonPatternSymbolizer file="&symbols-path;nature_reserve.png" type="png" width="21" height="24"></PolygonPatternSymbolizer>
+    </Rule>
+    <Rule title="přírodní rezervace">
+            <Filter>([leisure]='nature_reserve')</Filter>
+            &maxscale_zoom14;
+            <PolygonPatternSymbolizer file="&symbols-path;nature_reserve2.png" type="png" width="42" height="48"></PolygonPatternSymbolizer>
+    </Rule>
+</Style>
 <Style name="leisure">
 <!--    <Rule title="přístaviště">
             <Filter>([leisure]='marina')</Filter>
@@ -64,8 +96,8 @@
                 <CssParameter name="stroke-width">0.5</CssParameter>
             </LineSymbolizer>
     </Rule>
-    <Rule title="přírodní rezervace, vinice">
-            <Filter>(([leisure]='nature_reserve') or ([landuse]='vineyard') or ([landuse]='orchard'))</Filter>
+    <Rule title="vinice, sad">
+            <Filter>(([landuse]='vineyard') or ([landuse]='orchard'))</Filter>
             &minscale_zoom12;
             &maxscale_zoom11;
             <PolygonSymbolizer>
@@ -94,17 +126,6 @@
             &maxscale_zoom15;
             <PolygonPatternSymbolizer file="&symbols-path;orchard.png" type="png" width="29" height="29"></PolygonPatternSymbolizer>
     </Rule>
-    <Rule title="přírodní rezervace">
-            <Filter>([leisure]='nature_reserve')</Filter>
-            &minscale_zoom13;
-            &maxscale_zoom13;
-            <PolygonPatternSymbolizer file="&symbols-path;nature_reserve.png" type="png" width="21" height="24"></PolygonPatternSymbolizer>
-    </Rule>
-    <Rule title="přírodní rezervace">
-            <Filter>([leisure]='nature_reserve')</Filter>
-            &maxscale_zoom14;
-            <PolygonPatternSymbolizer file="&symbols-path;nature_reserve2.png" type="png" width="42" height="48"></PolygonPatternSymbolizer>
-    </Rule>
     <Rule title="hřbitov">
             <Filter>(([landuse]='cemetery') or ([amenity]='grave_yard'))</Filter>
             &minscale_zoom12;
@@ -115,8 +136,16 @@
     </Rule>
     <Rule title="zastavěná plocha">
             <Filter>([landuse]='residential')</Filter>
-            &minscale_zoom18;
+            &minscale_zoom14;
             &maxscale_zoom11;
+            <PolygonSymbolizer>
+                <CssParameter name="fill">rgb(188,169,169)</CssParameter>
+            </PolygonSymbolizer>
+    </Rule>
+    <Rule title="zastavěná plocha">
+            <Filter>([landuse]='residential')</Filter>
+            &minscale_zoom18;
+            &maxscale_zoom15;
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(200,200,200)</CssParameter>
             </PolygonSymbolizer>
@@ -128,17 +157,6 @@
             <PolygonSymbolizer>
                 <CssParameter name="fill">rgb(255,143,143)</CssParameter>
             </PolygonSymbolizer>
-    </Rule>
-    <Rule title="vojenský prostor">
-            <Filter>([military]='danger_area' or [landuse]='military')</Filter>
-            &minscale_zoom18;
-            &maxscale_zoom11;
-            <PolygonPatternSymbolizer file="&symbols-path;military_red_hz2.png" type="png" width="24" height="24"></PolygonPatternSymbolizer>
-            <LineSymbolizer>
-              <CssParameter name="stroke">#ff5555</CssParameter>
-              <CssParameter name="stroke-width">3</CssParameter>
-              <CssParameter name="stroke-opacity">0.329</CssParameter>
-            </LineSymbolizer>
     </Rule>
     <Rule title="hřbitov">
             <Filter>(([landuse]='cemetery') or ([amenity]='grave_yard'))</Filter>
