@@ -797,7 +797,8 @@
 <Layer name="power" srs="&srs900913;">
 <StyleName>power</StyleName>
     <Datasource>
-      <Parameter name="table">(select way,power, voltage||' V' AS voltage
+      <Parameter name="table">(select way,power,
+ case when replace(split_part(voltage,';',1), '000000', '')&lt;&gt;split_part(voltage,';',1) then replace(split_part(voltage,';',1), '000000', '') || ' MV' when replace(split_part(voltage,';',1), '000', '')&lt;&gt;split_part(voltage,';',1) then replace(split_part(voltage,';',1), '000', '') || ' kV' else split_part(voltage,';',1) || ' V' end as voltage
       from planet_osm_line where "power"='line' or "power"='minor_line') as power</Parameter>
       &datasource-settings;
     </Datasource>
