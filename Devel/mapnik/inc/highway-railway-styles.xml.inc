@@ -250,6 +250,7 @@
             &maxscale_zoom14;
             <LineSymbolizer>
                 <CssParameter name="stroke">&color_residential_background;</CssParameter>
+                <CssParameter name="stroke-width">1.6</CssParameter>
             </LineSymbolizer>
     </Rule>
     <Rule title="!pěší zóna">

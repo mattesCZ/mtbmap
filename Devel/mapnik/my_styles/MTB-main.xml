@@ -903,11 +903,11 @@ admin 8 - uzemi samostatnych obci
 <StyleName>town-symbols</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,place,population
+      (select way,place, case when translate(population, '0123456789', '')='' then population::numeric else 0 end as numericpop
       from planet_osm_point
       where place in ('city','metropolis','town','large_town','small_town')
         and (capital is null or capital&lt;&gt;'yes')
-      order by population desc) as placenamessymbols</Parameter>
+      order by numericpop desc) as placenamessymbols</Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
@@ -916,11 +916,11 @@ admin 8 - uzemi samostatnych obci
 <StyleName>town</StyleName>
     <Datasource>
       <Parameter name="table">
-      (select way,place,upper(name),name,population
+      (select way,place,upper(name),name,case when translate(population, '0123456789', '')='' then population::numeric else 0 end as numericpop
       from planet_osm_point
       where place in ('city','metropolis','town','large_town','small_town')
         and (capital is null or capital&lt;&gt;'yes')
-      order by population) as placenames</Parameter>
+      order by numericpop) as placenames</Parameter>
       &datasource-settings;
     </Datasource>
 </Layer>
