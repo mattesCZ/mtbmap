@@ -39,7 +39,7 @@ def main():
             FROM planet_osm_line
             WHERE (("osmc:symbol" IS NOT NULL OR kct_red IS NOT NULL
                 OR kct_blue IS NOT NULL OR kct_green IS NOT NULL
-                OR kct_yellow IS NOT NULL OR "mtb:scale" IS NOT NULL
+                OR kct_yellow IS NOT NULL OR ("mtb:scale" IS NOT NULL AND (("access"<>'private' AND "access"<>'no') OR "access" IS NULL OR ("access" IN ('private', 'no') AND bicycle='yes')))
                 OR "mtb:scale:uphill" IS NOT NULL OR ("highway"='track' AND "tracktype"='grade1')))
         ''')
     while True:
@@ -97,7 +97,7 @@ def main():
     for r in listOfRoutes:
         auxiliaryCursor.execute('''
             SELECT way, highway, tracktype FROM planet_osm_line
-              WHERE osm_id=%s
+              WHERE osm_id=%s AND (("access"<>'private' AND "access"<>'no') OR "access" IS NULL OR ("access" IN ('private', 'no') AND bicycle='yes'))
         ''' % r.id)
         row = auxiliaryCursor.fetchone()
         # Some route IDs from relations may not be present in line table, ie. out of bounding box, those are ignored

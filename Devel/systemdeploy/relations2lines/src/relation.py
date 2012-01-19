@@ -89,9 +89,9 @@ class Relation:
             if member.startswith('w'):
                 try:
                     id = int(member.lstrip('w'))
+                    parts.append(id)
                 except ValueError:
                     print 'Member ' + member + ' starts with "w", but it is not a way!'
-                parts.append(id)
         return parts
 
 #    def copyRoutes(self, routes):
