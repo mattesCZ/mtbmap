@@ -26,7 +26,7 @@
         {
         controls:[new OpenLayers.Control.Navigation(),
                   graticule,
-                  new OpenLayers.Control.PanZoomBar(),
+//                  new OpenLayers.Control.PanZoomBar(),
                   new OpenLayers.Control.Permalink(),
                   new OpenLayers.Control.MousePosition(),
                   new OpenLayers.Control.KeyboardDefaults(),
@@ -66,6 +66,8 @@
         map.addLayer(new OpenLayers.Layer.OSM.CycleMap("OpenCycleMap"));
 
         map.getLayersByName("Zeměpisná síť")[0].setVisibility(false);
+        map.addControl(new OpenLayers.Control.PanZoomBar(), new OpenLayers.Pixel(162,4) );
+//        map.addControl(new OpenLayers.Control.ScaleLine()
 
 // draw altitude style
         var sketchSymbolizers = {
@@ -108,10 +110,10 @@
             "measurepartial": handleMeasurements
         });
         map.addControl(control);
-        document.getElementById('OpenLayers.Control.PanZoomBar_4').style.left = "324px";
+//        document.getElementById('OpenLayers.Control.PanZoomBar_4').style.left = "324px";
 //        document.getElementById('OpenLayers.Control.Permalink_5').style.right = "324px";
 //        document.getElementById('OpenLayers.Control.MousePosition_6').style.right = "324px";
-        document.getElementById('OpenLayers.Control.ScaleLine_8').style.left = "335px";
+        document.getElementById('OpenLayers.Control.ScaleLine_7').style.left = "335px";
 
         document.getElementById('noneToggle').checked = true;
         if (!map.getCenter())
