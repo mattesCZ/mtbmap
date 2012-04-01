@@ -99,7 +99,6 @@
 <!-- vrstevnice po 10 metrech -->
 <Layer name="contours10" status="on" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>contours10</StyleName>
-    <StyleName>contours-text10</StyleName>
     <Datasource>
       <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 10 = 0 AND height::integer % 50 != 0) as "contours10"</Parameter>
       &latlon-datasource-settings;
@@ -108,7 +107,6 @@
 <!-- vrstevnice po 20 metrech -->
 <Layer name="contours20" status="on" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
     <StyleName>contours20</StyleName>
-    <StyleName>contours-text20</StyleName>
     <Datasource>
       <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 20 = 0 AND height::integer % 100 != 0) as "contours20"</Parameter>
       &latlon-datasource-settings;
@@ -482,10 +480,10 @@
 <StyleName>mwaybridge_layer2_fill</StyleName>
 <StyleName>mwaybridge_layer3_casing</StyleName>
 <StyleName>mwaybridge_layer3_fill</StyleName>
-<StyleName>mwaybridge_layer4_casing</StyleName>
+<!--<StyleName>mwaybridge_layer4_casing</StyleName>
 <StyleName>mwaybridge_layer4_fill</StyleName>
 <StyleName>mwaybridge_layer5_casing</StyleName>
-<StyleName>mwaybridge_layer5_fill</StyleName>
+<StyleName>mwaybridge_layer5_fill</StyleName>-->
     <Datasource>
       <Parameter name="table">
       (select way,highway,aeroway,railway,layer,bicycle,foot,bridge
