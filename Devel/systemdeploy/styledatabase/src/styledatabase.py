@@ -12,17 +12,16 @@ zooms = [250000000000, 500000000, 200000000, 100000000, 50000000, 25000000, 1250
 
 def main():
     connection = connect("dbname='mapnikStyles' user='xtesar7' password='' port=5432");
+#    stylePath = 'MTB-print.xml'
     stylePath = '/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/MTB-main.xml'
 
     style = Style(stylePath, connection)
 
-#    style.saveMap()
-#    style.saveStyles()
-#    style.saveLayers()
-
 #    style.importClean()
+#    style.exportXMLStyle("/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/print.xml")
     style.exportXMLStyle("/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/output.xml")
-
+#    style.correctFilenames()
+    
     print len(style.symbolizers)
 
     style.close()
@@ -50,15 +49,15 @@ class Symbolizer:
 class Style:
     def __init__(self, path, databaseConnection):
         self.path = path
-        self._doc = libxml2.readFile(self.path, 'utf-8', 2)
-        self.ctxt = self._doc.xpathNewContext()
+#        self._doc = libxml2.readFile(self.path, 'utf-8', 2)
+#        self.ctxt = self._doc.xpathNewContext()
         self.symbolizers = {}
         self._cursor = databaseConnection.cursor()
         self._outputDoc = None
 
     def close(self):
-        self.ctxt.xpathFreeContext()
-        self._doc.freeDoc()
+#        self.ctxt.xpathFreeContext()
+#        self._doc.freeDoc()
         self._cursor.close()
 
     def importClean(self):
@@ -73,11 +72,11 @@ class Style:
         for table in tables:
             self._cursor.execute("DELETE FROM " + table)
 
-        self.saveMap()
-        self.saveStyles()
-        self.saveLayers()
+        self._saveMap()
+        self._saveStyles()
+        self._saveLayers()
 
-    def saveMap(self):
+    def _saveMap(self):
         srs = self._xpathQuery(self.ctxt, '/Map/@srs')
         bgcolor = self._xpathQuery(self.ctxt, '/Map/@bgcolor')
         queryMap = "INSERT INTO map (m_name, m_bgcolor, m_srs) VALUES ('" + self.path + "', " + bgcolor + ", " + srs + ");"
@@ -87,7 +86,7 @@ class Style:
             print 'Deleting old map row...'
         self._cursor.execute(queryMap)
 
-    def saveLayers(self):
+    def _saveLayers(self):
         layerNodes = self.ctxt.xpathEval('//Layer')
 
         order = 0
@@ -134,7 +133,7 @@ class Style:
 
 
 
-    def saveStyles(self):
+    def _saveStyles(self):
         styleNodes = self.ctxt.xpathEval('//Style')
         ruleID = 1
         for style in styleNodes:
@@ -149,7 +148,7 @@ class Style:
             rules = self.ctxt.xpathEval('./Rule')
             ruleOrder = 1
             for rule in rules:
-                self.saveRule(rule, ruleID)
+                self._saveRule(rule, ruleID)
                 self.ctxt.setContextNode(rule)
                 queryRuleStyle = "INSERT INTO rulestyle VALUES (" + str(ruleOrder) + ", '" + str(ruleID) + "', '" + name + "');"
                 self._cursor.execute(queryRuleStyle)
@@ -158,7 +157,7 @@ class Style:
 
 
 
-    def saveRule(self, rule, ruleID):
+    def _saveRule(self, rule, ruleID):
         name = self._xpathQuery(rule, './@name')
         title = self._xpathQuery(rule, './@title')
         abstract = 'NULL'
@@ -177,9 +176,9 @@ class Style:
             self._cursor.execute("DELETE FROM rule WHERE r_id=" + ruleID)
         self._cursor.execute(queryRule)
 
-        self.saveSymbolizers(rule, ruleID)
+        self._saveSymbolizers(rule, ruleID)
 
-    def saveSymbolizers(self, rule, ruleID):
+    def _saveSymbolizers(self, rule, ruleID):
         elements = rule.xpathEval('./*')
         order = 1
         for element in elements:
@@ -216,7 +215,7 @@ class Style:
         root.setProp('srs', row[0])
         root.setProp('bgcolor', row[1])
 
-        self.addFonts()
+        self._exportFonts()
         self.exportStyles()
         self.exportLayers()
 
@@ -228,7 +227,7 @@ class Style:
         self._outputDoc.saveTo(f, 'utf-8', 1)
         f.close()
 
-    def addFonts(self):
+    def _exportFonts(self):
         root = self._outputDoc.getRootElement()
         self._addFont(root, 'book-fonts', 'DejaVu Sans Book')
         self._addFont(root, 'bold-fonts', 'DejaVu Sans Bold')
@@ -297,6 +296,28 @@ class Style:
             for id in ruleIDs:
                 style.addChild(self.addRule(id))
             root.addChild(style)
+
+    def correctDasharray(self, table):
+        self._cursor.execute('SELECT symbid, "stroke-dasharray" FROM ' + table + ' WHERE symbid>10000 AND "stroke-dasharray" IS NOT NULL')
+        lines = self._cursor.fetchall()
+        for line in lines:
+            parts = line[1].split(',')
+            for i in range(len(parts)):
+                parts[i]=str(2*int(parts[i]))
+            self._cursor.execute('UPDATE linesymbolizer  SET "stroke-dasharray"=' + "'" + ','.join(parts) + "' " + " WHERE symbid=" + str(line[0]))
+#            print 'UPDATE linesymbolizer  SET "stroke-dasharray"=' + "'" + ','.join(parts)) + "' " + " WHERE symbid=" + str(line[0])
+
+#    def correctFilenames(self):
+#        self._cursor.execute("SELECT symbid, file FROM shieldsymbolizer WHERE symbid>10000 AND file LIKE '%white-%'")
+#        lines = self._cursor.fetchall()
+#        for line in lines:
+#            parts = line[1].split('/')
+#            parts[-1] = 'osmc/' + parts[-1]
+##            for i in range(len(parts)):
+##                parts[i]=str(2*int(parts[i]))
+#            print '/'.join(parts)
+#            self._cursor.execute('UPDATE shieldsymbolizer  SET "file"=' + "'" + '/'.join(parts) + "' " + " WHERE symbid=" + str(line[0]))
+##            print 'UPDATE linesymbolizer  SET "stroke-dasharray"=' + "'" + ','.join(parts)) + "' " + " WHERE symbid=" + str(line[0])
 
     def addRule(self, ruleid):
         rule = libxml2.newNode('Rule')
