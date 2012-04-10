@@ -8,7 +8,8 @@ import sys, os, string
 from math import log10
 
 def main():
-    mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/MTB-main.xml"
+#    mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/MTB-main.xml"
+    mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/print.xml"
 #    map_uri = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/export.png"
     # handle input string
     rawinput = str(sys.stdin.readlines())
@@ -26,8 +27,8 @@ def main():
         left = float(properties[1])
         top = float(properties[2])
         right = float(properties[3])
-        imgx = int(properties[4])
-        imgy = int(properties[5])
+        imgx = int(properties[4])*2
+        imgy = int(properties[5])*2
 #        bottom = 49.23
 #        left = 16.45
 #        top = 49.26
@@ -89,8 +90,8 @@ def scalebar(top, bottom, left, right, imgx, imgy):
 
     mainLineLength = width*pixelLength
     mainLineLength = int(round(mainLineLength, -int(log10(mainLineLength))))
-    scalebarSVG(mainLineLength, pixelLength, units)
-    os.system("rsvg-convert -o ../img/scalebar.png ../img/scalebar.svg")
+    scalebarSVG(mainLineLength, 2*pixelLength, units)
+    os.system("rsvg-convert -z 2.0 -o ../img/scalebar.png ../img/scalebar.svg")
     overlayIm = Image.open("../img/scalebar.png")
     return overlayIm
 

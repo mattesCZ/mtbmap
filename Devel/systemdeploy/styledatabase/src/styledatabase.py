@@ -12,14 +12,14 @@ zooms = [250000000000, 500000000, 200000000, 100000000, 50000000, 25000000, 1250
 
 def main():
     connection = connect("dbname='mapnikStyles' user='xtesar7' password='' port=5432");
-#    stylePath = 'MTB-print.xml'
-    stylePath = '/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/MTB-main.xml'
+    stylePath = 'MTB-print.xml'
+#    stylePath = '/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/MTB-main.xml'
 
     style = Style(stylePath, connection)
 
 #    style.importClean()
-#    style.exportXMLStyle("/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/print.xml")
-    style.exportXMLStyle("/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/output.xml")
+    style.exportXMLStyle("/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/print.xml")
+#    style.exportXMLStyle("/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/output.xml")
 #    style.correctFilenames()
     
     print len(style.symbolizers)
@@ -222,9 +222,12 @@ class Style:
 #        doctype = libxml2.newNode('!DOCTYPE Map [<!ENTITY % entities SYSTEM "../inc/entities.xml.inc">]')
 #        root.addPrevSibling(doctype)
         str = self._outputDoc.serialize('utf-8', 1)
-        print str
+        lines = str.split('\n')
+        lines.insert(1, '<!DOCTYPE Map [ <!ENTITY % ent SYSTEM "../inc/ent.xml.inc"> %ent; ]>')
 
-        self._outputDoc.saveTo(f, 'utf-8', 1)
+        for line in lines:
+            f.write(line + '\n')
+#        self._outputDoc.saveTo(f, 'utf-8', 1)
         f.close()
 
     def _exportFonts(self):
@@ -265,7 +268,7 @@ class Style:
                 self._addParameter(datasource, 'format', row[7])
             elif row[4]=='postgis':
                 self._addParameter(datasource, 'table', row[5].strip())
-                self._addParameter(datasource, 'password', '')
+                self._addParameter(datasource, 'password', '&passwd;')
                 self._addParameter(datasource, 'host', 'localhost')
                 self._addParameter(datasource, 'port', '5432')
                 self._addParameter(datasource, 'user', 'xtesar7')
@@ -294,7 +297,7 @@ class Style:
             for r in rules:
                 ruleIDs.append(r[0])
             for id in ruleIDs:
-                style.addChild(self.addRule(id))
+                style.addChild(self.exportRule(id))
             root.addChild(style)
 
     def correctDasharray(self, table):
@@ -319,7 +322,7 @@ class Style:
 #            self._cursor.execute('UPDATE shieldsymbolizer  SET "file"=' + "'" + '/'.join(parts) + "' " + " WHERE symbid=" + str(line[0]))
 ##            print 'UPDATE linesymbolizer  SET "stroke-dasharray"=' + "'" + ','.join(parts)) + "' " + " WHERE symbid=" + str(line[0])
 
-    def addRule(self, ruleid):
+    def exportRule(self, ruleid):
         rule = libxml2.newNode('Rule')
         self._cursor.execute("SELECT r_title, r_filter, r_minscale, r_maxscale FROM rule WHERE r_id=" + str(ruleid))
         params = self._cursor.fetchone()

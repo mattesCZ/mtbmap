@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map [ <!ENTITY % ent SYSTEM "../inc/ent.xml.inc"> %ent; ]>
 <Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" bgcolor="rgb(255,255,255)">
   <FontSet name="book-fonts">
     <Font face_name="DejaVu Sans Book"/>
@@ -23783,7 +23784,7 @@
           or tourism in ('attraction','camp_site','caravan_site','picnic_site','zoo')
        order by z_order,way_area desc
       ) as leisure</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -23800,7 +23801,7 @@
        from planet_osm_polygon
        where (landuse = 'military' or leisure='nature_reserve' or military = 'danger_area') and building is null
       ) as landuse_overlay</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -23814,7 +23815,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way,leisure from planet_osm_polygon where leisure in ('sports_centre','stadium', 'pitch') order by z_order,way_area desc) as sports_grounds</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -23836,7 +23837,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 5 = 0 AND height::integer % 10 != 0 AND height::integer % 25 != 0) as "contours5"</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -23850,7 +23851,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 10 = 0 AND height::integer % 50 != 0) as "contours10"</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -23864,7 +23865,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 20 = 0 AND height::integer % 100 != 0) as "contours20"</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -23879,7 +23880,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 25 = 0) as "contours25"</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -23894,7 +23895,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 50 = 0 AND height::integer % 100 != 0) as "contours50"</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -23909,7 +23910,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 100 = 0) as "contours100"</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -23929,7 +23930,7 @@
         and (bridge is null or bridge not in ('yes','true','1','aqueduct'))
       order by z_order
       ) as water_lines_casing</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -23949,7 +23950,7 @@
          or "natural" in ('lake','water','land','marsh','wetland','glacier')
       order by z_order,way_area desc
       ) as water_areas</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -23969,7 +23970,7 @@
         and (bridge is null or bridge not in ('yes','true','1','aqueduct'))
       order by z_order
       ) as water_lines_fill</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -23986,7 +23987,7 @@
       from planet_osm_line
       where waterway in ('river','canal','stream','drain')
       ) as water_lines_text</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24006,7 +24007,7 @@
          or "natural" in ('lake','water','land','marsh','scrub','wetland','glacier')
       order by z_order,way_area desc
       ) as water_areas_fill</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24020,7 +24021,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way,name from planet_osm_line where waterway='dam') as dam</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24034,7 +24035,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way from planet_osm_polygon where man_made='pier') as piers</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24048,7 +24049,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way from planet_osm_line where man_made='pier') as piers</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24063,7 +24064,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way,highway from planet_osm_line where highway in ('motorway','motorway_link','trunk','trunk_link','primary','primary_link','secondary','secondary_link','tertiary','residential','unclassified','minor') and tunnel in ('yes','true','1') order by z_order) as roads</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24077,7 +24078,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way from planet_osm_point where highway='turning_circle') as turning_circle</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24091,7 +24092,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way,highway,foot,bicycle from planet_osm_line where highway in ('bridleway','footway','cycleway','path') and tunnel in ('yes','true','1') order by z_order) as roads</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24105,7 +24106,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way,tracktype from planet_osm_line where (highway='track' or (highway='cycleway' and tracktype is not null)) and (bridge is null or bridge in ('no','false','0')) and (tunnel is null or tunnel in ('no','false','0'))) as tracks</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24119,7 +24120,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way,tracktype from planet_osm_line where (highway='track' or (highway='cycleway' and tracktype is not null)) and tunnel in ('yes','true','1')) as tracks</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24139,7 +24140,7 @@
           or amenity='place_of_worship'
           or aeroway='terminal'
        order by z_order,way_area desc) as buildings</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24154,7 +24155,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way,barrier,"natural",man_made from planet_osm_line where barrier is not null or "natural" in ('hedge','cliff') or man_made='embankment') as roads</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24168,7 +24169,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way,barrier,"natural" from planet_osm_polygon where barrier is not null or "natural"='hedge') as barriers</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24184,7 +24185,7 @@
       <Parameter name="table">(select way,highway from planet_osm_polygon
        where highway in ('residential','unclassified','pedestrian','service','footway','track')
        order by z_order,way_area desc) as roads</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24203,7 +24204,7 @@
        from planet_osm_line
        where highway in ('motorway','motorway_link','trunk','trunk_link','primary','primary_link','secondary','secondary_link','tertiary','residential','unclassified','minor','road','service','pedestrian','raceway','living_street')
        order by z_order) as roads</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24219,7 +24220,7 @@
       <Parameter name="table">(select way,highway from planet_osm_polygon
        where highway in ('residential','unclassified','pedestrian','service','footway','living_street','track')
        order by z_order,way_area desc) as roads</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24244,7 +24245,7 @@
           or aeroway in ('runway','taxiway')
           or railway in ('light_rail','narrow_gauge','funicular','rail','subway','tram','spur','siding','platform','disused','abandoned','construction')
        order by z_order) as roads</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24258,7 +24259,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way,aerialway from planet_osm_line where aerialway is not null) as aerialways</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24276,7 +24277,7 @@
        where highway in ('motorway', 'trunk', 'primary', 'secondary', 'motorway_link', 'trunk_link', 'primary_link', 'secondary_link')
        order by z_order
       ) as roads</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24299,7 +24300,7 @@
           or railway is not null
        order by z_order
       ) as roads</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24313,7 +24314,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way,name from planet_osm_line where waterway='canal' and bridge in ('yes','true','1','aqueduct') order by z_order) as water</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24350,7 +24351,7 @@
          and bridge not in ('no','false','0')
        order by z_order
       ) as roads</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24364,7 +24365,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way,tracktype from planet_osm_line where (highway='track' or (highway='cycleway' and tracktype is not null)) and bridge in ('yes','true','1')) as tracks</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24378,7 +24379,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way from planet_osm_line where railway='tram' and (tunnel is null or tunnel not in ('yes','true','1'))) as trams</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24394,7 +24395,7 @@
       <Parameter name="table">(select bicycle, lcn_ref, rcn_ref, ncn_ref, lcn, rcn, ncn, osm_id, route, way, highway, ref
         from planet_osm_line
         where ((highway='cycleway') or (lcn_ref is not null) or (rcn_ref is not null) or (ncn_ref is not null) or (lcn is not null) or (rcn is not null) or (ncn is not null))) as cycleway</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24408,7 +24409,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(SELECT osm_id,way,osmcsymbol3,offsetside FROM planet_osm_routes2 WHERE "osmcsymbol3" IS NOT NULL) as osmc_tracks</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24422,7 +24423,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(SELECT osm_id,way,osmcsymbol2,offsetside FROM planet_osm_routes2 WHERE "osmcsymbol2" IS NOT NULL) as osmc_tracks</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24436,7 +24437,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(SELECT osm_id,way,osmcsymbol1,offsetside FROM planet_osm_routes2 WHERE "osmcsymbol1" IS NOT NULL) as osmc_tracks</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24450,7 +24451,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(SELECT osm_id,way,osmcsymbol0,offsetside FROM planet_osm_routes2 WHERE "osmcsymbol0" IS NOT NULL) as osmc_tracks</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24467,7 +24468,7 @@
         from planet_osm_routes2
         where ("mtb:scale" is not null or
         "mtb:scale:uphill" is not null)) as mtb_basic</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24481,7 +24482,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(SELECT osm_id,way,osmcsymbol3,offsetside FROM planet_osm_routes2 WHERE "osmcsymbol0" IS NOT NULL) as osmc_tracks</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24495,7 +24496,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(SELECT osm_id,way,osmcsymbol2,offsetside FROM planet_osm_routes2 WHERE "osmcsymbol0" IS NOT NULL) as osmc_tracks</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24509,7 +24510,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(SELECT osm_id,way,osmcsymbol1,offsetside FROM planet_osm_routes2 WHERE "osmcsymbol0" IS NOT NULL) as osmc_tracks</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24523,7 +24524,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(SELECT osm_id,way,osmcsymbol0,offsetside FROM planet_osm_routes2 WHERE "osmcsymbol0" IS NOT NULL) as osmc_tracks</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24539,7 +24540,7 @@
       <Parameter name="table">(select osm_id,way
         from planet_osm_line
         where (bicycle = 'no')) as nobicycle</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24556,7 +24557,7 @@
         from planet_osm_line
         where (("mtb:scale:uphill" in ('3', '4', '5') and incline in ('up','down'))
         or ("mtb:scale" in ('2-', '2', '2+', '3-', '3', '3+', '4-', '4', '4+', '5-', '5', '5+') and incline in ('up','down')))) as mtb_incline</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24570,7 +24571,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way from planet_osm_point where warning is not null) as mtbwarning</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24584,7 +24585,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select osm_id,way,access,highway from planet_osm_line where access is not null) as access</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24602,7 +24603,7 @@
       where railway in ('station','halt','tram_stop')
          or aerialway='station'
       ) as stations</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24620,7 +24621,7 @@
       where railway in ('station','halt','tram_stop')
          or aerialway='station'
       ) as stations</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24636,7 +24637,7 @@
       <Parameter name="table">(select way,power,
  case when replace(split_part(voltage,';',1), '000000', '')&lt;&gt;split_part(voltage,';',1) then replace(split_part(voltage,';',1), '000000', '') || ' MV' when replace(split_part(voltage,';',1), '000', '')&lt;&gt;split_part(voltage,';',1) then replace(split_part(voltage,';',1), '000', '') || ' kV' else split_part(voltage,';',1) || ' V' end as voltage
       from planet_osm_line where "power"='line' or "power"='minor_line') as power</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24650,7 +24651,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way,power from planet_osm_point where power='tower' or "power"='pole') as power_towers</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24669,7 +24670,7 @@
        where oneway is not null
          and (highway is not null or railway is not null or waterway is not null)
       ) as directions</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24687,7 +24688,7 @@
        where "boundary"='administrative'
          and admin_level in ('2', '3')
        ) as admin</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24709,7 +24710,7 @@
          and admin_level IS NULL
          and (name is not null or ref is not null)
       ) as roads</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24728,7 +24729,7 @@
       from planet_osm_point
       where place in ('suburb','village','large_village','hamlet','locality')
       ) as placenames</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24746,7 +24747,7 @@
       where place in ('city','metropolis','town','large_town','small_town')
         and (capital is null or capital&lt;&gt;'yes')
       order by numericpop desc) as placenamessymbols</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24764,7 +24765,7 @@
       where place in ('city','metropolis','town','large_town','small_town')
         and (capital is null or capital&lt;&gt;'yes')
       order by numericpop) as placenames</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24784,7 +24785,7 @@
       where place in ('country','state')
          or (place in ('city','metropolis','town') and capital='yes')
       ) as placenames</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24800,7 +24801,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select * from planet_osm_point where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or information is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or power_source is NOT NULL or man_made is NOT NULL or shop is NOT NULL or historic is NOT NULL or ruins='yes' or military='bunker' or noexit in ('yes', 'no')) as amenity</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24816,7 +24817,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select * from planet_osm_polygon where barrier IS NOT NULL or amenity IS NOT NULL or tourism is NOT NULL or information is NOT NULL or railway is NOT NULL or "natural" is NOT NULL or highway is NOT NULL or aeroway is NOT NULL or aerialway is NOT NULL or man_made is NOT NULL or shop is NOT NULL or historic is NOT NULL or ruins='yes' or military='bunker') as amenity</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24846,7 +24847,7 @@
           or historic is not null
           or ruins='yes'
       ) as text</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24873,7 +24874,7 @@
           or historic is not null
           or ruins='yes'
       ) as text</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24893,7 +24894,7 @@
          and admin_level is null
        order by z_order,way_area desc
       ) as text</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24909,7 +24910,7 @@
       <Parameter name="table">(select way, ref, name, lcn, ncn, rcn, rcn_ref, ncn_ref, lcn_ref, network
         from planet_osm_line
         where ref is not null and (lcn is not null or ncn is not null or rcn is not null)) as cycleway</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24923,7 +24924,7 @@
     <Datasource>
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way,name from planet_osm_polygon where boundary='national_park') as boundary</Parameter>
-      <Parameter name="password"></Parameter>
+      <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
@@ -24933,3 +24934,4 @@
     </Datasource>
   </Layer>
 </Map>
+
