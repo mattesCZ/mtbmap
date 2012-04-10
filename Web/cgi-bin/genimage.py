@@ -42,7 +42,7 @@ def main():
         print rawinput
         return
     # don't render image larger than 4 Mpx
-    if (imgx*imgy > 4000000):
+    if (imgx*imgy > 12000000):
         print "Content-Type: text/html \n"
         print "<h3>Sorry, requested image is too large.</h3>"
         return
