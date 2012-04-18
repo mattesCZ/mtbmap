@@ -63,6 +63,7 @@ node,way   poi          text         polygon
 node       population   text         linear
 node,way   power        text         polygon
 node       power_source text         linear
+node,way   generator:source text     polygon
 node,way   voltage      text         linear
 node,way   place        text         linear
 node,way   protect_class text        polygon

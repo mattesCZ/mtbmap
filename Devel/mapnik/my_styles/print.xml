@@ -37,17 +37,6 @@
   <FontSet name="extralight-fonts">
     <Font face_name="DejaVu Sans ExtraLight"/>
   </FontSet>
-  <Style name="hypsometry">
-    <Rule title="výškopis">
-      <MinScaleDenominator>400000</MinScaleDenominator>
-      <MaxScaleDenominator>250000000000</MaxScaleDenominator>
-      <RasterSymbolizer>
-        <CssParameter name="scaling">bilinear</CssParameter>
-        <CssParameter name="opacity">0.6</CssParameter>
-        <CssParameter name="mode">multiply</CssParameter>
-      </RasterSymbolizer>
-    </Rule>
-  </Style>
   <Style name="piers-area">
     <Rule title="molo">
       <MaxScaleDenominator>200000</MaxScaleDenominator>
@@ -306,50 +295,61 @@
     </Rule>
   </Style>
   <Style name="print-boundary">
-    <Rule title="chráněné území">
-      <MinScaleDenominator>50000</MinScaleDenominator>
-      <MaxScaleDenominator>400000</MaxScaleDenominator>
-      <PolygonSymbolizer>
-        <CssParameter name="fill-opacity">0.1</CssParameter>
-        <CssParameter name="fill">rgb(0,128,0)</CssParameter>
-      </PolygonSymbolizer>
+    <Rule title="Národní park">
+      <Filter>([protect_class]='2')</Filter>
+      <MinScaleDenominator>500</MinScaleDenominator>
+      <MaxScaleDenominator>1500000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke-opacity">0.4</CssParameter>
         <CssParameter name="stroke">rgb(0,128,0)</CssParameter>
-        <CssParameter name="stroke-dasharray">12,4</CssParameter>
-        <CssParameter name="stroke-width">6.0</CssParameter>
+        <CssParameter name="stroke-dasharray">6, 2</CssParameter>
+        <CssParameter name="stroke-width">3.0</CssParameter>
       </LineSymbolizer>
+      <TextSymbolizer fill="rgb(153,204,153)" wrap_width="14" size="11" halo_radius="1" name="name" fontset_name="bold-fonts"/>
     </Rule>
-    <Rule title="chráněné území">
+    <Rule title="Chráněná krajinná oblast">
+      <Filter>([protect_class]='5')</Filter>
+      <MinScaleDenominator>500</MinScaleDenominator>
+      <MaxScaleDenominator>400000</MaxScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke-opacity">0.4</CssParameter>
+        <CssParameter name="stroke">rgb(0,128,0)</CssParameter>
+        <CssParameter name="stroke-dasharray">6, 2</CssParameter>
+        <CssParameter name="stroke-width">3.0</CssParameter>
+      </LineSymbolizer>
+      <TextSymbolizer fill="rgb(153,204,153)" wrap_width="14" size="11" halo_radius="1" name="name" fontset_name="bold-fonts"/>
+    </Rule>
+    <Rule title="Národní přírodní rezervace">
+      <Filter>([protect_class]='1')</Filter>
+      <MinScaleDenominator>500</MinScaleDenominator>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <LineSymbolizer>
+        <CssParameter name="stroke-opacity">0.4</CssParameter>
+        <CssParameter name="stroke">rgb(0,128,0)</CssParameter>
+        <CssParameter name="stroke-dasharray">6, 2</CssParameter>
+        <CssParameter name="stroke-width">3.0</CssParameter>
+      </LineSymbolizer>
+      <TextSymbolizer fill="rgb(153,204,153)" wrap_width="14" size="11" halo_radius="1" name="name" fontset_name="bold-fonts"/>
+    </Rule>
+    <Rule title="Přírodní rezervace">
+      <ElseFilter/>
       <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke-opacity">0.4</CssParameter>
         <CssParameter name="stroke">rgb(0,128,0)</CssParameter>
-        <CssParameter name="stroke-dasharray">12,4</CssParameter>
-        <CssParameter name="stroke-width">10.0</CssParameter>
+        <CssParameter name="stroke-dasharray">6, 2</CssParameter>
+        <CssParameter name="stroke-width">3.0</CssParameter>
       </LineSymbolizer>
-    </Rule>
-    <Rule title="!popis chráněného území">
-      <MinScaleDenominator>100000</MinScaleDenominator>
-      <MaxScaleDenominator>400000</MaxScaleDenominator>
-      <TextSymbolizer fill="rgb(153,204,153)" wrap_width="14" size="22" halo_radius="1" name="name" fontset_name="bold-fonts"/>
+      <TextSymbolizer fill="rgb(153,204,153)" wrap_width="14" size="11" halo_radius="1" name="name" fontset_name="bold-fonts"/>
     </Rule>
   </Style>
   <Style name="print-buildings">
     <Rule title="!železniční stanice">
-      <Filter>(([railway]='station') or ([building]='station'))</Filter>
+      <Filter>([railway]='station')</Filter>
       <MaxScaleDenominator>400000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(212,170,170)</CssParameter>
-      </PolygonSymbolizer>
-    </Rule>
-    <Rule title="!supermarket">
-      <Filter>([building]='supermarket')</Filter>
-      <MaxScaleDenominator>400000</MaxScaleDenominator>
-      <PolygonSymbolizer>
-        <CssParameter name="fill-opacity">0.5</CssParameter>
-        <CssParameter name="fill">rgb(255,192,203)</CssParameter>
       </PolygonSymbolizer>
     </Rule>
     <Rule title="!náboženský chrám">
@@ -385,7 +385,7 @@
       </LineSymbolizer>
     </Rule>
     <Rule title="budova">
-      <Filter>(((([building]&lt;&gt;'station') and ([building]&lt;&gt;'supermarket')) and ([building]&lt;&gt;'')) and (not (([amenity]&lt;&gt;'')) or ([amenity]&lt;&gt;'place_of_worship')))</Filter>
+      <Filter>((([building]&lt;&gt;'')) and (not (([amenity]&lt;&gt;'')) or ([amenity]&lt;&gt;'place_of_worship')))</Filter>
       <MinScaleDenominator>12500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonSymbolizer>
@@ -393,7 +393,7 @@
       </PolygonSymbolizer>
     </Rule>
     <Rule title="budova">
-      <Filter>(((([building]&lt;&gt;'station') and ([building]&lt;&gt;'supermarket')) and ([building]&lt;&gt;'')) and (not (([amenity]&lt;&gt;'')) or ([amenity]&lt;&gt;'place_of_worship')))</Filter>
+      <Filter>((([building]&lt;&gt;'')) and (not (([amenity]&lt;&gt;'')) or ([amenity]&lt;&gt;'place_of_worship')))</Filter>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(188,169,169)</CssParameter>
@@ -902,6 +902,17 @@
       </PolygonSymbolizer>
     </Rule>
   </Style>
+  <Style name="print-hypsometry">
+    <Rule title="výškopis">
+      <MinScaleDenominator>200000</MinScaleDenominator>
+      <MaxScaleDenominator>500000000</MaxScaleDenominator>
+      <RasterSymbolizer>
+        <CssParameter name="scaling">bilinear</CssParameter>
+        <CssParameter name="opacity">0.6</CssParameter>
+        <CssParameter name="mode">multiply</CssParameter>
+      </RasterSymbolizer>
+    </Rule>
+  </Style>
   <Style name="print-landuse_overlay">
     <Rule title="vojenský prostor">
       <Filter>([military]='danger_area' or [landuse]='military')</Filter>
@@ -1128,14 +1139,14 @@
       </PolygonSymbolizer>
     </Rule>
     <Rule title="škola">
-      <Filter>((((([amenity]='university') or ([amenity]='college')) or ([amenity]='school')) or ([amenity]='hospital')) or ([amenity]='kindergarten'))</Filter>
+      <Filter>(([amenity]='university') or ([amenity]='college') or ([amenity]='school') or ([amenity]='hospital') or ([amenity]='kindergarten'))</Filter>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(240,240,216)</CssParameter>
       </PolygonSymbolizer>
     </Rule>
     <Rule title="škola">
-      <Filter>((((([amenity]='university') or ([amenity]='college')) or ([amenity]='school')) or ([amenity]='hospital')) or ([amenity]='kindergarten'))</Filter>
+      <Filter>(([amenity]='university') or ([amenity]='college') or ([amenity]='school') or ([amenity]='hospital') or ([amenity]='kindergarten'))</Filter>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(165,42,42)</CssParameter>
@@ -3433,9 +3444,16 @@
   </Style>
   <Style name="print-nobicycle">
     <Rule title="zákaz vjezdu cyklistů">
+      <Filter>[bicycle]='no' or [bicycle]='private' or [bicycle]='destination'</Filter>
       <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <ShieldSymbolizer height="16" file="../symbols/print-noBicycle.png" face_name="DejaVu Sans Bold" width="16" type="png" spacing="40" no_text="1" min_distance="20" placement="line" name="osm_id"/>
+    </Rule>
+    <Rule title="zákaz vjezdu, cyklistům vjezd povolen">
+      <Filter>([access]='no' or [access]='private') and ([bicycle]='yes' or [bicycle]='designated' or [bicycle]='permissive')</Filter>
+      <MinScaleDenominator>500</MinScaleDenominator>
+      <MaxScaleDenominator>50000</MaxScaleDenominator>
+      <ShieldSymbolizer height="20" file="../symbols/print-noAccessYesBicycle.png" face_name="DejaVu Sans Bold" width="20" type="png" spacing="40" no_text="1" min_distance="20" placement="line" name="osm_id"/>
     </Rule>
   </Style>
   <Style name="print-noncased-ways-bridges">
@@ -21195,12 +21213,6 @@
     </Rule>
   </Style>
   <Style name="print-symbols">
-    <Rule title="!popis letiště">
-      <Filter>([aeroway]='airport')</Filter>
-      <MinScaleDenominator>500</MinScaleDenominator>
-      <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <TextSymbolizer fill="rgb(0,0,0)" size="18" halo_radius="1" name="name" fontset_name="bold-fonts"/>
-    </Rule>
     <Rule title="letiště">
       <Filter>([aeroway]='aerodrome')</Filter>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
@@ -21255,7 +21267,7 @@
       <PointSymbolizer height="30" width="40" file="../symbols/print-cave20.png" type="png"/>
     </Rule>
     <Rule title="větrná elektrárna">
-      <Filter>(([man_made]='power_wind') or (([power]='generator') and ([power_source]='wind')))</Filter>
+      <Filter>(([power]='generator') and (([power_source]='wind')) or ([generator:source]='wind'))</Filter>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer height="52" width="32" file="../symbols/print-power_wind.png" type="png"/>
     </Rule>
@@ -21280,7 +21292,7 @@
       <PointSymbolizer height="18" width="18" file="../symbols/print-mini_round.png" type="png"/>
     </Rule>
     <Rule title="brána, závora">
-      <Filter>(([highway]='gate') or ([barrier]='gate'))</Filter>
+      <Filter>([barrier]='gate')</Filter>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer height="10" width="14" file="../symbols/print-gate2.png" type="png"/>
     </Rule>
@@ -21364,12 +21376,12 @@
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer height="22" width="30" file="../symbols/print-bunker15.png" type="png"/>
     </Rule>
-    <Rule title="řopík">
+    <Rule title="zničený řopík">
       <Filter>([military]='bunker' and [bunker_type]='pillow' and [ruins]='yes')</Filter>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer height="14" width="18" file="../symbols/print-bunker-ruins.png" type="png"/>
     </Rule>
-    <Rule title="bunkr">
+    <Rule title="zničený bunkr">
       <Filter>([military]='bunker' and not [bunker_type]='pillow' and [ruins]='yes')</Filter>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer height="22" width="30" file="../symbols/print-bunker-ruins15.png" type="png"/>
@@ -21381,12 +21393,6 @@
     </Rule>
   </Style>
   <Style name="print-symbols-poly">
-    <Rule title="!letiště">
-      <Filter>([aeroway]='airport')</Filter>
-      <MaxScaleDenominator>200000</MaxScaleDenominator>
-      <PointSymbolizer height="32" width="32" file="../symbols/print-airport.p.16.png" type="png"/>
-      <TextSymbolizer fill="rgb(0,0,0)" size="16" halo_radius="1" dy="-24" name="name" vertical_alignment="top" fontset_name="bold-fonts"/>
-    </Rule>
     <Rule title="!letiště">
       <Filter>([aeroway]='aerodrome')</Filter>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
@@ -21451,7 +21457,7 @@
       <PointSymbolizer height="18" width="18" file="../symbols/print-mini_round.png" type="png"/>
     </Rule>
     <Rule title="!brána, závora">
-      <Filter>(([highway]='gate') or ([barrier]='gate'))</Filter>
+      <Filter>([barrier]='gate')</Filter>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer height="10" width="14" file="../symbols/print-gate2.png" type="png"/>
     </Rule>
@@ -21535,12 +21541,12 @@
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer height="22" width="30" file="../symbols/print-bunker15.png" type="png"/>
     </Rule>
-    <Rule title="řopík">
+    <Rule title="zničený řopík">
       <Filter>([military]='bunker' and [bunker_type]='pillow' and [ruins]='yes')</Filter>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer height="14" width="18" file="../symbols/print-bunker-ruins.png" type="png"/>
     </Rule>
-    <Rule title="bunkr">
+    <Rule title="zničený bunkr">
       <Filter>([military]='bunker' and not [bunker_type]='pillow' and [ruins]='yes')</Filter>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer height="22" width="30" file="../symbols/print-bunker-ruins15.png" type="png"/>
@@ -23760,8 +23766,8 @@
       </PolygonSymbolizer>
     </Rule>
   </Style>
-  <Layer name="hypsometry" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
-    <StyleName>hypsometry</StyleName>
+  <Layer name="print-hypsometry" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
+    <StyleName>print-hypsometry</StyleName>
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">/home/xtesar7/Devel/mtbmap-czechrep/Data/shadingdata/hypsometry150.tif</Parameter>
@@ -24537,9 +24543,9 @@
     <StyleName>print-nobicycle</StyleName>
     <Datasource>
       <Parameter name="type">postgis</Parameter>
-      <Parameter name="table">(select osm_id,way
+      <Parameter name="table">(select osm_id,way, access, bicycle
         from planet_osm_line
-        where (bicycle = 'no')) as nobicycle</Parameter>
+        where bicycle is not null) as nobicycle</Parameter>
       <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
@@ -24584,7 +24590,7 @@
     <StyleName>print-access</StyleName>
     <Datasource>
       <Parameter name="type">postgis</Parameter>
-      <Parameter name="table">(select osm_id,way,access,highway from planet_osm_line where access is not null) as access</Parameter>
+      <Parameter name="table">(select osm_id,way,access,highway from planet_osm_line where access is not null and (bicycle is null or bicycle not in ('no', 'private', 'destination', 'yes', 'designated', 'permissive'))) as access</Parameter>
       <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
@@ -24923,7 +24929,7 @@
     <StyleName>print-boundary</StyleName>
     <Datasource>
       <Parameter name="type">postgis</Parameter>
-      <Parameter name="table">(select way,name from planet_osm_polygon where boundary='national_park') as boundary</Parameter>
+      <Parameter name="table">(select way,name, protect_class from planet_osm_polygon where (boundary='national_park' or boundary='protected_area') and protect_class is not null) as boundary</Parameter>
       <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
