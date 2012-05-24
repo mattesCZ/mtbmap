@@ -12,19 +12,22 @@ zooms = [250000000000, 500000000, 200000000, 100000000, 50000000, 25000000, 1250
 
 def main():
     connection = connect("dbname='mapnikStyles' user='xtesar7' password='' port=5432");
-    stylePath = 'MTB-print.xml'
-#    stylePath = '/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/MTB-main.xml'
+    stylePath1 = 'MTB-print.xml'
+    stylePath2 = '/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/MTB-main.xml'
 
-    style = Style(stylePath, connection)
+    style1 = Style(stylePath1, connection)
+    style2 = Style(stylePath2, connection)
 
-#    style.importClean()
-    style.exportXMLStyle("/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/print.xml")
-#    style.exportXMLStyle("/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/output.xml")
-#    style.correctFilenames()
+#    style1.importClean()
+    style1.exportXMLStyle("/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/print.xml")
+#    style1.correctFilenames()
+    style1.close()
+    print 'style', stylePath1, 'completed'
+
+    style2.exportXMLStyle("/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/output.xml")
+    style2.close()
+    print 'style', stylePath2, 'completed'
     
-    print len(style.symbolizers)
-
-    style.close()
     connection.commit()
 
 class Symbolizer:

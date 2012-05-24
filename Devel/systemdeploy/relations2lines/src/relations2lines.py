@@ -152,7 +152,8 @@ def main():
     # Find offset polarity
 #    listOfRoutes = routes.values()
     listOfRoutes = sorted(routes.values(), key=lambda route: route.osmcSigns[0], reverse=True)
-    setrecursionlimit(len(listOfRoutes))
+    if len(listOfRoutes)>1000:
+        setrecursionlimit(len(listOfRoutes))
     for r in listOfRoutes:
 #        print "For cycle: ", r.id, r.osmcSigns[0]
         setOffset(routes, r.id, "next")

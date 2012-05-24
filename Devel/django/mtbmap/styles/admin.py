@@ -1,0 +1,22 @@
+from styles import models
+from django.contrib import admin
+
+admin.site.register(models.Map)
+admin.site.register(models.Layer)
+admin.site.register(models.MapLayer)
+admin.site.register(models.Style)
+admin.site.register(models.StyleLayer)
+admin.site.register(models.RuleStyle)
+admin.site.register(models.Rule)
+admin.site.register(models.SymbolizerRule)
+admin.site.register(models.Symbolizer)
+admin.site.register(models.BuildingSymbolizer)
+admin.site.register(models.LineSymbolizer)
+admin.site.register(models.LinePatternSymbolizer)
+admin.site.register(models.MarkersSymbolizer)
+admin.site.register(models.PointSymbolizer)
+admin.site.register(models.PolygonSymbolizer)
+admin.site.register(models.PolygonPatternSymbolizer)
+admin.site.register(models.RasterSymbolizer)
+admin.site.register(models.ShieldSymbolizer)
+admin.site.register(models.TextSymbolizer)
