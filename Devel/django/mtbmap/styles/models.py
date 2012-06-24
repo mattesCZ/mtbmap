@@ -36,7 +36,8 @@ def _set_xml_param(parent_node, parameter_name, parameter_value):
             parent_node.setProp(parameter_name, '0')
         else:
             if type(parameter_value).__name__=='unicode':
-                parent_node.setProp(parameter_name, str(parameter_value.encode('utf-8')))
+                if len(parameter_value) > 0:
+                    parent_node.setProp(parameter_name, str(parameter_value.encode('utf-8')))
             else:
                 parent_node.setProp(parameter_name, str(parameter_value))
 
@@ -67,10 +68,12 @@ def _compare_params(self_value, other_value, default=None):
 
 class Map(models.Model):
     m_name = models.CharField(max_length=200, primary_key=True)
-    m_abstract = models.TextField(null=True)
+    m_abstract = models.TextField(null=True, blank=True)
     m_bgcolor = models.CharField('Background color', max_length=200,
-                                 null=True, default='rgba(255, 255, 255, 0)')
+                                 null=True, blank=True, default='rgba(255, 255, 255, 0)')
     m_srs = models.CharField('Spatial reference system', max_length=200)
+
+    m_layers = models.ManyToManyField('Layer', through='MapLayer')
 
     def __unicode__(self):
         return self.m_name
@@ -118,21 +121,30 @@ class Layer(models.Model):
         ('tiff', 'tiff'),
     )
 
-    l_abstract = models.TextField(null=True)
+    l_abstract = models.TextField(null=True, blank=True)
     l_clear_label_cache = models.NullBooleanField()
     l_name = models.CharField(max_length=200, primary_key=True)
     l_srs = models.CharField('Spatial reference system', max_length=200)
     l_datatype = models.CharField(max_length=10, choices=DATATYPE_CHOICES)
-    l_datatable = models.TextField(null=True)
-    l_datafile = models.CharField(max_length=200, null=True)
-    l_dataformat = models.CharField(max_length=4, choices=DATAFORMAT_CHOICES, null=True)
-    l_dataextent = models.CharField(max_length=200, null=True)
+    l_datatable = models.TextField(null=True, blank=True)
+    l_datafile = models.CharField(max_length=200, null=True, blank=True)
+    l_dataformat = models.CharField(max_length=4, choices=DATAFORMAT_CHOICES, null=True, blank=True)
+    l_dataextent = models.CharField(max_length=200, null=True, blank=True)
+
+    l_maps = models.ManyToManyField('Map', through='MapLayer')
 
     def __unicode__(self):
         return self.l_name
 
     def stylenames(self):
         return StyleLayer.objects.filter(sl_layername=self.l_name).values_list('sl_stylename', flat=True)
+
+    def maps(self):
+        mapnames = MapLayer.objects.filter(ml_layername=self.l_name).values_list('ml_mapname', flat=True)
+        maps = []
+        for name in mapnames:
+            maps.append(Map.objects.get(pk=name))
+        return maps
 
     def get_xml(self):
         layer_node = libxml2.newNode('Layer')
@@ -174,13 +186,13 @@ class MapLayer(models.Model):
 
 class Style(models.Model):
     s_name = models.CharField(max_length=200, primary_key=True)
-    s_abstract = models.TextField(null=True)
+    s_abstract = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
         return self.s_name
 
     def ruleids(self):
-        return RuleStyle.objects.filter(rs_stylename=self.s_name).values_list('rs_ruleid', flat=True)
+        return RuleStyle.objects.filter(rs_stylename=self.s_name).order_by('rs_order').values_list('rs_ruleid', flat=True)
 
     def get_xml(self, scale_factor=1):
         style_node = libxml2.newNode('Style')
@@ -207,15 +219,18 @@ class Rule(models.Model):
     SCALE_CHOICES = zip(range(0, 21), range(0, 21))
 
     r_id = models.PositiveIntegerField(primary_key=True)
-    r_name = models.CharField(max_length=200, null=True)
-    r_title = models.CharField(max_length=200, null=True)
-    r_abstract = models.TextField(null=True)
-    r_filter = models.CharField(max_length=2000, null=True)
+    r_name = models.CharField(max_length=200, null=True, blank=True)
+    r_title = models.CharField(max_length=200, null=True, blank=True)
+    r_abstract = models.TextField(null=True, blank=True)
+    r_filter = models.CharField(max_length=2000, null=True, blank=True)
     r_minscale = models.IntegerField(choices=SCALE_CHOICES, default=18)
     r_maxscale = models.IntegerField(choices=SCALE_CHOICES, default=0)
 
     def __unicode__(self):
-        return self.r_title
+        if self.r_title:
+            return self.r_title
+        else:
+            return unicode(self.r_id)
 
     def symbolizerids(self):
         return SymbolizerRule.objects.filter(sr_ruleid=self).order_by('sr_order').values_list('sr_symbid', flat=True)
@@ -263,7 +278,7 @@ class RuleStyle(models.Model):
 
 class Symbolizer(models.Model):
     symbid = models.AutoField(primary_key=True)
-    abstract = models.CharField(max_length=200, null=True)
+    abstract = models.CharField(max_length=200, null=True, blank=True)
 
     def specialized(self):
         if BuildingSymbolizer.objects.filter(pk=self.symbid):
@@ -295,6 +310,10 @@ class Symbolizer(models.Model):
     def usages(self):
         return len(SymbolizerRule.objects.filter(sr_symbid=self))
 
+    def __unicode__(self):
+        spec_type = unicode(type(self.specialized())).split('.')[-1].replace("'>","")
+        return 'SymbID: %i, Type: %s' % (self.symbid, spec_type)
+
 
 class SymbolizerRule(models.Model):
     SYMBOLIZER_CHOICES = (
@@ -322,8 +341,8 @@ class SymbolizerRule(models.Model):
 
 
 class BuildingSymbolizer(Symbolizer):
-    fill = models.CharField(max_length=200, default='rgb(127, 127, 127)', null=True)
-    fill_opacity = models.DecimalField('fill-opacity', max_digits=3, decimal_places=2, null=True)
+    fill = models.CharField(max_length=200, default='rgb(127, 127, 127)', null=True, blank=True)
+    fill_opacity = models.DecimalField('fill-opacity', max_digits=3, decimal_places=2, null=True, blank=True)
     height = models.PositiveIntegerField()
 
     def __eq__(self, other):
@@ -348,6 +367,9 @@ class BuildingSymbolizer(Symbolizer):
         _set_xml_param(symbolizer_node, 'height', self.height)
         return symbolizer_node
 
+    def __unicode__(self):
+        return 'ID: %i, Height: %s' % (self.symbid, self.height)
+
 
 class LineSymbolizer(Symbolizer):
     LINEJOIN = (
@@ -361,13 +383,13 @@ class LineSymbolizer(Symbolizer):
         ('round', 'round'),
         ('square', 'square'),
     )
-    stroke = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True)
-    stroke_width = models.DecimalField('stroke-width', max_digits=5, decimal_places=2, null=True)
-    stroke_opacity = models.DecimalField('stroke-opacity', max_digits=3, decimal_places=2, null=True)
-    stroke_linejoin = models.CharField('stroke-linejoin', max_length=15, choices=LINEJOIN, default='round', null=True)
-    stroke_linecap = models.CharField('stroke-linecap', max_length=8, choices=LINECAP, default='butt', null=True)
-    stroke_dasharray = models.CharField('stroke-dasharray', max_length=200, null=True)
-    stroke_offset = models.DecimalField('stroke-width', max_digits=5, decimal_places=2, null=True)
+    stroke = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True, blank=True)
+    stroke_width = models.DecimalField('stroke-width', max_digits=5, decimal_places=2, null=True, blank=True)
+    stroke_opacity = models.DecimalField('stroke-opacity', max_digits=3, decimal_places=2, null=True, blank=True)
+    stroke_linejoin = models.CharField('stroke-linejoin', max_length=15, choices=LINEJOIN, default='round', null=True, blank=True)
+    stroke_linecap = models.CharField('stroke-linecap', max_length=8, choices=LINECAP, default='butt', null=True, blank=True)
+    stroke_dasharray = models.CharField('stroke-dasharray', max_length=200, null=True, blank=True)
+    stroke_offset = models.DecimalField('stroke-width', max_digits=5, decimal_places=2, null=True, blank=True)
 
 #    def __eq__(self, other):
 #        if isinstance(other, LineSymbolizer):
@@ -402,6 +424,14 @@ class LineSymbolizer(Symbolizer):
         _add_xml_css(symbolizer_node, 'stroke_offset', self.stroke_offset)
         return symbolizer_node
 
+    def __unicode__(self):
+        ret = 'ID: %i' % (self.symbid)
+        if self.stroke:
+            ret += ', Color: %s' % (self.stroke)
+        if self.stroke_width:
+            ret += ', Width: %s' % (self.stroke_width)
+        return ret
+
 
 class LinePatternSymbolizer(Symbolizer):
     TYPE = (
@@ -410,7 +440,7 @@ class LinePatternSymbolizer(Symbolizer):
     )
 
     file = models.CharField(max_length=400)
-    type = models.CharField(max_length=4, choices=TYPE, default='png', null=True)
+    type = models.CharField(max_length=4, choices=TYPE, default='png', null=True, blank=True)
     height = models.PositiveIntegerField()
     width = models.PositiveIntegerField()
 
@@ -418,6 +448,9 @@ class LinePatternSymbolizer(Symbolizer):
         if factor != 1:
             self.height = int(factor * self.height)
             self.width = int(factor * self.width)
+        if factor == 2:
+            if self.file:
+                self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
@@ -427,6 +460,9 @@ class LinePatternSymbolizer(Symbolizer):
         _set_xml_param(symbolizer_node, 'height', self.height)
         _set_xml_param(symbolizer_node, 'width', self.width)
         return symbolizer_node
+
+    def __unicode__(self):
+        return 'ID: %i, File: %s, Height: %i, Width: %i' % (self.symbid, self.file, self.height, self.width)
 
 
 class MarkersSymbolizer(Symbolizer):
@@ -441,20 +477,20 @@ class MarkersSymbolizer(Symbolizer):
     )
 
     allow_overlap = models.NullBooleanField()
-    spacing = models.PositiveIntegerField(null=True)
-    max_error = models.DecimalField(max_digits=3, decimal_places=2, null=True)
+    spacing = models.PositiveIntegerField(null=True, blank=True)
+    max_error = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
     filename = models.CharField(max_length=400)
-    transform = models.CharField(max_length=200, null=True)
-    opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True)
-    fill = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True)
-    stroke = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True)
-    stroke_width = models.DecimalField('stroke-width', max_digits=5, decimal_places=2, null=True)
-    stroke_opacity = models.DecimalField('stroke-opacity', max_digits=3, decimal_places=2, null=True)
+    transform = models.CharField(max_length=200, null=True, blank=True)
+    opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
+    fill = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True, blank=True)
+    stroke = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True, blank=True)
+    stroke_width = models.DecimalField('stroke-width', max_digits=5, decimal_places=2, null=True, blank=True)
+    stroke_opacity = models.DecimalField('stroke-opacity', max_digits=3, decimal_places=2, null=True, blank=True)
     height = models.PositiveIntegerField()
     width = models.PositiveIntegerField()
-    placement = models.CharField(max_length=10, choices=PLACEMENT, null=True)
+    placement = models.CharField(max_length=10, choices=PLACEMENT, null=True, blank=True)
     ignore_placement = models.NullBooleanField('ignore-placement')
-    marker_type = models.CharField(max_length=10, choices=MARKER_TYPE, null=True)
+    marker_type = models.CharField(max_length=10, choices=MARKER_TYPE, null=True, blank=True)
 
     def __unicode__(self):
         return 'ID: %i, Marker: %s' % (self.symbid, self.filename)
@@ -467,6 +503,9 @@ class MarkersSymbolizer(Symbolizer):
                 self.stroke_width *= factor
             self.height = int(factor * self.height)
             self.width = int(factor * self.width)
+        if factor == 2:
+            if self.filename:
+                self.filename = '/'.join(self.filename.split('/')[0:-1]) + '/print-' + self.filename.split('/')[-1]
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
@@ -498,10 +537,10 @@ class PointSymbolizer(Symbolizer):
     file = models.CharField(max_length=400)
     height = models.PositiveIntegerField()
     width = models.PositiveIntegerField()
-    type = models.CharField(max_length=4, choices=TYPE, default='png', null=True)
+    type = models.CharField(max_length=4, choices=TYPE, default='png', null=True, blank=True)
     allow_overlap = models.NullBooleanField()
-    opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True)
-    transform = models.CharField(max_length=200, null=True)
+    opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
+    transform = models.CharField(max_length=200, null=True, blank=True)
     ignore_placement = models.NullBooleanField('ignore-placement')
 
     def __unicode__(self):
@@ -511,6 +550,9 @@ class PointSymbolizer(Symbolizer):
         if factor != 1:
             self.height = int(factor * self.height)
             self.width = int(factor * self.width)
+        if factor == 2:
+            if self.file:
+                self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
@@ -527,9 +569,9 @@ class PointSymbolizer(Symbolizer):
 
 
 class PolygonSymbolizer(Symbolizer):
-    fill = models.CharField(max_length=200, default='rgb(127, 127, 127)', null=True)
-    fill_opacity = models.DecimalField('fill-opacity', max_digits=3, decimal_places=2, null=True)
-    gamma = models.DecimalField(max_digits=3, decimal_places=2, null=True)
+    fill = models.CharField(max_length=200, default='rgb(127, 127, 127)', null=True, blank=True)
+    fill_opacity = models.DecimalField('fill-opacity', max_digits=3, decimal_places=2, null=True, blank=True)
+    gamma = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
 
     def __unicode__(self):
         return 'ID: %i, Fill Color: %s' % (self.symbid, self.fill)
@@ -550,7 +592,7 @@ class PolygonPatternSymbolizer(Symbolizer):
     )
 
     file = models.CharField(max_length=400)
-    type = models.CharField(max_length=4, choices=TYPE, default='png', null=True)
+    type = models.CharField(max_length=4, choices=TYPE, default='png', null=True, blank=True)
     height = models.PositiveIntegerField()
     width = models.PositiveIntegerField()
 
@@ -561,6 +603,9 @@ class PolygonPatternSymbolizer(Symbolizer):
         if factor != 1:
             self.height = factor * self.height
             self.width = factor * self.width
+        if factor == 2:
+            if self.file:
+                self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
@@ -590,9 +635,9 @@ class RasterSymbolizer(Symbolizer):
         ('fast', 'fast'),
     )
 
-    opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True)
-    mode = models.CharField(max_length=20, choices=MODE, default='normal', null=True)
-    scaling = models.CharField(max_length=10, choices=SCALING, default='bilinear8', null=True)
+    opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
+    mode = models.CharField(max_length=20, choices=MODE, default='normal', null=True, blank=True)
+    scaling = models.CharField(max_length=10, choices=SCALING, default='bilinear8', null=True, blank=True)
 
     def __unicode__(self):
         return 'ID: %i' % (self.symbid)
@@ -600,9 +645,9 @@ class RasterSymbolizer(Symbolizer):
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
         symbolizer_node = libxml2.newNode('RasterSymbolizer')
-        _set_xml_param(symbolizer_node, 'opacity', self.opacity)
-        _set_xml_param(symbolizer_node, 'mode', self.mode)
-        _set_xml_param(symbolizer_node, 'scaling', self.scaling)
+        _add_xml_css(symbolizer_node, 'opacity', self.opacity)
+        _add_xml_css(symbolizer_node, 'mode', self.mode)
+        _add_xml_css(symbolizer_node, 'scaling', self.scaling)
         return symbolizer_node
 
 
@@ -634,35 +679,35 @@ class ShieldSymbolizer(Symbolizer):
 
     allow_overlap = models.NullBooleanField()
     avoid_edges = models.NullBooleanField()
-    character_spacing = models.PositiveIntegerField(null=True)
-    dx = models.IntegerField(null=True)
-    dy = models.IntegerField(null=True)
-    face_name = models.CharField(max_length=200, null=True)
+    character_spacing = models.PositiveIntegerField(null=True, blank=True)
+    dx = models.IntegerField(null=True, blank=True)
+    dy = models.IntegerField(null=True, blank=True)
+    face_name = models.CharField(max_length=200, null=True, blank=True)
     file = models.CharField(max_length=400)
-    fill = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True)
-    fontset_name = models.CharField(max_length=200, null=True)
-    halo_fill = models.CharField(max_length=200, null=True)
-    halo_radius = models.PositiveIntegerField(null=True)
+    fill = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True, blank=True)
+    fontset_name = models.CharField(max_length=200, null=True, blank=True)
+    halo_fill = models.CharField(max_length=200, null=True, blank=True)
+    halo_radius = models.PositiveIntegerField(null=True, blank=True)
     height = models.PositiveIntegerField()
     width = models.PositiveIntegerField()
-    horizontal_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True)
-    justify_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True)
-    line_spacing = models.PositiveIntegerField(null=True)
-    min_distance = models.PositiveIntegerField(null=True)
-    name = models.CharField(max_length=200, null=True)
+    horizontal_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True, blank=True)
+    justify_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True, blank=True)
+    line_spacing = models.PositiveIntegerField(null=True, blank=True)
+    min_distance = models.PositiveIntegerField(null=True, blank=True)
+    name = models.CharField(max_length=200, null=True, blank=True)
     no_text = models.NullBooleanField()
-    opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True)
-    placement = models.CharField(max_length=10, choices=PLACEMENT, null=True)
-    size = models.PositiveIntegerField(null=True)
-    spacing = models.PositiveIntegerField(null=True)
-    text_convert = models.CharField(max_length=200, choices=TEXT_CONVERT, null=True)
-    type = models.CharField(max_length=4, choices=TYPE, default='png', null=True)
+    opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
+    placement = models.CharField(max_length=10, choices=PLACEMENT, null=True, blank=True)
+    size = models.PositiveIntegerField(null=True, blank=True)
+    spacing = models.PositiveIntegerField(null=True, blank=True)
+    text_convert = models.CharField(max_length=200, choices=TEXT_CONVERT, null=True, blank=True)
+    type = models.CharField(max_length=4, choices=TYPE, default='png', null=True, blank=True)
     unlock_image = models.NullBooleanField()
-    vertical_alignment = models.CharField(max_length=10, choices=VERTICAL, null=True)
+    vertical_alignment = models.CharField(max_length=10, choices=VERTICAL, null=True, blank=True)
     wrap_before = models.NullBooleanField()
-    wrap_character = models.CharField(max_length=200, null=True)
-    wrap_width = models.PositiveIntegerField(null=True)
-    transform = models.CharField(max_length=200, null=True)
+    wrap_character = models.CharField(max_length=200, null=True, blank=True)
+    wrap_width = models.PositiveIntegerField(null=True, blank=True)
+    transform = models.CharField(max_length=200, null=True, blank=True)
 
     def __unicode__(self):
         return 'ID: %i, Shield: %s' % (self.symbid, self.file)
@@ -689,6 +734,9 @@ class ShieldSymbolizer(Symbolizer):
                 self.spacing = int(factor * self.spacing)
             if self.wrap_width:
                 self.wrap_width = int(factor * self.wrap_width)
+        if factor == 2:
+            if self.file:
+                self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
@@ -751,32 +799,32 @@ class TextSymbolizer(Symbolizer):
 
     allow_overlap = models.NullBooleanField()
     avoid_edges = models.NullBooleanField()
-    character_spacing = models.PositiveIntegerField(null=True)
-    dx = models.IntegerField(null=True)
-    dy = models.IntegerField(null=True)
-    face_name = models.CharField(max_length=200, null=True)
-    fill = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True)
-    fontset_name = models.CharField(max_length=200, null=True)
+    character_spacing = models.PositiveIntegerField(null=True, blank=True)
+    dx = models.IntegerField(null=True, blank=True)
+    dy = models.IntegerField(null=True, blank=True)
+    face_name = models.CharField(max_length=200, null=True, blank=True)
+    fill = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True, blank=True)
+    fontset_name = models.CharField(max_length=200, null=True, blank=True)
     force_odd_labels = models.NullBooleanField()
-    halo_fill = models.CharField(max_length=200, null=True)
-    halo_radius = models.PositiveIntegerField(null=True)
-    horizontal_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True)
-    justify_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True)
-    label_position_tolerance = models.PositiveIntegerField(null=True)
-    line_spacing = models.PositiveIntegerField(null=True)
-    max_char_angle_delta = models.DecimalField(max_digits=5, decimal_places=2, null=True)
-    min_distance = models.PositiveIntegerField(null=True)
-    name = models.CharField(max_length=200, null=True)
-    opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True)
-    placement = models.CharField(max_length=10, choices=PLACEMENT, null=True)
-    size = models.PositiveIntegerField(null=True)
-    spacing = models.PositiveIntegerField(null=True)
-    text_convert = models.CharField(max_length=200, choices=TEXT_CONVERT, null=True)
-    text_ratio = models.PositiveIntegerField(null=True)
-    vertical_alignment = models.CharField(max_length=10, choices=VERTICAL, null=True)
+    halo_fill = models.CharField(max_length=200, null=True, blank=True)
+    halo_radius = models.PositiveIntegerField(null=True, blank=True)
+    horizontal_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True, blank=True)
+    justify_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True, blank=True)
+    label_position_tolerance = models.PositiveIntegerField(null=True, blank=True)
+    line_spacing = models.PositiveIntegerField(null=True, blank=True)
+    max_char_angle_delta = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    min_distance = models.PositiveIntegerField(null=True, blank=True)
+    name = models.CharField(max_length=200, null=True, blank=True)
+    opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
+    placement = models.CharField(max_length=10, choices=PLACEMENT, null=True, blank=True)
+    size = models.PositiveIntegerField(null=True, blank=True)
+    spacing = models.PositiveIntegerField(null=True, blank=True)
+    text_convert = models.CharField(max_length=200, choices=TEXT_CONVERT, null=True, blank=True)
+    text_ratio = models.PositiveIntegerField(null=True, blank=True)
+    vertical_alignment = models.CharField(max_length=10, choices=VERTICAL, null=True, blank=True)
     wrap_before = models.NullBooleanField()
-    wrap_character = models.CharField(max_length=200, null=True)
-    wrap_width = models.PositiveIntegerField(null=True)
+    wrap_character = models.CharField(max_length=200, null=True, blank=True)
+    wrap_width = models.PositiveIntegerField(null=True, blank=True)
 
     def __unicode__(self):
         font = ''
