@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE Map [ <!ENTITY % ent SYSTEM "../inc/ent.xml.inc"> %ent; ]>
-<Map name="../../mtbmap-czechrep/Devel/mapnik/my_styles/output.xml" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" bgcolor="rgb(255,255,255)">
+<Map name="normal.xml" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" bgcolor="rgb(255,255,255)">
   <FontSet name="book-fonts">
     <Font face_name="DejaVu Sans Book"/>
   </FontSet>
@@ -3647,289 +3647,289 @@
       <Filter>([osmcsymbol0] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_backslash">
       <Filter>([osmcsymbol0] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_bowl">
       <Filter>([osmcsymbol0] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_bowl">
       <Filter>([osmcsymbol0] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_L">
       <Filter>([osmcsymbol0] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_L">
       <Filter>([osmcsymbol0] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_turned_T">
       <Filter>([osmcsymbol0] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_turned_T">
       <Filter>([osmcsymbol0] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_triangle">
       <Filter>([osmcsymbol0] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_triangle">
       <Filter>([osmcsymbol0] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_corner">
       <Filter>([osmcsymbol0] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_corner">
       <Filter>([osmcsymbol0] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_backslash">
       <Filter>([osmcsymbol0] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_backslash">
       <Filter>([osmcsymbol0] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_bowl">
       <Filter>([osmcsymbol0] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_bowl">
       <Filter>([osmcsymbol0] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_L">
       <Filter>([osmcsymbol0] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_L">
       <Filter>([osmcsymbol0] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_turned_T">
       <Filter>([osmcsymbol0] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_turned_T">
       <Filter>([osmcsymbol0] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_triangle">
       <Filter>([osmcsymbol0] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_triangle">
       <Filter>([osmcsymbol0] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_corner">
       <Filter>([osmcsymbol0] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_corner">
       <Filter>([osmcsymbol0] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_backslash">
       <Filter>([osmcsymbol0] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_backslash">
       <Filter>([osmcsymbol0] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_bowl">
       <Filter>([osmcsymbol0] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_bowl">
       <Filter>([osmcsymbol0] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_L">
       <Filter>([osmcsymbol0] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_L">
       <Filter>([osmcsymbol0] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_turned_T">
       <Filter>([osmcsymbol0] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_turned_T">
       <Filter>([osmcsymbol0] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_triangle">
       <Filter>([osmcsymbol0] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_triangle">
       <Filter>([osmcsymbol0] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_corner">
       <Filter>([osmcsymbol0] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_corner">
       <Filter>([osmcsymbol0] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_backslash">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_backslash">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_bowl">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_bowl">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_L">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_L">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_turned_T">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_turned_T">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_triangle">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_triangle">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_corner">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_corner">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
   </Style>
   <Style name="osmc-shield1">
@@ -3937,289 +3937,289 @@
       <Filter>([osmcsymbol1] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_backslash">
       <Filter>([osmcsymbol1] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_bowl">
       <Filter>([osmcsymbol1] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_bowl">
       <Filter>([osmcsymbol1] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_L">
       <Filter>([osmcsymbol1] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_L">
       <Filter>([osmcsymbol1] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_turned_T">
       <Filter>([osmcsymbol1] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_turned_T">
       <Filter>([osmcsymbol1] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_triangle">
       <Filter>([osmcsymbol1] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_triangle">
       <Filter>([osmcsymbol1] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_corner">
       <Filter>([osmcsymbol1] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_corner">
       <Filter>([osmcsymbol1] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_backslash">
       <Filter>([osmcsymbol1] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_backslash">
       <Filter>([osmcsymbol1] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_bowl">
       <Filter>([osmcsymbol1] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_bowl">
       <Filter>([osmcsymbol1] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_L">
       <Filter>([osmcsymbol1] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_L">
       <Filter>([osmcsymbol1] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_turned_T">
       <Filter>([osmcsymbol1] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_turned_T">
       <Filter>([osmcsymbol1] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_triangle">
       <Filter>([osmcsymbol1] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_triangle">
       <Filter>([osmcsymbol1] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_corner">
       <Filter>([osmcsymbol1] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_corner">
       <Filter>([osmcsymbol1] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_backslash">
       <Filter>([osmcsymbol1] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_backslash">
       <Filter>([osmcsymbol1] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_bowl">
       <Filter>([osmcsymbol1] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_bowl">
       <Filter>([osmcsymbol1] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_L">
       <Filter>([osmcsymbol1] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_L">
       <Filter>([osmcsymbol1] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_turned_T">
       <Filter>([osmcsymbol1] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_turned_T">
       <Filter>([osmcsymbol1] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_triangle">
       <Filter>([osmcsymbol1] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_triangle">
       <Filter>([osmcsymbol1] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_corner">
       <Filter>([osmcsymbol1] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_corner">
       <Filter>([osmcsymbol1] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_backslash">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_backslash">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_bowl">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_bowl">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_L">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_L">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_turned_T">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_turned_T">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_triangle">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_triangle">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_corner">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_corner">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
   </Style>
   <Style name="osmc-shield2">
@@ -4227,289 +4227,289 @@
       <Filter>([osmcsymbol2] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_backslash">
       <Filter>([osmcsymbol2] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_bowl">
       <Filter>([osmcsymbol2] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_bowl">
       <Filter>([osmcsymbol2] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_L">
       <Filter>([osmcsymbol2] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_L">
       <Filter>([osmcsymbol2] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_turned_T">
       <Filter>([osmcsymbol2] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_turned_T">
       <Filter>([osmcsymbol2] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_triangle">
       <Filter>([osmcsymbol2] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_triangle">
       <Filter>([osmcsymbol2] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_corner">
       <Filter>([osmcsymbol2] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_corner">
       <Filter>([osmcsymbol2] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_backslash">
       <Filter>([osmcsymbol2] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_backslash">
       <Filter>([osmcsymbol2] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_bowl">
       <Filter>([osmcsymbol2] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_bowl">
       <Filter>([osmcsymbol2] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_L">
       <Filter>([osmcsymbol2] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_L">
       <Filter>([osmcsymbol2] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_turned_T">
       <Filter>([osmcsymbol2] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_turned_T">
       <Filter>([osmcsymbol2] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_triangle">
       <Filter>([osmcsymbol2] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_triangle">
       <Filter>([osmcsymbol2] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_corner">
       <Filter>([osmcsymbol2] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_corner">
       <Filter>([osmcsymbol2] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_backslash">
       <Filter>([osmcsymbol2] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_backslash">
       <Filter>([osmcsymbol2] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_bowl">
       <Filter>([osmcsymbol2] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_bowl">
       <Filter>([osmcsymbol2] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_L">
       <Filter>([osmcsymbol2] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_L">
       <Filter>([osmcsymbol2] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_turned_T">
       <Filter>([osmcsymbol2] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_turned_T">
       <Filter>([osmcsymbol2] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_triangle">
       <Filter>([osmcsymbol2] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_triangle">
       <Filter>([osmcsymbol2] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_corner">
       <Filter>([osmcsymbol2] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_corner">
       <Filter>([osmcsymbol2] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_backslash">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_backslash">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_bowl">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_bowl">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_L">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_L">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_turned_T">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_turned_T">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_triangle">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_triangle">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_corner">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_corner">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
   </Style>
   <Style name="osmc-shield3">
@@ -4517,289 +4517,289 @@
       <Filter>([osmcsymbol3] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_backslash">
       <Filter>([osmcsymbol3] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_bowl">
       <Filter>([osmcsymbol3] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_bowl">
       <Filter>([osmcsymbol3] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_L">
       <Filter>([osmcsymbol3] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_L">
       <Filter>([osmcsymbol3] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_turned_T">
       <Filter>([osmcsymbol3] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_turned_T">
       <Filter>([osmcsymbol3] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_triangle">
       <Filter>([osmcsymbol3] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_triangle">
       <Filter>([osmcsymbol3] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_corner">
       <Filter>([osmcsymbol3] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: red:white:red_corner">
       <Filter>([osmcsymbol3] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_backslash">
       <Filter>([osmcsymbol3] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_backslash">
       <Filter>([osmcsymbol3] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_bowl">
       <Filter>([osmcsymbol3] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_bowl">
       <Filter>([osmcsymbol3] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_L">
       <Filter>([osmcsymbol3] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_L">
       <Filter>([osmcsymbol3] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_turned_T">
       <Filter>([osmcsymbol3] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_turned_T">
       <Filter>([osmcsymbol3] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_triangle">
       <Filter>([osmcsymbol3] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_triangle">
       <Filter>([osmcsymbol3] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_corner">
       <Filter>([osmcsymbol3] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: blue:white:blue_corner">
       <Filter>([osmcsymbol3] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_backslash">
       <Filter>([osmcsymbol3] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_backslash">
       <Filter>([osmcsymbol3] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_bowl">
       <Filter>([osmcsymbol3] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_bowl">
       <Filter>([osmcsymbol3] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_L">
       <Filter>([osmcsymbol3] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_L">
       <Filter>([osmcsymbol3] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_turned_T">
       <Filter>([osmcsymbol3] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_turned_T">
       <Filter>([osmcsymbol3] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_triangle">
       <Filter>([osmcsymbol3] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_triangle">
       <Filter>([osmcsymbol3] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_corner">
       <Filter>([osmcsymbol3] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: green:white:green_corner">
       <Filter>([osmcsymbol3] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_backslash">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_backslash">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_bowl">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_bowl">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_L">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_L">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_turned_T">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_turned_T">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_triangle">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_triangle">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_corner">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
     <Rule title="Shield: yellow:white:yellow_corner">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="12" width="12" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
+      <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" height="15" width="15" min_distance="10" name="osm_id" no_text="1" placement="line" spacing="100" type="png"/>
     </Rule>
   </Style>
   <Style name="osmc-track0">
@@ -19576,7 +19576,7 @@
       <Filter>([amenity]='shelter')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/shelter2.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Shelter_sym.png" height="14" width="12" type="png"/>
     </Rule>
     <Rule title="bankomat">
       <Filter>([amenity]='atm')</Filter>
@@ -19642,7 +19642,7 @@
       <Filter>([tourism]='camp_site')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/camping.n.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Camp_sym.png" height="10" width="13" type="png"/>
     </Rule>
     <Rule title="kemp pro karavany">
       <Filter>([tourism]='caravan_site')</Filter>
@@ -19672,7 +19672,7 @@
       <Filter>([amenity]='fuel')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/fuel.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Fuel_sym.png" height="11" width="10" type="png"/>
     </Rule>
     <Rule title="penzion">
       <Filter>([tourism]='guest_house')</Filter>
@@ -19684,7 +19684,7 @@
       <Filter>([amenity]='hospital')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/hospital.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Hospital_sym.png" height="13" width="13" type="png"/>
     </Rule>
     <Rule title="lékařské středisko">
       <Filter>([amenity]='doctors')</Filter>
@@ -19726,31 +19726,31 @@
       <Filter>([tourism]='museum')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/museum.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Museum.png" height="13" width="13" type="png"/>
     </Rule>
     <Rule title="socha">
       <Filter>([tourism]='artwork')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/artwork.png" height="14" width="10" type="png"/>
+      <PointSymbolizer file="../symbols/Artwork.png" height="13" width="8" type="png"/>
     </Rule>
     <Rule title="parkoviště">
       <Filter>(([amenity]='parking') and (([access]='public') or not (([access]&lt;&gt;''))))</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/parking.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Parking.png" height="10" width="10" type="png"/>
     </Rule>
     <Rule title="lékárna">
       <Filter>([amenity]='pharmacy')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/pharmacy.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Pharmacy.png" height="12" width="12" type="png"/>
     </Rule>
     <Rule title="kostel">
       <Filter>(([amenity]='place_of_worship') and ([religion]='christian'))</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/christian3.p.14.png" height="14" width="14" type="png"/>
+      <PointSymbolizer file="../symbols/Church_sym.png" height="12" width="8" type="png"/>
     </Rule>
     <Rule title="mešita">
       <Filter>(([amenity]='place_of_worship') and ([religion]='muslim'))</Filter>
@@ -19768,7 +19768,7 @@
       <Filter>(([amenity]='place_of_worship') and ([religion]='jewish'))</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/jewish3.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Jewish.png" height="15" width="14" type="png"/>
     </Rule>
     <Rule title="náboženský chrám">
       <Filter>([amenity]='place_of_worship')</Filter>
@@ -19858,13 +19858,13 @@
       <Filter>([tourism]='viewpoint' and not [man_made]='tower')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/view_point.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Viewpoint.png" height="13" width="13" type="png"/>
     </Rule>
     <Rule title="vodojem">
       <Filter>([man_made]='water_tower')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/tower_water.p.20.png" height="20" width="20" type="png"/>
+      <PointSymbolizer file="../symbols/Water_tower.png" height="15" width="9" type="png"/>
     </Rule>
   </Style>
   <Style name="points">
@@ -19878,7 +19878,7 @@
       <Filter>([amenity]='shelter')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/shelter2.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Shelter_sym.png" height="14" width="12" type="png"/>
     </Rule>
     <Rule title="bankomat">
       <Filter>([amenity]='atm')</Filter>
@@ -19944,7 +19944,7 @@
       <Filter>([tourism]='camp_site')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/camping.n.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Camp_sym.png" height="10" width="13" type="png"/>
     </Rule>
     <Rule title="kemp pro karavany">
       <Filter>([tourism]='caravan_site')</Filter>
@@ -19974,7 +19974,7 @@
       <Filter>([amenity]='fuel')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/fuel.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Fuel_sym.png" height="11" width="10" type="png"/>
     </Rule>
     <Rule title="penzion">
       <Filter>([tourism]='guest_house')</Filter>
@@ -19986,7 +19986,7 @@
       <Filter>([amenity]='hospital')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/hospital.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Hospital_sym.png" height="13" width="13" type="png"/>
     </Rule>
     <Rule title="lékařské středisko">
       <Filter>([amenity]='doctors')</Filter>
@@ -20028,31 +20028,31 @@
       <Filter>([tourism]='museum')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/museum.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Museum.png" height="13" width="13" type="png"/>
     </Rule>
     <Rule title="socha">
       <Filter>([tourism]='artwork')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/artwork.png" height="14" width="10" type="png"/>
+      <PointSymbolizer file="../symbols/Artwork.png" height="13" width="8" type="png"/>
     </Rule>
     <Rule title="parkoviště">
       <Filter>(([amenity]='parking') and (([access]='public') or not (([access]&lt;&gt;''))))</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/parking.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Parking.png" height="10" width="10" type="png"/>
     </Rule>
     <Rule title="lékárna">
       <Filter>([amenity]='pharmacy')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/pharmacy.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Pharmacy.png" height="12" width="12" type="png"/>
     </Rule>
     <Rule title="kostel">
       <Filter>(([amenity]='place_of_worship') and ([religion]='christian'))</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/christian3.p.14.png" height="14" width="14" type="png"/>
+      <PointSymbolizer file="../symbols/Church_sym.png" height="12" width="8" type="png"/>
     </Rule>
     <Rule title="mešita">
       <Filter>(([amenity]='place_of_worship') and ([religion]='muslim'))</Filter>
@@ -20070,7 +20070,7 @@
       <Filter>(([amenity]='place_of_worship') and ([religion]='jewish'))</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/jewish3.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Jewish.png" height="15" width="14" type="png"/>
     </Rule>
     <Rule title="náboženský chrám">
       <Filter>([amenity]='place_of_worship')</Filter>
@@ -20160,13 +20160,13 @@
       <Filter>([tourism]='viewpoint' and not [man_made]='tower')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/view_point.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Viewpoint.png" height="13" width="13" type="png"/>
     </Rule>
     <Rule title="vodojem">
       <Filter>([man_made]='water_tower')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/tower_water.p.20.png" height="20" width="20" type="png"/>
+      <PointSymbolizer file="../symbols/Water_tower.png" height="15" width="9" type="png"/>
     </Rule>
   </Style>
   <Style name="power">
@@ -21465,7 +21465,7 @@
       <Filter>([aeroway]='aerodrome')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>400000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/airport.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Airport_sym.png" height="16" width="15" type="png"/>
       <TextSymbolizer dy="-12" fill="rgb(0,0,0)" fontset_name="oblique-fonts" halo_radius="1" name="name" size="8" vertical_alignment="top"/>
     </Rule>
     <Rule title="železniční přejezd">
@@ -21496,13 +21496,13 @@
       <Filter>[amenity]='signpost' or [information]='guidepost'</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/signpost2.png" height="24" width="12" type="png"/>
+      <PointSymbolizer file="../symbols/Guidepost.png" height="24" width="7" type="png"/>
     </Rule>
     <Rule title="pramen">
       <Filter>([natural]='spring')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/spring09.png" height="9" width="9" type="png"/>
+      <PointSymbolizer file="../symbols/Spring.png" height="12" width="7" type="png"/>
     </Rule>
     <Rule title="památný strom">
       <Filter>([natural]='tree')</Filter>
@@ -21520,25 +21520,25 @@
       <Filter>([natural]='cave_entrance')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/cave20.png" height="15" width="20" type="png"/>
+      <PointSymbolizer file="../symbols/Cave.png" height="8" width="11" type="png"/>
     </Rule>
     <Rule title="větrná elektrárna">
       <Filter>(([man_made]='power_wind') or (([power]='generator') and ([power_source]='wind')))</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/power_wind.png" height="26" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Wind_turbine.png" height="28" width="11" type="png"/>
     </Rule>
     <Rule title="větrný mlýn">
       <Filter>([man_made]='windmill')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/windmill.png" height="15" width="10" type="png"/>
+      <PointSymbolizer file="../symbols/Windmill_sym.png" height="15" width="11" type="png"/>
     </Rule>
     <Rule title="vysílač">
       <Filter>(([man_made]='tower') and (([tower:type]='communication') or ([tower:type]='bts')))</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/communications.p.18.png" height="36" width="17" type="png"/>
+      <PointSymbolizer file="../symbols/Communication_tower.png" height="28" width="9" type="png"/>
     </Rule>
     <Rule title="rozhledna">
       <Filter>(([man_made]='tower') and ([tower:type]='observation'))</Filter>
@@ -21574,7 +21574,7 @@
       <Filter>(([historic]='ruins') or ([historic]='castle' and [ruins]='yes'))</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/ruins12.png" height="12" width="12" type="png" allow_overlap="1"/>
+      <PointSymbolizer file="../symbols/Castle_ruin.png" height="10" width="9" type="png" allow_overlap="1"/>
     </Rule>
     <Rule title="zámek">
       <Filter>(([historic]='castle') and ([castle_type]='stately' or [castle_type]='schloss'))</Filter>
@@ -21586,7 +21586,7 @@
       <Filter>([historic]='castle' and ([castle_type]='burg' or [castle_type]='defensive'))</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/burg18.png" height="18" width="17" type="png" allow_overlap="1"/>
+      <PointSymbolizer file="../symbols/Castle_sym.png" height="15" width="12" type="png" allow_overlap="1"/>
     </Rule>
     <Rule title="!hrad, zámek">
       <Filter>([historic]='castle' and not [ruins]='yes')</Filter>
@@ -21598,37 +21598,37 @@
       <Filter>([historic]='memorial')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/memorial.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Memorial.png" height="8" width="8" type="png"/>
     </Rule>
     <Rule title="památník">
       <Filter>([historic]='monument')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/monument.png" height="15" width="7" type="png"/>
+      <PointSymbolizer file="../symbols/Monument.png" height="12" width="10" type="png"/>
     </Rule>
     <Rule title="křížek">
       <Filter>([historic]='wayside_cross' or [historic]='wayside_shrine')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/cross.png" height="12" width="9" type="png"/>
+      <PointSymbolizer file="../symbols/Cross_sym.png" height="11" width="8" type="png"/>
     </Rule>
     <Rule title="klášter">
       <Filter>([historic]='monastery')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/monastery.png" height="12" width="17" type="png"/>
+      <PointSymbolizer file="../symbols/Monastery.png" height="8" width="12" type="png"/>
     </Rule>
     <Rule title="archeologické naleziště">
       <Filter>([historic]='archaeological_site')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/archeology.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Archaeological_site.png" height="13" width="13" type="png"/>
     </Rule>
     <Rule title="informační tabule">
       <Filter>([information]='board')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/infoBoard12.png" height="12" width="12" type="png"/>
+      <PointSymbolizer file="../symbols/infoBoard12.png" height="11" width="11" type="png"/>
     </Rule>
     <Rule title="tabule s mapou">
       <Filter>([information]='map')</Filter>
@@ -21646,25 +21646,25 @@
       <Filter>([military]='bunker' and [bunker_type]='pillow' and not [ruins]='yes')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/bunker.png" height="7" width="9" type="png"/>
+      <PointSymbolizer file="../symbols/Pillbox.png" height="9" width="10" type="png"/>
     </Rule>
     <Rule title="bunkr">
       <Filter>([military]='bunker' and not [bunker_type]='pillow' and not [ruins]='yes')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/bunker15.png" height="11" width="15" type="png"/>
+      <PointSymbolizer file="../symbols/Bunker.png" height="11" width="13" type="png"/>
     </Rule>
     <Rule title="zničený řopík">
       <Filter>([military]='bunker' and [bunker_type]='pillow' and [ruins]='yes')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/bunker-ruins.png" height="7" width="9" type="png"/>
+      <PointSymbolizer file="../symbols/Pillbox-ruins.png" height="9" width="10" type="png"/>
     </Rule>
     <Rule title="zničený bunkr">
       <Filter>([military]='bunker' and not [bunker_type]='pillow' and [ruins]='yes')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/bunker-ruins15.png" height="11" width="15" type="png"/>
+      <PointSymbolizer file="../symbols/Bunker-ruins.png" height="11" width="13" type="png"/>
     </Rule>
     <Rule title="cesta pokračuje, pouze není zmapovaná">
       <Filter>([noexit]='no')</Filter>
@@ -21678,7 +21678,7 @@
       <Filter>([aeroway]='aerodrome')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>400000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/airport.p.16.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Airport_sym.png" height="16" width="15" type="png"/>
       <TextSymbolizer dy="-12" fill="rgb(0,0,0)" fontset_name="oblique-fonts" halo_radius="1" name="name" size="8" vertical_alignment="top"/>
     </Rule>
     <Rule title="!železniční přejezd">
@@ -21709,7 +21709,7 @@
       <Filter>([natural]='spring')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/spring09.png" height="9" width="9" type="png"/>
+      <PointSymbolizer file="../symbols/Spring.png" height="12" width="7" type="png"/>
     </Rule>
     <Rule title="!památný strom">
       <Filter>([natural]='tree')</Filter>
@@ -21727,13 +21727,13 @@
       <Filter>([man_made]='windmill')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/windmill.png" height="15" width="10" type="png"/>
+      <PointSymbolizer file="../symbols/Windmill_sym.png" height="15" width="11" type="png"/>
     </Rule>
     <Rule title="!vysílač">
       <Filter>(([man_made]='tower') and (([tower:type]='communication') or ([tower:type]='bts')))</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/communications.p.18.png" height="36" width="17" type="png"/>
+      <PointSymbolizer file="../symbols/Communication_tower.png" height="28" width="9" type="png"/>
     </Rule>
     <Rule title="!rozhledna">
       <Filter>(([man_made]='tower') and ([tower:type]='observation'))</Filter>
@@ -21769,7 +21769,7 @@
       <Filter>(([historic]='ruins') or ([historic]='castle' and [ruins]='yes'))</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/ruins12.png" height="12" width="12" type="png" allow_overlap="1"/>
+      <PointSymbolizer file="../symbols/Castle_ruin.png" height="10" width="9" type="png" allow_overlap="1"/>
     </Rule>
     <Rule title="!zámek">
       <Filter>(([historic]='castle') and ([castle_type]='stately' or [castle_type]='schloss'))</Filter>
@@ -21781,7 +21781,7 @@
       <Filter>([historic]='castle' and ([castle_type]='burg' or [castle_type]='defensive'))</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/burg18.png" height="18" width="17" type="png" allow_overlap="1"/>
+      <PointSymbolizer file="../symbols/Castle_sym.png" height="15" width="12" type="png" allow_overlap="1"/>
     </Rule>
     <Rule title="!hrad, zámek">
       <Filter>([historic]='castle' and not [ruins]='yes')</Filter>
@@ -21793,37 +21793,37 @@
       <Filter>([historic]='memorial')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/memorial.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Memorial.png" height="8" width="8" type="png"/>
     </Rule>
     <Rule title="!památník">
       <Filter>([historic]='monument')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/monument.png" height="15" width="7" type="png"/>
+      <PointSymbolizer file="../symbols/Monument.png" height="12" width="10" type="png"/>
     </Rule>
     <Rule title="!křížek">
       <Filter>([historic]='wayside_cross' or [historic]='wayside_shrine')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/cross.png" height="12" width="9" type="png"/>
+      <PointSymbolizer file="../symbols/Cross_sym.png" height="11" width="8" type="png"/>
     </Rule>
     <Rule title="!klášter">
       <Filter>([historic]='monastery')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/monastery.png" height="12" width="17" type="png"/>
+      <PointSymbolizer file="../symbols/Monastery.png" height="8" width="12" type="png"/>
     </Rule>
     <Rule title="!archeologické naleziště">
       <Filter>([historic]='archaeological_site')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/archeology.png" height="16" width="16" type="png"/>
+      <PointSymbolizer file="../symbols/Archaeological_site.png" height="13" width="13" type="png"/>
     </Rule>
     <Rule title="!informační tabule">
       <Filter>([information]='board')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/infoBoard12.png" height="12" width="12" type="png"/>
+      <PointSymbolizer file="../symbols/infoBoard12.png" height="11" width="11" type="png"/>
     </Rule>
     <Rule title="!tabule s mapou">
       <Filter>([information]='map')</Filter>
@@ -21841,25 +21841,25 @@
       <Filter>([military]='bunker' and [bunker_type]='pillow' and not [ruins]='yes')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/bunker.png" height="7" width="9" type="png"/>
+      <PointSymbolizer file="../symbols/Pillbox.png" height="9" width="10" type="png"/>
     </Rule>
     <Rule title="bunkr">
       <Filter>([military]='bunker' and not [bunker_type]='pillow' and not [ruins]='yes')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/bunker15.png" height="11" width="15" type="png"/>
+      <PointSymbolizer file="../symbols/Bunker.png" height="11" width="13" type="png"/>
     </Rule>
     <Rule title="zničený řopík">
       <Filter>([military]='bunker' and [bunker_type]='pillow' and [ruins]='yes')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/bunker-ruins.png" height="7" width="9" type="png"/>
+      <PointSymbolizer file="../symbols/Pillbox-ruins.png" height="9" width="10" type="png"/>
     </Rule>
     <Rule title="zničený bunkr">
       <Filter>([military]='bunker' and not [bunker_type]='pillow' and [ruins]='yes')</Filter>
       <MinScaleDenominator>2500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/bunker-ruins15.png" height="11" width="15" type="png"/>
+      <PointSymbolizer file="../symbols/Bunker-ruins.png" height="11" width="13" type="png"/>
     </Rule>
   </Style>
   <Style name="text">
@@ -22275,7 +22275,7 @@
       <Filter>((([place]='town') or ([place]='large_town') or ([place]='small_town')) and not ([numericpop]&gt;10000))</Filter>
       <MinScaleDenominator>50000</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <TextSymbolizer fill="rgb(0,0,0)" fontset_name="oblique-fonts" halo_radius="1" name="name" size="14" wrap_width="30"/>
+      <TextSymbolizer fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="1" name="name" size="14" wrap_width="30"/>
     </Rule>
     <Rule title="město s méně než 10 000">
       <Filter>((([place]='town') or ([place]='large_town') or ([place]='small_town')) and not ([numericpop]&gt;10000))</Filter>
@@ -22287,7 +22287,7 @@
       <Filter>(([numericpop]&gt;10000) and not ([numericpop]&gt;50000))</Filter>
       <MinScaleDenominator>50000</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
-      <TextSymbolizer fill="rgb(0,0,0)" fontset_name="oblique-fonts" halo_radius="1" name="name" size="14" wrap_width="30"/>
+      <TextSymbolizer fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="1" name="name" size="14" wrap_width="30"/>
     </Rule>
     <Rule title="město 50 001-100 000 obyv.">
       <Filter>(([numericpop]&gt;50000) and not ([numericpop]&gt;100000))</Filter>
@@ -22311,7 +22311,7 @@
       <Filter>(([numericpop]&gt;10000) and not ([numericpop]&gt;50000))</Filter>
       <MinScaleDenominator>200000</MinScaleDenominator>
       <MaxScaleDenominator>400000</MaxScaleDenominator>
-      <TextSymbolizer fill="rgb(0,0,0)" fontset_name="oblique-fonts" halo_radius="1" name="name" size="14" wrap_width="30"/>
+      <TextSymbolizer fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="1" name="name" size="14" wrap_width="30"/>
     </Rule>
     <Rule title="město 50 001-100 000 obyv.">
       <Filter>(([numericpop]&gt;50000) and not ([numericpop]&gt;100000))</Filter>
