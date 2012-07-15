@@ -40,7 +40,7 @@
   <Style name="access">
     <Rule title="soukromá komunikace">
       <Filter>(([access]='private') or ([access]='no'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <ShieldSymbolizer face_name="DejaVu Sans Bold" file="../symbols/print-noAccess.png" height="12" width="12" min_distance="12" name="osm_id" no_text="1" placement="line" spacing="24" type="png"/>
     </Rule>
@@ -48,7 +48,7 @@
   <Style name="admin-01234">
     <Rule title="státní hranice">
       <Filter>(([admin_level]='2') or ([admin_level]='3'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>400000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(64,64,64)</CssParameter>
@@ -194,31 +194,31 @@
   <Style name="area-text">
     <Rule>
       <Filter>(([way_area]&lt;20000) and not (([natural]='lake') or ([natural]='water') or ([landuse]='reservoir') or ([landuse]='water')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(0,0,51)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" wrap_width="40"/>
     </Rule>
     <Rule>
       <Filter>(([way_area]&gt;=20000) and ([way_area]&lt;80000) and not (([natural]='lake') or ([natural]='water') or ([landuse]='reservoir') or ([landuse]='water')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(0,0,51)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" wrap_width="40"/>
     </Rule>
     <Rule>
       <Filter>(([way_area]&gt;=80000) and ([way_area]&lt;150000) and not (([natural]='lake') or ([natural]='water') or ([landuse]='reservoir') or ([landuse]='water')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(0,0,51)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" wrap_width="40"/>
     </Rule>
     <Rule>
       <Filter>(([way_area]&gt;=150000) and not (([natural]='lake') or ([natural]='water') or ([landuse]='reservoir') or ([landuse]='water')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(0,0,51)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" wrap_width="40"/>
     </Rule>
     <Rule>
       <Filter>(([natural]='lake') or ([natural]='water') or ([landuse]='reservoir') or ([landuse]='water'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(80,109,177)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" wrap_width="60"/>
     </Rule>
@@ -262,7 +262,7 @@
   <Style name="barriers">
     <Rule title="plot, zeď">
       <Filter>(([barrier]&lt;&gt;'') and not (([barrier]='hedge')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke-width">0.80</CssParameter>
@@ -270,7 +270,7 @@
     </Rule>
     <Rule title="živý plot">
       <Filter>(([natural]='hedge') or ([barrier]='hedge'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(174,209,160)</CssParameter>
@@ -281,7 +281,7 @@
   <Style name="barriers">
     <Rule title="plot, zeď">
       <Filter>(([barrier]&lt;&gt;'') and not (([barrier]='hedge')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke-width">0.80</CssParameter>
@@ -289,7 +289,7 @@
     </Rule>
     <Rule title="živý plot">
       <Filter>(([natural]='hedge') or ([barrier]='hedge'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(174,209,160)</CssParameter>
@@ -350,7 +350,7 @@
   <Style name="buildings">
     <Rule title="!terminál letiště">
       <Filter>([aeroway]='terminal')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(51,0,102)</CssParameter>
@@ -359,7 +359,7 @@
     </Rule>
     <Rule title="!terminál letiště">
       <Filter>([aeroway]='terminal')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(204,153,255)</CssParameter>
@@ -367,7 +367,7 @@
     </Rule>
     <Rule title="budova">
       <Filter>((([building]&lt;&gt;'')) and (not (([amenity]&lt;&gt;'')) or ([amenity]&lt;&gt;'place_of_worship')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(188,169,169)</CssParameter>
@@ -387,7 +387,7 @@
     </Rule>
     <Rule title="!sportoviště, dráha">
       <Filter>([leisure]='track')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>400000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(116,220,186)</CssParameter>
@@ -399,7 +399,7 @@
     </Rule>
     <Rule title="!náboženský chrám">
       <Filter>([amenity]='place_of_worship')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(119,119,119)</CssParameter>
@@ -421,7 +421,7 @@
     </Rule>
     <Rule title="!železniční stanice">
       <Filter>([railway]='station')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>400000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(212,170,170)</CssParameter>
@@ -467,13 +467,13 @@
   <Style name="cliffs">
     <Rule title="násep">
       <Filter>([man_made]='embankment')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LinePatternSymbolizer file="../symbols/print-cliff.png" type="png" height="8" width="20"/>
     </Rule>
     <Rule title="útes, skála">
       <Filter>([natural]='cliff')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LinePatternSymbolizer file="../symbols/print-cliff2.png" type="png" height="12" width="24"/>
     </Rule>
@@ -589,7 +589,7 @@
   </Style>
   <Style name="cycleway">
     <Rule title="cyklotrasa">
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(255,17,255)</CssParameter>
@@ -601,7 +601,7 @@
     </Rule>
     <Rule title="cyklostezka">
       <Filter>([highway]='cycleway')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(255,17,255)</CssParameter>
@@ -728,7 +728,7 @@
   </Style>
   <Style name="dam">
     <Rule title="hráz">
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(34,34,34)" fontset_name="book-fonts" halo_radius="2" name="name" size="16"/>
     </Rule>
@@ -746,7 +746,7 @@
   <Style name="directions">
     <Rule title="jednosměrná ulice">
       <Filter>([oneway]='-1')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(108,112,213)</CssParameter>
@@ -774,7 +774,7 @@
     </Rule>
     <Rule title="jednosměrná ulice">
       <Filter>([oneway]='yes')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(108,112,213)</CssParameter>
@@ -804,7 +804,7 @@
   <Style name="footbikecycle-tunnels">
     <Rule title="podchod">
       <Filter>([highway]='footway')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
@@ -828,7 +828,7 @@
     </Rule>
     <Rule title="!podchod">
       <Filter>([highway]='bridleway')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
@@ -852,7 +852,7 @@
     </Rule>
     <Rule title="!podchod">
       <Filter>([highway]='path')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
@@ -878,7 +878,7 @@
   <Style name="hamlet">
     <Rule>
       <Filter>(([place]='hamlet') or ([place]='locality'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(0,0,0)" fontset_name="oblique-fonts" halo_radius="2" name="name" size="28" wrap_width="60"/>
     </Rule>
@@ -892,7 +892,7 @@
   <Style name="highway-area-casing">
     <Rule title="!pěší zóna">
       <Filter>(([highway]='pedestrian') or ([highway]='footway'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(237,237,237)</CssParameter>
@@ -900,7 +900,7 @@
     </Rule>
     <Rule title="!prostranství">
       <Filter>((([highway]='residential') or ([highway]='unclassified')) or ([highway]='service') or ([highway]='living_street'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(80,80,80)</CssParameter>
@@ -911,7 +911,7 @@
   <Style name="highway-area-fill">
     <Rule title="!pěší zóna">
       <Filter>(([highway]='pedestrian') or ([highway]='footway'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(237,237,237)</CssParameter>
@@ -919,7 +919,7 @@
     </Rule>
     <Rule title="!prostranství">
       <Filter>((([highway]='residential') or ([highway]='unclassified')) or ([highway]='service') or ([highway]='living_street'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(255,255,255)</CssParameter>
@@ -940,7 +940,7 @@
   <Style name="landuse_overlay">
     <Rule title="přírodní rezervace">
       <Filter>([leisure]='nature_reserve')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PolygonPatternSymbolizer file="../symbols/print-nature_reserve2.png" type="png" height="96" width="84"/>
     </Rule>
@@ -973,7 +973,7 @@
   <Style name="leisure">
     <Rule title="hřiště">
       <Filter>([leisure]='playground')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(204,255,241)</CssParameter>
@@ -985,7 +985,7 @@
     </Rule>
     <Rule title="tábořiště">
       <Filter>((([tourism]='camp_site') or ([tourism]='caravan_site')) or ([tourism]='picnic_site'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(204,255,153)</CssParameter>
@@ -998,7 +998,7 @@
     </Rule>
     <Rule title="důl">
       <Filter>([landuse]='quarry')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonPatternSymbolizer file="../symbols/print-quarry2.png" type="png" height="60" width="60"/>
       <LineSymbolizer>
@@ -1022,7 +1022,7 @@
     </Rule>
     <Rule title="vinice">
       <Filter>([landuse]='vineyard')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PolygonPatternSymbolizer file="../symbols/print-vineyard.png" type="png" height="58" width="58"/>
     </Rule>
@@ -1034,7 +1034,7 @@
     </Rule>
     <Rule title="ovocný sad">
       <Filter>([landuse]='orchard')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PolygonPatternSymbolizer file="../symbols/print-orchard.png" type="png" height="58" width="58"/>
     </Rule>
@@ -1072,13 +1072,13 @@
     </Rule>
     <Rule title="hřbitov">
       <Filter>(([landuse]='cemetery') or ([amenity]='grave_yard'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PolygonPatternSymbolizer file="../symbols/print-grave_yard.png" type="png" height="32" width="32"/>
     </Rule>
     <Rule title="louka">
       <Filter>(([landuse]='meadow') or ([landuse]='grass') or ([natural]='fell'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(235,249,180)</CssParameter>
@@ -1086,7 +1086,7 @@
     </Rule>
     <Rule title="park, zahrada">
       <Filter>(([leisure]='park') or ([leisure]='dog_park') or ([landuse]='recreation_ground') or ([landuse]='village_green') or ([leisure]='garden'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(205,253,194)</CssParameter>
@@ -1095,13 +1095,13 @@
     </Rule>
     <Rule title="zoologická zahrada">
       <Filter>([tourism]='zoo')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonPatternSymbolizer file="../symbols/print-zoo.png" type="png" height="48" width="42"/>
     </Rule>
     <Rule title="golfové hřiště">
       <Filter>([leisure]='golf_course')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonPatternSymbolizer file="../symbols/print-golf.png" type="png" height="42" width="42"/>
       <LineSymbolizer>
@@ -1111,7 +1111,7 @@
     </Rule>
     <Rule title="zahrádkářská kolonie">
       <Filter>([landuse]='allotments')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(220,196,152)</CssParameter>
@@ -1123,7 +1123,7 @@
     </Rule>
     <Rule title="les">
       <Filter>([landuse]='forest')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(181,219,160)</CssParameter>
@@ -1131,7 +1131,7 @@
     </Rule>
     <Rule title="prales">
       <Filter>([natural]='wood')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(141,194,124)</CssParameter>
@@ -1139,7 +1139,7 @@
     </Rule>
     <Rule title="farma">
       <Filter>([landuse]='farmyard')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(221,191,146)</CssParameter>
@@ -1147,7 +1147,7 @@
     </Rule>
     <Rule title="zemědělská plocha">
       <Filter>(([landuse]='farm') or ([landuse]='farmland'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(234,216,189)</CssParameter>
@@ -1155,7 +1155,7 @@
     </Rule>
     <Rule title="průmyslová plocha">
       <Filter>(([landuse]='industrial') or ([landuse]='railway'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(223,209,214)</CssParameter>
@@ -1163,7 +1163,7 @@
     </Rule>
     <Rule title="transformační stanice">
       <Filter>(([power]='station') or ([power]='sub_station'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(187,187,187)</CssParameter>
@@ -1175,7 +1175,7 @@
     </Rule>
     <Rule title="plocha určená k výstavbě">
       <Filter>(((([landuse]='brownfield') or ([landuse]='landfill')) or ([landuse]='greenfield')) or ([landuse]='construction'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(157,157,108)</CssParameter>
@@ -1183,7 +1183,7 @@
     </Rule>
     <Rule title="škola">
       <Filter>(([amenity]='university') or ([amenity]='college') or ([amenity]='school') or ([amenity]='hospital') or ([amenity]='kindergarten'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(240,240,216)</CssParameter>
@@ -1191,7 +1191,7 @@
     </Rule>
     <Rule title="škola">
       <Filter>(([amenity]='university') or ([amenity]='college') or ([amenity]='school') or ([amenity]='hospital') or ([amenity]='kindergarten'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(165,42,42)</CssParameter>
@@ -1200,7 +1200,7 @@
     </Rule>
     <Rule title="parkoviště">
       <Filter>([amenity]='parking')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(247,239,183)</CssParameter>
@@ -1208,7 +1208,7 @@
     </Rule>
     <Rule title="parkoviště">
       <Filter>([amenity]='parking')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(238,238,209)</CssParameter>
@@ -1217,7 +1217,7 @@
     </Rule>
     <Rule title="letiště">
       <Filter>(([aeroway]='aerodrome') or ([aeroway]='apron'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(233,209,255)</CssParameter>
@@ -1230,13 +1230,13 @@
     </Rule>
     <Rule title="pláž">
       <Filter>([natural]='beach')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PolygonPatternSymbolizer file="../symbols/print-beach.png" type="png" height="20" width="20"/>
     </Rule>
     <Rule title="strniště">
       <Filter>(([natural]='scrub') or ([natural]='heath'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonPatternSymbolizer file="../symbols/print-scrub.png" type="png" height="60" width="60"/>
     </Rule>
@@ -1616,7 +1616,7 @@
     </Rule>
     <Rule title="pěší zóna">
       <Filter>(([highway]='pedestrian') and not (([tunnel]='yes')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
@@ -1627,7 +1627,7 @@
     </Rule>
     <Rule title="!pěší zóna">
       <Filter>(([highway]='pedestrian') and ([tunnel]='yes'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
@@ -2606,7 +2606,7 @@
     </Rule>
     <Rule title="pěší zóna">
       <Filter>([highway]='pedestrian')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(237,237,237)</CssParameter>
@@ -2617,7 +2617,7 @@
     </Rule>
     <Rule title="nástupiště">
       <Filter>(([highway]='platform') or ([railway]='platform'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
@@ -2628,7 +2628,7 @@
     </Rule>
     <Rule title="schodiště">
       <Filter>([highway]='steps')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(250,128,114)</CssParameter>
@@ -2638,7 +2638,7 @@
     </Rule>
     <Rule title="pěšina">
       <Filter>((([highway]='path') or ([highway]='footway')) and not ([tunnel]='yes'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
@@ -2658,7 +2658,7 @@
     </Rule>
     <Rule title="!stezka např. pro koně">
       <Filter>(([highway]='bridleway') and not ([tunnel]='yes'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
@@ -2678,7 +2678,7 @@
     </Rule>
     <Rule title="nástupiště">
       <Filter>(([highway]='platform') or ([railway]='platform'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(187,187,187)</CssParameter>
@@ -2724,7 +2724,7 @@
     </Rule>
     <Rule title="přistávací plocha">
       <Filter>(([aeroway]='runway') and not (([bridge]='yes')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(187,187,204)</CssParameter>
@@ -2750,7 +2750,7 @@
     </Rule>
     <Rule title="!příjezd na ranvej">
       <Filter>(([aeroway]='taxiway') and not (([bridge]='yes')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(187,187,204)</CssParameter>
@@ -2893,7 +2893,7 @@
   <Style name="mtb_basic">
     <Rule title="MTB stezka obtížnosti 4, 5 a 6">
       <Filter>([offsetside] = -1 and ([mtb:scale]='4' or [mtb:scale]='4+' or [mtb:scale]='4-' or [mtb:scale]='5' or [mtb:scale]='5+' or [mtb:scale]='5-' or [mtb:scale]='6' or [mtb:scale]='6+' or [mtb:scale]='6-'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(113,0,104)</CssParameter>
@@ -2907,7 +2907,7 @@
     </Rule>
     <Rule title="MTB stezka obtížnosti 3">
       <Filter>([offsetside] = -1 and ([mtb:scale]='3' or [mtb:scale]='3+' or [mtb:scale]='3-'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(113,0,104)</CssParameter>
@@ -2930,7 +2930,7 @@
     </Rule>
     <Rule title="MTB stezka obtížnosti 2">
       <Filter>([offsetside] = -1 and ([mtb:scale]='2' or [mtb:scale]='2+' or [mtb:scale]='2-'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(113,0,104)</CssParameter>
@@ -2944,7 +2944,7 @@
     </Rule>
     <Rule title="MTB stezka obtížnosti 1">
       <Filter>([offsetside] = -1 and ([mtb:scale]='1' or [mtb:scale]='1+' or [mtb:scale]='1-'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(113,0,104)</CssParameter>
@@ -2958,7 +2958,7 @@
     </Rule>
     <Rule title="MTB stezka obtížnosti 0">
       <Filter>([offsetside] = -1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(113,0,104)</CssParameter>
@@ -3049,7 +3049,7 @@
     </Rule>
     <Rule title="MTB stezka obtížnosti 4, 5 a 6">
       <Filter>([offsetside] = 1 and ([mtb:scale]='4' or [mtb:scale]='4+' or [mtb:scale]='4-' or [mtb:scale]='5' or [mtb:scale]='5+' or [mtb:scale]='5-' or [mtb:scale]='6' or [mtb:scale]='6+' or [mtb:scale]='6-'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(113,0,104)</CssParameter>
@@ -3063,7 +3063,7 @@
     </Rule>
     <Rule title="MTB stezka obtížnosti 3">
       <Filter>([offsetside] = 1 and ([mtb:scale]='3' or [mtb:scale]='3+' or [mtb:scale]='3-'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(113,0,104)</CssParameter>
@@ -3086,7 +3086,7 @@
     </Rule>
     <Rule title="MTB stezka obtížnosti 2">
       <Filter>([offsetside] = 1 and ([mtb:scale]='2' or [mtb:scale]='2+' or [mtb:scale]='2-'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(113,0,104)</CssParameter>
@@ -3100,7 +3100,7 @@
     </Rule>
     <Rule title="MTB stezka obtížnosti 1">
       <Filter>([offsetside] = 1 and ([mtb:scale]='1' or [mtb:scale]='1+' or [mtb:scale]='1-'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(113,0,104)</CssParameter>
@@ -3114,7 +3114,7 @@
     </Rule>
     <Rule title="MTB stezka obtížnosti 0">
       <Filter>([offsetside] = 1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(113,0,104)</CssParameter>
@@ -3264,7 +3264,7 @@
   </Style>
   <Style name="mtbwarning">
     <Rule title="danger">
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-warning.png" height="32" width="16" type="png" allow_overlap="1"/>
     </Rule>
@@ -3530,7 +3530,7 @@
   <Style name="noncased-ways-bridges">
     <Rule title="!stezka např. pro koně">
       <Filter>([highway]='bridleway')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke-width">9.00</CssParameter>
@@ -3552,7 +3552,7 @@
     </Rule>
     <Rule title="!stezka">
       <Filter>(([highway]='path') or ([highway]='footway'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke-width">7.00</CssParameter>
@@ -3607,7 +3607,7 @@
     </Rule>
     <Rule title="!příjezd na ranvej">
       <Filter>([aeroway]='taxiway')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke-width">14.00</CssParameter>
@@ -3631,7 +3631,7 @@
     </Rule>
     <Rule title="!přistávací plocha">
       <Filter>([aeroway]='runway')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke-width">38.00</CssParameter>
@@ -19558,7 +19558,7 @@
   </Style>
   <Style name="piers-area">
     <Rule title="molo">
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(242,239,233)</CssParameter>
@@ -19568,37 +19568,37 @@
   <Style name="points">
     <Rule title="horská chata">
       <Filter>([tourism]='alpine_hut')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-alpinehut.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="přístřešek">
       <Filter>([amenity]='shelter')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Shelter_sym.png" height="28" width="24" type="png"/>
     </Rule>
     <Rule title="bankomat">
       <Filter>([amenity]='atm')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-atm2.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="banka">
       <Filter>([amenity]='bank')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-bank2.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="bar">
       <Filter>([amenity]='bar')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-bar.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="stojany pro jízdní kola">
       <Filter>([amenity]='bicycle_parking')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-rental_bicycle.p.20.png" height="40" width="40" type="png"/>
     </Rule>
@@ -19610,259 +19610,259 @@
     </Rule>
     <Rule title="zastávka autobusů">
       <Filter>(([amenity]='bus_stop') or ([highway]='bus_stop'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-bus_stop.p.12.png" height="24" width="24" type="png"/>
     </Rule>
     <Rule title="autobusové nádraží">
       <Filter>([amenity]='bus_station')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-bus_station.n.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="semafor">
       <Filter>([highway]='traffic_signals')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-traffic_light.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="kavárna">
       <Filter>([amenity]='cafe')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-cafe.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="místo na piknik">
       <Filter>([tourism]='picnic_site')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-picnic.png" height="20" width="30" type="png"/>
     </Rule>
     <Rule title="kemp">
       <Filter>([tourism]='camp_site')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Camp_sym.png" height="20" width="26" type="png"/>
     </Rule>
     <Rule title="kemp pro karavany">
       <Filter>([tourism]='caravan_site')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-caravan_park.p.24.png" height="48" width="48" type="png"/>
     </Rule>
     <Rule title="půjčovna aut">
       <Filter>([amenity]='car_sharing')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-car_share.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="kino">
       <Filter>([amenity]='cinema')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-cinema.p.24.png" height="48" width="48" type="png"/>
     </Rule>
     <Rule title="požární zbrojnice">
       <Filter>([amenity]='fire_station')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-firestation.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="čerpací stanice">
       <Filter>([amenity]='fuel')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Fuel_sym.png" height="22" width="20" type="png"/>
     </Rule>
     <Rule title="penzion">
       <Filter>([tourism]='guest_house')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-guest_house.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="nemocnice">
       <Filter>([amenity]='hospital')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Hospital_sym.png" height="26" width="26" type="png"/>
     </Rule>
     <Rule title="lékařské středisko">
       <Filter>([amenity]='doctors')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-doctors.png" height="24" width="24" type="png"/>
     </Rule>
     <Rule title="horská služba">
       <Filter>([amenity]='mountain_rescue')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-mountain_rescue.png" height="38" width="24" type="png"/>
     </Rule>
     <Rule title="hostel">
       <Filter>([tourism]='hostel' or [tourism]='chalet')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-hostel.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="hotel">
       <Filter>([tourism]='hotel' or [tourism]='motel')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-hotel2.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="ambasáda">
       <Filter>([amenity]='embassy')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-embassy.png" height="24" width="24" type="png"/>
     </Rule>
     <Rule title="knihovna">
       <Filter>([amenity]='library')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-library.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="muzeum">
       <Filter>([tourism]='museum')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Museum.png" height="26" width="26" type="png"/>
     </Rule>
     <Rule title="socha">
       <Filter>([tourism]='artwork')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Artwork.png" height="26" width="16" type="png"/>
     </Rule>
     <Rule title="parkoviště">
       <Filter>(([amenity]='parking') and (([access]='public') or not (([access]&lt;&gt;''))))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Parking.png" height="20" width="20" type="png"/>
     </Rule>
     <Rule title="lékárna">
       <Filter>([amenity]='pharmacy')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Pharmacy.png" height="24" width="24" type="png"/>
     </Rule>
     <Rule title="kostel">
       <Filter>(([amenity]='place_of_worship') and ([religion]='christian'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Church_sym.png" height="24" width="16" type="png"/>
     </Rule>
     <Rule title="mešita">
       <Filter>(([amenity]='place_of_worship') and ([religion]='muslim'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-islamic3.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="chrám sikhů">
       <Filter>(([amenity]='place_of_worship') and ([religion]='sikh'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-sikh3.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="synagoga">
       <Filter>(([amenity]='place_of_worship') and ([religion]='jewish'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Jewish.png" height="30" width="28" type="png"/>
     </Rule>
     <Rule title="náboženský chrám">
       <Filter>([amenity]='place_of_worship')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-place_of_worship3.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="policejní stanice">
       <Filter>([amenity]='police')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-police.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="poštovní schránka">
       <Filter>([amenity]='post_box')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-post_box.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="pošta">
       <Filter>([amenity]='post_office')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-post_office.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="hospoda">
       <Filter>([amenity]='pub')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-pub.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="recyklace">
       <Filter>([amenity]='recycling')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-recycling.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="restaurace">
       <Filter>([amenity]='restaurant')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-restaurant.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="rychlé občerstvení">
       <Filter>([amenity]='fast_food')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-fast_food.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="telefonní budka">
       <Filter>([amenity]='telephone')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-telephone.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="divadlo">
       <Filter>([amenity]='theatre')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-theatre.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="veřejné toalety">
       <Filter>([amenity]='toilets')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-toilets.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="pitná voda">
       <Filter>([amenity]='drinking_water')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-food_drinkingtap.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="věznice">
       <Filter>([amenity]='prison')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-amenity_prison.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="posed">
       <Filter>([amenity]='hunting_stand')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-hunting_stand.png" height="28" width="20" type="png"/>
     </Rule>
     <Rule title="místo rozhledu">
       <Filter>([tourism]='viewpoint' and not [man_made]='tower')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Viewpoint.png" height="26" width="26" type="png"/>
     </Rule>
     <Rule title="vodojem">
       <Filter>([man_made]='water_tower')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Water_tower.png" height="30" width="18" type="png"/>
     </Rule>
@@ -19870,37 +19870,37 @@
   <Style name="points">
     <Rule title="horská chata">
       <Filter>([tourism]='alpine_hut')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-alpinehut.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="přístřešek">
       <Filter>([amenity]='shelter')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Shelter_sym.png" height="28" width="24" type="png"/>
     </Rule>
     <Rule title="bankomat">
       <Filter>([amenity]='atm')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-atm2.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="banka">
       <Filter>([amenity]='bank')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-bank2.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="bar">
       <Filter>([amenity]='bar')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-bar.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="stojany pro jízdní kola">
       <Filter>([amenity]='bicycle_parking')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-rental_bicycle.p.20.png" height="40" width="40" type="png"/>
     </Rule>
@@ -19912,259 +19912,259 @@
     </Rule>
     <Rule title="zastávka autobusů">
       <Filter>(([amenity]='bus_stop') or ([highway]='bus_stop'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-bus_stop.p.12.png" height="24" width="24" type="png"/>
     </Rule>
     <Rule title="autobusové nádraží">
       <Filter>([amenity]='bus_station')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-bus_station.n.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="semafor">
       <Filter>([highway]='traffic_signals')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-traffic_light.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="kavárna">
       <Filter>([amenity]='cafe')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-cafe.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="místo na piknik">
       <Filter>([tourism]='picnic_site')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-picnic.png" height="20" width="30" type="png"/>
     </Rule>
     <Rule title="kemp">
       <Filter>([tourism]='camp_site')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Camp_sym.png" height="20" width="26" type="png"/>
     </Rule>
     <Rule title="kemp pro karavany">
       <Filter>([tourism]='caravan_site')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-caravan_park.p.24.png" height="48" width="48" type="png"/>
     </Rule>
     <Rule title="půjčovna aut">
       <Filter>([amenity]='car_sharing')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-car_share.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="kino">
       <Filter>([amenity]='cinema')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-cinema.p.24.png" height="48" width="48" type="png"/>
     </Rule>
     <Rule title="požární zbrojnice">
       <Filter>([amenity]='fire_station')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-firestation.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="čerpací stanice">
       <Filter>([amenity]='fuel')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Fuel_sym.png" height="22" width="20" type="png"/>
     </Rule>
     <Rule title="penzion">
       <Filter>([tourism]='guest_house')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-guest_house.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="nemocnice">
       <Filter>([amenity]='hospital')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Hospital_sym.png" height="26" width="26" type="png"/>
     </Rule>
     <Rule title="lékařské středisko">
       <Filter>([amenity]='doctors')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-doctors.png" height="24" width="24" type="png"/>
     </Rule>
     <Rule title="horská služba">
       <Filter>([amenity]='mountain_rescue')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-mountain_rescue.png" height="38" width="24" type="png"/>
     </Rule>
     <Rule title="hostel">
       <Filter>([tourism]='hostel' or [tourism]='chalet')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-hostel.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="hotel">
       <Filter>([tourism]='hotel' or [tourism]='motel')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-hotel2.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="ambasáda">
       <Filter>([amenity]='embassy')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-embassy.png" height="24" width="24" type="png"/>
     </Rule>
     <Rule title="knihovna">
       <Filter>([amenity]='library')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-library.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="muzeum">
       <Filter>([tourism]='museum')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Museum.png" height="26" width="26" type="png"/>
     </Rule>
     <Rule title="socha">
       <Filter>([tourism]='artwork')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Artwork.png" height="26" width="16" type="png"/>
     </Rule>
     <Rule title="parkoviště">
       <Filter>(([amenity]='parking') and (([access]='public') or not (([access]&lt;&gt;''))))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Parking.png" height="20" width="20" type="png"/>
     </Rule>
     <Rule title="lékárna">
       <Filter>([amenity]='pharmacy')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Pharmacy.png" height="24" width="24" type="png"/>
     </Rule>
     <Rule title="kostel">
       <Filter>(([amenity]='place_of_worship') and ([religion]='christian'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Church_sym.png" height="24" width="16" type="png"/>
     </Rule>
     <Rule title="mešita">
       <Filter>(([amenity]='place_of_worship') and ([religion]='muslim'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-islamic3.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="chrám sikhů">
       <Filter>(([amenity]='place_of_worship') and ([religion]='sikh'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-sikh3.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="synagoga">
       <Filter>(([amenity]='place_of_worship') and ([religion]='jewish'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Jewish.png" height="30" width="28" type="png"/>
     </Rule>
     <Rule title="náboženský chrám">
       <Filter>([amenity]='place_of_worship')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-place_of_worship3.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="policejní stanice">
       <Filter>([amenity]='police')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-police.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="poštovní schránka">
       <Filter>([amenity]='post_box')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-post_box.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="pošta">
       <Filter>([amenity]='post_office')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-post_office.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="hospoda">
       <Filter>([amenity]='pub')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-pub.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="recyklace">
       <Filter>([amenity]='recycling')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-recycling.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="restaurace">
       <Filter>([amenity]='restaurant')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-restaurant.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="rychlé občerstvení">
       <Filter>([amenity]='fast_food')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-fast_food.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="telefonní budka">
       <Filter>([amenity]='telephone')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-telephone.p.16.png" height="32" width="32" type="png"/>
     </Rule>
     <Rule title="divadlo">
       <Filter>([amenity]='theatre')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-theatre.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="veřejné toalety">
       <Filter>([amenity]='toilets')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-toilets.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="pitná voda">
       <Filter>([amenity]='drinking_water')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-food_drinkingtap.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="věznice">
       <Filter>([amenity]='prison')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-amenity_prison.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="posed">
       <Filter>([amenity]='hunting_stand')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-hunting_stand.png" height="28" width="20" type="png"/>
     </Rule>
     <Rule title="místo rozhledu">
       <Filter>([tourism]='viewpoint' and not [man_made]='tower')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Viewpoint.png" height="26" width="26" type="png"/>
     </Rule>
     <Rule title="vodojem">
       <Filter>([man_made]='water_tower')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Water_tower.png" height="30" width="18" type="png"/>
     </Rule>
@@ -20172,7 +20172,7 @@
   <Style name="power">
     <Rule title="elektrické vedení nízkého napětí">
       <Filter>([power]='minor_line')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(100,100,100)</CssParameter>
@@ -20191,7 +20191,7 @@
     </Rule>
     <Rule title="elektrické vedení vysokého napětí">
       <Filter>([power]='line')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(100,100,100)</CssParameter>
@@ -20219,13 +20219,13 @@
   <Style name="power_towers">
     <Rule title="sloup elektrického vedení">
       <Filter>([power]='pole')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-power_tower_cz.png" height="8" width="8" type="png"/>
     </Rule>
     <Rule title="sloup elektrického vedení">
       <Filter>([power]='tower')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-power_tower_cz.png" height="10" width="10" type="png"/>
     </Rule>
@@ -20416,7 +20416,7 @@
   <Style name="road-bridges-casing">
     <Rule title="!most v pěší zóně">
       <Filter>([highway]='pedestrian')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke-width">19.00</CssParameter>
@@ -20548,7 +20548,7 @@
   <Style name="road-bridges-fill">
     <Rule title="!most v pěší zóně">
       <Filter>([highway]='pedestrian')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(237,237,237)</CssParameter>
@@ -21135,7 +21135,7 @@
     </Rule>
     <Rule>
       <Filter>(([aerialway]='cable_car') or ([aerialway]='gondola') or ([aerialway]='chair_lift') or ([aerialway]='drag_lift') or ([aerialway]='t-bar') or ([aerialway]='platter') or ([aerialway]='goods'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <TextSymbolizer dy="16" fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="2" name="name" placement="line" size="20"/>
     </Rule>
@@ -21171,7 +21171,7 @@
   </Style>
   <Style name="sports_grounds">
     <Rule title="sportoviště">
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>400000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(51,204,153)</CssParameter>
@@ -21201,7 +21201,7 @@
   <Style name="stations">
     <Rule title="!popis nádraží">
       <Filter>(([railway]='station') and not (([disused]='yes')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="-28" fill="rgb(3,3,3)" fontset_name="bold-fonts" halo_radius="2" name="name" size="22" vertical_alignment="top"/>
     </Rule>
@@ -21213,13 +21213,13 @@
     </Rule>
     <Rule title="!popis zastávky tramvají">
       <Filter>([railway]='tram_stop')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="-20" fill="rgb(3,3,3)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="top"/>
     </Rule>
     <Rule title="!popis železniční zastávky">
       <Filter>(([railway]='halt') or ([aerialway]='station'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="-20" fill="rgb(3,3,3)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="top"/>
     </Rule>
@@ -21231,7 +21231,7 @@
     </Rule>
     <Rule title="železniční a tramvajová zastávka">
       <Filter>((([railway]='halt') or ([railway]='tram_stop')) or ([aerialway]='station'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-station_small.png" height="12" width="12" type="png"/>
     </Rule>
@@ -21243,7 +21243,7 @@
     </Rule>
     <Rule title="nádraží">
       <Filter>(([railway]='station') and not (([disused]='yes')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-station.png" height="18" width="18" type="png"/>
     </Rule>
@@ -21263,7 +21263,7 @@
   <Style name="stations">
     <Rule title="!popis nádraží">
       <Filter>(([railway]='station') and not (([disused]='yes')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="-28" fill="rgb(3,3,3)" fontset_name="bold-fonts" halo_radius="2" name="name" size="22" vertical_alignment="top"/>
     </Rule>
@@ -21275,13 +21275,13 @@
     </Rule>
     <Rule title="!popis zastávky tramvají">
       <Filter>([railway]='tram_stop')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="-20" fill="rgb(3,3,3)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="top"/>
     </Rule>
     <Rule title="!popis železniční zastávky">
       <Filter>(([railway]='halt') or ([aerialway]='station'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="-20" fill="rgb(3,3,3)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="top"/>
     </Rule>
@@ -21293,7 +21293,7 @@
     </Rule>
     <Rule title="železniční a tramvajová zastávka">
       <Filter>((([railway]='halt') or ([railway]='tram_stop')) or ([aerialway]='station'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-station_small.png" height="12" width="12" type="png"/>
     </Rule>
@@ -21305,7 +21305,7 @@
     </Rule>
     <Rule title="nádraží">
       <Filter>(([railway]='station') and not (([disused]='yes')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-station.png" height="18" width="18" type="png"/>
     </Rule>
@@ -21325,7 +21325,7 @@
   <Style name="stations">
     <Rule title="!popis nádraží">
       <Filter>(([railway]='station') and not (([disused]='yes')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="-28" fill="rgb(3,3,3)" fontset_name="bold-fonts" halo_radius="2" name="name" size="22" vertical_alignment="top"/>
     </Rule>
@@ -21337,13 +21337,13 @@
     </Rule>
     <Rule title="!popis zastávky tramvají">
       <Filter>([railway]='tram_stop')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="-20" fill="rgb(3,3,3)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="top"/>
     </Rule>
     <Rule title="!popis železniční zastávky">
       <Filter>(([railway]='halt') or ([aerialway]='station'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="-20" fill="rgb(3,3,3)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="top"/>
     </Rule>
@@ -21355,7 +21355,7 @@
     </Rule>
     <Rule title="železniční a tramvajová zastávka">
       <Filter>((([railway]='halt') or ([railway]='tram_stop')) or ([aerialway]='station'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-station_small.png" height="12" width="12" type="png"/>
     </Rule>
@@ -21367,7 +21367,7 @@
     </Rule>
     <Rule title="nádraží">
       <Filter>(([railway]='station') and not (([disused]='yes')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-station.png" height="18" width="18" type="png"/>
     </Rule>
@@ -21387,7 +21387,7 @@
   <Style name="stations">
     <Rule title="!popis nádraží">
       <Filter>(([railway]='station') and not (([disused]='yes')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="-28" fill="rgb(3,3,3)" fontset_name="bold-fonts" halo_radius="2" name="name" size="22" vertical_alignment="top"/>
     </Rule>
@@ -21399,13 +21399,13 @@
     </Rule>
     <Rule title="!popis zastávky tramvají">
       <Filter>([railway]='tram_stop')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="-20" fill="rgb(3,3,3)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="top"/>
     </Rule>
     <Rule title="!popis železniční zastávky">
       <Filter>(([railway]='halt') or ([aerialway]='station'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="-20" fill="rgb(3,3,3)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="top"/>
     </Rule>
@@ -21417,7 +21417,7 @@
     </Rule>
     <Rule title="železniční a tramvajová zastávka">
       <Filter>((([railway]='halt') or ([railway]='tram_stop')) or ([aerialway]='station'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-station_small.png" height="12" width="12" type="png"/>
     </Rule>
@@ -21429,7 +21429,7 @@
     </Rule>
     <Rule title="nádraží">
       <Filter>(([railway]='station') and not (([disused]='yes')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-station.png" height="18" width="18" type="png"/>
     </Rule>
@@ -21449,7 +21449,7 @@
   <Style name="suburb">
     <Rule>
       <Filter>([place]='suburb')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(0,0,0)" fontset_name="oblique-fonts" halo_radius="2" name="name" size="34" wrap_width="60"/>
     </Rule>
@@ -21463,7 +21463,7 @@
   <Style name="symbols">
     <Rule title="letiště">
       <Filter>([aeroway]='aerodrome')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Airport_sym.png" height="32" width="30" type="png"/>
       <TextSymbolizer dy="-24" fill="rgb(0,0,0)" fontset_name="oblique-fonts" halo_radius="2" name="name" size="16" vertical_alignment="top"/>
@@ -21476,31 +21476,31 @@
     </Rule>
     <Rule title="železniční přejezd">
       <Filter>([railway]='level_crossing')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-level_crossing2.png" height="22" width="22" type="png"/>
     </Rule>
     <Rule title="maják">
       <Filter>([man_made]='lighthouse')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-lighthouse.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="vrchol">
       <Filter>([natural]='peak')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-peak.png" height="16" width="16" type="png"/>
     </Rule>
     <Rule title="rozcestí tras KČT">
       <Filter>[amenity]='signpost' or [information]='guidepost'</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Guidepost.png" height="48" width="14" type="png"/>
     </Rule>
     <Rule title="pramen">
       <Filter>([natural]='spring')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Spring.png" height="24" width="14" type="png"/>
     </Rule>
@@ -21512,163 +21512,163 @@
     </Rule>
     <Rule title="památný strom">
       <Filter>([natural]='tree')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-tree2.png" height="10" width="10" type="png"/>
     </Rule>
     <Rule title="jeskyně">
       <Filter>([natural]='cave_entrance')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Cave.png" height="16" width="22" type="png"/>
     </Rule>
     <Rule title="větrná elektrárna">
       <Filter>(([man_made]='power_wind') or (([power]='generator') and ([power_source]='wind')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Wind_turbine.png" height="56" width="22" type="png"/>
     </Rule>
     <Rule title="větrný mlýn">
       <Filter>([man_made]='windmill')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Windmill_sym.png" height="30" width="22" type="png"/>
     </Rule>
     <Rule title="vysílač">
       <Filter>(([man_made]='tower') and (([tower:type]='communication') or ([tower:type]='bts')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Communication_tower.png" height="56" width="18" type="png"/>
     </Rule>
     <Rule title="rozhledna">
       <Filter>(([man_made]='tower') and ([tower:type]='observation'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-observation.p.18.png" height="72" width="22" type="png"/>
     </Rule>
     <Rule title="kruhový objezd">
       <Filter>([highway]='mini_roundabout')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-mini_round.png" height="18" width="18" type="png"/>
     </Rule>
     <Rule title="brána, závora">
       <Filter>([barrier]='gate')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-gate2.png" height="10" width="14" type="png"/>
     </Rule>
     <Rule title="sloupek proti vjezdu">
       <Filter>([barrier]='bollard')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-bollard.png" height="6" width="6" type="png"/>
     </Rule>
     <Rule title="cyklistická prodejna">
       <Filter>([shop]='bicycle')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-shop_bicycle.png" height="26" width="40" type="png"/>
     </Rule>
     <Rule title="zřícenina">
       <Filter>(([historic]='ruins') or ([historic]='castle' and [ruins]='yes'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Castle_ruin.png" height="20" width="18" type="png" allow_overlap="1"/>
     </Rule>
     <Rule title="zámek">
       <Filter>(([historic]='castle') and ([castle_type]='stately' or [castle_type]='schloss'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-castle14.png" height="28" width="30" type="png" allow_overlap="1"/>
     </Rule>
     <Rule title="hrad">
       <Filter>([historic]='castle' and ([castle_type]='burg' or [castle_type]='defensive'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Castle_sym.png" height="30" width="24" type="png" allow_overlap="1"/>
     </Rule>
     <Rule title="!hrad, zámek">
       <Filter>([historic]='castle' and not [ruins]='yes')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-castle14.png" height="28" width="30" type="png" allow_overlap="1"/>
     </Rule>
     <Rule title="pomník">
       <Filter>([historic]='memorial')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Memorial.png" height="16" width="16" type="png"/>
     </Rule>
     <Rule title="památník">
       <Filter>([historic]='monument')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Monument.png" height="24" width="20" type="png"/>
     </Rule>
     <Rule title="křížek">
       <Filter>([historic]='wayside_cross' or [historic]='wayside_shrine')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Cross_sym.png" height="22" width="16" type="png"/>
     </Rule>
     <Rule title="klášter">
       <Filter>([historic]='monastery')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Monastery.png" height="16" width="24" type="png"/>
     </Rule>
     <Rule title="archeologické naleziště">
       <Filter>([historic]='archaeological_site')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Archaeological_site.png" height="26" width="26" type="png"/>
     </Rule>
     <Rule title="informační tabule">
       <Filter>([information]='board')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-infoBoard12.png" height="22" width="22" type="png"/>
     </Rule>
     <Rule title="tabule s mapou">
       <Filter>([information]='map')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-infoMap14.png" height="28" width="28" type="png"/>
     </Rule>
     <Rule title="infocentrum">
       <Filter>([information]='office')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-infoOffice14.png" height="28" width="28" type="png"/>
     </Rule>
     <Rule title="řopík">
       <Filter>([military]='bunker' and [bunker_type]='pillow' and not [ruins]='yes')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Pillbox.png" height="18" width="20" type="png"/>
     </Rule>
     <Rule title="bunkr">
       <Filter>([military]='bunker' and not [bunker_type]='pillow' and not [ruins]='yes')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Bunker.png" height="22" width="26" type="png"/>
     </Rule>
     <Rule title="zničený řopík">
       <Filter>([military]='bunker' and [bunker_type]='pillow' and [ruins]='yes')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Pillbox-ruins.png" height="18" width="20" type="png"/>
     </Rule>
     <Rule title="zničený bunkr">
       <Filter>([military]='bunker' and not [bunker_type]='pillow' and [ruins]='yes')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Bunker-ruins.png" height="22" width="26" type="png"/>
     </Rule>
     <Rule title="cesta pokračuje, pouze není zmapovaná">
       <Filter>([noexit]='no')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-noexitNo.png" height="24" width="24" type="png"/>
     </Rule>
@@ -21676,7 +21676,7 @@
   <Style name="symbols-poly">
     <Rule title="!letiště">
       <Filter>([aeroway]='aerodrome')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Airport_sym.png" height="32" width="30" type="png"/>
       <TextSymbolizer dy="-24" fill="rgb(0,0,0)" fontset_name="oblique-fonts" halo_radius="2" name="name" size="16" vertical_alignment="top"/>
@@ -21689,25 +21689,25 @@
     </Rule>
     <Rule title="!železniční přejezd">
       <Filter>([railway]='level_crossing')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-level_crossing2.png" height="22" width="22" type="png"/>
     </Rule>
     <Rule title="!maják">
       <Filter>([man_made]='lighthouse')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-lighthouse.p.20.png" height="40" width="40" type="png"/>
     </Rule>
     <Rule title="!vrchol">
       <Filter>([natural]='peak')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-peak.png" height="16" width="16" type="png"/>
     </Rule>
     <Rule title="!pramen">
       <Filter>([natural]='spring')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Spring.png" height="24" width="14" type="png"/>
     </Rule>
@@ -21719,145 +21719,145 @@
     </Rule>
     <Rule title="!památný strom">
       <Filter>([natural]='tree')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-tree2.png" height="10" width="10" type="png"/>
     </Rule>
     <Rule title="!větrný mlýn">
       <Filter>([man_made]='windmill')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Windmill_sym.png" height="30" width="22" type="png"/>
     </Rule>
     <Rule title="!vysílač">
       <Filter>(([man_made]='tower') and (([tower:type]='communication') or ([tower:type]='bts')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Communication_tower.png" height="56" width="18" type="png"/>
     </Rule>
     <Rule title="!rozhledna">
       <Filter>(([man_made]='tower') and ([tower:type]='observation'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-observation.p.18.png" height="72" width="22" type="png"/>
     </Rule>
     <Rule title="!kruhový objezd">
       <Filter>([highway]='mini_roundabout')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-mini_round.png" height="18" width="18" type="png"/>
     </Rule>
     <Rule title="!brána, závora">
       <Filter>([barrier]='gate')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-gate2.png" height="10" width="14" type="png"/>
     </Rule>
     <Rule title="!sloupek proti vjezdu">
       <Filter>([barrier]='bollard')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-bollard.png" height="6" width="6" type="png"/>
     </Rule>
     <Rule title="!cyklistická prodejna">
       <Filter>([shop]='bicycle')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-shop_bicycle.png" height="26" width="40" type="png"/>
     </Rule>
     <Rule title="!zřícenina">
       <Filter>(([historic]='ruins') or ([historic]='castle' and [ruins]='yes'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Castle_ruin.png" height="20" width="18" type="png" allow_overlap="1"/>
     </Rule>
     <Rule title="!zámek">
       <Filter>(([historic]='castle') and ([castle_type]='stately' or [castle_type]='schloss'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-castle14.png" height="28" width="30" type="png" allow_overlap="1"/>
     </Rule>
     <Rule title="!hrad">
       <Filter>([historic]='castle' and ([castle_type]='burg' or [castle_type]='defensive'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Castle_sym.png" height="30" width="24" type="png" allow_overlap="1"/>
     </Rule>
     <Rule title="!hrad, zámek">
       <Filter>([historic]='castle' and not [ruins]='yes')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-castle14.png" height="28" width="30" type="png" allow_overlap="1"/>
     </Rule>
     <Rule title="!pomník">
       <Filter>([historic]='memorial')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Memorial.png" height="16" width="16" type="png"/>
     </Rule>
     <Rule title="!památník">
       <Filter>([historic]='monument')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Monument.png" height="24" width="20" type="png"/>
     </Rule>
     <Rule title="!křížek">
       <Filter>([historic]='wayside_cross' or [historic]='wayside_shrine')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Cross_sym.png" height="22" width="16" type="png"/>
     </Rule>
     <Rule title="!klášter">
       <Filter>([historic]='monastery')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Monastery.png" height="16" width="24" type="png"/>
     </Rule>
     <Rule title="!archeologické naleziště">
       <Filter>([historic]='archaeological_site')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Archaeological_site.png" height="26" width="26" type="png"/>
     </Rule>
     <Rule title="!informační tabule">
       <Filter>([information]='board')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-infoBoard12.png" height="22" width="22" type="png"/>
     </Rule>
     <Rule title="!tabule s mapou">
       <Filter>([information]='map')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-infoMap14.png" height="28" width="28" type="png"/>
     </Rule>
     <Rule title="!infocentrum">
       <Filter>([information]='office')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-infoOffice14.png" height="28" width="28" type="png"/>
     </Rule>
     <Rule title="řopík">
       <Filter>([military]='bunker' and [bunker_type]='pillow' and not [ruins]='yes')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Pillbox.png" height="18" width="20" type="png"/>
     </Rule>
     <Rule title="bunkr">
       <Filter>([military]='bunker' and not [bunker_type]='pillow' and not [ruins]='yes')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Bunker.png" height="22" width="26" type="png"/>
     </Rule>
     <Rule title="zničený řopík">
       <Filter>([military]='bunker' and [bunker_type]='pillow' and [ruins]='yes')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Pillbox-ruins.png" height="18" width="20" type="png"/>
     </Rule>
     <Rule title="zničený bunkr">
       <Filter>([military]='bunker' and not [bunker_type]='pillow' and [ruins]='yes')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-Bunker-ruins.png" height="22" width="26" type="png"/>
     </Rule>
@@ -21871,247 +21871,247 @@
     </Rule>
     <Rule>
       <Filter>(((([amenity]='pub') or ([amenity]='restaurant')) or ([amenity]='cafe')) or ([amenity]='fast_food'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="28" fill="rgb(115,74,8)" fontset_name="bold-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='bar')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="30" fill="rgb(115,74,8)" fontset_name="bold-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>((([amenity]='cinema') or ([amenity]='library')) or ([amenity]='theatre'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="36" fill="rgb(115,74,8)" fontset_name="bold-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='parking')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer dy="28" fill="rgb(0,102,255)" fontset_name="book-fonts" halo_radius="2" name="name" size="18" vertical_alignment="bottom" wrap_width="68"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='police')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer dy="32" fill="rgb(115,74,8)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom" wrap_width="60"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='fire_station')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer dy="40" fill="rgb(115,74,8)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom" wrap_width="60"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='place_of_worship')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="32" fill="rgb(0,0,51)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom" wrap_width="60"/>
     </Rule>
     <Rule>
       <Filter>([natural]='wood')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="4" name="name" size="20" wrap_width="20"/>
     </Rule>
     <Rule>
       <Filter>([natural]='peak')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <TextSymbolizer dy="-12" fill="rgb(116,64,44)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="top" wrap_width="60"/>
     </Rule>
     <Rule>
       <Filter>([natural]='peak')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <TextSymbolizer dy="12" fill="rgb(116,64,44)" fontset_name="oblique-fonts" halo_radius="2" name="ele" size="18" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>[amenity]='signpost' or [information]='guidepost'</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <TextSymbolizer allow_overlap="1" dy="-32" fill="#000000" fontset_name="oblique-fonts" halo_radius="2" name="name" size="20" vertical_alignment="top" wrap_width="60"/>
     </Rule>
     <Rule>
       <Filter>[amenity]='signpost' or [information]='guidepost'</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer allow_overlap="1" dy="10" fill="#000000" fontset_name="oblique-fonts" halo_radius="2" name="ele" size="20" vertical_alignment="bottom" wrap_width="60"/>
     </Rule>
     <Rule>
       <Filter>((([leisure]&lt;&gt;'') or ([landuse]&lt;&gt;'')) and ([point]='yes'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="4" name="name" size="18" wrap_width="20"/>
     </Rule>
     <Rule>
       <Filter>([natural]='bay')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(80,109,177)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" wrap_width="40"/>
     </Rule>
     <Rule>
       <Filter>([natural]='spring')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="20" fill="rgb(80,109,177)" fontset_name="book-fonts" halo_radius="2" name="name" size="16" vertical_alignment="bottom" wrap_width="40"/>
     </Rule>
     <Rule>
       <Filter>(([tourism]='alpine_hut') or ([amenity]='shelter'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="30" fill="rgb(102,153,204)" fontset_name="book-fonts" halo_radius="2" name="name" size="18" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>(([tourism]='alpine_hut') or ([amenity]='shelter'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="50" fill="rgb(102,153,204)" fontset_name="oblique-fonts" halo_radius="2" name="ele" size="16" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='bank')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer dy="32" fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="2" name="name" size="18" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>(([tourism]='hotel') or ([tourism]='hostel'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="30" fill="rgb(0,102,255)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='embassy')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer dy="26" fill="rgb(0,102,255)" fontset_name="book-fonts" halo_radius="2" name="name" size="18" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>([tourism]='guest_house')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer dy="26" fill="rgb(0,102,255)" fontset_name="book-fonts" halo_radius="2" name="name" size="16" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>(([amenity]='fuel') or ([amenity]='bus_station'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="28" fill="rgb(0,102,255)" fontset_name="book-fonts" halo_radius="2" name="name" size="18" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>([tourism]='camp_site')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="30" fill="rgb(0,102,255)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom" wrap_width="140"/>
     </Rule>
     <Rule>
       <Filter>([tourism]='caravan_site')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="38" fill="rgb(0,102,255)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom" wrap_width="140"/>
     </Rule>
     <Rule>
       <Filter>([tourism]='museum')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="32" fill="rgb(115,74,8)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='prison')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer dy="32" fill="rgb(115,74,8)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>([tourism]='attraction')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(102,0,51)" fontset_name="book-fonts" halo_radius="4" name="name" size="20" wrap_width="20"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='university')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(0,0,51)" fontset_name="bold-fonts" halo_radius="2" name="name" size="18" wrap_width="32"/>
     </Rule>
     <Rule>
       <Filter>(([amenity]='school') or ([amenity]='college'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(0,0,51)" fontset_name="book-fonts" halo_radius="2" name="name" size="18" wrap_width="28"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='kindergarten')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(0,0,51)" fontset_name="book-fonts" halo_radius="2" name="name" size="16" wrap_width="28"/>
     </Rule>
     <Rule>
       <Filter>([man_made]='lighthouse')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="32" fill="rgb(0,0,51)" fontset_name="book-fonts" halo_radius="4" name="name" size="18" vertical_alignment="bottom" wrap_width="24"/>
     </Rule>
     <Rule>
       <Filter>(([man_made]='tower') and (([tower:type]='communication') or ([tower:type]='bts')))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="24" fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="2" name="name" size="18" vertical_alignment="bottom" wrap_width="40"/>
     </Rule>
     <Rule>
       <Filter>(([man_made]='tower') and ([tower:type]='observation'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="24" fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="2" name="name" size="18" vertical_alignment="bottom" wrap_width="40"/>
     </Rule>
     <Rule>
       <Filter>([man_made]='windmill')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer dy="24" fill="rgb(115,74,8)" fontset_name="book-fonts" halo_radius="2" name="name" size="18" vertical_alignment="bottom" wrap_width="40"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='hospital')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="32" fill="rgb(218,0,146)" fontset_name="book-fonts" halo_radius="4" name="name" size="16" vertical_alignment="bottom" wrap_width="24"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='pharmacy')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer dy="26" fill="rgb(218,0,146)" fontset_name="book-fonts" halo_radius="2" name="name" size="16" vertical_alignment="bottom" wrap_width="24"/>
     </Rule>
     <Rule>
       <Filter>([military]='danger_area')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(255,192,203)" fontset_name="bold-fonts" halo_radius="2" name="name" size="18" wrap_width="20"/>
     </Rule>
     <Rule>
       <Filter>([aeroway]='gate')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(170,102,204)" fontset_name="book-fonts" halo_radius="2" name="ref" size="20" wrap_width="20"/>
     </Rule>
     <Rule>
       <Filter>([shop]='bicycle')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <TextSymbolizer dy="20" fill="rgb(172,57,172)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom"/>
     </Rule>
     <Rule title="!zřícenina">
       <Filter>(([historic]='ruins') or ([historic]='castle' and [ruins]='yes'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <TextSymbolizer dy="20" fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom" wrap_width="60"/>
     </Rule>
     <Rule title="!hrad, zámek">
       <Filter>([historic]='castle' and not [ruins]='yes')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <TextSymbolizer dy="20" fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom" wrap_width="60"/>
     </Rule>
@@ -22119,37 +22119,37 @@
   <Style name="text-poly">
     <Rule title="!hrad, zámek">
       <Filter>([historic]='castle' and not [ruins]='yes')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <TextSymbolizer dy="20" fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom" wrap_width="60"/>
     </Rule>
     <Rule title="!zřícenina">
       <Filter>(([historic]='ruins') or ([historic]='castle' and [ruins]='yes'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <TextSymbolizer dy="20" fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom" wrap_width="60"/>
     </Rule>
     <Rule>
       <Filter>([shop]='bicycle')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <TextSymbolizer dy="20" fill="rgb(172,57,172)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>([aeroway]='gate')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(170,102,204)" fontset_name="book-fonts" halo_radius="2" name="ref" size="20" wrap_width="20"/>
     </Rule>
     <Rule>
       <Filter>([military]='danger_area')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(255,192,203)" fontset_name="bold-fonts" halo_radius="2" name="name" size="18" wrap_width="20"/>
     </Rule>
     <Rule>
       <Filter>([highway]='motorway_junction')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(3,3,3)" fontset_name="book-fonts" halo_radius="2" min_distance="40" name="ref" size="26" wrap_width="24"/>
       <TextSymbolizer dy="-28" fill="rgb(3,3,3)" fontset_name="book-fonts" halo_radius="2" min_distance="40" name="name" size="28" vertical_alignment="top" wrap_width="24"/>
@@ -22169,85 +22169,85 @@
     </Rule>
     <Rule>
       <Filter>([tourism]='caravan_site')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer dy="38" fill="rgb(0,102,255)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom" wrap_width="140"/>
     </Rule>
     <Rule>
       <Filter>([tourism]='camp_site')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer dy="30" fill="rgb(0,102,255)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom" wrap_width="140"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='bank')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer dy="32" fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="2" name="name" size="18" vertical_alignment="bottom"/>
     </Rule>
     <Rule title="!jeskyně">
       <Filter>([natural]='cave_entrance')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="20" fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom" wrap_width="60"/>
     </Rule>
     <Rule>
       <Filter>([natural]='spring')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="20" fill="rgb(80,109,177)" fontset_name="book-fonts" halo_radius="2" name="name" size="16" vertical_alignment="bottom" wrap_width="40"/>
     </Rule>
     <Rule>
       <Filter>([natural]='bay')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(80,109,177)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" wrap_width="40"/>
     </Rule>
     <Rule>
       <Filter>([natural]='wood')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="4" name="name" size="20" wrap_width="20"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='place_of_worship')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
       <TextSymbolizer dy="32" fill="rgb(0,0,51)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom" wrap_width="60"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='fire_station')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer dy="40" fill="rgb(115,74,8)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom" wrap_width="60"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='police')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer dy="32" fill="rgb(115,74,8)" fontset_name="book-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom" wrap_width="60"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='parking')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <TextSymbolizer dy="28" fill="rgb(0,102,255)" fontset_name="book-fonts" halo_radius="2" name="name" size="18" vertical_alignment="bottom" wrap_width="68"/>
     </Rule>
     <Rule>
       <Filter>((([amenity]='cinema') or ([amenity]='library')) or ([amenity]='theatre'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="36" fill="rgb(115,74,8)" fontset_name="bold-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>([amenity]='bar')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="30" fill="rgb(115,74,8)" fontset_name="bold-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom"/>
     </Rule>
     <Rule>
       <Filter>(((([amenity]='pub') or ([amenity]='restaurant')) or ([amenity]='cafe')) or ([amenity]='fast_food'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <TextSymbolizer dy="28" fill="rgb(115,74,8)" fontset_name="bold-fonts" halo_radius="2" name="name" size="20" vertical_alignment="bottom"/>
     </Rule>
@@ -22261,7 +22261,7 @@
   <Style name="town">
     <Rule title="město s méně než 50 000 obyv.">
       <ElseFilter/>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(0,0,0)" fontset_name="book-fonts" halo_radius="2" name="name" size="44" wrap_width="60"/>
     </Rule>
@@ -22452,7 +22452,7 @@
   <Style name="tracks-bridges">
     <Rule title="ostatní nezpevněná cesta">
       <ElseFilter/>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke-width">9.00</CssParameter>
@@ -22473,7 +22473,7 @@
     </Rule>
     <Rule title="nezpevněná cesta travnatá">
       <Filter>([tracktype]='grade5')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke-width">9.00</CssParameter>
@@ -22495,7 +22495,7 @@
     </Rule>
     <Rule title="nezpevněná cesta hlinitá">
       <Filter>([tracktype]='grade4')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke-width">9.00</CssParameter>
@@ -22517,7 +22517,7 @@
     </Rule>
     <Rule title="částečně nezpevněná cesta">
       <Filter>([tracktype]='grade3')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke-width">9.00</CssParameter>
@@ -22539,7 +22539,7 @@
     </Rule>
     <Rule title="štěrková nebo kamenitá cesta">
       <Filter>([tracktype]='grade2')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke-width">9.00</CssParameter>
@@ -22561,7 +22561,7 @@
     </Rule>
     <Rule title="zpevněná cesta">
       <Filter>([tracktype]='grade1')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke-width">10.00</CssParameter>
@@ -22580,7 +22580,7 @@
   <Style name="tracks-notunnel-nobridge">
     <Rule title="ostatní nezpevněná cesta">
       <ElseFilter/>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
@@ -22599,7 +22599,7 @@
     </Rule>
     <Rule title="nezpevněná cesta travnatá">
       <Filter>([tracktype]='grade5')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
@@ -22619,7 +22619,7 @@
     </Rule>
     <Rule title="nezpevněná cesta hlinitá">
       <Filter>([tracktype]='grade4')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
@@ -22639,7 +22639,7 @@
     </Rule>
     <Rule title="částečně nezpevněná cesta">
       <Filter>([tracktype]='grade3')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
@@ -22659,7 +22659,7 @@
     </Rule>
     <Rule title="štěrková nebo kamenitá cesta">
       <Filter>([tracktype]='grade2')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
@@ -22679,7 +22679,7 @@
     </Rule>
     <Rule title="zpevněná cesta">
       <Filter>([tracktype]='grade1')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(255,255,255)</CssParameter>
@@ -22696,7 +22696,7 @@
   <Style name="tracks-tunnels">
     <Rule title="ostatní nezpevněná cesta">
       <ElseFilter/>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
@@ -22720,7 +22720,7 @@
     </Rule>
     <Rule title="nezpevněná cesta travnatá">
       <Filter>([tracktype]='grade5')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
@@ -22744,7 +22744,7 @@
     </Rule>
     <Rule title="nezpevněná cesta hlinitá">
       <Filter>([tracktype]='grade4')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
@@ -22768,7 +22768,7 @@
     </Rule>
     <Rule title="částečně zpevněná cesta">
       <Filter>([tracktype]='grade3')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
@@ -22792,7 +22792,7 @@
     </Rule>
     <Rule title="štěrková nebo kamenitá cesta">
       <Filter>([tracktype]='grade2')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
@@ -22816,7 +22816,7 @@
     </Rule>
     <Rule title="zpevněná cesta">
       <Filter>([tracktype]='grade1')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(128,128,128)</CssParameter>
@@ -23413,7 +23413,7 @@
   </Style>
   <Style name="turning_circle">
     <Rule title="!točna pro auta">
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/print-turning_circle.19.png" height="38" width="38" type="png"/>
     </Rule>
@@ -23426,9 +23426,9 @@
   <Style name="village">
     <Rule>
       <Filter>(([place]='village') or ([place]='large_village'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
-      <TextSymbolizer fill="rgb(0,0,0)" fontset_name="oblique-fonts" halo_radius="2" name="name" size="34" wrap_width="60"/>
+      <TextSymbolizer fill="rgb(0, 0, 0)" fontset_name="book-fonts" halo_radius="2" name="name" size="34" wrap_width="60"/>
     </Rule>
     <Rule>
       <Filter>(([place]='village') or ([place]='large_village'))</Filter>
@@ -23513,7 +23513,7 @@
   <Style name="water_areas">
     <Rule title="!ostrov">
       <Filter>([natural]='land')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>400000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(242,239,233)</CssParameter>
@@ -23521,13 +23521,13 @@
     </Rule>
     <Rule title="zamokřená půda">
       <Filter>(([natural]='marsh') or ([natural]='wetland'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <PolygonPatternSymbolizer file="../symbols/print-marsh.png" type="png" height="60" width="60"/>
     </Rule>
     <Rule title="vodní plocha">
       <Filter>(([natural]='lake') or ([natural]='water') or ([landuse]='basin') or ([waterway]='dock') or ([landuse]='reservoir') or ([landuse]='water') or ([waterway]='mill_pond') or ([waterway]='riverbank') or ([waterway]='canal'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(114,155,249)</CssParameter>
@@ -23575,7 +23575,7 @@
     </Rule>
     <Rule title="ledovec">
       <Filter>([natural]='glacier')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>1500000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(153,204,255)</CssParameter>
@@ -23599,7 +23599,7 @@
   <Style name="water_areas_fill">
     <Rule title="vodní plocha">
       <Filter>(([natural]='lake') or ([natural]='water') or ([landuse]='basin') or ([waterway]='dock') or ([landuse]='reservoir') or ([landuse]='water') or ([waterway]='mill_pond') or ([waterway]='riverbank') or ([waterway]='canal'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <PolygonSymbolizer>
         <CssParameter name="fill">rgb(114,155,249)</CssParameter>
@@ -23670,7 +23670,7 @@
     </Rule>
     <Rule title="řeka pod povrchem">
       <Filter>(([waterway]='river') and ([tunnel]='yes'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>1000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
@@ -23680,7 +23680,7 @@
     </Rule>
     <Rule title="řeka pod povrchem">
       <Filter>(([waterway]='river') and ([tunnel]='yes'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(80,109,177)</CssParameter>
@@ -23912,7 +23912,7 @@
     </Rule>
     <Rule title="řeka pod povrchem">
       <Filter>(([waterway]='river') and ([tunnel]='yes'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>1000</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
@@ -23926,7 +23926,7 @@
     </Rule>
     <Rule title="řeka pod povrchem">
       <Filter>(([waterway]='river') and ([tunnel]='yes'))</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>2500</MaxScaleDenominator>
       <LineSymbolizer>
         <CssParameter name="stroke">rgb(114,155,249)</CssParameter>
