@@ -257,7 +257,7 @@ if __name__ == "__main__":
         #refresh date on webpages, restart renderd
         refreshDate('index.html', str(date))
         refreshDate('en.html', str(date))
-        restartRenderd()
+#        restartRenderd()
     except UpdateError, ue:
         print ue.msg
         print 'Map data was not uploaded.'
