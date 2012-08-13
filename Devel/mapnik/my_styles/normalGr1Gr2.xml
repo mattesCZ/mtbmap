@@ -2957,7 +2957,7 @@
       </LineSymbolizer>
     </Rule>
     <Rule>
-      <Filter>([offsetside] = -1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-'))</Filter>
+      <Filter>([offsetside] = -1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-' or [mtb:scale]='grade1' or [mtb:scale]='grade2'))</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer>
@@ -3035,7 +3035,7 @@
       </LineSymbolizer>
     </Rule>
     <Rule>
-      <Filter>([offsetside] = -1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-'))</Filter>
+      <Filter>([offsetside] = -1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-' or [mtb:scale]='grade1' or [mtb:scale]='grade2'))</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
       <LineSymbolizer>
@@ -3113,7 +3113,7 @@
       </LineSymbolizer>
     </Rule>
     <Rule>
-      <Filter>([offsetside] = 1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-'))</Filter>
+      <Filter>([offsetside] = 1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-' or [mtb:scale]='grade1' or [mtb:scale]='grade2'))</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer>
@@ -3191,7 +3191,7 @@
       </LineSymbolizer>
     </Rule>
     <Rule>
-      <Filter>([offsetside] = 1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-'))</Filter>
+      <Filter>([offsetside] = 1 and ([mtb:scale]='0' or [mtb:scale]='0+' or [mtb:scale]='0-' or [mtb:scale]='grade1' or [mtb:scale]='grade2'))</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
       <LineSymbolizer>
