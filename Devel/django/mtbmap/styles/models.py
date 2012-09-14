@@ -4,9 +4,15 @@
 from django.db import models
 from math import log
 import libxml2
+import mapnik
+from django.core import serializers
+from string import upper
+from django.core.files import File
 
 zooms = [250000000000, 500000000, 200000000, 100000000, 50000000, 25000000, 12500000,
 6500000, 3000000, 1500000, 750000, 400000, 200000, 100000, 50000, 25000, 12500, 5000, 2500, 1000, 500, 250, 125]
+
+style_path = '/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/'
 
 def _add_xml_node(parent_node, name, value):
     if value != None:
@@ -14,32 +20,39 @@ def _add_xml_node(parent_node, name, value):
         node.setContent(str(value))
         parent_node.addChild(node)
 
-def _add_xml_node_with_param(parent_node, node_name, node_value, parameter_name, parameter_value):
-    if node_value != None:
-        node = libxml2.newNode(node_name)
-        node.setContent(str(node_value))
-        node.setProp(parameter_name, parameter_value)
-        parent_node.addChild(node)
+def _attr_to_string(value):
+    if value == None:
+        return None
+    elif value == True:
+        return '1'
+    elif value == False:
+        return '0'
+    else:
+        if type(value).__name__=='unicode':
+            if len(value) > 0:
+                return str(value.encode('utf-8'))
+            else:
+                return None
+        else:
+            return str(value)
 
 def _add_xml_css(node, parameter_name, parameter_value):
-    if parameter_value != None:
+    if _attr_to_string(parameter_value) != None:
         cssnode = libxml2.newNode('CssParameter')
         cssnode.setProp('name', parameter_name.replace('_', '-'))
-        cssnode.setContent(str(parameter_value))
+        cssnode.setContent(_attr_to_string(parameter_value))
         node.addChild(cssnode)
 
 def _set_xml_param(parent_node, parameter_name, parameter_value):
-    if parameter_value != None:
-        if parameter_value == True:
-            parent_node.setProp(parameter_name, '1')
-        elif parameter_value == False:
-            parent_node.setProp(parameter_name, '0')
-        else:
-            if type(parameter_value).__name__=='unicode':
-                if len(parameter_value) > 0:
-                    parent_node.setProp(parameter_name, str(parameter_value.encode('utf-8')))
-            else:
-                parent_node.setProp(parameter_name, str(parameter_value))
+    if _attr_to_string(parameter_value) != None:
+        parent_node.setProp(parameter_name, _attr_to_string(parameter_value))
+
+def _add_xml_node_with_param(parent_node, node_name, node_value, parameter_name, parameter_value):
+    if _attr_to_string(node_value) != None:
+        node = libxml2.newNode(node_name)
+        node.setContent(_attr_to_string(node_value))
+        _set_xml_param(node, parameter_name, parameter_value)
+        parent_node.addChild(node)
 
 def _add_xml_fonts(parent_node):
     _add_xml_font(parent_node, 'book-fonts', 'DejaVu Sans Book')
@@ -90,7 +103,7 @@ class Map(models.Model):
     def write_xml_doc(self, outputfile, scale_factor=1):
         output_doc = libxml2.parseDoc('<Map/>')
         root_node = output_doc.getRootElement()
-        _set_xml_param(root_node, 'name', self.m_name)
+#        _set_xml_param(root_node, 'name', self.m_name)
         _set_xml_param(root_node, 'srs', self.m_srs)
         _set_xml_param(root_node, 'bgcolor', self.m_bgcolor)
         _add_xml_fonts(root_node)
@@ -108,6 +121,35 @@ class Map(models.Model):
         for line in lines:
             f.write(line + '\n')
         f.close()
+
+    def mapnik(self, height=100, width=100):
+        m = mapnik.Map(height, width)
+        if self.m_bgcolor:
+            m.background = mapnik.Color(self.m_bgcolor.encode('utf-8'))
+        m.srs = self.m_srs.encode('utf-8')
+        for stylename in self.stylenames():
+            style = Style.objects.get(pk=stylename)
+            m.append_style(stylename.encode('utf-8'), style.mapnik())
+        for id in self.layernames():
+            layer = Layer.objects.get(pk=id)
+            m.layers.append(layer.mapnik())
+        return m
+
+    def create_legend(self):
+        legend_items = {}
+        for stylename in self.stylenames():
+            ruleids = Style.objects.get(pk=stylename).ruleids()
+            for id in ruleids:
+                rule = Rule.objects.get(pk=id)
+                if len(r_title) > 0:
+                    if not r_title in legend_items:
+                        legend_items[r_title] = [id]
+                    else:
+                        legend_items[r_title].append(id)
+        for item in legend_items:
+            l = Legend()
+            l.import_item(legend_items[item][0])
+
 
 
 class Layer(models.Model):
@@ -173,6 +215,18 @@ class Layer(models.Model):
     def usages(self):
         return len(MapLayer.objects.filter(ml_layername=self))
 
+    def mapnik(self):
+        layer = mapnik.Layer(self.l_name.encode('utf-8'))
+        layer.clear_label_cache = self.l_clear_label_cache
+        layer.srs = self.l_srs.encode('utf-8')
+#        if self.l_datatype==unicode('postgis'):
+#            datasource = mapnik.Datasource(type=self.l_datatype.encode('utf-8'), table=self.l_datatable.encode('utf-8'))
+#        elif self.l_datatype==unicode('gdal'):
+#            layer.datasource = datasource
+        for stylename in self.stylenames():
+            layer.styles.append(stylename.encode('utf-8'))
+        return layer
+
 
 class MapLayer(models.Model):
     ml_mapname = models.ForeignKey(Map)
@@ -204,6 +258,13 @@ class Style(models.Model):
 
     def usages(self):
         return len(StyleLayer.objects.filter(sl_stylename=self))
+
+    def mapnik(self):
+        style = mapnik.Style()
+        for id in self.ruleids():
+            rule = Rule.objects.get(pk=id)
+            style.rules.append(rule.mapnik())
+        return style
 
 
 class StyleLayer(models.Model):
@@ -244,7 +305,7 @@ class Rule(models.Model):
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
         rule_node = libxml2.newNode('Rule')
-        _set_xml_param(rule_node, 'title', self.r_title)
+#        _set_xml_param(rule_node, 'title', self.r_title)
         _set_xml_param(rule_node, 'name', self.r_name)
         if self.r_filter:
             if self.r_filter=='ELSEFILTER':
@@ -262,6 +323,58 @@ class Rule(models.Model):
 
     def usages(self):
         return len(RuleStyle.objects.filter(rs_ruleid=self))
+
+    def mapnik(self):
+        rule = mapnik.Rule()
+        if self.r_filter:
+            if self.r_filter=='ELSEFILTER':
+                rule.set_else
+            else:
+                rule.filter = mapnik.Filter(self.r_filter.encode('utf-8'))
+        if self.r_maxscale:
+            rule.max_scale = zooms[self.r_maxscale]
+        if self.r_minscale:
+            rule.min_scale = zooms[self.r_minscale + 1]
+        if self.r_name:
+            rule.name = self.r_name.encode('utf-8')
+        for id in self.symbolizerids():
+            symbolizer = Symbolizer.objects.get(pk=id).specialized().mapnik()
+            rule.symbols.append(symbolizer)
+        return rule
+
+    def legend(self, path):
+        m = mapnik.Map(400, 400)
+        m.background = mapnik.Color('white')
+        s = mapnik.Style()
+
+        complete_rule = self.mapnik()
+        # rule without filters and scales
+        r = mapnik.Rule()
+        for i in range(len(complete_rule.symbols)):
+            if complete_rule.symbols[i].__class__ != mapnik.TextSymbolizer:
+                r.symbols.append(complete_rule.symbols[i])
+
+        s.rules.append(r)
+        m.append_style('Legend_style', s)
+        ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from polygon) as ln', user='xtesar7', password='')
+        l = mapnik.Layer('legend')
+        l.datasource = ds
+        l.styles.append('Legend_style')
+        m.layers.append(l)
+
+        prj = mapnik.Projection("+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over")
+#        ll = (13.72, 51.04, 13.74, 51.06)
+        ll = (-0.01, -0.01, 0.01, 0.01)
+        c0 = prj.forward(mapnik.Coord(ll[0],ll[1]))
+        c1 = prj.forward(mapnik.Coord(ll[2],ll[3]))
+        print c0, c1
+        bbox = mapnik.Envelope(c0.x,c0.y,c1.x,c1.y)
+        m.zoom_to_box(bbox)
+        im = mapnik.Image(400, 400)
+        mapnik.render(m, im)
+        view = im.view(0, 0, 400, 400)
+        view.save(path, 'png')
+        print 'legend rendered'
 
 
 class RuleStyle(models.Model):
@@ -309,6 +422,21 @@ class Symbolizer(models.Model):
 
     def usages(self):
         return len(SymbolizerRule.objects.filter(sr_symbid=self))
+
+    def serialize(self, nonevalues=False):
+        complete = serializers.serialize('xml', [self.specialized(), ])
+        if nonevalues:
+            return complete
+        #output without None fields
+        else:
+            doc = libxml2.parseDoc(complete)
+            ctxt = doc.xpathNewContext()
+            noneParents = ctxt.xpathEval('//None/..')
+            for np in noneParents:
+                np.unlinkNode()
+                np.freeNode()
+            ctxt.xpathFreeContext()
+            return doc.serialize('utf-8', 0)
 
     def __unicode__(self):
         spec_type = unicode(type(self.specialized())).split('.')[-1].replace("'>","")
@@ -389,7 +517,7 @@ class LineSymbolizer(Symbolizer):
     stroke_linejoin = models.CharField('stroke-linejoin', max_length=15, choices=LINEJOIN, default='round', null=True, blank=True)
     stroke_linecap = models.CharField('stroke-linecap', max_length=8, choices=LINECAP, default='butt', null=True, blank=True)
     stroke_dasharray = models.CharField('stroke-dasharray', max_length=200, null=True, blank=True)
-    stroke_offset = models.DecimalField('stroke-width', max_digits=5, decimal_places=2, null=True, blank=True)
+    stroke_offset = models.DecimalField('stroke-offset', max_digits=5, decimal_places=2, null=True, blank=True)
 
 #    def __eq__(self, other):
 #        if isinstance(other, LineSymbolizer):
@@ -422,6 +550,7 @@ class LineSymbolizer(Symbolizer):
         _add_xml_css(symbolizer_node, 'stroke_linecap', self.stroke_linecap)
         _add_xml_css(symbolizer_node, 'stroke_dasharray', self.stroke_dasharray)
         _add_xml_css(symbolizer_node, 'stroke_offset', self.stroke_offset)
+#mapnik        _add_xml_css(symbolizer_node, 'offset', self.stroke_offset)
         return symbolizer_node
 
     def __unicode__(self):
@@ -431,6 +560,26 @@ class LineSymbolizer(Symbolizer):
         if self.stroke_width:
             ret += ', Width: %s' % (self.stroke_width)
         return ret
+
+    def mapnik(self):
+        ls = mapnik.LineSymbolizer()
+        s = mapnik.Stroke()
+        if self.stroke:
+            s.color = mapnik.Color(self.stroke.encode('utf-8'))
+        if self.stroke_width:
+            s.width = float(self.stroke_width)
+        if self.stroke_opacity:
+            s.opacity = float(self.stroke_opacity)
+        if self.stroke_linejoin:
+            s.line_join = mapnik.line_join.names[self.stroke_linejoin.encode('utf-8')]
+        if self.stroke_linecap:
+            s.line_cap = mapnik.line_cap.names[self.stroke_linecap.encode('utf-8')]
+        if self.stroke_dasharray:
+            dash_parts = self.stroke_dasharray.split(',')
+            for i in range(0, len(dash_parts), 2):
+                s.add_dash(int(dash_parts[i]), int(dash_parts[i+1]))
+        ls.stroke = s
+        return ls
 
 
 class LinePatternSymbolizer(Symbolizer):
@@ -463,6 +612,10 @@ class LinePatternSymbolizer(Symbolizer):
 
     def __unicode__(self):
         return 'ID: %i, File: %s, Height: %i, Width: %i' % (self.symbid, self.file, self.height, self.width)
+
+    def mapnik(self):
+        lps = mapnik.LinePatternSymbolizer(mapnik.PathExpression(style_path + self.file.encode('utf-8')))
+        return lps
 
 
 class MarkersSymbolizer(Symbolizer):
@@ -527,6 +680,10 @@ class MarkersSymbolizer(Symbolizer):
         _set_xml_param(symbolizer_node, 'marker_type', self.marker_type)
         return symbolizer_node
 
+#    def mapnik(self):
+#        ms = mapnik.MarkersSymbolizer()
+
+
 
 class PointSymbolizer(Symbolizer):
     TYPE = (
@@ -567,6 +724,18 @@ class PointSymbolizer(Symbolizer):
         _set_xml_param(symbolizer_node, 'ignore_placement', self.ignore_placement)
         return symbolizer_node
 
+    def mapnik(self):
+        ps = mapnik.PointSymbolizer()
+        ps.filename = style_path + self.file.encode('utf-8')
+        ps.allow_overlap = self.allow_overlap
+        if self.opacity:
+            ps.opacity = float(self.opacity)
+        if self.transform:
+            ps.transform = self.transform.encode('utf-8')
+        ps.ignore_placement = self.ignore_placement
+        return ps
+
+
 
 class PolygonSymbolizer(Symbolizer):
     fill = models.CharField(max_length=200, default='rgb(127, 127, 127)', null=True, blank=True)
@@ -583,6 +752,16 @@ class PolygonSymbolizer(Symbolizer):
         _add_xml_css(symbolizer_node, 'fill_opacity', self.fill_opacity)
         _add_xml_css(symbolizer_node, 'gamma', self.gamma)
         return symbolizer_node
+
+    def mapnik(self):
+        ps = mapnik.PolygonSymbolizer()
+        if self.fill:
+            ps.fill = mapnik.Color(self.fill.encode('utf-8'))
+        if self.fill_opacity:
+            ps.fill_opacity = float(self.fill_opacity)
+        if self.gamma:
+            ps.gamma = float(self.gamma)
+        return ps
 
 
 class PolygonPatternSymbolizer(Symbolizer):
@@ -615,6 +794,10 @@ class PolygonPatternSymbolizer(Symbolizer):
         _set_xml_param(symbolizer_node, 'height', self.height)
         _set_xml_param(symbolizer_node, 'width', self.width)
         return symbolizer_node
+
+    def mapnik(self):
+        pps = mapnik.PolygonPatternSymbolizer(mapnik.PathExpression(style_path + self.file.encode('utf-8')))
+        return pps
 
 
 class RasterSymbolizer(Symbolizer):
@@ -649,6 +832,17 @@ class RasterSymbolizer(Symbolizer):
         _add_xml_css(symbolizer_node, 'mode', self.mode)
         _add_xml_css(symbolizer_node, 'scaling', self.scaling)
         return symbolizer_node
+
+    def mapnik(self):
+        rs = mapnik.RasterSymbolizer()
+        if self.opacity:
+            rs.opacity = float(self.opacity)
+# attribute mode is changing in version 2.1 or 3.0
+        if self.mode:
+            rs.mode = self.mode.encode('utf-8')
+        if self.scaling:
+            rs.scaling = mapnik.scaling_method.names[upper(self.scaling.encode('utf-8'))]
+        return rs
 
 
 class ShieldSymbolizer(Symbolizer):
@@ -758,6 +952,7 @@ class ShieldSymbolizer(Symbolizer):
         _set_xml_param(symbolizer_node, 'justify_alignment', self.justify_alignment)
         _set_xml_param(symbolizer_node, 'line_spacing', self.line_spacing)
         _set_xml_param(symbolizer_node, 'min_distance', self.min_distance)
+# comment name, no_text for mapnik
         _set_xml_param(symbolizer_node, 'name', self.name)
         _set_xml_param(symbolizer_node, 'no_text', self.no_text)
         _set_xml_param(symbolizer_node, 'opacity', self.opacity)
@@ -773,6 +968,71 @@ class ShieldSymbolizer(Symbolizer):
         _set_xml_param(symbolizer_node, 'wrap_width', self.wrap_width)
         _set_xml_param(symbolizer_node, 'transform', self.transform)
         return symbolizer_node
+
+    def mapnik(self):
+        name = mapnik.Expression('[' + self.name.encode('utf-8') + ']')
+        font_name = 'DejaVu Sans Bold'
+        if self.face_name:
+            font_name = self.face_name.encode('utf-8')
+        text_size = 10
+        if self.size != None:
+            text_size = self.size
+        text_color = mapnik.Color('black')
+        if self.fill:
+            text_color = mapnik.Color(self.fill.encode('utf-8'))
+        path = mapnik.PathExpression(style_path + self.file.encode('utf-8'))
+        ss = mapnik.ShieldSymbolizer(name, font_name, text_size, text_color, path)
+        ss.allow_overlap = self.allow_overlap
+        ss.avoid_edges = self.avoid_edges
+        if self.character_spacing:
+            ss.character_spacing = self.character_spacing
+        displacement = (0, 0)
+        if self.dx:
+            displacement = (self.dx, 0)
+        if self.dy:
+            displacement = (displacement[0], self.dy)
+        ss.displacement = displacement
+        if self.fontset_name:
+            fs = mapnik.Fonsset()
+            fs.add_face_name(self.fontset_name.encode('utf-8'))
+            ss.fontset = fs
+        if self.halo_fill:
+            ss.halo_fill = mapnik.Color(self.halo_fill.encode('utf-8'))
+        if self.halo_radius:
+            ss.halo_radius = self.halo_radius
+        if self.horizontal_alignment:
+            ss.horizontal_alignment = mapnik.horizontal_alignment.names[self.horizontal_alignment.encode('utf-8')]
+        if self.justify_alignment:
+            ss.justify_alignment = mapnik.justify_alignment.names[self.justify_alignment.encode('utf-8')]
+        if self.line_spacing:
+            ss.line_spacing = self.line_spacing
+        if self.min_distance:
+            ss.minimum_distance = self.min_distance
+        if self.opacity:
+            ss.text_opacity = self.opacity
+        if self.placement:
+            ss.label_placement = mapnik.label_placement.names[self.placement.encode('utf-8')]
+        if self.spacing:
+            ss.label_spacing = self.spacing
+        if self.text_convert:
+            if self.text_convert == 'none' or self.text_convert == 'capitalize':
+                ss.text_transform = mapnik.text_transform.names[self.text_convert.encode('utf-8')]
+            else:
+                name = self.text_convert.encode('utf-8')[2:] + 'case'
+                ss.text_transform = mapnik.text_transform.names[name]
+        if self.unlock_image:
+            ss.unlock_image = self.unlock_image
+        if self.vertical_alignment:
+            ss.vertical_alignment = mapnik.vertical_alignment.names[self.vertical_alignment.encode('utf-8')]
+        ss.wrap_before = self.wrap_before
+        if self.wrap_character:
+            ss.wrap_char = self.wrap_character.encode('utf-8')
+        if self.wrap_width:
+            ss.wrap_width = self.wrap_width
+        if self.transform:
+            ss.transform = self.transform.encode('utf-8')
+        return ss
+
 
 
 class TextSymbolizer(Symbolizer):
@@ -891,3 +1151,177 @@ class TextSymbolizer(Symbolizer):
         _set_xml_param(symbolizer_node, 'wrap_width', self.wrap_width)
         return symbolizer_node
 
+    def mapnik(self):
+        ts = mapnik.TextSymbolizer()
+        ts.allow_overlap = self.allow_overlap
+        ts.avoid_edges = self.avoid_edges
+        if self.character_spacing:
+            ts.character_spacing = self.character_spacing
+        displacement = (0, 0)
+        if self.dx:
+            displacement = (self.dx, 0)
+        if self.dy:
+            displacement = (displacement[0], self.dy)
+        ts.displacement = displacement
+        if self.face_name:
+            ts.face_name = self.face_name.encode('utf-8')
+        if self.fill:
+            ts.fill = mapnik.Color(self.fill.encode('utf-8'))
+        if self.fontset_name:
+            fs = mapnik.FontSet()
+            fs.add_face_name(self.fontset_name.encode('utf-8'))
+            ts.fontset = fs
+        ts.force_odd_labels = self.force_odd_labels
+        if self.halo_fill:
+            ts.halo_fill = mapnik.Color(self.halo_fill.encode('utf-8'))
+        if self.halo_radius:
+            ts.halo_radius = self.halo_radius
+        if self.horizontal_alignment:
+            ts.horizontal_alignment = mapnik.horizontal_alignment.names[self.horizontal_alignment.encode('utf-8')]
+        if self.justify_alignment:
+            ts.justify_alignment = mapnik.justify_alignment.names[self.justify_alignment.encode('utf-8')]
+        if self.label_position_tolerance:
+            ts.label_position_tolerance = self.label_position_tolerance
+        if self.line_spacing:
+            ts.line_spacing = self.line_spacing
+        if self.max_char_angle_delta:
+            ts.maximum_angle_char_delta = float(self.max_char_angle_delta)
+        if self.min_distance:
+            ts.minimum_distance = self.min_distance
+        if self.opacity:
+            ts.text_opacity = self.opacity
+        if self.placement:
+            ts.label_placement = mapnik.label_placement.names[self.placement.encode('utf-8')]
+        if self.size != None:
+            ts.text_size = self.size
+        if self.spacing:
+            ts.label_spacing = self.spacing
+        if self.text_convert:
+            if self.text_convert == 'none' or self.text_convert == 'capitalize':
+                ts.text_transform = mapnik.text_transform.names[self.text_convert.encode('utf-8')]
+            else:
+                name = self.text_convert.encode('utf-8')[2:] + 'case'
+                ts.text_transform = mapnik.text_transform.names[name]
+        if self.text_ratio:
+            ts.text_ratio = self.text_ratio
+        if self.vertical_alignment:
+            ts.vertical_alignment = mapnik.vertical_alignment.names[self.vertical_alignment.encode('utf-8')]
+        ts.wrap_before = self.wrap_before
+        if self.wrap_character:
+            ts.wrap_char = self.wrap_character.encode('utf-8')
+        if self.wrap_width:
+            ts.wrap_width = self.wrap_width
+        return ts
+
+
+class DataSource(models.Model):
+    TYPE_CHOICES = (
+        ('gdal', 'gdal'),
+        ('postgis', 'postgis'),
+        ('raster', 'raster'),
+        ('shape', 'shape'),
+    )
+    type = models.CharField(max_length=10, choices=TYPE_CHOICES)
+
+class Gdal(DataSource):
+    FORMAT_CHOICES = (
+        ('png', 'png'),
+        ('tiff', 'tiff'),
+    )
+    file = models.CharField(max_length=400)
+    format = models.CharField(max_length=4, choices=FORMAT_CHOICES, null=True, blank=True)
+
+    def get_xml(self):
+        datasource_node = libxml2.newNode('Datasource')
+        _add_xml_node_with_param(datasource_node, 'Parameter', self.type, 'name', 'type')
+        _add_xml_node_with_param(datasource_node, 'Parameter', self.file, 'name', 'file')
+        _add_xml_node_with_param(datasource_node, 'Parameter', self.format, 'name', 'format')
+        return datasource_node
+
+    def mapnik(self):
+        ds = mapnik.Gdal(file=self.file)
+#        if self.format:
+#            ds.format = self.format.encode('utf-8')
+        return ds
+
+
+
+class PostGIS(DataSource):
+    dbname = models.CharField(max_length=40)
+    estimate_extent = models.NullBooleanField()
+    extent = models.CharField(max_length=200, null=True, blank=True)
+    host = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
+    port = models.PositiveIntegerField(null=True, blank=True, default=5432)
+    table = models.TextField()
+    user = models.CharField(max_length=40)
+
+    def get_xml(self):
+        datasource_node = libxml2.newNode('Datasource')
+        _add_xml_node_with_param(datasource_node, 'Parameter', self.type, 'name', 'type')
+        _add_xml_node_with_param(datasource_node, 'Parameter', self.table, 'name', 'table')
+        _add_xml_node_with_param(datasource_node, 'Parameter', self.password, 'name', 'password')
+        _add_xml_node_with_param(datasource_node, 'Parameter', self.host, 'name', 'host')
+        _add_xml_node_with_param(datasource_node, 'Parameter', self.port, 'name', 'port')
+        _add_xml_node_with_param(datasource_node, 'Parameter', self.user, 'name', 'user')
+        _add_xml_node_with_param(datasource_node, 'Parameter', self.dbname, 'name', 'dbname')
+        _add_xml_node_with_param(datasource_node, 'Parameter', self.estimate_extent, 'name', 'estimate_extent')
+        _add_xml_node_with_param(datasource_node, 'Parameter', self.extent, 'name', 'extent')
+        return datasource_node
+
+    def mapnik(self):
+# add additional params from docs
+#        params = {}
+#        params{'dbname' : self.dbname.encode('utf-8')}
+        ds
+        if not self.port:
+            self.port = 5432
+        if self.extent:
+            ds = mapnik.PostGIS(dbname = self.dbname.encode('utf-8'), host=self.host.encode('utf-8'), port=self.port, table=self.table.encode('utf-8'), user=self.user.encode('utf-8'), password=self.password.encode('utf-8'), extent=self.extent.encode('utf-8'))
+        else:
+            ds = mapnik.PostGIS(dbname = self.dbname.encode('utf-8'), host=self.host.encode('utf-8'), port=self.port, table=self.table.encode('utf-8'), user=self.user.encode('utf-8'), password=self.password.encode('utf-8'))
+        return ds
+
+
+#class Raster(DataSource):
+#    FORMAT_CHOICES = (
+#        ('png', 'png'),
+#        ('tiff', 'tiff'),
+#    )
+#    file = models.CharField(max_length=400)
+#    format = models.CharField(max_length=4, choices=FORMAT_CHOICES, null=True, blank=True)
+#    lox = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+#    loy = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+#    hix = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+#    hiy = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+#
+#
+#class Shape(DataSource):
+#    file = models.CharField(max_length=400)
+#    encoding = models.CharField(max_length=20, null=True, blank=True, default='utf-8')
+#
+#
+class Legend(models.Model):
+    SCALE_CHOICES = zip(range(0, 21), range(0, 21))
+
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=200, null=True, blank=True)
+    image = models.ImageField(upload_to='legend/', height_field='height', width_field='width')
+    group = models.CharField(max_length=200, null=True, blank=True)
+    maxscale = models.IntegerField(choices=SCALE_CHOICES, default=0)
+    minscale = models.IntegerField(choices=SCALE_CHOICES, default=18)
+    ruleid = models.PositiveIntegerField(null=True, blank=True)
+    height = models.PositiveIntegerField(null=True, blank=True)
+    width = models.PositiveIntegerField(null=True, blank=True)
+
+    def import_item(self, ruleid):
+        rule = Rule.objects.get(pk=ruleid)
+        self.title = rule.r_title
+        path = '/home/xtesar7/Devel/mtbmap-czechrep/Web/media/legend/' + str(ruleid) + '.png'
+        rule.legend(path)
+        self.image.save(path, File(open(path)))
+
+        self.maxscale = rule.r_maxscale
+        self.minscale = rule.r_minscale
+        self.ruleid = ruleid
+        self.save()
