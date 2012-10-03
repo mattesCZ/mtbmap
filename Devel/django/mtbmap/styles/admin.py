@@ -22,11 +22,11 @@ class SymbolizerRuleInline(admin.StackedInline):
 class MapAdmin(admin.ModelAdmin):
     inlines = (MapLayerInline,)
 
-class LayerAdmin(admin.ModelAdmin):
-    inlines = [StyleLayerInline]
-    list_display = ('l_name', 'maps')
-    search_fields = ['l_name']
-    readonly_fields = ['maps', 'l_srs']
+#class LayerAdmin(admin.ModelAdmin):
+#    inlines = [StyleLayerInline]
+#    list_display = ('name', 'maps')
+#    search_fields = ['name']
+#    readonly_fields = ['maps', 'srs']
 #    fields = ['l_name']
 #    fieldsets = [
 #        ('Basic properties', {'fields': ['l_name', 'l_srs', 'l_datatype']}),
@@ -42,17 +42,17 @@ class LayerAdmin(admin.ModelAdmin):
 
 
 class StyleAdmin(admin.ModelAdmin):
-    fields = ['s_name']
+    fields = ['name']
     inlines = [StyleLayerInline, RuleStyleInline]
 
 
 class RuleAdmin(admin.ModelAdmin):
     inlines = [RuleStyleInline, SymbolizerRuleInline]
-    search_fields = ['r_id']
+    search_fields = ['id']
 
 
 class SymbolizerAdmin(admin.ModelAdmin):
-    list_display = ('specialized_type', 'symbid', )
+    list_display = ('specialized_type', 'id', )
 
     def specialized_type(self, obj):
         spec = obj.specialized()
@@ -64,7 +64,7 @@ class SymbolizerAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Map, MapAdmin)
-admin.site.register(models.Layer, LayerAdmin)
+admin.site.register(models.Layer)
 admin.site.register(models.MapLayer)
 
 admin.site.register(models.Style, StyleAdmin)
