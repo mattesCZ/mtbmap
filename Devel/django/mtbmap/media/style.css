@@ -1,0 +1,103 @@
+#main-wrapper {
+    position: absolute;
+/*    width: 300px;*/
+}
+
+.block {
+    background-color: #eeeeff;
+    color: #00008b;
+    border:2px solid;
+    border-color: #00008b;
+/*    border-radius: 10px;*/
+    padding-left: 5px;
+    padding-right: 5px;
+    opacity: 0.9;
+    z-index: 1;
+    text-align: center;
+    margin: 5px;
+
+}
+
+#header {
+    overflow: auto;
+}
+
+#content {
+    overflow: auto;
+    max-width: 400px;
+}
+
+#footer {
+    position: absolute;
+    bottom: 5px;
+    font-size: x-small;
+}
+
+#map {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+hr {
+    color: #00008b;
+    width: 100%;
+    size: 1px;
+}
+
+#controlToggle {
+    padding-left: 1em;
+    text-align: left;
+}
+
+#controlToggle li {
+    list-style: none;
+}
+
+#info {
+    font-size: small;
+}
+
+#profileButton {
+    display: inline;
+}
+
+#title {
+    padding-left: 64px;
+}
+#headerimg {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: none;
+}
+
+ul {
+    list-style: none;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+
+li {
+    float: left;
+    padding: 5px 10px 5px 10px;
+}
+
+#content-legend {
+    text-align: left;
+    font-size: small;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
+}

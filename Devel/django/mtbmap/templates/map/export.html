@@ -1,0 +1,11 @@
+<div id="content-export">
+    <h5>Export výřezu mapy</h5>
+    <form action="/map/exportmap/" method="post">
+        {% csrf_token %}
+        <label>Název mapy:</label><input type="text" name="map_title" id="map_title" value="" />
+        <input type="hidden" name="export_zoom" id="export_zoom" value="" />
+        <input type="hidden" name="bounds" id="bounds" value="" />
+        <br>
+        <input type="submit" value="Export" onclick="setExport();"/>
+    </form>
+</div>

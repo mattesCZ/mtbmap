@@ -48,11 +48,12 @@ class StyleAdmin(admin.ModelAdmin):
 
 class RuleAdmin(admin.ModelAdmin):
     inlines = [RuleStyleInline, SymbolizerRuleInline]
-    search_fields = ['id']
+    search_fields = ['title', 'maxscale']
 
 
 class SymbolizerAdmin(admin.ModelAdmin):
     list_display = ('specialized_type', 'id', )
+    search_fields = ['id', 'symbtype']
 
     def specialized_type(self, obj):
         spec = obj.specialized()

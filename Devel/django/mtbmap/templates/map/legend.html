@@ -1,0 +1,8 @@
+<div id="content-legend">
+<h5>Legenda pro zoom {{ zoom }}</h5>
+<table>
+{% for item in legenditems %}
+<tr><td><img src="{{ item.image.url }}"</td><td>{{ item.title }}</td></tr>
+{% endfor %}
+</table>
+</div>

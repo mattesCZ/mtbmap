@@ -24,7 +24,7 @@ def applyBBox(north, west, south, east, filename, format):
         outputFile = 'bbox_' + filename
         bboxCommand = osmosis + ' --read-' + format + ' file=' + datadir + filename + ' --bounding-box \
                       left="' + west + '" right="' + east +'" top="' + north +'" bottom="' + south + '" \
-                      --write-' + format + ' file=' + datadir + outputFile
+                      --write-' + format + ' file=' + datadir + outputFile + ' omitmetadata=true'
 #        else:
 #            outputFile = 'bbox_' + string.replace(filename, '.pbf', '.bz2')
 #            bboxCommand = osmosis + ' --read-' + format + ' file=' + datadir + filename + ' --bounding-box \

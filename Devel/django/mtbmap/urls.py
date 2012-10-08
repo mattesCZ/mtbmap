@@ -1,19 +1,24 @@
 from django.conf.urls.defaults import *
-
+from django.conf import settings
 from django.contrib import admin
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'mtbmap.views.home', name='home'),
-    url(r'^styles/maps/$', 'styles.views.index'),
-    url(r'^styles/maps/(?P<m_name>.+)/$', 'styles.views.detail'),
-
-    #url(r'^scripts/(?P<path>.*)/$', 'django.views.static.serve', {'document_root': './scripts'}),
-
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT }),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+)
+
+
+urlpatterns += patterns('',
+    url(r'^map/', include('map.urls')),
+)
+
+# polls tutorial app
+urlpatterns += patterns('',
+    url(r'^polls/', include('polls.urls')),
 )

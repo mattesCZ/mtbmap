@@ -1,0 +1,40 @@
+{% extends "map/base.html" %}
+
+{% block map %}
+<div id="map"></div>
+<script type="text/javascript" src="/media/js/mtbmap_leaflet.js"></script>
+{% endblock %}
+
+{% block header %}
+<!--<a href="."><img src="/media/mtbmap_logo64.png" alt="" id="headerimg"></a>-->
+{% if map %}
+<h3>{{ map.name }}</h3>
+{% else %}
+<h3>OSM MTB Mapa<br>České republiky</h3>
+{% endif %}
+<hr>
+<!--<a href="http://wiki.openstreetmap.org/wiki/MTB_map_Czech_Republic" target="_blank">O projektu</a>-->
+<ul id="main-menu">
+    <li id="home" class="menu-item"><a href="#" title="Zobrazit/skrýt" >Úvod</a></li>
+    <li id="legend" class="menu-item"><a href="#" title="Zobrazit/skrýt" >Legenda</a></li>
+    <li id="export" class="menu-item"><a href="#" title="Zobrazit/skrýt" >Export</a></li>
+    <li id="profile" class="menu-item"><a href="#" title="Zobrazit/skrýt" >Profily</a></li>
+</ul>
+{% endblock %}
+
+<!--{% block content %}
+<div id="legend">
+    <form action="/map/legend/" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="zoom" id="zoom" value="" />
+        <input type="submit" value="Legenda" onclick="getZoom();"/>
+    </form>
+</div>
+<hr>
+{% endblock %}-->
+
+{% block footer %}
+Autor: Martin Tesař - osmmtb&nbsp;(at)&nbsp;gmail.com | Zobrazení: Konformní válcové - Mercatorovo<br>
+Data poskytuje <a href="http://openstreetmap.org/" >OpenStreetMap</a> a&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a> | Verze: 2012-04-16 od <a href="http://download.geofabrik.de/osm/" >Geofabrik.de</a><br>
+Hardware poskytuje laboratoř <a href="http://sitola.fi.muni.cz" > SITOLA </a>
+{% endblock %}
