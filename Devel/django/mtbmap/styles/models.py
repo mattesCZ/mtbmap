@@ -92,13 +92,13 @@ class Map(models.Model):
             f.write(line + '\n')
         f.close()
 
-    def mapnik(self, height=100, width=100):
+    def mapnik(self, height=100, width=100, scale_factor=1):
         m = mapnik.Map(height, width)
         if self.bgcolor:
             m.background = mapnik.Color(self.bgcolor.encode('utf-8'))
         m.srs = self.srs.encode('utf-8')
         for style in self.styles.all():
-            m.append_style(style.name.encode('utf-8'), style.mapnik())
+            m.append_style(style.name.encode('utf-8'), style.mapnik(scale_factor))
         for layer in self.layers.all().order_by('maplayer__layer_order'):
             m.layers.append(layer.mapnik())
         return m
@@ -327,10 +327,10 @@ class Style(models.Model):
             style_node.addChild(rule.get_xml(scale_factor))
         return style_node
 
-    def mapnik(self):
+    def mapnik(self, scale_factor=1):
         style = mapnik.Style()
         for rule in self.rules.all().order_by('rulestyle__order'):
-            style.rules.append(rule.mapnik())
+            style.rules.append(rule.mapnik(scale_factor))
         return style
 
 
@@ -414,7 +414,8 @@ class Rule(models.Model):
             rule_node.addChild(symbolizer.specialized().get_xml(scale_factor))
         return rule_node
 
-    def mapnik(self):
+    def mapnik(self, scale_factor=1):
+        self.scale(scale_factor)
         rule = mapnik.Rule()
         if self.filter:
             if self.filter=='ELSEFILTER':
@@ -428,7 +429,7 @@ class Rule(models.Model):
         if self.name:
             rule.name = self.name.encode('utf-8')
         for symbolizer in self.symbolizers.all().order_by('symbolizerrule__order'):
-            rule.symbols.append(symbolizer.specialized().mapnik())
+            rule.symbols.append(symbolizer.specialized().mapnik(scale_factor))
         return rule
 
     def save_copy(self):
@@ -634,7 +635,8 @@ class LineSymbolizer(Symbolizer):
 #mapnik2        add_xml_css(symbolizer_node, 'offset', self.stroke_offset)
         return symbolizer_node
 
-    def mapnik(self):
+    def mapnik(self, scale_factor=1):
+        self.scale(scale_factor)
         ls = mapnik.LineSymbolizer()
         s = mapnik.Stroke()
         if self.stroke:
@@ -702,7 +704,8 @@ class LinePatternSymbolizer(Symbolizer):
         set_xml_param(symbolizer_node, 'width', self.width)
         return symbolizer_node
 
-    def mapnik(self):
+    def mapnik(self, scale_factor=1):
+        self.scale(scale_factor)
         lps = mapnik.LinePatternSymbolizer(mapnik.PathExpression(style_path + self.file.encode('utf-8')))
         return lps
 
@@ -849,7 +852,8 @@ class PointSymbolizer(Symbolizer):
         set_xml_param(symbolizer_node, 'ignore_placement', self.ignore_placement)
         return symbolizer_node
 
-    def mapnik(self):
+    def mapnik(self, scale_factor=1):
+        self.scale(scale_factor)
         ps = mapnik.PointSymbolizer()
         ps.filename = style_path + self.file.encode('utf-8')
         ps.allow_overlap = self.allow_overlap
@@ -889,7 +893,8 @@ class PolygonSymbolizer(Symbolizer):
         add_xml_css(symbolizer_node, 'gamma', self.gamma)
         return symbolizer_node
 
-    def mapnik(self):
+    def mapnik(self, scale_factor=1):
+        self.scale(scale_factor)
         ps = mapnik.PolygonSymbolizer()
         if self.fill:
             ps.fill = mapnik.Color(self.fill.encode('utf-8'))
@@ -944,7 +949,8 @@ class PolygonPatternSymbolizer(Symbolizer):
         set_xml_param(symbolizer_node, 'width', self.width)
         return symbolizer_node
 
-    def mapnik(self):
+    def mapnik(self, scale_factor=1):
+        self.scale(scale_factor)
         pps = mapnik.PolygonPatternSymbolizer(mapnik.PathExpression(style_path + self.file.encode('utf-8')))
         return pps
 
@@ -994,7 +1000,8 @@ class RasterSymbolizer(Symbolizer):
         add_xml_css(symbolizer_node, 'scaling', self.scaling)
         return symbolizer_node
 
-    def mapnik(self):
+    def mapnik(self, scale_factor=1):
+        self.scale(scale_factor)
         rs = mapnik.RasterSymbolizer()
         if self.opacity:
             rs.opacity = float(self.opacity)
@@ -1171,7 +1178,8 @@ class ShieldSymbolizer(Symbolizer):
         set_xml_param(symbolizer_node, 'transform', self.transform)
         return symbolizer_node
 
-    def mapnik(self):
+    def mapnik(self, scale_factor=1):
+        self.scale(scale_factor)
         name = mapnik.Expression('[' + self.name.encode('utf-8') + ']')
         font_name = 'DejaVu Sans Bold'
         if self.face_name:
@@ -1386,7 +1394,8 @@ class TextSymbolizer(Symbolizer):
         set_xml_param(symbolizer_node, 'wrap_width', self.wrap_width)
         return symbolizer_node
 
-    def mapnik(self):
+    def mapnik(self, scale_factor=1):
+        self.scale(scale_factor)
         ts = mapnik.TextSymbolizer()
         ts.allow_overlap = self.allow_overlap
         ts.avoid_edges = self.avoid_edges
@@ -1479,14 +1488,15 @@ class Legend(models.Model):
                         l = LegendItem()
                         l.save_legend(self, rule, zoom)
         self.create_images(zoom)
+        self.create_images(zoom, 2)
 
-    def create_images(self, zoom):
+    def create_images(self, zoom, scale_factor=1):
         for item in self.legenditem_set.filter(zoom=zoom):
-            item.create_image()
+            item.create_image(scale_factor)
 
-    def create_all_images(self):
+    def create_all_images(self, scale_factor=1):
         for zoom in range(0, 19):
-            self.create_images(zoom)
+            self.create_images(zoom, scale_factor)
 
     def estimated_min_size(self, zoom, gap):
         items = self.legend_items(zoom)
@@ -1507,14 +1517,21 @@ class LegendItem(models.Model):
 
     title = models.CharField(max_length=200, null=True, blank=True)
     image = models.ImageField(upload_to='legend/', height_field='height', width_field='width', null=True, blank=True)
+    image_highres = models.ImageField(upload_to='legend/', height_field='height_highres', width_field='width_highres', null=True, blank=True)
     title_image = models.ImageField(upload_to='legend/', height_field='title_height', width_field='title_width', null=True, blank=True)
+    title_image_highres = models.ImageField(upload_to='legend/', height_field='title_height_highres', width_field='title_width_highres', null=True, blank=True)
     geometry = models.CharField(max_length=200, null=True, blank=True)
     group = models.CharField(max_length=200, null=True, blank=True)
+    order = models.PositiveIntegerField(null=True, blank=True)
     zoom =  models.IntegerField(choices=SCALE_CHOICES)
     height = models.PositiveIntegerField(null=True, blank=True)
     width = models.PositiveIntegerField(null=True, blank=True)
     title_height = models.PositiveIntegerField(null=True, blank=True)
     title_width = models.PositiveIntegerField(null=True, blank=True)
+    height_highres = models.PositiveIntegerField(null=True, blank=True)
+    width_highres = models.PositiveIntegerField(null=True, blank=True)
+    title_height_highres = models.PositiveIntegerField(null=True, blank=True)
+    title_width_highres = models.PositiveIntegerField(null=True, blank=True)
 
 
     legend = models.ForeignKey('Legend')
@@ -1538,58 +1555,78 @@ class LegendItem(models.Model):
             lr.save()
         else:
             for legenditem in related:
-#                print 'related found: %s' % rule.title.replace('Shield:','osmc: ').replace('trasa: ','osmc: ')
                 lr = LegendItemRule()
                 lr.legenditem_id = legenditem
                 lr.rule_id = rule
                 lr.order = len(legenditem.rules.all()) + 1
                 lr.save()
 
-    def create_image(self):
-        if self.title.startswith('!'):
-            return
+    def image_size(self, scale_factor=1):
         size = (12, 12)
         add_outline = 0
         for rule in self.rules.order_by('legenditemrule__order'):
             for symbolizer in rule.symbolizers.all().order_by('symbolizerrule__order'):
                 if symbolizer.symbtype=='Text':
                     continue
-                symb_size = symbolizer.specialized().symbol_size()
+                specialized = symbolizer.specialized()
+                specialized.scale(scale_factor)
+                symb_size = specialized.symbol_size()
                 size = (max(size[0], int(symb_size[0]) + 1), max(size[1], int(symb_size[1]) + 1))
                 # increase the size, if polygon has an outline
                 if self.geometry=='Collection' and 'Line' in symbolizer.symbtype:
                     add_outline = max(add_outline, int(float(symb_size[1]) + 0.5))
         if add_outline:
             size = (size[0] + add_outline, size[1] + add_outline)
-#            print 'outline added: ' + str(add_outline)
+        return size
+
+    def create_image(self, scale_factor=1):
+        if self.title.startswith('!'):
+            return
+        size = self.image_size(scale_factor)
         name = ('%i_%i.png' % (self.zoom, self.id)).encode('utf-8')
+        if scale_factor >= 2:
+            name = 'highres_' + name
         directory = 'media/legend/'
         tmpfilename = directory + 'tmp/' + name
-        if self.render(size, tmpfilename):
+        if self.render(size, tmpfilename, scale_factor):
+            #render() returns non-zero integer, ie. image is not rendered
             pass
         else:
-            if self.image:
-                self.image.delete()
-            self.image.save(directory + name, File(open(tmpfilename)))
+            if scale_factor>=2:
+                if self.image_highres:
+                    self.image_highres.delete()
+                self.image_highres.save(directory + name, File(open(tmpfilename)))
+            else:
+                if self.image:
+                    self.image.delete()
+                self.image.save(directory + name, File(open(tmpfilename)))
             self.save()
             remove(tmpfilename)
-        if self.title_image:
-            self.title_image.delete()
         name = 'title_' + name
         tmpfilename = directory + 'tmp/' + name
-        self.render_title(14, tmpfilename)
-        self.title_image.save(directory + name, File(open(tmpfilename)))
+        self.render_title(12, tmpfilename, scale_factor)
+        if scale_factor>=2:
+            if self.title_image_highres:
+                self.title_image_highres.delete()
+            self.title_image_highres.save(directory + name, File(open(tmpfilename)))
+        else:
+            if self.title_image:
+                self.title_image.delete()
+            self.title_image.save(directory + name, File(open(tmpfilename)))
         self.save()
         remove(tmpfilename)
 
 
-    def render(self, size, path):
+    def render(self, size, path, scale_factor=1):
         s = mapnik.Style()
         for rule in self.rules.all().order_by('legenditemrule__order'):
             rule.filter = None
-            rule.maxscale = 0
-            rule.minscale = 18
-            s.rules.append(rule.mapnik())
+#            rule.maxscale = 0
+#            rule.minscale = 18
+            mapnik_rule = rule.mapnik(scale_factor)
+            mapnik_rule.max_scale = zooms[0]
+            mapnik_rule.min_scale = zooms[19]
+            s.rules.append(mapnik_rule)
         ds = None
         if self.geometry=='Point':
             ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from points) as ln', user='xtesar7', password='')
@@ -1631,9 +1668,10 @@ class LegendItem(models.Model):
         view.save(path, 'png')
         return 0
 
-    def render_title(self, font_size, path):
+    def render_title(self, font_size, path, scale_factor=1):
+        font_size = scale_factor*font_size
         height = font_size + font_size/2
-        width = max(font_size*len(self.title)/2, 80)
+        width = max(font_size*len(self.title)*2/3, 150)
         fo = file(path + '.svg', 'w')
         fo.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         fo.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n')

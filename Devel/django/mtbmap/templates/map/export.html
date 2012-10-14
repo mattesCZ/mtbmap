@@ -1,11 +1,69 @@
 <div id="content-export">
-    <h5>Export výřezu mapy</h5>
-    <form action="/map/exportmap/" method="post">
+    <form target="_blank" action="/map/exportmap/" method="post">
         {% csrf_token %}
-        <label>Název mapy:</label><input type="text" name="map_title" id="map_title" value="" />
-        <input type="hidden" name="export_zoom" id="export_zoom" value="" />
-        <input type="hidden" name="bounds" id="bounds" value="" />
+        <h5>Export výřezu mapy</h5>
+        <div>
+            Oblast exportu:<br>
+            <input class="export_text export_main" type="text" name="export_top" id="export_top" value="" size="10" onchange="recalculateSize()" />
+            <br>
+            <input class="export_text export_main" type="text" name="export_left" id="export_left" value="" size="10" onchange="recalculateSize()" />
+            <input class="export_text export_main" type="text" name="export_right" id="export_right" value="" size="10" onchange="recalculateSize()" />
+            <br>
+            <input class="export_text export_main" type="text" name="export_bottom" id="export_bottom" value="" size="10" onchange="recalculateSize()" />
+            <br>
+            <input type="hidden" name="export_bounds" id="export_bounds" value="" /><br>
+            Podle zobrazení: <a href="#" class="button" onclick="setCurrentBounds();">Nastav</a>
+
+            <hr>
+            <label>Přiblížení</label>
+            <input type="hidden" name="export_zoom" id="export_zoom" value="" />
+            <select id="export_zoom_select" class="export_main" onchange="recalculateSize()">
+                <option value=""></option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+            </select>
+            <br>
+            <label>Velikost mapového pole</label>
+            <br>
+            <input class="export_text export_other" type="text" name="export_width" id="export_width" value="" size="5" onchange="recalculateBounds()" />
+            x
+            <input class="export_text export_other" type="text" name="export_height" id="export_height" value="" size="5" onchange="recalculateBounds()" />
+        </div>
+        <hr>
+        <div>
+            Kompoziční prvky:<br>
+            <label>Název mapy</label><input class="export_text" type="text" name="map_title" id="map_title" size="15" value="" />
+            <br>
+            <label>Měřítko</label><input id="export_scale" type="checkbox" checked="yes" value="" name="export_scale">
+            <br>
+            <label>Legenda</label><input id="export_legend" type="checkbox" checked="yes" value="" name="export_legend">
+            <br>
+            <label>Tiráž</label><input id="export_imprint" type="checkbox" checked="yes" value="" name="export_imprint" >
+            <!--        <input type="hidden" name="export_zoom" id="export_zoom" value="" />-->
+        </div>
+        <!--        <input type="submit" value="Export" onclick="setExport();"/>-->
+        <hr>
+        <!--    <div id="exportmap"><a href="#" title="Exportovat mapu" class="button">Export</a></div>-->
+        <input type="hidden" name="export_params" id="export_params" value="" />
+        <label>Rozlišení pro tisk</label><input class="export_main" id="export_highres" type="checkbox" checked="yes" value="" name="export_highres" onclick="recalculateSize()" >
         <br>
-        <input type="submit" value="Export" onclick="setExport();"/>
+        <input class="button" type="submit" onclick="getParams();" value="Export">
     </form>
 </div>

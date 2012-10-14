@@ -1,6 +1,6 @@
 #main-wrapper {
     position: absolute;
-/*    width: 300px;*/
+/*    width: 420px;*/
 }
 
 .block {
@@ -14,17 +14,25 @@
     opacity: 0.9;
     z-index: 1;
     text-align: center;
-    margin: 5px;
+    margin: 4px;
+    width: 400px;
+}
 
+p {
+    text-align: justify;
+    padding: 0 5px 0px 5px;
+    font-size: small;
+    line-height: 18px;
 }
 
 #header {
     overflow: auto;
+    float: left;
 }
 
 #content {
     overflow: auto;
-    max-width: 400px;
+/*    max-width: 400px;*/
 }
 
 #footer {
@@ -69,9 +77,6 @@ hr {
     padding-left: 64px;
 }
 #headerimg {
-    position: absolute;
-    top: 10px;
-    left: 10px;
     border: none;
 }
 
@@ -79,7 +84,8 @@ ul {
     list-style: none;
     display: block;
     padding: 0px;
-    margin: 0px;
+    margin: 10px;
+    float: right;
 }
 
 li {
@@ -88,10 +94,19 @@ li {
 }
 
 #content-legend {
-    text-align: left;
     font-size: small;
 }
 
+table {
+    text-align: left;
+}
+
+/*.menu-item {
+    font-weight: bold;
+    text-decoration: none;
+    color: inherit;
+}
+*/
 a {
     font-weight: bold;
     text-decoration: none;
@@ -99,5 +114,29 @@ a {
 }
 
 a:hover {
+    text-decoration: underline;
+}
+
+.export_text {
+    margin: 5px;
+}
+
+.button {
+    font-size: small;
+    font-weight: bold;
+    margin: 10px;
+    background-color: #DDDDDD;
+    border: 2px solid #999999;
+    border-radius: 3px;
+    color: inherit;
+    cursor: pointer;
+    outline-style: none;
+    padding: 2px 10px;
+    text-decoration: none;
+    vertical-align: 1px;
+}
+
+.button:hover {
+    background-color: #EEEEEE;
     text-decoration: underline;
 }

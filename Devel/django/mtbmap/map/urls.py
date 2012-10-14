@@ -7,4 +7,5 @@ urlpatterns = patterns('',
     url(r'^exportmap/$', 'map.views.exportmap'),
     url(r'^export/$', 'map.views.export'),
     url(r'^profile/$', 'map.views.profile'),
+    url(r'^altitudeprofile/$', 'map.views.altitudeprofile'),
 )

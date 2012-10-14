@@ -1,4 +1,14 @@
 <div id="content-profile">
     <h5>Výškový profil trasy</h5>
+    <p>
+        Trasu vytvářejte klikáním přímo do mapy. Vytvořené body lze přesouvat.
+    </p>
     <div id="length"></div>
+    <br>
+    <a href="#" class="button" onclick="resetLine()" >Smazat trasu</a>
+    <form method="post" action="/map/altitudeprofile/" target="_blank" >
+        {% csrf_token %}
+        <input type="hidden" name="profile_params" id="profile_params" value="" />
+        <input class="button" type="submit" value="Vytvořit profil" onclick="setProfileParams()" >
+    </form>
 </div>

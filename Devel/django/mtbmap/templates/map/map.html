@@ -6,19 +6,20 @@
 {% endblock %}
 
 {% block header %}
-<!--<a href="."><img src="/media/mtbmap_logo64.png" alt="" id="headerimg"></a>-->
-{% if map %}
+<!---->
+<!--{% if map %}
 <h3>{{ map.name }}</h3>
 {% else %}
 <h3>OSM MTB Mapa<br>České republiky</h3>
 {% endif %}
-<hr>
+<hr>-->
 <!--<a href="http://wiki.openstreetmap.org/wiki/MTB_map_Czech_Republic" target="_blank">O projektu</a>-->
+<a href="."><img src="/media/mtbmap_logo64.png" width="48" alt="" id="headerimg"></a>
 <ul id="main-menu">
-    <li id="home" class="menu-item"><a href="#" title="Zobrazit/skrýt" >Úvod</a></li>
-    <li id="legend" class="menu-item"><a href="#" title="Zobrazit/skrýt" >Legenda</a></li>
-    <li id="export" class="menu-item"><a href="#" title="Zobrazit/skrýt" >Export</a></li>
-    <li id="profile" class="menu-item"><a href="#" title="Zobrazit/skrýt" >Profily</a></li>
+    <li id="home"><a class="menu-item" href="#" title="Zobrazit/skrýt" >Úvod</a></li>
+    <li id="legend"><a class="menu-item" href="#" title="Zobrazit/skrýt" >Legenda</a></li>
+    <li id="export"><a class="menu-item" href="#" title="Zobrazit/skrýt" >Export</a></li>
+    <li id="profile"><a class="menu-item" href="#" title="Zobrazit/skrýt" >Profily</a></li>
 </ul>
 {% endblock %}
 
@@ -34,7 +35,8 @@
 {% endblock %}-->
 
 {% block footer %}
-Autor: Martin Tesař - osmmtb&nbsp;(at)&nbsp;gmail.com | Zobrazení: Konformní válcové - Mercatorovo<br>
+Autor: Martin Tesař, osmmtb&nbsp;(at)&nbsp;gmail.com<br>
+Zobrazení: Konformní válcové - Mercatorovo<br>
 Data poskytuje <a href="http://openstreetmap.org/" >OpenStreetMap</a> a&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a> | Verze: 2012-04-16 od <a href="http://download.geofabrik.de/osm/" >Geofabrik.de</a><br>
 Hardware poskytuje laboratoř <a href="http://sitola.fi.muni.cz" > SITOLA </a>
 {% endblock %}
