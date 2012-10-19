@@ -281,7 +281,7 @@ class PostGIS(DataSource):
         return mapnik.PostGIS(dbname=self.dbname.encode('utf-8'), estimate_extent=self.estimate_extent,
                               extent=self.extent.encode('utf-8'), host=self.host.encode('utf-8'),
                               port=self.port, user=self.user.encode('utf-8'),
-                              table=self.table.encode('utf-8'))
+                              table=self.table.encode('utf-8'), password=self.password.encode('utf-8'))
 
     def geometry(self):
         return self.mapnik().geometry_type().name

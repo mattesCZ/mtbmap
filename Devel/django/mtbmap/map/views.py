@@ -11,7 +11,6 @@ from django.core.context_processors import csrf
 #import mapnik
 from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
 from map.altitude import altitude_image, height
-from StringIO import StringIO
 from PIL import Image
 
 def index(request):
