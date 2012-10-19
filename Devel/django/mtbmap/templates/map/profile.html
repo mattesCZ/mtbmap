@@ -1,14 +1,33 @@
-<div id="content-profile">
+{% extends "map/profilebase.html" %}
+{% block profilecontent %}
+<!--<ul id="profile-menu" class="menu" >
+    <li id="profile-draw"><a class="menu-item" href="#" >Vlastní</a></li>
+    <li id="profile-routing"><a class="menu-item" href="#" >Vyhledat trasu</a></li>
+</ul>
+<div id="clear" ></div>
+<hr>-->
+<div id="content-profile-draw">
     <h5>Výškový profil trasy</h5>
     <p>
         Trasu vytvářejte klikáním přímo do mapy. Vytvořené body lze přesouvat.
     </p>
-    <div id="length"></div>
+    <div id="length"></div><div id="point_height"></div>
     <br>
-    <a href="#" class="button" onclick="resetLine()" >Smazat trasu</a>
-    <form method="post" action="/map/altitudeprofile/" target="_blank" >
+    <a href="#" id="fit_to_line" class="button" onclick="fitToLine()" >Zobrazit podle trasy</a>
+    <a href="#" id="reset_line" class="button" onclick="resetLine()" >Smazat</a>
+    <form id="create_profile" method="post" action="/map/altitudeprofile/" target="_blank" >
         {% csrf_token %}
         <input type="hidden" name="profile_params" id="profile_params" value="" />
         <input class="button" type="submit" value="Vytvořit profil" onclick="setProfileParams()" >
     </form>
 </div>
+<!--<div id="content-profile-routing">
+    <h5>Vyhledat trasu</h5>
+    <form id="routing_data" method="post" action="/map/findroute/">
+        {% csrf_token %}
+        <label>Start: </label><input class="routing_text" type="text" name="routing_start" id="routing_start" value="" size="20" onchange="" />
+        <br>
+        <label>Cíl: </label><input class="routing_text" type="text" name="routing_end" id="routing_end" value="" size="20" onchange="" />
+    </form>
+</div>-->
+{% endblock %}

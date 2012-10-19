@@ -80,7 +80,7 @@ hr {
     border: none;
 }
 
-ul {
+#main-menu {
     list-style: none;
     display: block;
     padding: 0px;
@@ -88,7 +88,19 @@ ul {
     float: right;
 }
 
-li {
+#main-menu li {
+    float: left;
+    padding: 5px 10px 5px 10px;
+}
+
+#profile-menu {
+    list-style: none;
+    display: block;
+    padding: 0px;
+    margin: 10px;
+}
+
+#profile-menu li {
     float: left;
     padding: 5px 10px 5px 10px;
 }
@@ -139,4 +151,11 @@ a:hover {
 .button:hover {
     background-color: #EEEEEE;
     text-decoration: underline;
+}
+
+#clear {
+    width: 100%;
+    height: 1px;
+    margin: 0 0 -1px;
+    clear: both;
 }

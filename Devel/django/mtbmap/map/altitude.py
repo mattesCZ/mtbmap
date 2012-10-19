@@ -35,6 +35,11 @@ def altitude_image(nodes):
         else:
             return -1
 
+def height(node):
+    nodes = [node]
+    appendHeights(nodes)
+    return nodes[0][-1]
+
 def dist(index, nodes):
     """
     Returns Great-Circle distance between two nodes using complete formula.

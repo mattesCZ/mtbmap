@@ -6,14 +6,17 @@ import cairo
 import rsvg
 from math import cos, radians, log10
 from datetime import date
+from StringIO import StringIO
+from PIL import Image
 
 def svg_string_to_png(svg_string, png_image_path, width, height):
     img = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
     ctx = cairo.Context(img)
     handler = rsvg.Handle(None, svg_string)
     handler.render_cairo(ctx)
-    img.write_to_png(png_image_path)
-    return mapnik.Image.open(png_image_path)
+    buffer = StringIO()
+    img.write_to_png(buffer)
+    return Image.open(StringIO(buffer.getvalue()))
 
 def legend_image(legend, zoom, gap, position='side', max_edge=None, highres=True):
     items = legend.legend_items(zoom)
@@ -35,7 +38,6 @@ def legend_image(legend, zoom, gap, position='side', max_edge=None, highres=True
     else:
         for item in items:
             max_height += max(item.title_height, item.height)
-    print max_height, max_image_width
     height = max_height
     num_columns = 1
 
@@ -50,7 +52,6 @@ def legend_image(legend, zoom, gap, position='side', max_edge=None, highres=True
     image = mapnik.Image(width, height)
     y = gap
     column = 0
-    print height, num_columns, width
     for item in items:
         if highres:
             image_height = item.height_highres
@@ -73,13 +74,11 @@ def legend_image(legend, zoom, gap, position='side', max_edge=None, highres=True
             image_y = y + (title_height - image_height)/2
         image.blend(column*column_width + max_image_width/2 - image_width/2, image_y, mapnik.Image.open(path), 1)
         image.blend(column*column_width + max_image_width, title_y, mapnik.Image.open(title_path), 1)
-#            print y, title_y
         y = y + shift + gap
         if y+shift>height:
             y = gap
             column += 1
-            print 'Column added', column
-    return image
+    return Image.open(StringIO(image.tostring('png')))
 
 def map_image(zoom, left, bottom, right, top, highres=True):
     mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/mapnik2new.xml"
@@ -104,7 +103,7 @@ def map_image(zoom, left, bottom, right, top, highres=True):
     m.zoom_to_box(bbox)
     im = mapnik.Image(imgx, imgy)
     mapnik.render(m, im)
-    return im
+    return Image.open(StringIO(im.tostring('png')))
 
 def name_image(name, width, highres=True):
     height = 40
@@ -180,7 +179,6 @@ def scalebar_image(zoom, lat_center, highres=True):
         svg += '    <text fill="black" text-anchor="middle" font-size="%i" font-family="Dejavu Sans" x="%i" y="%i">%i</text>\n' % (font_size, x_middle, y_text, real_line_length/2)
     svg += '    <text fill="black" text-anchor="middle" font-size="%i" font-family="Dejavu Sans" x="%i" y="%i">%s</text>\n' % (font_size, x_end, y_text, real_line_length)
     svg += '    <text fill="black" text-anchor="middle" font-size="%i" font-family="Dejavu Sans" x="%i" y="%i">%s</text>\n' % (font_size, x_end + 2*x_start, y_text, units)
-    #print height lines
     # print SVG end element
     svg += '</svg>\n'
 
