@@ -14,10 +14,7 @@ from map.altitude import altitude_image, height
 from PIL import Image
 
 def index(request):
-    maps = Map.objects.all()
-    map = maps[0]
-    return render_to_response('map/map.html', 
-                              {'maps': maps, 'map': map},
+    return render_to_response('map/map.html', {},
                               context_instance=RequestContext(request))
 
 def home(request):
@@ -32,7 +29,6 @@ def exportmap(request):
     c = {}
     c.update(csrf(request))
     try:
-#        postquery = request.POST
         zoom = int(request.POST['export_zoom'])
         bounds = request.POST['export_bounds'].replace('(', '').replace(')', '')
     except (KeyError, 'no zoom posted'):
@@ -40,7 +36,11 @@ def exportmap(request):
                                   context_instance=RequestContext(request))
     else:
         map_title = request.POST['map_title']
-        map = Map.objects.get(pk=1)
+        mapqueryset = Map.objects.filter(name='MTB mapa')
+        if mapqueryset.exists():
+            map = mapqueryset[0]
+        else:
+            map = Map()
         bottom = float(bounds.split(',')[1])
         top = float(bounds.split(',')[3])
         left = float(bounds.split(',')[0])

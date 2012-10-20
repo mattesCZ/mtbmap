@@ -19,7 +19,7 @@ urlpatterns += patterns('',
     url(r'^map/', include('map.urls')),
 )
 
-# polls tutorial app
-urlpatterns += patterns('',
-    url(r'^polls/', include('polls.urls')),
-)
+## polls tutorial app
+#urlpatterns += patterns('',
+#    url(r'^polls/', include('polls.urls')),
+#)

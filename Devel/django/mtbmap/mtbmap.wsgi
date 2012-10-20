@@ -1,9 +1,10 @@
 import os
 import sys
 
-sys.path.append('/home/xtesar7/Devel/mtbmap-czechrep/Devel/django/mtbmap')
+django_path = os.environ['MTBMAP_DJANGO']
+sys.path.append(django_path)
 
-os.environ['PYTHON_EGG_CACHE'] = '/home/xtesar7/Devel/mtbmap-czechrep/Devel/django/.python-egg'
+os.environ['PYTHON_EGG_CACHE'] = django_path + '/../.python-egg'
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 import django.core.handlers.wsgi

@@ -81,7 +81,7 @@ def legend_image(legend, zoom, gap, position='side', max_edge=None, highres=True
     return Image.open(StringIO(image.tostring('png')))
 
 def map_image(zoom, left, bottom, right, top, highres=True):
-    mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/mapnik2new.xml"
+    mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/mapnik2normal.xml"
     base = 0.000005364418029785156 # longitude range of 1 pixel at zoom 18
     zoom_conversion = base*2**(18-zoom)
     imgx = int(round((right - left)/zoom_conversion))
@@ -89,7 +89,7 @@ def map_image(zoom, left, bottom, right, top, highres=True):
     latitude_conversion = zoom_conversion * cos(radians(lat_center))
     imgy = int(round((top - bottom)/latitude_conversion))
     if highres:
-        mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/mapnik2print_1010.xml"
+        mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/mapnik2print.xml"
         imgx = 2*imgx
         imgy = 2*imgy
 
