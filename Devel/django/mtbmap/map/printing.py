@@ -50,6 +50,7 @@ def legend_image(legend, zoom, gap, position='side', max_edge=None, highres=True
 
     width = column_width*num_columns + gap
     image = mapnik.Image(width, height)
+    image.background = mapnik.Color('white')
     y = gap
     column = 0
     for item in items:
@@ -116,8 +117,8 @@ def name_image(name, width, highres=True):
     svg += ('<?xml version="1.0" encoding="UTF-8"?>\n')
     svg += ('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n')
     svg += ('<svg width="%i" height="%i" xmlns="http://www.w3.org/2000/svg" id="name">\n' % (width, height))
-    # draw altitude fields
-    svg += ('    <text fill="black" text-anchor="middle" font-family="Dejavu Sans" x="%i" y="%i" font-size="%i">%s</text>' % (width/2, height-10, font_size, name))
+    svg += '    <rect x="0" y="0" width="%i" height="%i" style="fill:white;stroke:none" />\n' % (width, height)
+    svg += '    <text fill="black" text-anchor="middle" font-family="Dejavu Sans" x="%i" y="%i" font-size="%i">%s</text>' % (width/2, height-10, font_size, name)
     # print SVG end element
     svg += ('</svg>')
     im = svg_string_to_png(svg, 'name.png', width, height)
@@ -166,8 +167,8 @@ def scalebar_image(zoom, lat_center, highres=True):
     svg += '<?xml version="1.0" encoding="UTF-8"?>\n'
     svg += '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n'
     svg += '<svg width="%i" height="%i" xmlns="http://www.w3.org/2000/svg" id="scalebar">\n' % (width, height)
+    svg += '    <rect x="0" y="0" width="%i" height="%i" style="fill:white;stroke:none" />\n' % (width, height)
     # draw altitude fields
-#    svg += '    <rect x="0" y="0" width="' + str(width) + '" height="40" style="fill:white;stroke:black;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />\n'
     svg += '    <line style="%s" x1="%i" x2="%i" y1="%i" y2="%i" />\n' % (line_style, x_start, x_end, y_bottom, y_bottom)
     svg += '    <line style="%s" x1="%i" x2="%i" y1="%i" y2="%i" />\n' % (line_style, x_start, x_start, y_bottom, y_top)
     svg += '    <line style="%s" x1="%i" x2="%i" y1="%i" y2="%i" />\n' % (line_style, x_middle, x_middle, y_bottom, y_top)
@@ -195,6 +196,7 @@ def imprint_image(attribution='Data: OpenStreetMap, CC-BY-SA', width=500, height
     svg = '<?xml version="1.0" encoding="UTF-8"?>\n'
     svg += '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n'
     svg += '<svg width="%i" height="%i" xmlns="http://www.w3.org/2000/svg" id="scalebar">\n' % (width, height)
+    svg += '    <rect x="0" y="0" width="%i" height="%i" style="fill:white;stroke:none" />\n' % (width, height)
     svg += '    <text fill="black" text-anchor="middle" font-family="Dejavu Sans" font-size="%i" x="%i" y="%i">%s</text>\n' % (font_size, width/2, height-font_size/2, text)
     svg += '</svg>\n'
 

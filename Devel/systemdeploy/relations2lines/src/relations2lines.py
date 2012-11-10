@@ -207,7 +207,7 @@ def main():
     print "max Signs:   ", maxSigns
     print "Routes:      ", len(routes)
     print "Nodes:       ", len(nodes)
-    print "Danger nodes:", len(dangerNodes)
+#    print "Danger nodes:", len(dangerNodes)
 #    print routes[39952857].nextRoutes, routes[44013159].previousRoutes
 #    print nodes[559611826]
 
@@ -316,9 +316,10 @@ def insertDangerNodes(nodes, cursor):
         else:
             cursor.execute("select lat, lon from planet_osm_nodes where id=%s" % dnID)
             nodeLatLon = cursor.fetchone()
-            geometryCommand = "ST_SetSRID(ST_Point( %s, %s),900913) " % (str(nodeLatLon[1]/100.0), str(nodeLatLon[0]/100.0))
-            pointValues = str(dnID) + ", " + geometryCommand + ", " + str(nodes[dnID])
-            cursor.execute("INSERT INTO planet_osm_point (osm_id, way, warning) VALUES (%s)" % pointValues)
+            if nodeLatLon:
+                geometryCommand = "ST_SetSRID(ST_Point( %s, %s),900913) " % (str(nodeLatLon[1]/100.0), str(nodeLatLon[0]/100.0))
+                pointValues = str(dnID) + ", " + geometryCommand + ", " + str(nodes[dnID])
+                cursor.execute("INSERT INTO planet_osm_point (osm_id, way, warning) VALUES (%s)" % pointValues)
 
 def removeUnconnected(routes, nodes):
     gradeOneIDs = []

@@ -1,0 +1,71 @@
+<div id="content-routes">
+    <h5>Vyhledávání tras a tvorba výškových profilů</h5>
+    <p>Trasu zadejte klikáním přímo do mapy.</p>
+    <label>Start: </label><input class="export_text" type="text" name="routing_start" id="routing_start" value="" size="10" onchange="" />
+    <br>
+    <label>Cíl: </label><input class="export_text" type="text" name="routing_end" id="routing_end" value="" size="10" onchange="" />
+    <br>
+    <div id="length"></div><div id="point_height"></div>
+    <br>
+    <div id="fit_to_line" class="button" onclick="fitToLine()" >Zobrazit podle trasy</div>
+    <div id="reset_line" class="button" onclick="resetLine()" >Smazat</div>
+    <form onsubmit="getRoute(event)" method="POST">
+        {% csrf_token %}
+        <input type="submit" class="button" id="get_route" value="Hledat trasu">
+    </form>
+    <form id="create_profile" method="post" action="/map/altitudeprofile/" target="_blank" >
+        {% csrf_token %}
+        <input type="hidden" name="profile_params" id="profile_params" value="" />
+        <input class="button" type="submit" value="Vytvořit profil" onclick="setProfileParams()" >
+    </form>
+    <hr>
+    <form id="routes_params">
+    <h5>Parametry vyhledávání tras</h5>
+    {% for c in classes %}
+    {{ c.classname }}<br>
+    {% if c.max != None or c.min != None %}
+    <table id="weights_limits_{{c.classname}}" class="weights_limits" >
+        <tr>
+            {% if c.max != None %}
+            <td>Max:</td>
+            <td><input type="text" value="{{c.max|floatformat:'0'}}" size="2" id="weights_{{c.classname}}_max" name="{{c.classname}}__max" /></td>
+            {% endif %}
+            {% if c.min != None %}
+            <td>Min:</td>
+            <td><input type="text" value="{{c.min|floatformat:'0'}}" size="2" id="weights_{{c.classname}}_min" name="{{c.classname}}__min" /></td>
+            {% endif %}
+        </tr>
+    </table>
+    {% endif %}
+    {% if c.weight_set.all %}
+    <table id="weights_types_{{c.classname}}" class="weights_types">
+        <tr>
+            <th>Typ</th>
+            <th>Preference</th>
+        </tr>
+        {% for w in c.orderedweights %}
+        <tr>
+            <td>{{w.feature}}</td>
+            <td>
+                <select class="weights_preferences" id="weights_{{c.classname}}_{{w.feature}}_preference" name="{{c.classname}}__{{w.feature}}" >
+                    {% for choice in w.PREFERENCE_CHOICES %}
+                        {% if choice.0 == w.preference %}
+                        <option value="{{choice.0}}" selected="selected" >{{choice.1}}</option>
+                        {% else %}
+                        <option value="{{choice.0}}">{{choice.1}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <hr>
+    {% endfor %}
+    </form>
+    <form onsubmit="getRoute(event)" method="POST">
+        {% csrf_token %}
+        <input type="submit" class="button" value="Hledat trasu">
+    </form>
+</div>

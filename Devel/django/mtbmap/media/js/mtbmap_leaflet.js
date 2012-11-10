@@ -17,6 +17,37 @@ var mtbmapSymbolsTileLayer = new L.TileLayer('http://mtbmap.cz/overlay-mtbscale_
     maxZoom: 18
 });
 
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+function setupPost(e) {
+    var csrftoken = getCookie('csrftoken');
+    e.preventDefault();
+    $.ajaxSetup({
+        crossDomain: false, // obviates need for sameOrigin test
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type)) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+}
 
 L.control.zoom({
     position:"topright"
@@ -28,45 +59,43 @@ L.control.scale({
     maxWidth:200
 }).addTo(map)
 
-var baseLayers = {
+L.Control.Position = L.Control.extend({
+	options: {
+		position: 'bottomright'
+	},
+        onAdd: function(map) {
+            this._map = map;
+            var className = 'leaflet-control-position',
+                container = L.DomUtil.create('div', className)
+            this.container = container;
+            container.innerHTML = this._latlngString(map.getCenter());
 
+            map.on('mousemove', this._update, this);
+            return container;
+        },
+        _update: function(e) {
+            this.container.innerHTML = this._latlngString(e.latlng);
+        },
+        _latlngString: function (latlng) {
+            return latlng.lat.toFixed(5) + ', ' + latlng.lng.toFixed(5);
+        }
+});
+pos = new L.Control.Position({}).addTo(map);
+
+var baseLayers = {
     "MTB mapa": mtbmapTileLayer,
     "OpenStreetMaps": osmTileLayer
 }
-
 var overlayLayers = {
     "MTB obtížnost": mtbmapSymbolsTileLayer
 }
 
 L.control.layers(baseLayers, overlayLayers).addTo(map)
 
-//var drawControl = new L.Control.Draw({
-//    position: 'topright',
-//    polygon: false,
-//    circle: false,
-//    marker: false,
-//    rectangle: false
-//});
-//map.addControl(drawControl)
-//
-//var drawnLines = new L.Polyline([], {});
-//
-//map.on('draw:poly-created', function (e) {
-//    //    alert(e.poly.getBounds().toBBoxString());
-//    drawnLines.setLatLngs(e.poly.getLatLngs());
-//    distance = 0;
-//    var latlngsArray = drawnLines.getLatLngs();
-//    for (i=0; i<latlngsArray.length-1; i++) {
-//        distance += latlngsArray[i].distanceTo(latlngsArray[i+1]);
-//    }
-//    $('#length').html(distance);
-//});
-//map.addLayer(drawnLines);
-
-var menuItems = ["home", "legend", "export", "profile"]
+var menuItems = ["home", "legend", "export", "routes"]
 
 var menuActive = ''
-var profileActive = ''
+var routesActive = ''
 
 function setContentMaxHeight() {
     maxheight = $('#map').height() - ($('#header').height() + $('#footer').height() + 42);
@@ -80,8 +109,6 @@ $(window).resize(function(event) {
 $(document).ready(function() {
     $('#content').hide();
     setContentMaxHeight();
-});
-$(document).ready(function() {
     $('#home').bind('click', function () {
         if (menuActive=='home') {
             $('#content').hide();
@@ -93,9 +120,6 @@ $(document).ready(function() {
             menuActive = 'home'
         }
     });
-});
-
-$(document).ready(function() {
     $('#legend').bind('click', function () {
         if (menuActive=='legend') {
             $('#content').hide();
@@ -107,40 +131,15 @@ $(document).ready(function() {
             menuActive = 'legend';
         }
     });
-});
-
-//$(document).ready(function() {
-//    $('#exportmap').bind('click', function () {
-//        $.get("/map/exportmap/", {
-//            zoom: '8',
-//            bounds: '(12.0,50.0,14.0,51.0)',
-//            map_title:'Dresden'
-//        }, function(data) {
-//            $('#content').html(data).show();
-//        });
-//    });
-//});
-
-$(document).ready(function() {
-    $('#profile').bind('click', function () {
-        if (menuActive=='profile') {
+    $('#routes').bind('click', function () {
+        if (menuActive=='routes') {
             $('#content').hide();
             menuActive = '';
         } else {
-            $.get("/map/profile/", function(data) {
+            $.get("/map/routes/", function(data) {
                 $('#content').html(data).show();
-//                if (profileLine.getLatLngs().length==0) {
-//                    hideButtons();
-//                }
-                toggleProfileMenu('draw');
-                $('#profile-draw').bind('click', function () {
-                    toggleProfileMenu('draw');
-                })
-                $('#profile-routing').bind('click', function () {
-                    toggleProfileMenu('routing');
-                })
             });
-            menuActive = 'profile'
+            menuActive = 'routes';
         }
     });
 });
@@ -151,9 +150,6 @@ function onMapZoom(e) {
             $('#content').html(data).show();
         });
     }
-//    else if (menuActive=='export') {
-//        setCurrentBounds();
-//    }
 }
 
 map.on('zoomend', onMapZoom);
@@ -172,12 +168,6 @@ $(document).ready(function() {
                 $('#content').html(data);
                 setCurrentBounds();
                 $('#content').show();
-            //                $('#exportmap').bind('click', function () {
-            //                    $.get("/map/exportmap/", exportValues(), function(data) {
-            //                        $('#content').html(data).show();
-            //                        menuActive = 'exportmap';
-            //                    });
-            //                });
             });
             menuActive = 'export'
         }
@@ -270,35 +260,30 @@ function recalculateBounds() {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// handling profiles
-function toggleProfileMenu(activate) {
-    if (activate=='draw') {
-        $('#content-profile-routing').hide();
-    } else {
-        $('#content-profile-draw').hide();
-    }
-    $('#content-profile-'+activate).show();
-    profileActive = activate;
-}
+// handling routes
 
-function ProfileLine(latlngs, lineOptions) {
+function RouteLine(latlngs, lineOptions) {
     this.line = new L.Polyline(latlngs, lineOptions);
+//    this.line.on('click', function() {alert('clicked');});
     this.markersGroup = new L.LayerGroup([]);
     this.markerIcon = L.icon({
         iconUrl: '../media/js/images/line-marker.png',
         iconSize: [9, 9]
     });
     this.visible = false;
+    this.routesGroup = new L.LayerGroup([]);
 
     this.reset = function() {
         this.line.setLatLngs([]);
         this.markersGroup.clearLayers();
+        this.routesGroup.clearLayers();
     }
 
     this.show = function() {
         if (!this.visible) {
             map.addLayer(this.line);
             map.addLayer(this.markersGroup);
+            map.addLayer(this.routesGroup)
             this.visible = true;
         }
     };
@@ -306,6 +291,7 @@ function ProfileLine(latlngs, lineOptions) {
         if (this.visible) {
             map.removeLayer(this.line);
             map.removeLayer(this.markersGroup);
+            map.removeLayer(this.routesGroup);
             this.visible = false;
         }
     }
@@ -315,6 +301,14 @@ function ProfileLine(latlngs, lineOptions) {
         this.line.addLatLng(latlng);
         latlngs = this.line.getLatLngs();
         $('#length').html(this.distanceString()).show();
+    }
+    this.removeMarker = function(marker) {
+        l = this.line;
+        l.setLatLngs([]);
+        this.markersGroup.removeLayer(marker);
+        this.markersGroup.eachLayer( function(layer) {
+            l.addLatLng(layer.getLatLng());
+        });
     }
     this.getLatLngs = function() {
         return this.line.getLatLngs();
@@ -341,8 +335,17 @@ function ProfileLine(latlngs, lineOptions) {
             'icon': this.markerIcon
         });
         m.on('dragend', this._markerDragEnd);
+        m.on('click', this._markerClick);
         m.parent = this;
         return m;
+    }
+//    this._lineClick = function() {
+//        alert('clicked or tapped');
+//    }
+    this._markerClick = function() {
+        p = this.parent;
+        p.removeMarker(this);
+        $('#length').html(p.distanceString());
     }
     this._markerDragEnd = function(e) {
         p = this.parent;
@@ -360,65 +363,51 @@ function ProfileLine(latlngs, lineOptions) {
         }
         return d;
     }
-}
-
-var pLine = new ProfileLine([], {
-    color: '#FF6600',
-    opacity: 0.9,
-    dashArray: '15, 15'
-});
-
-var routingLine = new L.Polyline([], {
-    color: '#FF6600',
-    //    dashArray: '15, 15',
-    opacity: 0.9
-}).addTo(map);
-var routingGroup = new L.LayerGroup([]).addTo(map);
-
-function onMapClick(e){
-    if (menuActive=='profile' && profileActive=='draw') {
-        pLine.addPoint(e.latlng);
-        pLine.show();
-        showButtons();
-
-    //        newPoint = L.latLng(e.latlng);
-    //        var marker = new L.marker(e.latlng, {
-    //            'draggable': true,
-    //            icon: markerIcon
-    //        });
-    //        //        marker.on('dragstart', onMarkerDragStart);
-    //        marker.on('dragend', onMarkerDragEnd);
-    //        markersGroup.addLayer(marker);
-    //        latLngs = profileLine.getLatLngs();
-    //        if (latLngs.length >= 1) {
-    //            lineDistance += newPoint.distanceTo(latLngs[latLngs.length-1]);
-    //            $('#length').html(printDistance(lineDistance));
-    //            if (latLngs.length == 1) {
-    //                showButtons();
-    //                $('#point_height').hide();
-    //                $('#length').show();
-    //            }
-    //        } else {
-    //            $.get("/map/getheight/", {
-    //                'profile_point': e.latlng.toString()
-    //            }, function (data) {
-    //                out = 'Výška zadaného bodu je ' + data + ' metrů nad mořem'
-    //                $('#point_height').html(out).show();
-    //                showButtons();
-    //            });
-    //        }
-    //        profileLine.addLatLng(e.latlng);
-    } else if (menuActive=='profile' && profileActive=='routing') {
-        startPoint = L.latLng(e.latlng);
-        var marker = new L.marker(e.latlng, {
-            'draggable': true,
-            icon: markerIcon
-        });
-        routingGroup.addLayer(marker);
-        
+    this.getRoute = function() {
+        thisLine = this;
+        this.routesGroup.clearLayers();
+        latlngs = this.getLatLngs();
+//        if (latlngs.length>1) {
+//            start = latlngs[0].lat.toFixed(5) + ' ' + latlngs[0].lng.toFixed(5);
+//            end = latlngs[latlngs.length-1].lat.toFixed(5) + ' ' + latlngs[latlngs.length-1].lng.toFixed(5);
+//            $('#routing_start').val(start);
+//            $('#routing_end').val(end);
+//        } else {
+//            start = new L.LatLng($('#routing_start').val());
+//            end = new L.LatLng($('#routing_end').val());
+//            line = new L.Polyline([start, end], {});
+//            latlngs = line.getLatLngs();
+//        }
+        if (latlngs.length<=1) {
+            L.popup().setLatLng(map.getCenter()).setContent('<h3>Přidej další body</h3>').openOn(map);
+        } else {
+            var params = $('#routes_params').serializeArray();
+            $.post("/map/findroute/", {'params':JSON.stringify(params), 'routing_line': '['+ latlngs + ']'}, function(data) {
+                geojsonLine = L.geoJson(data, {
+                    style: {
+                        color: '#0055ff',
+                        opacity: 1
+                    }
+                });
+                thisLine.routesGroup.addLayer(geojsonLine);
+                map.fitBounds(geojsonLine.getBounds());
+            });
+        }
     }
 }
 
+var pLine = new RouteLine([], {
+    color: '#FF6600',
+    opacity: 0.9
+//    dashArray: '15, 15'
+});
+
+function onMapClick(e){
+    if (menuActive=='routes') {
+        pLine.addPoint(e.latlng);
+        if (!pLine.visible) { pLine.show() }
+    }
+}
 map.on('click', onMapClick);
 
 function fitToLine() {
@@ -427,28 +416,68 @@ function fitToLine() {
 
 function resetLine() {
     pLine.reset();
-//    profileLine.setLatLngs([]);
-//    lineDistance = 0;
-//    markersGroup.clearLayers();
-//    hideButtons();
 }
 
 function setProfileParams() {
     $('#profile_params').val(pLine.getLatLngs());
 }
 
-function hideButtons() {
-    $('#length').hide();
-    $('#point_height').hide();
-    $('#create_profile').hide();
-    $('#reset_line').hide();
-    $('#fit_to_line').hide();
+function getRoute(e) {
+    setupPost(e);
+    pLine.getRoute();
 }
 
-function showButtons() {
-    //    $('#length').show();
-    //    $('#point_height').show();
-    $('#create_profile').show();
-    $('#reset_line').show();
-    $('#fit_to_line').show();
+jsonWeights = {
+    "type": "mtb",
+    "highway" : {
+        "motorway":1,
+        "trunk":1,
+        "primary":1,
+        "secondary":1,
+        "tertiary":1,
+        "pedestrian":1,
+        "residential":1,
+        "unclassified":1,
+        "service":1,
+        "track":1,
+        "road":1,
+        "path":1,
+        "footway":1,
+        "cycleway":1,
+        "bridleway":1,
+        "steps":1
+    },
+    "tracktype" : {
+        "grade1":1,
+        "grade2":1,
+        "grade3":1,
+        "grade4":1,
+        "grade5":1
+    },
+    "width" : {
+        "max":"100",
+        "min":"0"
+    },
+    "surface" : {
+        "asphalt":1,
+        "grass":1
+    },
+    "mtbscale" : {
+        "0":1,
+        "1":1,
+        "2":1,
+        "3":1,
+        "4":1,
+        "5":1,
+        "6":1
+    },
+    "mtbscaleuphill" : {
+        "max":5,
+        "min":0
+    },
+    "osmc" : 1,
+    "sac_scale" : {
+        "max":6,
+        "min":1
+    }
 }

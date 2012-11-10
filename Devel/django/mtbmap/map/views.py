@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from map.models import Map
+from map.models import Map, WeightClass
 from styles.models import Legend
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -11,7 +11,9 @@ from django.core.context_processors import csrf
 #import mapnik
 from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
 from map.altitude import altitude_image, height
+from map.routing import astar, dijkstra, connect_edges, nearest_vertice, find_route
 from PIL import Image
+import simplejson as json
 
 def index(request):
     return render_to_response('map/map.html', {},
@@ -26,8 +28,8 @@ def legend(request, zoom):
     return TemplateResponse(request, 'map/legend.html', {'zoom': zoom, 'legenditems': legenditems})
 
 def exportmap(request):
-    c = {}
-    c.update(csrf(request))
+#    c = {}
+#    c.update(csrf(request))
     try:
         zoom = int(request.POST['export_zoom'])
         bounds = request.POST['export_bounds'].replace('(', '').replace(')', '')
@@ -94,6 +96,7 @@ def exportmap(request):
         im.paste(imprint_im, (map_im.size[0]/2 - imprint_im.size[0]/2, y_base))
 
         response = HttpResponse(mimetype='image/png')
+        response['Content-Disposition'] = 'attachment; filename="map.png"'
         im.save(response, 'png')
         return response
 #        return render_to_response('map/export.html', {'zoom': int(zoom), 'center': center, 'bounds': bounds, 'size': size, 'info': info},
@@ -107,12 +110,13 @@ def exportmap(request):
 def export(request):
     return TemplateResponse(request, 'map/export.html', {})
 
-def profile(request):
-    return TemplateResponse(request, 'map/profile.html', {})
+def routes(request):
+    classes = WeightClass.objects.all().order_by('order')
+    return TemplateResponse(request, 'map/routes.html', {'classes': classes})
 
 def altitudeprofile(request):
-    c = {}
-    c.update(csrf(request))
+#    c = {}
+#    c.update(csrf(request))
     try:
         params = request.POST['profile_params']
     except (KeyError, 'no points posted'):
@@ -131,6 +135,7 @@ def altitudeprofile(request):
             except (AttributeError, 'Not a number'):
                 response = HttpResponse(mimetype='image/png')
                 im.save(response, 'png')
+                response['Content-Disposition'] = 'attachment; filename="altitudeprofile.png"'
                 return response
             else:
                 if ret==-1:
@@ -148,3 +153,18 @@ def getheight(request):
     point = [float(latlng[0]), float(latlng[1])]
     point_height = height(point)
     return HttpResponse(point_height, mimetype='text/html')
+
+def findroute(request):
+    from django.contrib.gis.geos import GEOSGeometry
+    try:
+        params = json.loads(request.POST['params'])
+        line = request.POST['routing_line']
+#        weights = request.POST['weights']
+    except (KeyError, 'invalid route points'):
+        return render_to_response('map/map.html', {},
+                                  context_instance=RequestContext(request))
+    else:
+        latlngs = [coord.strip().replace('LatLng(', '').replace(')','') for coord in line.replace('[', '').replace(']', '').split(',')]
+        points = [latlngs[i+1] + ' ' + latlngs[i] for i in range(0, len(latlngs), 2)]
+        route_line = find_route(points, params)
+        return HttpResponse(route_line.geojson, content_type='application/json')
