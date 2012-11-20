@@ -7,11 +7,11 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.template.response import TemplateResponse
 from django.http import HttpResponse
-from django.core.context_processors import csrf
+#from django.core.context_processors import csrf
 #import mapnik
 from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
 from map.altitude import altitude_image, height
-from map.routing import astar, dijkstra, connect_edges, nearest_vertice, find_route
+from map.routing import MultiRoute
 from PIL import Image
 import simplejson as json
 
@@ -166,5 +166,8 @@ def findroute(request):
     else:
         latlngs = [coord.strip().replace('LatLng(', '').replace(')','') for coord in line.replace('[', '').replace(']', '').split(',')]
         points = [latlngs[i+1] + ' ' + latlngs[i] for i in range(0, len(latlngs), 2)]
-        route_line = find_route(points, params)
+        multiroute = MultiRoute(points, params)
+        route_line = multiroute.find_route()
+#        print multiroute.envelope
+        print multiroute.length
         return HttpResponse(route_line.geojson, content_type='application/json')

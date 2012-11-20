@@ -53,6 +53,7 @@ node,way   landuse      text         polygon
 node,way   layer        text         linear
 node,way   leisure      text         polygon
 node,way   man_made     text         polygon
+way        maxspeed     text         linear
 node,way   military     text         polygon
 # node,way   motorcar     text         linear #povoleni motorovych vozidel
 node,way   name         text         linear
@@ -92,6 +93,7 @@ way        way_area     real                # This is calculated during import
 # If you're interested in bicycle routes, you may want the following fields
 # To make these work you need slim mode or the necessary data won't be remembered.
 
+way       cycleway     text     linear
 way       lcn_ref      text     linear
 way       rcn_ref      text     linear
 way       ncn_ref      text     linear
@@ -118,6 +120,7 @@ way       mtb:scale:uphill text     linear
 way       incline          text     linear
 
 way       surface      text     linear
+way       smoothness   text     linear
 
 #navic podle Bartone
 
