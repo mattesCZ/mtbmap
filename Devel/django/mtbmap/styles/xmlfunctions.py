@@ -27,7 +27,7 @@ def add_xml_font(parent_node, name, faceName):
     fontset = libxml2.newNode('FontSet')
     fontset.setProp('name', name)
     font = libxml2.newNode('Font')
-    font.setProp('face_name', faceName)
+    font.setProp('face-name', faceName)
     fontset.addChild(font)
     parent_node.addChild(fontset)
 
@@ -71,3 +71,6 @@ def add_xml_node_with_param(parent_node, node_name, node_value, parameter_name, 
         set_xml_param(node, parameter_name, parameter_value)
         parent_node.addChild(node)
 
+def set_xml_content(node, value):
+    if attr_to_string(value) != None:
+        node.setContent(attr_to_string(value))

@@ -114,6 +114,9 @@ def routes(request):
     classes = WeightClass.objects.all().order_by('order')
     return TemplateResponse(request, 'map/routes.html', {'classes': classes})
 
+def places(request):
+    return TemplateResponse(request, 'map/places.html', {})
+
 def altitudeprofile(request):
 #    c = {}
 #    c.update(csrf(request))

@@ -60,25 +60,25 @@ L.control.scale({
 }).addTo(map)
 
 L.Control.Position = L.Control.extend({
-	options: {
-		position: 'bottomright'
-	},
-        onAdd: function(map) {
-            this._map = map;
-            var className = 'leaflet-control-position',
-                container = L.DomUtil.create('div', className)
-            this.container = container;
-            container.innerHTML = this._latlngString(map.getCenter());
+    options: {
+        position: 'bottomright'
+    },
+    onAdd: function(map) {
+        this._map = map;
+        var className = 'leaflet-control-position',
+        container = L.DomUtil.create('div', className)
+        this.container = container;
+        container.innerHTML = this._latlngString(map.getCenter());
 
-            map.on('mousemove', this._update, this);
-            return container;
-        },
-        _update: function(e) {
-            this.container.innerHTML = this._latlngString(e.latlng);
-        },
-        _latlngString: function (latlng) {
-            return latlng.lat.toFixed(5) + ', ' + latlng.lng.toFixed(5);
-        }
+        map.on('mousemove', this._update, this);
+        return container;
+    },
+    _update: function(e) {
+        this.container.innerHTML = this._latlngString(e.latlng);
+    },
+    _latlngString: function (latlng) {
+        return latlng.lat.toFixed(5) + ', ' + latlng.lng.toFixed(5);
+    }
 });
 pos = new L.Control.Position({}).addTo(map);
 
@@ -91,8 +91,14 @@ var overlayLayers = {
 }
 
 L.control.layers(baseLayers, overlayLayers).addTo(map)
+map.addControl(new L.Control.Permalink({
+    text: 'Permalink',
+    layers: baseLayers,
+    position: 'bottomright'
+}));
 
-var menuItems = ["home", "legend", "export", "routes"]
+
+var menuItems = ["home", "legend", "export", "routes", "places"]
 
 var menuActive = ''
 var routesActive = ''
@@ -140,6 +146,19 @@ $(document).ready(function() {
                 $('#content').html(data).show();
             });
             menuActive = 'routes';
+        }
+    });
+    $('#places').bind('click', function () {
+        if (menuActive=='places') {
+            $('#content').hide();
+            menuActive = ''
+        } else {
+            $.get("/map/places/", function(data) {
+                $('#content').html(data);
+                submit_on_enter('places_addr', 'places_submit');
+                $('#content').show();
+            });
+            menuActive = 'places'
         }
     });
 });
@@ -257,6 +276,55 @@ function recalculateBounds() {
         $('#export_bottom').val(southEast.lat.toFixed(6));
     } else return;
 }
+////////////////////////////////////////////////////////////////////////////////
+// handling places
+function submit_on_enter(input_id, submit_id) {
+    $("#" + input_id).keyup(function(event){
+        if(event.keyCode == 13){
+            $("#" + submit_id).click();
+        }
+    });
+}
+
+function addr_search() {
+    var inp = document.getElementById("places_addr");
+
+    $.getJSON('http://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + inp.value, function(data) {
+        var items = [];
+
+        $.each(data, function(key, val) {
+            items.push("<li class='results_item'><a href='#' onclick='chooseAddr(" + val.lat + ", " + val.lon + ", \"" + val.type + "\");return false;'>" + val.display_name + '</a></li>');
+        });
+
+        $('#places_results').empty();
+        if (items.length != 0) {
+            $('<p>', {
+                html: "Search results:"
+            }).appendTo('#places_results');
+            $('<ul/>', {
+                'class': 'results_list',
+                html: items.join('')
+            }).appendTo('#places_results');
+        } else {
+            $('<p>', {
+                html: "No results found"
+            }).appendTo('#places_results');
+        }
+    });
+}
+function chooseAddr(lat, lng, type) {
+    var location = new L.LatLng(lat, lng);
+    map.panTo(location);
+
+    if (type == 'city' || type == 'administrative') {
+        map.setZoom(11);
+    } else {
+        map.setZoom(13);
+    }
+    $.get('/map/getheight/', {'profile_point': location.toString()}, function(data) {
+        alert(data);
+    });
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -264,7 +332,7 @@ function recalculateBounds() {
 
 function RouteLine(latlngs, lineOptions) {
     this.line = new L.Polyline(latlngs, lineOptions);
-//    this.line.on('click', function() {alert('clicked');});
+    //    this.line.on('click', function() {alert('clicked');});
     this.markersGroup = new L.LayerGroup([]);
     this.markerIcon = L.icon({
         iconUrl: '../media/js/images/line-marker.png',
@@ -339,9 +407,9 @@ function RouteLine(latlngs, lineOptions) {
         m.parent = this;
         return m;
     }
-//    this._lineClick = function() {
-//        alert('clicked or tapped');
-//    }
+    //    this._lineClick = function() {
+    //        alert('clicked or tapped');
+    //    }
     this._markerClick = function() {
         p = this.parent;
         p.removeMarker(this);
@@ -367,22 +435,25 @@ function RouteLine(latlngs, lineOptions) {
         thisLine = this;
         this.routesGroup.clearLayers();
         latlngs = this.getLatLngs();
-//        if (latlngs.length>1) {
-//            start = latlngs[0].lat.toFixed(5) + ' ' + latlngs[0].lng.toFixed(5);
-//            end = latlngs[latlngs.length-1].lat.toFixed(5) + ' ' + latlngs[latlngs.length-1].lng.toFixed(5);
-//            $('#routing_start').val(start);
-//            $('#routing_end').val(end);
-//        } else {
-//            start = new L.LatLng($('#routing_start').val());
-//            end = new L.LatLng($('#routing_end').val());
-//            line = new L.Polyline([start, end], {});
-//            latlngs = line.getLatLngs();
-//        }
+        //        if (latlngs.length>1) {
+        //            start = latlngs[0].lat.toFixed(5) + ' ' + latlngs[0].lng.toFixed(5);
+        //            end = latlngs[latlngs.length-1].lat.toFixed(5) + ' ' + latlngs[latlngs.length-1].lng.toFixed(5);
+        //            $('#routing_start').val(start);
+        //            $('#routing_end').val(end);
+        //        } else {
+        //            start = new L.LatLng($('#routing_start').val());
+        //            end = new L.LatLng($('#routing_end').val());
+        //            line = new L.Polyline([start, end], {});
+        //            latlngs = line.getLatLngs();
+        //        }
         if (latlngs.length<=1) {
             L.popup().setLatLng(map.getCenter()).setContent('<h3>Přidej další body</h3>').openOn(map);
         } else {
             var params = $('#routes_params').serializeArray();
-            $.post("/map/findroute/", {'params':JSON.stringify(params), 'routing_line': '['+ latlngs + ']'}, function(data) {
+            $.post("/map/findroute/", {
+                'params':JSON.stringify(params),
+                'routing_line': '['+ latlngs + ']'
+            }, function(data) {
                 geojsonLine = L.geoJson(data, {
                     style: {
                         color: '#0055ff',
@@ -405,7 +476,9 @@ var pLine = new RouteLine([], {
 function onMapClick(e){
     if (menuActive=='routes') {
         pLine.addPoint(e.latlng);
-        if (!pLine.visible) { pLine.show() }
+        if (!pLine.visible) {
+            pLine.show()
+        }
     }
 }
 map.on('click', onMapClick);

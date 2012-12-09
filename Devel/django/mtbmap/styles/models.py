@@ -9,6 +9,7 @@ from string import upper
 from django.core.files import File
 from os import remove, system
 from styles.xmlfunctions import *
+import PIL.Image
 
 zooms = [250000000000, 500000000, 200000000, 100000000, 50000000, 25000000, 12500000,
 6500000, 3000000, 1500000, 750000, 400000, 200000, 100000, 50000, 25000, 12500, 5000, 2500, 1000, 500, 250, 125]
@@ -18,10 +19,17 @@ style_path = '/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/'
 class Map(models.Model):
 
     abstract = models.TextField(null=True, blank=True)
-    bgcolor = models.CharField('Background color', max_length=200,
+    background_color = models.CharField('Background color', max_length=200,
                                  null=True, blank=True, default='rgba(255, 255, 255, 0)')
+    background_image = models.CharField('Background image', max_length=400,
+                                 null=True, blank=True)
+    font_directory = models.CharField('Font directory', max_length=400,
+                                 null=True, blank=True)
     name = models.CharField(max_length=200)
     srs = models.CharField('Spatial reference system', max_length=400)
+    buffer_size = models.PositiveIntegerField('Buffer size', default=0, null=True, blank=True)
+    paths_from_xml = models.NullBooleanField(default=True)
+    minimum_version = models.CharField(max_length=20, null=True, blank=True)
     url = models.CharField(max_length=200, null=True, blank=True)
 
     layers = models.ManyToManyField('Layer', through='MapLayer')
@@ -30,16 +38,23 @@ class Map(models.Model):
     def __unicode__(self):
         return '%i, %s, %s' % (self.id, self.name, self.url)
 
-    def import_map(self, path):
+    def import_map(self, path, name=None):
         # open document and create xPath context
         doc = libxml2.readFile(path, 'utf-8', 2)
         ctxt = doc.xpathNewContext()
 
         # save basic map info
         self.srs = xpath_query(ctxt, '/Map/@srs')
-        self.bgcolor = xpath_query(ctxt, '/Map/@bgcolor')
+        self.background_color = xpath_query(ctxt, '/Map/@background-color')
+        self.background_image = xpath_query(ctxt, '/Map/@background-image')
+        self.font_directory = xpath_query(ctxt, '/Map/@font-directory')
+        self.buffer_size = xpath_query(ctxt, '/Map/@buffer-size')
+        self.paths_from_xml = xpath_query(ctxt, '/Map/@paths-from-xml')
+        self.minimum_version = xpath_query(ctxt, '/Map/@minimum-version')
+
         # use filename without extension as map name
-        name = path.split('/')[-1].split('.')[0]
+        if not name:
+            name = path.split('/')[-1].split('.')[0]
         self.name = name
         print 'Using "%s" as new Map name...' % name
         self.save()
@@ -76,9 +91,14 @@ class Map(models.Model):
         root_node = output_doc.getRootElement()
 #        set_xml_param(root_node, 'name', self.name)
         set_xml_param(root_node, 'srs', self.srs)
-        set_xml_param(root_node, 'bgcolor', self.bgcolor)
+        set_xml_param(root_node, 'background-color', self.background_color)
+        set_xml_param(root_node, 'background-image', self.background_image)
+        set_xml_param(root_node, 'font-directory', self.font_directory)
+        set_xml_param(root_node, 'buffer-size', self.buffer_size)
+        set_xml_param(root_node, 'paths-from-xml', self.paths_from_xml)
+        set_xml_param(root_node, 'minimum-version', self.minimum_version)
         add_xml_fonts(root_node)
-        for style in self.styles.all():
+        for style in self.styles.all().order_by('name'):
             root_node.addChild(style.get_xml(scale_factor))
         for layer in self.layers.all().order_by('maplayer__layer_order'):
             root_node.addChild(layer.get_xml())
@@ -94,9 +114,13 @@ class Map(models.Model):
 
     def mapnik(self, height=100, width=100, scale_factor=1):
         m = mapnik.Map(height, width)
-        if self.bgcolor:
-            m.background = mapnik.Color(self.bgcolor.encode('utf-8'))
+        if self.background_color:
+            m.background_color = mapnik.Color(self.background_color.encode('utf-8'))
+        if self.background_image:
+            m.background_image = self.background_image.encode('utf-8')
         m.srs = self.srs.encode('utf-8')
+        if self.buffer_size:
+            m.buffer_size = self.buffer_size
         for style in self.styles.all():
             m.append_style(style.name.encode('utf-8'), style.mapnik(scale_factor))
         for layer in self.layers.all().order_by('maplayer__layer_order'):
@@ -111,12 +135,17 @@ class Map(models.Model):
 
 
 class Layer(models.Model):
+    ZOOM_CHOICES = zip(range(0, 21), range(0, 21))
 
     abstract = models.TextField(null=True, blank=True)
     clear_label_cache = models.NullBooleanField()
     name = models.CharField(max_length=200)
     srs = models.CharField('Spatial reference system', max_length=200)
     datasource = models.ForeignKey('DataSource')
+    cache_features = models.NullBooleanField()
+    minzoom = models.IntegerField(choices=ZOOM_CHOICES, default=18, null=True, blank=True)
+    maxzoom = models.IntegerField(choices=ZOOM_CHOICES, default=0, null=True, blank=True)
+    queryable = models.NullBooleanField()
 
     maps = models.ManyToManyField('Map', through='MapLayer')
     styles = models.ManyToManyField('Style', through='StyleLayer')
@@ -125,12 +154,21 @@ class Layer(models.Model):
         return 'ID: %i, %s' % (self.id, self.name)
 
     def import_layer(self, node, map):
-        self.clear_label_cache = xpath_query(node, './@clear_label_cache')
+        self.clear_label_cache = xpath_query(node, './@clear-label-cache')
         self.name = xpath_query(node, './@name')
         self.srs = xpath_query(node, './@srs')
         datasource = DataSource()
         self.datasource = datasource.import_datasource(node.xpathEval('./Datasource')[0])
         self.save()
+        self.cache_features = xpath_query(node, './@cache-features')
+        minzoom = xpath_query(node, './@minzoom')
+        if minzoom:
+            self.minzoom = zooms.index(int(minzoom)) - 1
+        maxzoom = xpath_query(node, './@maxzoom')
+        if maxzoom:
+            self.maxzoom = zooms.index(int(maxzoom))
+        self.queryable = xpath_query(node, './@queryable')
+
         style_names = node.xpathEval('./StyleName/text()')
         for style_name in style_names:
             stylelayer = StyleLayer()
@@ -147,7 +185,11 @@ class Layer(models.Model):
         layer_node = libxml2.newNode('Layer')
         set_xml_param(layer_node, 'name', self.name)
         set_xml_param(layer_node, 'srs', self.srs)
-        set_xml_param(layer_node, 'clear_label_cache', self.clear_label_cache)
+        set_xml_param(layer_node, 'clear-label-cache', self.clear_label_cache)
+        set_xml_param(layer_node, 'cache-features', self.cache_features)
+        set_xml_param(layer_node, 'minzoom', str(zooms[self.minzoom + 1]))
+        set_xml_param(layer_node, 'maxzoom', str(zooms[self.maxzoom]))
+        set_xml_param(layer_node, 'queryable', self.queryable)
         for style in self.styles.all():
             add_xml_node(layer_node, 'StyleName', style.name)
         layer_node.addChild(self.datasource.get_xml())
@@ -157,6 +199,12 @@ class Layer(models.Model):
         layer = mapnik.Layer(self.name.encode('utf-8'))
         layer.clear_label_cache = self.clear_label_cache
         layer.srs = self.srs.encode('utf-8')
+        layer.cache_features = self.clear_label_cache
+        layer.queryable = self.queryable
+        if self.minzoom:
+            layer.minzoom = zooms[self.minzoom + 1]
+        if self.maxzoom:
+            layer.maxzoom = zooms[self.maxzoom]
         layer.datasource = self.datasource.mapnik()
         for style in self.styles.all():
             layer.styles.append(style.name.encode('utf-8'))
@@ -185,6 +233,8 @@ class DataSource(models.Model):
             ds = Gdal()
         elif self.type == 'postgis':
             ds = PostGIS()
+        elif self.type == 'shape':
+            ds = Shape()
         else:
             self.save()
             return self
@@ -195,6 +245,8 @@ class DataSource(models.Model):
             return self.gdal
         elif self.type=='postgis':
             return self.postgis
+        elif self.type=='shape':
+            return self.shape
         else:
             print "not specialized"
             return self
@@ -287,6 +339,31 @@ class PostGIS(DataSource):
         return self.mapnik().geometry_type().name
     
 
+class Shape(DataSource):
+    file = models.CharField(max_length=400)
+    encoding = models.CharField(max_length=40, null=True, blank=True)
+
+    def __unicode__(self):
+        return 'ID: %i, %s, %s' % (self.id, self.type, self.file)
+
+    def import_datasource(self, node):
+        self.type = 'shape'
+        self.file = xpath_query(node, "./Parameter[@name='file']")
+        self.format = xpath_query(node, "./Parameter[@name='encoding']")
+        self.save()
+        return self
+
+    def xml_params(self, node):
+        add_xml_node_with_param(node, 'Parameter', self.file, 'name', 'file')
+        add_xml_node_with_param(node, 'Parameter', self.encoding, 'name', 'encoding')
+
+    def mapnik(self):
+        return mapnik.Shapefile(file=self.file.encode('utf-8'))
+
+    def geometry(self):
+        return self.mapnik().type().name
+
+
 class MapLayer(models.Model):
     map_id = models.ForeignKey('Map')
     layer_order = models.PositiveIntegerField()
@@ -345,10 +422,11 @@ class StyleMap(models.Model):
 
 
 class Rule(models.Model):
+# TODO: Add AlsoFilter
     SCALE_CHOICES = zip(range(0, 21), range(0, 21))
 
     name = models.CharField(max_length=200, null=True, blank=True)
-    title = models.CharField(max_length=200, null=True, blank=True)
+#    title = models.CharField(max_length=200, null=True, blank=True)
     abstract = models.TextField(null=True, blank=True)
     filter = models.CharField(max_length=2000, null=True, blank=True)
     minscale = models.IntegerField(choices=SCALE_CHOICES, default=18)
@@ -358,11 +436,11 @@ class Rule(models.Model):
     symbolizers = models.ManyToManyField('Symbolizer', through='SymbolizerRule')
 
     def __unicode__(self):
-        return 'ID: %i, %s, %i, %i' % (self.id, self.title, self.maxscale, self.minscale)
+        return 'ID: %i, %s, %i, %i' % (self.id, self.name, self.maxscale, self.minscale)
 
     def import_rule(self, node):
         self.name = xpath_query(node, './@name')
-        self.title = xpath_query(node, './@title')
+#        self.title = xpath_query(node, './@title')
         self.filter = xpath_query(node, './Filter')
         if not self.filter:
             elsefilter = xpath_query(node, './ElseFilter')
@@ -399,8 +477,8 @@ class Rule(models.Model):
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
         rule_node = libxml2.newNode('Rule')
-        set_xml_param(rule_node, 'title', self.title)
         set_xml_param(rule_node, 'name', self.name)
+#        set_xml_param(rule_node, 'title', self.title)
         if self.filter:
             if self.filter=='ELSEFILTER':
                 rule_node.addChild(libxml2.newNode('ElseFilter'))
@@ -460,6 +538,7 @@ class RuleStyle(models.Model):
 
 
 class Symbolizer(models.Model):
+    # TODO: Add DebugSymbolizer
     SYMBOLIZER_CHOICES = (
         ('Building', 'Building'),
         ('Line', 'Line'),
@@ -536,6 +615,10 @@ class Symbolizer(models.Model):
         # tuple (height, width)
         return (None, None)
 
+#    def delete_symbolizer(self):
+#        print "Deleting symbolizer"
+#        self.delete()
+
 
 class SymbolizerRule(models.Model):
     order = models.PositiveIntegerField()
@@ -553,9 +636,9 @@ class BuildingSymbolizer(Symbolizer):
 
     def import_symbolizer(self, node):
         self.symbtype = node.name.replace('Symbolizer', '')
-        self.fill = xpath_query(node, "./CssParameter[@name='fill']")
-        self.fill_opacity = xpath_query(node, "./CssParameter[@name='fill_opacity']")
-        self.height = xpath_query(node, "./CssParameter[@name='height']")
+        self.fill = xpath_query(node, "@fill")
+        self.fill_opacity = xpath_query(node, "./@fill-opacity")
+        self.height = xpath_query(node, "./@height")
         self.save()
         return self
 
@@ -567,7 +650,7 @@ class BuildingSymbolizer(Symbolizer):
         self.scale(scale_factor)
         symbolizer_node = libxml2.newNode('BuildingSymbolizer')
         set_xml_param(symbolizer_node, 'fill', self.fill)
-        set_xml_param(symbolizer_node, 'fill_opacity', self.fill_opacity)
+        set_xml_param(symbolizer_node, 'fill-opacity', self.fill_opacity)
         set_xml_param(symbolizer_node, 'height', self.height)
         return symbolizer_node
 
@@ -593,20 +676,20 @@ class LineSymbolizer(Symbolizer):
     stroke_linejoin = models.CharField('stroke-linejoin', max_length=15, choices=LINEJOIN, default='round', null=True, blank=True)
     stroke_linecap = models.CharField('stroke-linecap', max_length=8, choices=LINECAP, default='butt', null=True, blank=True)
     stroke_dasharray = models.CharField('stroke-dasharray', max_length=200, null=True, blank=True)
-    stroke_offset = models.DecimalField('stroke-offset', max_digits=5, decimal_places=2, null=True, blank=True)
+    offset = models.DecimalField('offset', max_digits=5, decimal_places=2, null=True, blank=True)
 
     def __unicode__(self):
         return 'ID: %i, %s, %s, %s' % (self.id, self.stroke, self.stroke_width, self.stroke_dasharray)
 
     def import_symbolizer(self, node):
         self.symbtype = node.name.replace('Symbolizer', '')
-        self.stroke = xpath_query(node, "./CssParameter[@name='stroke']")
-        self.stroke_width = xpath_query(node, "./CssParameter[@name='stroke-width']")
-        self.stroke_opacity = xpath_query(node, "./CssParameter[@name='stroke-opacity']")
-        self.stroke_linejoin = xpath_query(node, "./CssParameter[@name='stroke-linejoin']")
-        self.stroke_linecap = xpath_query(node, "./CssParameter[@name='stroke-linecap']")
-        self.stroke_dasharray = xpath_query(node, "./CssParameter[@name='stroke-dasharray']")
-        self.stroke_offset = xpath_query(node, "./CssParameter[@name='stroke-offset']")
+        self.stroke = xpath_query(node, "./@stroke")
+        self.stroke_width = xpath_query(node, "./@stroke-width")
+        self.stroke_opacity = xpath_query(node, "./@stroke-opacity")
+        self.stroke_linejoin = xpath_query(node, "./@stroke-linejoin")
+        self.stroke_linecap = xpath_query(node, "./@stroke-linecap")
+        self.stroke_dasharray = xpath_query(node, "./@stroke-dasharray")
+        self.offset = xpath_query(node, "./@offset")
         self.save()
         return self
 
@@ -619,20 +702,19 @@ class LineSymbolizer(Symbolizer):
                 for i in range(len(dash_parts)):
                     dash_parts[i] = str(int(int(dash_parts[i]) * factor))
                 self.stroke_dasharray = ', '.join(dash_parts)
-            if self.stroke_offset:
-                self.stroke_offset *= factor
+            if self.offset:
+                self.offset *= factor
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
         symbolizer_node = libxml2.newNode('LineSymbolizer')
-        add_xml_css(symbolizer_node, 'stroke', self.stroke)
-        add_xml_css(symbolizer_node, 'stroke_width', self.stroke_width)
-        add_xml_css(symbolizer_node, 'stroke_opacity', self.stroke_opacity)
-        add_xml_css(symbolizer_node, 'stroke_linejoin', self.stroke_linejoin)
-        add_xml_css(symbolizer_node, 'stroke_linecap', self.stroke_linecap)
-        add_xml_css(symbolizer_node, 'stroke_dasharray', self.stroke_dasharray)
-        add_xml_css(symbolizer_node, 'stroke_offset', self.stroke_offset)
-#mapnik2        add_xml_css(symbolizer_node, 'offset', self.stroke_offset)
+        set_xml_param(symbolizer_node, 'stroke', self.stroke)
+        set_xml_param(symbolizer_node, 'stroke-width', self.stroke_width)
+        set_xml_param(symbolizer_node, 'stroke-opacity', self.stroke_opacity)
+        set_xml_param(symbolizer_node, 'stroke-linejoin', self.stroke_linejoin)
+        set_xml_param(symbolizer_node, 'stroke-linecap', self.stroke_linecap)
+        set_xml_param(symbolizer_node, 'stroke-dasharray', self.stroke_dasharray)
+        set_xml_param(symbolizer_node, 'offset', self.offset)
         return symbolizer_node
 
     def mapnik(self, scale_factor=1):
@@ -653,15 +735,17 @@ class LineSymbolizer(Symbolizer):
             dash_parts = self.stroke_dasharray.split(',')
             for i in range(0, len(dash_parts), 2):
                 s.add_dash(float(dash_parts[i]), float(dash_parts[i+1]))
+#        if self.offset:
+#            s.dashoffset = self.offset
         ls.stroke = s
         return ls
 
     def symbol_size(self):
         if not self.stroke_width:
             self.stroke_width = 1
-        if not self.stroke_offset:
-            self.stroke_offset = 0
-        return (0, self.stroke_width + abs(self.stroke_offset))
+        if not self.offset:
+            self.offset = 0
+        return (0, self.stroke_width + abs(self.offset))
 
 
 class LinePatternSymbolizer(Symbolizer):
@@ -671,9 +755,6 @@ class LinePatternSymbolizer(Symbolizer):
     )
 
     file = models.CharField(max_length=400)
-    type = models.CharField(max_length=4, choices=TYPE, default='png', null=True, blank=True)
-    height = models.PositiveIntegerField()
-    width = models.PositiveIntegerField()
 
     def __unicode__(self):
         return 'ID: %i, %s' % (self.id, self.file)
@@ -681,16 +762,10 @@ class LinePatternSymbolizer(Symbolizer):
     def import_symbolizer(self, node):
         self.symbtype = node.name.replace('Symbolizer', '')
         self.file = xpath_query(node, "./@file")
-        self.type = xpath_query(node, "./@type")
-        self.height = xpath_query(node, "./@height")
-        self.width = xpath_query(node, "./@width")
         self.save()
         return self
 
     def scale(self, factor=1):
-        if factor != 1:
-            self.height = int(factor * self.height)
-            self.width = int(factor * self.width)
         if factor == 2:
             if self.file:
                 self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
@@ -699,9 +774,6 @@ class LinePatternSymbolizer(Symbolizer):
         self.scale(scale_factor)
         symbolizer_node = libxml2.newNode('LinePatternSymbolizer')
         set_xml_param(symbolizer_node, 'file', self.file)
-        set_xml_param(symbolizer_node, 'type', self.type)
-        set_xml_param(symbolizer_node, 'height', self.height)
-        set_xml_param(symbolizer_node, 'width', self.width)
         return symbolizer_node
 
     def mapnik(self, scale_factor=1):
@@ -710,7 +782,10 @@ class LinePatternSymbolizer(Symbolizer):
         return lps
 
     def symbol_size(self):
-        return (self.height, self.width)
+        im = PIL.Image.open(style_path + self.file.encode('utf-8'))
+        height = im.size[1]
+        width = im.size[0]
+        return (height, width)
 
 
 class MarkersSymbolizer(Symbolizer):
@@ -727,7 +802,7 @@ class MarkersSymbolizer(Symbolizer):
     allow_overlap = models.NullBooleanField()
     spacing = models.PositiveIntegerField(null=True, blank=True)
     max_error = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
-    filename = models.CharField(max_length=400)
+    file = models.CharField(max_length=400)
     transform = models.CharField(max_length=200, null=True, blank=True)
     opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
     fill = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True, blank=True)
@@ -741,24 +816,24 @@ class MarkersSymbolizer(Symbolizer):
     marker_type = models.CharField(max_length=10, choices=MARKER_TYPE, null=True, blank=True)
 
     def __unicode__(self):
-        return 'ID: %i, %s' % (self.id, self.filename)
+        return 'ID: %i, %s' % (self.id, self.file)
 
     def import_symbolizer(self, node):
         self.symbtype = node.name.replace('Symbolizer', '')
-        self.allow_overlap = xpath_query(node, "./@allow_overlap")
+        self.allow_overlap = xpath_query(node, "./@allow-overlap")
         self.spacing = xpath_query(node, './@spacing')
-        self.max_error = xpath_query(node, './@max_error')
-        self.filename = xpath_query(node, './@filename')
+        self.max_error = xpath_query(node, './@max-error')
+        self.file = xpath_query(node, './@file')
         self.transform = xpath_query(node, './@transform')
         self.opacity = xpath_query(node, './@opacity')
         self.stroke = xpath_query(node, './@stroke')
-        self.stroke_width = xpath_query(node, './@stroke_width')
-        self.stroke_opacity = xpath_query(node, './@stroke_opacity')
+        self.stroke_width = xpath_query(node, './@stroke-width')
+        self.stroke_opacity = xpath_query(node, './@stroke-opacity')
         self.height = xpath_query(node, './@height')
         self.width = xpath_query(node, './@width')
         self.placement = xpath_query(node, './@placement')
-        self.ignore_placement = xpath_query(node, './@ignore_placement')
-        self.marker_type = xpath_query(node, './@marker_type')
+        self.ignore_placement = xpath_query(node, './@ignore-placement')
+        self.marker_type = xpath_query(node, './@marker-type')
 
         self.save()
         return self
@@ -772,8 +847,8 @@ class MarkersSymbolizer(Symbolizer):
             self.height = int(factor * self.height)
             self.width = int(factor * self.width)
         if factor == 2:
-            if self.filename:
-                self.filename = '/'.join(self.filename.split('/')[0:-1]) + '/print-' + self.filename.split('/')[-1]
+            if self.file:
+                self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
@@ -781,7 +856,7 @@ class MarkersSymbolizer(Symbolizer):
         set_xml_param(symbolizer_node, 'allow_overlap', self.allow_overlap)
         set_xml_param(symbolizer_node, 'spacing', self.spacing)
         set_xml_param(symbolizer_node, 'max_error', self.max_error)
-        set_xml_param(symbolizer_node, 'filename', self.filename)
+        set_xml_param(symbolizer_node, 'file', self.file)
         set_xml_param(symbolizer_node, 'transform', self.transform)
         set_xml_param(symbolizer_node, 'opacity', self.opacity)
         set_xml_param(symbolizer_node, 'fill', self.fill)
@@ -796,19 +871,22 @@ class MarkersSymbolizer(Symbolizer):
         return symbolizer_node
 
     def symbol_size(self):
-        return (max(self.height, self.stroke_width), self.width)
+        im = PIL.Image.open(style_path + self.file.encode('utf-8'))
+        height = im.size[1]
+        width = im.size[0]
+        return (max(height, self.stroke_width), width)
 
 
 class PointSymbolizer(Symbolizer):
-    TYPE = (
-        ('png', 'png'),
-        ('tiff', 'tiff'),
-    )
+#    TYPE = (
+#        ('png', 'png'),
+#        ('tiff', 'tiff'),
+#    )
 
     file = models.CharField(max_length=400)
-    height = models.PositiveIntegerField()
-    width = models.PositiveIntegerField()
-    type = models.CharField(max_length=4, choices=TYPE, default='png', null=True, blank=True)
+#    height = models.PositiveIntegerField()
+#    width = models.PositiveIntegerField()
+#    type = models.CharField(max_length=4, choices=TYPE, default='png', null=True, blank=True)
     allow_overlap = models.NullBooleanField()
     opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
     transform = models.CharField(max_length=200, null=True, blank=True)
@@ -820,13 +898,10 @@ class PointSymbolizer(Symbolizer):
     def import_symbolizer(self, node):
         self.symbtype = node.name.replace('Symbolizer', '')
         self.file = xpath_query(node, './@file')
-        self.height = xpath_query(node, './@height')
-        self.width = xpath_query(node, './@width')
-        self.type = xpath_query(node, './@type')
-        self.allow_overlap = xpath_query(node, "./@allow_overlap")
+        self.allow_overlap = xpath_query(node, "./@allow-overlap")
         self.opacity = xpath_query(node, './@opacity')
         self.transform = xpath_query(node, './@transform')
-        self.ignore_placement = xpath_query(node, './@ignore_placement')
+        self.ignore_placement = xpath_query(node, './@ignore-placement')
 
         self.save()
         return self
@@ -843,19 +918,19 @@ class PointSymbolizer(Symbolizer):
         self.scale(scale_factor)
         symbolizer_node = libxml2.newNode('PointSymbolizer')
         set_xml_param(symbolizer_node, 'file', self.file)
-        set_xml_param(symbolizer_node, 'height', self.height)
-        set_xml_param(symbolizer_node, 'width', self.width)
-        set_xml_param(symbolizer_node, 'type', self.type)
-        set_xml_param(symbolizer_node, 'allow_overlap', self.allow_overlap)
+#        set_xml_param(symbolizer_node, 'height', self.height)
+#        set_xml_param(symbolizer_node, 'width', self.width)
+#        set_xml_param(symbolizer_node, 'type', self.type)
+        set_xml_param(symbolizer_node, 'allow-overlap', self.allow_overlap)
         set_xml_param(symbolizer_node, 'opacity', self.opacity)
         set_xml_param(symbolizer_node, 'transform', self.transform)
-        set_xml_param(symbolizer_node, 'ignore_placement', self.ignore_placement)
+        set_xml_param(symbolizer_node, 'ignore-placement', self.ignore_placement)
         return symbolizer_node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
         ps = mapnik.PointSymbolizer()
-        ps.filename = style_path + self.file.encode('utf-8')
+        ps.file = style_path + self.file.encode('utf-8')
         ps.allow_overlap = self.allow_overlap
         if self.opacity:
             ps.opacity = float(self.opacity)
@@ -865,7 +940,10 @@ class PointSymbolizer(Symbolizer):
         return ps
 
     def symbol_size(self):
-        return (self.height, self.width)
+        im = PIL.Image.open(style_path + self.file.encode('utf-8'))
+        height = im.size[1]
+        width = im.size[0]
+        return (height, width)
 
 
 class PolygonSymbolizer(Symbolizer):
@@ -878,9 +956,9 @@ class PolygonSymbolizer(Symbolizer):
 
     def import_symbolizer(self, node):
         self.symbtype = node.name.replace('Symbolizer', '')
-        self.fill = xpath_query(node, "./CssParameter[@name='fill']")
-        self.fill_opacity = xpath_query(node, "./CssParameter[@name='fill-opacity']")
-        self.gamma = xpath_query(node, "./CssParameter[@name='gamma']")
+        self.fill = xpath_query(node, "./@fill")
+        self.fill_opacity = xpath_query(node, "./@fill-opacity")
+        self.gamma = xpath_query(node, "./@gamma")
 
         self.save()
         return self
@@ -888,9 +966,9 @@ class PolygonSymbolizer(Symbolizer):
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
         symbolizer_node = libxml2.newNode('PolygonSymbolizer')
-        add_xml_css(symbolizer_node, 'fill', self.fill)
-        add_xml_css(symbolizer_node, 'fill_opacity', self.fill_opacity)
-        add_xml_css(symbolizer_node, 'gamma', self.gamma)
+        set_xml_param(symbolizer_node, 'fill', self.fill)
+        set_xml_param(symbolizer_node, 'fill-opacity', self.fill_opacity)
+        set_xml_param(symbolizer_node, 'gamma', self.gamma)
         return symbolizer_node
 
     def mapnik(self, scale_factor=1):
@@ -909,15 +987,15 @@ class PolygonSymbolizer(Symbolizer):
 
 
 class PolygonPatternSymbolizer(Symbolizer):
-    TYPE = (
-        ('png', 'png'),
-        ('tiff', 'tiff'),
-    )
+#    TYPE = (
+#        ('png', 'png'),
+#        ('tiff', 'tiff'),
+#    )
 
     file = models.CharField(max_length=400)
-    type = models.CharField(max_length=4, choices=TYPE, default='png', null=True, blank=True)
-    height = models.PositiveIntegerField()
-    width = models.PositiveIntegerField()
+#    type = models.CharField(max_length=4, choices=TYPE, default='png', null=True, blank=True)
+#    height = models.PositiveIntegerField()
+#    width = models.PositiveIntegerField()
 
     def __unicode__(self):
         return 'ID: %i, %s' % (self.id, self.file)
@@ -925,17 +1003,14 @@ class PolygonPatternSymbolizer(Symbolizer):
     def import_symbolizer(self, node):
         self.symbtype = node.name.replace('Symbolizer', '')
         self.file = xpath_query(node, './@file')
-        self.type = xpath_query(node, './@type')
-        self.height = xpath_query(node, './@height')
-        self.width = xpath_query(node, './@width')
 
         self.save()
         return self
 
     def scale(self, factor=1):
-        if factor != 1:
-            self.height = factor * self.height
-            self.width = factor * self.width
+#        if factor != 1:
+#            self.height = factor * self.height
+#            self.width = factor * self.width
         if factor == 2:
             if self.file:
                 self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
@@ -944,9 +1019,9 @@ class PolygonPatternSymbolizer(Symbolizer):
         self.scale(scale_factor)
         symbolizer_node = libxml2.newNode('PolygonPatternSymbolizer')
         set_xml_param(symbolizer_node, 'file', self.file)
-        set_xml_param(symbolizer_node, 'type', self.type)
-        set_xml_param(symbolizer_node, 'height', self.height)
-        set_xml_param(symbolizer_node, 'width', self.width)
+#        set_xml_param(symbolizer_node, 'type', self.type)
+#        set_xml_param(symbolizer_node, 'height', self.height)
+#        set_xml_param(symbolizer_node, 'width', self.width)
         return symbolizer_node
 
     def mapnik(self, scale_factor=1):
@@ -955,7 +1030,10 @@ class PolygonPatternSymbolizer(Symbolizer):
         return pps
 
     def symbol_size(self):
-        return (self.height, self.width)
+        im = PIL.Image.open(style_path + self.file.encode('utf-8'))
+        height = im.size[1]
+        width = im.size[0]
+        return (height, width)
 
 
 class RasterSymbolizer(Symbolizer):
@@ -985,9 +1063,9 @@ class RasterSymbolizer(Symbolizer):
 
     def import_symbolizer(self, node):
         self.symbtype = node.name.replace('Symbolizer', '')
-        self.opacity = xpath_query(node, "./CssParameter[@name='opacity']")
-        self.comp_op = xpath_query(node, "./CssParameter[@name='mode']")
-        self.scaling = xpath_query(node, "./CssParameter[@name='scaling']")
+        self.opacity = xpath_query(node, "./@opacity")
+        self.comp_op = xpath_query(node, "./@comp-op")
+        self.scaling = xpath_query(node, "./@scaling")
 
         self.save()
         return self
@@ -995,9 +1073,9 @@ class RasterSymbolizer(Symbolizer):
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
         symbolizer_node = libxml2.newNode('RasterSymbolizer')
-        add_xml_css(symbolizer_node, 'opacity', self.opacity)
-        add_xml_css(symbolizer_node, 'mode', self.comp_op)
-        add_xml_css(symbolizer_node, 'scaling', self.scaling)
+        set_xml_param(symbolizer_node, 'opacity', self.opacity)
+        set_xml_param(symbolizer_node, 'comp-op', self.comp_op)
+        set_xml_param(symbolizer_node, 'scaling', self.scaling)
         return symbolizer_node
 
     def mapnik(self, scale_factor=1):
@@ -1006,9 +1084,7 @@ class RasterSymbolizer(Symbolizer):
         if self.opacity:
             rs.opacity = float(self.opacity)
         if self.comp_op:
-# just multiply is supported
-#            rs.comp_op = self.comp_op.encode('utf-8')
-            rs.comp_op = mapnik.CompositeOp(14)
+            rs.comp_op = mapnik.CompositeOp().names[self.comp_op.encode('utf-8')]
         if self.scaling:
             rs.scaling = mapnik.scaling_method.names[upper(self.scaling.encode('utf-8'))]
         return rs
@@ -1032,7 +1108,7 @@ class ShieldSymbolizer(Symbolizer):
         ('png', 'png'),
         ('tiff', 'tiff'),
     )
-    TEXT_CONVERT = (
+    TEXT_TRANSFORM = (
         ('none', 'none'),
         ('toupper', 'toupper'),
         ('tolower', 'tolower'),
@@ -1054,20 +1130,24 @@ class ShieldSymbolizer(Symbolizer):
     fontset_name = models.CharField(max_length=200, null=True, blank=True)
     halo_fill = models.CharField(max_length=200, null=True, blank=True)
     halo_radius = models.PositiveIntegerField(null=True, blank=True)
-    height = models.PositiveIntegerField()
-    width = models.PositiveIntegerField()
+#    height = models.PositiveIntegerField()
+#    width = models.PositiveIntegerField()
     horizontal_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True, blank=True)
     justify_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True, blank=True)
     line_spacing = models.PositiveIntegerField(null=True, blank=True)
-    min_distance = models.PositiveIntegerField(null=True, blank=True)
+    minimum_distance = models.PositiveIntegerField(null=True, blank=True)
+    minimum_padding = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     name = models.CharField(max_length=200, null=True, blank=True)
-    no_text = models.NullBooleanField()
+#    no_text = models.NullBooleanField()
     opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
     placement = models.CharField(max_length=10, choices=PLACEMENT, null=True, blank=True)
+    shield_dx = models.IntegerField(null=True, blank=True)
+    shield_dy = models.IntegerField(null=True, blank=True)
     size = models.PositiveIntegerField(null=True, blank=True)
     spacing = models.PositiveIntegerField(null=True, blank=True)
-    text_convert = models.CharField(max_length=200, choices=TEXT_CONVERT, null=True, blank=True)
-    type = models.CharField(max_length=4, choices=TYPE, default='png', null=True, blank=True)
+    text_opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
+    text_transform = models.CharField(max_length=200, choices=TEXT_TRANSFORM, null=True, blank=True)
+#    type = models.CharField(max_length=4, choices=TYPE, default='png', null=True, blank=True)
     unlock_image = models.NullBooleanField()
     vertical_alignment = models.CharField(max_length=10, choices=VERTICAL, null=True, blank=True)
     wrap_before = models.NullBooleanField()
@@ -1080,36 +1160,36 @@ class ShieldSymbolizer(Symbolizer):
 
     def import_symbolizer(self, node):
         self.symbtype = node.name.replace('Symbolizer', '')
-        self.allow_overlap = xpath_query(node, "./@allow_overlap")
-        self.avoid_edges = xpath_query(node, './@avoid_edges')
-        self.character_spacing = xpath_query(node, './@character_spacing')
+        self.allow_overlap = xpath_query(node, "./@allow-overlap")
+        self.avoid_edges = xpath_query(node, './@avoid-edges')
+        self.character_spacing = xpath_query(node, './@character-spacing')
         self.dx = xpath_query(node, './@dx')
         self.dy = xpath_query(node, './@dy')
-        self.face_name = xpath_query(node, './@face_name')
+        self.face_name = xpath_query(node, './@face-name')
         self.file = xpath_query(node, './@file')
         self.fill = xpath_query(node, './@fill')
-        self.fontset_name = xpath_query(node, './@fontset_name')
-        self.halo_fill = xpath_query(node, './@halo_fill')
-        self.halo_radius = xpath_query(node, './@halo_radius')
-        self.height = xpath_query(node, './@height')
-        self.width = xpath_query(node, './@width')
-        self.horizontal_alignment = xpath_query(node, './@horizontal_alignment')
-        self.justify_alignment = xpath_query(node, './@justify_alignment')
-        self.line_spacing = xpath_query(node, './@line_spacing')
-        self.min_distance = xpath_query(node, './@min_distance')
-        self.name = xpath_query(node, './@name')
-        self.no_text = xpath_query(node, './@no_text')
+        self.fontset_name = xpath_query(node, './@fontset-name')
+        self.halo_fill = xpath_query(node, './@halo-fill')
+        self.halo_radius = xpath_query(node, './@halo-radius')
+        self.horizontal_alignment = xpath_query(node, './@horizontal-alignment')
+        self.justify_alignment = xpath_query(node, './@justify-alignment')
+        self.line_spacing = xpath_query(node, './@line-spacing')
+        self.minimum_distance = xpath_query(node, './@minimum-distance')
+        self.minimum_padding = xpath_query(node, './@minimum-padding')
+        self.name = xpath_query(node, '.')
         self.opacity = xpath_query(node, './@opacity')
         self.placement = xpath_query(node, './@placement')
+        self.shield_dx = xpath_query(node, './@shield-dx')
+        self.shield_dy = xpath_query(node, './@shield-dy')
         self.size = xpath_query(node, './@size')
         self.spacing = xpath_query(node, './@spacing')
-        self.text_convert = xpath_query(node, './@text_convert')
-        self.type = xpath_query(node, './@type')
-        self.unlock_image = xpath_query(node, './@unlock_image')
-        self.vertical_alignment = xpath_query(node, './@vertical_alignment')
-        self.wrap_before = xpath_query(node, './@wrap_before')
-        self.wrap_character = xpath_query(node, './@wrap_character')
-        self.wrap_width = xpath_query(node, './@wrap_width')
+        self.text_opacity = xpath_query(node, './@text-opacity')
+        self.text_transform = xpath_query(node, './@text-transform')
+        self.unlock_image = xpath_query(node, './@unlock-image')
+        self.vertical_alignment = xpath_query(node, './@vertical-alignment')
+        self.wrap_before = xpath_query(node, './@wrap-before')
+        self.wrap_character = xpath_query(node, './@wrap-character')
+        self.wrap_width = xpath_query(node, './@wrap-width')
         self.transform = xpath_query(node, './@transform')
 
         self.save()
@@ -1125,12 +1205,18 @@ class ShieldSymbolizer(Symbolizer):
                 self.dy = int(factor * self.dy)
             if self.halo_radius:
                 self.halo_radius = int(factor * self.halo_radius)
-            self.height = int(factor * self.height)
-            self.width = int(factor * self.width)
+#            self.height = int(factor * self.height)
+#            self.width = int(factor * self.width)
             if self.line_spacing:
                 self.line_spacing = int(factor * self.line_spacing)
-            if self.min_distance:
-                self.min_distance = int(factor * self.min_distance)
+            if self.minimum_distance:
+                self.minimum_distance = int(factor * self.minimum_distance)
+            if self.minimum_padding:
+                self.minimum_padding = float(factor * self.minimum_padding)
+            if self.shield_dx:
+                self.shield_dx = int(factor * self.shield_dx)
+            if self.shield_dy:
+                self.shield_dy = int(factor * self.shield_dy)
             if self.size:
                 self.size = int(factor * self.size)
             if self.spacing:
@@ -1144,43 +1230,50 @@ class ShieldSymbolizer(Symbolizer):
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
         symbolizer_node = libxml2.newNode('ShieldSymbolizer')
-        set_xml_param(symbolizer_node, 'allow_overlap', self.allow_overlap)
-        set_xml_param(symbolizer_node, 'avoid_edges', self.avoid_edges)
-        set_xml_param(symbolizer_node, 'character_spacing', self.character_spacing)
+        set_xml_param(symbolizer_node, 'allow-overlap', self.allow_overlap)
+        set_xml_param(symbolizer_node, 'avoid-edges', self.avoid_edges)
+        set_xml_param(symbolizer_node, 'character-spacing', self.character_spacing)
         set_xml_param(symbolizer_node, 'dx', self.dx)
         set_xml_param(symbolizer_node, 'dy', self.dy)
-        set_xml_param(symbolizer_node, 'face_name', self.face_name)
+        set_xml_param(symbolizer_node, 'face-name', self.face_name)
         set_xml_param(symbolizer_node, 'file', self.file)
         set_xml_param(symbolizer_node, 'fill', self.fill)
-        set_xml_param(symbolizer_node, 'fontset_name', self.fontset_name)
-        set_xml_param(symbolizer_node, 'halo_fill', self.halo_fill)
-        set_xml_param(symbolizer_node, 'halo_radius', self.halo_radius)
-        set_xml_param(symbolizer_node, 'height', self.height)
-        set_xml_param(symbolizer_node, 'width', self.width)
-        set_xml_param(symbolizer_node, 'horizontal_alignment', self.horizontal_alignment)
-        set_xml_param(symbolizer_node, 'justify_alignment', self.justify_alignment)
-        set_xml_param(symbolizer_node, 'line_spacing', self.line_spacing)
-        set_xml_param(symbolizer_node, 'min_distance', self.min_distance)
+        set_xml_param(symbolizer_node, 'fontset-name', self.fontset_name)
+        set_xml_param(symbolizer_node, 'halo-fill', self.halo_fill)
+        set_xml_param(symbolizer_node, 'halo-radius', self.halo_radius)
+#        set_xml_param(symbolizer_node, 'height', self.height)
+#        set_xml_param(symbolizer_node, 'width', self.width)
+        set_xml_param(symbolizer_node, 'horizontal-alignment', self.horizontal_alignment)
+        set_xml_param(symbolizer_node, 'justify-alignment', self.justify_alignment)
+        set_xml_param(symbolizer_node, 'line-spacing', self.line_spacing)
+        set_xml_param(symbolizer_node, 'minimum-distance', self.minimum_distance)
+        set_xml_param(symbolizer_node, 'minimum-padding', self.minimum_padding)
 # comment name, no_text for mapnik
-        set_xml_param(symbolizer_node, 'name', self.name)
-        set_xml_param(symbolizer_node, 'no_text', self.no_text)
+        set_xml_content(symbolizer_node, self.name)
+#        set_xml_param(symbolizer_node, 'no-text', self.no_text)
         set_xml_param(symbolizer_node, 'opacity', self.opacity)
         set_xml_param(symbolizer_node, 'placement', self.placement)
+        set_xml_param(symbolizer_node, 'shield-dx', self.shield_dx)
+        set_xml_param(symbolizer_node, 'shiled-dy', self.shield_dy)
         set_xml_param(symbolizer_node, 'size', self.size)
         set_xml_param(symbolizer_node, 'spacing', self.spacing)
-        set_xml_param(symbolizer_node, 'text_convert', self.text_convert)
-        set_xml_param(symbolizer_node, 'type', self.type)
-        set_xml_param(symbolizer_node, 'unlock_image', self.unlock_image)
-        set_xml_param(symbolizer_node, 'vertical_alignment', self.vertical_alignment)
-        set_xml_param(symbolizer_node, 'wrap_before', self.wrap_before)
-        set_xml_param(symbolizer_node, 'wrap_character', self.wrap_character)
-        set_xml_param(symbolizer_node, 'wrap_width', self.wrap_width)
+        set_xml_param(symbolizer_node, 'text-opacity', self.text_opacity)
+        set_xml_param(symbolizer_node, 'text-transform', self.text_transform)
+#        set_xml_param(symbolizer_node, 'type', self.type)
+        set_xml_param(symbolizer_node, 'unlock-image', self.unlock_image)
+        set_xml_param(symbolizer_node, 'vertical-alignment', self.vertical_alignment)
+        set_xml_param(symbolizer_node, 'wrap-before', self.wrap_before)
+        set_xml_param(symbolizer_node, 'wrap-character', self.wrap_character)
+        set_xml_param(symbolizer_node, 'wrap-width', self.wrap_width)
         set_xml_param(symbolizer_node, 'transform', self.transform)
         return symbolizer_node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
-        name = mapnik.Expression('[' + self.name.encode('utf-8') + ']')
+        if self.name:
+            name = mapnik.Expression(self.name.encode('utf-8'))
+        else:
+            name = mapnik.Expression('[osm_id]')
         font_name = 'DejaVu Sans Bold'
         if self.face_name:
             font_name = self.face_name.encode('utf-8')
@@ -1203,7 +1296,7 @@ class ShieldSymbolizer(Symbolizer):
             displacement = (displacement[0], self.dy)
         ss.displacement = displacement
         if self.fontset_name:
-            fs = mapnik.Fonsset()
+            fs = mapnik.Fontset()
             fs.add_face_name(self.fontset_name.encode('utf-8'))
             ss.fontset = fs
         if self.halo_fill:
@@ -1216,19 +1309,29 @@ class ShieldSymbolizer(Symbolizer):
             ss.justify_alignment = mapnik.justify_alignment.names[self.justify_alignment.encode('utf-8')]
         if self.line_spacing:
             ss.line_spacing = self.line_spacing
-        if self.min_distance:
-            ss.minimum_distance = self.min_distance
+        if self.minimum_distance:
+            ss.minimum_distance = self.minimum_distance
+        if self.minimum_padding:
+            ss.minimum_padding = self.minimum_padding
         if self.opacity:
-            ss.text_opacity = self.opacity
+            ss.opacity = self.opacity
         if self.placement:
             ss.label_placement = mapnik.label_placement.names[self.placement.encode('utf-8')]
+        shield_displacement = (0, 0)
+        if self.dx:
+            shield_displacement = (self.shield_dx, 0)
+        if self.dy:
+            shield_displacement = (shield_displacement[0], self.shield_dy)
+        ss.shield_displacement = shield_displacement
         if self.spacing:
             ss.label_spacing = self.spacing
-        if self.text_convert:
-            if self.text_convert == 'none' or self.text_convert == 'capitalize':
-                ss.text_transform = mapnik.text_transform.names[self.text_convert.encode('utf-8')]
+        if self.text_opacity:
+            ss.text_opacity = self.text_opacity
+        if self.text_transform:
+            if self.text_transform == 'none' or self.text_transform == 'capitalize':
+                ss.text_transform = mapnik.text_transform.names[self.text_transform.encode('utf-8')]
             else:
-                name = self.text_convert.encode('utf-8')[2:] + 'case'
+                name = self.text_transform.encode('utf-8')[2:] + 'case'
                 ss.text_transform = mapnik.text_transform.names[name]
         if self.unlock_image:
             ss.unlock_image = self.unlock_image
@@ -1244,11 +1347,14 @@ class ShieldSymbolizer(Symbolizer):
         return ss
 
     def symbol_size(self):
+        im = PIL.Image.open(style_path + self.file.encode('utf-8'))
+        height = im.size[1]
+        width = im.size[0]
         if not self.dx:
             self.dx = 0
         if not self.dy:
             self.dy = 0
-        return (self.height + abs(self.dx), self.width + abs(self.dy))
+        return (height + abs(self.dx), width + abs(self.dy))
 
 
 class TextSymbolizer(Symbolizer):
@@ -1262,7 +1368,7 @@ class TextSymbolizer(Symbolizer):
         ('line', 'line'),
         ('vertex', 'vertex'),
     )
-    TEXT_CONVERT = (
+    TEXT_TRANSFORM = (
         ('none', 'none'),
         ('toupper', 'toupper'),
         ('tolower', 'tolower'),
@@ -1272,69 +1378,96 @@ class TextSymbolizer(Symbolizer):
         ('middle', 'middle'),
         ('bottom', 'bottom'),
     )
+    PLACEMENT_TYPE = (
+        ('dummy', 'dummy'),
+        ('simple', 'simple'),
+        ('list', 'list'),
+    )
+    UPRIGHT = (
+        ('right', 'right'),
+        ('left', 'left'),
+        ('auto', 'auto'),
+    )
 
-    allow_overlap = models.NullBooleanField()
-    avoid_edges = models.NullBooleanField()
-    character_spacing = models.PositiveIntegerField(null=True, blank=True)
-    dx = models.IntegerField(null=True, blank=True)
-    dy = models.IntegerField(null=True, blank=True)
-    face_name = models.CharField(max_length=200, null=True, blank=True)
-    fill = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True, blank=True)
-    fontset_name = models.CharField(max_length=200, null=True, blank=True)
-    force_odd_labels = models.NullBooleanField()
-    halo_fill = models.CharField(max_length=200, null=True, blank=True)
-    halo_radius = models.PositiveIntegerField(null=True, blank=True)
-    horizontal_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True, blank=True)
-    justify_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True, blank=True)
-    label_position_tolerance = models.PositiveIntegerField(null=True, blank=True)
-    line_spacing = models.PositiveIntegerField(null=True, blank=True)
-    max_char_angle_delta = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
-    min_distance = models.PositiveIntegerField(null=True, blank=True)
     name = models.CharField(max_length=200, null=True, blank=True)
-    opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
-    placement = models.CharField(max_length=10, choices=PLACEMENT, null=True, blank=True)
+    face_name = models.CharField(max_length=200, null=True, blank=True)
+    fontset_name = models.CharField(max_length=200, null=True, blank=True)
     size = models.PositiveIntegerField(null=True, blank=True)
-    spacing = models.PositiveIntegerField(null=True, blank=True)
-    text_convert = models.CharField(max_length=200, choices=TEXT_CONVERT, null=True, blank=True)
     text_ratio = models.PositiveIntegerField(null=True, blank=True)
-    vertical_alignment = models.CharField(max_length=10, choices=VERTICAL, null=True, blank=True)
-    wrap_before = models.NullBooleanField()
     wrap_character = models.CharField(max_length=200, null=True, blank=True)
     wrap_width = models.PositiveIntegerField(null=True, blank=True)
-
+    wrap_before = models.NullBooleanField()
+    text_transform = models.CharField(max_length=200, choices=TEXT_TRANSFORM, null=True, blank=True)
+    line_spacing = models.PositiveIntegerField(null=True, blank=True)
+    character_spacing = models.PositiveIntegerField(null=True, blank=True)
+    spacing = models.PositiveIntegerField(null=True, blank=True)
+    label_position_tolerance = models.PositiveIntegerField(null=True, blank=True)
+    force_odd_labels = models.NullBooleanField()
+    max_char_angle_delta = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    fill = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True, blank=True)
+    halo_fill = models.CharField(max_length=200, null=True, blank=True)
+    halo_radius = models.PositiveIntegerField(null=True, blank=True)
+    dx = models.IntegerField(null=True, blank=True)
+    dy = models.IntegerField(null=True, blank=True)
+    avoid_edges = models.NullBooleanField()
+    minimum_distance = models.PositiveIntegerField(null=True, blank=True)
+    allow_overlap = models.NullBooleanField()
+    placement = models.CharField(max_length=10, choices=PLACEMENT, null=True, blank=True)
+    vertical_alignment = models.CharField(max_length=10, choices=VERTICAL, null=True, blank=True)
+    horizontal_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True, blank=True)
+    justify_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True, blank=True)
+    opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
+    minimum_padding = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    minimum_path_length = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    orientation = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    placement_type = models.CharField(max_length=10, choices=PLACEMENT_TYPE, null=True, blank=True)
+    placements = models.TextField(null=True, blank=True)
+    upright = models.CharField(max_length=10, choices=UPRIGHT, null=True, blank=True)
+    clip = models.NullBooleanField()
+    rotate_displacement = models.NullBooleanField()
+    
     def __unicode__(self):
         return 'ID: %i, %i, %s' % (self.id, self.size, self.fill)
 
     def import_symbolizer(self, node):
         self.symbtype = node.name.replace('Symbolizer', '')
-        self.allow_overlap = xpath_query(node, "./@allow_overlap")
-        self.avoid_edges = xpath_query(node, './@avoid_edges')
-        self.character_spacing = xpath_query(node, './@character_spacing')
+        self.allow_overlap = xpath_query(node, "./@allow-overlap")
+        self.avoid_edges = xpath_query(node, './@avoid-edges')
+        self.character_spacing = xpath_query(node, './@character-spacing')
         self.dx = xpath_query(node, './@dx')
         self.dy = xpath_query(node, './@dy')
-        self.face_name = xpath_query(node, './@face_name')
+        self.face_name = xpath_query(node, './@face-name')
         self.fill = xpath_query(node, './@fill')
-        self.fontset_name = xpath_query(node, './@fontset_name')
-        self.force_odd_labels = xpath_query(node, './@force_odd_labels')
-        self.halo_fill = xpath_query(node, './@halo_fill')
-        self.halo_radius = xpath_query(node, './@halo_radius')
-        self.horizontal_alignment = xpath_query(node, './@horizontal_alignment')
-        self.justify_alignment = xpath_query(node, './@justify_alignment')
-        self.label_position = xpath_query(node, './@label_position')
-        self.line_spacing = xpath_query(node, './@line_spacing')
-        self.max_char_angle_delta = xpath_query(node, './@max_char_angle_delta')
-        self.min_distance = xpath_query(node, './@min_distance')
-        self.name = xpath_query(node, './@name')
+        self.fontset_name = xpath_query(node, './@fontset-name')
+        self.force_odd_labels = xpath_query(node, './@force-odd-labels')
+        self.halo_fill = xpath_query(node, './@halo-fill')
+        self.halo_radius = xpath_query(node, './@halo-radius')
+        self.horizontal_alignment = xpath_query(node, './@horizontal-alignment')
+        self.justify_alignment = xpath_query(node, './@justify-alignment')
+        self.label_position = xpath_query(node, './@label-position')
+        self.line_spacing = xpath_query(node, './@line-spacing')
+        self.max_char_angle_delta = xpath_query(node, './@max-char-angle-delta')
+        self.minimum_distance = xpath_query(node, './@minimum-distance')
+        self.name = xpath_query(node, '.')
         self.opacity = xpath_query(node, './@opacity')
         self.placement = xpath_query(node, './@placement')
         self.size = xpath_query(node, './@size')
         self.spacing = xpath_query(node, './@spacing')
-        self.text_convert = xpath_query(node, './@text_convert')
-        self.text_ratio = xpath_query(node, './@text_ratio')
-        self.vertical_alignment = xpath_query(node, './@vertical_alignment')
-        self.wrap_before = xpath_query(node, './@wrap_before')
-        self.wrap_character = xpath_query(node, './@wrap_character')
-        self.wrap_width = xpath_query(node, './@wrap_width')
+        self.text_transform = xpath_query(node, './@text-transform')
+        self.text_ratio = xpath_query(node, './@text-ratio')
+        self.vertical_alignment = xpath_query(node, './@vertical-alignment')
+        self.wrap_before = xpath_query(node, './@wrap-before')
+        self.wrap_character = xpath_query(node, './@wrap-character')
+        self.wrap_width = xpath_query(node, './@wrap-width')
+
+        self.minimum_padding = xpath_query(node, './@minimum-padding')
+        self.minimum_path_length = xpath_query(node, './@minimum-path-length')
+        self.orientation = xpath_query(node, './@orientation')
+        self.placement_type = xpath_query(node, './@placement-type')
+        self.placements = xpath_query(node, './@placements')
+        self.upright = xpath_query(node, './@upright')
+        self.clip = xpath_query(node, './@clip')
+        self.rotate_displacement = xpath_query(node, './@rotate_displacement')
 
         self.save()
         return self
@@ -1353,45 +1486,58 @@ class TextSymbolizer(Symbolizer):
                 self.label_position_tolerance = int(factor * self.label_position_tolerance)
             if self.line_spacing:
                 self.line_spacing = int(factor * self.line_spacing)
-            if self.min_distance:
-                self.min_distance = int(factor * self.min_distance)
+            if self.minimum_distance:
+                self.minimum_distance = int(factor * self.minimum_distance)
             if self.size:
                 self.size = int(factor * self.size)
             if self.spacing:
                 self.spacing = int(factor * self.spacing)
             if self.wrap_width:
                 self.wrap_width = int(factor * self.wrap_width)
+            if self.minimum_padding:
+                ss.minimum_padding = self.minimum_padding
+            if self.minimum_path_length:
+                ss.minimum_path_length = self.minimum_path_length
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
         symbolizer_node = libxml2.newNode('TextSymbolizer')
-        set_xml_param(symbolizer_node, 'allow_overlap', self.allow_overlap)
-        set_xml_param(symbolizer_node, 'avoid_edges', self.avoid_edges)
-        set_xml_param(symbolizer_node, 'character_spacing', self.character_spacing)
+        set_xml_param(symbolizer_node, 'allow-overlap', self.allow_overlap)
+        set_xml_param(symbolizer_node, 'avoid-edges', self.avoid_edges)
+        set_xml_param(symbolizer_node, 'character-spacing', self.character_spacing)
         set_xml_param(symbolizer_node, 'dx', self.dx)
         set_xml_param(symbolizer_node, 'dy', self.dy)
-        set_xml_param(symbolizer_node, 'face_name', self.face_name)
+        set_xml_param(symbolizer_node, 'face-name', self.face_name)
         set_xml_param(symbolizer_node, 'fill', self.fill)
-        set_xml_param(symbolizer_node, 'fontset_name', self.fontset_name)
-        set_xml_param(symbolizer_node, 'halo_fill', self.halo_fill)
-        set_xml_param(symbolizer_node, 'halo_radius', self.halo_radius)
-        set_xml_param(symbolizer_node, 'horizontal_alignment', self.horizontal_alignment)
-        set_xml_param(symbolizer_node, 'justify_alignment', self.justify_alignment)
-        set_xml_param(symbolizer_node, 'label_position_tolerance', self.label_position_tolerance)
-        set_xml_param(symbolizer_node, 'line_spacing', self.line_spacing)
-        set_xml_param(symbolizer_node, 'max_char_angle_delta', self.max_char_angle_delta)
-        set_xml_param(symbolizer_node, 'min_distance', self.min_distance)
-        set_xml_param(symbolizer_node, 'name', self.name)
+        set_xml_param(symbolizer_node, 'fontset-name', self.fontset_name)
+        set_xml_param(symbolizer_node, 'halo-fill', self.halo_fill)
+        set_xml_param(symbolizer_node, 'halo-radius', self.halo_radius)
+        set_xml_param(symbolizer_node, 'horizontal-alignment', self.horizontal_alignment)
+        set_xml_param(symbolizer_node, 'justify-alignment', self.justify_alignment)
+        set_xml_param(symbolizer_node, 'label-position-tolerance', self.label_position_tolerance)
+        set_xml_param(symbolizer_node, 'line-spacing', self.line_spacing)
+        set_xml_param(symbolizer_node, 'max-char-angle-delta', self.max_char_angle_delta)
+        set_xml_param(symbolizer_node, 'minimum-distance', self.minimum_distance)
+        set_xml_content(symbolizer_node, self.name)
         set_xml_param(symbolizer_node, 'opacity', self.opacity)
         set_xml_param(symbolizer_node, 'placement', self.placement)
         set_xml_param(symbolizer_node, 'size', self.size)
         set_xml_param(symbolizer_node, 'spacing', self.spacing)
-        set_xml_param(symbolizer_node, 'text_convert', self.text_convert)
-        set_xml_param(symbolizer_node, 'text_ratio', self.text_ratio)
-        set_xml_param(symbolizer_node, 'vertical_alignment', self.vertical_alignment)
-        set_xml_param(symbolizer_node, 'wrap_before', self.wrap_before)
-        set_xml_param(symbolizer_node, 'wrap_character', self.wrap_character)
-        set_xml_param(symbolizer_node, 'wrap_width', self.wrap_width)
+        set_xml_param(symbolizer_node, 'text-transform', self.text_transform)
+        set_xml_param(symbolizer_node, 'text-ratio', self.text_ratio)
+        set_xml_param(symbolizer_node, 'vertical-alignment', self.vertical_alignment)
+        set_xml_param(symbolizer_node, 'wrap-before', self.wrap_before)
+        set_xml_param(symbolizer_node, 'wrap-character', self.wrap_character)
+        set_xml_param(symbolizer_node, 'wrap-width', self.wrap_width)
+
+        set_xml_param(symbolizer_node, 'minimum-padding', self.minimum_padding)
+        set_xml_param(symbolizer_node, 'minimum-path-length', self.minimum_path_length)
+        set_xml_param(symbolizer_node, 'orientation', self.orientation)
+        set_xml_param(symbolizer_node, 'placement-type', self.placement_type)
+        set_xml_param(symbolizer_node, 'placements', self.placements)
+        set_xml_param(symbolizer_node, 'upright', self.upright)
+        set_xml_param(symbolizer_node, 'clip', self.clip)
+        set_xml_param(symbolizer_node, 'rotate-displacement', self.rotate_displacement)
         return symbolizer_node
 
     def mapnik(self, scale_factor=1):
@@ -1430,8 +1576,8 @@ class TextSymbolizer(Symbolizer):
             ts.line_spacing = self.line_spacing
         if self.max_char_angle_delta:
             ts.maximum_angle_char_delta = float(self.max_char_angle_delta)
-        if self.min_distance:
-            ts.minimum_distance = self.min_distance
+        if self.minimum_distance:
+            ts.minimum_distance = self.minimum_distance
         if self.opacity:
             ts.text_opacity = self.opacity
         if self.placement:
@@ -1440,11 +1586,11 @@ class TextSymbolizer(Symbolizer):
             ts.text_size = self.size
         if self.spacing:
             ts.label_spacing = self.spacing
-        if self.text_convert:
-            if self.text_convert == 'none' or self.text_convert == 'capitalize':
-                ts.text_transform = mapnik.text_transform.names[self.text_convert.encode('utf-8')]
+        if self.text_transform:
+            if self.text_transform == 'none' or self.text_transform == 'capitalize':
+                ts.text_transform = mapnik.text_transform.names[self.text_transform.encode('utf-8')]
             else:
-                name = self.text_convert.encode('utf-8')[2:] + 'case'
+                name = self.text_transform.encode('utf-8')[2:] + 'case'
                 ts.text_transform = mapnik.text_transform.names[name]
         if self.text_ratio:
             ts.text_ratio = self.text_ratio
@@ -1455,6 +1601,20 @@ class TextSymbolizer(Symbolizer):
             ts.wrap_char = self.wrap_character.encode('utf-8')
         if self.wrap_width:
             ts.wrap_width = self.wrap_width
+        if self.minimum_padding:
+            ts.minimum_padding = self.minimum_padding
+        if self.minimum_path_length:
+            ts.minimum_path_length = self.minimum_path_length
+        if self.clip:
+            ts.clip = self.clip
+# TODO:         
+#    orientation = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+#    placement_type = models.CharField(max_length=10, choices=PLACEMENT_TYPE, null=True, blank=True)
+#    placements = models.TextField()
+#    upright = models.CharField(max_length=10, choices=UPRIGHT, null=True, blank=True)
+#    rotate_displacement = models.NullBooleanField()
+
+
         return ts
 
     def symbol_size(self):
@@ -1473,7 +1633,7 @@ class Legend(models.Model):
         for layer in self.map.layers.all().order_by('maplayer__layer_order'):
             for style in layer.styles.all():
                 for rule in style.rules.all().order_by('rulestyle__order'):
-                    if rule.title:
+                    if rule.name:
                         for zoom in range(rule.maxscale, rule.minscale + 1):
                             l = LegendItem()
                             l.save_legend(self, rule, zoom)
@@ -1484,7 +1644,7 @@ class Legend(models.Model):
         for layer in self.map.layers.all().order_by('maplayer__layer_order'):
             for style in layer.styles.all():
                 for rule in style.rules.all().order_by('rulestyle__order').exclude(maxscale__gt=zoom).exclude(minscale__lt=zoom):
-                    if rule.title:
+                    if rule.name:
                         l = LegendItem()
                         l.save_legend(self, rule, zoom)
         self.create_images(zoom)
@@ -1541,9 +1701,9 @@ class LegendItem(models.Model):
         return 'ID: %i, %s, %i' % (self.id, self.title, self.zoom)
 
     def save_legend(self, legend, rule, zoom):
-        related = legend.legenditem_set.filter(title=rule.title.replace('Shield: ','osmc: ').replace('trasa: ','osmc: '), zoom=zoom)
+        related = legend.legenditem_set.filter(title=rule.name.replace('Shield: ','osmc: ').replace('trasa: ','osmc: '), zoom=zoom)
         if not len(related):
-            self.title = rule.title.replace('Shield:','osmc: ').replace('trasa: ','osmc: ')
+            self.title = rule.name.replace('Shield:','osmc: ').replace('trasa: ','osmc: ')
             self.geometry = rule.styles.all()[0].layers.all()[0].geometry()
             self.zoom = zoom
             self.legend = legend

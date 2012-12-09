@@ -169,3 +169,13 @@ a:hover, .menu-item:hover {
     margin: 0 0 -1px;
     clear: both;
 }
+
+.results_list {
+    text-align: left;
+    font-size: small;
+}
+
+.attribution {
+    padding: 5px;
+    font-size: x-small;
+}
