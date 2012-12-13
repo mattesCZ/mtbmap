@@ -293,7 +293,7 @@ function addr_search() {
         var items = [];
 
         $.each(data, function(key, val) {
-            items.push("<li class='results_item'><a href='#' onclick='chooseAddr(" + val.lat + ", " + val.lon + ", \"" + val.type + "\");return false;'>" + val.display_name + '</a></li>');
+            items.push("<li class='results_item' id='" + val.osm_id + "' ><a href='#' onclick='chooseAddr(" + val.lat + ", " + val.lon + ", \"" + val.type + "\", " + val.osm_id + ");return false;'>" + val.display_name + '</a><span id="elevation"></span></li>');
         });
 
         $('#places_results').empty();
@@ -312,17 +312,19 @@ function addr_search() {
         }
     });
 }
-function chooseAddr(lat, lng, type) {
+function chooseAddr(lat, lng, type, id) {
     var location = new L.LatLng(lat, lng);
     map.panTo(location);
 
     if (type == 'city' || type == 'administrative') {
-        map.setZoom(11);
+        map.setZoom(12);
     } else {
-        map.setZoom(13);
+        map.setZoom(14);
     }
-    $.get('/map/getheight/', {'profile_point': location.toString()}, function(data) {
-        alert(data);
+    $.get('/map/getheight/', {
+        'profile_point': location.toString()
+        }, function(data) {
+        $('#' + id + " > #elevation").html('<p>Elevation: ' + data + ' m</p>');
     });
 }
 
@@ -553,4 +555,17 @@ jsonWeights = {
         "max":6,
         "min":1
     }
+}
+function gpxUpload(e) {
+    setupPost(e);
+    $.post("/map/gpxupload/", {}, function (data) {
+        geojsonLine = L.geoJson(data, {
+            style: {
+                color: '#0055ff',
+                opacity: 1
+            }
+        });
+        map.addLayer(geojsonLine);
+        map.fitBounds(geojsonLine.getBounds());
+    })
 }

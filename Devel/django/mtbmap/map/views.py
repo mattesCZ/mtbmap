@@ -1,19 +1,22 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from map.models import Map, WeightClass
+from map.models import *
 from styles.models import Legend
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.template.response import TemplateResponse
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 #from django.core.context_processors import csrf
 #import mapnik
 from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
 from map.altitude import altitude_image, height
 from map.routing import MultiRoute
+from map.gpx import GPX
 from PIL import Image
 import simplejson as json
+from map.forms import GPXDocForm
+from django.core.urlresolvers import reverse
 
 def index(request):
     return render_to_response('map/map.html', {},
@@ -112,7 +115,7 @@ def export(request):
 
 def routes(request):
     classes = WeightClass.objects.all().order_by('order')
-    return TemplateResponse(request, 'map/routes.html', {'classes': classes})
+    return TemplateResponse(request, 'map/routes_production.html', {'classes': classes})
 
 def places(request):
     return TemplateResponse(request, 'map/places.html', {})
@@ -174,3 +177,31 @@ def findroute(request):
 #        print multiroute.envelope
         print multiroute.length
         return HttpResponse(route_line.geojson, content_type='application/json')
+
+def gpxupload(request):
+    if request.method=='POST':
+        print 'POST'
+#        doc = request.FILES['gpx_file']
+#        print doc
+        
+    f = open('media/894360.gpx')
+    gpx = GPX(f)
+    f.close()
+    gpx_line = gpx.tracks().geojson
+    return HttpResponse(gpx_line, content_type='application/json')
+
+def list(request):
+    if request.method == 'POST':
+        form = GPXDocForm(request.POST, request.FILES)
+        if form.is_valid():
+            newdoc = GPXDoc(docfile = request.FILES['docfile'])
+            newdoc.save()
+            return HttpResponseRedirect(reverse('map.views.list'))
+    else:
+        form = GPXDocForm()
+    documents = GPXDoc.objects.all()
+    return render_to_response(
+        'map/list.html',
+        {'documents': documents, 'form': form},
+        context_instance=RequestContext(request)
+    )

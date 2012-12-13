@@ -8,6 +8,7 @@ import mapnik
 from string import upper
 from django.core.files import File
 from os import remove, system
+from os.path import exists
 from styles.xmlfunctions import *
 import PIL.Image
 
@@ -844,8 +845,6 @@ class MarkersSymbolizer(Symbolizer):
                 self.spacing = int(factor * self.spacing)
             if self.stroke_width:
                 self.stroke_width *= factor
-            self.height = int(factor * self.height)
-            self.width = int(factor * self.width)
         if factor == 2:
             if self.file:
                 self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
@@ -907,9 +906,6 @@ class PointSymbolizer(Symbolizer):
         return self
 
     def scale(self, factor=1):
-        if factor != 1:
-            self.height = int(factor * self.height)
-            self.width = int(factor * self.width)
         if factor == 2:
             if self.file:
                 self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
@@ -931,6 +927,7 @@ class PointSymbolizer(Symbolizer):
         self.scale(scale_factor)
         ps = mapnik.PointSymbolizer()
         ps.file = style_path + self.file.encode('utf-8')
+        ps.filename = style_path + self.file.encode('utf-8')
         ps.allow_overlap = self.allow_overlap
         if self.opacity:
             ps.opacity = float(self.opacity)
@@ -943,6 +940,7 @@ class PointSymbolizer(Symbolizer):
         im = PIL.Image.open(style_path + self.file.encode('utf-8'))
         height = im.size[1]
         width = im.size[0]
+        print height, width, 'id:', self.id
         return (height, width)
 
 
@@ -1742,6 +1740,16 @@ class LegendItem(models.Model):
     def create_image(self, scale_factor=1):
         if self.title.startswith('!'):
             return
+        if scale_factor>=2:
+            if self.image_highres and exists(self.image_highres.path):
+                remove(self.image_highres.path)
+            if self.title_image_highres and exists(self.title_image_highres.path):
+                remove(self.title_image_highres.path)
+        else:
+            if self.image and exists(self.image.path):
+                remove(self.image.path)
+            if self.title_image and exists(self.title_image.path):
+                remove(self.title_image.path)
         size = self.image_size(scale_factor)
         name = ('%i_%i.png' % (self.zoom, self.id)).encode('utf-8')
         if scale_factor >= 2:

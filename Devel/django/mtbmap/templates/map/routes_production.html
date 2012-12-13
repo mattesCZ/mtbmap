@@ -1,0 +1,14 @@
+<div id="content-routes">
+    <h5>Tvorba výškových profilů</h5>
+    <p>Trasu zadejte klikáním přímo do mapy.</p>
+    <br>
+    <div id="length"></div><div id="point_height"></div>
+    <br>
+    <div id="fit_to_line" class="button" onclick="fitToLine()" >Zobrazit podle trasy</div>
+    <div id="reset_line" class="button" onclick="resetLine()" >Smazat</div>
+    <form id="create_profile" method="post" action="/map/altitudeprofile/" target="_blank" >
+        {% csrf_token %}
+        <input type="hidden" name="profile_params" id="profile_params" value="" />
+        <input class="button" type="submit" value="Vytvořit profil" onclick="setProfileParams()" >
+    </form>
+</div>
