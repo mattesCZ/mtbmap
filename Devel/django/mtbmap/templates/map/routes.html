@@ -1,4 +1,10 @@
 <div id="content-routes">
+    <form id="gpx_upload" method="post" onsubmit="gpxUpload(event)" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <input id="gpx_file" type="file" value="Procházet">
+        <input class="button" type="submit" value="Zobrazit trasu" >
+    </form>
+
     <h5>Vyhledávání tras a tvorba výškových profilů</h5>
     <p>Trasu zadejte klikáním přímo do mapy.</p>
     <label>Start: </label><input class="export_text" type="text" name="routing_start" id="routing_start" value="" size="10" onchange="" />

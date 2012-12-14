@@ -10,4 +10,6 @@ urlpatterns = patterns('',
     url(r'^altitudeprofile/$', 'map.views.altitudeprofile'),
     url(r'^getheight/$', 'map.views.getheight'),
     url(r'^findroute/$', 'map.views.findroute'),
+    url(r'^gpxupload/$', 'map.views.gpxupload'),
+    url(r'^list/$', 'map.views.list', name='list'),
 )

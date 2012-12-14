@@ -6,7 +6,6 @@ from django.contrib.gis.geos import *
 from copy import deepcopy
 from random import randint
 
-
 SAC_SCALE_CHOICES = (
  (0, 'hiking'),
  (1, 'mountain_hiking'),
@@ -320,5 +319,6 @@ class Weight(models.Model):
     description = models.TextField(null=True, blank=True)
     def __unicode__(self):
         return self.feature
-    
 
+class GPXDoc(models.Model):
+    docfile = models.FileField(upload_to='gpx')
