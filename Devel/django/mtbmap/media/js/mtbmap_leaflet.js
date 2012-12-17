@@ -8,14 +8,24 @@ var mtbmapTileLayer = new L.TileLayer('http://mtbmap.cz/mtbmap_tiles/{z}/{x}/{y}
 });
 mtbmapTileLayer.addTo(map)
 
-var osmTileLayer = new L.TileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+var osmTileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: 'Data: <a href="http://openstreetmap.org">OpenStreetMap</a>'
 });
 
-var mtbmapSymbolsTileLayer = new L.TileLayer('http://mtbmap.cz/overlay-mtbscale_tiles/{z}/{x}/{y}.png', {
-    maxZoom: 18
+var cyclemapTileLayer = new L.TileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: 'Data: <a href="http://opencyclemap.org">OpenCycleMap</a>'
 });
+
+var hikebikeTileLayer = new L.TileLayer('http://toolserver.org/tiles/hikebike/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: 'Data: <a href="http://www.hikebikemap.de">Hike &amp; Bike Map</a>'
+});
+
+//var mtbmapSymbolsTileLayer = new L.TileLayer('http://mtbmap.cz/overlay-mtbscale_tiles/{z}/{x}/{y}.png', {
+//    maxZoom: 18
+//});
 
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
@@ -84,10 +94,12 @@ pos = new L.Control.Position({}).addTo(map);
 
 var baseLayers = {
     "MTB mapa": mtbmapTileLayer,
-    "OpenStreetMaps": osmTileLayer
+    "OpenStreetMap": osmTileLayer,
+    "OpenCycleMap": cyclemapTileLayer,
+    "Hike & Bike Map": hikebikeTileLayer
 }
 var overlayLayers = {
-    "MTB obtížnost": mtbmapSymbolsTileLayer
+//    "MTB obtížnost": mtbmapSymbolsTileLayer
 }
 
 L.control.layers(baseLayers, overlayLayers).addTo(map)
@@ -172,6 +184,10 @@ function onMapZoom(e) {
 }
 
 map.on('zoomend', onMapZoom);
+
+$(document).ready(function() {
+    $('#map').focus();
+});
 
 ////////////////////////////////////////////////////////////////////////////////
 // handling user export:
