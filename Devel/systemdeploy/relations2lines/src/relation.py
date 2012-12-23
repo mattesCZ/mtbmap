@@ -22,11 +22,11 @@ class Relation:
             if (attrs[2] == 'None'):
                 self.mtbScale = None
             else:
-                self.mtbScale = attrs[2]
+                self.mtbScale = attrs[2].replace("'", "")
             if (attrs[3] == 'None'):
                 self.mtbUphill = None
             else:
-                self.mtbUphill = attrs[3]
+                self.mtbUphill = attrs[3].replace("'", "")
             if (attrs[4] == 'None'):
                 self.network = None
             else:
