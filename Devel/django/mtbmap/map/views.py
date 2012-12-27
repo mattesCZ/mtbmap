@@ -54,13 +54,31 @@ def exportmap(request):
         gap = 5
         highres = False
         try:
+            checked_line = request.POST['export_line_check']
+        except (KeyError, 'line not checked'):
+            line = None
+        else:
+            raw_line = request.POST['export_line']
+            points = []
+            if len(raw_line):
+                for part in raw_line.split('),'):
+                    latlng = part.replace('LatLng(', '').replace(')', '').split(',')
+                    point = Point(float(latlng[1]), float(latlng[0]))
+                    points.append(point)
+                if len(points)>1:
+                    line = LineString(points).geojson
+                else:
+                    line = None
+            else:
+                line = None
+        try:
             highres = request.POST['export_highres']
         except (KeyError, 'highres not checked'):
             highres = False
-            map_im = map_image(zoom, left, bottom, right, top, highres)
+            map_im = map_image(zoom, left, bottom, right, top, line, highres)
         else:
             highres = True
-            map_im = map_image(zoom, left, bottom, right, top, highres)
+            map_im = map_image(zoom, left, bottom, right, top, line, highres)
         try:
             renderlegend = request.POST['export_legend']
         except (KeyError, 'export_legend not checked'):

@@ -81,7 +81,7 @@ def legend_image(legend, zoom, gap, position='side', max_edge=None, highres=True
             column += 1
     return Image.open(StringIO(image.tostring('png')))
 
-def map_image(zoom, left, bottom, right, top, highres=True):
+def map_image(zoom, left, bottom, right, top, line, highres=True):
     mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/mapnik2normal.xml"
     base = 0.000005364418029785156 # longitude range of 1 pixel at zoom 18
     zoom_conversion = base*2**(18-zoom)
@@ -100,6 +100,29 @@ def map_image(zoom, left, bottom, right, top, highres=True):
     prj = mapnik.Projection("+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over")
     bottom_left = prj.forward(mapnik.Coord(left, bottom))
     top_right = prj.forward(mapnik.Coord(right, top))
+
+    if line:
+        gpxstyle = mapnik.Style()
+        gpxrule = mapnik.Rule()
+        lns = mapnik.LineSymbolizer()
+        stroke = mapnik.Stroke()
+        stroke.color = mapnik.Color('#FF6600')
+        if highres:
+            stroke.width = 10
+        else:
+            stroke.width = 5
+        stroke.opacity = 0.9
+        stroke.line_join = mapnik.line_join.names['round']
+        stroke.line_cap = mapnik.line_cap.names['round']
+        lns.stroke = stroke
+        gpxrule.symbols.append(lns)
+        gpxstyle.rules.append(gpxrule)
+        m.append_style('gpxstyle', gpxstyle)
+        gpxlayer = mapnik.Layer('gpx')
+        gpxlayer.datasource = mapnik.Ogr(file=line, layer='OGRGeoJSON')
+        gpxlayer.styles.append('gpxstyle')
+        m.layers.append(gpxlayer)
+
     bbox = mapnik.Envelope(bottom_left.x,bottom_left.y,top_right.x,top_right.y)
     m.zoom_to_box(bbox)
     im = mapnik.Image(imgx, imgy)

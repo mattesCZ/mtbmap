@@ -44,10 +44,14 @@ def dist(index, nodes):
     """
     Returns Great-Circle distance between two nodes using complete formula.
     """
-    return 111.191402883*math.degrees(math.acos((math.sin(math.radians(nodes[index][0]))\
-    *math.sin(math.radians(nodes[index-1][0]))) + (math.cos(math.radians(nodes[index][0]))\
-    *math.cos(math.radians(nodes[index-1][0]))*math.cos(math.radians(nodes[index][1])\
-    -math.radians(nodes[index-1][1])))))
+    if nodes[index-1][0]==nodes[index][0] and nodes[index-1][1]==nodes[index][1]:
+        return 0.0
+    else:
+        return 111.191402883*math.degrees(math.acos((math.sin(math.radians(nodes[index][0]))\
+        *math.sin(math.radians(nodes[index-1][0]))) + (math.cos(math.radians(nodes[index][0]))\
+        *math.cos(math.radians(nodes[index-1][0]))*math.cos(math.radians(nodes[index][1])\
+        -math.radians(nodes[index-1][1])))))
+        return ret
 
 def appendHeights(nodes):
     """

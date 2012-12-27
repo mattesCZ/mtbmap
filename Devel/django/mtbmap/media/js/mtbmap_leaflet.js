@@ -156,6 +156,14 @@ $(document).ready(function() {
         } else {
             $.get("/map/routes/", function(data) {
                 $('#content').html(data).show();
+                $('.routes_menu_item').hide();
+                $('#routes_content_user').show();
+                $('#routes_menu_user').on('change', function () {switchRoutesMenu('user');});
+                $('#routes_menu_gpx').on('change', function () {switchRoutesMenu('gpx');});
+                $('#routes_menu_routing').on('change', function () {switchRoutesMenu('routing');});
+                if (!pLine.getLatLngs().length>0) {
+                    $('#line_buttons').hide();
+                }
             });
             menuActive = 'routes';
         }
@@ -175,6 +183,14 @@ $(document).ready(function() {
     });
 });
 
+function switchRoutesMenu(name) {
+    ids = ['user', 'gpx', 'routing'];
+    for (i=0; i<ids.length; i++) {
+        $('#routes_content_'+ids[i]).hide();
+    }
+    $('#routes_content_'+name).show();
+}
+
 function onMapZoom(e) {
     if (menuActive=='legend') {
         $.get("/map/legend/"+ map.getZoom() +"/", function(data) {
@@ -187,6 +203,10 @@ map.on('zoomend', onMapZoom);
 
 $(document).ready(function() {
     $('#map').focus();
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+    } else {
+        alert('The File APIs are not fully supported in this browser.');
+    }
 });
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -246,6 +266,7 @@ function setMapImageSize() {
 function getParams() {
     $('#export_bounds').val(getBoundsString());
     $('#export_zoom').val($('#export_zoom_select').val());
+    $('#export_line').val(pLine.getLatLngs());
 }
 
 function getBoundsString() {
@@ -339,7 +360,7 @@ function chooseAddr(lat, lng, type, id) {
     }
     $.get('/map/getheight/', {
         'profile_point': location.toString()
-        }, function(data) {
+    }, function(data) {
         $('#' + id + " > #elevation").html('<p>Elevation: ' + data + ' m</p>');
     });
 }
@@ -363,13 +384,18 @@ function RouteLine(latlngs, lineOptions) {
         this.line.setLatLngs([]);
         this.markersGroup.clearLayers();
         this.routesGroup.clearLayers();
+        $('#line_buttons').hide();
     }
 
     this.show = function() {
         if (!this.visible) {
             map.addLayer(this.line);
             map.addLayer(this.markersGroup);
-            map.addLayer(this.routesGroup)
+            map.addLayer(this.routesGroup);
+            latlngs = this.getLatLngs();
+            if (latlngs.length>0) {
+                $('#line_buttons').show();            
+            }
             this.visible = true;
         }
     };
@@ -378,6 +404,7 @@ function RouteLine(latlngs, lineOptions) {
             map.removeLayer(this.line);
             map.removeLayer(this.markersGroup);
             map.removeLayer(this.routesGroup);
+            $('#line_buttons').hide();
             this.visible = false;
         }
     }
@@ -386,6 +413,9 @@ function RouteLine(latlngs, lineOptions) {
         this.markersGroup.addLayer(marker);
         this.line.addLatLng(latlng);
         latlngs = this.line.getLatLngs();
+        if (latlngs.length==1) {
+            $('#line_buttons').show();
+        }
         $('#length').html(this.distanceString()).show();
     }
     this.removeMarker = function(marker) {
@@ -448,6 +478,10 @@ function RouteLine(latlngs, lineOptions) {
             d += latlngs[i-1].distanceTo(latlngs[i]);
         }
         return d;
+    }
+    this.getLine = function() {
+        latlngs = this.getLatLngs();
+        return '[' + latlngs + ']';
     }
     this.getRoute = function() {
         thisLine = this;
@@ -584,4 +618,66 @@ function gpxUpload(e) {
         map.addLayer(geojsonLine);
         map.fitBounds(geojsonLine.getBounds());
     })
+}
+
+function handleGPX(e) {
+    files = e.target.files;
+    for (var i = 0, f; f = files[i]; i++) {
+        var reader = FileReader()
+        // Closure to capture the file information.
+        reader.onload = (function(theFile) {
+            return function(e) {
+                parseGPX(e.target.result);
+            };
+        })(f);
+        reader.readAsText(f);
+    }
+}
+
+function parseGPX(data) {
+    try {
+        gpxdoc = $.parseXML(data);
+    } catch (err) {
+        alert("GPX file is not valid.");
+        return;
+    }
+    $gpx = $( gpxdoc );
+    root = $gpx.find("gpx");
+    //    alert(root.length);
+    if (!root.length) {
+        alert("GPX file is not valid.");
+        return;
+    }
+    track = root.find("trk");
+    segments = track.find("trkseg");
+    if (!segments.length) {
+        alert("GPX file contains no trackpoints or is not valid.");
+        return;
+    }
+    //    alert(track);
+    //    alert(segments[0]);
+    points = [];
+    var polyline = new L.Polyline([]);
+    try {
+        segments.each(function () {
+            pts = $(this).find("trkpt");
+            pts.each(function() {
+                lat = $(this).attr("lat");
+                lon = $(this).attr("lon");
+                point = new L.LatLng(lat, lon);
+                polyline.addLatLng(point);
+            });
+        });
+    } catch (err) {
+        alert("GPX file is not valid.");
+        return;
+    }
+    pLine.reset();
+    pLine = new RouteLine(polyline.getLatLngs(), {
+        color: '#FF6600',
+        opacity: 0.9
+    });
+    $('#length').html(pLine.distanceString());
+    pLine.show();
+    pLine.fitMapView();
 }

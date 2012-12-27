@@ -179,3 +179,7 @@ a:hover, .menu-item:hover {
     padding: 5px;
     font-size: x-small;
 }
+
+.margin {
+    margin: 10px;
+}
