@@ -623,7 +623,7 @@ function gpxUpload(e) {
 function handleGPX(e) {
     files = e.target.files;
     for (var i = 0, f; f = files[i]; i++) {
-        var reader = FileReader()
+        var reader = new FileReader()
         // Closure to capture the file information.
         reader.onload = (function(theFile) {
             return function(e) {
