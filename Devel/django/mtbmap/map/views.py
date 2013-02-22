@@ -12,10 +12,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
 from map.altitude import altitude_image, height
 from map.routing import MultiRoute
-from map.gpx import GPX
+#from map.gpx import GPX
 from PIL import Image
 import simplejson as json
-from map.forms import GPXDocForm
+#from map.forms import GPXDocForm
 from django.core.urlresolvers import reverse
 
 def index(request):

@@ -12,7 +12,7 @@ from copy import deepcopy
 from sys import setrecursionlimit
 
 def main():
-
+    bboxquery = ''' ST_Intersects(way, ST_Transform(ST_GeomFromText('POLYGON((-5 60, -5 35, 30 35, 30 60, -5 60))', 4326), 900913)::geometry) '''
     print time.strftime("%H:%M:%S", time.localtime()), " - script started"
     print "  Searching RelationIDs and Lines in planet_osm_line..."
     # Create connection to DB server.
@@ -37,11 +37,11 @@ def main():
                        END AS "mtb:scale"
             , "mtb:scale:uphill", network, "osmc:symbol"
             FROM planet_osm_line
-            WHERE (("osmc:symbol" IS NOT NULL OR kct_red IS NOT NULL
+            WHERE %s AND (("osmc:symbol" IS NOT NULL OR kct_red IS NOT NULL
                 OR kct_blue IS NOT NULL OR kct_green IS NOT NULL
                 OR kct_yellow IS NOT NULL OR ("mtb:scale" IS NOT NULL AND (("access"<>'private' AND "access"<>'no') OR "access" IS NULL OR ("access" IN ('private', 'no') AND bicycle='yes')))
                 OR "mtb:scale:uphill" IS NOT NULL OR ("highway"='track' AND "tracktype"='grade1')))
-        ''')
+        ''' % bboxquery)
     while True:
         # Fetch some of the result.
         rows = relationCursor.fetchmany(100)
@@ -97,8 +97,8 @@ def main():
     for r in listOfRoutes:
         auxiliaryCursor.execute('''
             SELECT way, highway, tracktype FROM planet_osm_line
-              WHERE osm_id=%s AND (("access"<>'private' AND "access"<>'no') OR "access" IS NULL OR ("access" IN ('private', 'no') AND bicycle='yes'))
-        ''' % r.id)
+              WHERE %s AND osm_id=%s AND (("access"<>'private' AND "access"<>'no') OR "access" IS NULL OR ("access" IN ('private', 'no') AND bicycle='yes'))
+        ''' % (bboxquery, r.id))
         row = auxiliaryCursor.fetchone()
         # Some route IDs from relations may not be present in line table, ie. out of bounding box, those are ignored
         if row is not None:

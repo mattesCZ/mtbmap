@@ -2,7 +2,7 @@ var map = L.map('map', {
     zoomControl: false
 }).setView([49.82, 15.00], 8);
 
-var mtbmapTileLayer = new L.TileLayer('http://mtbmap.cz/mtbmap_tiles/{z}/{x}/{y}.png', {
+var mtbmapTileLayer = new L.TileLayer('http://tile.mtbmap.cz/mtbmap_tiles/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: 'Data: <a href="http://openstreetmap.org">OpenStreetMap</a>,&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a>'
 });

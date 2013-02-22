@@ -41,7 +41,7 @@
         });
 
 // basic MTB layers
-        map.addLayer(new OpenLayers.Layer.OSM("MTB Map", "mtbmap_tiles/", {type: 'png', numZoomLevels: 19, getURL: getTileURL}));
+        map.addLayer(new OpenLayers.Layer.OSM("MTB Map", "http://tile.mtbmap.cz/mtbmap_tiles/", {type: 'png', numZoomLevels: 19, getURL: getTileURL}));
 //        map.addLayer(new OpenLayers.Layer.OSM("MTB Map Complete", "osm_tiles/", {type: 'png', numZoomLevels: 19, getURL: getTileURL}));
 //        map.addLayer(new OpenLayers.Layer.OSM("Shading + contours", "shade_tiles/", {type: 'png', numZoomLevels: 19, getURL: getTileURL}));
 

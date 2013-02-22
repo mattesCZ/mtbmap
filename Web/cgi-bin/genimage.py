@@ -9,7 +9,7 @@ from math import log10
 
 def main():
 #    mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/MTB-main.xml"
-    mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/print.xml"
+    mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/mapnik2print.xml"
 #    map_uri = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/export.png"
     # handle input string
     rawinput = str(sys.stdin.readlines())

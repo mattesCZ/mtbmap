@@ -22,9 +22,9 @@ def applyBBox(north, west, south, east, filename, format):
     if (format=='pbf'):
 #        if (len(sourceFiles)>1):
         outputFile = 'bbox_' + filename
-        bboxCommand = osmosis + ' --read-' + format + ' file=' + datadir + filename + ' --bounding-box \
+        bboxCommand = osmosis + ' --read-' + format + ' file=' + datadir + filename + ' --buffer bufferCapacity=1000 --bounding-box \
                       left="' + west + '" right="' + east +'" top="' + north +'" bottom="' + south + '" \
-                      --write-' + format + ' file=' + datadir + outputFile + ' omitmetadata=true'
+                      --write-' + format + ' file=' + datadir + outputFile
 #        else:
 #            outputFile = 'bbox_' + string.replace(filename, '.pbf', '.bz2')
 #            bboxCommand = osmosis + ' --read-' + format + ' file=' + datadir + filename + ' --bounding-box \
@@ -48,7 +48,7 @@ def mergeFiles(boundedFiles):
     if (sort=='yes'):
         for file in boundedFiles:
             print 'sorting file ' + file + ' for merge...'
-            res = os.system(osmosis + ' --read-' + format + ' file=' + datadir + file + ' --sort --write-' + format + ' file=' + datadir + 'sort_' + file)
+            res = os.system(osmosis + ' --read-' + format + ' file=' + datadir + file + ' --buffer bufferCapacity=1000 --sort --write-' + format + ' file=' + datadir + 'sort_' + file)
             if (res == 0):
                 os.remove(datadir + file)
                 os.rename(datadir + 'sort_' + file, datadir + file)
@@ -63,13 +63,13 @@ def mergeFiles(boundedFiles):
                 mergedFile = 'merged.pbf'
             else:
                 mergedFile = str(count-1) + 'merged.pbf'
-            mergeCommand = osmosis + ' --read-' + format + ' file=' + datadir + lastMerged + ' --read-' + format + ' file=' + datadir + boundedFiles[count-1] + ' --merge --write-' + format + ' file=' + datadir + mergedFile
+            mergeCommand = osmosis + ' --read-' + format + ' file=' + datadir + lastMerged + ' --read-' + format + ' file=' + datadir + boundedFiles[count-1] + ' --buffer bufferCapacity=1000  --merge --write-' + format + ' file=' + datadir + mergedFile
         else:
             if (count == 2):
                 mergedFile = 'merged.osm.bz2'
             else:
                 mergedFile = str(count-1) + 'merged.osm.bz2'
-            mergeCommand = osmosis + ' --read-' + format + ' file=' + datadir + lastMerged + ' --read-' + format + ' file=' + datadir + boundedFiles[count-1] + ' --merge --write-' + format + ' file=' + datadir + mergedFile
+            mergeCommand = osmosis + ' --read-' + format + ' file=' + datadir + lastMerged + ' --read-' + format + ' file=' + datadir + boundedFiles[count-1] + ' --buffer bufferCapacity=1000  --merge --write-' + format + ' file=' + datadir + mergedFile
         print 'Merging file ' + boundedFiles[count-1] + ' to complete merge file...'
         res = os.system(mergeCommand)
         if (res!=0):
@@ -84,7 +84,7 @@ def mergeFiles(boundedFiles):
     return mergedFile
 
 def loadDB(database, file, style, cache, port):
-    loadCommand = osm2pgsql + ' -s -d ' + database + ' ' + datadir + file + ' -S ' + style + ' -C ' + str(cache) + ' -P ' + str(port)
+    loadCommand = osm2pgsql + ' -s -d ' + database + ' ' + datadir + file + ' -S ' + style + ' -C ' + str(cache) + ' -P ' + str(port) + ' --number-processes 8 '
     return os.system(loadCommand)
 
 def refreshDate(file,date):
