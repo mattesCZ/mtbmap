@@ -68,6 +68,11 @@ admin.site.register(models.Map, MapAdmin)
 admin.site.register(models.Layer)
 admin.site.register(models.MapLayer)
 
+admin.site.register(models.DataSource)
+admin.site.register(models.PostGIS)
+admin.site.register(models.Gdal)
+admin.site.register(models.Shape)
+
 admin.site.register(models.Style, StyleAdmin)
 admin.site.register(models.StyleLayer)
 admin.site.register(models.RuleStyle)

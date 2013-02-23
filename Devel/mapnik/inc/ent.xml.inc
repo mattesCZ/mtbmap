@@ -1,0 +1,2 @@
+<!ENTITY passwd "YourDatabasePassword">
+

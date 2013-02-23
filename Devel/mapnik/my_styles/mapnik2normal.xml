@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE Map [ <!ENTITY % ent SYSTEM "../inc/ent.xml.inc"> %ent; ]>
-<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" background-color="rgb(114,155,249)" minimum-version="0.7.2">
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" background-color="rgb(114,155,249)" font-directory="/usr/share/fonts/truetype/ttf-dejavu" minimum-version="0.7.2">
   <FontSet name="book-fonts">
     <Font face-name="DejaVu Sans Book"/>
   </FontSet>
@@ -319,14 +319,14 @@
     <Rule name="!popis vrstevnic po 100 metrech">
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>400000</MaxScaleDenominator>
-      <TextSymbolizer face-name="DejaVu Sans Book" fill="rgb(170,71,30)" halo-radius="1" placement="line" size="8">[height]</TextSymbolizer>
+      <TextSymbolizer face-name="DejaVu Sans Book" fill="rgb(170,71,30)" halo-radius="1" placement="line" size="8" upright="right">[height]</TextSymbolizer>
     </Rule>
   </Style>
   <Style name="contours-text50">
     <Rule name="!popis vrstevnic po 50 metrech">
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <TextSymbolizer face-name="DejaVu Sans Book" fill="rgb(170,71,30)" halo-radius="1" placement="line" size="8">[height]</TextSymbolizer>
+      <TextSymbolizer face-name="DejaVu Sans Book" fill="rgb(170,71,30)" halo-radius="1" placement="line" size="8" upright="right">[height]</TextSymbolizer>
     </Rule>
   </Style>
   <Style name="contours10">
@@ -12212,7 +12212,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">contours</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-180,-89.99,180,89.99</Parameter>
     </Datasource>
@@ -12226,7 +12226,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">contours</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-180,-89.99,180,89.99</Parameter>
     </Datasource>
@@ -12236,12 +12236,12 @@
     <StyleName>contours50</StyleName>
     <Datasource>
       <Parameter name="type">postgis</Parameter>
-      <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 50 = 0 AND height::integer % 100 != 0) as "contours50"</Parameter>
+      <Parameter name="table">(SELECT way,height::integer FROM contours WHERE height::integer % 50 = 0 AND height::integer % 100 != 0) as "contours50"</Parameter>
       <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">contours</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-180,-89.99,180,89.99</Parameter>
     </Datasource>
@@ -12251,12 +12251,12 @@
     <StyleName>contours100</StyleName>
     <Datasource>
       <Parameter name="type">postgis</Parameter>
-      <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 100 = 0) as "contours100"</Parameter>
+      <Parameter name="table">(SELECT way,height::integer FROM contours WHERE height::integer % 100 = 0) as "contours100"</Parameter>
       <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">contours</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-180,-89.99,180,89.99</Parameter>
     </Datasource>

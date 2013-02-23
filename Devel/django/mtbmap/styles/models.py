@@ -1797,13 +1797,13 @@ class LegendItem(models.Model):
             s.rules.append(mapnik_rule)
         ds = None
         if self.geometry=='Point':
-            ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from points) as ln', user='xtesar7', password='')
+            ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from legend_points) as ln', user='xtesar7', password='')
         elif self.geometry=='LineString':
             size = (size[1], 3*size[1])
-            ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from linestrings) as ln', user='xtesar7', password='')
+            ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from legend_linestrings) as ln', user='xtesar7', password='')
         elif self.geometry=='Collection':
             size = (max(size[0], 50), max(size[1], 50))
-            ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from collections) as ln', user='xtesar7', password='')
+            ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from legend_collections) as ln', user='xtesar7', password='')
         else:
             # Raster... special legend creation
             print "Raster Layer, legend not created, id %i" % self.id
