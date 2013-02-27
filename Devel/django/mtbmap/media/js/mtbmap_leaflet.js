@@ -102,10 +102,12 @@ var overlayLayers = {
 //    "MTB obtížnost": mtbmapSymbolsTileLayer
 }
 
-L.control.layers(baseLayers, overlayLayers).addTo(map)
+//L.control.layers(baseLayers, overlayLayers).addTo(map)
+layers = new L.Control.Layers(baseLayers, overlayLayers);
+map.addControl(layers)
 map.addControl(new L.Control.Permalink({
     text: 'Permalink',
-    layers: baseLayers,
+    layers: layers,
     position: 'bottomright'
 }));
 
@@ -143,7 +145,7 @@ $(document).ready(function() {
             $('#content').hide();
             menuActive = '';
         } else {
-            $.get("/map/legend/"+ map.getZoom() +"/", function(data) {
+            $.get("/map/legend/", {zoom: map.getZoom()}, function(data) {
                 $('#content').html(data).show();
             });
             menuActive = 'legend';
@@ -193,7 +195,7 @@ function switchRoutesMenu(name) {
 
 function onMapZoom(e) {
     if (menuActive=='legend') {
-        $.get("/map/legend/"+ map.getZoom() +"/", function(data) {
+        $.get("/map/legend/", {zoom: map.getZoom()}, function(data) {
             $('#content').html(data).show();
         });
     }

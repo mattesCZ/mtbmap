@@ -91,22 +91,20 @@ def add_attributes():
             for key, value in row.items():
 #                way.__dict__[key] = value
                 if value:
-                    try:
-                        if key in ('tracktype', 'width', 'mtbscale', 'mtbscaleuphill'):
-                            floatvalue = to_float(value)
-                            if key=='width':
-                                way.__dict__[key] = floatvalue
-                            else:
-                                if floatvalue:
-                                    way.__dict__[key] = int(floatvalue)
-                                else:
-                                    way.__dict__[key] = None
-                        elif key in ('sac_scale'):
-                            way.__dict__[key] = sac_scale_values.index(value)
+                    if key in ('tracktype', 'width', 'mtbscale', 'mtbscaleuphill'):
+                        floatvalue = to_float(value)
+                        if key == 'width':
+                            way.__dict__[key] = floatvalue
                         else:
-                            way.__dict__[key] = value
-                    except ValidationError:
-                        print 'Wrong value for osm_id:', way.osm_id, 'Key:', key,'Value:' , value
+                            if floatvalue:
+                                way.__dict__[key] = int(floatvalue)
+                            else:
+                                way.__dict__[key] = None
+                    elif key in ('sac_scale'):
+                        if value in sac_scale_values:
+                            way.__dict__[key] = sac_scale_values.index(value)
+                    else:
+                        way.__dict__[key] = value
         way.save()
     cursor.close()
     print 'All attributes updated successfully'

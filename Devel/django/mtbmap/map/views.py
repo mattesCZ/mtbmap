@@ -25,8 +25,9 @@ def index(request):
 def home(request):
     return TemplateResponse(request, 'map/home.html', {})
 
-def legend(request, zoom):
-    zoom = int(zoom)
+def legend(request):
+#    zoom = int(zoom)
+    zoom = int(request.GET['zoom'])
     legenditems = Legend.objects.all()[0].legend_items(zoom)
     return TemplateResponse(request, 'map/legend.html', {'zoom': zoom, 'legenditems': legenditems})
 
@@ -134,6 +135,7 @@ def export(request):
 def routes(request):
     classes = WeightClass.objects.all().order_by('order')
     return TemplateResponse(request, 'map/routes_production.html', {'classes': classes})
+#    return TemplateResponse(request, 'map/routes.html', {'classes': classes})
 
 def places(request):
     return TemplateResponse(request, 'map/places.html', {})
@@ -193,7 +195,7 @@ def findroute(request):
         multiroute = MultiRoute(points, params)
         route_line = multiroute.find_route()
 #        print multiroute.envelope
-        print multiroute.length
+        print "Length:", multiroute.length
         return HttpResponse(route_line.geojson, content_type='application/json')
 
 def gpxupload(request):

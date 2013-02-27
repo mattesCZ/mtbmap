@@ -34,12 +34,12 @@ class Way(geomodels.Model):
     x2 = models.FloatField()
     y2 = models.FloatField()
     reverse_cost = models.FloatField(null=True, blank=True)
-    osm_id = models.PositiveIntegerField(null=True, blank=True)
+    osm_id = models.BigIntegerField(null=True, blank=True)
     the_geom = geomodels.LineStringField()
-    source = models.IntegerField()
-    target = models.IntegerField()
-    osm_source = models.PositiveIntegerField(null=True, blank=True)
-    osm_target = models.PositiveIntegerField(null=True, blank=True)
+    source = models.BigIntegerField()
+    target = models.BigIntegerField()
+    osm_source = models.BigIntegerField(null=True, blank=True)
+    osm_target = models.BigIntegerField(null=True, blank=True)
 
     #cost attributes
     highway = models.TextField(null=True, blank=True)
@@ -142,7 +142,7 @@ class Way(geomodels.Model):
     def weight(self, params, distance=None):
         weights = [1, 2, 3, 4, 5]
         preferences = {'highway':1, 'tracktype':1, 'width':1, 'sac_scale':1, 'mtbscale':1, 'surface':1, 'osmc':1}
-        print params
+#        print params
 #        print self.__dict__
         for feature in preferences.keys():
 #            print feature

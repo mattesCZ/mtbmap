@@ -59,14 +59,14 @@ class Route:
     # find route with the smallest cost
     # return route LineString
     def best_route(self):
-#        print self.bbox
         if self.start_way.id==self.end_way.id:
             route = self.start_way.point_to_point(self.start_point, self.end_point)
             return MultiLineString(route)
         else:
             temp1, temp2, start_id = self.start_way.split(self.start_point)
             temp3, temp4, end_id = self.end_way.split(self.end_point)
-            edge_ids = self.dijkstra(start_id, end_id)
+            edge_ids = self.astar(start_id, end_id)
+#            edge_ids = self.dijkstra(start_id, end_id)
             route, route_length = self.connect_edges(edge_ids)
             self.length = route_length
             remove = temp1, temp2, temp3, temp4
@@ -111,6 +111,7 @@ class Route:
 
     # shortcut for shortest_path by pgrouting (uses dijkstra algorithm)
     def dijkstra(self, source, target):
+        print 'dijkstra started'
         cursor = connection.cursor()
         cursor.execute("SELECT edge_id FROM shortest_path(%s, %s, %s, false, false)", [self.params.sql_dijkstra, source, target])
     #    cursor.execute("SELECT edge_id FROM shortest_path('SELECT id, source::int4, target::int4,  class_id*length::double precision  AS cost FROM map_way', %s, %s, false, false)", [source, target])
@@ -130,11 +131,9 @@ class Route:
             bbox = point.buffer(radius).envelope
             ways = Way.objects.filter(the_geom__intersects=bbox).extra(where=[self.params.extra_where()]).distance(point).order_by('distance')
             if len(ways):
-                print ways
                 best_weight = ways[0].weight(self.params.params, ways[0].distance.km)
                 nearest_way = ways[0]
                 for way in ways:
-                    print way
                     distance = way.distance.km
                     if distance>best_weight:
                         found=True
@@ -144,7 +143,7 @@ class Route:
                         if weighted_distance<best_weight:
                             best_weight = weighted_distance
                             nearest_way = way
-        print nearest_way.osm_id, nearest_way.weight(self.params.params, nearest_way.distance.km), nearest_way.distance.km
+#        print nearest_way.osm_id, nearest_way.weight(self.params.params, nearest_way.distance.km), nearest_way.distance.km
         return nearest_way
 
 class RouteParams:
@@ -160,14 +159,14 @@ class RouteParams:
         cost = self.cost_clause()
 #        where = ''
 #        cost = 'length'
-        return 'SELECT id, source, target, %s AS cost, x1, x2, y1, y2 FROM map_way %s' % (cost, where)
+        return 'SELECT id, source::int4, target::int4, %s AS cost, x1, x2, y1, y2 FROM map_way %s' % (cost, where)
 
     # create sql query for pgrouting dijkstra
     # return sql query string
     def weighted_ways_dijkstra(self):
         where = self.where_clause()
         cost = self.cost_clause()
-        return 'SELECT id, source, target, %s AS cost FROM map_way %s' % (cost, where)
+        return 'SELECT id, source::int4, target::int4, %s AS cost FROM map_way %s' % (cost, where)
 
     # given routing params, create WHERE clause of SQL query
     # return string
@@ -198,7 +197,3 @@ class RouteParams:
 
     def extra_where(self):
         return self.where_clause().replace('WHERE ', '')
-
-
-
-

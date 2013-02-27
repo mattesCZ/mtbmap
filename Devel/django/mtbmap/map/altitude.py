@@ -211,8 +211,8 @@ def altitude2svg(nodes, sumdist):
         dist = dist + step
     # print ascending and descending
     ascdesc = ascending(nodes)
-    svg += '    <text fill="black" x="450" y="20">Ascending: ' + str(ascdesc[0]) + '</text>\n'
-    svg += '    <text fill="black" x="550" y="20">Descending: ' + str(ascdesc[1]) + '</text>\n'
+    svg += '    <text fill="black" text-anchor="middle" x="550" y="20">Ascending: ' + str(ascdesc[0]) + ' Descending: ' + str(ascdesc[1]) + '</text>\n'
+#    svg += '    <text fill="black" x="550" y="20">Descending: ' + str(ascdesc[1]) + '</text>\n'
     svg += '    <text fill="black" x="2" y="25">Height (m)</text>\n'
     # print SVG end element
     svg += '</svg>'
