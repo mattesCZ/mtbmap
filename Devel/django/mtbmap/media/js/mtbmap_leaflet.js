@@ -1,6 +1,14 @@
+var initLatlng = new L.LatLng(49.50, 16.00);
+var initZoom = 6;
+
+if ($.cookie('latitude') && $.cookie('longitude') && $.cookie('zoom')) {
+    initLatlng = new L.LatLng($.cookie('latitude'), $.cookie('longitude'));
+    initZoom = $.cookie('zoom');
+}
+
 var map = L.map('map', {
     zoomControl: false
-}).setView([49.82, 15.00], 8);
+}).setView(initLatlng, initZoom);
 
 var mtbmapTileLayer = new L.TileLayer('http://tile.mtbmap.cz/mtbmap_tiles/{z}/{x}/{y}.png', {
     maxZoom: 18,
@@ -232,6 +240,9 @@ $(document).ready(function() {
 });
 
 function onMapMoveEnd(e) {
+    $.cookie('latitude', map.getCenter().lat, {expires: 7});
+    $.cookie('longitude', map.getCenter().lng, {expires: 7});
+    $.cookie('zoom', map.getZoom(), {expires: 7});
     if (menuActive=='export' && !userChanged) {
         setCurrentBounds();
     }
