@@ -42,6 +42,17 @@ def exportmap(request):
                                   context_instance=RequestContext(request))
     else:
         map_title = request.POST['map_title']
+        if map_title.startswith('orlice_'):
+            try:
+                side = map_title.replace('orlice_', '')[0]
+                if side in ('n', 'e', 's', 'w'):
+                    orientation = side
+                else:
+                    orientation = 'n'
+            except IndexError:
+                orientation = 'n'
+        else:
+            orientation = 'n'
         mapqueryset = Map.objects.filter(name='MTB mapa')
         if mapqueryset.exists():
             map = mapqueryset[0]
@@ -76,10 +87,10 @@ def exportmap(request):
             highres = request.POST['export_highres']
         except (KeyError, 'highres not checked'):
             highres = False
-            map_im = map_image(zoom, left, bottom, right, top, line, highres)
+            map_im = map_image(zoom, left, bottom, right, top, line, orientation, highres)
         else:
             highres = True
-            map_im = map_image(zoom, left, bottom, right, top, line, highres)
+            map_im = map_image(zoom, left, bottom, right, top, line, orientation, highres)
         try:
             renderlegend = request.POST['export_legend']
         except (KeyError, 'export_legend not checked'):
@@ -99,7 +110,7 @@ def exportmap(request):
             imprint_im = Image.new('RGBA', (0, 0), 'white')
         else:
             imprint_im = imprint_image(map.attribution, map_im.size[0], 20, 12, highres)
-        if len(map_title)>0:
+        if len(map_title)>0 and not map_title.startswith('orlice_'):
             name_im = name_image(map_title, map_im.size[0])
         else:
             name_im = Image.new('RGBA', (0, 0), 'white')

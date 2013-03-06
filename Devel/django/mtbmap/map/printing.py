@@ -81,16 +81,22 @@ def legend_image(legend, zoom, gap, position='side', max_edge=None, highres=True
             column += 1
     return Image.open(StringIO(image.tostring('png')))
 
-def map_image(zoom, left, bottom, right, top, line, highres=True):
+def map_image(zoom, left, bottom, right, top, line, orientation='n', highres=True):
     mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/mapnik2normal.xml"
+    if orientation != 'n':
+        mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/mapnik2orlice_%s.xml" % str(orientation)
     base = 0.000005364418029785156 # longitude range of 1 pixel at zoom 18
     zoom_conversion = base*2**(18-zoom)
     imgx = int(round((right - left)/zoom_conversion))
     lat_center = (top + bottom)/2
     latitude_conversion = zoom_conversion * cos(radians(lat_center))
     imgy = int(round((top - bottom)/latitude_conversion))
+    if orientation in ('w', 'e'):
+        imgx, imgy = imgy, imgx
     if highres:
         mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/mapnik2print.xml"
+        if orientation != 'n':
+            mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/mapnik2print_orlice_%s.xml" % str(orientation)
         imgx = 2*imgx
         imgy = 2*imgy
 
@@ -98,8 +104,25 @@ def map_image(zoom, left, bottom, right, top, line, highres=True):
     m = mapnik.Map(imgx, imgy)
     mapnik.load_map(m, mapfile)
     prj = mapnik.Projection("+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over")
-    bottom_left = prj.forward(mapnik.Coord(left, bottom))
-    top_right = prj.forward(mapnik.Coord(right, top))
+    # North on top
+    n0 = prj.forward(mapnik.Coord(left, bottom))
+    n1 = prj.forward(mapnik.Coord(right, top))
+    # East on top
+    e0 = mapnik.Coord(-n0.y, n0.x)
+    e1 = mapnik.Coord(-n1.y, n1.x)
+    # South on top
+    s0 = mapnik.Coord(-n1.x, -n1.y)
+    s1 = mapnik.Coord(-n0.x, -n0.y)
+    # West on top
+    w0 = mapnik.Coord(-e1.x, -e1.y)
+    w1 = mapnik.Coord(-e0.x, -e0.y)
+#    bottom_left = prj.forward(mapnik.Coord(left, bottom))
+#    top_right = prj.forward(mapnik.Coord(right, top))
+    boxes = {'n': mapnik.Envelope(n0.x,n0.y,n1.x,n1.y),
+             'e' : mapnik.Envelope(e0.x,e0.y,e1.x,e1.y),
+             's' : mapnik.Envelope(s0.x,s0.y,s1.x,s1.y),
+             'w' : mapnik.Envelope(w0.x,w0.y,w1.x,w1.y)
+            }
 
     if line:
         gpxstyle = mapnik.Style()
@@ -123,7 +146,7 @@ def map_image(zoom, left, bottom, right, top, line, highres=True):
         gpxlayer.styles.append('gpxstyle')
         m.layers.append(gpxlayer)
 
-    bbox = mapnik.Envelope(bottom_left.x,bottom_left.y,top_right.x,top_right.y)
+    bbox = boxes[orientation]
     m.zoom_to_box(bbox)
     im = mapnik.Image(imgx, imgy)
     mapnik.render(m, im)
