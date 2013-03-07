@@ -131,16 +131,20 @@ class Way(geomodels.Model):
         to_source.save()
         to_target.save()
 
-        wts = Way.objects.filter(id=to_source.id).length()
-        to_source.length = wts[0].length.km
-        wtt = Way.objects.filter(id=to_target.id).length()
-        to_target.length = wtt[0].length.km
+        # workaround to compute correct lengths
+#        wts = Way.objects.filter(id=to_source.id).length()
+        to_source.length = Way.objects.length().get(pk=to_source.id).length.km
+#        wtt = Way.objects.filter(id=to_target.id).length()
+        to_target.length = Way.objects.length().get(pk=to_target.id).length.km
         to_source.save()
         to_target.save()
-        return (to_source.id, to_target.id, vertice)
+        return (to_source, to_target, vertice)
 
     def weight(self, params, distance=None):
         weights = [1, 2, 3, 4, 5]
+        if self.highway=='temp':
+            print 'returning temp weight', self.length
+            return self.length
         preferences = {'highway':1, 'tracktype':1, 'width':1, 'sac_scale':1, 'mtbscale':1, 'surface':1, 'osmc':1}
 #        print params
 #        print self.__dict__
