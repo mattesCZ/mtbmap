@@ -215,7 +215,7 @@ $(document).ready(function() {
     $('#map').focus();
     if (window.File && window.FileReader && window.FileList && window.Blob) {
     } else {
-        alert('The File APIs are not fully supported in this browser.');
+        alert(LANG.fileAPIError);
     }
 });
 
@@ -349,7 +349,7 @@ function addr_search() {
         $('#places_results').empty();
         if (items.length != 0) {
             $('<p>', {
-                html: "Search results:"
+                html: LANG.searchResults + ': '
             }).appendTo('#places_results');
             $('<ul/>', {
                 'class': 'results_list',
@@ -357,7 +357,7 @@ function addr_search() {
             }).appendTo('#places_results');
         } else {
             $('<p>', {
-                html: "No results found"
+                html: LANG.noResults
             }).appendTo('#places_results');
         }
     });
@@ -374,7 +374,7 @@ function chooseAddr(lat, lng, type, id) {
     $.get('/map/getheight/', {
         'profile_point': location.toString()
     }, function(data) {
-        $('#' + id + " > #elevation").html('<p>Elevation: ' + data + ' m</p>');
+        $('#' + id + " > #elevation").html('<p>' + LANG.elevation + ': ' + data + ' m</p>');
     });
 }
 
@@ -453,9 +453,9 @@ function RouteLine(latlngs, lineOptions) {
     this.distanceString = function() {
         d = this.getDistance()
         if (d > 1000) {
-            return 'Aktuální délka: ' + (d/1000).toFixed(2) + ' km';
+            return LANG.distance + ': ' + (d/1000).toFixed(2) + ' km';
         } else {
-            return 'Aktuální délka: ' + d.toFixed(2) + ' m';
+            return LANG.distance + ': ' + d.toFixed(2) + ' m';
         }
     }
     this._marker = function(latlng) {
@@ -512,7 +512,7 @@ function RouteLine(latlngs, lineOptions) {
         //            latlngs = line.getLatLngs();
         //        }
         if (latlngs.length<=1) {
-            L.popup().setLatLng(map.getCenter()).setContent('<h3>Přidej další body</h3>').openOn(map);
+            L.popup().setLatLng(map.getCenter()).setContent('<h3>' + LANG.addPoints + '</h3>').openOn(map);
         } else {
             var params = $('#routes_params').serializeArray();
             $.post("/map/findroute/", {
@@ -651,20 +651,20 @@ function parseGPX(data) {
     try {
         gpxdoc = $.parseXML(data);
     } catch (err) {
-        alert("GPX file is not valid.");
+        alert(LANG.gpxNotValid);
         return;
     }
     $gpx = $( gpxdoc );
     root = $gpx.find("gpx");
     //    alert(root.length);
     if (!root.length) {
-        alert("GPX file is not valid.");
+        alert(LANG.gpxNotValid);
         return;
     }
     track = root.find("trk");
     segments = track.find("trkseg");
     if (!segments.length) {
-        alert("GPX file contains no trackpoints or is not valid.");
+        alert(LANG.gpxNoTrackpoints);
         return;
     }
     //    alert(track);
@@ -682,7 +682,7 @@ function parseGPX(data) {
             });
         });
     } catch (err) {
-        alert("GPX file is not valid.");
+        alert(LANG.gpxNotValid);
         return;
     }
     pLine.reset();

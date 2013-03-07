@@ -17,9 +17,15 @@ from PIL import Image
 import simplejson as json
 #from map.forms import GPXDocForm
 from django.core.urlresolvers import reverse
+from django.utils import translation
 
 def index(request):
-    return render_to_response('map/map.html', {},
+    lang = translation.get_language_from_request(request)
+    if lang in ('cs', 'sk', 'cz', 'cs-cz'):
+        lang = 'cz'
+    else:
+        lang = 'en'
+    return render_to_response('map/map.html', {'lang': lang},
                               context_instance=RequestContext(request))
 
 def home(request):
