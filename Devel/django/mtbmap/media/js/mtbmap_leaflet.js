@@ -512,13 +512,18 @@ function RouteLine(latlngs, lineOptions) {
         //            latlngs = line.getLatLngs();
         //        }
         if (latlngs.length<=1) {
-            L.popup().setLatLng(map.getCenter()).setContent('<h3>' + LANG.addPoints + '</h3>').openOn(map);
+            lPopup(map.getCenter(), '<h3>' + LANG.addPoints + '</h3>');
         } else {
             var params = $('#routes_params').serializeArray();
             $.post("/map/findroute/", {
                 'params':JSON.stringify(params),
                 'routing_line': '['+ latlngs + ']'
             }, function(data) {
+                if (data.properties.status=='notfound') {
+                    position = thisLine.line.getBounds().getCenter();
+                    lPopup(position, LANG.routeNotFound);
+//                    map.panTo(position);
+                }
                 geojsonLine = L.geoJson(data, {
                     style: {
                         color: '#0055ff',
@@ -694,3 +699,8 @@ function parseGPX(data) {
     pLine.show();
     pLine.fitMapView();
 }
+
+function lPopup (position, content) {
+    L.popup().setLatLng(position).setContent(content).openOn(map);
+}
+

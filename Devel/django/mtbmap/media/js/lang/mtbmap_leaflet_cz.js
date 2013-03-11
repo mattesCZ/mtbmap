@@ -6,6 +6,7 @@ LANG = {
     distance: 'Aktuální délka',
     addPoints: 'Přidejte další body',
     gpxNotValid: 'GPX soubor je neplatný.',
-    gpxNoTrackpoints: 'GPX soubor neobsahuje žádné body trasy nebo je neplatný.'
+    gpxNoTrackpoints: 'GPX soubor neobsahuje žádné body trasy nebo je neplatný.',
+    routeNotFound: 'Trasu nebo její část jsme podle zadaných parametrů nenalezli.'
 }
 
