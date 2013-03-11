@@ -210,10 +210,10 @@ def findroute(request):
         latlngs = [coord.strip().replace('LatLng(', '').replace(')','') for coord in line.replace('[', '').replace(']', '').split(',')]
         points = [latlngs[i+1] + ' ' + latlngs[i] for i in range(0, len(latlngs), 2)]
         multiroute = MultiRoute(points, params)
-        route_line = multiroute.find_route()
-#        print multiroute.envelope
-        print "Length:", multiroute.length
-        return HttpResponse(route_line.geojson, content_type='application/json')
+        multiroute.find_multiroute()
+        geojson = multiroute.geojson()
+        print "Length:", multiroute.length, multiroute.status, multiroute.search_index()
+        return HttpResponse(json.dumps(geojson), content_type='application/json')
 
 def gpxupload(request):
     if request.method=='POST':

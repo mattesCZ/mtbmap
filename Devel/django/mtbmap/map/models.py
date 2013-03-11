@@ -5,6 +5,8 @@ from django.contrib.gis.db import models as geomodels
 from django.contrib.gis.geos import *
 from copy import deepcopy
 from random import randint
+import simplejson as json
+from map.latlongmath import haversine
 
 SAC_SCALE_CHOICES = (
  (0, 'hiking'),
@@ -64,9 +66,11 @@ class Way(geomodels.Model):
     def __unicode__(self):
         return u"Way(%s, %s)" % (self.osm_id, self.highway)
 
-    # project point(latlon) on the way
-    # return tuple (projected point on the way, index of the previous way coordinate)
     def point_intersection(self, point):
+        '''
+        Project Point(latlon) on the way.
+        return tuple (projected point on the way, index of the previous way coordinate)
+        '''
         segment, index = self._nearest_segment(point)
         a = Point(segment[0])
         b = Point(segment[-1])
@@ -83,36 +87,51 @@ class Way(geomodels.Model):
             ret = Point(x, y)
         return ret, index
 
-    # find nearest segment of given line
-    # return as tuple (linestring, index of starting point of segment)
     def _nearest_segment(self, point):
+        '''
+        Find nearest segment of Way to the given point.
+        return tuple (linestring, index of starting point of segment)
+        '''
         distances = [ LineString(self.the_geom[i], self.the_geom[i+1]).distance(point) for i in range(len(self.the_geom)-1)]
         index = distances.index(min(distances))
         return LineString(self.the_geom[index], self.the_geom[index+1]), index
 
-    # given point(latlon), find out geometries of splitted points
-    # return tuple (line to source, line to target)
     def lines_to_endpoints(self, point):
+        '''
+        Project point attribute on this Way, find out geometries of this Way
+        splitted in intersection point.
+        return tuple (line to source, line to target)
+        '''
         split_point, index = self.point_intersection(point)
         to_source = LineString(self.the_geom[:index+1] + [split_point])
         to_target = LineString([split_point] + self.the_geom[index+1:])
         return (to_source, to_target)
 
-    # project two points(latlon) on the way, find line between the projections
-    # return LineString
-    # used when both points have the same nearest way
     def point_to_point(self, start, end):
+        '''
+        Project two points(latlon) on the way, find line between the projections.
+        Used when both points have this Way as nearest_way.
+        return Way with correctly computed geometry and length
+        '''
         start_split, start_index = self.point_intersection(start)
         end_split, end_index = self.point_intersection(end)
         if start_index<end_index:
-            return LineString([start_split] + self.the_geom[start_index+1:end_index+1] + [end_split])
+            geometry = LineString([start_split] + self.the_geom[start_index+1:end_index+1] + [end_split])
         else:
-            return LineString([end_split] + self.the_geom[end_index+1:start_index+1] + [start_split])
+            geometry = LineString([end_split] + self.the_geom[end_index+1:start_index+1] + [start_split])
+        way = deepcopy(self)
+        way.id = None
+        way.the_geom = geometry
+        way.length = way.compute_length()
+        print way.length
+        return way
 
-    # split way in the projected point, save them to the database
-    # return tuple (line to source ID, line to target ID, new routing vertice ID)
-    # these new ways should be deleted after route is found
     def split(self, point):
+        '''
+        Split Way in the projected point, save both parts to the database.
+        Way source or target are random negative values (new vertice).
+        return tuple(way to source, way to target, new routing vertice ID)
+        '''
         to_source = deepcopy(self)
         to_source.id = None
         to_target = deepcopy(self)
@@ -132,24 +151,25 @@ class Way(geomodels.Model):
         to_target.save()
 
         # workaround to compute correct lengths
-#        wts = Way.objects.filter(id=to_source.id).length()
         to_source.length = Way.objects.length().get(pk=to_source.id).length.km
-#        wtt = Way.objects.filter(id=to_target.id).length()
         to_target.length = Way.objects.length().get(pk=to_target.id).length.km
         to_source.save()
         to_target.save()
         return (to_source, to_target, vertice)
 
-    def weight(self, params, distance=None):
+    def weight(self, params):
+        '''
+        Compute weight according to given parameters.
+        return int
+        '''
         weights = [1, 2, 3, 4, 5]
         if self.highway=='temp':
-            print 'returning temp weight', self.length
-            return self.length
+            # Rare case, probably impossible to find correct route
+            # Temporary Way should be deleted
+            print 'returning temp weight', self.length, self.id
+            return 3*max(weights)
         preferences = {'highway':1, 'tracktype':1, 'width':1, 'sac_scale':1, 'mtbscale':1, 'surface':1, 'osmc':1}
-#        print params
-#        print self.__dict__
         for feature in preferences.keys():
-#            print feature
             if self.__dict__[feature]!=None:
                 if params[feature].has_key('min'):
                     try:
@@ -182,19 +202,19 @@ class Way(geomodels.Model):
 #                            preferences[feature] = 5
 #                            continue
 #
-#                print 'ok', feature
                 try:
                     preferences[feature] = int(params[feature][str(self.__dict__[feature])])
                 except KeyError, ValueError:
-                    print params[feature]
-                    print 'KeyError', feature, self.__dict__[feature]
+#                    print params[feature]
+#                    print 'KeyError', feature, self.__dict__[feature]
                     preferences[feature] = 1
-        if distance:
-            return weights[max(preferences.values())-1]*distance
-        else:
-            return weights[max(preferences.values())-1]*self.length
+        return weights[max(preferences.values())-1]
 
     def compute_class_id(self, class_conf):
+        '''
+        Compute class ID during import.
+        return int
+        '''
         class_id = ''
         for c in class_conf:
             classname = c['classname']
@@ -236,18 +256,34 @@ class Way(geomodels.Model):
                 class_id += str(id)
         return int(class_id)
 
+    def feature(self, params, status):
+        '''
+        Create GeoJSON Feature object.
+        return JSON like dictionary
+        '''
+        return {
+            'type' : 'Feature',
+            'properties': {
+                'weight': self.weight(params),
+                'length': self.length,
+                'status': status
+            },
+            'geometry': json.loads(self.the_geom.geojson)
+        }
 
-#class Vertice(geomodels.Model):
-#    the_geom = geomodels.PointField()
-#
-#    objects = geomodels.GeoManager()
-#
-#
-#class Node(geomodels.Model):
-#    the_geom = geomodels.PointField()
-#
-#    objects = geomodels.GeoManager()
-#
+    def compute_length(self):
+        '''
+        Compute aproximate length using haversine formula.
+        return length in kilometers
+        '''
+        coords = self.the_geom.coords
+        length = 0
+        for i in range(len(coords)-1):
+            lon1, lat1 = coords[i]
+            lon2, lat2 = coords[i+1]
+            length += haversine(lon1, lat1, lon2, lat2)
+        return length
+
 
 class WeightClass(models.Model):
     classname = models.CharField(max_length=40)
