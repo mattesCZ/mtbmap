@@ -3,6 +3,8 @@ LANG = {
     searchResults: 'Search results',
     noResults: 'No results found',
     elevation: 'Elevation',
+    length: 'Length',
+    weight: 'Weight',
     distance: 'Current distance',
     addPoints: 'Add another points.',
     gpxNotValid: 'GPX file is not valid.',

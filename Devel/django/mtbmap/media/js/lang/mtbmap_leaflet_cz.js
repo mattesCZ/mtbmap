@@ -3,6 +3,8 @@ LANG = {
     searchResults: 'Výsledky hledání',
     noResults: 'Nic nenalezeno',
     elevation: 'Nadmořská výška',
+    length: 'Délka',
+    weight: 'Výhodnost',
     distance: 'Aktuální délka',
     addPoints: 'Přidejte další body',
     gpxNotValid: 'GPX soubor je neplatný.',

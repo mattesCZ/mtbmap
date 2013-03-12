@@ -262,11 +262,14 @@ class Way(geomodels.Model):
         return JSON like dictionary
         '''
         return {
-            'type' : 'Feature',
+            'type': 'Feature',
+            'id': self.id,
             'properties': {
                 'weight': self.weight(params),
                 'length': self.length,
-                'status': status
+                'status': status,
+                'name': self.name,
+                'osm_id': self.osm_id
             },
             'geometry': json.loads(self.the_geom.geojson)
         }

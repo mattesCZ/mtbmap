@@ -451,12 +451,8 @@ function RouteLine(latlngs, lineOptions) {
         }
     }
     this.distanceString = function() {
-        d = this.getDistance()
-        if (d > 1000) {
-            return LANG.distance + ': ' + (d/1000).toFixed(2) + ' km';
-        } else {
-            return LANG.distance + ': ' + d.toFixed(2) + ' m';
-        }
+        d = this.getDistance();
+        return LANG.distance + ': ' + distanceWithUnits(d);
     }
     this._marker = function(latlng) {
         m = new L.marker(latlng, {
@@ -484,13 +480,14 @@ function RouteLine(latlngs, lineOptions) {
         });
         $('#length').html(p.distanceString());
     }
+    //distance in kilometers
     this.getDistance = function() {
         d = 0;
         latlngs = this.line.getLatLngs();
         for (i=1; i<latlngs.length; i++) {
             d += latlngs[i-1].distanceTo(latlngs[i]);
         }
-        return d;
+        return d/1000;
     }
     this.getLine = function() {
         latlngs = this.getLatLngs();
@@ -525,10 +522,8 @@ function RouteLine(latlngs, lineOptions) {
 //                    map.panTo(position);
                 }
                 geojsonLine = L.geoJson(data, {
-                    style: {
-                        color: '#0055ff',
-                        opacity: 1
-                    }
+                    style: routeStyle,
+                    onEachFeature: onEachLineFeature
                 });
                 thisLine.routesGroup.addLayer(geojsonLine);
                 map.fitBounds(geojsonLine.getBounds());
@@ -704,3 +699,70 @@ function lPopup (position, content) {
     L.popup().setLatLng(position).setContent(content).openOn(map);
 }
 
+function routeStyle(feature) {
+    return {
+        color: weightColor(feature.properties.weight),
+        weight: 6,
+        opacity: 1
+    }
+}
+
+function weightColor(weight) {
+    if (weight==1) return '#2222ff'
+    else if (weight==2) return '#3377ff'
+    else if (weight==3) return '#66ccff'
+    else if (weight==4) return '#ff7755'
+    else return '#ff3322';
+}
+
+function highlightLine(e) {
+    var lineLayer = e.target;
+
+    lineLayer.setStyle({
+        weight: 10,
+        color: '#ffffff',
+        opacity: 0.6
+    });
+    lineLayer.bringToFront();
+}
+
+function resetHighlight(e) {
+    geojsonLine.resetStyle(e.target);
+}
+
+function onEachLineFeature(feature, layer) {
+    layer.bindPopup(lineFeatureInfo(feature))
+    layer.on({
+        mouseover: highlightLine,
+        mouseout: resetHighlight
+    });
+}
+
+function lineFeatureInfo(feature) {
+    var info = '';
+    if (feature.properties) {
+        if (feature.properties.name) {
+            info += '<h3>' + feature.properties.name + '<h3>';
+        }
+        info += '<p>'
+        info += LANG.length + ': ' + distanceWithUnits(feature.properties.length);
+        info += '<br>';
+        info += LANG.weight + ': ' + feature.properties.weight.toString();
+        info += '<br>';
+        info += 'OSM ID: <a href="http://www.openstreetmap.org/browse/way/' + feature.properties.osm_id + '" target="_blank">' + feature.properties.osm_id + '</a>'
+        info += '</p>'
+    }
+    return info;
+//    return LANG.length + ': ' + distanceWithUnits(feature.properties.length) +
+//           '<br>' +
+//           'Weight: ' + feature.properties.weight.toString();
+}
+
+// distance parameter in km
+function distanceWithUnits(distance) {
+    if (distance>1) {
+        return distance.toFixed(2) + ' km';
+    } else {
+        return Math.round(distance*1000) + ' m';
+    }
+}
