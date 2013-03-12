@@ -183,3 +183,7 @@ a:hover, .menu-item:hover {
 .margin {
     margin: 10px;
 }
+
+.hidden {
+    visibility: hidden;
+}

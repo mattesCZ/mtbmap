@@ -1,40 +1,55 @@
+// default initial position and zoom, central Europe
 var initLatlng = new L.LatLng(49.50, 16.00);
 var initZoom = 6;
 
+// read last position cookies
 if ($.cookie('latitude') && $.cookie('longitude') && $.cookie('zoom')) {
     initLatlng = new L.LatLng($.cookie('latitude'), $.cookie('longitude'));
     initZoom = $.cookie('zoom');
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// create map object, set initial view
 var map = L.map('map', {
     zoomControl: false
 }).setView(initLatlng, initZoom);
 
+////////////////////////////////////////////////////////////////////////////////
+// define tile layers
 var mtbmapTileLayer = new L.TileLayer('http://tile.mtbmap.cz/mtbmap_tiles/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: 'Data: <a href="http://openstreetmap.org">OpenStreetMap</a>,&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a>'
 });
 mtbmapTileLayer.addTo(map)
-
 var osmTileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: 'Data: <a href="http://openstreetmap.org">OpenStreetMap</a>'
 });
-
 var cyclemapTileLayer = new L.TileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: 'Data: <a href="http://opencyclemap.org">OpenCycleMap</a>'
 });
-
 var hikebikeTileLayer = new L.TileLayer('http://toolserver.org/tiles/hikebike/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: 'Data: <a href="http://www.hikebikemap.de">Hike &amp; Bike Map</a>'
 });
-
+// define tile overlays
 //var mtbmapSymbolsTileLayer = new L.TileLayer('http://mtbmap.cz/overlay-mtbscale_tiles/{z}/{x}/{y}.png', {
 //    maxZoom: 18
 //});
+var baseLayers = {
+    "MTB mapa": mtbmapTileLayer,
+    "OpenStreetMap": osmTileLayer,
+    "OpenCycleMap": cyclemapTileLayer,
+    "Hike & Bike Map": hikebikeTileLayer
+}
+var overlayLayers = {
+//    "MTB obtížnost": mtbmapSymbolsTileLayer
+}
 
+
+////////////////////////////////////////////////////////////////////////////////
+// setup methods for ajax requests
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -67,51 +82,17 @@ function setupPost(e) {
     });
 }
 
-L.control.zoom({
-    position:"topright"
-}).addTo(map)
-
-L.control.scale({
+////////////////////////////////////////////////////////////////////////////////
+// add map controls
+map.addControl(L.control.zoom({position:"topright"}));
+map.addControl(L.control.scale({
     position:"bottomright",
     imperial:false,
     maxWidth:200
-}).addTo(map)
-
-L.Control.Position = L.Control.extend({
-    options: {
-        position: 'bottomright'
-    },
-    onAdd: function(map) {
-        this._map = map;
-        var className = 'leaflet-control-position',
-        container = L.DomUtil.create('div', className)
-        this.container = container;
-        container.innerHTML = this._latlngString(map.getCenter());
-
-        map.on('mousemove', this._update, this);
-        return container;
-    },
-    _update: function(e) {
-        this.container.innerHTML = this._latlngString(e.latlng);
-    },
-    _latlngString: function (latlng) {
-        return latlng.lat.toFixed(5) + ', ' + latlng.lng.toFixed(5);
-    }
-});
-pos = new L.Control.Position({}).addTo(map);
-
-var baseLayers = {
-    "MTB mapa": mtbmapTileLayer,
-    "OpenStreetMap": osmTileLayer,
-    "OpenCycleMap": cyclemapTileLayer,
-    "Hike & Bike Map": hikebikeTileLayer
-}
-var overlayLayers = {
-//    "MTB obtížnost": mtbmapSymbolsTileLayer
-}
-
-//L.control.layers(baseLayers, overlayLayers).addTo(map)
-layers = new L.Control.Layers(baseLayers, overlayLayers);
+})
+);
+map.addControl(new L.Control.Position({}));
+var layers = new L.Control.Layers(baseLayers, overlayLayers);
 map.addControl(layers)
 map.addControl(new L.Control.Permalink({
     text: 'Permalink',
@@ -119,7 +100,39 @@ map.addControl(new L.Control.Permalink({
     position: 'bottomright'
 }));
 
+////////////////////////////////////////////////////////////////////////////////
+// add map events
+map.on('zoomend', onMapZoom);
+map.on('moveend', onMapMoveEnd);
+map.on('click', onMapClick);
+// update legend on map zoom
+function onMapZoom(e) {
+    if (menuActive=='legend') {
+        $.get("/map/legend/", {zoom: map.getZoom()}, function(data) {
+            $('#content').html(data).show();
+        });
+    }
+}
+var userChanged = false;
+function onMapMoveEnd(e) {
+    $.cookie('latitude', map.getCenter().lat, {expires: 7});
+    $.cookie('longitude', map.getCenter().lng, {expires: 7});
+    $.cookie('zoom', map.getZoom(), {expires: 7});
+    if (menuActive=='export' && !userChanged) {
+        setCurrentBounds();
+    }
+}
+function onMapClick(e){
+    if (menuActive=='routes') {
+        pLine.addPoint(e.latlng);
+        if (!pLine.visible) {
+            pLine.show()
+        }
+    }
+}
 
+////////////////////////////////////////////////////////////////////////////////
+// content
 var menuItems = ["home", "legend", "export", "routes", "places"]
 
 var menuActive = ''
@@ -135,6 +148,10 @@ $(window).resize(function(event) {
 });
 
 $(document).ready(function() {
+    // set focus on map
+    $('#map').focus();
+
+    // interactive menu
     $('#content').hide();
     setContentMaxHeight();
     $('#home').bind('click', function () {
@@ -185,44 +202,12 @@ $(document).ready(function() {
         } else {
             $.get("/map/places/", function(data) {
                 $('#content').html(data);
-                submit_on_enter('places_addr', 'places_submit');
+                submitOnEnter('places_addr', 'places_submit');
                 $('#content').show();
             });
             menuActive = 'places'
         }
     });
-});
-
-function switchRoutesMenu(name) {
-    ids = ['user', 'gpx', 'routing'];
-    for (i=0; i<ids.length; i++) {
-        $('#routes_content_'+ids[i]).hide();
-    }
-    $('#routes_content_'+name).show();
-}
-
-function onMapZoom(e) {
-    if (menuActive=='legend') {
-        $.get("/map/legend/", {zoom: map.getZoom()}, function(data) {
-            $('#content').html(data).show();
-        });
-    }
-}
-
-map.on('zoomend', onMapZoom);
-
-$(document).ready(function() {
-    $('#map').focus();
-    if (window.File && window.FileReader && window.FileList && window.Blob) {
-    } else {
-        alert(LANG.fileAPIError);
-    }
-});
-
-////////////////////////////////////////////////////////////////////////////////
-// handling user export:
-var userChanged = false;
-$(document).ready(function() {
     $('#export').bind('click', function () {
         if (menuActive=='export') {
             $('#content').hide();
@@ -239,16 +224,23 @@ $(document).ready(function() {
     });
 });
 
-function onMapMoveEnd(e) {
-    $.cookie('latitude', map.getCenter().lat, {expires: 7});
-    $.cookie('longitude', map.getCenter().lng, {expires: 7});
-    $.cookie('zoom', map.getZoom(), {expires: 7});
-    if (menuActive=='export' && !userChanged) {
-        setCurrentBounds();
+// routes menu switcher
+function switchRoutesMenu(name) {
+    ids = ['user', 'gpx', 'routing'];
+    for (i=0; i<ids.length; i++) {
+        $('#routes_content_'+ids[i]).hide();
+    }
+    $('#routes_content_'+name).show();
+    // check File API in the browser
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+    } else {
+        alert(LANG.fileAPIError);
     }
 }
-map.on('moveend', onMapMoveEnd);
 
+
+////////////////////////////////////////////////////////////////////////////////
+// handling user export:
 function setCurrentBounds() {
     bounds = map.getBounds();
     $('#export_left').val(bounds.getSouthWest().lng.toFixed(6));
@@ -277,13 +269,9 @@ function setMapImageSize() {
 }
 
 function getParams() {
-    $('#export_bounds').val(getBoundsString());
+    $('#export_bounds').val(getBounds().toBBoxString());
     $('#export_zoom').val($('#export_zoom_select').val());
     $('#export_line').val(pLine.getLatLngs());
-}
-
-function getBoundsString() {
-    return getBounds().toBBoxString();
 }
 
 function getBounds() {
@@ -326,9 +314,10 @@ function recalculateBounds() {
         $('#export_bottom').val(southEast.lat.toFixed(6));
     } else return;
 }
+
 ////////////////////////////////////////////////////////////////////////////////
 // handling places
-function submit_on_enter(input_id, submit_id) {
+function submitOnEnter(input_id, submit_id) {
     $("#" + input_id).keyup(function(event){
         if(event.keyCode == 13){
             $("#" + submit_id).click();
@@ -336,14 +325,14 @@ function submit_on_enter(input_id, submit_id) {
     });
 }
 
-function addr_search() {
-    var inp = document.getElementById("places_addr");
+function addrSearch() {
+    var input = $("#places_addr").val();
 
-    $.getJSON('http://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + inp.value, function(data) {
+    $.getJSON('http://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + input, function(data) {
         var items = [];
 
         $.each(data, function(key, val) {
-            items.push("<li class='results_item' id='" + val.osm_id + "' ><a href='#' onclick='chooseAddr(" + val.lat + ", " + val.lon + ", \"" + val.type + "\", " + val.osm_id + ");return false;'>" + val.display_name + '</a><span id="elevation"></span></li>');
+            items.push("<li class='results_item' id='" + val.osm_id + "' ><a href='#' onclick='chooseAddr(" + val.lat + ", " + val.lon + ", \"" + val.type + "\", " + val.osm_id + ", \"" + val.osm_type + "\");return false;'>" + val.display_name + '</a><span id="osm_id"></span><span id="elevation"></span></li>');
         });
 
         $('#places_results').empty();
@@ -351,7 +340,7 @@ function addr_search() {
             $('<p>', {
                 html: LANG.searchResults + ': '
             }).appendTo('#places_results');
-            $('<ul/>', {
+            $('<ul>', {
                 'class': 'results_list',
                 html: items.join('')
             }).appendTo('#places_results');
@@ -362,29 +351,27 @@ function addr_search() {
         }
     });
 }
-function chooseAddr(lat, lng, type, id) {
+// zoom into given lanlng and get elevation data
+function chooseAddr(lat, lng, type, osm_id, osm_type) {
     var location = new L.LatLng(lat, lng);
     map.panTo(location);
-
     if (type == 'city' || type == 'administrative') {
         map.setZoom(12);
     } else {
         map.setZoom(14);
     }
+    $("#" + osm_id + " > #osm_id").html('<p>OSM ID: ' + osmLink(osm_id, osm_type) + '</p>');
     $.get('/map/getheight/', {
         'profile_point': location.toString()
     }, function(data) {
-        $('#' + id + " > #elevation").html('<p>' + LANG.elevation + ': ' + data + ' m</p>');
+        $('#' + osm_id + " > #elevation").html('<p>' + LANG.elevation + ': ' + data + ' m</p>');
     });
 }
 
-
 ////////////////////////////////////////////////////////////////////////////////
 // handling routes
-
 function RouteLine(latlngs, lineOptions) {
     this.line = new L.Polyline(latlngs, lineOptions);
-    //    this.line.on('click', function() {alert('clicked');});
     this.markersGroup = new L.LayerGroup([]);
     this.markerIcon = L.icon({
         iconUrl: '../media/js/images/line-marker.png',
@@ -509,7 +496,7 @@ function RouteLine(latlngs, lineOptions) {
         //            latlngs = line.getLatLngs();
         //        }
         if (latlngs.length<=1) {
-            lPopup(map.getCenter(), '<h3>' + LANG.addPoints + '</h3>');
+            lPopup(map.getCenter(), '<h3>' + LANG.addPoints + '</h3>', true);
         } else {
             var params = $('#routes_params').serializeArray();
             $.post("/map/findroute/", {
@@ -518,7 +505,7 @@ function RouteLine(latlngs, lineOptions) {
             }, function(data) {
                 if (data.properties.status=='notfound') {
                     position = thisLine.line.getBounds().getCenter();
-                    lPopup(position, LANG.routeNotFound);
+                    lPopup(position, LANG.routeNotFound, true);
 //                    map.panTo(position);
                 }
                 geojsonLine = L.geoJson(data, {
@@ -538,16 +525,8 @@ var pLine = new RouteLine([], {
 //    dashArray: '15, 15'
 });
 
-function onMapClick(e){
-    if (menuActive=='routes') {
-        pLine.addPoint(e.latlng);
-        if (!pLine.visible) {
-            pLine.show()
-        }
-    }
-}
-map.on('click', onMapClick);
-
+////////////////////////////////////////////////////////////////////////////////
+// routing GUI functions
 function fitToLine() {
     pLine.fitMapView();
 }
@@ -565,73 +544,19 @@ function getRoute(e) {
     pLine.getRoute();
 }
 
-jsonWeights = {
-    "type": "mtb",
-    "highway" : {
-        "motorway":1,
-        "trunk":1,
-        "primary":1,
-        "secondary":1,
-        "tertiary":1,
-        "pedestrian":1,
-        "residential":1,
-        "unclassified":1,
-        "service":1,
-        "track":1,
-        "road":1,
-        "path":1,
-        "footway":1,
-        "cycleway":1,
-        "bridleway":1,
-        "steps":1
-    },
-    "tracktype" : {
-        "grade1":1,
-        "grade2":1,
-        "grade3":1,
-        "grade4":1,
-        "grade5":1
-    },
-    "width" : {
-        "max":"100",
-        "min":"0"
-    },
-    "surface" : {
-        "asphalt":1,
-        "grass":1
-    },
-    "mtbscale" : {
-        "0":1,
-        "1":1,
-        "2":1,
-        "3":1,
-        "4":1,
-        "5":1,
-        "6":1
-    },
-    "mtbscaleuphill" : {
-        "max":5,
-        "min":0
-    },
-    "osmc" : 1,
-    "sac_scale" : {
-        "max":6,
-        "min":1
-    }
-}
-function gpxUpload(e) {
-    setupPost(e);
-    $.post("/map/gpxupload/", {}, function (data) {
-        geojsonLine = L.geoJson(data, {
-            style: {
-                color: '#0055ff',
-                opacity: 1
-            }
-        });
-        map.addLayer(geojsonLine);
-        map.fitBounds(geojsonLine.getBounds());
-    })
-}
+//function gpxUpload(e) {
+//    setupPost(e);
+//    $.post("/map/gpxupload/", {}, function (data) {
+//        geojsonLine = L.geoJson(data, {
+//            style: {
+//                color: '#0055ff',
+//                opacity: 1
+//            }
+//        });
+//        map.addLayer(geojsonLine);
+//        map.fitBounds(geojsonLine.getBounds());
+//    })
+//}
 
 function handleGPX(e) {
     files = e.target.files;
@@ -695,10 +620,6 @@ function parseGPX(data) {
     pLine.fitMapView();
 }
 
-function lPopup (position, content) {
-    L.popup().setLatLng(position).setContent(content).openOn(map);
-}
-
 function routeStyle(feature) {
     return {
         color: weightColor(feature.properties.weight),
@@ -749,13 +670,10 @@ function lineFeatureInfo(feature) {
         info += '<br>';
         info += LANG.weight + ': ' + feature.properties.weight.toString();
         info += '<br>';
-        info += 'OSM ID: <a href="http://www.openstreetmap.org/browse/way/' + feature.properties.osm_id + '" target="_blank">' + feature.properties.osm_id + '</a>'
+        info += 'OSM ID: ' + osmLink(feature.properties.osm_id, 'way')
         info += '</p>'
     }
     return info;
-//    return LANG.length + ': ' + distanceWithUnits(feature.properties.length) +
-//           '<br>' +
-//           'Weight: ' + feature.properties.weight.toString();
 }
 
 // distance parameter in km
@@ -764,5 +682,17 @@ function distanceWithUnits(distance) {
         return distance.toFixed(2) + ' km';
     } else {
         return Math.round(distance*1000) + ' m';
+    }
+}
+
+function osmLink(osm_id, osm_type) {
+    return '<a href="http://www.openstreetmap.org/browse/' + osm_type + '/' + osm_id + '" target="_blank">' + osm_id + '</a>'
+}
+
+// shortcut for leaflet popup
+function lPopup (position, content, showTip) {
+    popup = L.popup().setLatLng(position).setContent(content).openOn(map);
+    if (showTip) {
+        L.DomUtil.addClass(popup._tipContainer, 'hidden');
     }
 }
