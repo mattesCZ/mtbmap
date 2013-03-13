@@ -7,6 +7,16 @@ from datetime import datetime
 
 weights = [1, 2, 3, 4, 5]
 
+def line_string_to_points(line_string):
+    '''
+    Parse line geometry, represented as a string.
+    return array of GEOS Points
+    '''
+    latlngs = [coord.strip().replace('LatLng(', '').replace(')','') for coord in line_string.replace('[', '').replace(']', '').split(',')]
+    point_strings = [latlngs[i+1] + ' ' + latlngs[i] for i in range(0, len(latlngs), 2)]
+    return [GEOSGeometry('SRID=4326;POINT(%s)' % point) for point in point_strings]
+
+
 class MultiRoute:
     def __init__(self, points, params):
         self.params = RouteParams(self.recreate_params(params))
@@ -60,8 +70,8 @@ class MultiRoute:
         '''
         start = datetime.now()
         for i in range(len(self.points)-1):
-            start_point = GEOSGeometry('SRID=4326;POINT(%s)' % (self.points[i]))
-            end_point = GEOSGeometry('SRID=4326;POINT(%s)' % (self.points[i+1]))
+            start_point = self.points[i]
+            end_point = self.points[i+1]
             route = Route(start_point, end_point, self.params, self.last_route)
             route.find_best_route()
             if route.status == 'notfound':
@@ -73,7 +83,8 @@ class MultiRoute:
         if self.status=='init':
             self.status = 'success'
         end = datetime.now()
-        print (end - start).total_seconds()
+        print 'Find MultiRoute duration:', (end - start).total_seconds()
+        return self.status
 
 class Route:
     def __init__(self, start_point, end_point, params, previous_route=None):
@@ -112,6 +123,7 @@ class Route:
             self.ways = [way_part]
             self.length = way_part.length
             self.cost = self.length * way_part.weight(self.params.raw_params)
+            return self.status
         else:
             temp1, temp2, start_id = self.start_way.split(self.start_point)
             temp3, temp4, end_id = self.end_way.split(self.end_point)
@@ -130,6 +142,7 @@ class Route:
             temp3.delete()
             temp4.delete()
             limit_way.delete()
+            return self.status
 
     def geojson(self):
         if self.status=='init':
@@ -185,7 +198,7 @@ class Route:
         found = False
         while not found:
             bbox = point.buffer(radius).envelope
-            ways = Way.objects.filter(the_geom__bboverlaps=bbox).extra(where=[self.params.extra_where()]).distance(point).order_by('distance')
+            ways = Way.objects.filter(the_geom__bboverlaps=bbox).extra(where=[self.params.where_clause()]).distance(point).order_by('distance')
             if ways.count():
                 best_weight = ways[0].weight(self.params.raw_params) * ways[0].distance.km
                 nearest_way = ways[0]
@@ -236,7 +249,7 @@ class RouteParams:
         Create sql query for pgRouting A Star.
         return sql query string
         '''
-        where = self.where_clause() + " OR highway='temp'"
+        where = 'WHERE ' + self.where_clause() + " OR highway='temp'"
         cost = self.cost_clause()
         return 'SELECT id, source::int4, target::int4, %s AS cost, x1, x2, y1, y2 FROM map_way %s' % (cost, where)
 
@@ -245,7 +258,7 @@ class RouteParams:
         Create sql query for pgRouting Dijkstra.
         return sql query string
         '''
-        where = self.where_clause() + " OR highway='temp'"
+        where = "WHERE " + self.where_clause() + " OR highway='temp'"
         cost = self.cost_clause()
         return 'SELECT id, source::int4, target::int4, %s AS cost FROM map_way %s' % (cost, where)
 
@@ -261,9 +274,10 @@ class RouteParams:
             if part:
                 whereparts.append(part)
         if whereparts:
-            where = "WHERE (" + " AND ".join(whereparts) + ")"
+            where = "(" + " AND ".join(whereparts) + ")"
         else:
-            where = ''
+            # select everything
+            where = '(id IS NOT NULL)'
         return where
 
     def cost_clause(self):
@@ -279,10 +293,3 @@ class RouteParams:
             return 'CASE %s ELSE "length" END' % (' '.join(cases))
         else:
             return 'length'
-
-    def extra_where(self):
-        '''
-        Remove word WHERE from where_clause.
-        return string
-        '''
-        return self.where_clause().replace('WHERE ', '')

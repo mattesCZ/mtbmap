@@ -11,7 +11,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 #import mapnik
 from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
 from map.altitude import altitude_image, height
-from map.routing import MultiRoute
+from map.routing import MultiRoute, line_string_to_points
 #from map.gpx import GPX
 from PIL import Image
 import simplejson as json
@@ -198,7 +198,6 @@ def getheight(request):
     return HttpResponse(point_height, mimetype='text/html')
 
 def findroute(request):
-    from django.contrib.gis.geos import GEOSGeometry
     try:
         params = json.loads(request.POST['params'])
         line = request.POST['routing_line']
@@ -207,12 +206,11 @@ def findroute(request):
         return render_to_response('map/map.html', {},
                                   context_instance=RequestContext(request))
     else:
-        latlngs = [coord.strip().replace('LatLng(', '').replace(')','') for coord in line.replace('[', '').replace(']', '').split(',')]
-        points = [latlngs[i+1] + ' ' + latlngs[i] for i in range(0, len(latlngs), 2)]
+        points = line_string_to_points(line)
         multiroute = MultiRoute(points, params)
-        multiroute.find_multiroute()
+        status = multiroute.find_multiroute()
         geojson = multiroute.geojson()
-        print "Length:", multiroute.length, multiroute.status, multiroute.search_index()
+        print "Length:", multiroute.length, status, multiroute.search_index()
         return HttpResponse(json.dumps(geojson), content_type='application/json')
 
 def gpxupload(request):

@@ -204,7 +204,7 @@ $(document).ready(function() {
                 $('#content').html(data);
                 submitOnEnter('places_addr', 'places_submit');
                 $('#content').show();
-                $('#places_addr').focus()
+                $('#places_addr').focus();
             });
             menuActive = 'places'
         }

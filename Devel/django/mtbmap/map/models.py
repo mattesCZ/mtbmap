@@ -16,6 +16,9 @@ SAC_SCALE_CHOICES = (
  (4, 'demanding_alpine_hiking'),
  (5, 'difficult_alpine_hiking'),
 )
+
+weights = [1, 2, 3, 4, 5]
+
 class Map(models.Model):
     name = models.CharField(max_length=200)
     attribution = models.CharField(max_length=400)
@@ -162,7 +165,6 @@ class Way(geomodels.Model):
         Compute weight according to given parameters.
         return int
         '''
-        weights = [1, 2, 3, 4, 5]
         if self.highway=='temp':
             # Rare case, probably impossible to find correct route
             # Temporary Way should be deleted
@@ -173,7 +175,7 @@ class Way(geomodels.Model):
             if self.__dict__[feature]!=None:
                 if params[feature].has_key('min'):
                     try:
-                        print 'has min', feature
+#                        print 'has min', feature
                         minvalue = float(params[feature]['min'])
                     except ValueError:
                         pass
@@ -183,7 +185,7 @@ class Way(geomodels.Model):
             if self.__dict__[feature]!=None:
                 if params[feature].has_key('max'):
                     try:
-                        print 'has max', feature
+#                        print 'has max', feature
                         maxvalue = float(params[feature]['max'])
                     except ValueError:
                         pass
@@ -303,6 +305,7 @@ class WeightClass(models.Model):
         return self.classname
 
     def get_when_clauses(self, params):
+        default = min(weights)
         clauses = []
 #        print params
         for w in self.orderedweights():
@@ -311,8 +314,9 @@ class WeightClass(models.Model):
             except ValueError:
                 print 'ValueError', self.classname, w.feature, params
             else:
-                when = """WHEN "%s"::text='%s' THEN "length"*%s """ % (self.classname, w.feature, preference)
-                clauses.append(when)
+                if preference != default:
+                    when = """WHEN "%s"::text='%s' THEN "length"*%s """ % (self.classname, w.feature, preference)
+                    clauses.append(when)
         return clauses
 
     def get_where_clauses(self, params):
