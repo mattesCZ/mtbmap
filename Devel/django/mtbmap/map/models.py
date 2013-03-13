@@ -152,13 +152,17 @@ class Way(geomodels.Model):
         to_target.osm_source = None
         to_source.save()
         to_target.save()
+        geom = LineString(point, split_point)
+        geom.set_srid(4326)
+        way_to_intersection = Way(the_geom=geom)
+        way_to_intersection.length = way_to_intersection.compute_length()
 
         # workaround to compute correct lengths
         to_source.length = Way.objects.length().get(pk=to_source.id).length.km
         to_target.length = Way.objects.length().get(pk=to_target.id).length.km
         to_source.save()
         to_target.save()
-        return (to_source, to_target, vertice)
+        return (to_source, to_target, vertice, way_to_intersection)
 
     def weight(self, params):
         '''

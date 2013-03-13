@@ -485,17 +485,6 @@ function RouteLine(latlngs, lineOptions) {
         thisLine = this;
         this.routesGroup.clearLayers();
         latlngs = this.getLatLngs();
-        //        if (latlngs.length>1) {
-        //            start = latlngs[0].lat.toFixed(5) + ' ' + latlngs[0].lng.toFixed(5);
-        //            end = latlngs[latlngs.length-1].lat.toFixed(5) + ' ' + latlngs[latlngs.length-1].lng.toFixed(5);
-        //            $('#routing_start').val(start);
-        //            $('#routing_end').val(end);
-        //        } else {
-        //            start = new L.LatLng($('#routing_start').val());
-        //            end = new L.LatLng($('#routing_end').val());
-        //            line = new L.Polyline([start, end], {});
-        //            latlngs = line.getLatLngs();
-        //        }
         if (latlngs.length<=1) {
             lPopup(map.getCenter(), '<h3>' + LANG.addPoints + '</h3>', true);
         } else {
@@ -507,7 +496,6 @@ function RouteLine(latlngs, lineOptions) {
                 if (data.properties.status=='notfound') {
                     position = thisLine.line.getBounds().getCenter();
                     lPopup(position, LANG.routeNotFound, true);
-//                    map.panTo(position);
                 }
                 geojsonLine = L.geoJson(data, {
                     style: routeStyle,
@@ -582,7 +570,6 @@ function parseGPX(data) {
     }
     $gpx = $( gpxdoc );
     root = $gpx.find("gpx");
-    //    alert(root.length);
     if (!root.length) {
         alert(LANG.gpxNotValid);
         return;
@@ -593,8 +580,6 @@ function parseGPX(data) {
         alert(LANG.gpxNoTrackpoints);
         return;
     }
-    //    alert(track);
-    //    alert(segments[0]);
     points = [];
     var polyline = new L.Polyline([]);
     try {
@@ -670,8 +655,10 @@ function lineFeatureInfo(feature) {
         info += LANG.length + ': ' + distanceWithUnits(feature.properties.length);
         info += '<br>';
         info += LANG.weight + ': ' + feature.properties.weight.toString();
-        info += '<br>';
-        info += 'OSM ID: ' + osmLink(feature.properties.osm_id, 'way')
+        if (feature.properties.osm_id) {
+            info += '<br>';
+            info += 'OSM ID: ' + osmLink(feature.properties.osm_id, 'way')
+        }
         info += '</p>'
     }
     return info;

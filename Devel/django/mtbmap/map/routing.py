@@ -125,8 +125,8 @@ class Route:
             self.cost = self.length * way_part.weight(self.params.raw_params)
             return self.status
         else:
-            temp1, temp2, start_id = self.start_way.split(self.start_point)
-            temp3, temp4, end_id = self.end_way.split(self.end_point)
+            temp1, temp2, start_id, to_start_way = self.start_way.split(self.start_point)
+            temp3, temp4, end_id, to_end_way = self.end_way.split(self.end_point)
             limit_way = self.insert_limit_way(start_id, end_id, self.start_point, self.end_point)
             # use dijkstra or astar search
             edge_ids = self.astar(start_id, end_id)
@@ -135,7 +135,12 @@ class Route:
                 self.status = 'notfound'
             else:
                 self.status = 'success'
-            self.ways = Way.objects.filter(id__in=edge_ids)
+            ways = [to_start_way]
+            for id in edge_ids[:-1]:
+                ways.append(Way.objects.get(pk=id))
+            ways.append(to_end_way)
+            self.ways = ways
+#            self.ways = Way.objects.filter(id__in=edge_ids)
             self.length = sum([way.length for way in self.ways])
             temp1.delete()
             temp2.delete()
