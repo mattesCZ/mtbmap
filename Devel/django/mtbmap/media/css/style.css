@@ -1,0 +1,87 @@
+#map {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+.main-column {
+    width: 414px;
+    text-align: center;
+    z-index: 1;
+}
+#main {
+    position: absolute;
+}
+#footer {
+    position: absolute;
+    bottom: 5px;
+    font-size: x-small;
+    width: 410px;
+}
+.main-tab-content, .subtab-panel {
+    overflow: auto;
+}
+p {
+    text-align: justify;
+    padding: 0 5px 0px 5px;
+    font-size: small;
+}
+a {
+    font-weight: bold;
+    text-decoration: none;
+    color: inherit;
+}
+a:hover {
+    text-decoration: underline;
+}
+#routes-tabs {
+    border: none;
+    background: none;
+}
+.leaflet-control-position {
+    background-color: rgba(255, 255, 255, 0.698);
+    box-shadow: 0 0 5px #BBBBBB;
+    margin: 0;
+    color: #333333;
+    font: 11px/1.5 Verdana,Arial,sans-serif;
+    padding: 0 5px;
+}
+hr {
+    color: #00008b;
+    width: 100%;
+    size: 1px;
+}
+.export_text {
+    margin: 5px;
+}
+.button {
+    font-size: small;
+    font-weight: bold;
+    margin: 10px;
+    background-color: #DDDDDD;
+    border: 2px solid #999999;
+    border-radius: 3px;
+    color: inherit;
+    cursor: pointer;
+    outline-style: none;
+    padding: 2px 10px;
+    text-decoration: none;
+    vertical-align: 1px;
+    display: inline-block;
+}
+.button:hover {
+    background-color: #EEEEEE;
+    text-decoration: underline;
+}
+.results_list {
+    text-align: left;
+    font-size: small;
+}
+table {
+    text-align: left;
+}
+.hidden {
+    visibility: hidden;
+}

@@ -20,7 +20,6 @@ var mtbmapTileLayer = new L.TileLayer('http://tile.mtbmap.cz/mtbmap_tiles/{z}/{x
     maxZoom: 18,
     attribution: 'Data: <a href="http://openstreetmap.org">OpenStreetMap</a>,&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a>'
 });
-mtbmapTileLayer.addTo(map)
 var osmTileLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: 'Data: <a href="http://openstreetmap.org">OpenStreetMap</a>'
@@ -46,7 +45,7 @@ var baseLayers = {
 var overlayLayers = {
 //    "MTB obtížnost": mtbmapSymbolsTileLayer
 }
-
+mtbmapTileLayer.addTo(map);
 
 ////////////////////////////////////////////////////////////////////////////////
 // setup methods for ajax requests
@@ -84,7 +83,9 @@ function setupPost(e) {
 
 ////////////////////////////////////////////////////////////////////////////////
 // add map controls
-map.addControl(L.control.zoom({position:"topright"}));
+map.addControl(L.control.zoom({
+    position:"topright"
+}));
 map.addControl(L.control.scale({
     position:"bottomright",
     imperial:false,
@@ -108,16 +109,24 @@ map.on('click', onMapClick);
 // update legend on map zoom
 function onMapZoom(e) {
     if (menuActive=='legend') {
-        $.get("/map/legend/", {zoom: map.getZoom()}, function(data) {
-            $('#content').html(data).show();
+        $.get("/map/legend/", {
+            zoom: map.getZoom()
+        }, function(data) {
+            $('#tab-legend').html(data);
         });
     }
 }
 var userChanged = false;
 function onMapMoveEnd(e) {
-    $.cookie('latitude', map.getCenter().lat, {expires: 7});
-    $.cookie('longitude', map.getCenter().lng, {expires: 7});
-    $.cookie('zoom', map.getZoom(), {expires: 7});
+    $.cookie('latitude', map.getCenter().lat, {
+        expires: 7
+    });
+    $.cookie('longitude', map.getCenter().lng, {
+        expires: 7
+    });
+    $.cookie('zoom', map.getZoom(), {
+        expires: 7
+    });
     if (menuActive=='export' && !userChanged) {
         setCurrentBounds();
     }
@@ -134,111 +143,117 @@ function onMapClick(e){
 ////////////////////////////////////////////////////////////////////////////////
 // content
 var menuItems = ["home", "legend", "export", "routes", "places"]
-
 var menuActive = ''
 var routesActive = ''
 
-function setContentMaxHeight() {
-    maxheight = $('#map').height() - ($('#header').height() + $('#footer').height() + 42);
-    $('#content').css('max-height', maxheight);    
+function tabHome() {
+    $.get("/map/home/", function(data) {
+        $('#tab-home').html(data);
+    });
+    menuActive = 'home';
 }
-
+function tabLegend() {
+    $.get("/map/legend/", {
+        zoom: map.getZoom()
+    }, function(data) {
+        $('#tab-legend').html(data);
+    });
+    menuActive = 'legend';
+}
+function tabRoutes() {
+    $.get("/map/routes/", function(data) {
+        $('#tab-routes').html(data);
+        if (!pLine.getLatLngs().length>0) {
+            $('.line_buttons').hide();
+        }
+        $('#routes-tabs').tabs({
+            //            collapsible: true,
+            active: 0,
+            heightStyle: 'content',
+            activate: function(event, ui) {
+                var $tabs = $('#routes-tabs').tabs();
+                var selected = $tabs.tabs('option', 'active');
+                // check file API for GPX functions
+                if (selected==1) {
+                    if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
+                        alert(LANG.fileAPIError);
+                    }
+                }
+            }
+        });
+        setContentMaxHeight();
+        $('#routes_accordion').accordion({
+            collapsible: true,
+            active: false,
+            heightStyle: 'content'
+        });
+        $('.fit_to_line').button().click(function(event) {
+            fitToLine();
+        });
+        $('.reset_line').button().click(function(event) {
+            resetLine();
+        });
+        $('.create_profile_button').button().click(function(event) {
+            setProfileParams();
+        });
+        $('.get_route_button').button();
+    });
+    menuActive = 'routes';
+}
+function tabPlaces() {
+    $.get("/map/places/", function(data) {
+        $('#tab-places').html(data);
+        submitOnEnter('places_addr', 'places_submit');
+        $('#places_submit').button().click(function(event) {
+            addrSearch();
+        });
+        $('#places_addr').focus();
+    });
+    menuActive = 'places'
+}
+function tabExport() {
+    $.get("/map/export/", function(data) {
+        $('#tab-export').html(data);
+        setCurrentBounds();
+        $('#set-bounds-button').button().click(function(event) {
+            event.preventDefault();
+            setCurrentBounds();
+        });
+        $('#export-button').button().click(function(event) {
+            getParams();
+        });
+    });
+    menuActive = 'export'
+}
+function setContentMaxHeight() {
+    maxheight = $('#map').height() - ($('#footer').height() + 80);
+    $('.main-tab-content').css('max-height', maxheight);
+    $('.subtab-panel').css('max-height', maxheight-50);
+}
 $(window).resize(function(event) {
     setContentMaxHeight();
 });
-
 $(document).ready(function() {
     // set focus on map
     $('#map').focus();
-
-    // interactive menu
-    $('#content').hide();
+    // set height of main panel
     setContentMaxHeight();
-    $('#home').bind('click', function () {
-        if (menuActive=='home') {
-            $('#content').hide();
-            menuActive = ''
-        } else {
-            $.get("/map/home/", function(data) {
-                $('#content').html(data).show();
-            });
-            menuActive = 'home'
-        }
-    });
-    $('#legend').bind('click', function () {
-        if (menuActive=='legend') {
-            $('#content').hide();
-            menuActive = '';
-        } else {
-            $.get("/map/legend/", {zoom: map.getZoom()}, function(data) {
-                $('#content').html(data).show();
-            });
-            menuActive = 'legend';
-        }
-    });
-    $('#routes').bind('click', function () {
-        if (menuActive=='routes') {
-            $('#content').hide();
-            menuActive = '';
-        } else {
-            $.get("/map/routes/", function(data) {
-                $('#content').html(data).show();
-                $('.routes_menu_item').hide();
-                $('#routes_content_user').show();
-                $('#routes_menu_user').on('change', function () {switchRoutesMenu('user');});
-                $('#routes_menu_gpx').on('change', function () {switchRoutesMenu('gpx');});
-                $('#routes_menu_routing').on('change', function () {switchRoutesMenu('routing');});
-                if (!pLine.getLatLngs().length>0) {
-                    $('#line_buttons').hide();
-                }
-            });
-            menuActive = 'routes';
-        }
-    });
-    $('#places').bind('click', function () {
-        if (menuActive=='places') {
-            $('#content').hide();
-            menuActive = ''
-        } else {
-            $.get("/map/places/", function(data) {
-                $('#content').html(data);
-                submitOnEnter('places_addr', 'places_submit');
-                $('#content').show();
-                $('#places_addr').focus();
-            });
-            menuActive = 'places'
-        }
-    });
-    $('#export').bind('click', function () {
-        if (menuActive=='export') {
-            $('#content').hide();
-            setCurrentBounds();
-            menuActive = ''
-        } else {
-            $.get("/map/export/", function(data) {
-                $('#content').html(data);
-                setCurrentBounds();
-                $('#content').show();
-            });
-            menuActive = 'export'
+    // initialize main tabs menu
+    $('#main-tabs').tabs({
+        collapsible: true,
+        active: false,
+        activate: function(event, ui) {
+            var $tabs = $('#main-tabs').tabs();
+            var selected = $tabs.tabs('option', 'active');
+            if (selected==0) tabHome()
+            else if (selected==1) tabLegend()
+            else if (selected==2) tabRoutes()
+            else if (selected==3) tabPlaces()
+            else if (selected==4) tabExport()
+            else return;
         }
     });
 });
-
-// routes menu switcher
-function switchRoutesMenu(name) {
-    ids = ['user', 'gpx', 'routing'];
-    for (i=0; i<ids.length; i++) {
-        $('#routes_content_'+ids[i]).hide();
-    }
-    $('#routes_content_'+name).show();
-    // check File API in the browser
-    if (window.File && window.FileReader && window.FileList && window.Blob) {
-    } else {
-        alert(LANG.fileAPIError);
-    }
-}
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // handling user export:
@@ -252,7 +267,6 @@ function setCurrentBounds() {
     setMapImageSize();
     userChanged = false;
 }
-
 function setMapImageSize() {
     bounds = getBounds();
     zoom = parseInt($('#export_zoom_select').val());
@@ -268,13 +282,11 @@ function setMapImageSize() {
         $('#export_height').val(Math.round(height));
     }
 }
-
 function getParams() {
     $('#export_bounds').val(getBounds().toBBoxString());
     $('#export_zoom').val($('#export_zoom_select').val());
     $('#export_line').val(pLine.getLatLngs());
 }
-
 function getBounds() {
     export_left = $('#export_left').val();
     export_bottom = $('#export_bottom').val();
@@ -289,12 +301,10 @@ function getBounds() {
         return bounds;
     }
 }
-
 function recalculateSize() {
     userChanged = true;
     setMapImageSize();
 }
-
 function recalculateBounds() {
     userChanged = true;
     imgx = parseInt($('#export_width').val());
@@ -325,7 +335,6 @@ function submitOnEnter(input_id, submit_id) {
         }
     });
 }
-
 function addrSearch() {
     var input = $("#places_addr").val();
 
@@ -335,7 +344,6 @@ function addrSearch() {
         $.each(data, function(key, val) {
             items.push("<li class='results_item' id='" + val.osm_id + "' ><a href='#' onclick='chooseAddr(" + val.lat + ", " + val.lon + ", \"" + val.type + "\", " + val.osm_id + ", \"" + val.osm_type + "\");return false;'>" + val.display_name + '</a><span id="osm_id"></span><span id="elevation"></span></li>');
         });
-
         $('#places_results').empty();
         if (items.length != 0) {
             $('<p>', {
@@ -352,7 +360,7 @@ function addrSearch() {
         }
     });
 }
-// zoom into given lanlng and get elevation data
+// zoom into given latlng and get elevation data
 function chooseAddr(lat, lng, type, osm_id, osm_type) {
     var location = new L.LatLng(lat, lng);
     map.panTo(location);
@@ -385,9 +393,8 @@ function RouteLine(latlngs, lineOptions) {
         this.line.setLatLngs([]);
         this.markersGroup.clearLayers();
         this.routesGroup.clearLayers();
-        $('#line_buttons').hide();
+        $('.line_buttons').hide();
     }
-
     this.show = function() {
         if (!this.visible) {
             map.addLayer(this.line);
@@ -395,17 +402,17 @@ function RouteLine(latlngs, lineOptions) {
             map.addLayer(this.routesGroup);
             latlngs = this.getLatLngs();
             if (latlngs.length>0) {
-                $('#line_buttons').show();            
+                $('.line_buttons').show();
             }
             this.visible = true;
         }
-    };
+    }
     this.hide = function() {
         if (this.visible) {
             map.removeLayer(this.line);
             map.removeLayer(this.markersGroup);
             map.removeLayer(this.routesGroup);
-            $('#line_buttons').hide();
+            $('.line_buttons').hide();
             this.visible = false;
         }
     }
@@ -415,9 +422,9 @@ function RouteLine(latlngs, lineOptions) {
         this.line.addLatLng(latlng);
         latlngs = this.line.getLatLngs();
         if (latlngs.length==1) {
-            $('#line_buttons').show();
+            $('.line_buttons').show();
         }
-        $('#length').html(this.distanceString()).show();
+        $('.length').html(this.distanceString()).show();
     }
     this.removeMarker = function(marker) {
         l = this.line;
@@ -458,7 +465,7 @@ function RouteLine(latlngs, lineOptions) {
     this._markerClick = function() {
         p = this.parent;
         p.removeMarker(this);
-        $('#length').html(p.distanceString());
+        $('.length').html(p.distanceString());
     }
     this._markerDragEnd = function(e) {
         p = this.parent;
@@ -466,7 +473,7 @@ function RouteLine(latlngs, lineOptions) {
         p.markersGroup.eachLayer( function(layer) {
             p.line.addLatLng(layer.getLatLng());
         });
-        $('#length').html(p.distanceString());
+        $('.length').html(p.distanceString());
     }
     //distance in kilometers
     this.getDistance = function() {
@@ -507,46 +514,27 @@ function RouteLine(latlngs, lineOptions) {
         }
     }
 }
-
 var pLine = new RouteLine([], {
     color: '#FF6600',
     opacity: 0.9
 //    dashArray: '15, 15'
-});
+})
 
 ////////////////////////////////////////////////////////////////////////////////
 // routing GUI functions
 function fitToLine() {
     pLine.fitMapView();
 }
-
 function resetLine() {
     pLine.reset();
 }
-
 function setProfileParams() {
-    $('#profile_params').val(pLine.getLatLngs());
+    $('.profile_params').val(pLine.getLatLngs());
 }
-
 function getRoute(e) {
     setupPost(e);
     pLine.getRoute();
 }
-
-//function gpxUpload(e) {
-//    setupPost(e);
-//    $.post("/map/gpxupload/", {}, function (data) {
-//        geojsonLine = L.geoJson(data, {
-//            style: {
-//                color: '#0055ff',
-//                opacity: 1
-//            }
-//        });
-//        map.addLayer(geojsonLine);
-//        map.fitBounds(geojsonLine.getBounds());
-//    })
-//}
-
 function handleGPX(e) {
     files = e.target.files;
     for (var i = 0, f; f = files[i]; i++) {
@@ -560,7 +548,6 @@ function handleGPX(e) {
         reader.readAsText(f);
     }
 }
-
 function parseGPX(data) {
     try {
         gpxdoc = $.parseXML(data);
@@ -601,11 +588,10 @@ function parseGPX(data) {
         color: '#FF6600',
         opacity: 0.9
     });
-    $('#length').html(pLine.distanceString());
+    $('.length').html(pLine.distanceString());
     pLine.show();
     pLine.fitMapView();
 }
-
 function routeStyle(feature) {
     return {
         color: weightColor(feature.properties.weight),
@@ -613,7 +599,6 @@ function routeStyle(feature) {
         opacity: 1
     }
 }
-
 function weightColor(weight) {
     if (weight==1) return '#2222ff'
     else if (weight==2) return '#3377ff'
@@ -621,10 +606,8 @@ function weightColor(weight) {
     else if (weight==4) return '#ff7755'
     else return '#ff3322';
 }
-
 function highlightLine(e) {
     var lineLayer = e.target;
-
     lineLayer.setStyle({
         weight: 10,
         color: '#ffffff',
@@ -632,11 +615,9 @@ function highlightLine(e) {
     });
     lineLayer.bringToFront();
 }
-
 function resetHighlight(e) {
     geojsonLine.resetStyle(e.target);
 }
-
 function onEachLineFeature(feature, layer) {
     layer.bindPopup(lineFeatureInfo(feature))
     layer.on({
@@ -644,7 +625,6 @@ function onEachLineFeature(feature, layer) {
         mouseout: resetHighlight
     });
 }
-
 function lineFeatureInfo(feature) {
     var info = '';
     if (feature.properties) {
@@ -663,7 +643,6 @@ function lineFeatureInfo(feature) {
     }
     return info;
 }
-
 // distance parameter in km
 function distanceWithUnits(distance) {
     if (distance>1) {
@@ -672,11 +651,9 @@ function distanceWithUnits(distance) {
         return Math.round(distance*1000) + ' m';
     }
 }
-
 function osmLink(osm_id, osm_type) {
     return '<a href="http://www.openstreetmap.org/browse/' + osm_type + '/' + osm_id + '" target="_blank">' + osm_id + '</a>'
 }
-
 // shortcut for leaflet popup
 function lPopup (position, content, showTip) {
     popup = L.popup().setLatLng(position).setContent(content).openOn(map);

@@ -6,39 +6,26 @@
 <script type="text/javascript" src="/media/js/lang/mtbmap_leaflet_{{ lang }}.js"></script>
 {% endblock %}
 
-{% block header %}
-<!---->
-<!--{% if map %}
-<h3>{{ map.name }}</h3>
-{% else %}
-<h3>OSM MTB Mapa<br>České republiky</h3>
-{% endif %}
-<hr>-->
-<!--<a href="http://wiki.openstreetmap.org/wiki/MTB_map_Czech_Republic" target="_blank">O projektu</a>-->
-<span id="home" title="O mapě" ><img src="/media/mtbmap_logo64.png" width="48" alt="O mapě" id="headerimg"></span>
-<ul id="main-menu">
-<!--    <li id="home"><span class="menu-item" title="Zobrazit/skrýt" >Úvod</span></li>-->
-    <li id="legend"><span class="menu-item" title="Zobrazit/skrýt" >Legenda</span></li>
-    <li id="routes"><span class="menu-item" title="Zobrazit/skrýt" >Trasy</span></li>
-    <li id="places"><span class="menu-item" title="Zobrazit/skrýt" >Místa</span></li>
-    <li id="export"><span class="menu-item" title="Zobrazit/skrýt" >Export</span></li>
-</ul>
-{% endblock %}
-
-<!--{% block content %}
-<div id="legend">
-    <form action="/map/legend/" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="zoom" id="zoom" value="" />
-        <input type="submit" value="Legenda" onclick="getZoom();"/>
-    </form>
+{% block main %}
+<div id="main-tabs">
+    <ul id="main-tabs-nav">
+        <li><a href="#tab-home">O projektu</a></li>
+        <li><a href="#tab-legend">Legenda</a></li>
+        <li><a href="#tab-routes">Trasy</a></li>
+        <li><a href="#tab-places">Místa</a></li>
+        <li><a href="#tab-export">Export</a></li>
+    </ul>
+    <div id="tab-home" class="main-tab-content"></div>
+    <div id="tab-legend" class="main-tab-content"></div>
+    <div id="tab-routes" class="main-tab-content"></div>
+    <div id="tab-places" class="main-tab-content"></div>
+    <div id="tab-export" class="main-tab-content"></div>
 </div>
-<hr>
-{% endblock %}-->
+{% endblock %}
 
 {% block footer %}
 Autor: Martin Tesař, osmmtb&nbsp;(at)&nbsp;gmail.com<br>
 Zobrazení: Konformní válcové - Mercatorovo<br>
-Data poskytuje <a href="http://openstreetmap.org/" >OpenStreetMap</a> a&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a> | Verze: 2013-03-01 od <a href="http://download.geofabrik.de/osm/" >Geofabrik.de</a><br>
-Hardware poskytuje laboratoř <a href="http://sitola.fi.muni.cz" > SITOLA </a>
+Data poskytuje <a href="http://openstreetmap.org/" target="_blank" >OpenStreetMap</a> a&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a> | Verze: 2013-03-01 od <a href="http://download.geofabrik.de/osm/" target="_blank" >Geofabrik.de</a><br>
+Hardware poskytuje laboratoř <a href="http://sitola.fi.muni.cz" target="_blank" > SITOLA </a>
 {% endblock %}
