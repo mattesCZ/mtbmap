@@ -7,25 +7,33 @@
 {% endblock %}
 
 {% block main %}
-<div id="main-tabs">
-    <ul id="main-tabs-nav">
-        <li><a href="#tab-home">O projektu</a></li>
-        <li><a href="#tab-legend">Legenda</a></li>
-        <li><a href="#tab-routes">Trasy</a></li>
-        <li><a href="#tab-places">Místa</a></li>
-        <li><a href="#tab-export">Export</a></li>
-    </ul>
-    <div id="tab-home" class="main-tab-content"></div>
-    <div id="tab-legend" class="main-tab-content"></div>
-    <div id="tab-routes" class="main-tab-content"></div>
-    <div id="tab-places" class="main-tab-content"></div>
-    <div id="tab-export" class="main-tab-content"></div>
+<div id="main-tabs" class="main-column">
+    <header>
+        <nav>
+            <ul id="main-tabs-nav">
+                <li><a href="#tab-home">O projektu</a></li>
+                <li><a href="#tab-legend">Legenda</a></li>
+                <li><a href="#tab-routes">Trasy</a></li>
+                <li><a href="#tab-places">Místa</a></li>
+                <li><a href="#tab-export">Export</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <article id="tab-home" class="main-tab-panel"></article>
+        <article id="tab-legend" class="main-tab-panel"></article>
+        <article id="tab-routes" class="main-tab-panel"></article>
+        <article id="tab-places" class="main-tab-panel"></article>
+        <article id="tab-export" class="main-tab-panel"></article>
+    </section>
 </div>
 {% endblock %}
 
 {% block footer %}
-Autor: Martin Tesař, osmmtb&nbsp;(at)&nbsp;gmail.com<br>
-Zobrazení: Konformní válcové - Mercatorovo<br>
-Data poskytuje <a href="http://openstreetmap.org/" target="_blank" >OpenStreetMap</a> a&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a> | Verze: 2013-03-01 od <a href="http://download.geofabrik.de/osm/" target="_blank" >Geofabrik.de</a><br>
-Hardware poskytuje laboratoř <a href="http://sitola.fi.muni.cz" target="_blank" > SITOLA </a>
+<footer id="footer"  class="main-column ui-widget ui-widget-content ui-corner-all">
+    Autor: Martin Tesař, osmmtb&nbsp;(at)&nbsp;gmail.com<br>
+    Zobrazení: Konformní válcové - Mercatorovo<br>
+    Data poskytuje <a href="http://openstreetmap.org/" target="_blank" >OpenStreetMap</a> a&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a> | Verze: 2013-03-01 od <a href="http://download.geofabrik.de/osm/" target="_blank" >Geofabrik.de</a><br>
+    Hardware poskytuje laboratoř <a href="http://sitola.fi.muni.cz" target="_blank" > SITOLA </a>
+</footer>
 {% endblock %}

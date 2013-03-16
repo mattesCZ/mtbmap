@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta charset="utf-8">
         <meta name="Description" content="Mapa pro jízdu na horském kole a turistiku">
         <meta name="Keywords" content="mapa, mtb, turistika, openstreetmaps, mtb mapa, map, europe, mountain, bike">
         {%block title %}<title>MTB mapa Evropy</title>{% endblock %}
@@ -17,30 +17,15 @@
         <script src="/media/js/jquery/jquery-1.8.2.js" type="text/javascript"></script>
         <script src="/media/js/jquery/jquery-ui-1.10.1.custom.js" type="text/javascript"></script>
         <script src="/media/js/jquery/jquery.cookie.js" type="text/javascript"></script>
-        <!-- Google Analytics code -->
-        <script type="text/javascript">
-
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-24431945-1']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-        </script>
+        <script src="/media/js/mtbmap_googleanalytics.js" type="text/javascript"></script>
     </head>
-
     <body>
         {% block map %}{% endblock %}
-        <div id="main" class="main-column">
-            {% block main %}{% endblock %}
-        </div>
-        <div id="footer"  class="main-column ui-widget ui-widget-content ui-corner-all">
-            {% block footer %}
-            Autor: Martin Tesař - osmmtb&nbsp;(at)&nbsp;gmail.com
-            {% endblock %}
-        </div>
+        {% block main %}
+        MTB mapa
+        {% endblock %}
+        {% block footer %}
+        Autor: Martin Tesař - osmmtb&nbsp;(at)&nbsp;gmail.com
+        {% endblock %}
     </body>
 </html>

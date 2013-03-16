@@ -1,36 +1,40 @@
-<div id="routes-tabs" class="subtabs">
-    <ul>
-        <li><a href="#routes_content_user">Vlastní</a></li>
-        <li><a href="#routes_content_gpx">Nahrát GPX</a></li>
-    </ul>
-    <div id="routes_content_user" class="subtab-panel">
+<header>
+    <nav>
+        <ul>
+            <li><a href="#routes-content-user">Vlastní</a></li>
+            <li><a href="#routes-content-gpx">Nahrát GPX</a></li>
+        </ul>
+    </nav>
+</header>
+<section>
+    <article id="routes-content-user" class="subtab-panel">
         <h4>Trasu zadejte klikáním přímo do mapy</h4>
-        <div class="line_buttons">
-            <div class="length"></div><div class="point_height"></div>
+        <div class="line-buttons">
+            <div class="length"></div>
             <br>
-            <button class="fit_to_line">Zobrazit podle trasy</button>
-            <button class="reset_line">Smazat</button>
+            <button class="fit-to-line">Zobrazit podle trasy</button>
+            <button class="reset-line">Smazat</button>
             <form method="post" action="/map/altitudeprofile/" target="_blank" >
                 {% csrf_token %}
-                <input type="hidden" name="profile_params" class="profile_params" value="" />
-                <input class="create_profile_button" type="submit" value="Vytvořit profil">
+                <input type="hidden" name="profile-params" class="profile-params" value="" />
+                <input class="create-profile-button" type="submit" value="Vytvořit profil">
             </form>
         </div>
-    </div>
-    <div id="routes_content_gpx" class="subtab-panel">
+    </article>
+    <article id="routes-content-gpx" class="subtab-panel">
         <h4>Nahrajte vlastní GPX soubor</h4>
         <input id="files" type="file" name="files[]" onchange="handleGPX(event)" size="10" class="margin">
         <br>
-        <div class="line_buttons">
-            <div class="length"></div><div class="point_height"></div>
+        <div class="line-buttons">
+            <div class="length"></div>
             <br>
-            <button class="fit_to_line">Zobrazit podle trasy</button>
-            <button class="reset_line">Smazat</button>
+            <button class="fit-to-line">Zobrazit podle trasy</button>
+            <button class="reset-line">Smazat</button>
             <form method="post" action="/map/altitudeprofile/" target="_blank" >
                 {% csrf_token %}
-                <input type="hidden" name="profile_params" class="profile_params" value="" />
-                <input class="create_profile_button" type="submit" value="Vytvořit profil">
+                <input type="hidden" name="profile-params" class="profile-params" value="" />
+                <input class="create-profile-button" type="submit" value="Vytvořit profil">
             </form>
         </div>
-    </div>
-</div>
+    </article>
+</section>

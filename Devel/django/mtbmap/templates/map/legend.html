@@ -1,6 +1,8 @@
-<h4>Legenda pro zoom {{ zoom }}</h4>
+<header>
+    <h4>Legenda pro zoom {{ zoom }}</h4>
+</header>
 <table>
     {% for item in legenditems %}
-    <tr><td><img src="/media/{{ item.image.name }}"</td><td>{{ item.title }}</td></tr>
+    <tr><td><img src="/media/{{ item.image.name }}"></td><td>{{ item.title }}</td></tr>
     {% endfor %}
 </table>

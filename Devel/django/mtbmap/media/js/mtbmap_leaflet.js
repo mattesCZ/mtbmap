@@ -164,16 +164,16 @@ function tabRoutes() {
     $.get("/map/routes/", function(data) {
         $('#tab-routes').html(data);
         if (!pLine.getLatLngs().length>0) {
-            $('.line_buttons').hide();
+            $('.line-buttons').hide();
         } else {
             $('.length').html(pLine.distanceString());
         }
-        $('#routes-tabs').tabs({
+        $('#tab-routes').tabs({
             //            collapsible: true,
             active: 0,
             heightStyle: 'content',
             activate: function(event, ui) {
-                var $tabs = $('#routes-tabs').tabs();
+                var $tabs = $('#tab-routes').tabs();
                 var selected = $tabs.tabs('option', 'active');
                 // check file API for GPX functions
                 if (selected==1) {
@@ -184,32 +184,32 @@ function tabRoutes() {
             }
         });
         setContentMaxHeight();
-        $('#routes_accordion').accordion({
+        $('#routes-accordion').accordion({
             collapsible: true,
             active: false,
             heightStyle: 'content'
         });
-        $('.fit_to_line').button().click(function(event) {
+        $('.fit-to-line').button().click(function(event) {
             fitToLine();
         });
-        $('.reset_line').button().click(function(event) {
+        $('.reset-line').button().click(function(event) {
             resetLine();
         });
-        $('.create_profile_button').button().click(function(event) {
+        $('.create-profile-button').button().click(function(event) {
             setProfileParams();
         });
-        $('.get_route_button').button();
+        $('.get-route-button').button();
     });
     menuActive = 'routes';
 }
 function tabPlaces() {
     $.get("/map/places/", function(data) {
         $('#tab-places').html(data);
-        submitOnEnter('places_addr', 'places_submit');
-        $('#places_submit').button().click(function(event) {
+        submitOnEnter('places-addr', 'places-submit');
+        $('#places-submit').button().click(function(event) {
             addrSearch();
         });
-        $('#places_addr').focus();
+        $('#places-addr').focus();
     });
     menuActive = 'places'
 }
@@ -229,7 +229,7 @@ function tabExport() {
 }
 function setContentMaxHeight() {
     maxheight = $('#map').height() - ($('#footer').height() + 70);
-    $('.main-tab-content').css('max-height', maxheight);
+    $('.main-tab-panel').css('max-height', maxheight);
     $('.subtab-panel').css('max-height', maxheight-50);
 }
 $(window).resize(function(event) {
@@ -261,44 +261,44 @@ $(document).ready(function() {
 // handling user export:
 function setCurrentBounds() {
     bounds = map.getBounds();
-    $('#export_left').val(bounds.getSouthWest().lng.toFixed(6));
-    $('#export_bottom').val(bounds.getSouthWest().lat.toFixed(6));
-    $('#export_right').val(bounds.getNorthEast().lng.toFixed(6));
-    $('#export_top').val(bounds.getNorthEast().lat.toFixed(6));
-    $('#export_zoom_select').val(map.getZoom());
+    $('#export-left').val(bounds.getSouthWest().lng.toFixed(6));
+    $('#export-bottom').val(bounds.getSouthWest().lat.toFixed(6));
+    $('#export-right').val(bounds.getNorthEast().lng.toFixed(6));
+    $('#export-top').val(bounds.getNorthEast().lat.toFixed(6));
+    $('#export-zoom-select').val(map.getZoom());
     setMapImageSize();
     userChanged = false;
 }
 function setMapImageSize() {
     bounds = getBounds();
-    zoom = parseInt($('#export_zoom_select').val());
+    zoom = parseInt($('#export-zoom-select').val());
     topLeft = map.project(bounds.getNorthWest(), zoom);
     bottomRight = map.project(bounds.getSouthEast(), zoom);
     width = bottomRight.x - topLeft.x;
     height = bottomRight.y - topLeft.y;
-    if ($('#export_highres').is(':checked')) {
-        $('#export_width').val(Math.round(width)*2);
-        $('#export_height').val(Math.round(height)*2);
+    if ($('#export-highres').is(':checked')) {
+        $('#export-width').val(Math.round(width)*2);
+        $('#export-height').val(Math.round(height)*2);
     } else {
-        $('#export_width').val(Math.round(width));
-        $('#export_height').val(Math.round(height));
+        $('#export-width').val(Math.round(width));
+        $('#export-height').val(Math.round(height));
     }
 }
 function getParams() {
-    $('#export_bounds').val(getBounds().toBBoxString());
-    $('#export_zoom').val($('#export_zoom_select').val());
-    $('#export_line').val(pLine.getLatLngs());
+    $('#export-bounds').val(getBounds().toBBoxString());
+    $('#export-zoom').val($('#export-zoom-select').val());
+    $('#export-line').val(pLine.getLatLngs());
 }
 function getBounds() {
-    export_left = $('#export_left').val();
-    export_bottom = $('#export_bottom').val();
-    export_right = $('#export_right').val();
-    export_top = $('#export_top').val();
-    if (!export_left || !export_bottom || !export_right || !export_top) {
+    exportLeft = $('#export-left').val();
+    exportBottom = $('#export-bottom').val();
+    exportRight = $('#export-right').val();
+    exportTop = $('#export-top').val();
+    if (!exportLeft || !exportBottom || !exportRight || !exportTop) {
         return map.getBounds();
     } else {
-        var southWest = new L.LatLng(export_bottom, export_left);
-        var northEast = new L.LatLng(export_top, export_right);
+        var southWest = new L.LatLng(exportBottom, exportLeft);
+        var northEast = new L.LatLng(exportTop, exportRight);
         var bounds = new L.LatLngBounds(southWest, northEast);
         return bounds;
     }
@@ -309,61 +309,61 @@ function recalculateSize() {
 }
 function recalculateBounds() {
     userChanged = true;
-    imgx = parseInt($('#export_width').val());
-    imgy = parseInt($('#export_height').val());
+    imgx = parseInt($('#export-width').val());
+    imgy = parseInt($('#export-height').val());
     if (imgx>0 && imgy>0) {
         center = getBounds().getCenter();
-        export_zoom = parseInt($('#export_zoom_select').val());
-        centerPixel = map.project(center, export_zoom);
-        sc = ($('#export_highres').is(':checked')) ? 4 : 2;
+        exportZoom = parseInt($('#export-zoom-select').val());
+        centerPixel = map.project(center, exportZoom);
+        sc = ($('#export-highres').is(':checked')) ? 4 : 2;
         northWestPixel = new L.Point(centerPixel.x - imgx/sc, centerPixel.y - imgy/sc);
         southEastPixel = new L.Point(centerPixel.x + imgx/sc, centerPixel.y + imgy/sc);
-        northWest = map.unproject(northWestPixel, export_zoom);
-        southEast = map.unproject(southEastPixel, export_zoom);
+        northWest = map.unproject(northWestPixel, exportZoom);
+        southEast = map.unproject(southEastPixel, exportZoom);
         
-        $('#export_left').val(northWest.lng.toFixed(6));
-        $('#export_right').val(southEast.lng.toFixed(6));
-        $('#export_top').val(northWest.lat.toFixed(6));
-        $('#export_bottom').val(southEast.lat.toFixed(6));
+        $('#export-left').val(northWest.lng.toFixed(6));
+        $('#export-right').val(southEast.lng.toFixed(6));
+        $('#export-top').val(northWest.lat.toFixed(6));
+        $('#export-bottom').val(southEast.lat.toFixed(6));
     } else return;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // handling places
-function submitOnEnter(input_id, submit_id) {
-    $("#" + input_id).keyup(function(event){
+function submitOnEnter(inputID, submitID) {
+    $("#" + inputID).keyup(function(event){
         if(event.keyCode == 13){
-            $("#" + submit_id).click();
+            $("#" + submitID).click();
         }
     });
 }
 function addrSearch() {
-    var input = $("#places_addr").val();
+    var input = $("#places-addr").val();
 
     $.getJSON('http://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + input, function(data) {
         var items = [];
 
         $.each(data, function(key, val) {
-            items.push("<li class='results_item' id='" + val.osm_id + "' ><a href='#' onclick='chooseAddr(" + val.lat + ", " + val.lon + ", \"" + val.type + "\", " + val.osm_id + ", \"" + val.osm_type + "\");return false;'>" + val.display_name + '</a><span id="osm_id"></span><span id="elevation"></span></li>');
+            items.push("<li id='" + val.osm_id + "' ><a href='#' onclick='chooseAddr(" + val.lat + ", " + val.lon + ", \"" + val.type + "\", " + val.osm_id + ", \"" + val.osm_type + "\");return false;'>" + val.display_name + '</a><span id="osm-id"></span><span id="elevation"></span></li>');
         });
-        $('#places_results').empty();
+        $('#places-results').empty();
         if (items.length != 0) {
             $('<p>', {
                 html: LANG.searchResults + ': '
-            }).appendTo('#places_results');
+            }).appendTo('#places-results');
             $('<ul>', {
-                'class': 'results_list',
+                'class': 'results-list',
                 html: items.join('')
-            }).appendTo('#places_results');
+            }).appendTo('#places-results');
         } else {
             $('<p>', {
                 html: LANG.noResults
-            }).appendTo('#places_results');
+            }).appendTo('#places-results');
         }
     });
 }
 // zoom into given latlng and get elevation data
-function chooseAddr(lat, lng, type, osm_id, osm_type) {
+function chooseAddr(lat, lng, type, osmID, osmType) {
     var location = new L.LatLng(lat, lng);
     map.panTo(location);
     if (type == 'city' || type == 'administrative') {
@@ -371,11 +371,11 @@ function chooseAddr(lat, lng, type, osm_id, osm_type) {
     } else {
         map.setZoom(14);
     }
-    $("#" + osm_id + " > #osm_id").html('<p>OSM ID: ' + osmLink(osm_id, osm_type) + '</p>');
+    $("#" + osmID + " > #osm-id").html('<p>OSM ID: ' + osmLink(osmID, osmType) + '</p>');
     $.get('/map/getheight/', {
-        'profile_point': location.toString()
+        'profile-point': location.toString()
     }, function(data) {
-        $('#' + osm_id + " > #elevation").html('<p>' + LANG.elevation + ': ' + data + ' m</p>');
+        $('#' + osmID + " > #elevation").html('<p>' + LANG.elevation + ': ' + data + ' m</p>');
     });
 }
 
@@ -395,7 +395,7 @@ function RouteLine(latlngs, lineOptions) {
         this.line.setLatLngs([]);
         this.markersGroup.clearLayers();
         this.routesGroup.clearLayers();
-        $('.line_buttons').hide();
+        $('.line-buttons').hide();
     }
     this.show = function() {
         if (!this.visible) {
@@ -404,7 +404,7 @@ function RouteLine(latlngs, lineOptions) {
             map.addLayer(this.routesGroup);
             latlngs = this.getLatLngs();
             if (latlngs.length>0) {
-                $('.line_buttons').show();
+                $('.line-buttons').show();
             }
             this.visible = true;
         }
@@ -414,7 +414,7 @@ function RouteLine(latlngs, lineOptions) {
             map.removeLayer(this.line);
             map.removeLayer(this.markersGroup);
             map.removeLayer(this.routesGroup);
-            $('.line_buttons').hide();
+            $('.line-buttons').hide();
             this.visible = false;
         }
     }
@@ -424,7 +424,7 @@ function RouteLine(latlngs, lineOptions) {
         this.line.addLatLng(latlng);
         latlngs = this.line.getLatLngs();
         if (latlngs.length==1) {
-            $('.line_buttons').show();
+            $('.line-buttons').show();
         }
         $('.length').html(this.distanceString());
     }
@@ -461,9 +461,6 @@ function RouteLine(latlngs, lineOptions) {
         m.parent = this;
         return m;
     }
-    //    this._lineClick = function() {
-    //        alert('clicked or tapped');
-    //    }
     this._markerClick = function() {
         p = this.parent;
         p.removeMarker(this);
@@ -497,10 +494,10 @@ function RouteLine(latlngs, lineOptions) {
         if (latlngs.length<=1) {
             lPopup(map.getCenter(), '<h3>' + LANG.addPoints + '</h3>', true);
         } else {
-            var params = $('#routes_params').serializeArray();
+            var params = $('#routes-params').serializeArray();
             $.post("/map/findroute/", {
                 'params':JSON.stringify(params),
-                'routing_line': '['+ latlngs + ']'
+                'routing-line': '['+ latlngs + ']'
             }, function(data) {
                 if (data.properties.status=='notfound') {
                     position = thisLine.line.getBounds().getCenter();
@@ -531,7 +528,7 @@ function resetLine() {
     pLine.reset();
 }
 function setProfileParams() {
-    $('.profile_params').val(pLine.getLatLngs());
+    $('.profile-params').val(pLine.getLatLngs());
 }
 function getRoute(e) {
     setupPost(e);

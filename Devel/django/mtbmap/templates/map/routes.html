@@ -1,63 +1,67 @@
-<div id="routes-tabs" class="subtabs">
-    <ul>
-        <li><a href="#routes_content_user">Vlastní</a></li>
-        <li><a href="#routes_content_gpx">Nahrát GPX</a></li>
-        <li><a href="#routes_content_routing">Vyhledávání</a></li>
-    </ul>
-    <div id="routes_content_user" class="subtab-panel">
+<header>
+    <nav>
+        <ul>
+            <li><a href="#routes-content-user">Vlastní</a></li>
+            <li><a href="#routes-content-gpx">Nahrát GPX</a></li>
+            <li><a href="#routes-content-routing">Vyhledávání</a></li>
+        </ul>
+    </nav>
+</header>
+<section>
+    <article id="routes-content-user" class="subtab-panel">
         <h4>Trasu zadejte klikáním přímo do mapy</h4>
-        <div class="line_buttons">
-            <div class="length"></div><div class="point_height"></div>
+        <div class="line-buttons">
+            <div class="length"></div>
             <br>
-            <button class="fit_to_line">Zobrazit podle trasy</button>
-            <button class="reset_line">Smazat</button>
+            <button class="fit-to-line">Zobrazit podle trasy</button>
+            <button class="reset-line">Smazat</button>
             <form method="post" action="/map/altitudeprofile/" target="_blank" >
                 {% csrf_token %}
-                <input type="hidden" name="profile_params" class="profile_params" value="" />
-                <input class="create_profile_button" type="submit" value="Vytvořit profil">
+                <input type="hidden" name="profile-params" class="profile-params" value="" />
+                <input class="create-profile-button" type="submit" value="Vytvořit profil">
             </form>
         </div>
-    </div>
-    <div id="routes_content_gpx" class="subtab-panel">
+    </article>
+    <article id="routes-content-gpx" class="subtab-panel">
         <h4>Nahrajte vlastní GPX soubor</h4>
         <input id="files" type="file" name="files[]" onchange="handleGPX(event)" size="10" class="margin">
         <br>
-        <div class="line_buttons">
-            <div class="length"></div><div class="point_height"></div>
+        <div class="line-buttons">
+            <div class="length"></div>
             <br>
-            <button class="fit_to_line">Zobrazit podle trasy</button>
-            <button class="reset_line">Smazat</button>
+            <button class="fit-to-line">Zobrazit podle trasy</button>
+            <button class="reset-line">Smazat</button>
             <form method="post" action="/map/altitudeprofile/" target="_blank" >
                 {% csrf_token %}
-                <input type="hidden" name="profile_params" class="profile_params" value="" />
-                <input class="create_profile_button" type="submit" value="Vytvořit profil">
+                <input type="hidden" name="profile-params" class="profile-params" value="" />
+                <input class="create-profile-button" type="submit" value="Vytvořit profil">
             </form>
         </div>
-    </div>
-    <div id="routes_content_routing" class="subtab-panel">
+    </article>
+    <article id="routes-content-routing" class="subtab-panel">
         <h4>Zadejte do mapy body, kterými vést trasu</h4>
-        <form id="routes_params">
+        <form id="routes-params">
             <h5>Parametry vyhledávání tras:</h5>
-            <div id="routes_accordion">
+            <div id="routes-accordion">
                 {% for c in classes %}
                 <h3>{{ c.classname }}</h3>
                 <div>
                     {% if c.max != None or c.min != None %}
-                    <table id="weights_limits_{{c.classname}}" class="weights_limits" >
+                    <table id="weights-limits-{{c.classname}}" class="weights-limits" >
                         <tr>
                             {% if c.max != None %}
                             <td>Max:</td>
-                            <td><input type="text" value="{{c.max|floatformat:'0'}}" size="2" id="weights_{{c.classname}}_max" name="{{c.classname}}__max" /></td>
+                            <td><input type="text" value="{{c.max|floatformat:'0'}}" size="2" id="weights-{{c.classname}}-max" name="{{c.classname}}__max" /></td>
                             {% endif %}
                             {% if c.min != None %}
                             <td>Min:</td>
-                            <td><input type="text" value="{{c.min|floatformat:'0'}}" size="2" id="weights_{{c.classname}}_min" name="{{c.classname}}__min" /></td>
+                            <td><input type="text" value="{{c.min|floatformat:'0'}}" size="2" id="weights-{{c.classname}}-min" name="{{c.classname}}__min" /></td>
                             {% endif %}
                         </tr>
                     </table>
                     {% endif %}
                     {% if c.weight_set.all %}
-                    <table id="weights_types_{{c.classname}}" class="weights_types">
+                    <table id="weights-types-{{c.classname}}" class="weights-types">
                         <tr>
                             <th>Typ</th>
                             <th>Preference</th>
@@ -66,7 +70,7 @@
                         <tr>
                             <td>{{w.feature}}</td>
                             <td>
-                                <select class="weights_preferences" id="weights_{{c.classname}}_{{w.feature}}_preference" name="{{c.classname}}__{{w.feature}}" >
+                                <select class="weights-preferences" id="weights-{{c.classname}}-{{w.feature}}-preference" name="{{c.classname}}__{{w.feature}}" >
                                     {% for choice in w.PREFERENCE_CHOICES %}
                                     {% if choice.0 == w.preference %}
                                     <option value="{{choice.0}}" selected="selected" >{{choice.1}}</option>
@@ -86,18 +90,18 @@
         </form>
         <form onsubmit="getRoute(event)" method="POST">
             {% csrf_token %}
-            <input class="get_route_button" type="submit" value="Hledat trasu">
+            <input class="get-route-button" type="submit" value="Hledat trasu">
         </form>
-        <div class="line_buttons">
-            <div class="length"></div><div class="point_height"></div>
+        <div class="line-buttons">
+            <div class="length"></div>
             <br>
-            <button class="fit_to_line">Zobrazit podle trasy</button>
-            <button class="reset_line">Smazat</button>
+            <button class="fit-to-line">Zobrazit podle trasy</button>
+            <button class="reset-line">Smazat</button>
             <form method="post" action="/map/altitudeprofile/" target="_blank" >
                 {% csrf_token %}
-                <input type="hidden" name="profile_params" class="profile_params" value="" />
-                <input class="create_profile_button" type="submit" value="Vytvořit profil">
+                <input type="hidden" name="profile-params" class="profile-params" value="" />
+                <input class="create-profile-button" type="submit" value="Vytvořit profil">
             </form>
         </div>
-    </div>
-</div>
+    </article>
+</section>

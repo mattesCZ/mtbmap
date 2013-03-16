@@ -41,13 +41,13 @@ def exportmap(request):
 #    c = {}
 #    c.update(csrf(request))
     try:
-        zoom = int(request.POST['export_zoom'])
-        bounds = request.POST['export_bounds'].replace('(', '').replace(')', '')
+        zoom = int(request.POST['export-zoom'])
+        bounds = request.POST['export-bounds'].replace('(', '').replace(')', '')
     except (KeyError, 'no zoom posted'):
         return render_to_response('map/map.html', {},
                                   context_instance=RequestContext(request))
     else:
-        map_title = request.POST['map_title']
+        map_title = request.POST['map-title']
         if map_title.startswith('orlice_'):
             try:
                 side = map_title.replace('orlice_', '')[0]
@@ -72,11 +72,11 @@ def exportmap(request):
         gap = 5
         highres = False
         try:
-            checked_line = request.POST['export_line_check']
+            checked_line = request.POST['export-line-check']
         except (KeyError, 'line not checked'):
             line = None
         else:
-            raw_line = request.POST['export_line']
+            raw_line = request.POST['export-line']
             points = []
             if len(raw_line):
                 for part in raw_line.split('),'):
@@ -90,7 +90,7 @@ def exportmap(request):
             else:
                 line = None
         try:
-            highres = request.POST['export_highres']
+            highres = request.POST['export-highres']
         except (KeyError, 'highres not checked'):
             highres = False
             map_im = map_image(zoom, left, bottom, right, top, line, orientation, highres)
@@ -98,21 +98,21 @@ def exportmap(request):
             highres = True
             map_im = map_image(zoom, left, bottom, right, top, line, orientation, highres)
         try:
-            renderlegend = request.POST['export_legend']
-        except (KeyError, 'export_legend not checked'):
+            renderlegend = request.POST['export-legend']
+        except (KeyError, 'export-legend not checked'):
             legend_im = Image.new('RGBA', (0, 0), 'white')
         else:
             legend = Legend.objects.all()[0]
             legend_im = legend_image(legend, zoom, gap, 'side', map_im.size[1], highres)
         try:
-            renderscale = request.POST['export_scale']
-        except (KeyError, 'export_scale not checked'):
+            renderscale = request.POST['export-scale']
+        except (KeyError, 'export-scale not checked'):
             scalebar_im = Image.new('RGBA', (0, 0), 'white')
         else:
             scalebar_im = scalebar_image(zoom, (top+bottom)/2, highres)
         try:
-            renderimprint = request.POST['export_imprint']
-        except (KeyError, 'export_imprint not checked'):
+            renderimprint = request.POST['export-imprint']
+        except (KeyError, 'export-imprint not checked'):
             imprint_im = Image.new('RGBA', (0, 0), 'white')
         else:
             imprint_im = imprint_image(map.attribution, map_im.size[0], 20, 12, highres)
@@ -138,13 +138,6 @@ def exportmap(request):
         response['Content-Disposition'] = 'attachment; filename="map.png"'
         im.save(response, 'png')
         return response
-#        return render_to_response('map/export.html', {'zoom': int(zoom), 'center': center, 'bounds': bounds, 'size': size, 'info': info},
-#                                  context_instance=RequestContext(request))
-#    zoom = request.POST['export_zoom']
-#    c['zoom'] = zoom
-#    bounds = request.POST['export_bounds']
-#    map_title = request.POST['map_title']
-#    return TemplateResponse(request, 'map/export_old.html', c)
 
 def export(request):
     return TemplateResponse(request, 'map/export.html', {})
@@ -158,10 +151,8 @@ def places(request):
     return TemplateResponse(request, 'map/places.html', {})
 
 def altitudeprofile(request):
-#    c = {}
-#    c.update(csrf(request))
     try:
-        params = request.POST['profile_params']
+        params = request.POST['profile-params']
     except (KeyError, 'no points posted'):
         return render_to_response('map/map.html', {},
                                   context_instance=RequestContext(request))
@@ -191,7 +182,7 @@ def altitudeprofile(request):
             return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
 
 def getheight(request):
-    get_value = request.GET['profile_point']
+    get_value = request.GET['profile-point']
     latlng = get_value.replace('LatLng(', '').replace(')', '').split(',')
     point = [float(latlng[0]), float(latlng[1])]
     point_height = height(point)
@@ -200,8 +191,7 @@ def getheight(request):
 def findroute(request):
     try:
         params = json.loads(request.POST['params'])
-        line = request.POST['routing_line']
-#        weights = request.POST['weights']
+        line = request.POST['routing-line']
     except (KeyError, 'invalid route points'):
         return render_to_response('map/map.html', {},
                                   context_instance=RequestContext(request))

@@ -7,26 +7,30 @@
     z-index: 0;
 }
 .main-column {
+    position: absolute;
     width: 414px;
     text-align: center;
     z-index: 1;
 }
-#main {
-    position: absolute;
-}
 #footer {
-    position: absolute;
     bottom: 5px;
     font-size: x-small;
-    width: 410px;
 }
-.main-tab-content, .subtab-panel {
+#routes-tabs {
+    border: none;
+    background: none;
+}
+.main-tab-panel, .subtab-panel {
     overflow: auto;
 }
 p {
     text-align: justify;
-    padding: 0 5px 0px 5px;
+    padding: 0 0.6em;
     font-size: small;
+}
+table {
+    text-align: left;
+    padding: 0 0.6em;
 }
 a {
     font-weight: bold;
@@ -36,9 +40,11 @@ a {
 a:hover {
     text-decoration: underline;
 }
-#routes-tabs {
-    border: none;
-    background: none;
+hr { /*should be rewritten for html5*/
+    background: #00008b;
+    color: #00008b;
+    width: 90%;
+    height: 1px;
 }
 .leaflet-control-position {
     background-color: rgba(255, 255, 255, 0.698);
@@ -48,21 +54,13 @@ a:hover {
     font: 11px/1.5 Verdana,Arial,sans-serif;
     padding: 0 5px;
 }
-hr {
-    color: #00008b;
-    width: 90%;
-    size: 1px;
+.export-text { /* export input text fields */
+    margin: 2px;
 }
-.export_text {
-    margin: 5px;
-}
-.results_list {
+.results-list { /* results of places search */
     text-align: left;
     font-size: small;
 }
-table {
-    text-align: left;
-}
-.hidden {
+.hidden { /* used only for leaflet popup styling */
     visibility: hidden;
 }
