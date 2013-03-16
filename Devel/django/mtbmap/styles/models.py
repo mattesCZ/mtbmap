@@ -11,11 +11,13 @@ from os import remove, system
 from os.path import exists
 from styles.xmlfunctions import *
 import PIL.Image
+from settings import DATABASES, MAPNIK_STYLES
 
 zooms = [250000000000, 500000000, 200000000, 100000000, 50000000, 25000000, 12500000,
 6500000, 3000000, 1500000, 750000, 400000, 200000, 100000, 50000, 25000, 12500, 5000, 2500, 1000, 500, 250, 125]
 
-style_path = '/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/'
+style_path = MAPNIK_STYLES
+db_password = DATABASES['default']['PASSWORD']
 
 class Map(models.Model):
 
@@ -1797,13 +1799,13 @@ class LegendItem(models.Model):
             s.rules.append(mapnik_rule)
         ds = None
         if self.geometry=='Point':
-            ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from legend_points) as ln', user='xtesar7', password='')
+            ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from legend_points) as ln', user='xtesar7', password=db_password)
         elif self.geometry=='LineString':
             size = (size[1], 3*size[1])
-            ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from legend_linestrings) as ln', user='xtesar7', password='')
+            ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from legend_linestrings) as ln', user='xtesar7', password=db_password)
         elif self.geometry=='Collection':
             size = (max(size[0], 50), max(size[1], 50))
-            ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from legend_collections) as ln', user='xtesar7', password='')
+            ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from legend_collections) as ln', user='xtesar7', password=db_password)
         else:
             # Raster... special legend creation
             print "Raster Layer, legend not created, id %i" % self.id

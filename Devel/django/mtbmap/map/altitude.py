@@ -5,6 +5,7 @@ import math
 from numpy import *
 import zipfile
 from map.printing import svg_string_to_png
+from settings import SRTM_DATA
 
 def altitude_image(nodes):
     if len(nodes)==1:
@@ -60,7 +61,7 @@ def appendHeights(nodes):
     10-90 degrees north and longitudes 10-99 degrees east.
     """
     hgtArrays = {}
-    zip_path = '/home/xtesar7/Devel/mtbmap-czechrep/Data/shadingdata/'
+    zip_path = SRTM_DATA
     for i in range(len(nodes)):
         key = 'N' + str(int(math.floor(nodes[i][0]))) + 'E0' + str(int(math.floor(nodes[i][1])))
         if not (hgtArrays.has_key(key)):

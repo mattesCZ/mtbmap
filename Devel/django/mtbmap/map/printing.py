@@ -8,6 +8,7 @@ from math import cos, radians, log10
 from datetime import date
 from StringIO import StringIO
 from PIL import Image
+from settings import MAPNIK_STYLES
 
 def svg_string_to_png(svg_string, png_image_path, width, height):
     img = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
@@ -82,9 +83,9 @@ def legend_image(legend, zoom, gap, position='side', max_edge=None, highres=True
     return Image.open(StringIO(image.tostring('png')))
 
 def map_image(zoom, left, bottom, right, top, line, orientation='n', highres=True):
-    mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/mapnik2normal.xml"
+    mapfile = MAPNIK_STYLES + "mapnik2normal.xml"
     if orientation != 'n':
-        mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/mapnik2orlice_%s.xml" % str(orientation)
+        mapfile = MAPNIK_STYLES + "mapnik2orlice_%s.xml" % str(orientation)
     base = 0.000005364418029785156 # longitude range of 1 pixel at zoom 18
     zoom_conversion = base*2**(18-zoom)
     imgx = int(round((right - left)/zoom_conversion))
@@ -94,9 +95,9 @@ def map_image(zoom, left, bottom, right, top, line, orientation='n', highres=Tru
     if orientation in ('w', 'e'):
         imgx, imgy = imgy, imgx
     if highres:
-        mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/mapnik2print.xml"
+        mapfile = MAPNIK_STYLES + "mapnik2print.xml"
         if orientation != 'n':
-            mapfile = "/home/xtesar7/Devel/mtbmap-czechrep/Devel/mapnik/my_styles/mapnik2print_orlice_%s.xml" % str(orientation)
+            mapfile = MAPNIK_STYLES + "mapnik2print_orlice_%s.xml" % str(orientation)
         imgx = 2*imgx
         imgy = 2*imgy
 
