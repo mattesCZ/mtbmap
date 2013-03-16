@@ -168,12 +168,12 @@ function tabRoutes() {
         } else {
             $('.length').html(pLine.distanceString());
         }
-        $('#tab-routes').tabs({
+        $('#routes-tabs').tabs({
             //            collapsible: true,
             active: 0,
             heightStyle: 'content',
             activate: function(event, ui) {
-                var $tabs = $('#tab-routes').tabs();
+                var $tabs = $('#routes-tabs').tabs();
                 var selected = $tabs.tabs('option', 'active');
                 // check file API for GPX functions
                 if (selected==1) {
