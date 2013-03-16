@@ -125,8 +125,7 @@
 	position: relative;
 	padding: 0;
 	line-height: normal;
-	margin-right: .1em;
-	margin-top: .4em;
+        margin: 0.2em 0.1em;
 	cursor: pointer;
 	vertical-align: 0px;
 	text-align: center;
@@ -730,11 +729,13 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-tabs {
 	position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
-	padding: .2em;
+/*	padding: .2em;*/
 }
 .ui-tabs .ui-tabs-nav {
 	margin: 0;
 	padding: .2em .2em 0;
+        border-width: 0px 0px 1px 0px;
+        border-radius: 0px;
 }
 .ui-tabs .ui-tabs-nav li {
 	list-style: none;
@@ -769,6 +770,7 @@ button.ui-button::-moz-focus-inner {
 	border-width: 0;
 	padding: 0.4em 0.4em;
 	background: none;
+        padding: 0 0 0.4em 0;
 }
 .ui-tooltip {
 	padding: 8px;
@@ -822,7 +824,7 @@ body .ui-tooltip {
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
-	border: 1px solid #d3d3d3/*{borderColorDefault}*/;
+	border: 1px solid #b3b3b3/*{borderColorDefault}*/;
 	background: #e6e6e6/*{bgColorDefault}*/ url(images/ui-bg_glass_75_e6e6e6_1x400.png)/*{bgImgUrlDefault}*/ 50%/*{bgDefaultXPos}*/ 50%/*{bgDefaultYPos}*/ repeat-x/*{bgDefaultRepeat}*/;
 	font-weight: normal/*{fwDefault}*/;
 	color: #555555/*{fcDefault}*/;

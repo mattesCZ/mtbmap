@@ -50,30 +50,11 @@ a:hover {
 }
 hr {
     color: #00008b;
-    width: 100%;
+    width: 90%;
     size: 1px;
 }
 .export_text {
     margin: 5px;
-}
-.button {
-    font-size: small;
-    font-weight: bold;
-    margin: 10px;
-    background-color: #DDDDDD;
-    border: 2px solid #999999;
-    border-radius: 3px;
-    color: inherit;
-    cursor: pointer;
-    outline-style: none;
-    padding: 2px 10px;
-    text-decoration: none;
-    vertical-align: 1px;
-    display: inline-block;
-}
-.button:hover {
-    background-color: #EEEEEE;
-    text-decoration: underline;
 }
 .results_list {
     text-align: left;
