@@ -165,6 +165,8 @@ function tabRoutes() {
         $('#tab-routes').html(data);
         if (!pLine.getLatLngs().length>0) {
             $('.line_buttons').hide();
+        } else {
+            $('.length').html(pLine.distanceString());
         }
         $('#routes-tabs').tabs({
             //            collapsible: true,
@@ -226,7 +228,7 @@ function tabExport() {
     menuActive = 'export'
 }
 function setContentMaxHeight() {
-    maxheight = $('#map').height() - ($('#footer').height() + 80);
+    maxheight = $('#map').height() - ($('#footer').height() + 70);
     $('.main-tab-content').css('max-height', maxheight);
     $('.subtab-panel').css('max-height', maxheight-50);
 }
@@ -424,7 +426,7 @@ function RouteLine(latlngs, lineOptions) {
         if (latlngs.length==1) {
             $('.line_buttons').show();
         }
-        $('.length').html(this.distanceString()).show();
+        $('.length').html(this.distanceString());
     }
     this.removeMarker = function(marker) {
         l = this.line;
