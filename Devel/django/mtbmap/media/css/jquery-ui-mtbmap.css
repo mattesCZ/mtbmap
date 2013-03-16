@@ -802,6 +802,7 @@ body .ui-tooltip {
 }
 .ui-widget-content {
 	border: 2px solid #00008b/*{borderColorContent}*/;
+	background: rgb(238,238,255)/*{fallbackBgColorContent}*/;
 	background: rgba(238,238,255,0.9)/*{bgColorContent}*/;
 /*	background: #ffffff{bgColorContent} url(images/ui-bg_flat_75_ffffff_40x100.png){bgImgUrlContent} 50%{bgContentXPos} 50%{bgContentYPos} repeat-x{bgContentRepeat};*/
 	color: #00008b/*{fcContent}*/;
