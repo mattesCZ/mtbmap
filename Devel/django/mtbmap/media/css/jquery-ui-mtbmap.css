@@ -89,7 +89,7 @@
 	display: block;
 	cursor: pointer;
 	position: relative;
-	margin-top: 2px;
+        margin: 2px 0.2em 0;
 	padding: .5em .5em .5em .7em;
 	min-height: 0; /* support: IE7 */
 }
@@ -113,6 +113,7 @@
 	border-top: 0;
 	overflow: auto;
         background: none;
+        margin: 0 0.2em;
 }
 .ui-autocomplete {
 	position: absolute;
