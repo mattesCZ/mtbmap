@@ -6,8 +6,7 @@ from django.contrib.gis.geos import *
 from datetime import datetime
 
 WEIGHTS = [1, 2, 3, 4, 5]
-MAX_WEIGHT = max(WEIGHTS)
-MIN_WEIGHT = min(WEIGHTS)
+THRESHOLD = 3*max(WEIGHTS)
 
 def line_string_to_points(line_string):
     '''
@@ -132,15 +131,17 @@ class Route:
 #            edge_ids = self.dijkstra(start_id, end_id)
             if limit_way.id in edge_ids:
                 self.status = 'notfound'
+                limit_way.length = limit_way.length/THRESHOLD
+                self.ways = [limit_way]
+                self.length = limit_way.length
             else:
                 self.status = 'success'
-            ways = [to_start_way]
-            for id in edge_ids[:-1]:
-                ways.append(Way.objects.get(pk=id))
-            ways.append(to_end_way)
-            self.ways = ways
-#            self.ways = Way.objects.filter(id__in=edge_ids)
-            self.length = sum([way.length for way in self.ways])
+                ways = [to_start_way]
+                for id in edge_ids[:-1]:
+                    ways.append(Way.objects.get(pk=id))
+                ways.append(to_end_way)
+                self.ways = ways
+                self.length = sum([way.length for way in self.ways])
             temp1.delete()
             temp2.delete()
             temp3.delete()
@@ -225,7 +226,7 @@ class Route:
         Insert into DB Way between start and end points. Can be used as threshold for route searching.
         return Way
         '''
-        limit_way = Way( name='TEMP_LIMIT_WAY',
+        limit_way = Way( name='',
                          x1=start_point.x,
                          x2=end_point.x,
                          y1=start_point.y,
@@ -239,7 +240,7 @@ class Route:
         limit_way.the_geom = line
         limit_way.save()        
         # workaround to compute correct length
-        limit_way.length = 3 * MAX_WEIGHT * Way.objects.length().get(pk=limit_way.id).length.km
+        limit_way.length = THRESHOLD * Way.objects.length().get(pk=limit_way.id).length.km
         limit_way.save()
         return limit_way
 
