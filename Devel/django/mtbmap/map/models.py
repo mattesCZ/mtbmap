@@ -17,7 +17,9 @@ SAC_SCALE_CHOICES = (
  (5, 'difficult_alpine_hiking'),
 )
 
-weights = [1, 2, 3, 4, 5]
+WEIGHTS = [1, 2, 3, 4, 5]
+MAX_WEIGHT = max(WEIGHTS)
+MIN_WEIGHT = min(WEIGHTS)
 
 class Map(models.Model):
     name = models.CharField(max_length=200)
@@ -173,48 +175,32 @@ class Way(geomodels.Model):
             # Rare case, probably impossible to find correct route
             # Temporary Way should be deleted
             print 'returning temp weight', self.length, self.id
-            return 3*max(weights)
-        preferences = {'highway':1, 'tracktype':1, 'width':1, 'sac_scale':1, 'mtbscale':1, 'surface':1, 'osmc':1}
-        for feature in preferences.keys():
-            if self.__dict__[feature]!=None:
-                if params[feature].has_key('min'):
+            return 3*MAX_WEIGHT
+        preferences = {'highway':MIN_WEIGHT, 'tracktype':MIN_WEIGHT, 'width':MIN_WEIGHT, 'sac_scale':MIN_WEIGHT, 'mtbscale':MIN_WEIGHT, 'surface':MIN_WEIGHT, 'osmc':MIN_WEIGHT}
+        for feature_name in preferences.keys():
+            feature_value = self.__dict__[feature_name]
+            if feature_value!=None:
+                if params[feature_name].has_key('min'):
                     try:
-#                        print 'has min', feature
-                        minvalue = float(params[feature]['min'])
+                        minvalue = float(params[feature_name]['min'])
                     except ValueError:
                         pass
                     else:
-                        if self.__dict__[feature]<minvalue:
-                            preferences[feature] = 5
-            if self.__dict__[feature]!=None:
-                if params[feature].has_key('max'):
+                        if feature_value<minvalue:
+                            return MAX_WEIGHT
+                if params[feature_name].has_key('max'):
                     try:
-#                        print 'has max', feature
-                        maxvalue = float(params[feature]['max'])
+                        maxvalue = float(params[feature_name]['max'])
                     except ValueError:
                         pass
                     else:
-                        if self.__dict__[feature]>maxvalue:
-                            preferences[feature] = 5
-#                if feature=='width':
-#                    try:
-#                        maxwidth = float(params[feature]['max'])
-#                        minwidth = float(params[feature]['min'])
-#                    except ValueError:
-#                        preferences[feature] = 1
-#                        continue
-#                    else:
-#                        if self.width>maxwidth or self.width<minwidth:
-#                            preferences[feature] = 5
-#                            continue
-#
+                        if feature_value>maxvalue:
+                            return MAX_WEIGHT
                 try:
-                    preferences[feature] = int(params[feature][str(self.__dict__[feature])])
+                    preferences[feature_name] = float(params[feature_name][str(feature_value)])
                 except KeyError, ValueError:
-#                    print params[feature]
-#                    print 'KeyError', feature, self.__dict__[feature]
-                    preferences[feature] = 1
-        return weights[max(preferences.values())-1]
+                    preferences[feature_name] = MIN_WEIGHT
+        return max(preferences.values())
 
     def compute_class_id(self, class_conf):
         '''
@@ -309,7 +295,7 @@ class WeightClass(models.Model):
         return self.classname
 
     def get_when_clauses(self, params):
-        default = min(weights)
+        default = min(WEIGHTS)
         clauses = []
 #        print params
         for w in self.weight_set.all():

@@ -5,7 +5,9 @@ from django.db import connection
 from django.contrib.gis.geos import *
 from datetime import datetime
 
-weights = [1, 2, 3, 4, 5]
+WEIGHTS = [1, 2, 3, 4, 5]
+MAX_WEIGHT = max(WEIGHTS)
+MIN_WEIGHT = min(WEIGHTS)
 
 def line_string_to_points(line_string):
     '''
@@ -19,15 +21,15 @@ def line_string_to_points(line_string):
 
 class MultiRoute:
     def __init__(self, points, params):
-        self.params = RouteParams(self.recreate_params(params))
+        self.params = RouteParams(self._recreate_params(params))
         self.points = points
         self.length = 0
         self.cost = 0
         self.last_route = None
         self.status = 'init'
-        self.features = []
+        self.geojson_features = []
 
-    def recreate_params(self, flat_params):
+    def _recreate_params(self, flat_params):
         '''
         Given JSON like object, create better python dictionary.
         '''
@@ -43,17 +45,14 @@ class MultiRoute:
         '''
         Create GeoJSON like object of type FeatureCollection.
         '''
-        if self.status=='init':
-            self.find_multiroute()
-        feature_collection = {
+        return {
             'type': 'FeatureCollection',
             'properties': {
                 'status': self.status,
                 'length': self.length
             },
-            'features': self.features
+            'features': self.geojson_features
         }
-        return feature_collection
 
     def search_index(self):
         '''
@@ -78,7 +77,7 @@ class MultiRoute:
                 self.status = route.status
             self.length += route.length
             self.cost += route.cost
-            self.features += route.geojson()
+            self.geojson_features += route.geojson()
             self.last_route = route
         if self.status=='init':
             self.status = 'success'
@@ -204,7 +203,7 @@ class Route:
         found = False
         while not found:
             bbox = point.buffer(radius).envelope
-            ways = Way.objects.filter(the_geom__bboverlaps=bbox).extra(where=[self.params.where_clause()]).distance(point).order_by('distance')
+            ways = Way.objects.filter(the_geom__bboverlaps=bbox).extra(where=[self.params.where]).distance(point).order_by('distance')
             if ways.count():
                 best_weight = ways[0].weight(self.params.raw_params) * ways[0].distance.km
                 nearest_way = ways[0]
@@ -240,13 +239,16 @@ class Route:
         limit_way.the_geom = line
         limit_way.save()        
         # workaround to compute correct length
-        limit_way.length = 3 * max(weights) * Way.objects.length().get(pk=limit_way.id).length.km
+        limit_way.length = 3 * MAX_WEIGHT * Way.objects.length().get(pk=limit_way.id).length.km
         limit_way.save()
         return limit_way
 
 class RouteParams:
     def __init__(self, params):
         self.raw_params = params
+        self.where = '(id IS NOT NULL)'
+        self.cost = 'length'
+        self._cost_and_where()
         self.sql_astar = self.weighted_ways_astar()
         self.sql_dijkstra = self.weighted_ways_dijkstra()
 
@@ -255,47 +257,37 @@ class RouteParams:
         Create sql query for pgRouting A Star.
         return sql query string
         '''
-        where = 'WHERE ' + self.where_clause() + " OR highway='temp'"
-        cost = self.cost_clause()
-        return 'SELECT id, source::int4, target::int4, %s AS cost, x1, x2, y1, y2 FROM map_way %s' % (cost, where)
+        where = 'WHERE ' + self.where + " OR highway='temp'"
+        return 'SELECT id, source::int4, target::int4, %s AS cost, x1, x2, y1, y2 FROM map_way %s' % (self.cost, where)
 
     def weighted_ways_dijkstra(self):
         '''
         Create sql query for pgRouting Dijkstra.
         return sql query string
         '''
-        where = "WHERE " + self.where_clause() + " OR highway='temp'"
-        cost = self.cost_clause()
-        return 'SELECT id, source::int4, target::int4, %s AS cost FROM map_way %s' % (cost, where)
+        where = "WHERE " + self.where + " OR highway='temp'"
+        return 'SELECT id, source::int4, target::int4, %s AS cost FROM map_way %s' % (self.cost, where)
 
-    def where_clause(self):
+    def _cost_and_where(self):
         '''
-        Create WHERE clause of SQL query.
-        return string
+        Create cost column definition and where clause.
         '''
-        weightclasses = WeightClass.objects.all()
+        cases = []
         whereparts = []
-        for wc in weightclasses:
+        whereparts.append(self._access())
+        for wc in WeightClass.objects.all():
+            cases += wc.get_when_clauses(self.raw_params[wc.classname])
             part = wc.get_where_clauses(self.raw_params[wc.classname])
             if part:
                 whereparts.append(part)
-        if whereparts:
-            where = "(" + " AND ".join(whereparts) + ")"
-        else:
-            # select everything
-            where = '(id IS NOT NULL)'
-        return where
-
-    def cost_clause(self):
-        '''
-        Create cost column definition.
-        return string
-        '''
-        weightclasses = WeightClass.objects.all()
-        cases = []
-        for wc in weightclasses:
-            cases += wc.get_when_clauses(self.raw_params[wc.classname])
         if cases:
-            return 'CASE %s ELSE "length" END' % (' '.join(cases))
-        else:
-            return 'length'
+            self.cost = 'CASE %s ELSE "length" END' % (' '.join(cases))
+        if whereparts:
+            self.where = "(" + " AND ".join(whereparts) + ")"
+
+    def _access(self, role=None):
+        '''
+        Create access clause according to given role (car, bike, pedestrian,...)
+        '''
+        # exclude ways with access='no'
+        return '''(access IS NULL OR access!='no')'''
