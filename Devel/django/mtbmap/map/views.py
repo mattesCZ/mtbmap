@@ -143,7 +143,7 @@ def export(request):
     return TemplateResponse(request, 'map/export.html', {})
 
 def routes(request):
-    classes = WeightClass.objects.all().order_by('order')
+    classes = WeightClass.objects.all()
     return TemplateResponse(request, 'map/routes_production.html', {'classes': classes})
 #    return TemplateResponse(request, 'map/routes.html', {'classes': classes})
 

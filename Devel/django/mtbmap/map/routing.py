@@ -27,12 +27,12 @@ class MultiRoute:
         self.status = 'init'
         self.features = []
 
-    def recreate_params(self, params):
+    def recreate_params(self, flat_params):
         '''
         Given JSON like object, create better python dictionary.
         '''
         new = {}
-        for p in params:
+        for p in flat_params:
             classname, feature = p['name'].split('__')
             if not classname in new:
                 new[classname] = {}
@@ -171,6 +171,7 @@ class Route:
         '''
 #        start = datetime.now()
         cursor = connection.cursor()
+        print self.params.sql_astar
         cursor.execute("SELECT edge_id, cost FROM shortest_path_astar(%s, %s, %s, false, false)", [self.params.sql_astar, source, target])
         rows = cursor.fetchall()
         edge_ids = [elem[0] for elem in rows]

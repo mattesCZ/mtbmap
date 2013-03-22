@@ -67,7 +67,7 @@
                                 <th>Typ</th>
                                 <th>Preference</th>
                             </tr>
-                            {% for w in c.orderedweights %}
+                            {% for w in c.weight_set.all %}
                             <tr>
                                 <td>{{w.feature}}</td>
                                 <td>

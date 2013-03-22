@@ -302,8 +302,8 @@ class WeightClass(models.Model):
     max = models.FloatField(null=True, blank=True)
     min = models.FloatField(null=True, blank=True)
 
-    def orderedweights(self):
-        return self.weight_set.all().order_by('feature')
+    class Meta:
+        ordering = ('order', 'classname',)
 
     def __unicode__(self):
         return self.classname
@@ -312,7 +312,7 @@ class WeightClass(models.Model):
         default = min(weights)
         clauses = []
 #        print params
-        for w in self.orderedweights():
+        for w in self.weight_set.all():
             try:
                 preference = int(params[w.feature])
             except ValueError:
@@ -332,7 +332,9 @@ class WeightClass(models.Model):
             except ValueError:
                 print 'ValueError', self.classname, params
             else:
-                andparts.append(condition)
+                # only if smaller than default max value
+                if value<self.max:
+                    andparts.append(condition)
         if params.has_key('min'):
             try:
 #                print 'MINVALUE:', params['min']
@@ -341,8 +343,10 @@ class WeightClass(models.Model):
             except ValueError:
                 print 'ValueError', self.classname, params
             else:
-                andparts.append(condition)
-        for w in self.orderedweights():
+                # only if bigger than default min value
+                if value>self.min:
+                    andparts.append(condition)
+        for w in self.weight_set.all():
             preference = params[w.feature]
             if preference=='5':
                 condition = """ "%s"::text!='%s'""" % (self.classname, w.feature)
@@ -368,6 +372,10 @@ class Weight(models.Model):
     preference = models.PositiveIntegerField(null=True, blank=True, choices=PREFERENCE_CHOICES)
     order = models.PositiveIntegerField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+
+    class Meta:
+        ordering = ('order', 'feature',)
+
     def __unicode__(self):
         return self.feature
 
