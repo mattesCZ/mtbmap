@@ -14,6 +14,7 @@ def copy_ways():
     '''
     copy data generated with osm2po to map_way table
     '''
+    start = datetime.now()
     cursor = connection.cursor()
     cursor.execute('DELETE FROM map_way')
     insert = """
@@ -23,15 +24,20 @@ def copy_ways():
     """
     cursor.execute(insert)
     transaction.commit_unless_managed()
-    print "All ways uploaded successfully"
+    count = Way.objects.all().count()
+    print count, " ways inserted successfully"
+    print 'Total time:', (datetime.now()-start).total_seconds()
 
 def add_attributes():
     '''
     Add attributes from osm2pgsql created database to our Way objects
     '''
+    start = datetime.now()
     _add_line_attributes()
     _add_polygon_attributes()
     _add_routes_attributes()
+    print 'All attributes updated successfully.'
+    print 'Total time:', (datetime.now()-start).total_seconds()
 
 def _row_to_arguments(row):
     '''
@@ -81,7 +87,7 @@ def _add_line_attributes():
         if not evaluated % 1000:
             print evaluated, 'evaluated ways...'
     cursor.close()
-    print updated, 'ways updated successfully,', evaluated, 'lines evaluated.'
+    print updated, 'ways (lines) updated successfully,', evaluated, 'lines evaluated.'
     print 'Time:', (datetime.now()-start).total_seconds()
 
 def _add_polygon_attributes():
@@ -108,7 +114,7 @@ def _add_polygon_attributes():
         if not evaluated % 1000:
             print evaluated, 'evaluated ways...'
     cursor.close()
-    print updated, 'ways updated successfully'
+    print updated, 'ways (areas) updated successfully'
     print 'Time:', (datetime.now()-start).total_seconds()
 
 def _add_routes_attributes():
