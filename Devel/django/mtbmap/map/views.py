@@ -25,11 +25,9 @@ def index(request):
         lang = 'cz'
     else:
         lang = 'en'
-    return render_to_response('map/map.html', {'lang': lang},
+    classes = WeightClass.objects.all()
+    return render_to_response('map/map.html', {'lang': lang, 'classes': classes},
                               context_instance=RequestContext(request))
-
-def home(request):
-    return TemplateResponse(request, 'map/home.html', {})
 
 def legend(request):
 #    zoom = int(zoom)
@@ -138,17 +136,6 @@ def exportmap(request):
         response['Content-Disposition'] = 'attachment; filename="map.png"'
         im.save(response, 'png')
         return response
-
-def export(request):
-    return TemplateResponse(request, 'map/export.html', {})
-
-def routes(request):
-    classes = WeightClass.objects.all()
-    return TemplateResponse(request, 'map/routes_production.html', {'classes': classes})
-#    return TemplateResponse(request, 'map/routes.html', {'classes': classes})
-
-def places(request):
-    return TemplateResponse(request, 'map/places.html', {})
 
 def altitudeprofile(request):
     try:

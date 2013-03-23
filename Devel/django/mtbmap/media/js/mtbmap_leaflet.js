@@ -108,12 +108,8 @@ map.on('moveend', onMapMoveEnd);
 map.on('click', onMapClick);
 // update legend on map zoom
 function onMapZoom(e) {
-    if (menuActive=='legend') {
-        $.get("/map/legend/", {
-            zoom: map.getZoom()
-        }, function(data) {
-            $('#tab-legend').html(data);
-        });
+    if (activePanel=='legend') {
+        updateLegend(map.getZoom());
     }
 }
 var userChanged = false;
@@ -127,110 +123,34 @@ function onMapMoveEnd(e) {
     $.cookie('zoom', map.getZoom(), {
         expires: 7
     });
-    if (menuActive=='export' && !userChanged) {
+    if (activePanel=='export' && !userChanged) {
         setCurrentBounds();
     }
 }
 function onMapClick(e){
-    if (menuActive=='routes') {
+    if (activePanel=='routes') {
         pLine.addPoint(e.latlng);
         if (!pLine.visible) {
-            pLine.show()
+            pLine.show();
         }
     }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // content
-var menuItems = ["home", "legend", "export", "routes", "places"]
-var menuActive = ''
-var routesActive = ''
+var activePanel = ''
 
-function tabHome() {
-    $.get("/map/home/", function(data) {
-        $('#tab-home').html(data);
-    });
-    menuActive = 'home';
-}
-function tabLegend() {
+function updateLegend(zoom) {
     $.get("/map/legend/", {
-        zoom: map.getZoom()
+        zoom: zoom
     }, function(data) {
         $('#tab-legend').html(data);
     });
-    menuActive = 'legend';
-}
-function tabRoutes() {
-    $.get("/map/routes/", function(data) {
-        $('#tab-routes').html(data);
-        if (!pLine.getLatLngs().length>0) {
-            $('.line-buttons').hide();
-        } else {
-            $('.length').html(pLine.distanceString());
-        }
-        $('#routes-tabs').tabs({
-            //            collapsible: true,
-            active: 0,
-            heightStyle: 'content',
-            activate: function(event, ui) {
-                var $tabs = $('#routes-tabs').tabs();
-                var selected = $tabs.tabs('option', 'active');
-                // check file API for GPX functions
-                if (selected==1) {
-                    if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
-                        alert(LANG.fileAPIError);
-                    }
-                }
-            }
-        });
-        setContentMaxHeight();
-        $('#routes-accordion').accordion({
-            collapsible: true,
-            active: false,
-            heightStyle: 'content'
-        });
-        $('.fit-to-line').button().click(function(event) {
-            fitToLine();
-        });
-        $('.reset-line').button().click(function(event) {
-            resetLine();
-        });
-        $('.create-profile-button').button().click(function(event) {
-            setProfileParams();
-        });
-        $('.get-route-button').button();
-    });
-    menuActive = 'routes';
-}
-function tabPlaces() {
-    $.get("/map/places/", function(data) {
-        $('#tab-places').html(data);
-        submitOnEnter('places-addr', 'places-submit');
-        $('#places-submit').button().click(function(event) {
-            addrSearch();
-        });
-        $('#places-addr').focus();
-    });
-    menuActive = 'places'
-}
-function tabExport() {
-    $.get("/map/export/", function(data) {
-        $('#tab-export').html(data);
-        setCurrentBounds();
-        $('#set-bounds-button').button().click(function(event) {
-            event.preventDefault();
-            setCurrentBounds();
-        });
-        $('#export-button').button().click(function(event) {
-            getParams();
-        });
-    });
-    menuActive = 'export'
 }
 function setContentMaxHeight() {
     maxheight = $('#map').height() - ($('#footer').height() + 70);
     $('.main-tab-panel').css('max-height', maxheight);
-    $('.subtab-panel').css('max-height', maxheight-50);
+    $('.subtab-panel').css('max-height', maxheight-40);
 }
 $(window).resize(function(event) {
     setContentMaxHeight();
@@ -245,15 +165,62 @@ $(document).ready(function() {
         collapsible: true,
         active: false,
         activate: function(event, ui) {
-            var $tabs = $('#main-tabs').tabs();
-            var selected = $tabs.tabs('option', 'active');
-            if (selected==0) tabHome()
-            else if (selected==1) tabLegend()
-            else if (selected==2) tabRoutes()
-            else if (selected==3) tabPlaces()
-            else if (selected==4) tabExport()
-            else return;
+            activePanel = ui.newPanel.selector.replace('#tab-', '');
+            if (activePanel=='legend') {
+                updateLegend(map.getZoom());
+            } else if (activePanel=='places') {
+                $('#places-addr').focus().select();
+            } else if (activePanel=='export') {
+                setCurrentBounds();
+            }
         }
+    });
+    // initialize routes sub-tabs menu
+    $('#routes-tabs').tabs({
+        active: 0,
+        heightStyle: 'content',
+        activate: function(event, ui) {
+            activeRoutesPanel = ui.newPanel.selector
+            // check file API for GPX functions
+            if (activeRoutesPanel=='#routes-content-gpx') {
+                if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
+                    alert(LANG.fileAPIError);
+                }
+            }
+        }
+    });
+    $('.line-buttons').hide();
+    // tab places interaction
+    submitOnEnter('places-addr', 'places-submit');
+    $('#places-submit').button().click(function(event) {
+        addrSearch();
+    });
+    // tab routes interaction
+    $('#routes-accordion').accordion({
+        collapsible: true,
+        active: false,
+        heightStyle: 'content'
+    });
+    $('.fit-to-line').button().click(function(event) {
+        pLine.fitMapView();
+    });
+    $('.reset-line').button().click(function(event) {
+        pLine.reset();
+    });
+    $('.create-profile-button').button().click(function(event) {
+        $('.profile-params').val(pLine.getLatLngs());
+    });
+    $('.get-route-button').button();
+    // tab export interaction
+    $('#set-bounds-button').button().click(function(event) {
+        event.preventDefault();
+        setCurrentBounds();
+    });
+    $('#export-button').button().click(function(event) {
+        // set range parameters for map export
+        $('#export-bounds').val(getBounds().toBBoxString());
+        $('#export-zoom').val($('#export-zoom-select').val());
+        $('#export-line').val(pLine.getLatLngs());
     });
 });
 
@@ -283,11 +250,6 @@ function setMapImageSize() {
         $('#export-width').val(Math.round(width));
         $('#export-height').val(Math.round(height));
     }
-}
-function getParams() {
-    $('#export-bounds').val(getBounds().toBBoxString());
-    $('#export-zoom').val($('#export-zoom-select').val());
-    $('#export-line').val(pLine.getLatLngs());
 }
 function getBounds() {
     exportLeft = $('#export-left').val();
@@ -521,15 +483,6 @@ var pLine = new RouteLine([], {
 
 ////////////////////////////////////////////////////////////////////////////////
 // routing GUI functions
-function fitToLine() {
-    pLine.fitMapView();
-}
-function resetLine() {
-    pLine.reset();
-}
-function setProfileParams() {
-    $('.profile-params').val(pLine.getLatLngs());
-}
 function getRoute(e) {
     setupPost(e);
     pLine.getRoute();
