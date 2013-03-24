@@ -1,5 +1,5 @@
 LANG = {
-    fileAPIError: 'The File API is not fully supported, try HTML5 compatible browser.',
+    fileAPIError: 'Zpracování souborů (File API) není v tomto prohlížeči podporováno. Zkuste prohlížeč kompatibilní s HTML5.',
     searchResults: 'Výsledky hledání',
     noResults: 'Nic nenalezeno',
     elevation: 'Nadmořská výška',

@@ -64,3 +64,6 @@ hr { /*should be rewritten for html5*/
 .hidden { /* used only for leaflet popup styling */
     visibility: hidden;
 }
+.line-buttons {
+    display: none;
+}

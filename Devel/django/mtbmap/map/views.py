@@ -26,7 +26,7 @@ def index(request):
     else:
         lang = 'en'
     classes = WeightClass.objects.all()
-    return render_to_response('map/map.html', {'lang': lang, 'classes': classes},
+    return render_to_response('map/map.html', {'lang': lang, 'classes': classes, 'zoomRange':range(19)},
                               context_instance=RequestContext(request))
 
 def legend(request):
