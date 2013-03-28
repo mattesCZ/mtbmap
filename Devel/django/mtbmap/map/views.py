@@ -7,15 +7,11 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.template.response import TemplateResponse
 from django.http import HttpResponse, HttpResponseRedirect
-#from django.core.context_processors import csrf
-#import mapnik
 from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
 from map.altitude import altitude_image, height
 from map.routing import MultiRoute, line_string_to_points
-#from map.gpx import GPX
 from PIL import Image
 import simplejson as json
-#from map.forms import GPXDocForm
 from django.core.urlresolvers import reverse
 from django.utils import translation
 
