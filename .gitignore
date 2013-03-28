@@ -37,7 +37,7 @@ Web/img/scalebar.*
 
 # extras in django project #
 ############################
-Devel/django/www
+www
 leaflet-src.js
 Devel/django/mtbmap/media/legend
 Devel/django/mtbmap/settings*.py
