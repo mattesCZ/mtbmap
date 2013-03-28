@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map [
+<!ENTITY % entities SYSTEM "../inc/entities.xml.inc">
+%entities;
+]>
+<Map srs="&srs900913;" bgcolor="rgba(255,255,255, 0)">
+    &fontset-settings;
+
+&height-styles;
+
+<!-- vrstevnice po 5 metrech -->
+<Layer name="contours5" status="on" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>contours5</StyleName>
+    <Datasource>
+      <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 5 = 0 AND height::integer % 10 != 0 AND height::integer % 25 != 0) as "contours5"</Parameter>
+      &latlon-datasource-settings;
+    </Datasource>
+</Layer>
+<!-- vrstevnice po 10 metrech -->
+<Layer name="contours10" status="on" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>contours10</StyleName>
+    <StyleName>contours-text10</StyleName>
+    <Datasource>
+      <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 10 = 0 AND height::integer % 50 != 0) as "contours10"</Parameter>
+      &latlon-datasource-settings;
+    </Datasource>
+</Layer>
+<!-- vrstevnice po 20 metrech -->
+<Layer name="contours20" status="on" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>contours20</StyleName>
+    <StyleName>contours-text20</StyleName>
+    <Datasource>
+      <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 20 = 0 AND height::integer % 100 != 0) as "contours20"</Parameter>
+      &latlon-datasource-settings;
+    </Datasource>
+</Layer>
+<!-- vrstevnice po 25 metrech -->
+<Layer name="contours25" status="on" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>contours25</StyleName>
+    <StyleName>contours-text25</StyleName>
+    <Datasource>
+      <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 25 = 0) as "contours25"</Parameter>
+      &latlon-datasource-settings;
+    </Datasource>
+</Layer>
+<!-- vrstevnice po 50 metrech -->
+<Layer name="contours50" status="on" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>contours50</StyleName>
+    <StyleName>contours-text50</StyleName>
+    <Datasource>
+      <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 50 = 0 AND height::integer % 100 != 0) as "contours50"</Parameter>
+      &latlon-datasource-settings;
+    </Datasource>
+</Layer>
+<!-- vrstevnice po 100 metrech -->
+<Layer name="contours100" status="on" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
+    <StyleName>contours100</StyleName>
+    <StyleName>contours-text100</StyleName>
+    <Datasource>
+      <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 100 = 0) as "contours100"</Parameter>
+      &latlon-datasource-settings;
+    </Datasource>
+</Layer>
+
+</Map>

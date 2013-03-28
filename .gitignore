@@ -1,0 +1,45 @@
+# software directory #
+#############################
+sw
+
+# local copies #
+################
+*.local
+
+# data files #
+##############
+Data/osm2po
+Data/shadingdata
+Data/shp
+*.pbf
+*.osm
+
+# extra files #
+###############
+interesting
+
+# renderd sock #
+#######################
+Web/renderd
+
+# backups #
+###########
+backup*
+
+# old web #
+###########
+Web/img/scalebar.*
+
+# extra mapnik files #
+######################
+*orlice*.xml
+*renderMap.py
+
+# extras in django project #
+############################
+www
+leaflet-src.js
+Devel/django/mtbmap/media/legend
+Devel/django/mtbmap/settings*.py
+Devel/django/mtbmap/templates/admin
+

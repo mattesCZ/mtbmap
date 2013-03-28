@@ -10,7 +10,11 @@ if ($.cookie('latitude') && $.cookie('longitude') && $.cookie('zoom')) {
 var map = L.map('map', {
     zoomControl: false
 }).setView(initLatlng, initZoom);
-
+// start geolocation
+map.locate({
+	setView: true,
+	maxZoom: 16
+});
 // create Leaflet TileLayer
 function tileLayer(url, attribution) {
     return new L.TileLayer(url, {

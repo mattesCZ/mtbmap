@@ -89,10 +89,10 @@ def loadDB(database, file, style, cache, port):
 
 def refreshDate(file,date):
     try:
-        fo = open(homepath + '/Devel/ruzne/' + file,'r')
+        fo = open(homepath + '/Web/ruzne/' + file,'r')
         s = fo.read()
         fo.close()
-        fo = open(homepath + '/Devel/ruzne/' + file,'w')
+        fo = open(homepath + '/Web/ruzne/' + file,'w')
         fo.write(re.sub("20[1-9][0-9]-[0-1][0-9]-[0-3][0-9]",date,s))
         fo.close()
     except IOError:
