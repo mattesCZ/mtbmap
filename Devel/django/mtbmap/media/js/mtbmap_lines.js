@@ -48,6 +48,10 @@ MTBMAP.Line = L.Polyline.extend({
     },
     _hideButtons: function() {
     	$('.line-buttons').hide();
+    },
+    // the same like getLatLngs, overloaded only in RoutingLine
+    routeLatLngs: function() {
+    	return this.getLatLngs();
     }
 })
 MTBMAP.GpxLine = MTBMAP.Line.extend({
@@ -211,6 +215,20 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
                 map.fitBounds(geojsonLine.getBounds());
             });
         }
+    },
+    // get latLngs from geojson layer group
+    routeLatLngs: function () {
+    	var gLine = new L.Polyline([], {});
+		this.routesGroup.eachLayer(function (layer) {
+			layer.eachLayer(function (sublayer) {
+				gLine.spliceLatLngs(gLine.getLatLngs().length-1,1)
+				newLatLngs = sublayer.getLatLngs();
+				for (i in newLatLngs) {
+					gLine.addLatLng(newLatLngs[i]);
+				}
+			})
+		})
+		return gLine.getLatLngs();
     }
 })
 // distance parameter in km

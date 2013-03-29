@@ -68,7 +68,7 @@ $(document).ready(function() {
         MTBMAP.activeLine.reset();
     });
     $('.create-profile-button').button().click(function(event) {
-        $('.profile-params').val(MTBMAP.activeLine.getLatLngs());
+        $('.profile-params').val(MTBMAP.activeLine.routeLatLngs());
     });
     $('.get-route-button').button();
     // tab export interaction
@@ -80,7 +80,7 @@ $(document).ready(function() {
         // set range parameters for map export
         $('#export-bounds').val(getBounds().toBBoxString());
         $('#export-zoom').val($('#export-zoom-select').val());
-        $('#export-line').val(MTBMAP.activeLine.getLatLngs());
+        $('#export-line').val(MTBMAP.activeLine.routeLatLngs());
     });
 });
 $(window).resize(function(event) {
