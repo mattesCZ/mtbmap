@@ -53,11 +53,6 @@ map.addControl(new L.Control.Permalink({
     layers: layers,
     position: 'bottomright'
 }));
-// line for routing and gpx parsing
-var pLine = new RouteLine([], {
-    color: '#FF6600',
-    opacity: 0.9
-});
 
 ////////////////////////////////////////////////////////////////////////////////
 // add map events
@@ -66,7 +61,7 @@ map.on('moveend', onMapMoveEnd);
 map.on('click', onMapClick);
 // update legend on map zoom
 function onMapZoom(e) {
-    if (activePanel=='legend') {
+    if (MTBMAP.activePanel=='legend') {
         updateLegend(map.getZoom());
     }
 }
@@ -81,15 +76,15 @@ function onMapMoveEnd(e) {
     $.cookie('zoom', map.getZoom(), {
         expires: 7
     });
-    if (activePanel=='export' && !userChanged) {
+    if (MTBMAP.activePanel=='export' && !userChanged) {
         setCurrentBounds();
     }
 }
 function onMapClick(e){
-    if (activePanel=='routes' && (activeRoutesPanel=='manual' || activeRoutesPanel=='routing')) {
-        pLine.addPoint(e.latlng);
-        if (!pLine.visible) {
-            pLine.show();
+    if (MTBMAP.activePanel=='routes' && (MTBMAP.activeRoutesPanel=='manual' || MTBMAP.activeRoutesPanel=='routing')) {
+        MTBMAP.activeLine.addPoint(e.latlng);
+        if (!MTBMAP.activeLine.visible) {
+            MTBMAP.activeLine.show();
         }
     }
 }

@@ -1,6 +1,17 @@
-var activePanel = ''
-var routePanels = ['manual', 'gpx', 'routing']
-var activeRoutesPanel = routePanels[0]
+// lines for routing and gpx parsing
+MTBMAP.lines['manual'] = new MTBMAP.SimpleLine([], {
+    color: '#FF6600',
+    opacity: 0.9
+});
+MTBMAP.lines['gpx'] = new MTBMAP.GpxLine([], {
+    color: '#FF6600',
+    opacity: 0.9
+});
+MTBMAP.lines['routing'] = new MTBMAP.RoutingLine([], {
+    color: '#FF6600',
+    opacity: 0.4
+});
+MTBMAP.activeLine = MTBMAP.lines[MTBMAP.activeRoutesPanel];
 
 $(document).ready(function() {
     // set focus on map
@@ -12,12 +23,12 @@ $(document).ready(function() {
         collapsible: true,
         active: false,
         activate: function(event, ui) {
-            activePanel = ui.newPanel.selector.replace('#tab-', '');
-            if (activePanel=='legend') {
+            MTBMAP.activePanel = ui.newPanel.selector.replace('#tab-', '');
+            if (MTBMAP.activePanel=='legend') {
                 updateLegend(map.getZoom());
-            } else if (activePanel=='places') {
+            } else if (MTBMAP.activePanel=='places') {
                 $('#places-addr').focus().select();
-            } else if (activePanel=='export') {
+            } else if (MTBMAP.activePanel=='export') {
                 setCurrentBounds();
             }
         }
@@ -27,9 +38,12 @@ $(document).ready(function() {
         active: 0,
         heightStyle: 'content',
         activate: function(event, ui) {
-            activeRoutesPanel = ui.newPanel.selector.replace('#routes-content-', '');
+            MTBMAP.activeRoutesPanel = ui.newPanel.selector.replace('#routes-content-', '');
             // check file API for GPX functions
-            if (activeRoutesPanel=='gpx') {
+            MTBMAP.activeLine.hide();
+            MTBMAP.activeLine = MTBMAP.lines[MTBMAP.activeRoutesPanel];
+            MTBMAP.activeLine.show();
+            if (MTBMAP.activeRoutesPanel=='gpx') {
                 if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
                     $('#routes-content-gpx').html('<h4>' + LANG.fileAPIError + '</h4>');
                 }
@@ -48,13 +62,13 @@ $(document).ready(function() {
         heightStyle: 'content'
     });
     $('.fit-to-line').button().click(function(event) {
-        pLine.fitMapView();
+        MTBMAP.activeLine.fitMapView();
     });
     $('.reset-line').button().click(function(event) {
-        pLine.reset();
+        MTBMAP.activeLine.reset();
     });
     $('.create-profile-button').button().click(function(event) {
-        $('.profile-params').val(pLine.getLatLngs());
+        $('.profile-params').val(MTBMAP.activeLine.getLatLngs());
     });
     $('.get-route-button').button();
     // tab export interaction
@@ -66,7 +80,7 @@ $(document).ready(function() {
         // set range parameters for map export
         $('#export-bounds').val(getBounds().toBBoxString());
         $('#export-zoom').val($('#export-zoom-select').val());
-        $('#export-line').val(pLine.getLatLngs());
+        $('#export-line').val(MTBMAP.activeLine.getLatLngs());
     });
 });
 $(window).resize(function(event) {
@@ -88,7 +102,7 @@ function setPanelsMaxHeight() {
 // GUI functions for routes
 function getRoute(e) {
     setupPost(e);
-    pLine.getRoute();
+    MTBMAP.activeLine.getRoute();
 }
 function handleGPX(e) {
     files = e.target.files;
@@ -97,7 +111,7 @@ function handleGPX(e) {
         // Closure to capture the file information.
         reader.onload = (function(theFile) {
             return function(e) {
-                pLine.parseGPX(e.target.result);
+                MTBMAP.activeLine.parseGPX(e.target.result);
             };
         })(f);
         reader.readAsText(f);
