@@ -25,6 +25,7 @@ class Map(models.Model):
     name = models.CharField(max_length=200)
     attribution = models.CharField(max_length=400)
     url = models.CharField(max_length=400)
+    last_update = models.DateField(null=True, blank=True)
 
     def __unicode__(self):
         return u"Map(%s,%s)" % (self.name, self.url)
@@ -176,7 +177,7 @@ class Way(geomodels.Model):
             # Temporary Way should be deleted
             print 'returning temp weight', self.length, self.id
             return 3*MAX_WEIGHT
-        preferences = {'highway':MIN_WEIGHT, 'tracktype':MIN_WEIGHT, 'width':MIN_WEIGHT, 'sac_scale':MIN_WEIGHT, 'mtbscale':MIN_WEIGHT, 'surface':MIN_WEIGHT, 'osmc':MIN_WEIGHT}
+        preferences = {'highway':MIN_WEIGHT, 'tracktype':MIN_WEIGHT, 'sac_scale':MIN_WEIGHT, 'mtbscale':MIN_WEIGHT, 'surface':MIN_WEIGHT, 'osmc':MIN_WEIGHT}
         for feature_name in preferences.keys():
             feature_value = self.__dict__[feature_name]
             if feature_value!=None:
@@ -226,25 +227,25 @@ class Way(geomodels.Model):
                             else: id = types['negative']
                         class_id += str(id)
                         continue
-                if classname=='width':
-                    cleansed = self.width.replace(',', '.')
-                    limits = sorted([float(elem) for elem in types.keys()])
-                    try:
-                        value = float(cleansed)
-                    except ValueError:
-                        id = c['null']
-                    else:
-                        id = c['null']
-                        for l in limits:
-                            if value<l:
-                                id = types[str(l)]
-                                break
-                else:
-                    try:
-                        id = types[self.__dict__[classname]]
-                    except KeyError:
-                        print classname, 'unexpected type:', self.__dict__[classname]
-                        id = c['null']
+#                if classname=='width':
+#                    cleansed = self.width.replace(',', '.')
+#                    limits = sorted([float(elem) for elem in types.keys()])
+#                    try:
+#                        value = float(cleansed)
+#                    except ValueError:
+#                        id = c['null']
+#                    else:
+#                        id = c['null']
+#                        for l in limits:
+#                            if value<l:
+#                                id = types[str(l)]
+#                                break
+#                else:
+                try:
+                    id = types[self.__dict__[classname]]
+                except KeyError:
+                    print classname, 'unexpected type:', self.__dict__[classname]
+                    id = c['null']
                 class_id += str(id)
         return int(class_id)
 
@@ -279,9 +280,13 @@ class Way(geomodels.Model):
             length += haversine(lon1, lat1, lon2, lat2)
         return length
 
-
+class WeightCollection(models.Model):
+    name = models.CharField(max_length=40)
+    
+    
 class WeightClass(models.Model):
     classname = models.CharField(max_length=40)
+    collection = models.ForeignKey('WeightCollection')
     cz = models.CharField(max_length=40)
     type = models.CharField(max_length=40)
     order = models.PositiveIntegerField(null=True, blank=True)
@@ -352,12 +357,19 @@ class Weight(models.Model):
         (4, 'Výjimečně'),
         (5, 'Vůbec'),
     )
+    GUI_CHOICES = (
+        ('select', 'select'),
+        ('radio', 'radio'),
+        ('checkbox', 'checkbox'),
+    )
     classname = models.ForeignKey('WeightClass')
     feature = models.CharField(max_length=40)
     cz = models.CharField(max_length=40)
     preference = models.PositiveIntegerField(null=True, blank=True, choices=PREFERENCE_CHOICES)
+    type = models.CharField(max_length=20, null=True, blank=True, choices=GUI_CHOICES)
     order = models.PositiveIntegerField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+    visible = models.BooleanField(default=True)
 
     class Meta:
         ordering = ('order', 'feature',)

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from map.models import Way, WeightClass
+from map.models import Way, WeightCollection
 from django.db import connection
 from django.contrib.gis.geos import *
 from datetime import datetime
@@ -249,6 +249,7 @@ class RouteParams:
         self.raw_params = params
         self.where = '(id IS NOT NULL)'
         self.cost = 'length'
+        self.weight_collection = WeightCollection.objects.get(name=self.raw_params['weights']['template'])
         self._cost_and_where()
         self.sql_astar = self.weighted_ways_astar()
         self.sql_dijkstra = self.weighted_ways_dijkstra()
@@ -276,7 +277,7 @@ class RouteParams:
         cases = []
         whereparts = []
         whereparts.append(self._access())
-        for wc in WeightClass.objects.all():
+        for wc in self.weight_collection.weightclass_set.all():
             cases += wc.get_when_clauses(self.raw_params[wc.classname])
             part = wc.get_where_clauses(self.raw_params[wc.classname])
             if part:

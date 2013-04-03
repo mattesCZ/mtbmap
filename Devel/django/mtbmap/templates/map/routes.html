@@ -43,6 +43,11 @@
             <h4>Zadejte do mapy body, kterými vést trasu</h4>
             <form id="routes-params">
                 <h5>Parametry vyhledávání tras:</h5>
+                <label>Template</label>
+                <select name="weights__template">
+                	<option value="default">Default</option>
+                	<option value="hiking" selected="selected">Hiking</option>
+                </select>
                 <div id="routes-accordion">
                     {% for c in classes %}
                     <h3>{{ c.classname }}</h3>

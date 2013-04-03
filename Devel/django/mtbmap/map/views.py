@@ -21,7 +21,7 @@ def index(request):
         lang = 'cz'
     else:
         lang = 'en'
-    classes = WeightClass.objects.all()
+    classes = WeightCollection.objects.get(name='hiking').weightclass_set.all()
     return render_to_response('map/map.html', {'lang': lang, 'classes': classes, 'zoomRange':range(19)},
                               context_instance=RequestContext(request))
 
