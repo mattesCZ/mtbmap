@@ -50,6 +50,13 @@ $(document).ready(function() {
             }
         }
     });
+    $('#weights_template').on('change', function (e) {
+    	name = $('#weights_template').val();
+    	$('#routes-accordion').accordion({animate: false});
+    	$.get("/map/routingparams/", { name: name }, function(data) {
+    		$('#routes-accordion').html(data).accordion("refresh").accordion({active: false}).show().accordion({animate: 400});
+    	});
+    })
     // tab places interaction
     submitOnEnter('places-addr', 'places-submit');
     $('#places-submit').button().click(function(event) {

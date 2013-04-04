@@ -44,54 +44,17 @@
             <form id="routes-params">
                 <h5>Parametry vyhledávání tras:</h5>
                 <label>Template</label>
-                <select name="weights__template">
-                	<option value="default">Default</option>
-                	<option value="hiking" selected="selected">Hiking</option>
+                <select name="weights__template" id="weights_template">
+                    {% for wc in weight_collections %}
+                        {% if forloop.first %}
+                        <option value="{{ wc.name }}" selected="selected">{{ wc.name }}</option>
+                        {% else %}
+                        <option value="{{ wc.name }}">{{ wc.name }}</option>
+                        {% endif %}
+                	{% endfor %}
                 </select>
                 <div id="routes-accordion">
-                    {% for c in classes %}
-                    <h3>{{ c.classname }}</h3>
-                    <div>
-                        {% if c.max != None or c.min != None %}
-                        <table id="weights-limits-{{c.classname}}" class="weights-limits" >
-                            <tr>
-                                {% if c.max != None %}
-                                <td>Max:</td>
-                                <td><input type="text" value="{{c.max|floatformat:'0'}}" size="2" id="weights-{{c.classname}}-max" name="{{c.classname}}__max" /></td>
-                                {% endif %}
-                                {% if c.min != None %}
-                                <td>Min:</td>
-                                <td><input type="text" value="{{c.min|floatformat:'0'}}" size="2" id="weights-{{c.classname}}-min" name="{{c.classname}}__min" /></td>
-                                {% endif %}
-                            </tr>
-                        </table>
-                        {% endif %}
-                        {% if c.weight_set.all %}
-                        <table id="weights-types-{{c.classname}}" class="weights-types">
-                            <tr>
-                                <th>Typ</th>
-                                <th>Preference</th>
-                            </tr>
-                            {% for w in c.weight_set.all %}
-                            <tr>
-                                <td>{{w.feature}}</td>
-                                <td>
-                                    <select class="weights-preferences" id="weights-{{c.classname}}-{{w.feature}}-preference" name="{{c.classname}}__{{w.feature}}" >
-                                        {% for choice in w.PREFERENCE_CHOICES %}
-                                        {% if choice.0 == w.preference %}
-                                        <option value="{{choice.0}}" selected="selected" >{{choice.1}}</option>
-                                        {% else %}
-                                        <option value="{{choice.0}}">{{choice.1}}</option>
-                                        {% endif %}
-                                        {% endfor %}
-                                    </select>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </table>
-                        {% endif %}
-                    </div>
-                    {% endfor %}
+              	    {% include "map/routingparams.html" with weight_collection=weight_collections|first %}
                 </div>
             </form>
             <form onsubmit="getRoute(event)" method="POST">

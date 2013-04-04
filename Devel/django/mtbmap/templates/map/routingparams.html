@@ -1,0 +1,44 @@
+{% for c in weight_collection.weightclass_set.all %}
+<h3 {% if c.use == 'ignore' %} style="display: none"{% endif %}>{{ c.classname }}</h3>
+<div>
+    {% if c.max != None or c.min != None %}
+    <table id="weights-limits-{{c.classname}}" class="weights-limits" >
+        <tr>
+            {% if c.max != None %}
+            <td>Max:</td>
+            <td><input type="text" value="{{c.max|floatformat:'0'}}" size="2" id="weights-{{c.classname}}-max" name="{{c.classname}}__max" /></td>
+            {% endif %}
+            {% if c.min != None %}
+            <td>Min:</td>
+            <td><input type="text" value="{{c.min|floatformat:'0'}}" size="2" id="weights-{{c.classname}}-min" name="{{c.classname}}__min" /></td>
+            {% endif %}
+        </tr>
+    </table>
+    {% endif %}
+    {% if c.weight_set.all %}
+    <table id="weights-types-{{c.classname}}" class="weights-types">
+    <!-- <table id="weights-types-{{c.classname}}" class="weights-types"> -->
+        <tr>
+            <th>Typ</th>
+            <th>Preference</th>
+        </tr>
+        {% for w in c.weight_set.all %}
+        <tr>
+            <td>{{w.feature}}</td>
+            <td>
+                <select class="weights-preferences" id="weights-{{c.classname}}-{{w.feature}}-preference" name="{{c.classname}}__{{w.feature}}" >
+                    {% for choice in w.PREFERENCE_CHOICES %}
+                    {% if choice.0 == w.preference %}
+                    <option value="{{choice.0}}" selected="selected" >{{choice.1}}</option>
+                    {% else %}
+                    <option value="{{choice.0}}">{{choice.1}}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+{% endfor %}

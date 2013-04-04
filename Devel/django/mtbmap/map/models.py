@@ -287,8 +287,7 @@ class WeightCollection(models.Model):
 class WeightClass(models.Model):
     classname = models.CharField(max_length=40)
     collection = models.ForeignKey('WeightCollection')
-    cz = models.CharField(max_length=40)
-    type = models.CharField(max_length=40)
+    use = models.CharField(max_length=40, default='yes')
     order = models.PositiveIntegerField(null=True, blank=True)
     max = models.FloatField(null=True, blank=True)
     min = models.FloatField(null=True, blank=True)

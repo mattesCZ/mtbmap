@@ -21,8 +21,8 @@ def index(request):
         lang = 'cz'
     else:
         lang = 'en'
-    classes = WeightCollection.objects.get(name='hiking').weightclass_set.all()
-    return render_to_response('map/map.html', {'lang': lang, 'classes': classes, 'zoomRange':range(19)},
+    weight_collections = WeightCollection.objects.all()
+    return render_to_response('map/map.html', {'lang': lang, 'zoomRange':range(19), 'weight_collections': weight_collections},
                               context_instance=RequestContext(request))
 
 def legend(request):
@@ -30,6 +30,12 @@ def legend(request):
     zoom = int(request.GET['zoom'])
     legenditems = Legend.objects.all()[0].legend_items(zoom)
     return TemplateResponse(request, 'map/legend.html', {'zoom': zoom, 'legenditems': legenditems})
+
+def routingparams(request):
+    name = request.GET['name']
+    print name
+    weight_collection = WeightCollection.objects.get(name=name)
+    return TemplateResponse(request, 'map/routingparams.html', {'weight_collection': weight_collection})
 
 def exportmap(request):
 #    c = {}
