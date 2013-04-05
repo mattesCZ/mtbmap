@@ -32,9 +32,9 @@ def legend(request):
     return TemplateResponse(request, 'map/legend.html', {'zoom': zoom, 'legenditems': legenditems})
 
 def routingparams(request):
-    name = request.GET['name']
-    print name
-    weight_collection = WeightCollection.objects.get(name=name)
+    template_id = request.GET['template_id']
+    # WeightCollection id is last part of value "weights_template_num"
+    weight_collection = WeightCollection.objects.get(pk=template_id.split('_')[-1])
     return TemplateResponse(request, 'map/routingparams.html', {'weight_collection': weight_collection})
 
 def exportmap(request):

@@ -44,15 +44,12 @@
             <form id="routes-params">
                 <h5>Parametry vyhledávání tras:</h5>
                 <label>Template</label>
-                <select name="weights__template" id="weights_template">
+                <div id="weights_template">
                     {% for wc in weight_collections %}
-                        {% if forloop.first %}
-                        <option value="{{ wc.name }}" selected="selected">{{ wc.name }}</option>
-                        {% else %}
-                        <option value="{{ wc.name }}">{{ wc.name }}</option>
-                        {% endif %}
+                        <input id="weights_template_{{ wc.id }}" value="weights_template_{{ wc.id }}" name="weights__template" type="radio" {% if forloop.first %}checked="checked"{% endif %}/>
+                        <label for="weights_template_{{ wc.id }}">{{ wc.name }}</label>
                 	{% endfor %}
-                </select>
+                </div>
                 <div id="routes-accordion">
               	    {% include "map/routingparams.html" with weight_collection=weight_collections|first %}
                 </div>

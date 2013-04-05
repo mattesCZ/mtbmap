@@ -50,13 +50,6 @@ $(document).ready(function() {
             }
         }
     });
-    $('#weights_template').on('change', function (e) {
-    	name = $('#weights_template').val();
-    	$('#routes-accordion').accordion({animate: false});
-    	$.get("/map/routingparams/", { name: name }, function(data) {
-    		$('#routes-accordion').html(data).accordion("refresh").accordion({active: false}).show().accordion({animate: 400});
-    	});
-    })
     // tab places interaction
     submitOnEnter('places-addr', 'places-submit');
     $('#places-submit').button().click(function(event) {
@@ -67,6 +60,12 @@ $(document).ready(function() {
         collapsible: true,
         active: false,
         heightStyle: 'content'
+    });
+    // initialize weights_template radio
+    $('#weights_template').buttonset().click(function(event) {
+    	event.preventDefault();
+    	template_id = event.target.parentNode.htmlFor;
+    	updateTemplate(template_id);
     });
     $('.fit-to-line').button().click(function(event) {
         MTBMAP.activeLine.fitMapView();
@@ -99,6 +98,12 @@ function updateLegend(zoom) {
     }, function(data) {
         $('#tab-legend').html(data);
     });
+}
+function updateTemplate(template_id) {
+	$('#routes-accordion').accordion({animate: false});
+	$.get("/map/routingparams/", { template_id: template_id }, function(data) {
+		$('#routes-accordion').html(data).accordion("refresh").accordion({active: false}).show().accordion({animate: 400});
+	});
 }
 function setPanelsMaxHeight() {
     maxheight = $('#map').height() - ($('#footer').height() + 70);
