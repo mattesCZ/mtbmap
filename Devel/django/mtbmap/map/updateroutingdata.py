@@ -6,6 +6,7 @@ from map.models import Way
 import psycopg2
 import simplejson as json
 from datetime import datetime
+from map.mathfunctions import total_seconds
 
 sac_scale_values = ['hiking', 'mountain_hiking', 'demanding_mountain_hiking',
                     'alpine_hiking', 'demanding_alpine_hiking', 'difficult_alpine_hiking']
@@ -18,15 +19,15 @@ def copy_ways():
     cursor = connection.cursor()
     cursor.execute('DELETE FROM map_way')
     insert = """
-       insert into map_way (class_id, length, name, x1, y1, x2, y2, reverse_cost, osm_id, source, target, osm_source, osm_target, the_geom)
-       select clazz, km, osm_name, x1, y1, x2, y2, reverse_cost, osm_id, source, target, osm_source_id, osm_target_id, geom_way
+       insert into map_way (class_id, length, name, x1, y1, x2, y2, reverse_cost, osm_id, source, target, the_geom)
+       select clazz, km, osm_name, x1, y1, x2, y2, reverse_cost, osm_id, source, target, geom_way
        from osm_2po_4pgr
     """
     cursor.execute(insert)
     transaction.commit_unless_managed()
     count = Way.objects.all().count()
     print count, " ways inserted successfully"
-    print 'Total time:', (datetime.now()-start).total_seconds()
+    print 'Total time:', total_seconds(datetime.now()-start)
 
 def add_attributes():
     '''
@@ -37,7 +38,7 @@ def add_attributes():
     _add_polygon_attributes()
     _add_routes_attributes()
     print 'All attributes updated successfully.'
-    print 'Total time:', (datetime.now()-start).total_seconds()
+    print 'Total time:', total_seconds(datetime.now()-start)
 
 def _row_to_arguments(row):
     '''
@@ -88,7 +89,7 @@ def _add_line_attributes():
             print evaluated, 'evaluated ways...'
     cursor.close()
     print updated, 'ways (lines) updated successfully,', evaluated, 'lines evaluated.'
-    print 'Time:', (datetime.now()-start).total_seconds()
+    print 'Time:', total_seconds(datetime.now()-start)
 
 def _add_polygon_attributes():
     '''
@@ -115,7 +116,7 @@ def _add_polygon_attributes():
             print evaluated, 'evaluated ways...'
     cursor.close()
     print updated, 'ways (areas) updated successfully'
-    print 'Time:', (datetime.now()-start).total_seconds()
+    print 'Time:', total_seconds(datetime.now()-start)
 
 def _add_routes_attributes():
     '''
@@ -139,7 +140,7 @@ def _add_routes_attributes():
         if not evaluated % 1000:
             print evaluated, 'evaluated records:'
     print updated, 'osmc attrs updated successfully'
-    print 'Time:', (datetime.now()-start).total_seconds()
+    print 'Time:', total_seconds(datetime.now()-start)
 
 
 def _to_float(value):

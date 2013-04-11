@@ -6,7 +6,7 @@ from django.contrib.gis.geos import *
 from copy import deepcopy
 from random import randint
 import simplejson as json
-from map.latlongmath import haversine
+from map.mathfunctions import haversine
 from map.updatemap import updatemap
 
 SAC_SCALE_CHOICES = (
@@ -55,8 +55,6 @@ class Way(geomodels.Model):
     the_geom = geomodels.LineStringField()
     source = models.BigIntegerField()
     target = models.BigIntegerField()
-    osm_source = models.BigIntegerField(null=True, blank=True)
-    osm_target = models.BigIntegerField(null=True, blank=True)
 
     #cost attributes
     highway = models.TextField(null=True, blank=True)

@@ -17,3 +17,6 @@ def haversine(lon1, lat1, lon2, lat2):
     c = 2 * asin(sqrt(a))
     km = 6378.137 * c
     return km
+
+def total_seconds(time_diff):
+    return (time_diff.microseconds + (time_diff.seconds + time_diff.days * 24 * 3600) * 1e6) / 1e6

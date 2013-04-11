@@ -4,6 +4,7 @@ from map.models import Way, WeightCollection
 from django.db import connection
 from django.contrib.gis.geos import *
 from datetime import datetime
+from map.mathfunctions import total_seconds
 
 WEIGHTS = [1, 2, 3, 4, 5]
 THRESHOLD = 3*max(WEIGHTS)
@@ -81,7 +82,7 @@ class MultiRoute:
         if self.status=='init':
             self.status = 'success'
         end = datetime.now()
-        print 'Find MultiRoute duration:', (end - start).total_seconds()
+        print 'Find MultiRoute duration:', total_seconds(end - start)
         return self.status
 
 class Route:
@@ -104,11 +105,11 @@ class Route:
             self.start_way = self.nearest_way(start_point)
             self.start_to_source, self.start_to_target = self.start_way.lines_to_endpoints(start_point)
 #        nearest_middle = datetime.now()
-#        print 'Start way:', (nearest_middle-nearest_start).total_seconds()
+#        print 'Start way:', total_seconds(nearest_middle-nearest_start)
         self.end_way = self.nearest_way(end_point)
         self.end_to_source, self.end_to_target = self.end_way.lines_to_endpoints(end_point)
 #        nearest_end = datetime.now()
-#        print 'End way:  ', (nearest_end-nearest_middle).total_seconds()
+#        print 'End way:  ', total_seconds(nearest_end-nearest_middle)
 
     def find_best_route(self):
         '''
@@ -177,7 +178,7 @@ class Route:
         edge_ids = [elem[0] for elem in rows]
         self.cost = sum([elem[1] for elem in rows])
 #        end = datetime.now()
-#        print 'astar finished', (end - start).total_seconds()
+#        print 'astar finished', total_seconds(end - start)
         return edge_ids
 
     def dijkstra(self, source, target):
