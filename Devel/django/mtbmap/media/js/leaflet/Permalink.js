@@ -2,6 +2,7 @@ L.Control.Permalink = L.Control.extend({
 	includes: L.Mixin.Events, 
 
 	options: {
+		urlBase: '',
 		position: "bottomleft",
 		useAnchor: true,
 		useLocation: false,
@@ -95,8 +96,11 @@ L.Control.Permalink = L.Control.extend({
 
 	_set_urlvars: function()
 	{
-		this._url_base = window.location.href.split('#')[0];
-
+		if (this.options.urlBase!='') {
+			this._url_base = this.options.urlBase;
+		} else {
+			this._url_base = window.location.href.split('#')[0];
+		}
 		var p;
 		if (this.options.useAnchor)
 			p = L.UrlUtil.queryParse(L.UrlUtil.hash());

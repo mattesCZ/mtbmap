@@ -49,6 +49,12 @@ map.addControl(L.control.scale({
 }));
 map.addControl(new L.Control.Position({}));
 map.addControl(new L.Control.Permalink({
+    text: 'Edit OSM data',
+    useAnchor: false,
+    position: 'bottomright',
+    urlBase: "http://www.openstreetmap.org/edit.html"
+}));
+map.addControl(new L.Control.Permalink({
     text: 'Permalink',
     layers: layers,
     position: 'bottomright'
