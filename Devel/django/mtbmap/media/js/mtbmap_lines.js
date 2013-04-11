@@ -199,6 +199,7 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
             lPopup(map.getCenter(), '<h3>' + LANG.addPoints + '</h3>', true);
         } else {
             var params = $('#routes-params').serializeArray();
+        	$('.loading').addClass('ajax-loading');
             $.post("/map/findroute/", {
                 'params':JSON.stringify(params),
                 'routing-line': '['+ latlngs + ']'
@@ -213,6 +214,8 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
                 });
                 thisLine.routesGroup.addLayer(geojsonLine);
                 map.fitBounds(geojsonLine.getBounds());
+            }).always( function () {
+            	$('.loading').removeClass('ajax-loading');
             });
         }
     },

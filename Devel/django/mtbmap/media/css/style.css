@@ -67,3 +67,22 @@ hr { /*should be rewritten for html5*/
 .line-buttons {
     display: none;
 }
+.loading {
+    display:    none;
+    position:   absolute;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('images/ajax-loader.gif') 
+                50% 50% 
+                no-repeat;
+}
+.ajax-loading {
+    overflow: hidden;   
+}
+.ajax-loading {
+    display: block;
+}
