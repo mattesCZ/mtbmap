@@ -106,8 +106,8 @@ MTBMAP.SimpleLine = MTBMAP.Line.extend({
 			iconSize : [9, 9]
 		});
 		this.on('click', this.onClick);
-		this.on('mouseover', this.onMouseover);
-		this.on('mouseout', this.onMouseout);
+		// this.on('mouseover', this.onMouseover);
+		// this.on('mouseout', this.onMouseout);
 		// this.routesGroup = new L.LayerGroup([]);
 	},
 	reset: function() {
@@ -181,12 +181,12 @@ MTBMAP.SimpleLine = MTBMAP.Line.extend({
     	segmentIndex = this._nearestSegment(clickLatlng);
 		this.insertPoint(clickLatlng, segmentIndex);
     },
-    onMouseover: function (event) {
-    	L.DomUtil.addClass(document.body, 'target-cursor');
-    },
-    onMouseout: function (event) {
-    	L.DomUtil.removeClass(document.body, 'target-cursor');
-    },
+    // onMouseover: function (event) {
+    	// L.DomUtil.addClass(document.body, 'target-cursor');
+    // },
+    // onMouseout: function (event) {
+    	// L.DomUtil.removeClass(document.body, 'target-cursor');
+    // },
     _nearestSegment: function (clickLatlng) {
     	minDist = 41000000;
     	segmentIndex = 0;
