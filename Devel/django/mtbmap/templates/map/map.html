@@ -30,8 +30,10 @@
             {% include "map/home.html" %}
         </article>
         <article id="tab-legend" class="main-tab-panel"></article>
-        <article id="tab-routes" class="main-tab-panel">
-            <!-- {% include "map/routes.html" %} -->
+        <article id="tab-routes" class="main-tab-panel"> 
+            {% comment %}
+                {% include "map/routes.html" %}
+            {% endcomment %}
             {% include "map/routes_production.html" %}
         </article>
         <article id="tab-places" class="main-tab-panel">
