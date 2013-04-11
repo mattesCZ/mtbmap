@@ -22,7 +22,8 @@ def index(request):
     else:
         lang = 'en'
     weight_collections = WeightCollection.objects.all()
-    return render_to_response('map/map.html', {'lang': lang, 'zoomRange':range(19), 'weight_collections': weight_collections},
+    map = Map.objects.get(name='MTB mapa')
+    return render_to_response('map/map.html', {'map':map, 'lang': lang, 'zoomRange':range(19), 'weight_collections': weight_collections},
                               context_instance=RequestContext(request))
 
 def legend(request):

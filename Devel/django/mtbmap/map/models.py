@@ -7,6 +7,7 @@ from copy import deepcopy
 from random import randint
 import simplejson as json
 from map.latlongmath import haversine
+from map.updatemap import updatemap
 
 SAC_SCALE_CHOICES = (
  (0, 'hiking'),
@@ -32,6 +33,14 @@ class Map(models.Model):
 
     def as_dict(self):
         return {'name':self.name, 'url':self.url}
+    
+    def update_rendering_data(self, config_file):
+        date = updatemap(config_file)
+        if date:
+            self.last_update = date
+            self.save()
+        else:
+            print 'An error occured'
 
 class Way(geomodels.Model):
     class_id = models.BigIntegerField(null=True, blank=True)

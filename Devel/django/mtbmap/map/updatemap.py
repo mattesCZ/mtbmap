@@ -1,8 +1,8 @@
-import datetime
 #!/usr/bin/python
 
 import sys, ConfigParser
 import string, os, re, shutil
+import datetime
 
 def exists(name, path):
     if os.path.exists(path):
@@ -12,39 +12,31 @@ def exists(name, path):
         print 'correct variable ' + name + ' in configuration file'
         raise UpdateError('Please, correct variable ' + name + ' in configuration file')
 
-def downloadFile(source):
+def downloadFile(source, datadir):
     os.chdir(datadir)
     return os.system('wget -t 3 -N ' + source)
 
 
-def applyBBox(north, west, south, east, filename, format):
+def applyBBox(osmosis, north, west, south, east, datadir, filename, format):
     print 'applying bounding box for ' + filename
+    outputFile = 'bbox_' + filename
     if (format=='pbf'):
-#        if (len(sourceFiles)>1):
-        outputFile = 'bbox_' + filename
         bboxCommand = osmosis + ' --read-' + format + ' file=' + datadir + filename + ' --buffer bufferCapacity=1000 --bounding-box \
                       left="' + west + '" right="' + east +'" top="' + north +'" bottom="' + south + '" \
                       --write-' + format + ' file=' + datadir + outputFile
-#        else:
-#            outputFile = 'bbox_' + string.replace(filename, '.pbf', '.bz2')
-#            bboxCommand = osmosis + ' --read-' + format + ' file=' + datadir + filename + ' --bounding-box \
-#            left="' + west + '" right="' + east +'" top="' + north +'" bottom="' + south + '" \
-#            --write-xml file=' + datadir + outputFile
-#            format = 'xml'
         res = os.system(bboxCommand)
-        boundedFiles.append(outputFile)
     else:
         res = os.system('bzcat ' + datadir + filename + ' | \
                         ' + osmosis + ' --read-' + format + ' file=- --bounding-box \
                         left="' + west + '" right="' + east +'" top="' + north +'" bottom="' + south + '" \
                         --write-' + format + ' file=' + datadir + 'bbox_' + filename)
-        boundedFiles.append('bbox_' + filename)
     if (res==0):
         print 'Bounding box applied into file bbox_' + filename
+        return outputFile
     else:
         raise UpdateError('Error occured while applying bounding box with osmosis on file: ' + filename)
 
-def mergeFiles(boundedFiles):
+def mergeFiles(osmosis, boundedFiles, datadir):
     if (sort=='yes'):
         for file in boundedFiles:
             print 'sorting file ' + file + ' for merge...'
@@ -83,43 +75,18 @@ def mergeFiles(boundedFiles):
         count -= 1
     return mergedFile
 
-def loadDB(database, file, style, cache, port):
-    loadCommand = osm2pgsql + ' -s -d ' + database + ' ' + datadir + file + ' -S ' + style + ' -C ' + str(cache) + ' -P ' + str(port) + ' --number-processes 8 '
+def loadDB(osm2pgsql, database, file, style, cache, port):
+    loadCommand = osm2pgsql + ' -s -d ' + database + ' ' + file + ' -S ' + style + ' -C ' + str(cache) + ' -P ' + str(port) + ' --number-processes 8 '
     return os.system(loadCommand)
-
-def refreshDate(file,date):
-    try:
-        fo = open(homepath + '/Web/ruzne/' + file,'r')
-        s = fo.read()
-        fo.close()
-        fo = open(homepath + '/Web/ruzne/' + file,'w')
-        fo.write(re.sub("20[1-9][0-9]-[0-1][0-9]-[0-3][0-9]",date,s))
-        fo.close()
-    except IOError:
-        print 'Cannot refresh date for ' + file
-    else:
-        try:
-            shutil.copyfile(homepath + '/Devel/ruzne/' + file, homepath + '/Web/' + file)
-        except IOError:
-            print 'Problem with copying ' + file + ', check access privileges.'
-
-def restartRenderd():
-    os.system('kill $(pidof renderd)')
-    os.system(renderd)
 
 class UpdateError(Exception):
     def __init__(self, msg):
         self.msg = msg
 
-if __name__ == "__main__":
-
+def updatemap(config_file):
     # set variables from configuration file passed as the command line parameter
     # default is default.conf
-    if (len(sys.argv)>1):
-        configFile = sys.argv[1]
-        print "Reading configuration file: ", configFile
-    else:
-        configFile = 'default.conf'
+    configFile = config_file
 
     if (os.path.exists(configFile)):
         try:
@@ -153,8 +120,6 @@ if __name__ == "__main__":
             exists('osm2pgsql', osm2pgsql)
             relations2lines = config.get('update', 'relations2lines')
             exists('relations2lines', relations2lines)
-            renderd = config.get('update', 'renderd')
-            exists('renderd', renderd)
 
             boundingBox = config.get('bbox', 'boundingBox')
             if (boundingBox=='yes'):
@@ -214,14 +179,13 @@ if __name__ == "__main__":
         sys.exit(1)
 
     #data are probably from yesterdays planet file
-    date = datetime.date.today() - datetime.timedelta(days=1)
     try:
         #download files
         sourceFiles = []
         if (download == 'yes'):
             for source in sources:
                 print 'Downloading file ' + source[1] + ' from ' + source[0] + ' ...'
-                result = downloadFile(source[0])
+                result = downloadFile(source[0], datadir)
                 if (result!=0):
                     raise UpdateError('An error occured while downloading file ' + source[1])
                 else:
@@ -230,37 +194,38 @@ if __name__ == "__main__":
         else:
             sourceFiles = sources
 
+        datetime_in_sec = os.path.getmtime(datadir + sourceFiles[0])
+        date = datetime.date.fromtimestamp(datetime_in_sec)
         #apply bounding box on each file
         if (boundingBox=='yes'):
             boundedFiles = []
             for file in sourceFiles:
-                applyBBox(str(north), str(west), str(south), str(east), file, format)
+                boundedFiles.append(applyBBox(osmosis, str(north), str(west), str(south), str(east), datadir, file, format))
             print 'Bounding box successfully applied'
         else:
             boundedFiles = sourceFiles
 
         #merge files into one
         if (len(boundedFiles)>1):
-            merged = mergeFiles(boundedFiles)
+            merged = mergeFiles(osmosis, boundedFiles, datadir)
             print 'Downloaded files were succesfully merged'
         else:
             merged = boundedFiles[0]
 
         #osm2pgsql
-        if (loadDB(database, merged, style, cache, port) != 0):
+        if (loadDB(osm2pgsql, database, datadir + merged, style, cache, port) != 0):
             raise UpdateError('An osm2pgsql error occured. Database was probably cleaned.')
         else:
             print 'OSM data successfully loaded to database, running relations2lines.py ...'
         #relations2lines
         os.system(relations2lines + ' ' + database + ' ' + str(port))
 
-        #refresh date on webpages, restart renderd
-        refreshDate('index.html', str(date))
-        refreshDate('en.html', str(date))
-#        restartRenderd()
+        #return source file creation date
+        return date
     except UpdateError, ue:
         print ue.msg
         print 'Map data was not uploaded.'
+        return None
 
 #    finally:
 #        if (os.path.exists(datadir + merged)):
