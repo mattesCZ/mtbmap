@@ -105,6 +105,9 @@ MTBMAP.SimpleLine = MTBMAP.Line.extend({
 			iconUrl : '../media/js/images/line-marker.png',
 			iconSize : [9, 9]
 		});
+		this.on('click', this.onClick);
+		this.on('mouseover', this.onMouseover);
+		this.on('mouseout', this.onMouseout);
 		// this.routesGroup = new L.LayerGroup([]);
 	},
 	reset: function() {
@@ -137,6 +140,14 @@ MTBMAP.SimpleLine = MTBMAP.Line.extend({
         this.markersGroup.addLayer(marker);
         this._updateLine();
     },
+    _redraw: function (latlngs) {
+    	this.markersGroup.clearLayers();
+    	for (var i=0; i < latlngs.length; i++) {
+			marker = this._marker(latlngs[i]);
+			this.markersGroup.addLayer(marker);
+		};
+		this._updateLine();
+    },
     _updateLine: function() {
         thisLine = this;
         thisLine.setLatLngs([]);
@@ -150,6 +161,11 @@ MTBMAP.SimpleLine = MTBMAP.Line.extend({
         this.markersGroup.removeLayer(marker);
         this._updateLine();
     },
+    insertPoint: function(latlng, segmentIndex) {
+    	latlngs = this.getLatLngs();
+    	latlngs.splice(segmentIndex, 0, latlng);
+    	this._redraw(latlngs);
+    },
     _marker: function(latlng) {
         m = new L.marker(latlng, {
             'draggable': true,
@@ -159,6 +175,39 @@ MTBMAP.SimpleLine = MTBMAP.Line.extend({
         m.on('click', _markerClick);
         m.parentLine = this;
         return m;
+    },
+    onClick: function(event) {
+    	clickLatlng = event.latlng;
+    	segmentIndex = this._nearestSegment(clickLatlng);
+		this.insertPoint(clickLatlng, segmentIndex);
+    },
+    onMouseover: function (event) {
+    	L.DomUtil.addClass(document.body, 'target-cursor');
+    },
+    onMouseout: function (event) {
+    	L.DomUtil.removeClass(document.body, 'target-cursor');
+    },
+    _nearestSegment: function (clickLatlng) {
+    	minDist = 41000000;
+    	segmentIndex = 0;
+    	latlngs = this.getLatLngs();
+    	for (var i=1; i < latlngs.length; i++) {
+    		var p = {}
+    		p.x = clickLatlng.lng
+    		p.y = clickLatlng.lat
+    		var p1 = {}
+    		p1.x = latlngs[i-1].lng
+    		p1.y = latlngs[i-1].lat
+    		var p2 = {}
+    		p2.x = latlngs[i].lng
+    		p2.y = latlngs[i].lat
+    		var dist = L.LineUtil.pointToSegmentDistance(p, p1, p2);
+    		if (dist < minDist) {
+    			minDist = dist;
+    			segmentIndex = i;
+    		}
+		};
+    	return segmentIndex;
     }
 })
 MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
