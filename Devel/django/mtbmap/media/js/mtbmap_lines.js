@@ -69,31 +69,51 @@ MTBMAP.GpxLine = MTBMAP.Line.extend({
             alert(LANG.gpxNotValid);
             return;
         }
-        track = root.find("trk");
-        segments = track.find("trkseg");
-        if (!segments.length) {
-            alert(LANG.gpxNoTrackpoints);
-            return;
-        }
         points = [];
-        try {
-            segments.each(function () {
-                pts = $(this).find("trkpt");
-                pts.each(function() {
-                    lat = $(this).attr("lat");
-                    lon = $(this).attr("lon");
-                    point = new L.LatLng(lat, lon);
-                    points.push(point);
-                });
-            });
-        } catch (err) {
-            alert(LANG.gpxNotValid);
+        points = points.concat(this._findRoutePoints(root));
+        points = points.concat(this._findTrackPoints(root));
+        if (!points.length) {
+            alert(LANG.gpxNoTrackpoints);
             return;
         }
         this.setLatLngs(points);
         $('.length').html(this.distanceString());
         this.show();
         this.fitMapView();
+    },
+    _findTrackPoints: function (root) {
+    	gpxLine = this;
+        tracks = root.find("trk");
+        trkPts = [];
+        tracks.each(function () {
+	        segments = $(this).find("trkseg");
+	        if (segments.length) {
+	        	trkPts = trkPts.concat(gpxLine._findPoints(segments, "trkpt"));        	
+	        }
+        });
+        return trkPts;
+    },
+    _findRoutePoints: function (root) {
+    	routes = root.find("rte");
+    	return this._findPoints(routes, "rtept");
+    },
+    _findPoints: function (parentElements, name) {
+    	pts = [];
+    	try {
+	    	parentElements.each(function () {
+	    		pointElements = $(this).find(name);
+	    		pointElements.each(function () {
+	                lat = $(this).attr("lat");
+	                lon = $(this).attr("lon");
+	                point = new L.LatLng(lat, lon);
+	                pts.push(point);
+	    		});
+	    	});
+	    } catch (err) {
+	    	alert(LANG.gpxNotValid);
+	    	return [];
+	    }
+	    return pts;
     }
 })
 
