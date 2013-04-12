@@ -10,7 +10,6 @@ MTBMAP.Line = L.Polyline.extend({
     show: function() {
         if (!this.visible) {
             map.addLayer(this);
-            latlngs = this.getLatLngs();
             this._showButtons();
             this.visible = true;
         }
@@ -23,7 +22,7 @@ MTBMAP.Line = L.Polyline.extend({
         }
     },
     fitMapView: function() {
-        latlngs = this.getLatLngs();
+        latlngs = this.routeLatLngs();
         if (latlngs.length>1) {
             map.fitBounds(this.getBounds());
         } else if (latlngs.length==1) {
@@ -35,11 +34,14 @@ MTBMAP.Line = L.Polyline.extend({
     },
     getDistance: function() {
         d = 0;
-        latlngs = this.getLatLngs();
+        latlngs = this.routeLatLngs();
         for (i=1; i<latlngs.length; i++) {
             d += latlngs[i-1].distanceTo(latlngs[i]);
         }
         return d/1000;
+    },
+    updateDistance: function() {
+    	$('.length').html(this.distanceString());
     },
     _showButtons: function() {
     	if (this.getLatLngs().length > 0) {
@@ -77,7 +79,6 @@ MTBMAP.GpxLine = MTBMAP.Line.extend({
             return;
         }
         this.setLatLngs(points);
-        $('.length').html(this.distanceString());
         this.show();
         this.fitMapView();
     },
@@ -175,7 +176,7 @@ MTBMAP.SimpleLine = MTBMAP.Line.extend({
             thisLine.addLatLng(layer.getLatLng());
         });
         this._showButtons();
-        $('.length').html(this.distanceString());
+        this.updateDistance();
     },
     removePoint: function(marker) {
         this.markersGroup.removeLayer(marker);
@@ -260,6 +261,9 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
             this.visible = false;
         }
     },
+    getBounds: function() {
+    	return L.polyline(this.routeLatLngs(), {}).getBounds();
+    },
 	getRoute: function() {
         thisLine = this;
         this.routesGroup.clearLayers();
@@ -285,6 +289,8 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
                 map.fitBounds(geojsonLine.getBounds());
             }).always( function () {
             	$('.loading').removeClass('ajax-loading');
+            }).done( function () {
+            	thisLine.updateDistance();
             });
         }
     },

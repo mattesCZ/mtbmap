@@ -5,6 +5,7 @@ MTBMAP.lines['manual'] = new MTBMAP.SimpleLine([], {
 });
 MTBMAP.lines['gpx'] = new MTBMAP.GpxLine([], {
     color: '#FF6600',
+    clickable: false,
     opacity: 0.9
 });
 MTBMAP.lines['routing'] = new MTBMAP.RoutingLine([], {
@@ -43,6 +44,7 @@ $(document).ready(function() {
             MTBMAP.activeLine.hide();
             MTBMAP.activeLine = MTBMAP.lines[MTBMAP.activeRoutesPanel];
             MTBMAP.activeLine.show();
+            MTBMAP.activeLine.updateDistance();
             if (MTBMAP.activeRoutesPanel=='gpx') {
                 if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
                     $('#routes-content-gpx').html('<h4>' + LANG.fileAPIError + '</h4>');
@@ -64,7 +66,11 @@ $(document).ready(function() {
     // initialize weights_template radio
     $('#weights_template').buttonset().click(function(event) {
     	event.preventDefault();
+    	// uncheck old radio button
+    	// $('#weights_template>input:checked').val().removeAttr("checked");
     	template_id = event.target.parentNode.htmlFor;
+    	// check current radio button
+    	$('#'+template_id).attr("checked","checked");
     	updateTemplate(template_id);
     });
     $('.fit-to-line').button().click(function(event) {
