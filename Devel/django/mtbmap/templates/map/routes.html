@@ -21,6 +21,11 @@
                     <input type="hidden" name="profile-params" class="profile-params" value="" />
                     <input class="create-profile-button" type="submit" value="Vytvořit profil">
                 </form>
+                <form method="post" action="/map/creategpx/" target="_blank" >
+                    {% csrf_token %}
+                    <input type="hidden" name="profile-params" class="profile-params" value="" />
+                    <input class="create-gpx-button" type="submit" value="Vytvořit GPX">
+                </form>
             </div>
         </article>
         <article id="routes-content-gpx" class="subtab-panel">
@@ -54,11 +59,11 @@
               	    {% include "map/routingparams.html" with weight_collection=weight_collections|first %}
                 </div>
             </form>
-            <form onsubmit="getRoute(event)" method="POST">
-                {% csrf_token %}
-                <input class="get-route-button" type="submit" value="Hledat trasu">
-            </form>
             <div class="line-buttons">
+	            <form onsubmit="getRoute(event)" method="POST">
+	                {% csrf_token %}
+	                <input class="get-route-button" type="submit" value="Hledat trasu">
+	            </form>
                 <div class="length"></div>
                 <br>
                 <button class="fit-to-line">Zobrazit podle trasy</button>
@@ -67,6 +72,11 @@
                     {% csrf_token %}
                     <input type="hidden" name="profile-params" class="profile-params" value="" />
                     <input class="create-profile-button" type="submit" value="Vytvořit profil">
+                </form>
+                <form method="post" action="/map/creategpx/" target="_blank" >
+                    {% csrf_token %}
+                    <input type="hidden" name="profile-params" class="profile-params" value="" />
+                    <input class="create-gpx-button" type="submit" value="Vytvořit GPX">
                 </form>
             </div>
             <div class="loading"></div>

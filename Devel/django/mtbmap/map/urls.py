@@ -5,6 +5,7 @@ urlpatterns = patterns('',
     url(r'^routingparams/$', 'map.views.routingparams'),
     url(r'^exportmap/$', 'map.views.exportmap'),
     url(r'^altitudeprofile/$', 'map.views.altitudeprofile'),
+    url(r'^creategpx/$', 'map.views.creategpx'),
     url(r'^getheight/$', 'map.views.getheight'),
     url(r'^findroute/$', 'map.views.findroute'),
 )

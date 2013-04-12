@@ -9,7 +9,7 @@ from django.template.response import TemplateResponse
 from django.http import HttpResponse, HttpResponseRedirect
 from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
 from map.altitude import altitude_image, height
-from map.routing import MultiRoute, line_string_to_points
+from map.routing import MultiRoute, line_string_to_points, create_gpx
 from PIL import Image
 import simplejson as json
 from django.core.urlresolvers import reverse
@@ -167,6 +167,28 @@ def altitudeprofile(request):
                     return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
                 else:
                     return render_to_response('map/height.html', {'height': ret}, context_instance=RequestContext(request))
+        else:
+            message = 'Nezadali jste žádný bod.'
+            return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
+
+def creategpx(request):
+    try:
+        params = request.POST['profile-params']
+    except (KeyError, 'no points posted'):
+        return render_to_response('map/map.html', {},
+                                  context_instance=RequestContext(request))
+    else:
+        points = []
+        if len(params):
+            for part in params.split('),'):
+                latlng = part.replace('LatLng(', '').replace(')', '').split(',')
+                point = [float(latlng[0]), float(latlng[1])]
+                points.append(point)
+            gpx = create_gpx(points)
+            response = HttpResponse(mimetype='application/xml')
+            response['Content-Disposition'] = 'attachment; filename="line.gpx"'
+            response.write(gpx)
+            return response
         else:
             message = 'Nezadali jste žádný bod.'
             return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))

@@ -5,6 +5,7 @@ from django.db import connection
 from django.contrib.gis.geos import *
 from datetime import datetime
 from map.mathfunctions import total_seconds
+import libxml2
 
 WEIGHTS = [1, 2, 3, 4, 5]
 THRESHOLD = 3*max(WEIGHTS)
@@ -277,3 +278,22 @@ class RouteParams:
         '''
         self.cost, self.where = self.weight_collection.get_cost_where_clause(self.raw_params)
 
+def create_gpx(points):
+    output = libxml2.parseDoc('<gpx/>')
+    root_node = output.getRootElement()
+    root_node.setProp('creator', 'http://mtbmap.cz/')
+    root_node.setProp('version', '1.1')
+    root_node.setProp('xmlns', 'http://www.topografix.com/GPX/1/1')
+    root_node.setProp('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance')
+    root_node.setProp('xsi:schemaLocation', 'http://www.topografix.com/GPX/1/1 gpx.xsd')
+    rte_node = libxml2.newNode('rte')
+    for point in points:
+        print point
+        rtept = libxml2.newNode('rtept')
+        rtept.setProp('lat', str(point[0]))
+        rtept.setProp('lon', str(point[1]))
+        rte_node.addChild(rtept)
+    root_node.addChild(rte_node)
+    return output.serialize('utf-8', 1)
+        
+    

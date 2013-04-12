@@ -82,6 +82,9 @@ $(document).ready(function() {
     $('.create-profile-button').button().click(function(event) {
         $('.profile-params').val(MTBMAP.activeLine.routeLatLngs());
     });
+    $('.create-gpx-button').button().click(function(event) {
+        $('.profile-params').val(MTBMAP.activeLine.routeLatLngs());
+    });
     $('.get-route-button').button();
     // tab export interaction
     $('#set-bounds-button').button().click(function(event) {
