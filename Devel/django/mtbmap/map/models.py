@@ -289,7 +289,40 @@ class Way(geomodels.Model):
 
 class WeightCollection(models.Model):
     name = models.CharField(max_length=40)
+    vehicle = models.CharField(max_length=40, default='foot')
     
+    def get_cost_where_clause(self, params):
+        where = '(id IS NOT NULL)'
+        cost = 'length'
+        cases = []
+        whereparts = []
+        whereparts += self._access()
+        for wc in self.weightclass_set.all():
+            cases += wc.get_when_clauses(params[wc.classname])
+            part = wc.get_where_clauses(params[wc.classname])
+            if part:
+                whereparts.append(part)
+        if cases:
+            cost = 'CASE %s ELSE "length" END' % (' '.join(cases))
+        if whereparts:
+            where = "(" + " AND ".join(whereparts) + ")"
+        return cost, where
+    
+    def _access(self):
+        '''
+        Create access clause according to given role (car, bike, pedestrian,...)
+        '''
+        # TODO: add vehicle access control, needs vehicle column in database and model
+        access_clauses = []
+        default_access = '''(access IS NULL OR access NOT IN ('no', 'private'))'''
+        if self.vehicle in ('bicycle', 'foot'):
+            access_restrictions = '''((access IS NULL OR access NOT IN ('no', 'private')) OR (access IN ('no', 'private') AND %s IN ('yes', 'designated')))''' % (self.vehicle)
+            vehicle_restrictions = '''(%s IS NULL OR NOT %s IN ('no', 'private'))''' % (self.vehicle, self.vehicle)
+            access_clauses += [access_restrictions, vehicle_restrictions]
+        else:
+            access_clauses.append(default_access)
+        return access_clauses
+
     
 class WeightClass(models.Model):
     classname = models.CharField(max_length=40)

@@ -1,5 +1,6 @@
 {
     "name": "default",
+    "vehicle": "bicycle",
     "classes": [
         {
             "name": "highway",

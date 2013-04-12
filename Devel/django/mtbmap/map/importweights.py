@@ -11,9 +11,10 @@ def import_json_template(filename):
     json_template = json.loads(file.read())
     file.close()
     name = json_template['name']
+    vehicle = json_template['vehicle']
     if WeightCollection.objects.filter(name=name).count():
         WeightCollection.objects.filter(name=name)[0].delete()
-    weight_collection = WeightCollection(name=name)
+    weight_collection = WeightCollection(name=name, vehicle=vehicle)
     weight_collection.save()
     class_order = 0
     for c in json_template['classes']:

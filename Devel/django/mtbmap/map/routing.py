@@ -275,22 +275,5 @@ class RouteParams:
         '''
         Create cost column definition and where clause.
         '''
-        cases = []
-        whereparts = []
-        whereparts.append(self._access())
-        for wc in self.weight_collection.weightclass_set.all():
-            cases += wc.get_when_clauses(self.raw_params[wc.classname])
-            part = wc.get_where_clauses(self.raw_params[wc.classname])
-            if part:
-                whereparts.append(part)
-        if cases:
-            self.cost = 'CASE %s ELSE "length" END' % (' '.join(cases))
-        if whereparts:
-            self.where = "(" + " AND ".join(whereparts) + ")"
+        self.cost, self.where = self.weight_collection.get_cost_where_clause(self.raw_params)
 
-    def _access(self, role=None):
-        '''
-        Create access clause according to given role (car, bike, pedestrian,...)
-        '''
-        # exclude ways with access='no'
-        return '''(access IS NULL OR access!='no')'''
