@@ -173,10 +173,9 @@ class Route:
         '''
 #        start = datetime.now()
         cursor = connection.cursor()
-        print self.params.sql_astar
+#        print self.params.sql_astar
         cursor.execute("SELECT edge_id, cost FROM shortest_path_astar(%s, %s, %s, false, %s)", [self.params.sql_astar, source, target, self.params.reverse])
         rows = cursor.fetchall()
-        print 'ok'
         edge_ids = [elem[0] for elem in rows]
         self.cost = sum([elem[1] for elem in rows])
 #        end = datetime.now()
@@ -251,7 +250,7 @@ class Route:
 class RouteParams:
     def __init__(self, params):
         self.raw_params = params
-        self.reverse = True
+        self.reverse = not (params.has_key('oneway') and params['oneway'].has_key('ignore'))
         self.where = '(id IS NOT NULL)'
         self.cost = 'length'
         self.reverse_cost = 'reverse_cost'
