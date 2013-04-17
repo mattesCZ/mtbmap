@@ -174,8 +174,9 @@ class Route:
 #        start = datetime.now()
         cursor = connection.cursor()
         print self.params.sql_astar
-        cursor.execute("SELECT edge_id, cost FROM shortest_path_astar(%s, %s, %s, false, false)", [self.params.sql_astar, source, target])
+        cursor.execute("SELECT edge_id, cost FROM shortest_path_astar(%s, %s, %s, false, %s)", [self.params.sql_astar, source, target, self.params.reverse])
         rows = cursor.fetchall()
+        print 'ok'
         edge_ids = [elem[0] for elem in rows]
         self.cost = sum([elem[1] for elem in rows])
 #        end = datetime.now()
@@ -189,7 +190,7 @@ class Route:
         return array of edge IDs of Way objects
         '''
         cursor = connection.cursor()
-        cursor.execute("SELECT edge_id FROM shortest_path(%s, %s, %s, false, false)", [self.params.sql_dijkstra, source, target])
+        cursor.execute("SELECT edge_id FROM shortest_path(%s, %s, %s, false, %s)", [self.params.sql_dijkstra, source, target, self.params.reverse])
         rows = cursor.fetchall()
         edge_ids = [elem[0] for elem in rows]
         self.cost = sum([elem[1] for elem in rows])
@@ -243,16 +244,20 @@ class Route:
         limit_way.save()        
         # workaround to compute correct length
         limit_way.length = THRESHOLD * Way.objects.length().get(pk=limit_way.id).length.km
+        limit_way.reverse_cost = limit_way.length
         limit_way.save()
         return limit_way
 
 class RouteParams:
     def __init__(self, params):
         self.raw_params = params
+        self.reverse = True
         self.where = '(id IS NOT NULL)'
         self.cost = 'length'
+        self.reverse_cost = 'reverse_cost'
         self.weight_collection = WeightCollection.objects.get(pk=self.raw_params['weights']['template'].split('_')[-1])
         self._cost_and_where()
+        self.reverse_cost = self.cost.replace('length', 'reverse_cost')
         self.sql_astar = self.weighted_ways_astar()
         self.sql_dijkstra = self.weighted_ways_dijkstra()
 
@@ -262,7 +267,10 @@ class RouteParams:
         return sql query string
         '''
         where = 'WHERE ' + self.where + " OR highway='temp'"
-        return 'SELECT id, source::int4, target::int4, %s AS cost, x1, x2, y1, y2 FROM map_way %s' % (self.cost, where)
+        if self.reverse:
+            return 'SELECT id, source::int4, target::int4, %s AS cost, %s AS reverse_cost, x1, x2, y1, y2 FROM map_way %s' % (self.cost, self.reverse_cost, where)
+        else:
+            return 'SELECT id, source::int4, target::int4, %s AS cost, x1, x2, y1, y2 FROM map_way %s' % (self.cost, where)
 
     def weighted_ways_dijkstra(self):
         '''
@@ -270,7 +278,10 @@ class RouteParams:
         return sql query string
         '''
         where = "WHERE " + self.where + " OR highway='temp'"
-        return 'SELECT id, source::int4, target::int4, %s AS cost FROM map_way %s' % (self.cost, where)
+        if self.reverse:
+            return 'SELECT id, source::int4, target::int4, %s AS cost, %s AS reverse_cost FROM map_way %s' % (self.cost, self.reverse_cost, where)
+        else:
+            return 'SELECT id, source::int4, target::int4, %s AS cost FROM map_way %s' % (self.cost, where)
 
     def _cost_and_where(self):
         '''
