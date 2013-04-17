@@ -300,7 +300,13 @@ class WeightCollection(models.Model):
     def get_cost_where_clause(self, params):
         where = '(id IS NOT NULL)'
         cost = 'length'
+        reverse_cost = ''
         cases = []
+        reverse_cases = []
+        if self.vehicle == 'bicycle':
+            reverse_cases += ['''WHEN (bicycle!='opposite' OR bicycle IS NULL) AND reverse_cost!=length THEN reverse_cost ''']
+        else:
+            reverse_cases += ['''WHEN reverse_cost!=length THEN reverse_cost ''']
         whereparts = []
         whereparts += self._access()
         for wc in self.weightclass_set.all():
@@ -309,10 +315,12 @@ class WeightCollection(models.Model):
             if part:
                 whereparts.append(part)
         if cases:
+            reverse_cases += cases
             cost = 'CASE %s ELSE "length" END' % (' '.join(cases))
         if whereparts:
             where = "(" + " AND ".join(whereparts) + ")"
-        return cost, where
+        reverse_cost = 'CASE %s ELSE "length" END' % (' '.join(reverse_cases))
+        return cost, reverse_cost, where
     
     def _access(self):
         '''

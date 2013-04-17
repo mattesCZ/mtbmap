@@ -256,7 +256,6 @@ class RouteParams:
         self.reverse_cost = 'reverse_cost'
         self.weight_collection = WeightCollection.objects.get(pk=self.raw_params['weights']['template'].split('_')[-1])
         self._cost_and_where()
-        self.reverse_cost = self.cost.replace('length', 'reverse_cost')
         self.sql_astar = self.weighted_ways_astar()
         self.sql_dijkstra = self.weighted_ways_dijkstra()
 
@@ -286,7 +285,7 @@ class RouteParams:
         '''
         Create cost column definition and where clause.
         '''
-        self.cost, self.where = self.weight_collection.get_cost_where_clause(self.raw_params)
+        self.cost, self.reverse_cost, self.where = self.weight_collection.get_cost_where_clause(self.raw_params)
 
 def create_gpx(points):
     output = libxml2.parseDoc('<gpx/>')

@@ -76,7 +76,17 @@ def _add_line_attributes():
     start = datetime.now()
     connection = psycopg2.connect("dbname='gisczech' user='xtesar7' password='' port='5432'")
     cursor = connection.cursor()
-    query = '''SELECT osm_id, tracktype, oneway, access, bicycle, foot, incline, width, surface, smoothness, maxspeed, "mtb:scale" as mtbscale, "mtb:scale:uphill" as mtbscaleuphill, sac_scale, network, replace(highway, '_link', '') AS highway FROM planet_osm_line WHERE osm_id>0; '''
+    column_bicycle = """CASE WHEN cycleway IN ('opposite','opposite_lane')
+                                  AND oneway IN ('yes','-1')
+                             THEN 'opposite'
+                             ELSE bicycle
+                        END AS bicycle"""
+    query = '''SELECT osm_id, tracktype, oneway, access, %s, foot, incline,
+                      width, surface, smoothness, maxspeed, "mtb:scale" as mtbscale,
+                      "mtb:scale:uphill" as mtbscaleuphill, sac_scale, network,
+                      replace(highway, '_link', '') AS highway
+               FROM planet_osm_line
+               WHERE osm_id>0; ''' % (column_bicycle)
     cursor.execute(query)
     description = cursor.description
     evaluated = 0
