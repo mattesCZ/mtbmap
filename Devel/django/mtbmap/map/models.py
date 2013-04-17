@@ -170,8 +170,12 @@ class Way(geomodels.Model):
         # workaround to compute correct lengths
         to_source.length = Way.objects.length().get(pk=to_source.id).length.km
         to_target.length = Way.objects.length().get(pk=to_target.id).length.km
-        to_source.reverse_cost = to_source.length
-        to_target.reverse_cost = to_target.length
+        if self.length != self.reverse_cost:
+            to_source.reverse_cost = self.reverse_cost
+            to_target.reverse_cost = self.reverse_cost
+        else:
+            to_source.reverse_cost = to_source.length
+            to_target.reverse_cost = to_target.length
         to_source.save()
         to_target.save()
         return (to_source, to_target, vertice, way_to_intersection)
