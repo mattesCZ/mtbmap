@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import connection, transaction
+from django.db.models import F
 from map.models import Way
 import psycopg2
 import simplejson as json
@@ -34,6 +35,7 @@ def add_attributes():
     Add attributes from osm2pgsql created database to our Way objects
     '''
     start = datetime.now()
+    _update_reverse_cost()
     _add_line_attributes()
     _add_polygon_attributes()
     _add_routes_attributes()
@@ -63,6 +65,9 @@ def _row_to_arguments(row):
             else:
                 update_args[key] = value
     return update_args
+
+def _update_reverse_cost():
+    Way.objects.filter(reverse_cost__lt=1000000).update(reverse_cost=F('length'))
 
 def _add_line_attributes():
     '''
