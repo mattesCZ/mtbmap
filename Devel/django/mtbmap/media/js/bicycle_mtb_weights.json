@@ -1,0 +1,255 @@
+{
+    "name": "mtb_easy",
+    "oneway": true,
+    "vehicle": "bicycle",
+    "classes": [
+        {
+            "name": "highway",
+            "use": "yes",
+            "features": [
+                { 
+                    "name": "track",
+                    "value": 1
+                },
+                { 
+                    "name": "path",
+                    "value": 1
+                },
+                { 
+                    "name": "footway",
+                    "value": 3
+                },
+                { 
+                    "name": "steps",
+                    "value": 4
+                },
+                { 
+                    "name": "pedestrian",
+                    "value": 3
+                },
+                { 
+                    "name": "unclassified",
+                    "value": 2
+                },
+                { 
+                    "name": "cycleway",
+                    "value": 2
+                },
+                { 
+                    "name": "bridleway",
+                    "value": 3
+                },
+                { 
+                    "name": "residential",
+                    "value": 3
+                },
+                { 
+                    "name": "living_street",
+                    "value": 3
+                },
+                { 
+                    "name": "tertiary",
+                    "value": 4
+                },
+                { 
+                    "name": "secondary",
+                    "value": 4
+                },
+                { 
+                    "name": "primary",
+                    "value": 5
+                },
+                { 
+                    "name": "road",
+                    "value": 5
+                },
+                { 
+                    "name": "service",
+                    "value": 3
+                },
+                { 
+                    "name": "trunk",
+                    "value": 5,
+                    "visible": false
+                },
+                { 
+                    "name": "motorway",
+                    "value": 5,
+                    "visible": false
+                }
+            ]
+        },
+        {
+            "name": "tracktype",
+            "use": "yes",
+            "features": [
+                { 
+                    "name": "1",
+                    "value": 1
+                },
+                { 
+                    "name": "2",
+                    "value": 1
+                },
+                { 
+                    "name": "3",
+                    "value": 1
+                },
+                { 
+                    "name": "4",
+                    "value": 2
+                },
+                { 
+                    "name": "5",
+                    "value": 2
+                }
+            ]
+        },
+        {
+            "name": "surface",
+            "use": "yes",
+            "features": [
+                { 
+                    "name": "compacted",
+                    "value": 1
+                },
+                { 
+                    "name": "fine_gravel",
+                    "value": 1
+                },
+                { 
+                    "name": "grass",
+                    "value": 2
+                },
+                { 
+                    "name": "ground",
+                    "value": 2
+                },
+                { 
+                    "name": "dirt",
+                    "value": 3
+                },
+                { 
+                    "name": "mud",
+                    "value": 3
+                },
+                { 
+                    "name": "pebblestone",
+                    "value": 3
+                },
+                { 
+                    "name": "gravel",
+                    "value": 2
+                },
+                { 
+                    "name": "unpaved",
+                    "value": 1
+                },
+                { 
+                    "name": "sand",
+                    "value": 4
+                },
+                { 
+                    "name": "paved",
+                    "value": 3
+                },
+                { 
+                    "name": "asphalt",
+                    "value": 3
+                },
+                { 
+                    "name": "concrete",
+                    "value": 3
+                },
+                { 
+                    "name": "paving_stones",
+                    "value": 4
+                },
+                { 
+                    "name": "concrete:plates",
+                    "value": 4
+                },
+                { 
+                    "name": "cobblestone",
+                    "value": 4
+                }
+            ]
+        },
+        {
+            "name": "mtbscale",
+            "use": "yes",
+            "features": [
+                { 
+                    "name": "1",
+                    "value": 1
+                },
+                { 
+                    "name": "2",
+                    "value": 2
+                },
+                { 
+                    "name": "3",
+                    "value": 4
+                },
+                { 
+                    "name": "4",
+                    "value": 5
+                },
+                { 
+                    "name": "5",
+                    "value": 5,
+                    "visible": false
+                },
+                { 
+                    "name": "6",
+                    "value": 5,
+                    "visible": false
+                }
+            ]
+        },
+        {
+            "name": "mtbscaleuphill",
+            "use": "yes",
+            "max": 3,
+            "min": 0
+        },
+        {
+            "name": "osmc",
+            "use": "yes",
+            "prefer": false
+        },
+        {
+            "name": "sac_scale",
+            "use": "ignore",
+            "features": [
+                { 
+                    "name": "hiking",
+                    "value": 1
+                },
+                { 
+                    "name": "mountain_hiking",
+                    "value": 3
+                },
+                { 
+                    "name": "demanding_mountain_hiking",
+                    "value": 5
+                },
+                { 
+                    "name": "alpine_hiking",
+                    "value": 5,
+                    "visible": false
+                },
+                { 
+                    "name": "demanding_alpine_hiking",
+                    "value": 5,
+                    "visible": false
+                },
+                { 
+                    "name": "difficult_alpine_hiking",
+                    "value": 5,
+                    "visible": false
+                }
+            ]
+        }
+    ]
+}
