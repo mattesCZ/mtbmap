@@ -32,6 +32,16 @@ table {
     text-align: left;
     padding: 0 0.6em;
 }
+table.preferences {
+	width: 100%;
+}
+table.preferences td {
+	width: 50%;
+	padding: 0 5px;
+}
+.right-align {
+	text-align: right;
+}
 a {
     font-weight: bold;
     text-decoration: none;

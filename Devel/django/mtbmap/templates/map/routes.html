@@ -48,7 +48,7 @@
             <h4>Zadejte do mapy body, kterými vést trasu</h4>
             <form id="routes-params">
                 <h5>Parametry vyhledávání tras:</h5>
-                <label>Template</label>
+                <label for="weights_template">Template</label>
                 <div id="weights_template">
                     {% for wc in weight_collections %}
                         <input id="weights_template_{{ wc.id }}" value="weights_template_{{ wc.id }}" name="weights__template" type="radio" {% if forloop.first %}checked="checked"{% endif %}/>

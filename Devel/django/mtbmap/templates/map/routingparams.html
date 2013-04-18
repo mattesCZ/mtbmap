@@ -1,9 +1,9 @@
 <h3>global</h3>
 <div>
-	<table>
+	<table class="preferences">
 		<tr>
-		    <td><label for="weights-global-vehicle">Vehicle:</label></td>
-		    <td>
+		    <td class="type right-align"><label for="weights-global-vehicle">Vehicle:</label></td>
+		    <td class="preference">
 			    <select class="weights-preferences" id="weights-global-vehicle" name="global__vehicle">
 			        {% for vehicle in weight_collection.VEHICLE_CHOICES %}
 			        <option value="{{vehicle.0}}" {% if vehicle.0 == weight_collection.vehicle %}selected="selected"{% endif %} >{{vehicle.1}}</option>
@@ -12,8 +12,8 @@
 		    </td>
 		</tr>
 		<tr>
-			<td><label for="weights-global-oneway">Consider oneways:</label></td>
-			<td><input type="checkbox" name="global__oneway" {% if weight_collection.oneway %}checked="checked"{% endif %} /></td>
+			<td class="type right-align"><label for="weights-global-oneway">Consider oneways:</label></td>
+			<td class="preference"><input type="checkbox" name="global__oneway" {% if weight_collection.oneway %}checked="checked"{% endif %} /></td>
 		</tr>
 	</table>
 </div>
@@ -21,7 +21,7 @@
 <h3 {% if c.use == 'ignore' %} style="display: none"{% endif %}>{{ c.classname }}</h3>
 <div>
     {% if c.max != None or c.min != None %}
-    <table id="weights-limits-{{c.classname}}" class="weights-limits" >
+    <table id="weights-limits-{{c.classname}}" class="weights-limits preferences" >
         <tr>
             {% if c.max != None %}
             <td>Max:</td>
@@ -35,16 +35,11 @@
     </table>
     {% endif %}
     {% if c.weight_set.all %}
-    <table id="weights-types-{{c.classname}}" class="weights-types">
-    <!-- <table id="weights-types-{{c.classname}}" class="weights-types"> -->
-        <tr>
-            <th>Typ</th>
-            <th>Preference</th>
-        </tr>
+    <table id="weights-types-{{c.classname}}" class="weights-types preferences">
         {% for w in c.weight_set.all %}
         <tr>
-            <td>{{w.feature}}</td>
-            <td>
+            <td class="type right-align">{{w.feature}}</td>
+            <td class="preference">
                 <select class="weights-preferences" id="weights-{{c.classname}}-{{w.feature}}-preference" name="{{c.classname}}__{{w.feature}}" >
                     {% for choice in w.PREFERENCE_CHOICES %}
                     {% if choice.0 == w.preference %}
