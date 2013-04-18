@@ -60,6 +60,7 @@ node,way   name         text         linear
 node,way   natural      text         polygon  # natural=coastline tags are discarded by a hard coded rule in osm2pgsql
 node       noexit       text         linear
 way        oneway       text         linear
+way        oneway:bicycle   text         linear
 node,way   poi          text         polygon
 node       population   text         linear
 node,way   power        text         polygon

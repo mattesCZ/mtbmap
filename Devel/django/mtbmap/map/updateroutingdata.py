@@ -76,7 +76,8 @@ def _add_line_attributes():
     start = datetime.now()
     connection = psycopg2.connect("dbname='gisczech' user='xtesar7' password='' port='5432'")
     cursor = connection.cursor()
-    column_bicycle = """CASE WHEN cycleway IN ('opposite','opposite_lane')
+    column_bicycle = """CASE WHEN (cycleway IN ('opposite','opposite_lane')
+                                      OR "oneway:bicycle"='no')
                                   AND oneway IN ('yes','-1')
                              THEN 'opposite'
                              ELSE bicycle
