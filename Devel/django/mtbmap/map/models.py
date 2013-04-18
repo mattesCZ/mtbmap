@@ -306,7 +306,7 @@ class WeightCollection(models.Model):
         where = '(id IS NOT NULL)'
         cost = 'length'
         reverse_cost = ''
-        cases = []
+        preferences = {}
         reverse_cases = []
         # conditions for oneways
         if self.vehicle == 'bicycle':
@@ -321,10 +321,19 @@ class WeightCollection(models.Model):
         whereparts = []
         whereparts += self._access()
         for wc in self.weightclass_set.all():
-            cases += wc.get_when_clauses(params[wc.classname])
+            class_preferences = wc.get_when_clauses(params[wc.classname])
+            for preference in class_preferences:
+                 if preference in preferences:
+                     preferences[preference] += class_preferences[preference]
+                 else:
+                     preferences[preference] = class_preferences[preference] 
             part = wc.get_where_clauses(params[wc.classname])
             if part:
                 whereparts.append(part)
+        cases = []
+        # use cases ordered by descending preference
+        for key in sorted(preferences.iterkeys(), reverse=True):
+            cases += preferences[key]
         if cases:
             reverse_cases += cases
             cost = 'CASE %s ELSE "length" END' % (' '.join(cases))
@@ -365,7 +374,7 @@ class WeightClass(models.Model):
 
     def get_when_clauses(self, params):
         default = min(WEIGHTS)
-        clauses = []
+        preference_to_when_dict = {}
 #        print params
         for w in self.weight_set.all():
             try:
@@ -375,8 +384,11 @@ class WeightClass(models.Model):
             else:
                 if preference != default:
                     when = """WHEN "%s"::text='%s' THEN "length"*%s """ % (self.classname, w.feature, preference)
-                    clauses.append(when)
-        return clauses
+                    if preference in preference_to_when_dict:
+                        preference_to_when_dict[preference].append(when)
+                    else:
+                        preference_to_when_dict[preference] = [when]
+        return preference_to_when_dict
 
     def get_where_clauses(self, params):
         andparts = []
