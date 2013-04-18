@@ -193,7 +193,7 @@ class Way(geomodels.Model):
         preferences = {'highway':MIN_WEIGHT, 'tracktype':MIN_WEIGHT, 'sac_scale':MIN_WEIGHT, 'mtbscale':MIN_WEIGHT, 'surface':MIN_WEIGHT, 'osmc':MIN_WEIGHT}
         for feature_name in preferences.keys():
             feature_value = self.__dict__[feature_name]
-            if feature_value!=None:
+            if feature_value!=None and params.has_key(feature_name):
                 if params[feature_name].has_key('min'):
                     try:
                         minvalue = float(params[feature_name]['min'])
@@ -214,7 +214,18 @@ class Way(geomodels.Model):
                     preferences[feature_name] = float(params[feature_name][str(feature_value)])
                 except KeyError, ValueError:
                     preferences[feature_name] = MIN_WEIGHT
-        return max(preferences.values())
+        weight = max(preferences.values())
+        prefer = False
+        if params.has_key('prefered_classes'):
+            for classname in params['prefered_classes']:
+                if hasattr(self, classname):
+                    value = getattr(self, classname)
+                    if value:
+                        prefer = True
+                        break
+        if prefer:
+            weight = max(weight-1, MIN_WEIGHT)
+        return weight
 
     def compute_class_id(self, class_conf):
         '''
@@ -321,15 +332,16 @@ class WeightCollection(models.Model):
         whereparts = []
         whereparts += self._access()
         for wc in self.weightclass_set.all():
-            class_preferences = wc.get_when_clauses(params[wc.classname])
-            for preference in class_preferences:
-                 if preference in preferences:
-                     preferences[preference] += class_preferences[preference]
-                 else:
-                     preferences[preference] = class_preferences[preference] 
-            part = wc.get_where_clauses(params[wc.classname])
-            if part:
-                whereparts.append(part)
+            if wc.classname in params:
+                class_preferences = wc.get_when_clauses(params[wc.classname], params['prefered_classes'])
+                for preference in class_preferences:
+                     if preference in preferences:
+                         preferences[preference] += class_preferences[preference]
+                     else:
+                         preferences[preference] = class_preferences[preference] 
+                part = wc.get_where_clauses(params[wc.classname])
+                if part:
+                    whereparts.append(part)
         cases = []
         # use cases ordered by descending preference
         for key in sorted(preferences.iterkeys(), reverse=True):
@@ -365,6 +377,7 @@ class WeightClass(models.Model):
     order = models.PositiveIntegerField(null=True, blank=True)
     max = models.FloatField(null=True, blank=True)
     min = models.FloatField(null=True, blank=True)
+    prefer = models.NullBooleanField(default=None)
 
     class Meta:
         ordering = ('order', 'classname',)
@@ -372,10 +385,9 @@ class WeightClass(models.Model):
     def __unicode__(self):
         return self.classname
 
-    def get_when_clauses(self, params):
+    def get_when_clauses(self, params, prefered_classes):
         default = min(WEIGHTS)
         preference_to_when_dict = {}
-#        print params
         for w in self.weight_set.all():
             try:
                 preference = int(params[w.feature])
@@ -383,11 +395,18 @@ class WeightClass(models.Model):
                 print 'ValueError', self.classname, w.feature, params
             else:
                 if preference != default:
-                    when = """WHEN "%s"::text='%s' THEN "length"*%s """ % (self.classname, w.feature, preference)
+                    whens = []
+                    for classname in prefered_classes:
+                        prefered_preference = max(preference-1, MIN_WEIGHT)
+                        whens.append("""WHEN "%s"::text='%s' AND "%s" IS NOT NULL
+                                  THEN "length"*%s """ % (self.classname, w.feature, classname, prefered_preference)
+                                  )
+                    default_when = """WHEN "%s"::text='%s' THEN "length"*%s """ % (self.classname, w.feature, preference)
+                    whens.append(default_when)
                     if preference in preference_to_when_dict:
-                        preference_to_when_dict[preference].append(when)
+                        preference_to_when_dict[preference] += whens
                     else:
-                        preference_to_when_dict[preference] = [when]
+                        preference_to_when_dict[preference] = whens
         return preference_to_when_dict
 
     def get_where_clauses(self, params):

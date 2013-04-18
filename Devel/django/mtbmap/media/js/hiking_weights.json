@@ -214,13 +214,7 @@
         {
             "name": "osmc",
             "use": "yes",
-            "preference": "add",
-            "features": [
-                { 
-                    "name": "use",
-                    "value": 1
-                }
-            ]
+            "prefer": true
         },
         {
             "name": "sac_scale",

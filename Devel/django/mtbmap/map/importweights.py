@@ -28,6 +28,8 @@ def import_json_template(filename):
             weight_class.max = c['max']
         if 'min' in c:
             weight_class.min = c['min']
+        if 'prefer' in c:
+            weight_class.prefer = c['prefer']
         weight_class.save()
         if 'features' in c:
             feature_order = 0

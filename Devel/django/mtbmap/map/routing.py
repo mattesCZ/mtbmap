@@ -254,6 +254,7 @@ class RouteParams:
         self.where = '(id IS NOT NULL)'
         self.cost = 'length'
         self.reverse_cost = 'reverse_cost'
+        self.raw_params['prefered_classes'] = self._prefered_classes()
         self.weight_collection = WeightCollection.objects.get(pk=self.raw_params['weights']['template'].split('_')[-1])
         self.weight_collection.vehicle = params['global']['vehicle']
         self._cost_and_where()
@@ -287,6 +288,14 @@ class RouteParams:
         Create cost column definition and where clause.
         '''
         self.cost, self.reverse_cost, self.where = self.weight_collection.get_cost_where_clause(self.raw_params)
+    
+    def _prefered_classes(self):
+        prefered_classes = []
+        for cl in self.raw_params:
+            if self.raw_params[cl].has_key('prefer'):
+                prefered_classes.append(cl)
+        return prefered_classes
+
 
 def create_gpx(points):
     output = libxml2.parseDoc('<gpx/>')
