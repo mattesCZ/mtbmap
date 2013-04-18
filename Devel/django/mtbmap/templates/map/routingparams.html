@@ -1,3 +1,22 @@
+<h3>global</h3>
+<div>
+	<table>
+		<tr>
+		    <td><label for="weights-global-vehicle">Vehicle:</label></td>
+		    <td>
+			    <select class="weights-preferences" id="weights-global-vehicle" name="global__vehicle">
+			        {% for vehicle in weight_collection.VEHICLE_CHOICES %}
+			        <option value="{{vehicle.0}}" {% if vehicle.0 == weight_collection.vehicle %}selected="selected"{% endif %} >{{vehicle.1}}</option>
+			        {% endfor %}
+			    </select>
+		    </td>
+		</tr>
+		<tr>
+			<td><label for="weights-global-oneway">Consider oneways:</label></td>
+			<td><input type="checkbox" name="global__oneway" {% if weight_collection.oneway %}checked="checked"{% endif %} /></td>
+		</tr>
+	</table>
+</div>
 {% for c in weight_collection.weightclass_set.all %}
 <h3 {% if c.use == 'ignore' %} style="display: none"{% endif %}>{{ c.classname }}</h3>
 <div>
@@ -42,7 +61,3 @@
     {% endif %}
 </div>
 {% endfor %}
-<h3>oneway</h3>
-<div>
-	<label for="weights-oneway-ignore">Ignore:</label><input type="checkbox" name="oneway__ignore" />
-</div>

@@ -11,6 +11,7 @@ def import_json_template(filename):
     json_template = json.loads(file.read())
     file.close()
     name = json_template['name']
+    oneway = json_template['oneway']
     vehicle = json_template['vehicle']
     if WeightCollection.objects.filter(name=name).count():
         WeightCollection.objects.filter(name=name)[0].delete()

@@ -250,11 +250,12 @@ class Route:
 class RouteParams:
     def __init__(self, params):
         self.raw_params = params
-        self.reverse = not (params.has_key('oneway') and params['oneway'].has_key('ignore'))
+        self.reverse = params['global'].has_key('oneway')
         self.where = '(id IS NOT NULL)'
         self.cost = 'length'
         self.reverse_cost = 'reverse_cost'
         self.weight_collection = WeightCollection.objects.get(pk=self.raw_params['weights']['template'].split('_')[-1])
+        self.weight_collection.vehicle = params['global']['vehicle']
         self._cost_and_where()
         self.sql_astar = self.weighted_ways_astar()
         self.sql_dijkstra = self.weighted_ways_dijkstra()

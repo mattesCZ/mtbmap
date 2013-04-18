@@ -294,8 +294,13 @@ class Way(geomodels.Model):
         return length
 
 class WeightCollection(models.Model):
+    VEHICLE_CHOICES = (
+        ('foot', 'foot'),
+        ('bicycle', 'bicycle'),
+    )
     name = models.CharField(max_length=40)
-    vehicle = models.CharField(max_length=40, default='foot')
+    oneway = models.BooleanField(default=True)
+    vehicle = models.CharField(max_length=40, default='bicycle', choices=VEHICLE_CHOICES)
     
     def get_cost_where_clause(self, params):
         where = '(id IS NOT NULL)'
@@ -303,9 +308,15 @@ class WeightCollection(models.Model):
         reverse_cost = ''
         cases = []
         reverse_cases = []
+        # conditions for oneways
         if self.vehicle == 'bicycle':
+            # bicycles are allowed to go in some oneways reversely
             reverse_cases += ['''WHEN (bicycle!='opposite' OR bicycle IS NULL) AND reverse_cost!=length THEN reverse_cost ''']
+        elif self.vehicle == 'foot':
+            # consider oneway only on paths, tracks, steps and footways
+            reverse_cases += ['''WHEN highway IN ('path', 'track', 'steps', 'footway') AND reverse_cost!=length THEN reverse_cost ''']
         else:
+            # probably car, never route on oneway=yes
             reverse_cases += ['''WHEN reverse_cost!=length THEN reverse_cost ''']
         whereparts = []
         whereparts += self._access()
