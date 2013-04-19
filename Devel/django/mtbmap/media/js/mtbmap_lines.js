@@ -281,7 +281,7 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
                     position = thisLine.getBounds().getCenter();
                     lPopup(position, LANG.routeNotFound, true);
                 }
-                geojsonLine = L.geoJson(data, {
+                geojsonLine = new MTBMAP.GeojsonLayerGroup(data, {
                     style: routeStyle,
                     onEachFeature: onEachLineFeature
                 });
@@ -348,9 +348,6 @@ function highlightLine(e) {
         opacity: 0.6
     });
     lineLayer.bringToFront();
-}
-function resetHighlight(e) {
-    geojsonLine.resetStyle(e.target);
 }
 function onEachLineFeature(feature, layer) {
     layer.bindPopup(lineFeatureInfo(feature))
