@@ -1,13 +1,15 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from django.db import connection, transaction
+from django.db import connections, transaction
 from django.db.models import F
 from map.models import Way
 import psycopg2
 import simplejson as json
 from datetime import datetime
 from map.mathfunctions import total_seconds
+
+MAP_DB = 'osm_data'
 
 sac_scale_values = ['hiking', 'mountain_hiking', 'demanding_mountain_hiking',
                     'alpine_hiking', 'demanding_alpine_hiking', 'difficult_alpine_hiking']
@@ -17,7 +19,7 @@ def copy_ways():
     copy data generated with osm2po to map_way table
     '''
     start = datetime.now()
-    cursor = connection.cursor()
+    cursor = connections[MAP_DB].cursor()
     cursor.execute('DELETE FROM map_way')
     insert = """
        insert into map_way (class_id, length, name, x1, y1, x2, y2, reverse_cost, osm_id, source, target, the_geom)
@@ -25,7 +27,7 @@ def copy_ways():
        from osm_2po_4pgr
     """
     cursor.execute(insert)
-    transaction.commit_unless_managed()
+    transaction.commit_unless_managed(using=MAP_DB)
     count = Way.objects.all().count()
     print count, " ways inserted successfully"
     print 'Total time:', total_seconds(datetime.now()-start)

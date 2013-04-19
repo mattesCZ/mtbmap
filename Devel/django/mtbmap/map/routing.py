@@ -1,11 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from map.models import Way, WeightCollection
-from django.db import connection
+from django.db import connections
 from django.contrib.gis.geos import *
 from datetime import datetime
 from map.mathfunctions import total_seconds
 import libxml2
+
+MAP_DB = 'osm_data'
 
 WEIGHTS = [1, 2, 3, 4, 5]
 THRESHOLD = 3*max(WEIGHTS)
@@ -172,7 +174,7 @@ class Route:
         return array of edge IDs of Way objects
         '''
 #        start = datetime.now()
-        cursor = connection.cursor()
+        cursor = connections[MAP_DB].cursor()
 #        print self.params.sql_astar
         cursor.execute("SELECT edge_id, cost FROM shortest_path_astar(%s, %s, %s, false, %s)", [self.params.sql_astar, source, target, self.params.reverse])
         rows = cursor.fetchall()
@@ -188,7 +190,7 @@ class Route:
         implemented by pgRouting.
         return array of edge IDs of Way objects
         '''
-        cursor = connection.cursor()
+        cursor = connections[MAP_DB].cursor()
         cursor.execute("SELECT edge_id FROM shortest_path(%s, %s, %s, false, %s)", [self.params.sql_dijkstra, source, target, self.params.reverse])
         rows = cursor.fetchall()
         edge_ids = [elem[0] for elem in rows]

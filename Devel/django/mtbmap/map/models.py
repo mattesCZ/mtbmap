@@ -471,6 +471,3 @@ class Weight(models.Model):
 
     def __unicode__(self):
         return self.feature
-
-class GPXDoc(models.Model):
-    docfile = models.FileField(upload_to='gpx')
