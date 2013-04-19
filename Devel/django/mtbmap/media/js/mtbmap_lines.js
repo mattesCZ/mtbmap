@@ -278,7 +278,7 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
                 'routing-line': '['+ latlngs + ']'
             }, function(data) {
                 if (data.properties.status=='notfound') {
-                    position = thisLine.getBounds().getCenter();
+                	position = L.polyline(thisLine.getLatLngs(), {}).getBounds().getCenter();
                     lPopup(position, LANG.routeNotFound, true);
                 }
                 geojsonLine = new MTBMAP.GeojsonLayerGroup(data, {
