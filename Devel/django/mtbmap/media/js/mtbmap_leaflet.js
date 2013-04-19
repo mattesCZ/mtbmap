@@ -23,23 +23,21 @@ function tileLayer(url, attribution) {
     })
 }
 // define tile layers
-var baseLayers = {};
-baseLayers["MTB mapa"] = tileLayer('http://tile.mtbmap.cz/mtbmap_tiles/{z}/{x}/{y}.png', 'Data: <a href="http://openstreetmap.org">OpenStreetMap</a>,&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a>');
-baseLayers["OpenStreetMap"] = tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 'Data: <a href="http://openstreetmap.org">OpenStreetMap</a>');
-baseLayers["OpenCycleMap"] = tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', 'Data: <a href="http://opencyclemap.org">OpenCycleMap</a>');
-baseLayers["Hike & Bike Map"] = tileLayer('http://toolserver.org/tiles/hikebike/{z}/{x}/{y}.png', 'Data: <a href="http://www.hikebikemap.de">Hike &amp; Bike Map</a>');
+MTBMAP.baseLayers["MTB mapa"] = tileLayer('http://tile.mtbmap.cz/mtbmap_tiles/{z}/{x}/{y}.png', 'Data: <a href="http://openstreetmap.org">OpenStreetMap</a>,&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a>');
+MTBMAP.baseLayers["OpenStreetMap"] = tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 'Data: <a href="http://openstreetmap.org">OpenStreetMap</a>');
+MTBMAP.baseLayers["OpenCycleMap"] = tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', 'Data: <a href="http://opencyclemap.org">OpenCycleMap</a>');
+MTBMAP.baseLayers["Hike & Bike Map"] = tileLayer('http://toolserver.org/tiles/hikebike/{z}/{x}/{y}.png', 'Data: <a href="http://www.hikebikemap.de">Hike &amp; Bike Map</a>');
 // define tile overlays
-var overlayLayers = {};
 //overlayLayers["MTB obtížnost"] = tileLayer('http://mtbmap.cz/overlay-mtbscale_tiles/{z}/{x}/{y}.png', 'Data: <a href="http://openstreetmap.org">OpenStreetMap</a>,&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a>');
 
-baseLayers["MTB mapa"].addTo(map);
+MTBMAP.baseLayers["MTB mapa"].addTo(map);
 ////////////////////////////////////////////////////////////////////////////////
 // add map controls
 // topright position, first is on top
 map.addControl(L.control.zoom({
     position:"topright"
 }));
-var layers = new L.Control.Layers(baseLayers, overlayLayers);
+var layers = new L.Control.Layers(MTBMAP.baseLayers, MTBMAP.overlayLayers);
 map.addControl(layers);
 // bottomright position, first is the lowest
 map.addControl(L.control.scale({
