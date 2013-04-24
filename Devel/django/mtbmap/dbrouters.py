@@ -1,7 +1,7 @@
 MAP_DB = 'osm_data'
 apps = [
         'map',
-        'south'
+#        'south'
         ] 
 
 class MapRouter(object):
