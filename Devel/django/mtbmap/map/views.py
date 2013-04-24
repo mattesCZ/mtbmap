@@ -215,6 +215,17 @@ def findroute(request):
         print "Length:", multiroute.length, status, multiroute.search_index()
         return HttpResponse(json.dumps(geojson), content_type='application/json')
 
+def getjsondata(request):
+    try:
+        bounds = json.loads(request.GET['bounds'])
+        print bounds
+    except (KeyError, JSONDecodeError, 'invalid bounds'):
+        bounds = [-0.001, -0.001, 0.001, 0.001]
+    print bounds
+#    TODO: get data from database
+    geojson = {"bounds": bounds}
+    return HttpResponse(json.dumps(geojson), content_type='application/json')
+
 def gpxupload(request):
     if request.method=='POST':
         print 'POST'
