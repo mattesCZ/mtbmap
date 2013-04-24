@@ -141,8 +141,9 @@ class Route:
             else:
                 self.status = 'success'
                 ways = [to_start_way]
-                for id in edge_ids[:-1]:
-                    ways.append(Way.objects.get(pk=id))
+                routed_ways = [Way.objects.get(pk=id) for id in edge_ids[:-1]]
+                ways += self._correct_ways_orientation(routed_ways)
+                to_end_way.the_geom.reverse()
                 ways.append(to_end_way)
                 self.ways = ways
                 self.length = sum([way.length for way in self.ways])
@@ -152,6 +153,28 @@ class Route:
             temp4.delete()
             limit_way.delete()
             return self.status
+
+    def _correct_ways_orientation(self, ways):
+        first = ways[0]
+        corrected_ways = []
+        if first.source < 0:
+            next_node = first.target
+        else:
+            next_node = first.source
+            first.the_geom.reverse()
+        print next_node
+        corrected_ways.append(first)
+        for way in ways[1:]:
+            print way.osm_id, way.source, way.target
+            if way.source == next_node:
+                next_node = way.target
+            else:
+                next_node = way.source
+                way.the_geom.reverse()
+            corrected_ways.append(way) 
+            print next_node       
+        return corrected_ways
+    
 
     def geojson(self):
         if self.status=='init':
@@ -248,6 +271,7 @@ class Route:
         limit_way.reverse_cost = limit_way.length
         limit_way.save()
         return limit_way
+    
 
 class RouteParams:
     def __init__(self, params):
