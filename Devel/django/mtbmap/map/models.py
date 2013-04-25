@@ -18,9 +18,10 @@ SAC_SCALE_CHOICES = (
  (5, 'difficult_alpine_hiking'),
 )
 
-WEIGHTS = [1, 2, 3, 4, 5]
+WEIGHTS = [1, 2, 3, 6, 12]
 MAX_WEIGHT = max(WEIGHTS)
 MIN_WEIGHT = min(WEIGHTS)
+THRESHOLD = 2*max(WEIGHTS)
 
 class Map(models.Model):
     name = models.CharField(max_length=200)
@@ -189,7 +190,7 @@ class Way(geomodels.Model):
             # Rare case, probably impossible to find correct route
             # Temporary Way should be deleted
             print 'returning temp weight', self.length, self.id
-            return 3*MAX_WEIGHT
+            return THRESHOLD
         preferences = {'highway':MIN_WEIGHT, 'tracktype':MIN_WEIGHT, 'sac_scale':MIN_WEIGHT, 'mtbscale':MIN_WEIGHT, 'surface':MIN_WEIGHT, 'osmc':MIN_WEIGHT}
         for feature_name in preferences.keys():
             feature_value = self.__dict__[feature_name]
@@ -211,7 +212,7 @@ class Way(geomodels.Model):
                         if feature_value>maxvalue:
                             return MAX_WEIGHT
                 try:
-                    preferences[feature_name] = float(params[feature_name][str(feature_value)])
+                    preferences[feature_name] = int(params[feature_name][str(feature_value)])
                 except KeyError, ValueError:
                     preferences[feature_name] = MIN_WEIGHT
         weight = max(preferences.values())
@@ -225,7 +226,8 @@ class Way(geomodels.Model):
                         break
         if prefer:
             weight = max(weight-1, MIN_WEIGHT)
-        return weight
+        # correct weight is at index-1 in WEIGHTS
+        return WEIGHTS[weight-1]
 
     def compute_class_id(self, class_conf):
         '''
@@ -282,7 +284,9 @@ class Way(geomodels.Model):
             'type': 'Feature',
             'id': self.id,
             'properties': {
-                'weight': self.weight(params),
+                # weight is here a preference in the interval 1-5,
+                # index of real weight defined in WEIGHTS + 1
+                'weight': WEIGHTS.index(self.weight(params)) + 1,
                 'length': self.length,
                 'status': status,
                 'name': self.name,
@@ -397,11 +401,12 @@ class WeightClass(models.Model):
                 if preference != default:
                     whens = []
                     for classname in prefered_classes:
-                        prefered_preference = max(preference-1, MIN_WEIGHT)
+                        prefered_weight = WEIGHTS[max(preference-1, MIN_WEIGHT)-1]
                         whens.append("""WHEN "%s"::text='%s' AND "%s" IS NOT NULL
-                                  THEN "length"*%s """ % (self.classname, w.feature, classname, prefered_preference)
+                                  THEN "length"*%s """ % (self.classname, w.feature, classname, prefered_weight)
                                   )
-                    default_when = """WHEN "%s"::text='%s' THEN "length"*%s """ % (self.classname, w.feature, preference)
+                    weight = WEIGHTS[preference-1]
+                    default_when = """WHEN "%s"::text='%s' THEN "length"*%s """ % (self.classname, w.feature, weight)
                     whens.append(default_when)
                     if preference in preference_to_when_dict:
                         preference_to_when_dict[preference] += whens

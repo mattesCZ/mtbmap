@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from map.models import Way, WeightCollection
+from map.models import Way, WeightCollection, WEIGHTS, THRESHOLD
 from django.db import connections
 from django.contrib.gis.geos import *
 from datetime import datetime
@@ -8,9 +8,6 @@ from map.mathfunctions import total_seconds
 import libxml2
 
 MAP_DB = 'osm_data'
-
-WEIGHTS = [1, 2, 3, 4, 5]
-THRESHOLD = 3*max(WEIGHTS)
 
 def line_string_to_points(line_string):
     '''
