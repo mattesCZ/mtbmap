@@ -3,7 +3,7 @@
 
 from django.db import connections, transaction
 from django.db.models import F
-from map.models import Way
+from map.models import *
 import psycopg2
 import simplejson as json
 from datetime import datetime
@@ -13,6 +13,21 @@ MAP_DB = 'osm_data'
 
 sac_scale_values = ['hiking', 'mountain_hiking', 'demanding_mountain_hiking',
                     'alpine_hiking', 'demanding_alpine_hiking', 'difficult_alpine_hiking']
+
+def copy_points():
+    cursor = connections[MAP_DB].cursor()
+    cursor.execute('DELETE FROM map_way')
+    column_names = verbose_names(obj=OsmPoint(), underscores=True)
+    column_names.remove('ID')
+    column_names.remove('osm_id')
+    column_names.remove('the_geom')
+    columns = ', '.join([ '"' + column + '"' for column in column_names])
+    or_clause = ' OR '.join([ '"' + column + '" IS NOT NULL' for column in column_names])
+    query = "INSERT INTO map_osmpoint (osm_id, the_geom, %s) SELECT osm_id, ST_TRANSFORM(way, 4326) as the_geom, %s FROM planet_osm_point WHERE %s;" % (columns, columns, or_clause)
+    print query
+    cursor.execute(query)
+    transaction.commit_unless_managed(using=MAP_DB)
+    cursor.close()
 
 def copy_ways():
     '''
@@ -76,8 +91,8 @@ def _add_line_attributes():
     Copy useful attributes from planet_osm_line
     '''
     start = datetime.now()
-    connection = psycopg2.connect("dbname='gisczech' user='xtesar7' password='' port='5432'")
-    cursor = connection.cursor()
+#    connection = psycopg2.connect("dbname='gisczech' user='xtesar7' password='' port='5432'")
+    cursor = connections[MAP_DB].cursor()
     column_bicycle = """CASE WHEN (cycleway IN ('opposite','opposite_lane')
                                       OR "oneway:bicycle"='no')
                                   AND oneway IN ('yes','-1')
@@ -114,8 +129,8 @@ def _add_polygon_attributes():
     Copy useful attributes from planet_osm_polygon for routable areas
     '''
     start = datetime.now()
-    connection = psycopg2.connect("dbname='gisczech' user='xtesar7' password='' port='5432'")
-    cursor = connection.cursor()
+#    connection = psycopg2.connect("dbname='gisczech' user='xtesar7' password='' port='5432'")
+    cursor = connections[MAP_DB].cursor()
     evaluated = 0
     updated = 0
     # highway areas are still without attributes
@@ -141,8 +156,8 @@ def _add_routes_attributes():
     Copy useful attributes from planet_osm_routes2, this time only osmc
     '''
     start = datetime.now()
-    connection = psycopg2.connect("dbname='gisczech' user='xtesar7' password='' port='5432'")
-    cursor = connection.cursor()
+#    connection = psycopg2.connect("dbname='gisczech' user='xtesar7' password='' port='5432'")
+    cursor = connections[MAP_DB].cursor()
     routes_query = '''SELECT osm_id FROM planet_osm_routes2 WHERE osmcsymbol0<>'mtb:white:mtb_mtb' and osmcsymbol0 is not null;'''
     cursor.execute(routes_query)
     evaluated = 0
@@ -185,3 +200,4 @@ def update_class_ids():
     for way in ways:
         way.class_id = way.compute_class_id(class_conf)
         way.save()
+
