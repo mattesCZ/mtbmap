@@ -218,12 +218,14 @@ def findroute(request):
 def getjsondata(request):
     try:
         bounds = json.loads(request.GET['bounds'])
-        print bounds
     except (KeyError, JSONDecodeError, 'invalid bounds'):
         bounds = [-0.001, -0.001, 0.001, 0.001]
-    print bounds
-#    TODO: get data from database
-    geojson = {"bounds": bounds}
+    try:
+        layer_slug = request.GET['slug']
+        layer = GeojsonLayer.objects.get(slug=layer_slug)
+    except (KeyError, GeojsonLayer.DoesNotExist, 'unknown layer'):
+        return HttpResponse(None, content_type='application/json')
+    geojson = layer.geojson_feature_collection(bounds)
     return HttpResponse(json.dumps(geojson), content_type='application/json')
 
 def gpxupload(request):

@@ -1,10 +1,27 @@
 MTBMAP.GeojsonLayerGroup = L.GeoJSON.extend({
-	initialize: function(data, options) {
-		L.GeoJSON.prototype.initialize.call(this, data, options);
-		this._addParent();
+	initialize: function(geojson, options) {
+		L.GeoJSON.prototype.initialize.call(this, null, options);
+		this._featureIDS = [];
+		if (geojson) {
+			this.addGeojsonData(geojson);
+		}
 	},
-	addGeojsonData: function(data) {
-		this.addData(data);
+	addGeojsonData: function(geojson) {
+		var ids = this._featureIDS;
+		var features = geojson.features;
+		if (features) {
+			for (i = 0; i<features.length; i++) {
+				if (features[i].id) {
+					if ($.inArray(features[i].id, ids) !== -1) {
+						geojson.features[i].geometry = null;
+					} else {
+						ids.push(features[i].id);
+					}
+				}
+			}
+			this._featureIDS = ids;
+		}
+		this.addData(geojson);
 		this._addParent();
 	},
 	_addParent: function() {
@@ -19,16 +36,18 @@ MTBMAP.AjaxGeojsonLayerGroup = MTBMAP.GeojsonLayerGroup.extend({
 	initialize: function(data, options) {
 		MTBMAP.GeojsonLayerGroup.prototype.initialize.call(this, data, options);
 		this.active = false;
+		this.dataBounds = null;
 	},
 	options: {
 		name: "",
+		slug: "",
 		minZoom: 13,
 		maxZoom: 18,
 		layersControl: null
 	},
 	onAdd: function (map) {
 		this._map = map;
-		this.dataBounds = null;
+		// this.dataBounds = null;
 		map.on({
 			'moveend': this._update
 		}, this);
@@ -81,16 +100,37 @@ MTBMAP.AjaxGeojsonLayerGroup = MTBMAP.GeojsonLayerGroup.extend({
 		return bounds.extend(extendedNorthWest).extend(extendedSouthEast);
 	},
 	_getData: function (bounds) {
-		// TODO
+		var thisLayer = this;
 		this.dataBounds = bounds;
 	    $.get('/map/getjsondata/', {
-	        'bounds': '[' + bounds.toBBoxString() + ']'
+	        'bounds': '[' + bounds.toBBoxString() + ']',
+	        'slug': thisLayer.options.slug
 	    }, function(data) {
 	    	// TODO add data to layer
-	        alert(data.bounds);
+	    	geojson = $.parseJSON(data);
+	    	thisLayer.addGeojsonData(geojson);
 	    });
 	}
 });
+function onEachFeature(feature, layer) {
+	layer.on({
+		mouseover: highlightFeature,
+		mouseout: resetHighlight
+	});
+	if (feature.properties && feature.properties.popupContent) {
+		layer.bindPopup(feature.properties.popupContent);
+	}
+}
+function highlightFeature(e) {
+	var layer = e.target;
+	layer.setStyle({
+		opacity: 1,
+		fillOpacity: 0.8
+	});
+    if (!L.Browser.ie && !L.Browser.opera) {
+        layer.bringToFront();
+    }
+}
 function resetHighlight(e) {
 	var layer = e.target;
 	layer.parentGroup.resetStyle(layer);

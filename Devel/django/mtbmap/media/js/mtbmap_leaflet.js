@@ -37,8 +37,8 @@ MTBMAP.baseLayers["MTB mapa"].addTo(map);
 map.addControl(L.control.zoom({
     position:"topright"
 }));
-var layers = new L.Control.Layers(MTBMAP.baseLayers, MTBMAP.overlayLayers);
-map.addControl(layers);
+MTBMAP.layersControl = new L.Control.Layers(MTBMAP.baseLayers, MTBMAP.overlayLayers);
+map.addControl(MTBMAP.layersControl);
 // bottomright position, first is the lowest
 map.addControl(L.control.scale({
     position:"bottomright",
@@ -54,9 +54,39 @@ map.addControl(new L.Control.Permalink({
 }));
 map.addControl(new L.Control.Permalink({
     text: 'Permalink',
-    layers: layers,
+    layers: MTBMAP.layersControl,
     position: 'bottomright'
 }));
+
+////////////////////////////////////////////////////////////////////////////////
+// geojson overlays
+// create Ajax Geojson Layer
+function geojsonOverlay(slug, name, minZoom) {
+	return new MTBMAP.AjaxGeojsonLayerGroup(null, {
+		style: {
+			opacity: 1,
+			fillOpacity: 0
+		},
+		pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, {
+				radius: 7,
+				fillColor: "#fff",
+				color: "#f22",
+				weight: 1.5
+			});
+		},
+		onEachFeature: onEachFeature,
+		name: name,
+		slug: slug,
+		layersControl: MTBMAP.layersControl,
+		minZoom: minZoom
+	});
+}
+MTBMAP.overlayLayers["guidepost"] = geojsonOverlay("guideposts", "Guideposts", 13);
+MTBMAP.overlayLayers["guidepost"].addTo(map);
+MTBMAP.overlayLayers["sport_shop"] = geojsonOverlay("sport_shop", "Sport shops", 14);
+MTBMAP.overlayLayers["sport_shop"].addTo(map);
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // add map events

@@ -471,3 +471,128 @@ class Weight(models.Model):
 
     def __unicode__(self):
         return self.feature
+    
+## PLANET_OSM_MODELS
+class OsmModel(geomodels.Model):
+    osm_id = models.BigIntegerField()
+    
+    class Meta:
+        abstract = True
+        
+    def geojson_feature(self, tags=[]):
+        feature = {}
+        feature["type"] = "Feature"
+        feature["id"] = self.id
+        feature["properties"] = {"osm_id": self.osm_id}
+        if self.has_geometry():
+            feature["geometry"] = json.loads(self.the_geom.geojson)
+        feature["properties"]["popupContent"] = self.popupContent(tags)
+        return feature
+    
+    def geojson_feature_string(self, tags=[]):
+        return json.dumps(self.geojson_feature(tags))
+    
+    def has_geometry(self):
+        return hasattr(self, "the_geom") and self.the_geom != None 
+
+    def label(self, attribute='name'):
+        if hasattr(self, attribute):
+            return getattr(self, attribute)
+        else:
+            return ""
+    
+    def popupContent(self, att_list):
+        content = ''
+        if len(att_list)>0:
+            header = self.label(att_list[0])
+            if header:
+                content += '<h2>%s</h2>' % (header)
+            content += '<p class="geojsonPopup">'
+            for attr in att_list[1:]:
+                if hasattr(self, attr) and getattr(self, attr):
+                    content += '%s: %s <br>' % (attr, getattr(self, attr))
+            content += 'OSM ID: %s' % (self.osmLink())
+            content += '</p>'
+        else:
+            content += '<h2>%s</h2>' % (self.osmLink())
+        return content
+    
+    def osmLink(self, url='http://www.openstreetmap.org/browse/', geometry='way'):
+        if self.osm_id < 0:
+            # hacked 32 bit integer problem, osm_id is negative
+            if geometry == 'node':
+                self.osm_id += 2**32
+            else:
+                # osm_id is negative if it is a relation
+                self.osm_id = abs(self.osm_id)
+                geometry = 'relation'
+        href = '%s%s/%s' % (url, geometry, self.osm_id)
+        return '<a target="_blank" href="%s">%s</a>' % (href, self.osm_id)
+
+class OsmPoint(OsmModel):
+    the_geom = geomodels.PointField()
+    name = models.CharField(max_length=400, null=True, blank=True)
+    amenity = models.CharField(max_length=40, null=True, blank=True)
+    ele = models.CharField(max_length=40, null=True, blank=True)
+    highway = models.CharField(max_length=40, null=True, blank=True)
+    historic = models.CharField(max_length=40, null=True, blank=True)
+    information = models.CharField(max_length=40, null=True, blank=True)
+    leisure = models.CharField(max_length=40, null=True, blank=True)
+    man_made = models.CharField(max_length=40, null=True, blank=True)
+    natural = models.CharField(max_length=40, null=True, blank=True)
+    noexit = models.CharField(max_length=40, null=True, blank=True)
+    place = models.CharField(max_length=40, null=True, blank=True)
+    protect_class = models.CharField(max_length=40, null=True, blank=True)
+    railway = models.CharField(max_length=40, null=True, blank=True)
+    ref = models.CharField(max_length=40, null=True, blank=True)
+    ruins = models.CharField(max_length=40, null=True, blank=True)
+    shop = models.CharField(max_length=40, null=True, blank=True)
+    sport = models.CharField(max_length=40, null=True, blank=True)
+    tourism = models.CharField(max_length=40, null=True, blank=True)
+
+    objects = geomodels.GeoManager()
+    
+    def osmLink(self, url='http://www.openstreetmap.org/browse/', geometry='node'):
+        return super(OsmPoint, self).osmLink(url, geometry)
+
+class GeojsonLayer(models.Model):
+    slug = models.SlugField(max_length=40, unique=True)
+    name = models.CharField(max_length=40)
+    filter = models.TextField(null=True, blank=True)
+    pointGeom = models.BooleanField(default=False)
+    lineGeom = models.BooleanField(default=False)
+    polygonGeom = models.BooleanField(default=False)
+    attributes = models.TextField(null=True, blank=True)
+#    minZoom = models.PositiveIntegerField(default=13)
+#    maxZoom = models.PositiveIntegerField(default=18)
+    
+    def attributes_list(self):
+        return [attr.strip() for attr in self.attributes.split(',')]
+    
+    def geojson_feature_collection(self, bbox=[-180.0, -90.0, 180.0, 90.0]):
+        bounding_box = Polygon.from_bbox(bbox)
+        filter = json.loads(self.filter)
+        att_list = self.attributes_list()
+        features = []
+        if self.pointGeom:
+            points = OsmPoint.objects.filter(the_geom__bboverlaps=bounding_box).filter(**filter)
+            features += [point.geojson_feature(att_list) for point in points]
+        feature_collection = {
+            "type":"FeatureCollection",
+            "features":features
+        }
+        return json.dumps(feature_collection)
+        
+    
+def verbose_name(obj, field_name, underscores=False):
+    verbose_name = obj._meta.get_field_by_name(field_name)[0].verbose_name
+    if underscores:
+        return verbose_name.replace(' ', '_')
+    else:
+        return verbose_name
+
+def verbose_names(obj, underscores=False):
+    names = obj._meta.get_all_field_names()
+    return [verbose_name(obj, name, underscores) for name in names]
+
+    
