@@ -386,6 +386,33 @@ class WeightCollection(models.Model):
             access_clauses.append(default_access)
         return access_clauses
 
+    def dump_params(self, params):
+        json = {}
+        json['name'] = params['global'].get('name','undefined')
+        json['oneway'] = params['global'].has_key('oneway')
+        json['vehicle'] = params['global'].get('vehicle', 'bicycle')
+        json['preferred'] = []
+        for p in self.preferred_set.all():
+            pref_class = {"name": p.name, "use": True}
+            pref_class['value'] = p.name in params['preferred_classes']
+            json['preferred'].append(pref_class)
+        json['classes'] = []
+        for c in self.weightclass_set.all():
+            weight_class = {"name": c.classname, "use": True}
+            if (c.max != None) and (params[c.classname].has_key('max')):
+                weight_class['max'] = params[c.classname]['max']
+            if (c.min != None) and (params[c.classname].has_key('min')):
+                weight_class['min'] = params[c.classname]['min']
+            ws = c.weight_set.all()
+            if ws.count():
+                weight_class['features'] = []
+                for w in c.weight_set.all():
+                    weight = {"name": w.feature, "visible": True}
+                    weight["value"] = params[c.classname].get(w.feature, w.preference)
+                    weight_class['features'].append(weight)
+            json['classes'].append(weight_class)
+        return json
+
     
 class WeightClass(models.Model):
     classname = models.CharField(max_length=40)

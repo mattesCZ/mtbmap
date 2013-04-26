@@ -20,26 +20,14 @@ def line_string_to_points(line_string):
 
 
 class MultiRoute:
-    def __init__(self, points, params):
-        self.params = RouteParams(self._recreate_params(params))
+    def __init__(self, points, flat_params):
+        self.params = RouteParams(flat_params)
         self.points = points
         self.length = 0
         self.cost = 0
         self.last_route = None
         self.status = 'init'
         self.geojson_features = []
-
-    def _recreate_params(self, flat_params):
-        '''
-        Given JSON like object, create better python dictionary.
-        '''
-        new = {}
-        for p in flat_params:
-            classname, feature = p['name'].split('__')
-            if not classname in new:
-                new[classname] = {}
-            new[classname][feature] = p['value']
-        return new
 
     def geojson(self):
         '''
@@ -268,15 +256,15 @@ class Route:
     
 
 class RouteParams:
-    def __init__(self, params):
-        self.raw_params = params
-        self.reverse = params['global'].has_key('oneway')
+    def __init__(self, flat_params):
+        self.raw_params = self._recreate_params(flat_params)
+        self.reverse = self.raw_params['global'].has_key('oneway')
         self.where = '(id IS NOT NULL)'
         self.cost = 'length'
         self.reverse_cost = 'reverse_cost'
         self.raw_params['preferred_classes'] = self._preferred_classes()
         self.weight_collection = WeightCollection.objects.get(pk=self.raw_params['weights']['template'].split('_')[-1])
-        self.weight_collection.vehicle = params['global']['vehicle']
+        self.weight_collection.vehicle = self.raw_params['global']['vehicle']
         self._cost_and_where()
         self.sql_astar = self.weighted_ways_astar()
         self.sql_dijkstra = self.weighted_ways_dijkstra()
@@ -315,6 +303,21 @@ class RouteParams:
             preferred_classes += self.raw_params['preferred'].keys()
         return preferred_classes
 
+    def _recreate_params(self, flat_params):
+        '''
+        Given flat JSON like object, create better python dictionary.
+        '''
+        new = {}
+        for p in flat_params:
+            classname, feature = p['name'].split('__')
+            if not classname in new:
+                new[classname] = {}
+            new[classname][feature] = p['value']
+        return new
+    
+    def dump_params(self):
+        collection = WeightCollection.objects.get(name='default')
+        return collection.dump_params(self.raw_params)
 
 def create_gpx(points):
     output = libxml2.parseDoc('<gpx/>')
