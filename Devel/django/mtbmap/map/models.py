@@ -52,7 +52,7 @@ class Way(geomodels.Model):
     x2 = models.FloatField()
     y2 = models.FloatField()
     reverse_cost = models.FloatField(null=True, blank=True)
-    osm_id = models.BigIntegerField(null=True, blank=True)
+    osm_id = models.BigIntegerField(null=True, blank=True, db_index=True)
     the_geom = geomodels.LineStringField()
     source = models.BigIntegerField()
     target = models.BigIntegerField()
@@ -74,6 +74,9 @@ class Way(geomodels.Model):
     mtbscaleuphill = models.IntegerField(null=True, blank=True)
     sac_scale = models.IntegerField(null=True, blank=True)
     network = models.TextField(null=True, blank=True)
+    class_bicycle = models.IntegerField(null=True, blank=True)
+    class_mtb = models.IntegerField(null=True, blank=True)
+    class_mtb_technical = models.IntegerField(null=True, blank=True)
 
     objects = geomodels.GeoManager()
 

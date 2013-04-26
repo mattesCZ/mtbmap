@@ -111,11 +111,10 @@ way       route_pref_color text     linear
 way       route_name       text     linear # Nepouzivam, ale mel bych
 
 way       mtb              text     linear
-node,way       mtb:scale        text     linear
-way       mtb:scale:uphill text     linear
-# way       mtb:type         text     linear # zatim pouze 'freeride'
-# way       mtb:description  text     linear # potreba az nasledne v KML
-# way       mtb_ref          text     linear
+node,way	mtb:scale        text     linear
+way			mtb:scale:uphill text     linear
+way			mtb:type         text     linear
+way			mtb:description  text     linear
 
 way       incline          text     linear
 
@@ -149,3 +148,8 @@ node,way  osm_uid        text
 #node,way  osm_version    text
 node,way  osm_timestamp  text
 
+# navic tagy pro routovani
+way		class:bicycle				text	linear
+way		class:bicycle:mtb			text	linear
+way		class:bicycle:mtb:technical	text	linear
+way		class:bicycle:touring		text	linear

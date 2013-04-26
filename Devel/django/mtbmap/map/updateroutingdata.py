@@ -67,7 +67,7 @@ def _row_to_arguments(row):
     update_args = {}
     for key, value in row.items():
         if value:
-            if key in ('tracktype', 'width', 'mtbscale', 'mtbscaleuphill'):
+            if key in ('tracktype', 'width', 'mtbscale', 'mtbscaleuphill', 'class_bicycle', 'class_mtb', 'class_mtb_technical'):
                 floatvalue = _to_float(value)
                 if key == 'width':
                     update_args[key] = floatvalue
@@ -99,12 +99,16 @@ def _add_line_attributes():
                              THEN 'opposite'
                              ELSE bicycle
                         END AS bicycle"""
+    column_class_bicycle = """CASE WHEN ("class:bicycle:touring" IS NOT NULL) THEN "class:bicycle:touring"
+                                   ELSE "class:bicycle"
+                              END AS class_bicycle"""
     query = '''SELECT osm_id, tracktype, oneway, access, %s, foot, incline,
                       width, surface, smoothness, maxspeed, "mtb:scale" as mtbscale,
                       "mtb:scale:uphill" as mtbscaleuphill, sac_scale, network,
-                      replace(highway, '_link', '') AS highway
+                      replace(highway, '_link', '') AS highway, %s, "class:bicycle:mtb" as class_mtb,
+                      "class:bicycle:mtb:technical" as class_mtb_technical
                FROM planet_osm_line
-               WHERE osm_id>0; ''' % (column_bicycle)
+               WHERE osm_id>0; ''' % (column_bicycle, column_class_bicycle)
     cursor.execute(query)
     description = cursor.description
     evaluated = 0
@@ -181,13 +185,17 @@ def _to_float(value):
     String to float for width and mtbscale parsing.
     '''
     # Replace expected characters to floatable strings
-    cleansed = value.replace(',', '.').replace('+', '.3').replace('-','.7').replace('grade', '')
     try:
-        r = float(cleansed)
+        r = float(value)
         return r
     except ValueError:
-        print value
-        return None
+        try:
+            cleansed = value.replace(',', '.').replace('+', '.3').replace('-','.7').replace('grade', '')
+            r = float(cleansed)
+            return r
+        except ValueError:
+            print value
+            return None
 
 def update_class_ids():
     conf_file = open('media/class_ids.json', 'r')
