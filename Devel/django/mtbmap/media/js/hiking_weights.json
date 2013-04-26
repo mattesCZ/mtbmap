@@ -212,8 +212,7 @@
         {
             "name": "mtbscaleuphill",
             "use": "ignore",
-            "max": 5,
-            "min": 0
+            "max": 5
         },
         {
             "name": "osmc",
