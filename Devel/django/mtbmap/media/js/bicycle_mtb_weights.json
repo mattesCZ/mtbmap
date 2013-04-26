@@ -2,6 +2,28 @@
     "name": "mtb_easy",
     "oneway": true,
     "vehicle": "bicycle",
+    "preferred": [
+    	{
+    		"name": "osmc",
+    		"value": false,
+    		"use": true
+    	},
+    	{
+    		"name": "class_bicycle",
+    		"value": true,
+    		"use": true
+    	},
+    	{
+    		"name": "class_mtb",
+    		"value": true,
+    		"use": true
+    	},
+    	{
+    		"name": "class_mtb_technical",
+    		"value": false,
+    		"use": false
+    	}
+    ],
     "classes": [
         {
             "name": "highway",
@@ -215,11 +237,6 @@
             "name": "mtbscaleuphill",
             "use": "yes",
             "max": 3
-        },
-        {
-            "name": "osmc",
-            "use": "yes",
-            "prefer": false
         },
         {
             "name": "sac_scale",

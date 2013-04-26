@@ -159,17 +159,14 @@ class Route:
         else:
             next_node = first.source
             first.the_geom.reverse()
-        print next_node
         corrected_ways.append(first)
         for way in ways[1:]:
-            print way.osm_id, way.source, way.target
             if way.source == next_node:
                 next_node = way.target
             else:
                 next_node = way.source
                 way.the_geom.reverse()
             corrected_ways.append(way) 
-            print next_node       
         return corrected_ways
     
 
@@ -277,7 +274,7 @@ class RouteParams:
         self.where = '(id IS NOT NULL)'
         self.cost = 'length'
         self.reverse_cost = 'reverse_cost'
-        self.raw_params['prefered_classes'] = self._prefered_classes()
+        self.raw_params['preferred_classes'] = self._preferred_classes()
         self.weight_collection = WeightCollection.objects.get(pk=self.raw_params['weights']['template'].split('_')[-1])
         self.weight_collection.vehicle = params['global']['vehicle']
         self._cost_and_where()
@@ -312,12 +309,11 @@ class RouteParams:
         '''
         self.cost, self.reverse_cost, self.where = self.weight_collection.get_cost_where_clause(self.raw_params)
     
-    def _prefered_classes(self):
-        prefered_classes = []
-        for cl in self.raw_params:
-            if self.raw_params[cl].has_key('prefer'):
-                prefered_classes.append(cl)
-        return prefered_classes
+    def _preferred_classes(self):
+        preferred_classes = []
+        if self.raw_params.has_key('preferred'):
+            preferred_classes += self.raw_params['preferred'].keys()
+        return preferred_classes
 
 
 def create_gpx(points):

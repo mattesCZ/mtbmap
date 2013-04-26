@@ -172,7 +172,7 @@ def _add_routes_attributes():
             break
         for row in routes_rows:
             osm_id = row[0]
-            updated += Way.objects.filter(osm_id=osm_id).update(osmc='use')
+            updated += Way.objects.filter(osm_id=osm_id).update(osmc=1)
         evaluated += 100
         if not evaluated % 1000:
             print evaluated, 'evaluated records:'

@@ -1,4 +1,4 @@
-<h3>global</h3>
+<h3>Global settings</h3>
 <div>
 	<table class="preferences">
 		<tr>
@@ -17,6 +17,19 @@
 		</tr>
 	</table>
 </div>
+<h3>Preferred ways</h3>
+<div>
+	<table class="preferences">
+		{% for preferred in weight_collection.preferred_set.all %}
+		{% if preferred.use %}
+            <tr>
+                <td class="type right-align">{{ preferred.name }}</td>
+                <td class="preference"><input type="checkbox" name="preferred__{{preferred.name}}" {% if preferred.value %}checked="checked"{% endif %} /></td>
+            </tr>
+		{% endif %}
+		{% endfor %}
+	</table>
+</div>
 {% for c in weight_collection.weightclass_set.all %}
 <h3 {% if c.use == 'ignore' %} style="display: none"{% endif %}>{{ c.classname }}</h3>
 <div>
@@ -31,14 +44,6 @@
             <td class="right-align">Min:</td>
             <td><input type="text" value="{{c.min|floatformat:'0'}}" size="2" id="weights-{{c.classname}}-min" name="{{c.classname}}__min" /></td>
             {% endif %}
-        </tr>
-    </table>
-    {% endif %}
-    {% if c.prefer != None %}
-    <table class="preferences">
-        <tr>
-        	<td class="type right-align">Prefer:</td>
-        	<td class="preference"><input type="checkbox" name="{{c.classname}}__prefer" {% if c.prefer %}checked="checked"{% endif %} /></td>
         </tr>
     </table>
     {% endif %}

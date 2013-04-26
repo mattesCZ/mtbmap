@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import simplejson as json
-from map.models import WeightCollection, WeightClass, Weight
+from map.models import WeightCollection, WeightClass, Weight, Preferred
 #from map.updateroutingdata import to_float
 
 def import_json_template(filename):
@@ -28,8 +28,6 @@ def import_json_template(filename):
             weight_class.max = c['max']
         if 'min' in c:
             weight_class.min = c['min']
-        if 'prefer' in c:
-            weight_class.prefer = c['prefer']
         weight_class.save()
         if 'features' in c:
             feature_order = 0
@@ -40,3 +38,10 @@ def import_json_template(filename):
                 w.save()
                 feature_order +=1
         class_order += 1
+    for p in json_template['preferred']:
+        preferred = Preferred()
+        preferred.name = p['name']
+        preferred.collection = weight_collection
+        preferred.use = p['use']
+        preferred.value = p['value']
+        preferred.save()

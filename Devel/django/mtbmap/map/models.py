@@ -69,7 +69,7 @@ class Way(geomodels.Model):
     surface = models.TextField(null=True, blank=True)
     smoothness = models.TextField(null=True, blank=True)
     maxspeed = models.TextField(null=True, blank=True)
-    osmc = models.TextField(null=True, blank=True)
+    osmc = models.IntegerField(null=True, blank=True)
     mtbscale = models.IntegerField(null=True, blank=True)
     mtbscaleuphill = models.IntegerField(null=True, blank=True)
     sac_scale = models.IntegerField(null=True, blank=True)
@@ -219,18 +219,28 @@ class Way(geomodels.Model):
                 except KeyError, ValueError:
                     preferences[feature_name] = MIN_WEIGHT
         weight = max(preferences.values())
-        prefer = False
-        if params.has_key('prefered_classes'):
-            for classname in params['prefered_classes']:
-                if hasattr(self, classname):
-                    value = getattr(self, classname)
-                    if value:
-                        prefer = True
-                        break
-        if prefer:
-            weight = max(weight-1, MIN_WEIGHT)
+        weight -= self._preferred_shift(params)
+        weight = max(min(weight, len(WEIGHTS)), MIN_WEIGHT)
         # correct weight is at index-1 in WEIGHTS
         return WEIGHTS[weight-1]
+    
+    def _preferred_shift(self, params):
+        shift = 0
+        neg = 0
+        if params.has_key('preferred_classes'):
+            preferred_classes = params['preferred_classes']
+            for p in preferred_classes:
+                value = getattr(self, p)
+                if value:
+                    shift = max(value, shift)
+                    neg = min(value, neg)
+        # TODO returning neg or shift possible, see get_when_clauses TODO
+        if neg < 0:
+            return -1
+        elif shift >0:
+            return 1
+        else:
+            return 0
 
     def compute_class_id(self, class_conf):
         '''
@@ -340,7 +350,7 @@ class WeightCollection(models.Model):
         whereparts += self._access()
         for wc in self.weightclass_set.all():
             if wc.classname in params:
-                class_preferences = wc.get_when_clauses(params[wc.classname], params['prefered_classes'])
+                class_preferences = wc.get_when_clauses(params[wc.classname], params['preferred_classes'])
                 for preference in class_preferences:
                      if preference in preferences:
                          preferences[preference] += class_preferences[preference]
@@ -384,16 +394,17 @@ class WeightClass(models.Model):
     order = models.PositiveIntegerField(null=True, blank=True)
     max = models.FloatField(null=True, blank=True)
     min = models.FloatField(null=True, blank=True)
-    prefer = models.NullBooleanField(default=None)
-
+ 
     class Meta:
         ordering = ('order', 'classname',)
 
     def __unicode__(self):
         return self.classname
 
-    def get_when_clauses(self, params, prefered_classes):
+    def get_when_clauses(self, params, preferred_classes):
+        unpreferable_highways = ('track', 'path', 'bridleway')
         default = min(WEIGHTS)
+        preferred = self.collection.preferred_set.filter(name__in=preferred_classes)
         preference_to_when_dict = {}
         for w in self.weight_set.all():
             try:
@@ -401,20 +412,28 @@ class WeightClass(models.Model):
             except ValueError:
                 print 'ValueError', self.classname, w.feature, params
             else:
+                whens = []
+                # TODO compute (un)preferred weights correctly, not only +/- 1 degree, but in range(-3, +3)
+                if preferred.count()>0 and self.classname=='highway' and w.feature in unpreferable_highways:
+                    least_when = ' OR '.join(['"' + p.name + '"<0' for p in preferred])
+                    unpreferred_weight = WEIGHTS[min(preference+1, MAX_WEIGHT)-1]
+                    whens.append("""WHEN "%s"::text='%s' AND (%s)
+                              THEN "length"*%s """ % (self.classname, w.feature, least_when, unpreferred_weight)
+                              )
                 if preference != default:
-                    whens = []
-                    for classname in prefered_classes:
-                        prefered_weight = WEIGHTS[max(preference-1, MIN_WEIGHT)-1]
-                        whens.append("""WHEN "%s"::text='%s' AND "%s" IS NOT NULL
-                                  THEN "length"*%s """ % (self.classname, w.feature, classname, prefered_weight)
+                    if preferred.count()>0:
+                        greatest_when = ' OR '.join([p.name + '>0' for p in preferred])
+                        preferred_weight = WEIGHTS[max(preference-1, MIN_WEIGHT)-1]
+                        whens.append("""WHEN "%s"::text='%s' AND (%s)
+                                  THEN "length"*%s """ % (self.classname, w.feature, greatest_when, preferred_weight)
                                   )
                     weight = WEIGHTS[preference-1]
                     default_when = """WHEN "%s"::text='%s' THEN "length"*%s """ % (self.classname, w.feature, weight)
                     whens.append(default_when)
-                    if preference in preference_to_when_dict:
-                        preference_to_when_dict[preference] += whens
-                    else:
-                        preference_to_when_dict[preference] = whens
+                if preference in preference_to_when_dict:
+                    preference_to_when_dict[preference] += whens
+                else:
+                    preference_to_when_dict[preference] = whens
         return preference_to_when_dict
 
     def get_where_clauses(self, params):
@@ -450,6 +469,12 @@ class WeightClass(models.Model):
             return '("%s" is NULL OR (%s))' % (self.classname, andcondition)
         else:
             return
+
+class Preferred(models.Model):
+    name = models.CharField(max_length=40)
+    collection = models.ForeignKey('WeightCollection')
+    value = models.BooleanField(default=False)
+    use = models.BooleanField(default=True)
 
 
 class Weight(models.Model):
