@@ -14,9 +14,9 @@ MAP_DB = 'osm_data'
 sac_scale_values = ['hiking', 'mountain_hiking', 'demanding_mountain_hiking',
                     'alpine_hiking', 'demanding_alpine_hiking', 'difficult_alpine_hiking']
 
-def copy_points():
+def copy_osmpoints():
     cursor = connections[MAP_DB].cursor()
-    cursor.execute('DELETE FROM map_way')
+    cursor.execute('DELETE FROM map_osmpoint')
     column_names = verbose_names(obj=OsmPoint(), underscores=True)
     column_names.remove('ID')
     column_names.remove('osm_id')

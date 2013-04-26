@@ -21,12 +21,10 @@
 <div>
 	<table class="preferences">
 		{% for preferred in weight_collection.preferred_set.all %}
-		{% if preferred.use %}
-            <tr>
+            <tr {% if not preferred.use %} style="display: none"{% endif %}>
                 <td class="type right-align">{{ preferred.name }}</td>
                 <td class="preference"><input type="checkbox" name="preferred__{{preferred.name}}" {% if preferred.value %}checked="checked"{% endif %} /></td>
             </tr>
-		{% endif %}
 		{% endfor %}
 	</table>
 </div>
