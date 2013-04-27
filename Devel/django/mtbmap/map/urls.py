@@ -8,5 +8,6 @@ urlpatterns = patterns('',
     url(r'^creategpx/$', 'map.views.creategpx'),
     url(r'^getheight/$', 'map.views.getheight'),
     url(r'^findroute/$', 'map.views.findroute'),
+    url(r'^gettemplate/$', 'map.views.gettemplate'),
     url(r'^getjsondata/$', 'map.views.getjsondata'),
 )

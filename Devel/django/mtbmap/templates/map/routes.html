@@ -59,6 +59,11 @@
               	    {% include "map/routingparams.html" with weight_collection=weight_collections|first %}
                 </div>
             </form>
+            <form action="/map/gettemplate/" method="post" target="_blank">
+                {% csrf_token %}
+                <input type="hidden" name="params" class="params" value="" />
+                <input class="get-template-button" type="submit" value="Uložit parametry"/>
+            </form>
             <div class="line-buttons">
 	            <form onsubmit="getRoute(event)" method="POST">
 	                {% csrf_token %}

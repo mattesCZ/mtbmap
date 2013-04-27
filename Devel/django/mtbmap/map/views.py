@@ -9,7 +9,7 @@ from django.template.response import TemplateResponse
 from django.http import HttpResponse, HttpResponseRedirect
 from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
 from map.altitude import altitude_image, height
-from map.routing import MultiRoute, line_string_to_points, create_gpx
+from map.routing import MultiRoute, line_string_to_points, create_gpx, RouteParams
 from PIL import Image
 import simplejson as json
 from django.core.urlresolvers import reverse
@@ -175,8 +175,9 @@ def creategpx(request):
     try:
         params = request.POST['profile-params']
     except (KeyError, 'no points posted'):
-        return render_to_response('map/map.html', {},
-                                  context_instance=RequestContext(request))
+        message = 'No route params posted.'
+        return render_to_response('error.html', {'message': message},
+                                   context_instance=RequestContext(request))
     else:
         points = []
         if len(params):
@@ -214,6 +215,22 @@ def findroute(request):
         geojson = multiroute.geojson()
         print "Length:", multiroute.length, status, multiroute.search_index()
         return HttpResponse(json.dumps(geojson), content_type='application/json')
+
+def gettemplate(request):
+    try:
+        params = json.loads(request.POST['params'])
+    except (KeyError, 'missing params'):
+        message = 'No route parameters posted.'
+        return render_to_response('error.html', {'message': message},
+                                   context_instance=RequestContext(request))
+    else:
+        routeparams = RouteParams(params)
+        json_params = routeparams.dump_params()
+        print json_params
+        response = HttpResponse(mimetype='text/plain')
+        response['Content-Disposition'] = 'attachment; filename="template.json"'
+        response.write(json.dumps(json_params, indent=4, sort_keys=True))
+        return response
 
 def getjsondata(request):
     try:
