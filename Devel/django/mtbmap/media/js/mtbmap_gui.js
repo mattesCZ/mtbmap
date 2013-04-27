@@ -142,6 +142,66 @@ function handleGPX(e) {
         reader.readAsText(f);
     }
 }
+function handleTemplate(e) {
+    files = e.target.files;
+    for (var i = 0, f; f = files[i]; i++) {
+        var reader = new FileReader()
+        // Closure to capture the file information.
+        reader.onload = (function(theFile) {
+            return function(e) {
+                fillRouteParams(e.target.result);
+            };
+        })(f);
+        reader.readAsText(f);
+    }
+}
+function fillRouteParams(params) {
+	jsonParams = $.parseJSON(params);
+	$('select[name=global__vehicle] > option').attr('selected', false);
+	$('select[name=global__vehicle] > option[value='+jsonParams.vehicle+']').attr('selected', true);
+	$('input[name=global__oneway]').attr('checked', jsonParams.oneway);
+	for (var i=0; i<jsonParams.preferred.length; i++) {
+		var pref = jsonParams.preferred[i];
+		$('input[name=preferred__'+ pref.name +']')
+			.attr('checked', pref.value);
+		if (pref.use){
+			$('input[name=preferred__'+ pref.name +']').parent().parent().css('display', 'table-row');
+		} else {
+			$('input[name=preferred__'+ pref.name +']').parent().parent().css('display', 'none');
+		}
+	}
+	for (var i=0; i<jsonParams.classes.length; i++) {
+		var cl = jsonParams.classes[i];
+		if (cl.max != null) {
+			$('input[name=' + cl.name + '__max]').attr('value', cl.max);
+		};
+		if (cl.min != null) {
+			$('input[name=' + cl.name + '__min]').attr('value', cl.min);
+		};
+		if (cl.features != null) {
+			var fts = cl.features;
+			for (var j=0; j<fts.length; j++) {
+				$('select[name="' + cl.name + '__'+ fts[j].name +'"] option').each(function () {
+					var $this = $(this);
+					if ($this.val() == fts[j].value) {
+						$this.prop('selected', true);
+						$this.attr('selected', true);
+						return false;
+					} else {
+						$this.prop('selected', false);
+						$this.attr('selected', false);
+					}
+				});
+				if (fts[j].visible) {
+					$('select[name="' + cl.name + '__'+ fts[j].name +'"]').parent().parent().css('display', 'table-row');
+				} else {
+					$('select[name="' + cl.name + '__'+ fts[j].name +'"]').parent().parent().css('display', 'none');
+				};
+			};
+		};
+	}
+	// alert(jsonParams.vehicle);
+}
 function osmLink(osm_id, osm_type) {
     return '<a href="http://www.openstreetmap.org/browse/' + osm_type + '/' + osm_id + '" target="_blank">' + osm_id + '</a>'
 }

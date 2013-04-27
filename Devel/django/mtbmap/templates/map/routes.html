@@ -64,6 +64,7 @@
                 <input type="hidden" name="params" class="params" value="" />
                 <input class="get-template-button" type="submit" value="Uložit parametry"/>
             </form>
+            <input id="files" type="file" name="files[]" onchange="handleTemplate(event)" size="10" class="margin">
             <div class="line-buttons">
 	            <form onsubmit="getRoute(event)" method="POST">
 	                {% csrf_token %}
