@@ -16,6 +16,7 @@
                 <br>
                 <button class="fit-to-line">Zobrazit podle trasy</button>
                 <button class="reset-line">Smazat</button>
+                <br />
                 <form method="post" action="/map/altitudeprofile/" target="_blank" >
                     {% csrf_token %}
                     <input type="hidden" name="profile-params" class="profile-params" value="" />
@@ -37,6 +38,7 @@
                 <br>
                 <button class="fit-to-line">Zobrazit podle trasy</button>
                 <button class="reset-line">Smazat</button>
+                <br />
                 <form method="post" action="/map/altitudeprofile/" target="_blank" >
                     {% csrf_token %}
                     <input type="hidden" name="profile-params" class="profile-params" value="" />
@@ -48,7 +50,6 @@
             <h4>Zadejte do mapy body, kterými vést trasu</h4>
             <form id="routes-params">
                 <h5>Parametry vyhledávání tras:</h5>
-                <label for="weights_template">Template</label>
                 <div id="weights_template">
                     {% for wc in weight_collections %}
                         <input id="weights_template_{{ wc.id }}" value="{{ wc.id }}" name="weights__template" type="radio" />
@@ -59,12 +60,6 @@
                 	{# map/routingparams.html loaded on page load/refresh #}
                 </div>
             </form>
-            <form action="/map/gettemplate/" method="post" target="_blank">
-                {% csrf_token %}
-                <input type="hidden" name="params" class="params" value="" />
-                <input class="get-template-button" type="submit" value="Uložit parametry"/>
-            </form>
-            <input id="files" type="file" name="files[]" onchange="handleTemplate(event)" size="10" class="margin">
             <div class="line-buttons">
 	            <form onsubmit="getRoute(event)" method="POST">
 	                {% csrf_token %}
@@ -72,8 +67,11 @@
 	            </form>
                 <div class="length"></div>
                 <br>
+            </div>
+            <div class="line-buttons">
                 <button class="fit-to-line">Zobrazit podle trasy</button>
                 <button class="reset-line">Smazat</button>
+                <br />
                 <form method="post" action="/map/altitudeprofile/" target="_blank" >
                     {% csrf_token %}
                     <input type="hidden" name="profile-params" class="profile-params" value="" />
@@ -85,6 +83,14 @@
                     <input class="create-gpx-button" type="submit" value="Vytvořit GPX">
                 </form>
             </div>
+            Nahrát parametry:<input id="files" type="file" name="files[]" onchange="handleTemplate(event)" size="10" class="margin">
+            <br />
+            Uložit parametry:
+            <form action="/map/gettemplate/" method="post" target="_blank" class="inline-block">
+                {% csrf_token %}
+                <input type="hidden" name="params" class="params" value="" />
+                <input class="get-template-button" type="submit" value="Uložit"/>
+            </form>
             <div class="loading"></div>
         </article>
     </section>

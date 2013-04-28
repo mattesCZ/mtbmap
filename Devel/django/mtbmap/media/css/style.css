@@ -81,6 +81,12 @@ hr { /*should be rewritten for html5*/
 .line-buttons {
     display: none;
 }
+.inline-block, .line-buttons form {
+	display: inline-block;
+}
+#routes-params {
+	margin-bottom: 0.2em;
+}
 .loading {
     display:    none;
     position:   absolute;
