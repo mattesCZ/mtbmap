@@ -263,7 +263,7 @@ class RouteParams:
         self.cost = 'length'
         self.reverse_cost = 'reverse_cost'
         self.raw_params['preferred_classes'] = self._preferred_classes()
-        self.weight_collection = WeightCollection.objects.get(pk=self.raw_params['weights']['template'].split('_')[-1])
+        self.weight_collection = WeightCollection.objects.get(pk=self.raw_params['weights']['template'])
         self.weight_collection.vehicle = self.raw_params['global']['vehicle']
         self._cost_and_where()
         self.sql_astar = self.weighted_ways_astar()

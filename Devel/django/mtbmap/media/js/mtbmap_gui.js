@@ -67,6 +67,10 @@ $(document).ready(function() {
     $('#weights_template').buttonset();
     $('#weights_template > label').click(function(event) {
     	event.preventDefault();
+    	$('#weights_template > input').prop('checked', false);
+    	$('#weights_template > input').attr('checked', false);
+    	$('#' + this.htmlFor).prop('checked', true);
+    	$('#' + this.htmlFor).attr('checked', true);
     	template_id = $('#' + this.htmlFor).val();
     	updateTemplate(template_id);
     });
