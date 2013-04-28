@@ -66,13 +66,11 @@ $(document).ready(function() {
     // initialize weights_template radio
     $('#weights_template').buttonset().click(function(event) {
     	event.preventDefault();
-    	// uncheck old radio button
-    	// $('#weights_template>input:checked').val().removeAttr("checked");
-    	template_id = event.target.parentNode.htmlFor;
-    	// check current radio button
-    	$('#'+template_id).attr("checked","checked");
+    	template_id = $('#' + event.target.parentNode.htmlFor).val();
     	updateTemplate(template_id);
     });
+    // force update template button and get params
+    $('#weights_template > label').first().click();
     $('.fit-to-line').button().click(function(event) {
         MTBMAP.activeLine.fitMapView();
     });

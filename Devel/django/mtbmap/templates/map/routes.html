@@ -51,12 +51,12 @@
                 <label for="weights_template">Template</label>
                 <div id="weights_template">
                     {% for wc in weight_collections %}
-                        <input id="weights_template_{{ wc.id }}" value="weights_template_{{ wc.id }}" name="weights__template" type="radio" {% if forloop.first %}checked="checked"{% endif %}/>
+                        <input id="weights_template_{{ wc.id }}" value="{{ wc.id }}" name="weights__template" type="radio" />
                         <label for="weights_template_{{ wc.id }}">{{ wc.name }}</label>
                 	{% endfor %}
                 </div>
                 <div id="routes-accordion">
-              	    {% include "map/routingparams.html" with weight_collection=weight_collections|first %}
+                	{# map/routingparams.html loaded on page load/refresh #}
                 </div>
             </form>
             <form action="/map/gettemplate/" method="post" target="_blank">
