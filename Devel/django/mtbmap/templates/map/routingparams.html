@@ -29,7 +29,7 @@
 	</table>
 </div>
 {% for c in weight_collection.weightclass_set.all %}
-<h3 {% if c.use == 'ignore' %} style="display: none"{% endif %}>{{ c.classname }}</h3>
+<h3 id="h-{{ c.classname }}" {% if not c.visible %} style="display: none"{% endif %}>{{ c.classname }}</h3>
 <div>
     {% if c.max != None or c.min != None %}
     <table id="weights-limits-{{c.classname}}" class="weights-limits preferences" >

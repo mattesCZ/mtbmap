@@ -68,9 +68,7 @@ $(document).ready(function() {
     $('#weights_template > label').click(function(event) {
     	event.preventDefault();
     	$('#weights_template > input').prop('checked', false);
-    	$('#weights_template > input').attr('checked', false);
     	$('#' + this.htmlFor).prop('checked', true);
-    	$('#' + this.htmlFor).attr('checked', true);
     	template_id = $('#' + this.htmlFor).val();
     	updateTemplate(template_id);
     });
@@ -188,11 +186,8 @@ function fillRouteParams(params) {
 					var $this = $(this);
 					if ($this.val() == fts[j].value) {
 						$this.prop('selected', true);
-						$this.attr('selected', true);
-						return false;
 					} else {
 						$this.prop('selected', false);
-						$this.attr('selected', false);
 					}
 				});
 				if (fts[j].visible) {
@@ -202,6 +197,11 @@ function fillRouteParams(params) {
 				};
 			};
 		};
+		if (cl.visible) {
+			$('#h-' + cl.name).css('display', 'block');
+		} else {
+			$('#h-' + cl.name).css('display', 'none');
+		}
 	}
 	// alert(jsonParams.vehicle);
 }

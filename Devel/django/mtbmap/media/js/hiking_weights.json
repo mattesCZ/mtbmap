@@ -27,7 +27,7 @@
     "classes": [
         {
             "name": "highway",
-            "use": "yes",
+            "visible": true,
             "features": [
                 { 
                     "name": "track",
@@ -87,7 +87,7 @@
                 },
                 { 
                     "name": "service",
-                    "value": 5
+                    "value": 4
                 },
                 { 
                     "name": "trunk",
@@ -103,7 +103,7 @@
         },
         {
             "name": "tracktype",
-            "use": "yes",
+            "visible": true,
             "features": [
                 { 
                     "name": "1",
@@ -129,7 +129,7 @@
         },
         {
             "name": "surface",
-            "use": "yes",
+            "visible": true,
             "features": [
                 { 
                     "name": "compacted",
@@ -199,7 +199,7 @@
         },
         {
             "name": "mtbscale",
-            "use": "ignore",
+            "visible": false,
             "features": [
                 { 
                     "name": "0",
@@ -233,12 +233,12 @@
         },
         {
             "name": "mtbscaleuphill",
-            "use": "ignore",
+            "visible": false,
             "max": 5
         },
         {
             "name": "sac_scale",
-            "use": "yes",
+            "visible": true,
             "features": [
                 { 
                     "name": "hiking",

@@ -22,7 +22,7 @@ def import_json_template(filename):
         weight_class = WeightClass()
         weight_class.classname = c['name']
         weight_class.collection = weight_collection
-        weight_class.use = c['use']
+        weight_class.visible = c['visible']
         weight_class.order = class_order
         if 'max' in c:
             weight_class.max = c['max']

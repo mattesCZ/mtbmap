@@ -27,15 +27,15 @@
     "classes": [
         {
             "name": "highway",
-            "use": "yes",
+            "visible": true,
             "features": [
                 { 
                     "name": "motorway",
-                    "value": 1,
+                    "value": 1
                 },
                 { 
                     "name": "trunk",
-                    "value": 1,
+                    "value": 1
                 },
                 { 
                     "name": "primary",
@@ -101,7 +101,7 @@
         },
         {
             "name": "tracktype",
-            "use": "yes",
+            "visible": true,
             "features": [
                 { 
                     "name": "1",
@@ -127,7 +127,7 @@
         },
         {
             "name": "surface",
-            "use": "yes",
+            "visible": true,
             "features": [
                 { 
                     "name": "asphalt",
@@ -197,7 +197,7 @@
         },
         {
             "name": "mtbscale",
-            "use": "yes",
+            "visible": true,
             "features": [
                 { 
                     "name": "0",
@@ -231,12 +231,12 @@
         },
         {
             "name": "mtbscaleuphill",
-            "use": "yes",
+            "visible": true,
             "max": 5
         },
         {
             "name": "sac_scale",
-            "use": "yes",
+            "visible": true,
             "features": [
                 { 
                     "name": "hiking",

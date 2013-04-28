@@ -417,10 +417,10 @@ class WeightCollection(models.Model):
 class WeightClass(models.Model):
     classname = models.CharField(max_length=40)
     collection = models.ForeignKey('WeightCollection')
-    use = models.CharField(max_length=40, default='yes')
     order = models.PositiveIntegerField(null=True, blank=True)
     max = models.FloatField(null=True, blank=True)
     min = models.FloatField(null=True, blank=True)
+    visible = models.BooleanField(default=True)
  
     class Meta:
         ordering = ('order', 'classname',)
