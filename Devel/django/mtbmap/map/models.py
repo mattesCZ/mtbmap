@@ -398,7 +398,7 @@ class WeightCollection(models.Model):
             json['preferred'].append(pref_class)
         json['classes'] = []
         for c in self.weightclass_set.all():
-            weight_class = {"name": c.classname, "use": True}
+            weight_class = {"name": c.classname, "visible": True}
             if (c.max != None) and (params[c.classname].has_key('max')):
                 weight_class['max'] = params[c.classname]['max']
             if (c.min != None) and (params[c.classname].has_key('min')):
