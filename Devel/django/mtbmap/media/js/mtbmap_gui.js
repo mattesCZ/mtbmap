@@ -64,9 +64,10 @@ $(document).ready(function() {
         heightStyle: 'content'
     });
     // initialize weights_template radio
-    $('#weights_template').buttonset().click(function(event) {
+    $('#weights_template').buttonset();
+    $('#weights_template > label').click(function(event) {
     	event.preventDefault();
-    	template_id = $('#' + event.target.parentNode.htmlFor).val();
+    	template_id = $('#' + this.htmlFor).val();
     	updateTemplate(template_id);
     });
     // force update template button and get params
