@@ -329,7 +329,6 @@ def create_gpx(points):
     root_node.setProp('xsi:schemaLocation', 'http://www.topografix.com/GPX/1/1 gpx.xsd')
     rte_node = libxml2.newNode('rte')
     for point in points:
-        print point
         rtept = libxml2.newNode('rtept')
         rtept.setProp('lat', str(point[0]))
         rtept.setProp('lon', str(point[1]))

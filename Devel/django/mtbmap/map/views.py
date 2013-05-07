@@ -228,7 +228,6 @@ def gettemplate(request):
     else:
         routeparams = RouteParams(params)
         json_params = routeparams.dump_params()
-        print json_params
         response = HttpResponse(mimetype='text/plain')
         response['Content-Disposition'] = 'attachment; filename="template.json"'
         response.write(json.dumps(json_params, indent=4, sort_keys=True))
