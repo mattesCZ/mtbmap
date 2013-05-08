@@ -443,14 +443,17 @@ class WeightClass(models.Model):
                 # TODO compute (un)preferred weights correctly, not only +/- 1 degree, but in range(-3, +3)
                 if preferred.count()>0 and self.classname=='highway' and w.feature in unpreferable_highways:
                     least_when = ' OR '.join(['"' + p.name + '"<0' for p in preferred])
-                    unpreferred_weight = WEIGHTS[min(preference+1, MAX_WEIGHT)-1]
+                    try:
+                        unpreferred_weight = WEIGHTS[preference]
+                    except IndexError:
+                        unpreferred_weight = WEIGHTS[-1]
                     whens.append("""WHEN "%s"::text='%s' AND (%s)
                               THEN "length"*%s """ % (self.classname, w.feature, least_when, unpreferred_weight)
                               )
                 if preference != default:
                     if preferred.count()>0:
                         greatest_when = ' OR '.join([p.name + '>0' for p in preferred])
-                        preferred_weight = WEIGHTS[max(preference-1, MIN_WEIGHT)-1]
+                        preferred_weight = WEIGHTS[max(preference-1, 1)-1]
                         whens.append("""WHEN "%s"::text='%s' AND (%s)
                                   THEN "length"*%s """ % (self.classname, w.feature, greatest_when, preferred_weight)
                                   )
