@@ -22,8 +22,9 @@ def copy_osmpoints():
     column_names.remove('osm_id')
     column_names.remove('the_geom')
     columns = ', '.join([ '"' + column + '"' for column in column_names])
+    substr_columns = ', '.join([ 'substr("' + column + '", 0, 40) as "' + column + '" ' for column in column_names])
     or_clause = ' OR '.join([ '"' + column + '" IS NOT NULL' for column in column_names])
-    query = "INSERT INTO map_osmpoint (osm_id, the_geom, %s) SELECT osm_id, ST_TRANSFORM(way, 4326) as the_geom, %s FROM planet_osm_point WHERE %s;" % (columns, columns, or_clause)
+    query = "INSERT INTO map_osmpoint (osm_id, the_geom, %s) SELECT osm_id, ST_TRANSFORM(way, 4326) as the_geom, %s FROM planet_osm_point WHERE %s;" % (columns, substr_columns, or_clause)
     print query
     cursor.execute(query)
     transaction.commit_unless_managed(using=MAP_DB)
