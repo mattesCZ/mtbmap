@@ -207,8 +207,8 @@ class Route:
         Find nearest way from given point(latlon) and apply weight of the way.
         return Way
         '''
-        # initial distance radius in kilometers
-        radius = 0.001
+        # initial distance radius in degrees
+        radius = 0.002
         bbox = point.buffer(radius).envelope
         found = False
         while not found:
