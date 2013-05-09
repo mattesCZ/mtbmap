@@ -330,7 +330,8 @@ function routeStyle(feature) {
     return {
         color: weightColor(feature.properties.weight),
         weight: 6,
-        opacity: 1
+        opacity: 1,
+        smoothFactor: 2
     }
 }
 function weightColor(weight) {
