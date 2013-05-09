@@ -9,7 +9,7 @@ LANG = {
     addPoints: 'Přidejte další body',
     gpxNotValid: 'GPX soubor je neplatný.',
     gpxNoTrackpoints: 'GPX soubor neobsahuje žádné body trasy nebo je neplatný.',
-    routeNotFound: 'Trasu nebo její část jsme podle zadaných parametrů nenalezli.',
+    routeNotFound: 'Trasu nebo její část jsme podle zadaných parametrů nenalezli. Zkuste prosím zpřesnit polohu zadaných bodů.',
     templateNotValid: 'Soubor není platný'
 }
 
