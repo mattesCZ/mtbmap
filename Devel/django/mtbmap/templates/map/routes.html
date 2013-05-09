@@ -83,14 +83,16 @@
                     <input class="create-gpx-button" type="submit" value="Vytvořit GPX">
                 </form>
             </div>
-            Nahrát parametry:<input id="files" type="file" name="files[]" onchange="handleTemplate(event)" size="10" class="margin">
-            <br />
-            Uložit parametry:
-            <form action="/map/gettemplate/" method="post" target="_blank" class="inline-block">
-                {% csrf_token %}
-                <input type="hidden" name="params" class="params" value="" />
-                <input class="get-template-button" type="submit" value="Uložit"/>
-            </form>
+            <div id="params-buttons">
+	            Nahrát parametry:<input id="files" type="file" name="files[]" onchange="handleTemplate(event)" size="10" class="margin">
+	            <br />
+	            Uložit parametry:
+	            <form action="/map/gettemplate/" method="post" target="_blank" class="inline-block">
+	                {% csrf_token %}
+	                <input type="hidden" name="params" class="params" value="" />
+	                <input class="get-template-button" type="submit" value="Uložit"/>
+	            </form>
+            </div>
             <div class="loading"></div>
         </article>
     </section>

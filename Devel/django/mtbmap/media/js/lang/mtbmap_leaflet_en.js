@@ -9,6 +9,7 @@ LANG = {
     addPoints: 'Add another points.',
     gpxNotValid: 'GPX file is not valid.',
     gpxNoTrackpoints: 'GPX file contains no trackpoints or is not valid.',
-    routeNotFound: 'Route or its part was not found according to given parameters.'
+    routeNotFound: 'Route or its part was not found according to given parameters.',
+    templateNotValid: 'Template is not valid'
 }
 

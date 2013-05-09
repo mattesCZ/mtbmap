@@ -91,6 +91,9 @@ $(document).ready(function() {
    		var params = $('#routes-params').serializeArray();
     	$('.params').val(JSON.stringify(params));
     });
+    if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
+        $('#params-buttons').hide();
+    }
     // tab export interaction
     $('#set-bounds-button').button().click(function(event) {
         event.preventDefault();
@@ -157,7 +160,12 @@ function handleTemplate(e) {
     }
 }
 function fillRouteParams(params) {
-	jsonParams = $.parseJSON(params);
+	try {
+    	jsonParams = $.parseJSON(params);
+	} catch (err) {
+		alert(LANG.templateNotValid);
+		return;
+	}
 	$('select[name=global__vehicle] > option').attr('selected', false);
 	$('select[name=global__vehicle] > option[value='+jsonParams.vehicle+']').attr('selected', true);
 	$('input[name=global__oneway]').attr('checked', jsonParams.oneway);
