@@ -126,7 +126,7 @@ class Route:
             else:
                 self.status = 'success'
                 ways = [to_start_way]
-                routed_ways = [Way.objects.get(pk=id) for id in edge_ids[:-1]]
+                routed_ways = Way.objects.filter(pk__in=edge_ids[:-1])
                 ways += self._correct_ways_orientation(routed_ways)
                 to_end_way.the_geom.reverse()
                 ways.append(to_end_way)
