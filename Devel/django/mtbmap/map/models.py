@@ -293,13 +293,17 @@ class Way(geomodels.Model):
         Create GeoJSON Feature object.
         return JSON like dictionary
         '''
+        # weight is here a preference in the interval 1-5,
+        # index of real weight defined in WEIGHTS + 1
+        try:
+            weight = WEIGHTS.index(self.weight(params)) + 1
+        except ValueError:
+            weight = len(WEIGHTS)
         return {
             'type': 'Feature',
             'id': self.id,
             'properties': {
-                # weight is here a preference in the interval 1-5,
-                # index of real weight defined in WEIGHTS + 1
-                'weight': WEIGHTS.index(self.weight(params)) + 1,
+                'weight': weight,
                 'length': self.length,
                 'status': status,
                 'name': self.name,
