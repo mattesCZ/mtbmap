@@ -6,6 +6,7 @@ from django.contrib.gis.geos import *
 from datetime import datetime
 from map.mathfunctions import total_seconds
 import libxml2
+import operator
 
 MAP_DB = 'osm_data'
 
@@ -126,7 +127,7 @@ class Route:
             else:
                 self.status = 'success'
                 ways = [to_start_way]
-                routed_ways = Way.objects.filter(pk__in=edge_ids[:-1])
+                routed_ways = self._get_routed_ways(edge_ids[:-1])
                 ways += self._correct_ways_orientation(routed_ways)
                 to_end_way.the_geom.reverse()
                 ways.append(to_end_way)
@@ -138,6 +139,12 @@ class Route:
             temp4.delete()
             limit_way.delete()
             return self.status
+
+    def _get_routed_ways(self, edge_ids):
+        unordered = Way.objects.filter(pk__in=edge_ids)
+        for way in unordered:
+            way.index = edge_ids.index(way.id)
+        return sorted(unordered, key=operator.attrgetter('index'))
 
     def _correct_ways_orientation(self, ways):
         first = ways[0]
