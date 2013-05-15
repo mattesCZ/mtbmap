@@ -105,6 +105,7 @@ $(document).ready(function() {
         $('#export-zoom').val($('#export-zoom-select').val());
         $('#export-line').val(MTBMAP.activeLine.routeLatLngs());
     });
+    $('#main-tabs').show();
 });
 $(window).resize(function(event) {
     setPanelsMaxHeight();
