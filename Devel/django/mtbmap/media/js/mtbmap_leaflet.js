@@ -85,8 +85,10 @@ function geojsonOverlay(slug, name, minZoom) {
 function geojsonOverlayLines(slug, name, minZoom) {
 	return new MTBMAP.AjaxGeojsonLayerGroup(null, {
 		style: {
-			opacity: 0.2,
-			color: "#706"
+			opacity: 0.3,
+			color: "#706",
+			weight: 4,
+			smoothFactor: 2
 		},
 		onEachFeature: onEachFeature,
 		name: name,
@@ -99,7 +101,7 @@ MTBMAP.overlayLayers["guidepost"] = geojsonOverlay("guideposts", "Guideposts", 1
 MTBMAP.overlayLayers["guidepost"].addTo(map);
 MTBMAP.overlayLayers["sport_shop"] = geojsonOverlay("sport_shop", "Sport shops", 14);
 MTBMAP.overlayLayers["sport_shop"].addTo(map);
-MTBMAP.overlayLayers["mtb_description"] = geojsonOverlayLines("mtb_description", "MTB description", 14);
+MTBMAP.overlayLayers["mtb_description"] = geojsonOverlayLines("mtb_description", "MTB description", 15);
 MTBMAP.overlayLayers["mtb_description"].addTo(map);
 
 
