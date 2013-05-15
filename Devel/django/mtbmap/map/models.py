@@ -8,6 +8,7 @@ from random import randint
 import simplejson as json
 from map.mathfunctions import haversine
 from map.updatemap import updatemap
+from textwrap import wrap
 
 SAC_SCALE_CHOICES = (
  (0, 'hiking'),
@@ -547,7 +548,7 @@ class OsmModel(geomodels.Model):
         if self.has_geometry():
             feature["geometry"] = json.loads(self.the_geom.geojson)
         feature["properties"]["popupContent"] = self.popupContent(tags)
-        feature["properties"]["label"] = self.label(tags[0])
+        feature["properties"]["label"] = self._wrapText(self.label(tags[0]), 30)
         return feature
     
     def geojson_feature_string(self, tags=[]):
@@ -589,6 +590,13 @@ class OsmModel(geomodels.Model):
                 geometry = 'relation'
         href = '%s%s/%s' % (url, geometry, self.osm_id)
         return '<a target="_blank" href="%s">%s</a>' % (href, self.osm_id)
+    
+    def _wrapText(self, text, width=70, wrap_str='<br>'):
+        if text:
+            return wrap_str.join(wrap(text, width))
+        else:
+            return ''
+        
 
 class OsmPoint(OsmModel):
     the_geom = geomodels.PointField()
