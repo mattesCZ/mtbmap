@@ -646,10 +646,10 @@ class GeojsonLayer(models.Model):
         att_list = self.attributes_list()
         features = []
         if self.pointGeom:
-            points = OsmPoint.objects.filter(the_geom__bboverlaps=bounding_box).filter(**filter)
+            points = OsmPoint.objects.filter(the_geom__bboverlaps=bounding_box).filter(**filter)[:200]
             features += [point.geojson_feature(att_list) for point in points]
         if self.lineGeom:
-            lines = OsmLine.objects.filter(the_geom__bboverlaps=bounding_box).filter(**filter)
+            lines = OsmLine.objects.filter(the_geom__bboverlaps=bounding_box).filter(**filter)[:200]
             features += [line.geojson_feature(att_list) for line in lines]
         feature_collection = {
             "type":"FeatureCollection",
