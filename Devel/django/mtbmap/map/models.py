@@ -338,7 +338,8 @@ class WeightCollection(models.Model):
         where = '(id IS NOT NULL)'
         cost = 'length'
         reverse_cost = ''
-        preferences = {}
+        unpreferred_preferences = {1:[],2:[],3:[],4:[],5:[]}
+        preferred_preferences = {1:[],2:[],3:[],4:[]}
         reverse_cases = []
         # conditions for oneways
         if self.vehicle == 'bicycle':
@@ -352,21 +353,18 @@ class WeightCollection(models.Model):
             reverse_cases += ['''WHEN reverse_cost!=length THEN reverse_cost ''']
         whereparts = []
         whereparts += self._access()
+        preferred_class_names = self.preferred_set.filter(name__in=params['preferred_classes']).values_list('name', flat=True)
         for wc in self.weightclass_set.all():
             if wc.classname in params:
-                class_preferences = wc.get_when_clauses(params[wc.classname], params['preferred_classes'])
-                for preference in class_preferences:
-                     if preference in preferences:
-                         preferences[preference] += class_preferences[preference]
-                     else:
-                         preferences[preference] = class_preferences[preference] 
+                unpref_dict, pref_dict = wc.get_when_clauses(params[wc.classname], preferred_class_names)
+                for pref, value in pref_dict.iteritems():
+                    preferred_preferences[pref] += value
+                for pref, value in unpref_dict.iteritems():
+                    unpreferred_preferences[pref] += value
                 part = wc.get_where_clauses(params[wc.classname])
                 if part:
                     whereparts.append(part)
-        cases = []
-        # use cases ordered by descending preference
-        for key in sorted(preferences.iterkeys(), reverse=True):
-            cases += preferences[key]
+        cases = self._create_cases(unpreferred_preferences, preferred_preferences, preferred_class_names)
         if cases:
             reverse_cases += cases
             cost = 'CASE %s ELSE "length" END' % (' '.join(cases))
@@ -374,6 +372,18 @@ class WeightCollection(models.Model):
             where = "(" + " AND ".join(whereparts) + ")"
         reverse_cost = 'CASE %s ELSE "length" END' % (' '.join(reverse_cases))
         return cost, reverse_cost, where
+    
+    def _create_cases(self, unpref, pref, preferred_class_names):
+        pref_classes_condition = ' OR '.join([p + '>0' for p in preferred_class_names])
+        cases = []
+        for preference in range(4, 0, -1):
+            if preferred_class_names.count() and preference>1 and pref[preference-1]:
+                pref_joined_conditions = '(' + ' OR '.join(pref[preference-1]) + ') AND (' + pref_classes_condition + ')'
+                cases.append('WHEN %s THEN "length"*%s' % (pref_joined_conditions, WEIGHTS[max(preference-2, 0)]))
+            if unpref[preference]:
+                unpref_joined_conditions = ' OR '.join(unpref[preference])
+                cases.append('WHEN %s THEN "length"*%s' % (unpref_joined_conditions, WEIGHTS[preference-1]))
+        return cases
     
     def _access(self):
         '''
@@ -432,43 +442,26 @@ class WeightClass(models.Model):
     def __unicode__(self):
         return self.classname
 
-    def get_when_clauses(self, params, preferred_classes):
+    def get_when_clauses(self, params, preferred_class_names):
         unpreferable_highways = ('track', 'path', 'bridleway')
         default = min(WEIGHTS)
-        preferred = self.collection.preferred_set.filter(name__in=preferred_classes)
-        preference_to_when_dict = {}
+        pref_dict = {1:[],2:[],3:[],4:[]}
+        unpref_dict = {1:[],2:[],3:[],4:[],5:[]}
         for w in self.weight_set.all():
             try:
                 preference = int(params[w.feature])
             except ValueError:
                 print 'ValueError', self.classname, w.feature, params
             else:
-                whens = []
-                # TODO compute (un)preferred weights correctly, not only +/- 1 degree, but in range(-3, +3)
-                if preferred.count()>0 and self.classname=='highway' and w.feature in unpreferable_highways:
-                    least_when = ' OR '.join(['"' + p.name + '"<0' for p in preferred])
-                    try:
-                        unpreferred_weight = WEIGHTS[preference]
-                    except IndexError:
-                        unpreferred_weight = WEIGHTS[-1]
-                    whens.append("""WHEN "%s"::text='%s' AND (%s)
-                              THEN "length"*%s """ % (self.classname, w.feature, least_when, unpreferred_weight)
-                              )
+                # TODO compute (un)preferred_class_names weights correctly, not only +/- 1 degree, but in range(-3, +3)
+                if preferred_class_names.count()>0 and self.classname=='highway' and w.feature in unpreferable_highways:
+                    least_when = ' OR '.join(['"' + p + '"<0' for p in preferred_class_names])
+                    unpref_dict[preference+1].append(""" ("%s"::text='%s' AND (%s)) """ % (self.classname, w.feature, least_when))
                 if preference != default:
-                    if preferred.count()>0:
-                        greatest_when = ' OR '.join([p.name + '>0' for p in preferred])
-                        preferred_weight = WEIGHTS[max(preference-1, 1)-1]
-                        whens.append("""WHEN "%s"::text='%s' AND (%s)
-                                  THEN "length"*%s """ % (self.classname, w.feature, greatest_when, preferred_weight)
-                                  )
-                    weight = WEIGHTS[preference-1]
-                    default_when = """WHEN "%s"::text='%s' THEN "length"*%s """ % (self.classname, w.feature, weight)
-                    whens.append(default_when)
-                if preference in preference_to_when_dict:
-                    preference_to_when_dict[preference] += whens
-                else:
-                    preference_to_when_dict[preference] = whens
-        return preference_to_when_dict
+                    if preferred_class_names.count()>0:
+                        pref_dict[max(preference-1, 1)].append(""" ("%s"::text='%s') """ % (self.classname, w.feature))
+                    unpref_dict[preference].append(""" ("%s"::text='%s') """ % (self.classname, w.feature))
+        return unpref_dict, pref_dict
 
     def get_where_clauses(self, params):
         andparts = []
