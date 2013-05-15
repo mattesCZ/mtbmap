@@ -286,6 +286,7 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
                     onEachFeature: onEachLineFeature
                 });
                 thisLine.routesGroup.addLayer(geojsonLine);
+                geojsonLine.bringToFront();
                 map.fitBounds(geojsonLine.getBounds());
             }).always( function () {
             	$('.loading').removeClass('ajax-loading');
