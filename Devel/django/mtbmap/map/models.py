@@ -547,6 +547,7 @@ class OsmModel(geomodels.Model):
         if self.has_geometry():
             feature["geometry"] = json.loads(self.the_geom.geojson)
         feature["properties"]["popupContent"] = self.popupContent(tags)
+        feature["properties"]["label"] = self.label(tags[0])
         return feature
     
     def geojson_feature_string(self, tags=[]):
@@ -566,7 +567,7 @@ class OsmModel(geomodels.Model):
         if len(att_list)>0:
             header = self.label(att_list[0])
             if header:
-                content += '<h2>%s</h2>' % (header)
+                content += '<h3>%s</h3>' % (header)
             content += '<p class="geojsonPopup">'
             for attr in att_list[1:]:
                 if hasattr(self, attr) and getattr(self, attr):

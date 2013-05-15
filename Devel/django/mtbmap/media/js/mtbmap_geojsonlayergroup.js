@@ -120,6 +120,9 @@ function onEachFeature(feature, layer) {
 	if (feature.properties && feature.properties.popupContent) {
 		layer.bindPopup(feature.properties.popupContent);
 	}
+	if (feature.properties && feature.properties.label) {
+		layer.bindLabel(feature.properties.label);
+	}
 }
 function highlightFeature(e) {
 	var layer = e.target;
