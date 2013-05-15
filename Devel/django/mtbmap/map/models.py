@@ -55,8 +55,8 @@ class Way(geomodels.Model):
     reverse_cost = models.FloatField(null=True, blank=True)
     osm_id = models.BigIntegerField(null=True, blank=True, db_index=True)
     the_geom = geomodels.LineStringField()
-    source = models.BigIntegerField()
-    target = models.BigIntegerField()
+    source = models.BigIntegerField(db_index=True)
+    target = models.BigIntegerField(db_index=True)
 
     #cost attributes
     highway = models.TextField(null=True, blank=True)
