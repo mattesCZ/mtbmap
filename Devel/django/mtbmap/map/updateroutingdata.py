@@ -29,6 +29,24 @@ def copy_osmpoints():
     cursor.execute(query)
     transaction.commit_unless_managed(using=MAP_DB)
     cursor.close()
+    
+def copy_osmlines():
+    cursor = connections[MAP_DB].cursor()
+    cursor.execute('DELETE FROM map_osmline')
+    column_names = verbose_names(obj=OsmLine(), underscores=True)
+    column_names.remove('ID')
+    column_names.remove('osm_id')
+    column_names.remove('the_geom')
+    columns = ', '.join([ '"' + column + '"' for column in column_names]).replace(':', '')
+    print column_names
+    print columns
+    substr_columns = ', '.join([ 'substr("' + column + '", 0, 200) as "' + column + '" ' for column in column_names])
+    or_clause = ' OR '.join([ '"' + column + '" IS NOT NULL' for column in column_names])
+    query = "INSERT INTO map_osmline (osm_id, the_geom, %s) SELECT osm_id, ST_TRANSFORM(way, 4326) as the_geom, %s FROM planet_osm_line WHERE %s;" % (columns, substr_columns, or_clause)
+    print query
+    cursor.execute(query)
+    transaction.commit_unless_managed(using=MAP_DB)
+    cursor.close()
 
 def copy_ways():
     '''

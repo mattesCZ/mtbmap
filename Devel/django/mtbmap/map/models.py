@@ -592,28 +592,38 @@ class OsmModel(geomodels.Model):
 class OsmPoint(OsmModel):
     the_geom = geomodels.PointField()
     name = models.CharField(max_length=400, null=True, blank=True)
-    amenity = models.CharField(max_length=40, null=True, blank=True)
-    ele = models.CharField(max_length=40, null=True, blank=True)
-    highway = models.CharField(max_length=40, null=True, blank=True)
-    historic = models.CharField(max_length=40, null=True, blank=True)
-    information = models.CharField(max_length=40, null=True, blank=True)
-    leisure = models.CharField(max_length=40, null=True, blank=True)
-    man_made = models.CharField(max_length=40, null=True, blank=True)
-    natural = models.CharField(max_length=40, null=True, blank=True)
-    noexit = models.CharField(max_length=40, null=True, blank=True)
-    place = models.CharField(max_length=40, null=True, blank=True)
-    protect_class = models.CharField(max_length=40, null=True, blank=True)
-    railway = models.CharField(max_length=40, null=True, blank=True)
-    ref = models.CharField(max_length=40, null=True, blank=True)
-    ruins = models.CharField(max_length=40, null=True, blank=True)
-    shop = models.CharField(max_length=40, null=True, blank=True)
-    sport = models.CharField(max_length=40, null=True, blank=True)
-    tourism = models.CharField(max_length=40, null=True, blank=True)
+    amenity = models.CharField(max_length=200, null=True, blank=True)
+    ele = models.CharField(max_length=200, null=True, blank=True)
+    highway = models.CharField(max_length=200, null=True, blank=True)
+    historic = models.CharField(max_length=200, null=True, blank=True)
+    information = models.CharField(max_length=200, null=True, blank=True)
+    leisure = models.CharField(max_length=200, null=True, blank=True)
+    man_made = models.CharField(max_length=200, null=True, blank=True)
+    natural = models.CharField(max_length=200, null=True, blank=True)
+    noexit = models.CharField(max_length=200, null=True, blank=True)
+    place = models.CharField(max_length=200, null=True, blank=True)
+    protect_class = models.CharField(max_length=200, null=True, blank=True)
+    railway = models.CharField(max_length=200, null=True, blank=True)
+    ref = models.CharField(max_length=200, null=True, blank=True)
+    ruins = models.CharField(max_length=200, null=True, blank=True)
+    shop = models.CharField(max_length=200, null=True, blank=True)
+    sport = models.CharField(max_length=200, null=True, blank=True)
+    tourism = models.CharField(max_length=200, null=True, blank=True)
 
     objects = geomodels.GeoManager()
     
     def osmLink(self, url='http://www.openstreetmap.org/browse/', geometry='node'):
         return super(OsmPoint, self).osmLink(url, geometry)
+    
+class OsmLine(OsmModel):
+    the_geom = geomodels.LineStringField()
+    name = models.CharField(max_length=400, null=True, blank=True)
+    mtbscale = models.CharField(verbose_name='mtb:scale', max_length=200, null=True, blank=True)
+    mtbdescription = models.CharField(verbose_name='mtb:description', max_length=200, null=True, blank=True)
+    mtbscaleuphill = models.CharField(verbose_name='mtb:scale:uphill', max_length=200, null=True, blank=True)
+    
+    objects = geomodels.GeoManager()
+    
 
 class GeojsonLayer(models.Model):
     slug = models.SlugField(max_length=40, unique=True)
@@ -637,6 +647,9 @@ class GeojsonLayer(models.Model):
         if self.pointGeom:
             points = OsmPoint.objects.filter(the_geom__bboverlaps=bounding_box).filter(**filter)
             features += [point.geojson_feature(att_list) for point in points]
+        if self.lineGeom:
+            lines = OsmLine.objects.filter(the_geom__bboverlaps=bounding_box).filter(**filter)
+            features += [line.geojson_feature(att_list) for line in lines]
         feature_collection = {
             "type":"FeatureCollection",
             "features":features

@@ -82,10 +82,25 @@ function geojsonOverlay(slug, name, minZoom) {
 		minZoom: minZoom
 	});
 }
+function geojsonOverlayLines(slug, name, minZoom) {
+	return new MTBMAP.AjaxGeojsonLayerGroup(null, {
+		style: {
+			opacity: 0.2,
+			color: "#706"
+		},
+		onEachFeature: onEachFeature,
+		name: name,
+		slug: slug,
+		layersControl: MTBMAP.layersControl,
+		minZoom: minZoom
+	});
+}
 MTBMAP.overlayLayers["guidepost"] = geojsonOverlay("guideposts", "Guideposts", 13);
 MTBMAP.overlayLayers["guidepost"].addTo(map);
 MTBMAP.overlayLayers["sport_shop"] = geojsonOverlay("sport_shop", "Sport shops", 14);
 MTBMAP.overlayLayers["sport_shop"].addTo(map);
+MTBMAP.overlayLayers["mtb_description"] = geojsonOverlayLines("mtb_description", "MTB description", 14);
+MTBMAP.overlayLayers["mtb_description"].addTo(map);
 
 
 ////////////////////////////////////////////////////////////////////////////////
