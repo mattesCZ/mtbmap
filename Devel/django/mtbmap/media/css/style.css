@@ -81,7 +81,7 @@ hr { /*should be rewritten for html5*/
 .line-buttons {
     display: none;
 }
-.inline-block, .line-buttons form {
+.inline-block, .line-buttons form, #routes-results form {
 	display: inline-block;
 }
 #routes-params {

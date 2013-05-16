@@ -177,6 +177,7 @@ MTBMAP.SimpleLine = MTBMAP.Line.extend({
         });
         this._showButtons();
         this.updateDistance();
+	    this.fire('line-changed');
     },
     removePoint: function(marker) {
         this.markersGroup.removeLayer(marker);
@@ -235,18 +236,22 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
 	initialize : function(latlngs, options) {
 		MTBMAP.SimpleLine.prototype.initialize.call(this, latlngs, options);
 		this.routesGroup = new L.LayerGroup([]);
+		this.resultsShown = false;
 	},
 	reset: function() {
         this.setLatLngs([]);
         this.markersGroup.clearLayers();
         this.routesGroup.clearLayers();
+        this.showSettings();
         this.hide();
     },
     show: function() {
+    	var thisLine = this;
         if (!this.visible) {
             map.addLayer(this);
             map.addLayer(this.markersGroup);
             map.addLayer(this.routesGroup);
+            this.on('line-changed', thisLine._onLineChange)
             latlngs = this.getLatLngs();
             this._showButtons();
             this.visible = true;
@@ -260,6 +265,16 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
             this._hideButtons();
             this.visible = false;
         }
+    },
+    showResults: function() {
+    	$('#routes-settings').hide();
+    	$('#routes-results').show();
+    	this.resultsShown = true;
+    },
+    showSettings: function() {
+    	$('#routes-results').hide();
+    	$('#routes-settings').show();
+    	this.resultsShown = false;
     },
     getBounds: function() {
     	return L.polyline(this.routeLatLngs(), {}).getBounds();
@@ -292,6 +307,7 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
             	$('.loading').removeClass('ajax-loading');
             }).done( function () {
             	thisLine.updateDistance();
+            	thisLine.showResults();
             });
         }
     },
@@ -308,6 +324,12 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
 			})
 		})
 		return gLine.getLatLngs();
+    },
+    _onLineChange: function (event) {
+    	if (this.resultsShown) {
+	    	this.showSettings();
+	    	this.routesGroup.clearLayers();
+    	}
     }
 })
 // distance parameter in km

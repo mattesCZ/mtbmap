@@ -87,6 +87,9 @@ $(document).ready(function() {
         $('.profile-params').val(MTBMAP.activeLine.routeLatLngs());
     });
     $('.get-route-button').button();
+    $('.back-to-settings').button().click(function(event){
+    	MTBMAP.activeLine.showSettings();
+    });
     $('.get-template-button').button().click(function(event) {
    		var params = $('#routes-params').serializeArray();
     	$('.params').val(JSON.stringify(params));
