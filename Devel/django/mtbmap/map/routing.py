@@ -4,7 +4,7 @@ from map.models import Way, WeightCollection, WEIGHTS, THRESHOLD
 from django.db import connections
 from django.contrib.gis.geos import *
 from datetime import datetime
-from map.mathfunctions import total_seconds
+from map.mathfunctions import total_seconds, hypotenuse
 import libxml2
 import operator
 
@@ -187,8 +187,9 @@ class Route:
         '''
 #        start = datetime.now()
         cursor = connections[MAP_DB].cursor()
+        sql = self.params.sql_astar_buffer(self._st_buffer(self.start_point, self.end_point))
 #        print self.params.sql_astar
-        cursor.execute("SELECT edge_id, cost FROM shortest_path_astar(%s, %s, %s, false, %s)", [self.params.sql_astar, source, target, self.params.reverse])
+        cursor.execute("SELECT edge_id, cost FROM shortest_path_astar(%s, %s, %s, false, %s)", [sql, source, target, self.params.reverse])
         rows = cursor.fetchall()
         edge_ids = [elem[0] for elem in rows]
         self.cost = sum([elem[1] for elem in rows])
@@ -261,6 +262,13 @@ class Route:
         limit_way.save()
         return limit_way
     
+    def _st_buffer(self, start, end):
+        dist_divised = hypotenuse(start.x, start.y, end.x, end.y)/5
+        radius = max(0.02,dist_divised)
+        buffer = LineString(start, end).buffer(radius)
+        buffer.set_srid(4326)
+        return buffer.ewkt
+
 
 class RouteParams:
     def __init__(self, flat_params):
@@ -273,8 +281,6 @@ class RouteParams:
         self.weight_collection = WeightCollection.objects.get(pk=self.raw_params['weights']['template'])
         self.weight_collection.vehicle = self.raw_params['global']['vehicle']
         self._cost_and_where()
-        self.sql_astar = self.weighted_ways_astar()
-        self.sql_dijkstra = self.weighted_ways_dijkstra()
 
     def weighted_ways_astar(self):
         '''
@@ -297,6 +303,13 @@ class RouteParams:
             return 'SELECT id, source::int4, target::int4, %s AS cost, %s AS reverse_cost FROM map_way %s' % (self.cost, self.reverse_cost, where)
         else:
             return 'SELECT id, source::int4, target::int4, %s AS cost FROM map_way %s' % (self.cost, where)
+
+    def sql_astar_buffer(self, buffer):
+        old = self.where
+        self.where = "(the_geom && ST_GeomFromText('%s')) AND (%s)" % (buffer, self.where)
+        sql_astar = self.weighted_ways_astar()
+        self.where = old
+        return sql_astar
 
     def _cost_and_where(self):
         '''

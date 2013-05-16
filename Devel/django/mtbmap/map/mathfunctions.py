@@ -20,3 +20,6 @@ def haversine(lon1, lat1, lon2, lat2):
 
 def total_seconds(time_diff):
     return (time_diff.microseconds + (time_diff.seconds + time_diff.days * 24 * 3600) * 1e6) / 1e6
+
+def hypotenuse(x1, y1, x2, y2):
+    return sqrt((x2-x1)**2 + (y2-y1)**2)
