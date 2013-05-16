@@ -80,6 +80,7 @@ MTBMAP.GpxLine = MTBMAP.Line.extend({
         }
         this.setLatLngs(points);
         this.show();
+        this.updateDistance();
         this.fitMapView();
     },
     _findTrackPoints: function (root) {
