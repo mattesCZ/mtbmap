@@ -457,7 +457,8 @@ class WeightClass(models.Model):
                 # TODO compute (un)preferred_class_names weights correctly, not only +/- 1 degree, but in range(-3, +3)
                 if preferred_class_names.count()>0 and self.classname=='highway' and w.feature in unpreferable_highways:
                     least_when = ' OR '.join(['"' + p + '"<0' for p in preferred_class_names])
-                    unpref_dict[preference+1].append(""" ("%s"::text='%s' AND (%s)) """ % (self.classname, w.feature, least_when))
+                    pref_index = min(preference+1, len(unpref_dict)) 
+                    unpref_dict[pref_index].append(""" ("%s"::text='%s' AND (%s)) """ % (self.classname, w.feature, least_when))
                 if preference != default:
                     if preferred_class_names.count()>0:
                         pref_dict[max(preference-1, 1)].append(""" ("%s"::text='%s') """ % (self.classname, w.feature))
