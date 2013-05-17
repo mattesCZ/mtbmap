@@ -19,6 +19,45 @@ def line_string_to_points(line_string):
     point_strings = [latlngs[i+1] + ' ' + latlngs[i] for i in range(0, len(latlngs), 2)]
     return [GEOSGeometry('SRID=4326;POINT(%s)' % point) for point in point_strings]
 
+class RoutePoint:
+    def __init__(self, point, params):
+        self.point = point
+        self.params = params
+        self.nearest_way = self.find_nearest_way(self.point)
+        self.to_source, self.to_target, self.vertice_id, self.to_nearest_way = self.nearest_way.split(self.point)
+
+    def find_nearest_way(self, point):
+        '''
+        Find nearest way from given point(latlon) and apply weight of the way.
+        return Way
+        '''
+        # initial distance radius in degrees
+        radius = 0.002
+        bbox = point.buffer(radius).envelope
+        found = False
+        while not found:
+            bbox = point.buffer(radius).envelope
+            ways = Way.objects.filter(the_geom__bboverlaps=bbox).extra(where=[self.params.where]).distance(point).order_by('distance')
+            if ways.count():
+                best_weight = ways[0].weight(self.params.raw_params) * ways[0].distance.km
+                nearest_way = ways[0]
+                for way in ways:
+                    distance = way.distance.km
+                    if distance>best_weight:
+                        found=True
+                        break
+                    else:
+                        weighted_distance = way.weight(self.params.raw_params) * way.distance.km
+                        if weighted_distance<best_weight:
+                            best_weight = weighted_distance
+                            nearest_way = way
+            radius *= 2
+        return nearest_way
+    
+    def delete_temp_ways(self):
+        self.to_source.delete()
+        self.to_target.delete()
+
 
 class MultiRoute:
     def __init__(self, points, flat_params):
@@ -26,9 +65,13 @@ class MultiRoute:
         self.points = points
         self.length = 0
         self.cost = 0
-        self.last_route = None
         self.status = 'init'
         self.geojson_features = []
+        self.route_points = self._create_route_points()
+        
+    def _create_route_points(self):
+        return [RoutePoint(point, self.params) for point in self.points]
+            
 
     def geojson(self):
         '''
@@ -57,17 +100,18 @@ class MultiRoute:
         Find route between all points, according to given params.
         '''
         start = datetime.now()
-        for i in range(len(self.points)-1):
-            start_point = self.points[i]
-            end_point = self.points[i+1]
-            route = Route(start_point, end_point, self.params, self.last_route)
+        for i in range(len(self.route_points)-1):
+            start_point = self.route_points[i]
+            end_point = self.route_points[i+1]
+            route = Route(start_point, end_point, self.params)
             route.find_best_route()
             if route.status == 'notfound':
                 self.status = route.status
             self.length += route.length
             self.cost += route.cost
             self.geojson_features += route.geojson()
-            self.last_route = route
+        for point in self.route_points:
+            point.delete_temp_ways()
         if self.status=='init':
             self.status = 'success'
         end = datetime.now()
@@ -75,47 +119,38 @@ class MultiRoute:
         return self.status
 
 class Route:
-    def __init__(self, start_point, end_point, params, previous_route=None):
+    def __init__(self, start_point, end_point, params):
         self.status = 'init'
-        self.start_point = start_point
-        self.end_point = end_point
-#        self.bbox = MultiPoint(self.start_point, self.end_point).envelope
+        self.start_route_point = start_point
+        self.end_route_point = end_point
         self.params = params
-        self.previous_route = previous_route
         self.length = 0
         self.cost = 0
         self.ways = None
-#        nearest_start = datetime.now()
-        if self.previous_route:
-            self.start_way = self.previous_route.end_way
-            self.start_to_source = self.previous_route.end_to_source
-            self.start_to_target = self.previous_route.end_to_target
-        else:
-            self.start_way = self.nearest_way(start_point)
-            self.start_to_source, self.start_to_target = self.start_way.lines_to_endpoints(start_point)
-#        nearest_middle = datetime.now()
-#        print 'Start way:', total_seconds(nearest_middle-nearest_start)
-        self.end_way = self.nearest_way(end_point)
-        self.end_to_source, self.end_to_target = self.end_way.lines_to_endpoints(end_point)
-#        nearest_end = datetime.now()
-#        print 'End way:  ', total_seconds(nearest_end-nearest_middle)
 
     def find_best_route(self):
         '''
         Find route with the smallest cost.
         '''
-        if self.start_way.id==self.end_way.id:
+        start_point = self.start_route_point.point
+        end_point = self.end_route_point.point
+        start_way = self.start_route_point.nearest_way
+        end_way = self.end_route_point.nearest_way
+        if start_way.id == end_way.id:
             # both endpoints on the same way
-            way_part = self.start_way.point_to_point(self.start_point, self.end_point)
+            way_part = start_way.point_to_point(start_point, end_point)
             self.status = 'success'
             self.ways = [way_part]
             self.length = way_part.length
             self.cost = self.length * way_part.weight(self.params.raw_params)
             return self.status
         else:
-            temp1, temp2, start_id, to_start_way = self.start_way.split(self.start_point)
-            temp3, temp4, end_id, to_end_way = self.end_way.split(self.end_point)
-            limit_way = self.insert_limit_way(start_id, end_id, self.start_point, self.end_point)
+            start_id = self.start_route_point.vertice_id
+            to_start_way = self.start_route_point.to_nearest_way
+            end_id = self.end_route_point.vertice_id
+            to_end_way = self.end_route_point.to_nearest_way
+            
+            limit_way = self.insert_limit_way(start_id, end_id, start_point, end_point)
             # use dijkstra or astar search
             edge_ids = self.astar(start_id, end_id)
 #            edge_ids = self.dijkstra(start_id, end_id)
@@ -133,10 +168,6 @@ class Route:
                 ways.append(to_end_way)
                 self.ways = ways
                 self.length = sum([way.length for way in self.ways])
-            temp1.delete()
-            temp2.delete()
-            temp3.delete()
-            temp4.delete()
             limit_way.delete()
             return self.status
 
@@ -187,7 +218,7 @@ class Route:
         '''
 #        start = datetime.now()
         cursor = connections[MAP_DB].cursor()
-        sql = self.params.sql_astar_buffer(self._st_buffer(self.start_point, self.end_point))
+        sql = self.params.sql_astar_buffer(self._st_buffer())
 #        print self.params.sql_astar
         cursor.execute("SELECT edge_id, cost FROM shortest_path_astar(%s, %s, %s, false, %s)", [sql, source, target, self.params.reverse])
         rows = cursor.fetchall()
@@ -209,34 +240,6 @@ class Route:
         edge_ids = [elem[0] for elem in rows]
         self.cost = sum([elem[1] for elem in rows])
         return edge_ids
-
-    def nearest_way(self, point):
-        '''
-        Find nearest way from given point(latlon) and apply weight of the way.
-        return Way
-        '''
-        # initial distance radius in degrees
-        radius = 0.002
-        bbox = point.buffer(radius).envelope
-        found = False
-        while not found:
-            bbox = point.buffer(radius).envelope
-            ways = Way.objects.filter(the_geom__bboverlaps=bbox).extra(where=[self.params.where]).distance(point).order_by('distance')
-            if ways.count():
-                best_weight = ways[0].weight(self.params.raw_params) * ways[0].distance.km
-                nearest_way = ways[0]
-                for way in ways:
-                    distance = way.distance.km
-                    if distance>best_weight:
-                        found=True
-                        break
-                    else:
-                        weighted_distance = way.weight(self.params.raw_params) * way.distance.km
-                        if weighted_distance<best_weight:
-                            best_weight = weighted_distance
-                            nearest_way = way
-            radius *= 2
-        return nearest_way
 
     def insert_limit_way(self, start_id, end_id, start_point, end_point):
         '''
@@ -262,10 +265,12 @@ class Route:
         limit_way.save()
         return limit_way
     
-    def _st_buffer(self, start, end):
-        dist_divised = hypotenuse(start.x, start.y, end.x, end.y)/5
+    def _st_buffer(self):
+        start_point = self.start_route_point.point
+        end_point = self.end_route_point.point
+        dist_divised = hypotenuse(start_point.x, start_point.y, end_point.x, end_point.y)/5
         radius = max(0.02,dist_divised)
-        buffer = LineString(start, end).buffer(radius)
+        buffer = LineString(start_point, end_point).buffer(radius)
         buffer.set_srid(4326)
         return buffer.ewkt
 
