@@ -1,14 +1,20 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+# Django imports
 from django.db import models
 from django.contrib.gis.db import models as geomodels
 from django.contrib.gis.geos import *
+
+# Global imports
 from copy import deepcopy
 from random import randint
 import simplejson as json
+from textwrap import wrap
+
+# Local imports
 from map.mathfunctions import haversine
 from map.updatemap import updatemap
-from textwrap import wrap
 
 SAC_SCALE_CHOICES = (
  (0, 'hiking'),
@@ -666,7 +672,23 @@ class GeojsonLayer(models.Model):
         }
         return json.dumps(feature_collection)
         
-    
+
+class RoutingEvaluation(models.Model):
+    EVALUATION_CHOICES = (
+        (1, 'Dokonalé'),
+        (2, 'Dobré'),
+        (3, 'Použitelné'),
+        (4, 'Špatné'),
+        (5, 'Nepoužitelné'),
+    )
+    params = models.TextField()
+    linestring = models.TextField()
+    timestamp = models.DateTimeField()
+    general_evaluation = models.PositiveIntegerField(verbose_name='Celkové hodnocení', choices=EVALUATION_CHOICES, default=3)
+    comment = models.TextField(verbose_name='Komentář', null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+
+
 def verbose_name(obj, field_name, underscores=False):
     verbose_name = obj._meta.get_field_by_name(field_name)[0].verbose_name
     if underscores:

@@ -94,6 +94,63 @@ $(document).ready(function() {
    		var params = $('#routes-params').serializeArray();
     	$('.params').val(JSON.stringify(params));
     });
+    $('#evaluation-dialog-form').dialog({
+    	autoOpen: false,
+    	modal: false,
+    	width: 'auto',
+    	buttons: {
+			"Odeslat": function(event) {
+			    form = $('#send-evaluation-form');
+			    thisDialog = $( this );
+			    if (!form.valid) {
+			    	return;
+			    } else {
+					setupPost(event);
+			    	var latlngs = MTBMAP.activeLine.getLatLngs();
+			    	var params = $('#routes-params').serializeArray();
+			    	$('#id_params').val(JSON.stringify(params));
+			    	$('#id_linestring').val('[' + latlngs + ']');
+			    	var form = $('#send-evaluation-form').serializeArray();
+			    	$.post("/map/evaluation/", {
+			    		'form': JSON.stringify(form)
+			    	}, function(data) {
+				    	if (data.valid) {
+				    		$('#evaluation-dialog-form').html('<p>thanks</p>');
+							thisDialog.dialog( "close" );
+							var ThanksDialog = $(data.html);
+							ThanksDialog.dialog({
+								title: "Thanks",
+								show: 'clip',
+								hide: 'clip',
+								buttons: {
+									'Close': function() {$(this).dialog('close')}
+								}
+							});
+				    	} else {
+					    	Recaptcha.reload();
+					    	$('#evaluation-dialog-form .error-message').html(LANG.correctEntries);
+				    	}
+			    	});
+			    }
+			},
+			"Storno": function() {
+				$( this ).dialog( "close" );
+			}
+    	}
+    });
+    $('#send-evaluation-form').validate({
+    	rules: {
+    		'comment': 'required',
+    		'email': {
+    			required: true,
+    			email: true
+    		}
+    	}
+    });
+    $('.open-evaluation-dialog').button().click(function() {
+    	$('#evaluation-dialog-form').dialog('open');
+    })
+    // $('.send-evaluation-button').button();
     if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
         $('#params-buttons').hide();
     }
@@ -136,6 +193,15 @@ function setPanelsMaxHeight() {
 function getRoute(e) {
     setupPost(e);
     MTBMAP.activeLine.getRoute();
+}
+function sendEvaluation(e) {
+    form = $('#send-evaluation-form');
+    if (!form.valid) {
+    	return;
+    } else {
+	    setupPost(e);
+	    MTBMAP.activeLine.sendEvaluation();
+    }
 }
 function handleGPX(e) {
     files = e.target.files;

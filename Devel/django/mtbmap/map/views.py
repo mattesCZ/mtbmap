@@ -10,6 +10,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
 from map.altitude import altitude_image, height
 from map.routing import MultiRoute, line_string_to_points, create_gpx, RouteParams
+from map.forms import RoutingEvaluationForm
 from PIL import Image
 import simplejson as json
 from django.core.urlresolvers import reverse
@@ -22,8 +23,11 @@ def index(request):
     else:
         lang = 'en'
     weight_collections = WeightCollection.objects.all()
+    evaluation_form = RoutingEvaluationForm()
     map = Map.objects.get(name='MTB mapa')
-    return render_to_response('map/map.html', {'map':map, 'lang': lang, 'zoomRange':range(19), 'weight_collections': weight_collections},
+    return render_to_response('map/map.html', {'map':map, 'lang': lang, 'zoomRange':range(19),
+                                               'weight_collections': weight_collections,
+                                               'evaluation_form': evaluation_form},
                               context_instance=RequestContext(request))
 
 def legend(request):
@@ -245,6 +249,25 @@ def getjsondata(request):
         return HttpResponse(None, content_type='application/json')
     geojson = layer.geojson_feature_collection(bounds)
     return HttpResponse(json.dumps(geojson), content_type='application/json')
+
+def evaluation(request):
+    json_form = json.loads(request.POST['form'])
+    form_dict = {}
+    for item in json_form:
+        form_dict[item['name']] = item['value']
+    form = RoutingEvaluationForm(form_dict)
+    result = {}
+    result['valid'] = form.is_valid()
+    if form.is_valid():
+        print 'VALID'
+        evaluation = form.save(commit=False)
+        evaluation.timestamp = datetime.now()
+        evaluation.save()
+        result['html'] = '<div id="result-dialog">Děkujeme za vaše hodnocení</div>'
+    else:
+        print 'invalid form'
+        print form.errors
+    return HttpResponse(json.dumps(result), mimetype='application/json')
 
 def gpxupload(request):
     if request.method=='POST':

@@ -10,6 +10,7 @@ LANG = {
     gpxNotValid: 'GPX soubor je neplatný.',
     gpxNoTrackpoints: 'GPX soubor neobsahuje žádné body trasy nebo je neplatný.',
     routeNotFound: 'Trasu nebo její část jsme podle zadaných parametrů nenalezli. Zkuste prosím zpřesnit polohu zadaných bodů.',
+    correctEntries: 'Opravte, prosím, chybně zadané údaje.',
     templateNotValid: 'Soubor není platný'
 }
 

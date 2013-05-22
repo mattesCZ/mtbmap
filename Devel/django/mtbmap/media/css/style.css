@@ -106,3 +106,7 @@ hr { /*should be rewritten for html5*/
 .ajax-loading {
     display: block;
 }
+.error-message {
+	text-align: center;
+	font-weight: bold;
+}

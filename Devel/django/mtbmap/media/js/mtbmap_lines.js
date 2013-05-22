@@ -280,6 +280,24 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
     getBounds: function() {
     	return L.polyline(this.routeLatLngs(), {}).getBounds();
     },
+    sendEvaluation: function() {
+    	var latlngs = this.getLatLngs();
+    	var params = $('#routes-params').serializeArray();
+    	$('#id_params').val(JSON.stringify(params));
+    	$('#id_linestring').val('[' + latlngs + ']');
+    	var form = $('#send-evaluation-form').serializeArray();
+    	$.post("/map/evaluation/", {
+    		'form': JSON.stringify(form)
+    	}, function(data) {
+	    	Recaptcha.reload();
+	    	if (data.valid) {
+	    		form[0].reset();
+	    		alert('thanks');
+	    	} else {
+	    		alert('retype captcha again, please');
+	    	}
+    	});
+    },
 	getRoute: function() {
         thisLine = this;
         this.routesGroup.clearLayers();
