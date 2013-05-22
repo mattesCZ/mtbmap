@@ -617,6 +617,7 @@ class OsmPoint(OsmModel):
     man_made = models.CharField(max_length=200, null=True, blank=True)
     natural = models.CharField(max_length=200, null=True, blank=True)
     noexit = models.CharField(max_length=200, null=True, blank=True)
+    opening_hours = models.CharField(max_length=200, null=True, blank=True)
     place = models.CharField(max_length=200, null=True, blank=True)
     protect_class = models.CharField(max_length=200, null=True, blank=True)
     railway = models.CharField(max_length=200, null=True, blank=True)

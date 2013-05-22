@@ -61,6 +61,7 @@ node,way   natural      text         polygon  # natural=coastline tags are disca
 node       noexit       text         linear
 way        oneway       text         linear
 way        oneway:bicycle   text         linear
+node,way   opening_hours    text         linear
 node       population   text         linear
 node,way   power        text         polygon
 node       power_source text         linear
