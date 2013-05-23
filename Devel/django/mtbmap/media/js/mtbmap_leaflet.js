@@ -86,7 +86,7 @@ function geojsonOverlayLines(slug, name, minZoom) {
 	return new MTBMAP.AjaxGeojsonLayerGroup(null, {
 		style: {
 			opacity: 0.3,
-			color: "#706",
+			color: "#EEE",
 			weight: 4,
 			smoothFactor: 2
 		},
