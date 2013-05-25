@@ -1,12 +1,16 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from django.db import connections, transaction
-from django.db.models import F
-from map.models import *
-import psycopg2
+# Global imports
 import simplejson as json
 from datetime import datetime
+
+# Django imports
+from django.db import connections, transaction
+from django.db.models import F
+
+# Local imports
+from map.models import *
 from map.mathfunctions import total_seconds
 
 MAP_DB = 'osm_data'
@@ -15,6 +19,9 @@ sac_scale_values = ['hiking', 'mountain_hiking', 'demanding_mountain_hiking',
                     'alpine_hiking', 'demanding_alpine_hiking', 'difficult_alpine_hiking']
 
 def copy_osmpoints():
+    '''
+    Copy useful records from planet_osm_points table.
+    '''
     cursor = connections[MAP_DB].cursor()
     cursor.execute('DELETE FROM map_osmpoint')
     column_names = verbose_names(obj=OsmPoint(), underscores=True)
@@ -31,6 +38,9 @@ def copy_osmpoints():
     cursor.close()
     
 def copy_osmlines():
+    '''
+    Copy useful records from planet_osm_line table.
+    '''
     cursor = connections[MAP_DB].cursor()
     cursor.execute('DELETE FROM map_osmline')
     column_names = verbose_names(obj=OsmLine(), underscores=True)
@@ -110,7 +120,6 @@ def _add_line_attributes():
     Copy useful attributes from planet_osm_line
     '''
     start = datetime.now()
-#    connection = psycopg2.connect("dbname='gisczech' user='xtesar7' password='' port='5432'")
     cursor = connections[MAP_DB].cursor()
     column_bicycle = """CASE WHEN (cycleway IN ('opposite','opposite_lane')
                                       OR "oneway:bicycle"='no')
@@ -152,7 +161,6 @@ def _add_polygon_attributes():
     Copy useful attributes from planet_osm_polygon for routable areas
     '''
     start = datetime.now()
-#    connection = psycopg2.connect("dbname='gisczech' user='xtesar7' password='' port='5432'")
     cursor = connections[MAP_DB].cursor()
     evaluated = 0
     updated = 0
@@ -179,7 +187,6 @@ def _add_routes_attributes():
     Copy useful attributes from planet_osm_routes2, this time only osmc
     '''
     start = datetime.now()
-#    connection = psycopg2.connect("dbname='gisczech' user='xtesar7' password='' port='5432'")
     cursor = connections[MAP_DB].cursor()
     routes_query = '''SELECT osm_id FROM planet_osm_routes2 WHERE osmcsymbol0<>'mtb:white:mtb_mtb' and osmcsymbol0 is not null;'''
     cursor.execute(routes_query)

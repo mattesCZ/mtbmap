@@ -1,5 +1,11 @@
-from map.models import *
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+# Django imports
 from django.contrib import admin
+
+# Local imports
+from map.models import *
 
 class WeightInline(admin.StackedInline):
     model = Weight

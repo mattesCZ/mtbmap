@@ -1,16 +1,16 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Django imports
-from django.db import models
-from django.contrib.gis.db import models as geomodels
-from django.contrib.gis.geos import *
-
 # Global imports
 from copy import deepcopy
 from random import randint
 import simplejson as json
 from textwrap import wrap
+
+# Django imports
+from django.db import models
+from django.contrib.gis.db import models as geomodels
+from django.contrib.gis.geos import *
 
 # Local imports
 from map.mathfunctions import haversine
@@ -43,6 +43,9 @@ class Map(models.Model):
         return {'name':self.name, 'url':self.url}
     
     def update_rendering_data(self, config_file):
+        """
+        Update data used for map rendering and timestamp.
+        """
         date = updatemap(config_file)
         if date:
             self.last_update = date
@@ -232,6 +235,9 @@ class Way(geomodels.Model):
         return WEIGHTS[weight-1]
     
     def _preferred_shift(self, params):
+        '''
+        Calculate preference shift for preferred or unpreferred ways
+        '''
         shift = 0
         neg = 0
         if params.has_key('preferred_classes'):
@@ -273,20 +279,6 @@ class Way(geomodels.Model):
                             else: id = types['negative']
                         class_id += str(id)
                         continue
-#                if classname=='width':
-#                    cleansed = self.width.replace(',', '.')
-#                    limits = sorted([float(elem) for elem in types.keys()])
-#                    try:
-#                        value = float(cleansed)
-#                    except ValueError:
-#                        id = c['null']
-#                    else:
-#                        id = c['null']
-#                        for l in limits:
-#                            if value<l:
-#                                id = types[str(l)]
-#                                break
-#                else:
                 try:
                     id = types[self.__dict__[classname]]
                 except KeyError:
@@ -341,7 +333,14 @@ class WeightCollection(models.Model):
     oneway = models.BooleanField(default=True)
     vehicle = models.CharField(max_length=40, default='bicycle', choices=VEHICLE_CHOICES)
     
+    def __unicode__(self):
+        return u"WeightCollection(%s)" % (self.name)
+
     def get_cost_where_clause(self, params):
+        '''
+        Create cost column definition and where clause.
+        Returns tuple (cost_clause, reverse_cost_clause, where_clause)
+        '''
         where = '(id IS NOT NULL)'
         cost = 'length'
         reverse_cost = ''
@@ -381,6 +380,9 @@ class WeightCollection(models.Model):
         return cost, reverse_cost, where
     
     def _create_cases(self, unpref, pref, preferred_class_names):
+        '''
+        Create array of WHEN clauses.
+        '''
         pref_classes_condition = ' OR '.join([p + '>0' for p in preferred_class_names])
         cases = []
         for preference in range(4, 0, -1):
@@ -408,6 +410,9 @@ class WeightCollection(models.Model):
         return access_clauses
 
     def dump_params(self, params):
+        '''
+        Dump weight collection params as JSON like dictionary.
+        '''
         json = {}
         json['name'] = params['global'].get('name','undefined')
         json['oneway'] = params['global'].has_key('oneway')
@@ -447,9 +452,12 @@ class WeightClass(models.Model):
         ordering = ('order', 'classname',)
 
     def __unicode__(self):
-        return self.classname
+        return u"WeightClass(%s)" % (self.classname)
 
     def get_when_clauses(self, params, preferred_class_names):
+        '''
+        Create dictionaries for preferred and unpreferred cases.
+        '''
         unpreferable_highways = ('track', 'path', 'bridleway')
         default = min(WEIGHTS)
         pref_dict = {1:[],2:[],3:[],4:[]}
@@ -472,6 +480,9 @@ class WeightClass(models.Model):
         return unpref_dict, pref_dict
 
     def get_where_clauses(self, params):
+        '''
+        Create sql WHERE conditions.
+        '''
         andparts = []
         if params.has_key('max'):
             try:
@@ -510,6 +521,9 @@ class Preferred(models.Model):
     collection = models.ForeignKey('WeightCollection')
     value = models.BooleanField(default=False)
     use = models.BooleanField(default=True)
+    
+    def __unicode__(self):
+        return u"Preferred(%s)" % (self.name)
 
 
 class Weight(models.Model):
@@ -538,7 +552,8 @@ class Weight(models.Model):
         ordering = ('order', 'feature',)
 
     def __unicode__(self):
-        return self.feature
+        return u"Weight(%s)" % (self.feature)
+
     
 ## PLANET_OSM_MODELS
 class OsmModel(geomodels.Model):
@@ -547,7 +562,13 @@ class OsmModel(geomodels.Model):
     class Meta:
         abstract = True
         
+    def __unicode__(self):
+        return u"OsmModel(%s)" % (self.osm_id)
+
     def geojson_feature(self, tags=[]):
+        '''
+        Create GeoJSON feature representation.
+        '''
         feature = {}
         feature["type"] = "Feature"
         feature["id"] = self.id
@@ -559,18 +580,28 @@ class OsmModel(geomodels.Model):
         return feature
     
     def geojson_feature_string(self, tags=[]):
+        '''
+        Dump GeoJSON representation as string.
+        '''
         return json.dumps(self.geojson_feature(tags))
     
     def has_geometry(self):
         return hasattr(self, "the_geom") and self.the_geom != None 
 
     def label(self, attribute='name'):
+        '''
+        Value of label. Created as value for given attribute.
+        '''
         if hasattr(self, attribute):
             return getattr(self, attribute)
         else:
             return ""
     
     def popupContent(self, att_list):
+        '''
+        Feature popup content, label created from first item in attribute 
+        list is used as heading.
+        '''
         content = ''
         if len(att_list)>0:
             header = self.label(att_list[0])
@@ -587,6 +618,9 @@ class OsmModel(geomodels.Model):
         return content
     
     def osmLink(self, url='http://www.openstreetmap.org/browse/', geometry='way'):
+        '''
+        HTML anchor linking to OSM browse page by default.
+        '''
         if self.osm_id < 0:
             # hacked 32 bit integer problem, osm_id is negative
             if geometry == 'node':
@@ -654,9 +688,16 @@ class GeojsonLayer(models.Model):
 #    maxZoom = models.PositiveIntegerField(default=18)
     
     def attributes_list(self):
+        '''
+        Cast attributes string to list.
+        '''
         return [attr.strip() for attr in self.attributes.split(',')]
     
     def geojson_feature_collection(self, bbox=[-180.0, -90.0, 180.0, 90.0]):
+        '''
+        Create geojson feature collection with instances that intersects
+        given bounding box.
+        '''
         bounding_box = Polygon.from_bbox(bbox)
         filter = json.loads(self.filter)
         att_list = self.attributes_list()
@@ -691,6 +732,10 @@ class RoutingEvaluation(models.Model):
 
 
 def verbose_name(obj, field_name, underscores=False):
+    '''
+    Get verbose name of model field with or without underscores
+    instead of spaces.
+    '''
     verbose_name = obj._meta.get_field_by_name(field_name)[0].verbose_name
     if underscores:
         return verbose_name.replace(' ', '_')
@@ -698,6 +743,10 @@ def verbose_name(obj, field_name, underscores=False):
         return verbose_name
 
 def verbose_names(obj, underscores=False):
+    '''
+    Get list of all object fields verbose names with or without underscores
+    instead of spaces.
+    '''
     names = obj._meta.get_all_field_names()
     return [verbose_name(obj, name, underscores) for name in names]
 

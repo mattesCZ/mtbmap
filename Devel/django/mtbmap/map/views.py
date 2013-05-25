@@ -1,22 +1,30 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from map.models import *
-from styles.models import Legend
+# Global imports
+from PIL import Image
+import simplejson as json
+
+# Django imports
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.template.response import TemplateResponse
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from django.utils import translation
+
+# Local imports
+from map.models import *
+from styles.models import Legend
 from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
 from map.altitude import altitude_image, height
 from map.routing import MultiRoute, line_string_to_points, create_gpx, RouteParams
 from map.forms import RoutingEvaluationForm
-from PIL import Image
-import simplejson as json
-from django.core.urlresolvers import reverse
-from django.utils import translation
 
 def index(request):
+    '''
+    Main map page.
+    '''
     lang = translation.get_language_from_request(request)
     if lang in ('cs', 'sk', 'cz', 'cs-cz'):
         lang = 'cz'
@@ -31,12 +39,18 @@ def index(request):
                               context_instance=RequestContext(request))
 
 def legend(request):
+    '''
+    Legend items for given zoom.
+    '''
 #    zoom = int(zoom)
     zoom = int(request.GET['zoom'])
     legenditems = Legend.objects.all()[0].legend_items(zoom)
     return TemplateResponse(request, 'map/legend.html', {'zoom': zoom, 'legenditems': legenditems})
 
 def routingparams(request):
+    '''
+    Route parameters and preferences template for given id.
+    '''
     try:
         template_id = request.GET['template_id']
         weight_collection = WeightCollection.objects.get(pk=template_id)
@@ -45,8 +59,9 @@ def routingparams(request):
     return TemplateResponse(request, 'map/routingparams.html', {'weight_collection': weight_collection})
 
 def exportmap(request):
-#    c = {}
-#    c.update(csrf(request))
+    '''
+    Export map, response is PNG image.
+    '''
     try:
         zoom = int(request.POST['export-zoom'])
         bounds = request.POST['export-bounds'].replace('(', '').replace(')', '')
@@ -147,6 +162,9 @@ def exportmap(request):
         return response
 
 def altitudeprofile(request):
+    '''
+    Return altitude profile image.
+    '''
     try:
         params = request.POST['profile-params']
     except (KeyError, 'no points posted'):
@@ -178,6 +196,9 @@ def altitudeprofile(request):
             return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
 
 def creategpx(request):
+    '''
+    Return GPX file for given points.
+    '''
     try:
         params = request.POST['profile-params']
     except (KeyError, 'no points posted'):
@@ -201,6 +222,9 @@ def creategpx(request):
             return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
 
 def getheight(request):
+    '''
+    Returns height above sea level at given coordinates.
+    '''
     get_value = request.GET['profile-point']
     latlng = get_value.replace('LatLng(', '').replace(')', '').split(',')
     point = [float(latlng[0]), float(latlng[1])]
@@ -208,6 +232,9 @@ def getheight(request):
     return HttpResponse(point_height, mimetype='text/html')
 
 def findroute(request):
+    '''
+    Search for route between multiple points.
+    '''
     try:
         params = json.loads(request.POST['params'])
         line = request.POST['routing-line']
@@ -223,6 +250,9 @@ def findroute(request):
         return HttpResponse(json.dumps(geojson), content_type='application/json')
 
 def gettemplate(request):
+    '''
+    Create JSON file with route parameters.
+    '''
     try:
         params = json.loads(request.POST['params'])
     except (KeyError, 'missing params'):
@@ -238,6 +268,9 @@ def gettemplate(request):
         return response
 
 def getjsondata(request):
+    '''
+    Returns GeoJSON feature collection for given bounding box and layer id.
+    '''
     try:
         bounds = json.loads(request.GET['bounds'])
     except (KeyError, JSONDecodeError, 'invalid bounds'):
@@ -251,6 +284,9 @@ def getjsondata(request):
     return HttpResponse(json.dumps(geojson), content_type='application/json')
 
 def evaluation(request):
+    '''
+    Parse evaluation form.
+    '''
     json_form = json.loads(request.POST['form'])
     form_dict = {}
     for item in json_form:
@@ -268,31 +304,3 @@ def evaluation(request):
         print 'invalid form'
         print form.errors
     return HttpResponse(json.dumps(result), mimetype='application/json')
-
-def gpxupload(request):
-    if request.method=='POST':
-        print 'POST'
-#        doc = request.FILES['gpx_file']
-#        print doc
-        
-    f = open('media/894360.gpx')
-    gpx = GPX(f)
-    f.close()
-    gpx_line = gpx.tracks().geojson
-    return HttpResponse(gpx_line, content_type='application/json')
-
-def list(request):
-    if request.method == 'POST':
-        form = GPXDocForm(request.POST, request.FILES)
-        if form.is_valid():
-            newdoc = GPXDoc(docfile = request.FILES['docfile'])
-            newdoc.save()
-            return HttpResponseRedirect(reverse('map.views.list'))
-    else:
-        form = GPXDocForm()
-    documents = GPXDoc.objects.all()
-    return render_to_response(
-        'map/list.html',
-        {'documents': documents, 'form': form},
-        context_instance=RequestContext(request)
-    )

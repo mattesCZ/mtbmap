@@ -1,6 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from django.db.models import Max
+
+'''
+Functions for creation of printable maps.
+'''
+
+# Global imports
 import mapnik
 import cairo
 import rsvg
@@ -8,6 +13,11 @@ from math import cos, radians, log10
 from datetime import date
 from StringIO import StringIO
 from PIL import Image
+
+# Django imports
+from django.db.models import Max
+
+# Local imports
 from settings import MAPNIK_STYLES
 
 def svg_string_to_png(svg_string, png_image_path, width, height):

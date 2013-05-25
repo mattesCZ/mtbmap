@@ -1,15 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+# Global imports
+from captcha.fields import ReCaptchaField
+
 # Django imports
 from django.forms import ModelForm, Textarea, HiddenInput
 
 # Local imports
 from map.models import RoutingEvaluation
-
-# Global imports
-from captcha.fields import ReCaptchaField
-
 
 class RoutingEvaluationForm(ModelForm):
     class Meta:

@@ -1,9 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+# Global imports
 import math
 from numpy import *
 import zipfile
+
+# Local imports
 from map.printing import svg_string_to_png
 from settings import SRTM_DATA
 

@@ -1,12 +1,18 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from map.models import Way, WeightCollection, WEIGHTS, THRESHOLD
-from django.db import connections
-from django.contrib.gis.geos import *
+
+# Global imports
 from datetime import datetime
 from map.mathfunctions import total_seconds, hypotenuse
 import libxml2
 import operator
+
+# Django imports
+from django.db import connections
+from django.contrib.gis.geos import *
+
+# Local imports
+from map.models import Way, WeightCollection, WEIGHTS, THRESHOLD
 
 MAP_DB = 'osm_data'
 
@@ -20,6 +26,10 @@ def line_string_to_points(line_string):
     return [GEOSGeometry('SRID=4326;POINT(%s)' % point) for point in point_strings]
 
 class RoutePoint:
+    '''
+    Represents points given by user. Finds optimal way, splits it
+    and creates vertice for routing.
+    '''
     def __init__(self, point, params):
         self.point = point
         self.params = params
@@ -55,11 +65,18 @@ class RoutePoint:
         return nearest_way
     
     def delete_temp_ways(self):
+        '''
+        Delete splitted temporal ways at the end of route search.
+        '''
         self.to_source.delete()
         self.to_target.delete()
 
 
 class MultiRoute:
+    '''
+    Wrapper for route searching, contains all route points and connects
+    results of route search.
+    '''
     def __init__(self, points, flat_params):
         self.params = RouteParams(flat_params)
         self.points = points
@@ -72,7 +89,6 @@ class MultiRoute:
     def _create_route_points(self):
         return [RoutePoint(point, self.params) for point in self.points]
             
-
     def geojson(self):
         '''
         Create GeoJSON like object of type FeatureCollection.
@@ -119,6 +135,10 @@ class MultiRoute:
         return self.status
 
 class Route:
+    '''
+    Represents route between start and end point. Triggers astar or dijkstra
+    search.
+    '''
     def __init__(self, start_point, end_point, params):
         self.status = 'init'
         self.start_route_point = start_point
@@ -130,7 +150,7 @@ class Route:
 
     def find_best_route(self):
         '''
-        Find route with the smallest cost.
+        Find route with minimal cost.
         '''
         start_point = self.start_route_point.point
         end_point = self.end_route_point.point
@@ -172,12 +192,18 @@ class Route:
             return self.status
 
     def _get_routed_ways(self, edge_ids):
+        '''
+        Retreive route ways from database in order.
+        '''
         unordered = Way.objects.filter(pk__in=edge_ids)
         for way in unordered:
             way.index = edge_ids.index(way.id)
         return sorted(unordered, key=operator.attrgetter('index'))
 
     def _correct_ways_orientation(self, ways):
+        '''
+        Correct orientation of ways geometry, so that end points are connected.
+        '''
         first = ways[0]
         corrected_ways = []
         if first.source < 0:
@@ -197,13 +223,17 @@ class Route:
     
 
     def geojson(self):
+        '''
+        Route GeoJSON representation.
+        Finds route at first, if it is initialized only.
+        '''
         if self.status=='init':
             self.find_best_route()
         return [way.feature(self.params.raw_params, self.status) for way in self.ways]
 
     def search_index(self):
         '''
-        Compute ratio between cost and real length of the road
+        Compute ratio between cost and real length of the road.
         '''
         if self.length>0:
             return self.cost/self.length
@@ -266,6 +296,10 @@ class Route:
         return limit_way
     
     def _st_buffer(self):
+        '''
+        Returns buffer around line connecting start and end point.
+        Represented as Extended Well-Known Text (EWKT).
+        '''
         start_point = self.start_route_point.point
         end_point = self.end_route_point.point
         dist_divised = hypotenuse(start_point.x, start_point.y, end_point.x, end_point.y)/5
@@ -276,6 +310,9 @@ class Route:
 
 
 class RouteParams:
+    '''
+    Parameters and preferences of route search.
+    '''
     def __init__(self, flat_params):
         self.raw_params = self._recreate_params(flat_params)
         self.reverse = self.raw_params['global'].has_key('oneway')
@@ -345,6 +382,9 @@ class RouteParams:
         return collection.dump_params(self.raw_params)
 
 def create_gpx(points):
+    '''
+    Simple creation of GPX XML string.
+    '''
     output = libxml2.parseDoc('<gpx/>')
     root_node = output.getRootElement()
     root_node.setProp('creator', 'http://mtbmap.cz/')

@@ -1,12 +1,16 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+# Global imports
 import simplejson as json
+
+# Local imports
 from map.models import WeightCollection, WeightClass, Weight, Preferred
-#from map.updateroutingdata import to_float
 
 def import_json_template(filename):
-    """Import weight classes and their parameters into the database."""
+    """
+    Import weight classes and their parameters into the database.
+    """
     file = open(filename, 'r')
     json_template = json.loads(file.read())
     file.close()

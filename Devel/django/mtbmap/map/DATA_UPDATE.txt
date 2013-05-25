@@ -8,7 +8,6 @@ Kopirovani z osm_2po_4pgr:
  - map.updateroutingdata.copy_ways()
 
 Zrychleni databazovych dotazu:
-CREATE INDEX map_way_osm_id_index on map_way using btree (osm_id);
 VACUUM ANALYZE VERBOSE map_way;
 
 Pridani atributu:
