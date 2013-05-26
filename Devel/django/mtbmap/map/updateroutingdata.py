@@ -75,6 +75,7 @@ def copy_ways():
     count = Way.objects.all().count()
     print count, " ways inserted successfully"
     print 'Total time:', total_seconds(datetime.now()-start)
+    print 'Run python vacuum_full.py now'
 
 def add_attributes():
     '''
@@ -87,6 +88,7 @@ def add_attributes():
     _add_routes_attributes()
     print 'All attributes updated successfully.'
     print 'Total time:', total_seconds(datetime.now()-start)
+    print 'Run python vacuum_full.py again'
 
 def _row_to_arguments(row):
     '''
@@ -235,3 +237,13 @@ def update_class_ids():
         way.class_id = way.compute_class_id(class_conf)
         way.save()
 
+def vacuum(conn):
+    query = "VACUUM FULL"
+    print 'running %s' % query
+    old_isolation_level = conn.isolation_level
+    conn.isolation_level = 0
+    cursor = conn.cursor()
+    cursor.execute(query)
+    cursor.close()
+    conn.isolation_level = old_isolation_level
+    print '%s finished successfully' % query

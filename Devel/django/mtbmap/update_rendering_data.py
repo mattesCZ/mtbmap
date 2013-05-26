@@ -1,7 +1,13 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+# Global imports
 import os
 import sys
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
+# Local imports
 from map.models import Map
 
 if (len(sys.argv)>1):

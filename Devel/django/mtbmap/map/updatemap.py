@@ -1,5 +1,7 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
+# Global imports
 import sys, ConfigParser
 import string, os, re, shutil
 import datetime
