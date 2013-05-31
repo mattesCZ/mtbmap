@@ -6,6 +6,7 @@ from datetime import datetime
 from map.mathfunctions import total_seconds, hypotenuse
 import libxml2
 import operator
+from copy import deepcopy
 
 # Django imports
 from django.db import connections
@@ -168,7 +169,7 @@ class Route:
             start_id = self.start_route_point.vertice_id
             to_start_way = self.start_route_point.to_nearest_way
             end_id = self.end_route_point.vertice_id
-            to_end_way = self.end_route_point.to_nearest_way
+            to_end_way = deepcopy(self.end_route_point.to_nearest_way)
             
             limit_way = self.insert_limit_way(start_id, end_id, start_point, end_point)
             # use dijkstra or astar search

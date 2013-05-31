@@ -300,7 +300,7 @@ class Way(geomodels.Model):
             weight = len(WEIGHTS)
         return {
             'type': 'Feature',
-            'id': self.id,
+#            'id': self.id,
             'properties': {
                 'weight': weight,
                 'length': self.length,
