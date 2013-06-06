@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Global imports
-from captcha.fields import ReCaptchaField
+#from captcha.fields import ReCaptchaField
 
 # Django imports
 from django.forms import ModelForm, Textarea, HiddenInput
@@ -19,4 +19,4 @@ class RoutingEvaluationForm(ModelForm):
             'params': HiddenInput(),
             'linestring': HiddenInput()
         }
-    captcha = ReCaptchaField(attrs={'theme': 'clean'}, label='Opište text')
+#    captcha = ReCaptchaField(attrs={'theme': 'clean'}, label='Opište text')

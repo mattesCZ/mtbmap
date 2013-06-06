@@ -59,6 +59,26 @@
                 <br />
                 <button class="back-to-settings">Změnit parametry</button>
                 <button class="reset-line">Nové hledání</button>
+                <br />
+                <button class="open-evaluation-dialog">Ohodnotit vyhledávání</button>
+                <div id="evaluation-dialog-form" title="Hodnocení vyhledané trasy">
+                	<form id="send-evaluation-form">
+                        {% csrf_token %}
+                        <div>
+                        	Ohodnoťte, prosím, jak vám výsledek vyhledávání tras vyhovuje. 
+                        	Doplňte komentář, pokud nabízené možnosti nejsou dostatečné.
+                        	Děkujeme.
+                        </div>
+                        <table>
+                        {{ evaluation_form.as_table }}
+                        </table>
+                    </form>
+                    <div class="error-message"></div>
+                </div>
+                <form method="POST" onsubmit="sendEvaluation(event)" style="display: none">
+                    {% csrf_token %}
+                    <input id="send-evaluation-button" type="submit" value="Odeslat" />
+                </form>
 	        </div>
             <div class="loading"></div>
         </article>

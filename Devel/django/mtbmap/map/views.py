@@ -4,6 +4,7 @@
 # Global imports
 from PIL import Image
 import simplejson as json
+from datetime import datetime
 
 # Django imports
 from django.shortcuts import render_to_response

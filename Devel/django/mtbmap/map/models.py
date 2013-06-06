@@ -723,10 +723,24 @@ class RoutingEvaluation(models.Model):
         (4, 'Špatné'),
         (5, 'Nepoužitelné'),
     )
+    SPEED_CHOICES = (
+        (1, 'Nijak neomezuje'),
+        (2, 'Pomalé, ale rád si počkám'),
+        (3, 'Pomalé, nepoužitelné'),
+    )
+    QUALITY_CHOICES = (
+        (1, 'Vyhovuje'),
+        (2, 'Dobré, ale chci více parametrů'),
+        (3, 'Dobré, ale občas po cestách, které nechci'),
+        (4, 'Špatné, nevhodně nalezená trasa'),
+        (5, 'Špatné, nechápu proč se to takto chová'),
+    )
     params = models.TextField()
     linestring = models.TextField()
     timestamp = models.DateTimeField()
     general_evaluation = models.PositiveIntegerField(verbose_name='Celkové hodnocení', choices=EVALUATION_CHOICES, default=3)
+    speed = models.PositiveIntegerField(verbose_name='Rychlost', choices=SPEED_CHOICES, default=2)
+    quality = models.PositiveIntegerField(verbose_name='Kvalita tras', choices=QUALITY_CHOICES, default=1)
     comment = models.TextField(verbose_name='Komentář', null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
 
