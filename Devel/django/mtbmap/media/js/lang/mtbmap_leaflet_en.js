@@ -2,6 +2,7 @@ LANG = {
     fileAPIError: 'The File API is not fully supported, try HTML5 compatible browser.',
     searchResults: 'Search results',
     noResults: 'No results found',
+    thanks: 'Thank you',
     elevation: 'Elevation',
     length: 'Length',
     weight: 'Weight',

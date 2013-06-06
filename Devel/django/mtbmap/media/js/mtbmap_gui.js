@@ -115,11 +115,11 @@ $(document).ready(function() {
 			    		'form': JSON.stringify(form)
 			    	}, function(data) {
 				    	if (data.valid) {
-				    		$('#evaluation-dialog-form').html('<p>thanks</p>');
+				    		$('#evaluation-dialog-form').html(data.html);
 							thisDialog.dialog( "close" );
 							var ThanksDialog = $(data.html);
 							ThanksDialog.dialog({
-								title: "Thanks",
+								title: LANG.thanks,
 								show: 'clip',
 								hide: 'clip',
 								buttons: {

@@ -2,6 +2,7 @@ LANG = {
     fileAPIError: 'Zpracování souborů (File API) není v tomto prohlížeči podporováno. Zkuste prohlížeč kompatibilní s HTML5.',
     searchResults: 'Výsledky hledání',
     noResults: 'Nic nenalezeno',
+    thanks: 'Děkujeme',
     elevation: 'Nadmořská výška',
     length: 'Délka',
     weight: 'Výhodnost',
