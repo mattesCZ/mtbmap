@@ -32,10 +32,13 @@ class RoutePoint:
     and creates vertice for routing.
     '''
     def __init__(self, point, params):
+        self.status = 'init'
         self.point = point
         self.params = params
         self.nearest_way = self.find_nearest_way(self.point)
-        self.to_source, self.to_target, self.vertice_id, self.to_nearest_way = self.nearest_way.split(self.point)
+        if self.nearest_way:
+            self.to_source, self.to_target, self.vertice_id, self.to_nearest_way = self.nearest_way.split(self.point)
+            self.status = 'found'
 
     def find_nearest_way(self, point):
         '''
@@ -43,6 +46,7 @@ class RoutePoint:
         return Way
         '''
         # initial distance radius in degrees
+        LIMIT_DISTANCE = 0.05
         radius = 0.002
         bbox = point.buffer(radius).envelope
         found = False
@@ -62,6 +66,9 @@ class RoutePoint:
                         if weighted_distance<best_weight:
                             best_weight = weighted_distance
                             nearest_way = way
+            if radius > LIMIT_DISTANCE:
+                self.status = 'notfound'
+                return None
             radius *= 2
         return nearest_way
     
@@ -69,8 +76,9 @@ class RoutePoint:
         '''
         Delete splitted temporal ways at the end of route search.
         '''
-        self.to_source.delete()
-        self.to_target.delete()
+        if self.status=='found':
+            self.to_source.delete()
+            self.to_target.delete()
 
 
 class MultiRoute:
@@ -117,16 +125,20 @@ class MultiRoute:
         Find route between all points, according to given params.
         '''
         start = datetime.now()
-        for i in range(len(self.route_points)-1):
-            start_point = self.route_points[i]
-            end_point = self.route_points[i+1]
-            route = Route(start_point, end_point, self.params)
-            route.find_best_route()
-            if route.status == 'notfound':
-                self.status = route.status
-            self.length += route.length
-            self.cost += route.cost
-            self.geojson_features += route.geojson()
+        for point in self.route_points:
+            if point.status=='notfound':
+                self.status = 'notfound'
+        if self.status!='notfound':
+            for i in range(len(self.route_points)-1):
+                start_point = self.route_points[i]
+                end_point = self.route_points[i+1]
+                route = Route(start_point, end_point, self.params)
+                route.find_best_route()
+                if route.status == 'notfound':
+                    self.status = route.status
+                self.length += route.length
+                self.cost += route.cost
+                self.geojson_features += route.geojson()
         for point in self.route_points:
             point.delete_temp_ways()
         if self.status=='init':

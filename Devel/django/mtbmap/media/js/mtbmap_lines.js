@@ -315,13 +315,15 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
                 	position = L.polyline(thisLine.getLatLngs(), {}).getBounds().getCenter();
                     lPopup(position, LANG.routeNotFound, true);
                 }
-                geojsonLine = new MTBMAP.GeojsonLayerGroup(data, {
-                    style: routeStyle,
-                    onEachFeature: onEachLineFeature
-                });
-                thisLine.routesGroup.addLayer(geojsonLine);
-                geojsonLine.bringToFront();
-                map.fitBounds(geojsonLine.getBounds());
+                if (data.features.length) {
+	                geojsonLine = new MTBMAP.GeojsonLayerGroup(data, {
+	                    style: routeStyle,
+	                    onEachFeature: onEachLineFeature
+	                });
+	                thisLine.routesGroup.addLayer(geojsonLine);
+	                geojsonLine.bringToFront();
+	                map.fitBounds(geojsonLine.getBounds());
+                }
             }).always( function () {
             	$('.loading').removeClass('ajax-loading');
             }).done( function () {

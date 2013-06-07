@@ -10,7 +10,7 @@ LANG = {
     addPoints: 'Add another points.',
     gpxNotValid: 'GPX file is not valid.',
     gpxNoTrackpoints: 'GPX file contains no trackpoints or is not valid.',
-    routeNotFound: 'Route or its part was not found according to given parameters. Try to refine position of your points.',
+    routeNotFound: 'Route or its part was not found according to given parameters. Try to refine position of your points. Just Czech Republic is covered.',
     correctEntries: 'Correct your entries, please.',
     templateNotValid: 'Template is not valid'
 }
