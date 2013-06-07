@@ -28,6 +28,11 @@ p {
     padding: 0 0.6em;
     font-size: small;
 }
+h5 {
+	font-size: 11px;
+	line-height: 15px;
+	margin: 9px 0 5px 0;
+}
 table {
     text-align: left;
     padding: 0 0.6em;
