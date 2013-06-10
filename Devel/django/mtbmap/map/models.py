@@ -37,7 +37,7 @@ class Map(models.Model):
     last_update = models.DateField(null=True, blank=True)
 
     def __unicode__(self):
-        return u"Map(%s,%s)" % (self.name, self.url)
+        return u"%s,%s" % (self.name, self.url)
 
     def as_dict(self):
         return {'name':self.name, 'url':self.url}
@@ -313,7 +313,7 @@ class Way(geomodels.Model):
 
     def compute_length(self):
         '''
-        Compute aproximate length using haversine formula.
+        Compute approximate length using haversine formula.
         return length in kilometers
         '''
         coords = self.the_geom.coords
@@ -334,7 +334,7 @@ class WeightCollection(models.Model):
     vehicle = models.CharField(max_length=40, default='bicycle', choices=VEHICLE_CHOICES)
     
     def __unicode__(self):
-        return u"WeightCollection(%s)" % (self.name)
+        return u"%s" % (self.name)
 
     def get_cost_where_clause(self, params):
         '''
@@ -452,7 +452,7 @@ class WeightClass(models.Model):
         ordering = ('order', 'classname',)
 
     def __unicode__(self):
-        return u"WeightClass(%s)" % (self.classname)
+        return u"%s, Collection: %s" % (self.classname, self.collection.name)
 
     def get_when_clauses(self, params, preferred_class_names):
         '''
@@ -523,7 +523,7 @@ class Preferred(models.Model):
     use = models.BooleanField(default=True)
     
     def __unicode__(self):
-        return u"Preferred(%s)" % (self.name)
+        return u"%s" % (self.name)
 
 
 class Weight(models.Model):
@@ -686,6 +686,9 @@ class GeojsonLayer(models.Model):
     attributes = models.TextField(null=True, blank=True)
 #    minZoom = models.PositiveIntegerField(default=13)
 #    maxZoom = models.PositiveIntegerField(default=18)
+
+    def __unicode__(self):
+        return u"%s" % (self.name)
     
     def attributes_list(self):
         '''
@@ -743,6 +746,9 @@ class RoutingEvaluation(models.Model):
     quality = models.PositiveIntegerField(verbose_name='Kvalita tras', choices=QUALITY_CHOICES, default=1)
     comment = models.TextField(verbose_name='Komentář', null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
+    
+    def __unicode__(self):
+        return u"%s, From: %s, Comment: '%s')" % (self.timestamp.date(), self.email, self.comment[:40])
 
 
 def verbose_name(obj, field_name, underscores=False):

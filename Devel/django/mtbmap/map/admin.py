@@ -15,5 +15,11 @@ class WeightClassAdmin(admin.ModelAdmin):
     inlines = [WeightInline]
 
 admin.site.register(Map)
+admin.site.register(GeojsonLayer)
+#admin.site.register(OsmPoint)
+#admin.site.register(OsmLine)
+admin.site.register(WeightCollection)
 admin.site.register(WeightClass, WeightClassAdmin)
 admin.site.register(Weight)
+admin.site.register(Preferred)
+admin.site.register(RoutingEvaluation)
