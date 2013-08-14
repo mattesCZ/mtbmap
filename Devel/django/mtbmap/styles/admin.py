@@ -48,7 +48,7 @@ class StyleAdmin(admin.ModelAdmin):
 
 class RuleAdmin(admin.ModelAdmin):
     inlines = [RuleStyleInline, SymbolizerRuleInline]
-    search_fields = ['title', 'maxscale']
+    search_fields = ['name', 'maxscale']
 
 
 class SymbolizerAdmin(admin.ModelAdmin):
