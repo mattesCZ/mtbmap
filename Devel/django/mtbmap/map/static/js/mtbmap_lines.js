@@ -124,7 +124,7 @@ MTBMAP.SimpleLine = MTBMAP.Line.extend({
 		MTBMAP.Line.prototype.initialize.call(this, latlngs, options);
 		this.markersGroup = new L.LayerGroup([]);
 		this.markerIcon = L.icon({
-			iconUrl : '../media/js/images/line-marker.png',
+			iconUrl : '../static/js/images/line-marker.png',
 			iconSize : [9, 9]
 		});
 		this.on('click', this.onClick);

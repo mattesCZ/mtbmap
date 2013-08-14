@@ -157,7 +157,7 @@ def exportmap(request):
         y_base += map_im.size[1]
         im.paste(imprint_im, (map_im.size[0]/2 - imprint_im.size[0]/2, y_base))
 
-        response = HttpResponse(mimetype='image/png')
+        response = HttpResponse(content_type='image/png')
         response['Content-Disposition'] = 'attachment; filename="map.png"'
         im.save(response, 'png')
         return response
@@ -181,8 +181,9 @@ def altitudeprofile(request):
             im = altitude_image(points)
             try:
                 ret = int(im)
-            except (AttributeError, 'Not a number'):
-                response = HttpResponse(mimetype='image/png')
+            except:
+                # not an integer, it must be image
+                response = HttpResponse(content_type='image/png')
                 im.save(response, 'png')
                 response['Content-Disposition'] = 'attachment; filename="altitudeprofile.png"'
                 return response
@@ -214,7 +215,7 @@ def creategpx(request):
                 point = [float(latlng[0]), float(latlng[1])]
                 points.append(point)
             gpx = create_gpx(points)
-            response = HttpResponse(mimetype='application/xml')
+            response = HttpResponse(content_type='application/xml')
             response['Content-Disposition'] = 'attachment; filename="line.gpx"'
             response.write(gpx)
             return response
@@ -230,7 +231,7 @@ def getheight(request):
     latlng = get_value.replace('LatLng(', '').replace(')', '').split(',')
     point = [float(latlng[0]), float(latlng[1])]
     point_height = height(point)
-    return HttpResponse(point_height, mimetype='text/html')
+    return HttpResponse(point_height, content_type='text/html')
 
 def findroute(request):
     '''
@@ -263,7 +264,7 @@ def gettemplate(request):
     else:
         routeparams = RouteParams(params)
         json_params = routeparams.dump_params()
-        response = HttpResponse(mimetype='text/plain')
+        response = HttpResponse(content_type='text/plain')
         response['Content-Disposition'] = 'attachment; filename="template.json"'
         response.write(json.dumps(json_params, indent=4, sort_keys=True))
         return response
@@ -304,4 +305,4 @@ def evaluation(request):
     else:
         print 'invalid form'
         print form.errors
-    return HttpResponse(json.dumps(result), mimetype='application/json')
+    return HttpResponse(json.dumps(result), content_type='application/json')

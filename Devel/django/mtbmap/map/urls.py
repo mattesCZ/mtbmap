@@ -1,7 +1,4 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 urlpatterns = patterns('map.views',
     url(r'^legend/$', 'legend'),
