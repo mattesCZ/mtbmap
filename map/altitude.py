@@ -8,7 +8,7 @@ import zipfile
 
 # Local imports
 from map.printing import svg_string_to_png
-from settings import SRTM_DATA
+from mtbmap.settings import SRTM_DATA
 
 def altitude_image(nodes):
     if len(nodes)==1:

@@ -11,7 +11,7 @@ from os import remove, system
 from os.path import exists
 from styles.xmlfunctions import *
 import PIL.Image
-from settings import DATABASES, MAPNIK_STYLES
+from mtbmap.settings import DATABASES, MAPNIK_STYLES
 
 zooms = [250000000000, 500000000, 200000000, 100000000, 50000000, 25000000, 12500000,
 6500000, 3000000, 1500000, 750000, 400000, 200000, 100000, 50000, 25000, 12500, 5000, 2500, 1000, 500, 250, 125]

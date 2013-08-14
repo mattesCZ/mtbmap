@@ -18,7 +18,7 @@ from PIL import Image
 from django.db.models import Max
 
 # Local imports
-from settings import MAPNIK_STYLES
+from mtbmap.settings import MAPNIK_STYLES
 
 def svg_string_to_png(svg_string, png_image_path, width, height):
     img = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
