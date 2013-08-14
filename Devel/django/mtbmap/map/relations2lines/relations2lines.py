@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 __author__="xtesar7"
 
 from psycopg2 import *
@@ -11,18 +8,12 @@ import time
 from copy import deepcopy
 from sys import setrecursionlimit
 
-def main():
-
+def run(dbname, port):
+    bboxquery = ''' ST_Intersects(way, ST_Transform(ST_GeomFromText('POLYGON((-5 60, -5 35, 30 35, 30 60, -5 60))', 4326), 900913)::geometry) '''
     print time.strftime("%H:%M:%S", time.localtime()), " - script started"
     print "  Searching RelationIDs and Lines in planet_osm_line..."
     # Create connection to DB server.
-    if (len(sys.argv) == 3):
-        connection = connect("dbname='" + sys.argv[1] + "' user='xtesar7' password='' port='" + sys.argv[2] + "'");
-    elif (len(sys.argv) <= 1):
-        print 'No arguments given, using default db=gisczech, port=5432'
-        connection = connect("dbname='gisczech' user='xtesar7' password='' port=5432");
-    else:
-        print 'relations2lines takes exactly two arguments: database and port'
+    connection = connect("dbname='" + dbname + "' user='xtesar7' password='' port='" + port + "'");
     relationCursor = connection.cursor()
     auxiliaryCursor = connection.cursor()
     wayCursor = connection.cursor()
@@ -33,16 +24,15 @@ def main():
     relations = []
     relationCursor.execute('''
         SELECT osm_id, CASE WHEN ("highway"='track' AND "tracktype"='grade1' AND "mtb:scale" IS NULL) THEN 'grade1'
-                            WHEN ("highway"='track' AND "tracktype"='grade2' AND "mtb:scale" IS NULL) THEN 'grade2'
                             ELSE "mtb:scale"
                        END AS "mtb:scale"
             , "mtb:scale:uphill", network, "osmc:symbol"
             FROM planet_osm_line
-            WHERE (("osmc:symbol" IS NOT NULL OR kct_red IS NOT NULL
+            WHERE %s AND (("osmc:symbol" IS NOT NULL OR kct_red IS NOT NULL
                 OR kct_blue IS NOT NULL OR kct_green IS NOT NULL
                 OR kct_yellow IS NOT NULL OR ("mtb:scale" IS NOT NULL AND (("access"<>'private' AND "access"<>'no') OR "access" IS NULL OR ("access" IN ('private', 'no') AND bicycle='yes')))
-                OR "mtb:scale:uphill" IS NOT NULL OR ("highway"='track' AND "tracktype"='grade1') OR ("highway"='track' AND "tracktype"='grade2')))
-        ''')
+                OR "mtb:scale:uphill" IS NOT NULL OR ("highway"='track' AND "tracktype"='grade1')))
+        ''' % bboxquery)
     while True:
         # Fetch some of the result.
         rows = relationCursor.fetchmany(100)
@@ -88,18 +78,18 @@ def main():
     print "  Finding firstNode and lastNode for each route in planet_osm_ways..."
 
     # Clean previous routes.
-    auxiliaryCursor.execute("DROP TABLE IF EXISTS planet_osm_routes3")
-    auxiliaryCursor.execute("DELETE FROM geometry_columns WHERE f_table_name = 'planet_osm_routes3'")
-    auxiliaryCursor.execute("CREATE TABLE planet_osm_routes3 AS SELECT osm_id, way, highway, tracktype FROM planet_osm_line WHERE osm_id = 0")
-    auxiliaryCursor.execute("DELETE FROM geometry_columns WHERE f_table_name = 'planet_osm_routes3'")
-    auxiliaryCursor.execute("INSERT INTO geometry_columns VALUES ('', 'public', 'planet_osm_routes3', 'way', 2, 900913, 'LINESTRING')")
+    auxiliaryCursor.execute("DROP TABLE IF EXISTS planet_osm_routes2")
+    auxiliaryCursor.execute("DELETE FROM geometry_columns WHERE f_table_name = 'planet_osm_routes2'")
+    auxiliaryCursor.execute("CREATE TABLE planet_osm_routes2 AS SELECT osm_id, way, highway, tracktype FROM planet_osm_line WHERE osm_id = 0")
+    auxiliaryCursor.execute("DELETE FROM geometry_columns WHERE f_table_name = 'planet_osm_routes2'")
+    auxiliaryCursor.execute("INSERT INTO geometry_columns VALUES ('', 'public', 'planet_osm_routes2', 'way', 2, 900913, 'LINESTRING')")
 
     # Add important information to each route
     for r in listOfRoutes:
         auxiliaryCursor.execute('''
             SELECT way, highway, tracktype FROM planet_osm_line
-              WHERE osm_id=%s AND (("access"<>'private' AND "access"<>'no') OR "access" IS NULL OR ("access" IN ('private', 'no') AND bicycle='yes'))
-        ''' % r.id)
+              WHERE %s AND osm_id=%s AND (("access"<>'private' AND "access"<>'no') OR "access" IS NULL OR ("access" IN ('private', 'no') AND bicycle='yes'))
+        ''' % (bboxquery, r.id))
         row = auxiliaryCursor.fetchone()
         # Some route IDs from relations may not be present in line table, ie. out of bounding box, those are ignored
         if row is not None:
@@ -136,7 +126,7 @@ def main():
 
     #remove unconnected tracks with highway=track and tracktype=grade1 and mtb:scale is null
     print time.strftime("%H:%M:%S", time.localtime()), "  Removing disconnected tracks."
-#    routes = removeUnconnected(routes, nodes)
+    routes = removeUnconnected(routes, nodes)
     print "  Tracks removed."
 
     print time.strftime("%H:%M:%S", time.localtime()), "  Finding dangerous nodes (column warning)."
@@ -153,13 +143,14 @@ def main():
     # Find offset polarity
 #    listOfRoutes = routes.values()
     listOfRoutes = sorted(routes.values(), key=lambda route: route.osmcSigns[0], reverse=True)
-    setrecursionlimit(len(listOfRoutes))
+    if len(listOfRoutes)>1000:
+        setrecursionlimit(len(listOfRoutes))
     for r in listOfRoutes:
 #        print "For cycle: ", r.id, r.osmcSigns[0]
         setOffset(routes, r.id, "next")
         setOffset(routes, r.id, "previous")
     print time.strftime("%H:%M:%S", time.localtime()), " - offset is found."
-    print "  Inserting of routes into new empty table planet_osm_routes3..."
+    print "  Inserting of routes into new empty table planet_osm_routes2..."
 
     # Determine maximum number of different osmcSymbols at one route
     maxSigns = 0
@@ -171,25 +162,25 @@ def main():
 
     # Prepare database table for data insertion
     auxiliaryCursor.execute('''
-        ALTER TABLE planet_osm_routes3
+        ALTER TABLE planet_osm_routes2
           ADD "mtb:scale" text;
     ''')
     auxiliaryCursor.execute('''
-        ALTER TABLE planet_osm_routes3
+        ALTER TABLE planet_osm_routes2
           ADD "mtb:scale:uphill" text;
     ''')
     auxiliaryCursor.execute('''
-        ALTER TABLE planet_osm_routes3
+        ALTER TABLE planet_osm_routes2
           ADD offsetSide integer;
     ''')
     # Add columns for maximum number of osmcSymbols
     for column in range(maxSigns):
         auxiliaryCursor.execute('''
-            ALTER TABLE planet_osm_routes3
+            ALTER TABLE planet_osm_routes2
               ADD osmcSymbol%s text;
         ''' % (str(column)))
         auxiliaryCursor.execute('''
-            ALTER TABLE planet_osm_routes3
+            ALTER TABLE planet_osm_routes2
               ADD network%s text;
         ''' % (str(column)))
 
@@ -198,7 +189,7 @@ def main():
         if r.geometry is not None:
             row = r.getValuesRow()
             auxiliaryCursor.execute('''
-                INSERT INTO planet_osm_routes3
+                INSERT INTO planet_osm_routes2
                   VALUES (%s)
             ''' % (row))
     print " Finished inserting routes into new table."
@@ -207,7 +198,7 @@ def main():
     print "max Signs:   ", maxSigns
     print "Routes:      ", len(routes)
     print "Nodes:       ", len(nodes)
-    print "Danger nodes:", len(dangerNodes)
+#    print "Danger nodes:", len(dangerNodes)
 #    print routes[39952857].nextRoutes, routes[44013159].previousRoutes
 #    print nodes[559611826]
 
@@ -316,9 +307,10 @@ def insertDangerNodes(nodes, cursor):
         else:
             cursor.execute("select lat, lon from planet_osm_nodes where id=%s" % dnID)
             nodeLatLon = cursor.fetchone()
-            geometryCommand = "ST_SetSRID(ST_Point( %s, %s),900913) " % (str(nodeLatLon[1]/100.0), str(nodeLatLon[0]/100.0))
-            pointValues = str(dnID) + ", " + geometryCommand + ", " + str(nodes[dnID])
-            cursor.execute("INSERT INTO planet_osm_point (osm_id, way, warning) VALUES (%s)" % pointValues)
+            if nodeLatLon:
+                geometryCommand = "ST_SetSRID(ST_Point( %s, %s),900913) " % (str(nodeLatLon[1]/100.0), str(nodeLatLon[0]/100.0))
+                pointValues = str(dnID) + ", " + geometryCommand + ", " + str(nodes[dnID])
+                cursor.execute("INSERT INTO planet_osm_point (osm_id, way, warning) VALUES (%s)" % pointValues)
 
 def removeUnconnected(routes, nodes):
     gradeOneIDs = []
@@ -373,7 +365,3 @@ def removeUnconnected(routes, nodes):
     for id in connectedGradeOne:
         routes[id].mtbScale = '0'
     return routes
-            
-
-if __name__ == "__main__":
-    main()

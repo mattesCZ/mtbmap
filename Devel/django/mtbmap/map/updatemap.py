@@ -1,6 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+# Local imports
+from map.relations2lines.relations2lines import run
+
 # Global imports
 import sys, ConfigParser
 import string, os, re, shutil
@@ -120,8 +123,6 @@ def updatemap(config_file):
             exists('osmosis', osmosis)
             osm2pgsql = config.get('update', 'osm2pgsql')
             exists('osm2pgsql', osm2pgsql)
-            relations2lines = config.get('update', 'relations2lines')
-            exists('relations2lines', relations2lines)
 
             boundingBox = config.get('bbox', 'boundingBox')
             if (boundingBox=='yes'):
@@ -220,7 +221,7 @@ def updatemap(config_file):
         else:
             print 'OSM data successfully loaded to database, running relations2lines.py ...'
         #relations2lines
-        os.system(relations2lines + ' ' + database + ' ' + str(port))
+        run(database, str(port))
 
         #return source file creation date
         return date
