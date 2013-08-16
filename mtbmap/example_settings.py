@@ -129,6 +129,8 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'styles',
     'map',
+    'osm_data_processing',
+    'height_data_processing',
     'south',
     'captcha',
     # Uncomment the next line to enable admin documentation:
