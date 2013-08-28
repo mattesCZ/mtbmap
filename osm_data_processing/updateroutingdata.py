@@ -1,8 +1,6 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Global imports
-import simplejson as json
 from datetime import datetime
 
 # Django imports
@@ -10,53 +8,13 @@ from django.db import connections, transaction
 from django.db.models import F
 
 # Local imports
-from map.models import *
+from map.models import Way
 from map.mathfunctions import total_seconds
 
 MAP_DB = 'osm_data'
 
 sac_scale_values = ['hiking', 'mountain_hiking', 'demanding_mountain_hiking',
                     'alpine_hiking', 'demanding_alpine_hiking', 'difficult_alpine_hiking']
-
-def copy_osmpoints():
-    '''
-    Copy useful records from planet_osm_points table.
-    '''
-    cursor = connections[MAP_DB].cursor()
-    cursor.execute('DELETE FROM map_osmpoint')
-    column_names = verbose_names(obj=OsmPoint(), underscores=True)
-    column_names.remove('ID')
-    column_names.remove('osm_id')
-    column_names.remove('the_geom')
-    columns = ', '.join([ '"' + column + '"' for column in column_names])
-    substr_columns = ', '.join([ 'substr("' + column + '", 0, 40) as "' + column + '" ' for column in column_names])
-    or_clause = ' OR '.join([ '"' + column + '" IS NOT NULL' for column in column_names])
-    query = "INSERT INTO map_osmpoint (osm_id, the_geom, %s) SELECT osm_id, ST_TRANSFORM(way, 4326) as the_geom, %s FROM planet_osm_point WHERE %s;" % (columns, substr_columns, or_clause)
-    print query
-    cursor.execute(query)
-    transaction.commit_unless_managed(using=MAP_DB)
-    cursor.close()
-    
-def copy_osmlines():
-    '''
-    Copy useful records from planet_osm_line table.
-    '''
-    cursor = connections[MAP_DB].cursor()
-    cursor.execute('DELETE FROM map_osmline')
-    column_names = verbose_names(obj=OsmLine(), underscores=True)
-    column_names.remove('ID')
-    column_names.remove('osm_id')
-    column_names.remove('the_geom')
-    columns = ', '.join([ '"' + column + '"' for column in column_names]).replace(':', '')
-    print column_names
-    print columns
-    substr_columns = ', '.join([ 'substr("' + column + '", 0, 200) as "' + column + '" ' for column in column_names])
-    or_clause = ' OR '.join([ '"' + column + '" IS NOT NULL' for column in column_names])
-    query = "INSERT INTO map_osmline (osm_id, the_geom, %s) SELECT osm_id, ST_TRANSFORM(way, 4326) as the_geom, %s FROM planet_osm_line WHERE %s;" % (columns, substr_columns, or_clause)
-    print query
-    cursor.execute(query)
-    transaction.commit_unless_managed(using=MAP_DB)
-    cursor.close()
 
 def copy_ways():
     '''
@@ -224,18 +182,6 @@ def _to_float(value):
         except ValueError:
             print value
             return None
-
-def update_class_ids():
-    conf_file = open('media/class_ids.json', 'r')
-    class_json = json.loads(conf_file.read())
-    class_conf = class_json['classes']
-#    for c in class_conf:
-#        classname = c['classname']
-
-    ways = Way.objects.all()
-    for way in ways:
-        way.class_id = way.compute_class_id(class_conf)
-        way.save()
 
 def vacuum(conn):
     query = "VACUUM FULL"

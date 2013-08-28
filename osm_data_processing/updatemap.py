@@ -1,8 +1,7 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Local imports
-from map.relations2lines.relations2lines import run
+from osm_data_processing.relations2lines.relations2lines import run
 
 # Global imports
 import sys, ConfigParser
