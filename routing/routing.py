@@ -1,9 +1,8 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Global imports
 from datetime import datetime
-from map.mathfunctions import total_seconds, hypotenuse
+from routing.mathfunctions import total_seconds, hypotenuse
 import libxml2
 import operator
 from copy import deepcopy
@@ -13,7 +12,7 @@ from django.db import connections
 from django.contrib.gis.geos import *
 
 # Local imports
-from map.models import Way, WeightCollection, WEIGHTS, THRESHOLD
+from routing.models import Way, WeightCollection, WEIGHTS, THRESHOLD
 
 MAP_DB = 'osm_data'
 
@@ -344,9 +343,9 @@ class RouteParams:
         '''
         where = 'WHERE ' + self.where + " OR highway='temp'"
         if self.reverse:
-            return 'SELECT id, source::int4, target::int4, %s AS cost, %s AS reverse_cost, x1, x2, y1, y2 FROM map_way %s' % (self.cost, self.reverse_cost, where)
+            return 'SELECT id, source::int4, target::int4, %s AS cost, %s AS reverse_cost, x1, x2, y1, y2 FROM routing_way %s' % (self.cost, self.reverse_cost, where)
         else:
-            return 'SELECT id, source::int4, target::int4, %s AS cost, x1, x2, y1, y2 FROM map_way %s' % (self.cost, where)
+            return 'SELECT id, source::int4, target::int4, %s AS cost, x1, x2, y1, y2 FROM routing_way %s' % (self.cost, where)
 
     def weighted_ways_dijkstra(self):
         '''
@@ -355,9 +354,9 @@ class RouteParams:
         '''
         where = "WHERE " + self.where + " OR highway='temp'"
         if self.reverse:
-            return 'SELECT id, source::int4, target::int4, %s AS cost, %s AS reverse_cost FROM map_way %s' % (self.cost, self.reverse_cost, where)
+            return 'SELECT id, source::int4, target::int4, %s AS cost, %s AS reverse_cost FROM routing_way %s' % (self.cost, self.reverse_cost, where)
         else:
-            return 'SELECT id, source::int4, target::int4, %s AS cost FROM map_way %s' % (self.cost, where)
+            return 'SELECT id, source::int4, target::int4, %s AS cost FROM routing_way %s' % (self.cost, where)
 
     def sql_astar_buffer(self, buffer):
         old = self.where

@@ -5,7 +5,7 @@
 import simplejson as json
 
 # Local imports
-from map.models import WeightCollection, WeightClass, Weight, Preferred
+from routing.models import WeightCollection, WeightClass, Weight, Preferred
 
 def import_json_template(filename):
     """

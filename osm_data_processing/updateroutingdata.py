@@ -8,8 +8,8 @@ from django.db import connections, transaction
 from django.db.models import F
 
 # Local imports
-from map.models import Way
-from map.mathfunctions import total_seconds
+from routing.models import Way
+from routing.mathfunctions import total_seconds
 
 MAP_DB = 'osm_data'
 
@@ -18,13 +18,13 @@ sac_scale_values = ['hiking', 'mountain_hiking', 'demanding_mountain_hiking',
 
 def copy_ways():
     '''
-    copy data generated with osm2po to map_way table
+    copy data generated with osm2po to routing_way table
     '''
     start = datetime.now()
     cursor = connections[MAP_DB].cursor()
-    cursor.execute('DELETE FROM map_way')
+    cursor.execute('DELETE FROM routing_way')
     insert = """
-       insert into map_way (class_id, length, name, x1, y1, x2, y2, reverse_cost, osm_id, source, target, the_geom)
+       insert into routing_way (class_id, length, name, x1, y1, x2, y2, reverse_cost, osm_id, source, target, the_geom)
        select clazz, km, osm_name, x1, y1, x2, y2, reverse_cost, osm_id, source, target, geom_way
        from osm_2po_4pgr
     """

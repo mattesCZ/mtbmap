@@ -26,7 +26,7 @@ DATABASES = {
     },
     'osm_data': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'map_data_db',                      # Or path to database file if using sqlite3.
+        'NAME': 'geographic_data_db',                      # Or path to database file if using sqlite3.
         'USER': 'user',                      # Not used with sqlite3.
         'PASSWORD': 'passWORD',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'styles',
     'map',
+    'routing',
     'osm_data_processing',
     'height_data_processing',
     'south',

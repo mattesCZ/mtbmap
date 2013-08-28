@@ -5,10 +5,10 @@ Predpoklady:
  - nahrana data pomoci osm2po v databazi pro django v tabulce osm_2po_4pgr
 
 Kopirovani z osm_2po_4pgr:
- - map.updateroutingdata.copy_ways()
+ - osm_data_processing.updateroutingdata.copy_ways()
 
 Zrychleni databazovych dotazu:
-VACUUM ANALYZE VERBOSE map_way;
+VACUUM ANALYZE VERBOSE routing_way;
 
 Pridani atributu:
- - map.updateroutingdata.add_attributes()
+ - osm_data_processing.updateroutingdata.add_attributes()
