@@ -1,10 +1,14 @@
 MAP_DB = 'osm_data'
 apps = [
-        'map',
+        'osm_data_processing',
 #        'south'
-        ] 
+        ]
 
-class MapRouter(object):
+models = [
+           'way'
+           ]
+
+class OsmDataRouter(object):
     """
     A router to control all database operations on models in the
     map application.
@@ -13,7 +17,7 @@ class MapRouter(object):
         """
         Attempts to read map models go to MAP_DB.
         """
-        if model._meta.app_label in apps:
+        if model._meta.app_label in apps or model._meta.module_name in models:
             return MAP_DB
         return None
 
@@ -21,7 +25,7 @@ class MapRouter(object):
         """
         Attempts to write map models go to MAP_DB.
         """
-        if model._meta.app_label in apps:
+        if model._meta.app_label in apps or model._meta.module_name in models:
             return MAP_DB
         return None
 
@@ -30,7 +34,9 @@ class MapRouter(object):
         Allow relations if a model in the map app is involved.
         """
         if obj1._meta.app_label in apps or \
-           obj2._meta.app_label in apps:
+           obj2._meta.app_label in apps or \
+           model._meta.module_name in models or \
+           model._meta.module_name in models:
            return True
         return None
 
@@ -40,7 +46,7 @@ class MapRouter(object):
         database.
         """
         if db == MAP_DB:
-            return model._meta.app_label in apps
-        elif model._meta.app_label in apps:
+            return model._meta.app_label in apps or model._meta.module_name in models
+        elif model._meta.app_label in apps or model._meta.module_name in models:
             return False
         return None
