@@ -8,9 +8,9 @@ sw
 
 # data files #
 ##############
-Data/osm2po
-Data/shadingdata
-Data/shp
+data/osm2po
+data/shadingdata
+data/shp
 *.pbf
 *.osm
 
@@ -18,17 +18,9 @@ Data/shp
 ###############
 interesting
 
-# renderd sock #
-#######################
-Web/renderd
-
 # backups #
 ###########
 backup*
-
-# old web #
-###########
-Web/img/scalebar.*
 
 # extra mapnik files #
 ######################
@@ -37,9 +29,8 @@ Web/img/scalebar.*
 
 # extras in django project #
 ############################
-www
 leaflet-src.js
-Devel/django/mtbmap/media/legend
-Devel/django/mtbmap/settings*.py
-Devel/django/mtbmap/templates/admin
+media/legend
+settings*.py
+map/static/admin
 
