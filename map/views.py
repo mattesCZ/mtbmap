@@ -33,8 +33,8 @@ def index(request):
         lang = 'en'
     weight_collections = WeightCollection.objects.all()
     evaluation_form = RoutingEvaluationForm()
-    map = Map.objects.get(name='MTB mapa')
-    return render_to_response('map/map.html', {'map':map, 'lang': lang, 'zoomRange':range(19),
+    tile_layer = TileLayer.objects.get(slug='mtb-map')
+    return render_to_response('map/map.html', {'tile_layer':tile_layer, 'lang': lang, 'zoomRange':range(19),
                                                'weight_collections': weight_collections,
                                                'evaluation_form': evaluation_form},
                               context_instance=RequestContext(request))
@@ -82,11 +82,7 @@ def exportmap(request):
                 orientation = 'n'
         else:
             orientation = 'n'
-        mapqueryset = Map.objects.filter(name='MTB mapa')
-        if mapqueryset.exists():
-            map = mapqueryset[0]
-        else:
-            map = Map()
+        tile_layer = TileLayer.objects.get(slug='mtb-map')
         bottom = float(bounds.split(',')[1])
         top = float(bounds.split(',')[3])
         left = float(bounds.split(',')[0])
@@ -138,7 +134,7 @@ def exportmap(request):
         except (KeyError, 'export-imprint not checked'):
             imprint_im = Image.new('RGBA', (0, 0), 'white')
         else:
-            imprint_im = imprint_image(map.attribution, map_im.size[0], 20, 12, highres)
+            imprint_im = imprint_image(tile_layer.attribution, map_im.size[0], 20, 12, highres)
         if len(map_title)>0 and not map_title.startswith('orlice_'):
             name_im = name_image(map_title, map_im.size[0])
         else:

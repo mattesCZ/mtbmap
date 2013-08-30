@@ -1,5 +1,6 @@
 {
-    "name": "default",
+    "slug": "empty",
+    "name": "Prázdné",
     "oneway": true,
     "vehicle": "bicycle",
     "preferred": [

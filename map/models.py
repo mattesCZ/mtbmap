@@ -10,17 +10,18 @@ from django.contrib.gis.geos import Polygon
 # Local imports
 from osm_data_processing.models import OsmPoint, OsmLine
 
-class Map(models.Model):
+class TileLayer(models.Model):
+    slug = models.SlugField(max_length=200, unique=True)
     name = models.CharField(max_length=200)
     attribution = models.CharField(max_length=400)
     url = models.CharField(max_length=400)
     last_update = models.DateField(null=True, blank=True)
 
     def __unicode__(self):
-        return u"%s,%s" % (self.name, self.url)
+        return u"%s,%s" % (self.slug, self.url)
 
     def as_dict(self):
-        return {'name':self.name, 'url':self.url}
+        return {'slug':self.slug, 'name':self.name, 'url':self.url}
 
 
 class GeojsonLayer(models.Model):

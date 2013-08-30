@@ -4,7 +4,7 @@
 from django.core.management.base import BaseCommand
 
 # Local imports
-from map.models import Map
+from map.models import TileLayer
 from osm_data_processing.updatemap import updatemap
 from osm_data_processing.create_osm_objects import copy_osmpoints, copy_osmlines
 
@@ -22,8 +22,8 @@ class Command(BaseCommand):
         if date:
             copy_osmpoints()
             copy_osmlines()
-            map = Map.objects.all()[0]
-            map.last_update = date
-            map.save()
+            tile_layer = TileLayer.objects.get(slug='mtb-map')
+            tile_layer.last_update = date
+            tile_layer.save()
         else:
             self.stderr.write('An error occured')

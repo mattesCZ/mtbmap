@@ -291,7 +291,8 @@
             "visible": false
         }
     ], 
-    "name": "mtb_hard", 
+    "slug": "mtb-hard",
+    "name": "MTB obtížné",
     "oneway": true, 
     "preferred": [
         {

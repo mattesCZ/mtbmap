@@ -291,7 +291,8 @@
             "visible": false
         }
     ], 
-    "name": "bicycle_trekking", 
+    "slug": "bicycle-trekking",
+    "name": "Trekové kolo",
     "oneway": true, 
     "preferred": [
         {

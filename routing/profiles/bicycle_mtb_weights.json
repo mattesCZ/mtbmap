@@ -1,5 +1,6 @@
 {
-    "name": "mtb_easy",
+    "slug": "mtb-easy",
+    "name": "MTB snadné",
     "oneway": true,
     "vehicle": "bicycle",
     "preferred": [

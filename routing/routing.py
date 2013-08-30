@@ -383,10 +383,10 @@ class RouteParams:
         '''
         new = {}
         for p in flat_params:
-            classname, feature = p['name'].split('__')
-            if not classname in new:
-                new[classname] = {}
-            new[classname][feature] = p['value']
+            weight_class, feature = p['name'].split('__')
+            if not weight_class in new:
+                new[weight_class] = {}
+            new[weight_class][feature] = p['value']
         return new
     
     def dump_params(self):

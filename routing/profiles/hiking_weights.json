@@ -1,5 +1,6 @@
 {
-    "name": "hiking",
+    "slug": "hiking",
+    "name": "Turistika",
     "oneway": true,
     "vehicle": "foot",
     "preferred": [

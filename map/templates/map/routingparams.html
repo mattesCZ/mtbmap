@@ -49,9 +49,9 @@
     <table id="weights-types-{{c.classname}}" class="weights-types preferences">
         {% for w in c.weight_set.all %}
         <tr {% if not w.visible %} style="display: none"{% endif %}>
-            <td class="type right-align">{{w.feature}}</td>
+            <td class="type right-align">{{w.name}}</td>
             <td class="preference">
-                <select class="weights-preferences" id="weights-{{c.classname}}-{{w.feature}}-preference" name="{{c.classname}}__{{w.feature}}" >
+                <select class="weights-preferences" id="weights-{{c.classname}}-{{w.name}}-preference" name="{{c.classname}}__{{w.name}}" >
                     {% for choice in w.PREFERENCE_CHOICES %}
                     {% if choice.0 == w.preference %}
                     <option value="{{choice.0}}" selected="selected" >{{choice.1}}</option>
