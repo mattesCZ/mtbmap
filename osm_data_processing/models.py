@@ -96,6 +96,7 @@ class OsmPoint(OsmModel):
     the_geom = geomodels.PointField()
     name = models.CharField(max_length=400, null=True, blank=True)
     amenity = models.CharField(max_length=200, null=True, blank=True)
+    description = models.CharField(max_length=200, null=True, blank=True)
     ele = models.CharField(max_length=200, null=True, blank=True)
     highway = models.CharField(max_length=200, null=True, blank=True)
     historic = models.CharField(max_length=200, null=True, blank=True)

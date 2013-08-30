@@ -41,6 +41,7 @@ node,way   bunker_type  text         polygon
 node	   capital      text         linear
 node,way   castle_type  text         polygon
 node,way   construction text         linear
+node,way   description  text         polygon
 node,way   disused      text         linear
 node       ele          text         linear
 way        electrified  text         linear
