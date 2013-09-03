@@ -19,7 +19,7 @@ from map.models import *
 from styles.models import Legend
 from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
 from map.altitude import altitude_image, height
-from routing.routing import MultiRoute, line_string_to_points, create_gpx, RouteParams
+from routing.core import MultiRoute, line_string_to_points, create_gpx, RouteParams
 from map.forms import RoutingEvaluationForm
 
 def index(request):
