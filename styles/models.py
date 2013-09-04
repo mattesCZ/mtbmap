@@ -1,23 +1,27 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from django.db import models
+# Global imports
 from math import log
 import libxml2
 import mapnik
 from string import upper
-from django.core.files import File
 from os import remove, system
-from os.path import exists
-from styles.xmlfunctions import *
+import os.path
 import PIL.Image
-from mtbmap.settings import DATABASES, MAPNIK_STYLES
+
+# Django imports
+from django.db import models
+from django.core.files import File
+from django.conf import settings
+
+# Local imports
+from styles.xmlfunctions import *
 
 zooms = [250000000000, 500000000, 200000000, 100000000, 50000000, 25000000, 12500000,
 6500000, 3000000, 1500000, 750000, 400000, 200000, 100000, 50000, 25000, 12500, 5000, 2500, 1000, 500, 250, 125]
 
-style_path = MAPNIK_STYLES
-db_password = DATABASES['default']['PASSWORD']
+style_path = settings.MAPNIK_STYLES
+db_password = settings.DATABASES['default']['PASSWORD']
 
 class Map(models.Model):
 
@@ -290,7 +294,8 @@ class Gdal(DataSource):
         add_xml_node_with_param(node, 'Parameter', self.format, 'name', 'format')
 
     def mapnik(self):
-        return mapnik.Gdal(file=self.file.encode('utf-8'))
+        file = os.path.join(style_path, self.file)
+        return mapnik.Gdal(file=file)
 
     def geometry(self):
         return self.mapnik().type().name
@@ -361,7 +366,8 @@ class Shape(DataSource):
         add_xml_node_with_param(node, 'Parameter', self.encoding, 'name', 'encoding')
 
     def mapnik(self):
-        return mapnik.Shapefile(file=self.file.encode('utf-8'))
+        file = os.path.join(style_path, self.file)
+        return mapnik.Shapefile(file=file)
 
     def geometry(self):
         return self.mapnik().type().name
@@ -1743,14 +1749,14 @@ class LegendItem(models.Model):
         if self.title.startswith('!'):
             return
         if scale_factor>=2:
-            if self.image_highres and exists(self.image_highres.path):
+            if self.image_highres and os.path.exists(self.image_highres.path):
                 remove(self.image_highres.path)
-            if self.title_image_highres and exists(self.title_image_highres.path):
+            if self.title_image_highres and os.path.exists(self.title_image_highres.path):
                 remove(self.title_image_highres.path)
         else:
-            if self.image and exists(self.image.path):
+            if self.image and os.path.exists(self.image.path):
                 remove(self.image.path)
-            if self.title_image and exists(self.title_image.path):
+            if self.title_image and os.path.exists(self.title_image.path):
                 remove(self.title_image.path)
         size = self.image_size(scale_factor)
         name = ('%i_%i.png' % (self.zoom, self.id)).encode('utf-8')
