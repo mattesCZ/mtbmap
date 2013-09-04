@@ -1296,7 +1296,7 @@ class ShieldSymbolizer(Symbolizer):
             displacement = (displacement[0], self.dy)
         ss.displacement = displacement
         if self.fontset_name:
-            fs = mapnik.Fontset()
+            fs = mapnik.Fontset(self.fontset_name.encode('utf-8'))
             fs.add_face_name(self.fontset_name.encode('utf-8'))
             ss.fontset = fs
         if self.halo_fill:
@@ -1558,7 +1558,7 @@ class TextSymbolizer(Symbolizer):
         if self.fill:
             ts.fill = mapnik.Color(self.fill.encode('utf-8'))
         if self.fontset_name:
-            fs = mapnik.FontSet()
+            fs = mapnik.FontSet(self.fontset_name.encode('utf-8'))
             fs.add_face_name(self.fontset_name.encode('utf-8'))
             ts.fontset = fs
         ts.force_odd_labels = self.force_odd_labels
