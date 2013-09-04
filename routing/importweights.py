@@ -25,7 +25,7 @@ def import_json_template(filename):
     class_order = 0
     for c in json_template['classes']:
         weight_class = WeightClass()
-        weight_class.slug = c['slug']
+        weight_class.slug = c.get('slug','')
         weight_class.name = c['name']
         weight_class.collection = weight_collection
         weight_class.visible = c['visible']
@@ -39,7 +39,7 @@ def import_json_template(filename):
             feature_order = 0
             for feature in c['features']:
                 w = Weight(weight_class=weight_class,
-                            slug=feature['slug'],
+                            slug=feature.get('slug', ''),
                             name=feature['name'],
                             preference=feature['value'],
                             order=feature_order)
@@ -50,7 +50,7 @@ def import_json_template(filename):
         class_order += 1
     for p in json_template['preferred']:
         preferred = Preferred()
-        preferred.slug = p['slug']
+        preferred.slug = p.get('slug','')
         preferred.name = p['name']
         preferred.collection = weight_collection
         preferred.use = p['use']

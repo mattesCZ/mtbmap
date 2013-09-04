@@ -11,7 +11,7 @@ from django.contrib.gis.db import models as geomodels
 from django.contrib.gis.geos import *
 
 # Local imports
-from map.mathfunctions import haversine
+from routing.mathfunctions import haversine
 
 SAC_SCALE_CHOICES = (
  (0, 'hiking'),

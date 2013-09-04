@@ -13,6 +13,7 @@ from django.template.response import TemplateResponse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils import translation
+from django.contrib.gis.geos import Point, LineString
 
 # Local imports
 from map.models import *
@@ -20,6 +21,7 @@ from styles.models import Legend
 from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
 from map.altitude import altitude_image, height
 from routing.core import MultiRoute, line_string_to_points, create_gpx, RouteParams
+from routing.models import WeightCollection
 from map.forms import RoutingEvaluationForm
 
 def index(request):

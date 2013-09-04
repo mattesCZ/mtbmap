@@ -2,7 +2,6 @@
 
 # Global imports
 from datetime import datetime
-from routing.mathfunctions import total_seconds, hypotenuse
 import libxml2
 import operator
 from copy import deepcopy
@@ -13,6 +12,7 @@ from django.contrib.gis.geos import *
 
 # Local imports
 from routing.models import Way, WeightCollection, WEIGHTS, THRESHOLD
+from routing.mathfunctions import total_seconds, hypotenuse
 
 MAP_DB = 'osm_data'
 

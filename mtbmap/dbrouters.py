@@ -35,8 +35,8 @@ class OsmDataRouter(object):
         """
         if obj1._meta.app_label in apps or \
            obj2._meta.app_label in apps or \
-           model._meta.module_name in models or \
-           model._meta.module_name in models:
+           obj1._meta.module_name in models or \
+           obj2._meta.module_name in models:
            return True
         return None
 

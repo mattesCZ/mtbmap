@@ -29,29 +29,29 @@
 	</table>
 </div>
 {% for c in weight_collection.weightclass_set.all %}
-<h3 id="h-{{ c.classname }}" {% if not c.visible %} style="display: none"{% endif %}>{{ c.classname }}</h3>
+<h3 id="h-{{ c.name }}" {% if not c.visible %} style="display: none"{% endif %}>{{ c.name }}</h3>
 <div>
     {% if c.max != None or c.min != None %}
-    <table id="weights-limits-{{c.classname}}" class="weights-limits preferences" >
+    <table id="weights-limits-{{c.name}}" class="weights-limits preferences" >
         <tr>
             {% if c.max != None %}
             <td class="right-align">Max:</td>
-            <td><input type="text" value="{{c.max|floatformat:'0'}}" size="2" id="weights-{{c.classname}}-max" name="{{c.classname}}__max" /></td>
+            <td><input type="text" value="{{c.max|floatformat:'0'}}" size="2" id="weights-{{c.name}}-max" name="{{c.name}}__max" /></td>
             {% endif %}
             {% if c.min != None %}
             <td class="right-align">Min:</td>
-            <td><input type="text" value="{{c.min|floatformat:'0'}}" size="2" id="weights-{{c.classname}}-min" name="{{c.classname}}__min" /></td>
+            <td><input type="text" value="{{c.min|floatformat:'0'}}" size="2" id="weights-{{c.name}}-min" name="{{c.name}}__min" /></td>
             {% endif %}
         </tr>
     </table>
     {% endif %}
     {% if c.weight_set.all %}
-    <table id="weights-types-{{c.classname}}" class="weights-types preferences">
+    <table id="weights-types-{{c.name}}" class="weights-types preferences">
         {% for w in c.weight_set.all %}
         <tr {% if not w.visible %} style="display: none"{% endif %}>
             <td class="type right-align">{{w.name}}</td>
             <td class="preference">
-                <select class="weights-preferences" id="weights-{{c.classname}}-{{w.name}}-preference" name="{{c.classname}}__{{w.name}}" >
+                <select class="weights-preferences" id="weights-{{c.name}}-{{w.name}}-preference" name="{{c.name}}__{{w.name}}" >
                     {% for choice in w.PREFERENCE_CHOICES %}
                     {% if choice.0 == w.preference %}
                     <option value="{{choice.0}}" selected="selected" >{{choice.1}}</option>
