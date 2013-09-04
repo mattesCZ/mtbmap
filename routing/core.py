@@ -262,7 +262,7 @@ class Route:
         cursor = connections[MAP_DB].cursor()
         sql = self.params.sql_astar_buffer(self._st_buffer())
 #        print self.params.sql_astar
-        cursor.execute("SELECT edge_id, cost FROM shortest_path_astar(%s, %s, %s, false, %s)", [sql, source, target, self.params.reverse])
+        cursor.execute("SELECT id2 AS edge_id, cost FROM pgr_astar(%s, %s, %s, false, %s)", [sql, source, target, self.params.reverse])
         rows = cursor.fetchall()
         edge_ids = [elem[0] for elem in rows]
         self.cost = sum([elem[1] for elem in rows])
