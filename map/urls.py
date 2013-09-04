@@ -2,6 +2,7 @@ from django.conf.urls import *
 
 urlpatterns = patterns('map.views',
     (r'^$', 'index'),
+    (r'^setlang/(?P<lang>[a-z]{2,3})/$', 'set_language'),
     (r'^map/legend/$', 'legend'),
     (r'^map/routingparams/$', 'routingparams'),
     (r'^map/exportmap/$', 'exportmap'),

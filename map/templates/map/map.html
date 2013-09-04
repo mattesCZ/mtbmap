@@ -16,6 +16,11 @@
 {% block main %}
 <div id="main-tabs" class="main-column" style="display: none">
     <header>
+    	<div id="languages">
+    		{% for lang_code, lang_name in LANGUAGES %}
+    		     <a href="{% url 'map.views.set_language' lang_code %}">{% if not lang_code == 'cs' %}{{ lang_code|upper }}{% else %}CZ{% endif %}</a>
+    		{% endfor %}
+    	</div>
         <nav>
             <ul id="main-tabs-nav">
                 <li><a href="#tab-home">O projektu</a></li>

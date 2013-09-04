@@ -1,11 +1,12 @@
+{% load i18n %}
 <!DOCTYPE html>
-<html>
+<html lang="{{ LANGUAGE_CODE }}">
     <head>
         <meta charset="utf-8">
         <meta name="Description" content="Mapa pro jízdu na horském kole a turistiku">
         <meta name="Keywords" content="mapa, mtb, turistika, openstreetmaps, mtb mapa, map, europe, mountain, bike">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        {%block title %}<title>MTB mapa Evropy</title>{% endblock %}
+        {%block title %}<title>{% trans "MTB map of Europe" %}</title>{% endblock %}
 
         <!-- Load our color and font preferences -->
         <link href="{{ STATIC_URL }}favicon.ico" rel="shortcut icon" type="image/x-icon">
@@ -26,10 +27,10 @@
     <body>
         {% block map %}{% endblock %}
         {% block main %}
-        MTB mapa
+        {% trans "MTB map" %}
         {% endblock %}
         {% block footer %}
-        Autor: Martin Tesař - osmmtb&nbsp;(at)&nbsp;gmail.com
+        {% trans "Author" %}: Martin Tesař - osmmtb&nbsp;(at)&nbsp;gmail.com
         {% endblock %}
     </body>
 </html>

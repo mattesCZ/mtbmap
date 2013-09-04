@@ -14,6 +14,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils import translation
 from django.contrib.gis.geos import Point, LineString
+from django.conf import settings
 
 # Local imports
 from map.models import *
@@ -304,3 +305,16 @@ def evaluation(request):
         print 'invalid form'
         print form.errors
     return HttpResponse(json.dumps(result), content_type='application/json')
+
+def set_language(request, lang):
+    next = request.META.get('HTTP_REFERER', None)
+    if not next:
+        next = '/'
+    response = HttpResponseRedirect(next)
+    if request.method == 'GET':
+        lang_code = lang
+        if lang_code and translation.check_for_language(lang_code):
+            if hasattr(request, 'session'):
+                request.session['django_language'] = lang_code
+            response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang_code)
+    return response
