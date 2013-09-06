@@ -390,7 +390,7 @@ class RouteParams:
         return new
     
     def dump_params(self):
-        collection = WeightCollection.objects.get(name='default')
+        collection = WeightCollection.objects.get(slug='default')
         return collection.dump_params(self.raw_params)
 
 def create_gpx(points):
