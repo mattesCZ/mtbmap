@@ -14,10 +14,7 @@ def copy_osmpoints():
     '''
     cursor = connections[MAP_DB].cursor()
     cursor.execute('DELETE FROM osm_data_processing_osmpoint')
-    column_names = verbose_names(obj=OsmPoint(), underscores=True)
-    column_names.remove('ID')
-    column_names.remove('osm_id')
-    column_names.remove('the_geom')
+    column_names = osm_tag_names(obj=OsmPoint())
     columns = ', '.join([ '"' + column + '"' for column in column_names])
     substr_columns = ', '.join([ 'substr("' + column + '", 0, 200) as "' + column + '" ' for column in column_names])
     or_clause = ' OR '.join([ '"' + column + '" IS NOT NULL' for column in column_names])
@@ -33,10 +30,7 @@ def copy_osmlines():
     '''
     cursor = connections[MAP_DB].cursor()
     cursor.execute('DELETE FROM osm_data_processing_osmline')
-    column_names = verbose_names(obj=OsmLine(), underscores=True)
-    column_names.remove('ID')
-    column_names.remove('osm_id')
-    column_names.remove('the_geom')
+    column_names = osm_tag_names(obj=OsmLine())
     columns = ', '.join([ '"' + column + '"' for column in column_names]).replace(':', '')
     print column_names
     print columns
@@ -48,22 +42,28 @@ def copy_osmlines():
     transaction.commit_unless_managed(using=MAP_DB)
     cursor.close()
 
-def verbose_name(obj, field_name, underscores=False):
+def osm_tag_name(obj, field_name):
     '''
-    Get verbose name of model field with or without underscores
+    Get OSM tag name of model field with or without underscores
     instead of spaces.
     '''
-    verbose_name = obj._meta.get_field_by_name(field_name)[0].verbose_name
-    if underscores:
-        return verbose_name.replace(' ', '_')
-    else:
-        return verbose_name
+    COLON_TAGS = ['mtb:scale', 'mtb:description', 'mtb:scale:uphill']
+    CLEAN_COLON_TAGS = [tag.replace(':','') for tag in COLON_TAGS]
 
-def verbose_names(obj, underscores=False):
+    if field_name in CLEAN_COLON_TAGS:
+        index = CLEAN_COLON_TAGS.index(field_name)
+        return COLON_TAGS[index]
+    else:
+        return field_name
+
+def osm_tag_names(obj, underscores=False):
     '''
     Get list of all object fields verbose names with or without underscores
     instead of spaces.
     '''
     names = obj._meta.get_all_field_names()
-    return [verbose_name(obj, name, underscores) for name in names]
+    names.remove('id')
+    names.remove('osm_id')
+    names.remove('the_geom')
+    return [osm_tag_name(obj, name) for name in names]
 
