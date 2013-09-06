@@ -1,5 +1,6 @@
+{% load i18n %}
 <header>
-    <h4>Legenda pro zoom {{ zoom }}</h4>
+    <h4>{% blocktrans %}Legend for zoom {{ zoom }}{% endblocktrans %}</h4>
 </header>
 <table>
     {% for item in legenditems %}

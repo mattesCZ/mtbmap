@@ -1,23 +1,27 @@
+{% load i18n %}
 <header>
-    <h4>Vítejte na stránkách mtbmap.cz</h4>
+    <h4>{% trans "Welcome to mtbmap.cz" %}</h4>
 </header>
+{% blocktrans %}
 <p>
-    Poskytujeme volně dostupnou mapu pro jízdu na horském kole
-    a pro pěší turistiku, která vznikla na základě dat projektu <a href="http://openstreetmap.org/" target="_blank" >OpenStreetMap</a>.
-    Tato data vytrvale obohacují nadšení uživatelé o&nbsp;nové cesty, body zájmu a jiné objekty.
-    Na našem serveru aktualizujeme tyto příspěvky jednou týdně a s určitou časovou prodlevou
-    se vykreslí i do mapy. Export map v příslušné záložce probíhá vždy z našich aktuálních
-    dat. Můžete tak získat aktuální mapu v tiskové kvalitě.
+    We offer free map for mountain biking (MTB) and hiking,
+    which is based on data of the project <a href="http://openstreetmap.org/" target="_blank" >OpenStreetMap</a>.
+    These data are consistently improved by keen contributors. They add new routes, points of interest and
+    other objects. We update these contributions normally once a week and they are reflected in
+    MTB map with some delay. Map export in corresponding tab is done with our latest data.
+    That is how you can get up-to-date map in printable resolution.
 </p>
 <p>
-    Legenda je zobrazena vždy pro aktuální přiblížení mapy a pouze pro vrstvu MTB.
-    V&nbsp;záložce profily můžete vytvářet vlastní výškové profily svých tras.
+    Legend is displayed for current map zoom and is available only for MTB layer.
+    You can use routing functionality and create altitude profiles in the tab Routes.
 </p>
 <p>
-    V případě dotazů, připomínek nebo nových nápadů neváhejte a napište nám
-    na adresu autora uvedenou v&nbsp;tiráži.
+    In case of any questions, remarks or new ideas, do not hesitate to send
+    us an email. Address is in the bottom left corner.
 </p>
 <p>
-    Další detaily, či návody jak přispívat do projektu OpenStreetMap jsou
-    na <a href="http://wiki.openstreetmap.org/wiki/MTB_map_Europe" target="_blank" >Wiki stránkách projektu</a>.
+    Other details and tutorials, which help you contribute to OpenStreetMap project
+    are on our OpenStreetMap
+    <a href="http://wiki.openstreetmap.org/wiki/MTB_map_Europe" target="_blank" >Wiki page</a>.
 </p>
+{% endblocktrans %}

@@ -1,4 +1,5 @@
 {% extends "map/base.html" %}
+{% load i18n %}
 
 {% block map %}
 <div id="map"></div>
@@ -16,18 +17,18 @@
 {% block main %}
 <div id="main-tabs" class="main-column" style="display: none">
     <header>
-    	<div id="languages">
-    		{% for lang_code, lang_name in LANGUAGES %}
-    		     <a href="{% url 'map.views.set_language' lang_code %}">{% if not lang_code == 'cs' %}{{ lang_code|upper }}{% else %}CZ{% endif %}</a>
-    		{% endfor %}
-    	</div>
+        <div id="languages">
+            {% for lang_code, lang_name in LANGUAGES %}
+                 <a href="{% url 'map.views.set_language' lang_code %}">{% if not lang_code == 'cs' %}{{ lang_code|upper }}{% else %}CZ{% endif %}</a>
+            {% endfor %}
+        </div>
         <nav>
             <ul id="main-tabs-nav">
-                <li><a href="#tab-home">O projektu</a></li>
-                <li><a href="#tab-legend">Legenda</a></li>
-                <li><a href="#tab-routes">Trasy</a></li>
-                <li><a href="#tab-places">Místa</a></li>
-                <li><a href="#tab-export">Export</a></li>
+                <li><a href="#tab-home">{% trans "About" %}</a></li>
+                <li><a href="#tab-legend">{% trans "Legend" %}</a></li>
+                <li><a href="#tab-routes">{% trans "Routes" %}</a></li>
+                <li><a href="#tab-places">{% trans "Places" %}</a></li>
+                <li><a href="#tab-export">{% trans "Export" %}</a></li>
             </ul>
         </nav>
     </header>
@@ -51,9 +52,11 @@
 
 {% block footer %}
 <footer id="footer"  class="main-column ui-widget ui-widget-content ui-corner-all">
-    Autor: Martin Tesař, osmmtb&nbsp;(at)&nbsp;gmail.com<br>
-    Zobrazení: Konformní válcové - Mercatorovo<br>
-    Data poskytuje <a href="http://openstreetmap.org/" target="_blank" >OpenStreetMap</a> a&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a> | Verze: {{ tile_layer.last_update.isoformat }} od <a href="http://download.geofabrik.de/osm/" target="_blank" >Geofabrik.de</a><br>
-    Hardware poskytuje laboratoř <a href="http://sitola.fi.muni.cz" target="_blank" > SITOLA </a>
+    {% trans "Author" %}: Martin Tesař, osmmtb&nbsp;(at)&nbsp;gmail.com<br>
+    {% trans "Projection" %}: {% trans "Conformal cylindrical - Mercator" %}<br>
+    {% trans "Data provided by" %} <a href="http://openstreetmap.org/" target="_blank" >OpenStreetMap</a> {% trans "and" %}&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a> | {% trans "Version" %}: {{ tile_layer.last_update.isoformat }} {% trans "from" %} <a href="http://download.geofabrik.de/osm/" target="_blank" >Geofabrik.de</a><br>
+    {% blocktrans with lab_link='<a href="http://sitola.fi.muni.cz" target="_blank" > SITOLA </a>' %}
+    Hardware provided by {{ lab_link }} laboratory
+    {% endblocktrans %} 
 </footer>
 {% endblock %}
