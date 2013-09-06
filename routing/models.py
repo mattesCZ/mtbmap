@@ -9,18 +9,10 @@ import simplejson as json
 from django.db import models
 from django.contrib.gis.db import models as geomodels
 from django.contrib.gis.geos import *
+from django.utils.translation import ugettext_lazy as _
 
 # Local imports
 from routing.mathfunctions import haversine
-
-SAC_SCALE_CHOICES = (
- (0, 'hiking'),
- (1, 'mountain_hiking'),
- (2, 'demanding_mountain_hiking'),
- (3, 'alpine_hiking'),
- (4, 'demanding_alpine_hiking'),
- (5, 'difficult_alpine_hiking'),
-)
 
 WEIGHTS = [1, 2, 3, 6, 12]
 MAX_WEIGHT = max(WEIGHTS)
@@ -299,8 +291,8 @@ class Way(geomodels.Model):
 
 class WeightCollection(models.Model):
     VEHICLE_CHOICES = (
-        ('foot', 'foot'),
-        ('bicycle', 'bicycle'),
+        ('foot', _('Foot')),
+        ('bicycle', _('Bicycle')),
     )
     slug = models.SlugField(max_length=40, unique=True)
     name = models.CharField(max_length=40)
@@ -504,11 +496,11 @@ class Preferred(models.Model):
 
 class Weight(models.Model):
     PREFERENCE_CHOICES = (
-        (1, 'Ideální'),
-        (2, 'Vhodné'),
-        (3, 'Nevadí'),
-        (4, 'Výjimečně'),
-        (5, 'Vůbec'),
+        (1, _('Ideal')),
+        (2, _('Suitable')),
+        (3, _('Passable')),
+        (4, _('Exceptionally')),
+        (5, _('Never')),
     )
     GUI_CHOICES = (
         ('select', 'select'),

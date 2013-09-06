@@ -6,6 +6,7 @@ import simplejson as json
 # Django imports
 from django.db import models
 from django.contrib.gis.geos import Polygon
+from django.utils.translation import ugettext_lazy as _
 
 # Local imports
 from osm_data_processing.models import OsmPoint, OsmLine
@@ -68,31 +69,31 @@ class GeojsonLayer(models.Model):
 
 class RoutingEvaluation(models.Model):
     EVALUATION_CHOICES = (
-        (1, 'Dokonalé'),
-        (2, 'Dobré'),
-        (3, 'Použitelné'),
-        (4, 'Špatné'),
-        (5, 'Nepoužitelné'),
+        (1, _('Perfect')),
+        (2, _('Good')),
+        (3, _('Usable')),
+        (4, _('Bad')),
+        (5, _('Unusable')),
     )
     SPEED_CHOICES = (
-        (1, 'Nijak neomezuje'),
-        (2, 'Pomalé, ale rád si počkám'),
-        (3, 'Pomalé, nepoužitelné'),
+        (1, _('Does not bother')),
+        (2, _('Slow, but it is worth waiting')),
+        (3, _('Slow, unusable')),
     )
     QUALITY_CHOICES = (
-        (1, 'Vyhovuje'),
-        (2, 'Dobré, ale chci více parametrů'),
-        (3, 'Dobré, ale občas po cestách, které nechci'),
-        (4, 'Špatné, nevhodně nalezená trasa'),
-        (5, 'Špatné, nechápu proč se to takto chová'),
+        (1, _('Great')),
+        (2, _('Good, but I want more parameters')),
+        (3, _('Good, but sometimes on wrong tracks')),
+        (4, _('Bad, route is completely unusable')),
+        (5, _("Bad, I don't understand it at all")),
     )
     params = models.TextField()
     linestring = models.TextField()
     timestamp = models.DateTimeField()
-    general_evaluation = models.PositiveIntegerField(verbose_name='Celkové hodnocení', choices=EVALUATION_CHOICES, default=3)
-    speed = models.PositiveIntegerField(verbose_name='Rychlost', choices=SPEED_CHOICES, default=2)
-    quality = models.PositiveIntegerField(verbose_name='Kvalita tras', choices=QUALITY_CHOICES, default=1)
-    comment = models.TextField(verbose_name='Komentář', null=True, blank=True)
+    general_evaluation = models.PositiveIntegerField(verbose_name=_('Overall rating'), choices=EVALUATION_CHOICES, default=3)
+    speed = models.PositiveIntegerField(verbose_name=_('Speed'), choices=SPEED_CHOICES, default=2)
+    quality = models.PositiveIntegerField(verbose_name=_('Route quality'), choices=QUALITY_CHOICES, default=1)
+    comment = models.TextField(verbose_name=_('Comment'), null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
 
     def __unicode__(self):
