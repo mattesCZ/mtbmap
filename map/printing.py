@@ -16,6 +16,7 @@ from PIL import Image
 
 # Django imports
 from django.db.models import Max
+from django.utils.translation import ugettext as _
 
 # Local imports
 from mtbmap.settings import MAPNIK_STYLES
@@ -249,7 +250,7 @@ def imprint_image(attribution='Data: OpenStreetMap, CC-BY-SA', width=500, height
         height = 2*height
         font_size = 2*font_size
     today = date.today().strftime('%d. %m. %Y')
-    text = 'Autor: Martin Tesař | Zobrazení: Konformní válcové, Mercatorovo | %s | Vytvořeno: %s | www.mtbmap.cz' % (attribution, today)
+    text = '%s: Martin Tesař | %s: %s | %s: %s | %s: %s | www.mtbmap.cz' % (_('Author'),_('Projection'), _('Conformal cylindrical - Mercator'), _('Data'), attribution, _('Created'), today)
     svg = '<?xml version="1.0" encoding="UTF-8"?>\n'
     svg += '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n'
     svg += '<svg width="%i" height="%i" xmlns="http://www.w3.org/2000/svg" id="scalebar">\n' % (width, height)

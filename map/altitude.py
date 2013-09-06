@@ -1,10 +1,12 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Global imports
 import math
 from numpy import *
 import zipfile
+
+# Django imports
+from django.utils.translation import ugettext as _
 
 # Local imports
 from map.printing import svg_string_to_png
@@ -215,9 +217,9 @@ def altitude2svg(nodes, sumdist):
         dist = dist + step
     # print ascending and descending
     ascdesc = ascending(nodes)
-    svg += '    <text fill="black" text-anchor="middle" x="550" y="20">Ascending: ' + str(ascdesc[0]) + ' Descending: ' + str(ascdesc[1]) + '</text>\n'
+    svg += '    <text fill="black" text-anchor="middle" x="550" y="20">%s: %i %s: %i</text>\n' % (_('Ascending'), ascdesc[0], _('Descending'), ascdesc[1])
 #    svg += '    <text fill="black" x="550" y="20">Descending: ' + str(ascdesc[1]) + '</text>\n'
-    svg += '    <text fill="black" x="2" y="25">Height (m)</text>\n'
+    svg += '    <text fill="black" x="2" y="25">%s (m)</text>\n' % _('Height')
     # print SVG end element
     svg += '</svg>'
     return svg

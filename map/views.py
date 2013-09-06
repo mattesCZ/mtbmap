@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Global imports
@@ -13,6 +12,7 @@ from django.template.response import TemplateResponse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils import translation
+from django.utils.translation import ugettext as _
 from django.contrib.gis.geos import Point, LineString
 from django.conf import settings
 
@@ -188,12 +188,12 @@ def altitudeprofile(request):
                 return response
             else:
                 if ret==-1:
-                    message = 'Omlouváme se, nemáme výšková data pro žádanou oblast nebo její část.'
+                    message = _('Sorry, we do not have height data for the area that you have requested.')
                     return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
                 else:
                     return render_to_response('map/height.html', {'height': ret}, context_instance=RequestContext(request))
         else:
-            message = 'Nezadali jste žádný bod.'
+            message = _('You have not set any point.')
             return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
 
 def creategpx(request):
@@ -203,7 +203,7 @@ def creategpx(request):
     try:
         params = request.POST['profile-params']
     except (KeyError, 'no points posted'):
-        message = 'No route params posted.'
+        message = _('No route parameters posted.')
         return render_to_response('error.html', {'message': message},
                                    context_instance=RequestContext(request))
     else:
@@ -219,7 +219,7 @@ def creategpx(request):
             response.write(gpx)
             return response
         else:
-            message = 'Nezadali jste žádný bod.'
+            message = _('You have not set any point.')
             return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
 
 def getheight(request):
@@ -257,7 +257,7 @@ def gettemplate(request):
     try:
         params = json.loads(request.POST['params'])
     except (KeyError, 'missing params'):
-        message = 'No route parameters posted.'
+        message = _('No route parameters posted.')
         return render_to_response('error.html', {'message': message},
                                    context_instance=RequestContext(request))
     else:
@@ -300,7 +300,7 @@ def evaluation(request):
         evaluation = form.save(commit=False)
         evaluation.timestamp = datetime.now()
         evaluation.save()
-        result['html'] = '<div id="result-dialog">Děkujeme za vaše hodnocení</div>'
+        result['html'] = '<div id="result-dialog">%s</div>' % _('Thank you for your evaluation')
     else:
         print 'invalid form'
         print form.errors
