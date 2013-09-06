@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-04 16:56+0200\n"
+"POT-Creation-Date: 2013-09-06 10:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Martin Tesar <osmmtb@gmail.com>\n"
 "Language-Team: Czech <>\n"
@@ -16,14 +16,354 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/map/base.html:9
+#: templates/404.html:4 templates/map/base.html:9
 msgid "MTB map of Europe"
 msgstr "MTB mapa Evropy"
 
-#: templates/map/base.html:30
+#: templates/404.html:4 templates/404.html.py:7
+msgid "Page not found"
+msgstr "Stránka nebyla nalezena"
+
+#: templates/404.html:11
+msgid "Sorry, requested url was not found."
+msgstr "Omlouváme se, požadovaná stránka nebyla nalezena."
+
+#: templates/500.html:6 templates/map/base.html:30
 msgid "MTB map"
 msgstr "MTB mapa"
 
-#: templates/map/base.html:33
+#: templates/500.html:6 templates/500.html.py:9
+msgid "Something is wrong!"
+msgstr "Něco se porouchalo!"
+
+#: templates/500.html:11
+msgid ""
+"It looks as we have broken something on our system. Sorry for any "
+"inconvenience. We are trying to fix it."
+msgstr ""
+"Vypadá to, že jsme v našem systému něco pokazili. Omlouváme se za "
+"komplikace. Pokusíme se to opravit."
+
+#: templates/map/base.html:33 templates/map/map.html:55
 msgid "Author"
 msgstr "Autor"
+
+#: templates/map/export.html:3
+msgid "Map export"
+msgstr "Export mapového pole"
+
+#: templates/map/export.html:7
+msgid "Export bounds"
+msgstr "Hraniční souřadnice"
+
+#: templates/map/export.html:16
+msgid "Set per current view"
+msgstr "Nastavit podle zobrazení"
+
+#: templates/map/export.html:19
+msgid "Zoom level"
+msgstr "Přiblížení"
+
+#: templates/map/export.html:27
+msgid "Map image size"
+msgstr "Velikost mapového pole"
+
+#: templates/map/export.html:33
+msgid "Map elements"
+msgstr "Kompoziční prvky"
+
+#: templates/map/export.html:34
+msgid "Name"
+msgstr "Název mapy"
+
+#: templates/map/export.html:36
+msgid "Scale"
+msgstr "Měřítko"
+
+#: templates/map/export.html:38 templates/map/map.html:28
+msgid "Legend"
+msgstr "Legenda"
+
+#: templates/map/export.html:40
+msgid "Impressum"
+msgstr "Tiráž"
+
+#: templates/map/export.html:42
+msgid "Display route"
+msgstr "Zobrazit trasu"
+
+#: templates/map/export.html:47
+msgid "Resolution for print"
+msgstr "Rozlišení pro tisk"
+
+#: templates/map/export.html:49 templates/map/map.html:31
+msgid "Export"
+msgstr "Export"
+
+#: templates/map/height.html:9
+#, python-format
+msgid ""
+"\n"
+"    You have sent just one coordinate, its height is %(height)s meters above "
+"sea level.\n"
+"    "
+msgstr ""
+"\n"
+"    Poslali jste pouze jeden bod, jeho výška je %(height)s metrů nad mořem.\n"
+"    "
+
+#: templates/map/home.html:3
+msgid "Welcome to mtbmap.cz"
+msgstr "Vítejte na stránkách mtbmap.cz"
+
+#: templates/map/home.html:5
+msgid ""
+"\n"
+"<p>\n"
+"    We offer free map for mountain biking (MTB) and hiking,\n"
+"    which is based on data of the project <a href=\"http://openstreetmap.org/"
+"\" target=\"_blank\" >OpenStreetMap</a>.\n"
+"    These data are consistently improved by keen contributors. They add new "
+"routes, points of interest and\n"
+"    other objects. We update these contributions normally once a week and "
+"they are reflected in\n"
+"    MTB map with some delay. Map export in corresponding tab is done with "
+"our latest data.\n"
+"    That is how you can get up-to-date map in printable resolution.\n"
+"</p>\n"
+"<p>\n"
+"    Legend is displayed for current map zoom and is available only for MTB "
+"layer.\n"
+"    You can use routing functionality and create altitude profiles in the "
+"tab Routes.\n"
+"</p>\n"
+"<p>\n"
+"    In case of any questions, remarks or new ideas, do not hesitate to send\n"
+"    us an email. Address is in the bottom left corner.\n"
+"</p>\n"
+"<p>\n"
+"    Other details and tutorials, which help you contribute to OpenStreetMap "
+"project\n"
+"    are on our OpenStreetMap\n"
+"    <a href=\"http://wiki.openstreetmap.org/wiki/MTB_map_Europe\" target="
+"\"_blank\" >Wiki page</a>.\n"
+"</p>\n"
+msgstr ""
+"\n"
+"<p>\n"
+"    Poskytujeme volně dostupnou mapu pro jízdu na horském kole\n"
+"    a pro pěší turistiku, která vznikla na základě dat projektu <a href="
+"\"http://openstreetmap.org/\" target=\"_blank\" >OpenStreetMap</a>.    Tato "
+"data vytrvale obohacují nadšení uživatelé o&nbsp;nové cesty, body zájmu a "
+"jiné objekty.\n"
+"    other objects. We update these contributions normally once a week "
+"and     Na našem serveru aktualizujeme tyto příspěvky jednou týdně a s "
+"určitou časovou prodlevou\n"
+"    se vykreslí i do mapy. Export map v příslušné záložce probíhá vždy z "
+"našich aktuálních\n"
+"    dat. Můžete tak získat aktuální mapu v tiskové kvalitě.\n"
+"</p>\n"
+"<p>\n"
+"    Legenda je zobrazena vždy pro aktuální přiblížení mapy a pouze pro "
+"vrstvu MTB.\n"
+"    V&nbsp;záložce Trasy najdete funkce vyhledávání tras a vytváření "
+"výškových profilů svých tras.\n"
+"</p>\n"
+"<p>\n"
+"    V případě dotazů, připomínek nebo nových nápadů neváhejte a napište nám\n"
+"    na adresu autora uvedenou v&nbsp;tiráži.\n"
+"</p>\n"
+"<p>\n"
+"    Další detaily, či návody jak přispívat do projektu OpenStreetMap jsou\n"
+"    na našich <a href=\"http://wiki.openstreetmap.org/wiki/MTB_map_Europe\" "
+"target=\"_blank\" >Wiki stránkách</a>.\n"
+"</p>\n"
+
+#: templates/map/legend.html:3
+#, python-format
+msgid "Legend for zoom %(zoom)s"
+msgstr "Legenda pro přiblížení (zoom) %(zoom)s"
+
+#: templates/map/map.html:27
+msgid "About"
+msgstr "O projektu"
+
+#: templates/map/map.html:29
+msgid "Routes"
+msgstr "Trasy"
+
+#: templates/map/map.html:30
+msgid "Places"
+msgstr "Místa"
+
+#: templates/map/map.html:56
+msgid "Projection"
+msgstr "Zobrazení"
+
+#: templates/map/map.html:56
+msgid "Conformal cylindrical - Mercator"
+msgstr "Konformní válcové - mercatorovo"
+
+#: templates/map/map.html:57
+msgid "Data provided by"
+msgstr "Data poskytuje"
+
+#: templates/map/map.html:57
+msgid "and"
+msgstr "a"
+
+#: templates/map/map.html:57
+msgid "Version"
+msgstr "Verze"
+
+#: templates/map/map.html:57
+msgid "from"
+msgstr "od"
+
+#: templates/map/map.html:58
+#, python-format
+msgid ""
+"\n"
+"    Hardware provided by %(lab_link)s laboratory\n"
+"    "
+msgstr ""
+"\n"
+"    Hardware poskytuje laboratoř %(lab_link)s\n"
+"    "
+
+#: templates/map/places.html:3
+msgid "Enter place name, address or coordinates"
+msgstr "Zadejte název místa, adresu nebo souřadnice"
+
+#: templates/map/places.html:6
+msgid "Search"
+msgstr "Hledat"
+
+#: templates/map/places.html:9
+msgid "Search is provided by OpenStreetmap"
+msgstr "Vyhledávání využívá služby OpenStreetMap"
+
+#: templates/map/routes.html:6
+msgid "Routing"
+msgstr "Vyhledávání tras"
+
+#: templates/map/routes.html:7
+msgid "Draw"
+msgstr "Vlastní"
+
+#: templates/map/routes.html:8
+msgid "Upload GPX"
+msgstr "Nahrát GPX"
+
+#: templates/map/routes.html:15
+msgid "Set route markers directly in map"
+msgstr "Zadejte přímo do mapy body, kterými vést trasu"
+
+#: templates/map/routes.html:16
+msgid "Our routing data cover Czech Republic only"
+msgstr "V současné době je pokryto pouze území České republiky"
+
+#: templates/map/routes.html:18
+msgid "Routing parameters:"
+msgstr "Parametry vyhledávání"
+
+#: templates/map/routes.html:32
+msgid "FIND ROUTE"
+msgstr "HLEDAT TRASU"
+
+#: templates/map/routes.html:34
+msgid "Reset route"
+msgstr "Smazat trasu"
+
+#: templates/map/routes.html:37
+msgid "Load parameters:"
+msgstr "Nahrát parametry:"
+
+#: templates/map/routes.html:39
+msgid "Save parameters:"
+msgstr "Uložit parametry:"
+
+#: templates/map/routes.html:43
+msgid "Save"
+msgstr "Uložit:"
+
+#: templates/map/routes.html:48
+msgid "Routing results"
+msgstr "Výsledky vyhledávání"
+
+#: templates/map/routes.html:54 templates/map/routes.html.py:99
+#: templates/map/routes.html:121
+msgid "Create altitude profile"
+msgstr "Vytvořit profil"
+
+#: templates/map/routes.html:59 templates/map/routes.html.py:104
+msgid "Create GPX"
+msgstr "Vytvořit GPX"
+
+#: templates/map/routes.html:62
+msgid "Change parameters"
+msgstr "Změnit parametry"
+
+#: templates/map/routes.html:63
+msgid "New search"
+msgstr "Nové hledání"
+
+#: templates/map/routes.html:65
+msgid "Evaluate routing"
+msgstr "Ohodnotit vyhledávání"
+
+#: templates/map/routes.html:66
+msgid "Evaluation of route"
+msgstr "Ohodnocení vyhledané trasy"
+
+#: templates/map/routes.html:70
+msgid ""
+"\n"
+"                            Please, evaluate the result of routing. Add a "
+"comment if offered\n"
+"                            choices are not sufficient. Thank you.\n"
+"                            "
+msgstr ""
+"\n"
+"                            Ohodnoťte, prosím, jak vám výsledek vyhledávání "
+"tras vyhovuje.\n"
+"                            Doplňte komentář, pokud nabízené možnosti nejsou "
+"dostatečné.\n"
+"                            Děkujeme.\n"
+"                            "
+
+#: templates/map/routes.html:83
+msgid "Send"
+msgstr "Odeslat"
+
+#: templates/map/routes.html:89
+msgid "Set your route points directly in map"
+msgstr "Zadejte trasu přímo do mapy"
+
+#: templates/map/routes.html:93 templates/map/routes.html.py:115
+msgid "Zoom to route"
+msgstr "Zobrazit podle trasy"
+
+#: templates/map/routes.html:94 templates/map/routes.html.py:116
+msgid "Reset"
+msgstr "Smazat"
+
+#: templates/map/routes.html:109
+msgid "Upload your own GPX file"
+msgstr "Nahrajte vlastní GPX soubor"
+
+#: templates/map/routingparams.html:2
+msgid "Global settings"
+msgstr "Hlavní nastavení"
+
+#: templates/map/routingparams.html:6
+msgid "Vehicle:"
+msgstr "Způsob dopravy:"
+
+#: templates/map/routingparams.html:16
+msgid "Consider oneways:"
+msgstr "Zohlednit jednosměrky:"
+
+#: templates/map/routingparams.html:21
+msgid "Preferred ways"
+msgstr "Preferované cesty"
