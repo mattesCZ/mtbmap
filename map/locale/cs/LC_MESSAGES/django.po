@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-06 10:08+0200\n"
+"POT-Creation-Date: 2013-09-06 13:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Martin Tesar <osmmtb@gmail.com>\n"
 "Language-Team: Czech <>\n"
@@ -15,6 +15,122 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: altitude.py:220
+msgid "Ascending"
+msgstr "Stoupání"
+
+#: altitude.py:220
+msgid "Descending"
+msgstr "Klesání"
+
+#: altitude.py:222
+msgid "Height"
+msgstr "Výška"
+
+#: models.py:72
+msgid "Perfect"
+msgstr "Dokonalé"
+
+#: models.py:73
+msgid "Good"
+msgstr "Dobré"
+
+#: models.py:74
+msgid "Usable"
+msgstr "Použitelné"
+
+#: models.py:75
+msgid "Bad"
+msgstr "Špatné"
+
+#: models.py:76
+msgid "Unusable"
+msgstr "Nepoužitelné"
+
+#: models.py:79
+msgid "Does not bother"
+msgstr "Nijak neomezuje"
+
+#: models.py:80
+msgid "Slow, but it is worth waiting"
+msgstr "Pomalé, ale rád si počkám"
+
+#: models.py:81
+msgid "Slow, unusable"
+msgstr "Pomalé, nepoužitelné"
+
+#: models.py:84
+msgid "Great"
+msgstr "Vyhovuje"
+
+#: models.py:85
+msgid "Good, but I want more parameters"
+msgstr "Dobré, ale chci více parametrů"
+
+#: models.py:86
+msgid "Good, but sometimes on wrong tracks"
+msgstr "Dobré, ale občas po cestách, které nechci"
+
+#: models.py:87
+msgid "Bad, route is completely unusable"
+msgstr "Špatné, nevhodně nalezená trasa"
+
+#: models.py:88
+msgid "Bad, I don't understand it at all"
+msgstr "Špatné, nechápu proč se to takto chová"
+
+#: models.py:93
+msgid "Overall rating"
+msgstr "Celkové hodnocení"
+
+#: models.py:94
+msgid "Speed"
+msgstr "Rychlost"
+
+#: models.py:95
+msgid "Route quality"
+msgstr "Kvalita tras"
+
+#: models.py:96
+msgid "Comment"
+msgstr "Komentář"
+
+#: printing.py:253 templates/map/base.html:33 templates/map/map.html:55
+msgid "Author"
+msgstr "Autor"
+
+#: printing.py:253 templates/map/map.html:56
+msgid "Projection"
+msgstr "Zobrazení"
+
+#: printing.py:253 templates/map/map.html:56
+msgid "Conformal cylindrical - Mercator"
+msgstr "Konformní válcové - mercatorovo"
+
+#: printing.py:253
+msgid "Data"
+msgstr "Data"
+
+#: printing.py:253
+msgid "Created"
+msgstr "Vytvořeno"
+
+#: views.py:191
+msgid "Sorry, we do not have height data for the area that you have requested."
+msgstr "Omlouváme se, nemáme výšková data pro žádanou oblast nebo její část."
+
+#: views.py:196 views.py:222
+msgid "You have not set any point."
+msgstr "Nezadali jste žádný bod."
+
+#: views.py:206 views.py:260
+msgid "No route parameters posted."
+msgstr "Nebyly zadány žádné parametry trasy."
+
+#: views.py:303
+msgid "Thank you for your evaluation"
+msgstr "Děkujeme za vaše hodnocení"
 
 #: templates/404.html:4 templates/map/base.html:9
 msgid "MTB map of Europe"
@@ -43,10 +159,6 @@ msgid ""
 msgstr ""
 "Vypadá to, že jsme v našem systému něco pokazili. Omlouváme se za "
 "komplikace. Pokusíme se to opravit."
-
-#: templates/map/base.html:33 templates/map/map.html:55
-msgid "Author"
-msgstr "Autor"
 
 #: templates/map/export.html:3
 msgid "Map export"
@@ -195,14 +307,6 @@ msgstr "Trasy"
 #: templates/map/map.html:30
 msgid "Places"
 msgstr "Místa"
-
-#: templates/map/map.html:56
-msgid "Projection"
-msgstr "Zobrazení"
-
-#: templates/map/map.html:56
-msgid "Conformal cylindrical - Mercator"
-msgstr "Konformní válcové - mercatorovo"
 
 #: templates/map/map.html:57
 msgid "Data provided by"
