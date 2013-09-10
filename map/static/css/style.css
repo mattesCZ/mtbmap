@@ -20,6 +20,16 @@
     border: none;
     background: none;
 }
+#languages {
+	padding: 2px 5px 0;
+}
+#languages .active {
+	font-weight: bold;
+}
+#languages a {
+	text-decoration: underline;
+	font-weight: normal;
+}
 .main-tab-panel, .subtab-panel {
     overflow: auto;
 }

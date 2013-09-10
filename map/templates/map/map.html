@@ -19,7 +19,11 @@
     <header>
         <div id="languages">
             {% for lang_code, lang_name in LANGUAGES %}
-                 <a href="{% url 'map.views.set_language' lang_code %}">{% if not lang_code == 'cs' %}{{ lang_code|upper }}{% else %}CZ{% endif %}</a>
+                {% ifequal lang_code LANGUAGE_CODE %}
+                    <span class="active">{{ lang_name }}</span>
+                {% else %}
+                    <a href="{% url 'map.views.set_language' lang_code %}">{{ lang_name }}</a>
+                {% endifequal %}
             {% endfor %}
         </div>
         <nav>
