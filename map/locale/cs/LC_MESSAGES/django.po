@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-07 17:08+0200\n"
+"POT-Creation-Date: 2013-09-10 15:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Martin Tesar <osmmtb@gmail.com>\n"
 "Language-Team: Czech <>\n"
@@ -367,59 +367,63 @@ msgid "Our routing data cover Czech Republic only"
 msgstr "V současné době je pokryto pouze území České republiky"
 
 #: templates/map/routes.html:18
-msgid "Routing parameters:"
-msgstr "Parametry vyhledávání"
+msgid "Choose some routing profile:"
+msgstr "Vyberte vyhledávací profil:"
 
-#: templates/map/routes.html:32
+#: templates/map/routes.html:25
+msgid "You can further refine search parameters:"
+msgstr "Můžete dále upřesnit vyhledávací parametry:"
+
+#: templates/map/routes.html:33
 msgid "FIND ROUTE"
 msgstr "HLEDAT TRASU"
 
-#: templates/map/routes.html:34
+#: templates/map/routes.html:35
 msgid "Reset route"
 msgstr "Smazat trasu"
 
-#: templates/map/routes.html:37
+#: templates/map/routes.html:38
 msgid "Load parameters:"
 msgstr "Nahrát parametry:"
 
-#: templates/map/routes.html:39
+#: templates/map/routes.html:40
 msgid "Save parameters:"
 msgstr "Uložit parametry:"
 
-#: templates/map/routes.html:43
+#: templates/map/routes.html:44
 msgid "Save"
 msgstr "Uložit:"
 
-#: templates/map/routes.html:48
+#: templates/map/routes.html:49
 msgid "Routing results"
 msgstr "Výsledky vyhledávání"
 
-#: templates/map/routes.html:54 templates/map/routes.html.py:99
-#: templates/map/routes.html:121
+#: templates/map/routes.html:55 templates/map/routes.html.py:100
+#: templates/map/routes.html:122
 msgid "Create altitude profile"
 msgstr "Vytvořit profil"
 
-#: templates/map/routes.html:59 templates/map/routes.html.py:104
+#: templates/map/routes.html:60 templates/map/routes.html.py:105
 msgid "Create GPX"
 msgstr "Vytvořit GPX"
 
-#: templates/map/routes.html:62
+#: templates/map/routes.html:63
 msgid "Change parameters"
 msgstr "Změnit parametry"
 
-#: templates/map/routes.html:63
+#: templates/map/routes.html:64
 msgid "New search"
 msgstr "Nové hledání"
 
-#: templates/map/routes.html:65
+#: templates/map/routes.html:66
 msgid "Evaluate routing"
 msgstr "Ohodnotit vyhledávání"
 
-#: templates/map/routes.html:66
+#: templates/map/routes.html:67
 msgid "Evaluation of route"
 msgstr "Ohodnocení vyhledané trasy"
 
-#: templates/map/routes.html:70
+#: templates/map/routes.html:71
 msgid ""
 "\n"
 "                            Please, evaluate the result of routing. Add a "
@@ -435,23 +439,23 @@ msgstr ""
 "                            Děkujeme.\n"
 "                            "
 
-#: templates/map/routes.html:83
+#: templates/map/routes.html:84
 msgid "Send"
 msgstr "Odeslat"
 
-#: templates/map/routes.html:89
+#: templates/map/routes.html:90
 msgid "Set your route points directly in map"
 msgstr "Zadejte trasu přímo do mapy"
 
-#: templates/map/routes.html:93 templates/map/routes.html.py:115
+#: templates/map/routes.html:94 templates/map/routes.html.py:116
 msgid "Zoom to route"
 msgstr "Zobrazit podle trasy"
 
-#: templates/map/routes.html:94 templates/map/routes.html.py:116
+#: templates/map/routes.html:95 templates/map/routes.html.py:117
 msgid "Reset"
 msgstr "Smazat"
 
-#: templates/map/routes.html:109
+#: templates/map/routes.html:110
 msgid "Upload your own GPX file"
 msgstr "Nahrajte vlastní GPX soubor"
 
@@ -481,7 +485,10 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"    Nastavte vlastní priority jednotlivých parametrů cest. Detailní informace "
-"k jednotlivým parametrům jsou na <a href=\"%(link)s\" target=\"_blank\">Wiki"
-"</a> projektu OpenStreetMap.\n"
+"    Nastavte vlastní priority jednotlivých parametrů cest. Detailní "
+"informace k jednotlivým parametrům jsou na <a href=\"%(link)s\" target="
+"\"_blank\">Wiki</a> projektu OpenStreetMap.\n"
 "    "
+
+#~ msgid "Routing parameters:"
+#~ msgstr "Parametry vyhledávání"

@@ -15,13 +15,14 @@
                 <h4>{% trans "Set route markers directly in map" %}</h4>
                 <h5>{% trans "Our routing data cover Czech Republic only" %}</h5>
                 <form id="routes-params">
-                    <h5>{% trans "Routing parameters:" %}</h5>
+                    <h5>{% trans "Choose some routing profile:" %}</h5>
                     <div id="weights_template">
                         {% for wc in weight_collections %}
                             <input id="weights_template_{{ wc.id }}" value="{{ wc.id }}" name="weights__template" type="radio" />
                             <label for="weights_template_{{ wc.id }}">{{ wc.name }}</label>
                         {% endfor %}
                     </div>
+                    <h5>{% trans "You can further refine search parameters:" %}</h5>
                     <div id="routes-accordion">
                         {# map/routingparams.html loaded on page load/refresh #}
                     </div>
