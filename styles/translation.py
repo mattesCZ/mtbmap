@@ -31,7 +31,7 @@ def sync_legend_translation(filename):
         for row in reader:
             legend_items = LegendItem.objects.filter(title=row[0])
             lookup_dict = {}
-            for i in range(1, len(columns[1:])):
+            for i in range(1, len(columns[1:]) + 1):
                 lookup_dict[columns[i]] = row[i]
             legend_items.update(**lookup_dict)
         print 'Legend names synced successfully'
