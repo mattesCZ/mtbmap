@@ -81,7 +81,7 @@ hr { /*should be rewritten for html5*/
 }
 #weights_template {
 	width: 96%;
-	margin: 1px 7px;
+	margin: 1px 7px 8px;
 }
 .line-buttons {
     display: none;
