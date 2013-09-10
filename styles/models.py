@@ -8,6 +8,7 @@ from string import upper
 from os import remove, system
 import os.path
 import PIL.Image
+from transmeta import TransMeta
 
 # Django imports
 from django.db import models
@@ -1679,9 +1680,12 @@ class Legend(models.Model):
 
 
 class LegendItem(models.Model):
+    __metaclass__ = TransMeta
+
     SCALE_CHOICES = zip(range(0, 21), range(0, 21))
 
     title = models.CharField(max_length=200, null=True, blank=True)
+    name = models.CharField(max_length=200, null=True, blank=True)
     image = models.ImageField(upload_to='legend/', height_field='height', width_field='width', null=True, blank=True)
     image_highres = models.ImageField(upload_to='legend/', height_field='height_highres', width_field='width_highres', null=True, blank=True)
     title_image = models.ImageField(upload_to='legend/', height_field='title_height', width_field='title_width', null=True, blank=True)
@@ -1699,9 +1703,11 @@ class LegendItem(models.Model):
     title_height_highres = models.PositiveIntegerField(null=True, blank=True)
     title_width_highres = models.PositiveIntegerField(null=True, blank=True)
 
-
     legend = models.ForeignKey('Legend')
     rules = models.ManyToManyField('Rule', through='LegendItemRule')
+
+    class Meta:
+        translate = ('name',)
 
     def __unicode__(self):
         return 'ID: %i, %s, %i' % (self.id, self.title, self.zoom)
