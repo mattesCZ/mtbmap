@@ -98,7 +98,7 @@ _airport,Airport,Letiště
 primary-road-under-construction,Primary road under construction,Silnice 1. třídy ve výstavbě
 _information-board,Information board,Informační tabule
 _town-pop-50-001-to-100-000,"Town, pop. 50 001 to 100 000",Město 50 001-100 000 obyv.
-_town-pop-less-than-10-000,"Town, pop. less than 10 000",Město s méně než 10 000
+_town-pop-less-than-10-000,"Town, pop. less than 10 000",Město s méně než 10 000 obyv.
 _parking-aisle,Parking aisle,Parkovací pruh
 subway,Subway,Metro
 steps,Steps,Schodiště
@@ -321,5 +321,5 @@ atm,Atm,Bankomat
 bank,Bank,Banka
 partially-paved-track,Partially paved track,Částečně zpevněná cesta
 motorway-or-trunk-road-under-construction,Motorway or trunk road under construction,Dálnice nebo rychlostní silnice ve výstavbě
-town-pop-less-than-10-000,"Town, pop. less than 10 000",Město s méně než 10 000
+town-pop-less-than-10-000,"Town, pop. less than 10 000",Město s méně než 10 000 obyv.
 unclassified-road-bridge,Unclassified road bridge,Most na silnici s chybějící klasifikací
