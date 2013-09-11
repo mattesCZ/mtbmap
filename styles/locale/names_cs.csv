@@ -1,329 +1,325 @@
 title,name_en,name_cs
-!akvadukt,aquaduct,!akvadukt
-!archeologické naleziště,archeological site,!archeologické naleziště
-"!brána, závora",gate,"!brána, závora"
-!cyklistická prodejna,cycling shop,!cyklistická prodejna
-!částečně zpevněná cesta,partially paved track,!částečně zpevněná cesta
-!hlavní město,capital city,!hlavní město
-!hrad,defensive castle,!hrad
-"!hrad, zámek",castle,"!hrad, zámek"
-!hráz,dam,!hráz
-!infocentrum,information office,!infocentrum
-!informační tabule,information board,!informační tabule
-!jeskyně,cave entrance,!jeskyně
-!klášter,monastery,!klášter
-!kruhový objezd,roundabout,!kruhový objezd
-!křížek,wayside cross,!křížek
-!letiště,airport,!letiště
-!maják,lighthouse,!maják
-!město 10 001-50 000 obyv.,"town, pop. 10 001 to 50 000",!město 10 001-50 000 obyv.
-!město 50 001-100 000 obyv.,"town, pop. 50 001 to 100 000",!město 50 001-100 000 obyv.
-!město s méně než 10 000,"town, pop. less than 10 000",!město s méně než 10 000
-!město s méně než 50 000 obyv.,"town, pop. less than 50 000",!město s méně než 50 000 obyv.
-!město s více než 100 000 obyv.,"city, pop. more than 100 000",!město s více než 100 000 obyv.
-!město s více než 50 000 obyv.,"town, pop. more than 50 000",!město s více než 50 000 obyv.
-!městská rychlodráha,light rail,!městská rychlodráha
-!metro,subway,!metro
-!most v pěší zóně,pedestrian area bridge,!most v pěší zóně
-!náboženský chrám,place of worship,!náboženský chrám
-!nezpevněná cesta hlinitá,mud unpaved track,!nezpevněná cesta hlinitá
-!nezpevněná cesta travnatá,grass unpaved track,!nezpevněná cesta travnatá
-!ostatní nezpevněná cesta,other unpaved track,!ostatní nezpevněná cesta
-!ostatní silnice ve výstavbě,other road under construction,!ostatní silnice ve výstavbě
-!ostrov,island,!ostrov
-!památník,monument,!památník
-!památný strom,significant tree,!památný strom
-!parkovací pruh,parking aisle,!parkovací pruh
-!pěší zóna,pedestrian area,!pěší zóna
-!plavební kanál,canal,!plavební kanál
-!podchod,underpass,!podchod
-!pomník,memorial,!pomník
-!popis nádraží,railway station label,!popis nádraží
-!popis vrstevnic po 100 metrech,contours (100 m) label,!popis vrstevnic po 100 metrech
-!popis vrstevnic po 50 metrech,contours (50 m) label,!popis vrstevnic po 50 metrech
-!popis zastávky tramvají,tram stop label,!popis zastávky tramvají
-!popis železniční zastávky,railway stop label,!popis železniční zastávky
-!potok,stream,!potok
-!pramen,spring,!pramen
-!prostranství,highway area,!prostranství
-!příjezd na ranvej,runway access road,!příjezd na ranvej
-!přistávací plocha,runway,!přistávací plocha
-"!přivaděč dálnice, rychlostní silnice",highway or trunk road link,"!přivaděč dálnice, rychlostní silnice"
-!přivaděč na dálnici nebo rychlostní silnici,highway or trunk road link,!přivaděč na dálnici nebo rychlostní silnici
-!přivaděč na silnici 1. třídy,primary road link,!přivaděč na silnici 1. třídy
-!přivaděč na silnici 2. třídy,secondary road link,!přivaděč na silnici 2. třídy
-!přivaděč silnice 1. třídy,primary road link,!přivaděč silnice 1. třídy
-!přivaděč silnice 2. třídy,secondary road link,!přivaděč silnice 2. třídy
-!rozhledna,observation tower,!rozhledna
-!řeka,river,!řeka
-!silnice 3. třídy ve výstavbě,tertiary road under construction,!silnice 3. třídy ve výstavbě
-!sloupek proti vjezdu,bollard,!sloupek proti vjezdu
-"!sportoviště, dráha",sports area,"!sportoviště, dráha"
-!stezka,track,!stezka
-!stezka např. pro koně,bridleway,!stezka např. pro koně
-!stínování reliéfu,hillshading,!stínování reliéfu
-!štěrková nebo kamenitá cesta,gravel track,!štěrková nebo kamenitá cesta
-!tabule s mapou,map board,!tabule s mapou
-!terminál letiště,airport terminal,!terminál letiště
-!točna pro auta,turning circle,!točna pro auta
-!tunel pro tramvaj,tram tunnel,!tunel pro tramvaj
-!tunel silnice pro dopravní obsluhu,service tunnel,!tunel silnice pro dopravní obsluhu
-!větrný mlýn,windmill,!větrný mlýn
-!vrchol,peak,!vrchol
-!vysílač,transmission tower,!vysílač
-!zámek,stately castle,!zámek
-!Zemský povrch,dry land,!Zemský povrch
-!zpevněná cesta,paved track,!zpevněná cesta
-!zřícenina,ruins,!zřícenina
-!železniční přejezd,railway crossing,!železniční přejezd
-!železniční stanice,railway station,!železniční stanice
-ambasáda,embassy,ambasáda
-archeologické naleziště,archeological site,archeologické naleziště
-autobusové nádraží,bus station,autobusové nádraží
-banka,bank,banka
-bankomat,atm,bankomat
-bar,bar,bar
-"brána, závora",gate,"brána, závora"
-budova,building,budova
-bunkr,bunker,bunkr
-"cesta pokračuje, pouze není zmapovaná","way continues, not mapped yet","cesta pokračuje, pouze není zmapovaná"
-cyklistická prodejna,cycling shop,cyklistická prodejna
-cyklostezka,cycleway,cyklostezka
-cyklotrasa,cycling route,cyklotrasa
-částečně zpevněná cesta,partially paved track,částečně zpevněná cesta
-čerpací stanice,petrol station,čerpací stanice
-dálnice nebo rychlostní silnice ve výstavbě,motorway or trunk road under construction,dálnice nebo rychlostní silnice ve výstavbě
-"dálnice, rychlostní silnice","motorway, trunk road","dálnice, rychlostní silnice"
-dálniční most,motorway bridge,dálniční most
-dálniční tunel,motorway tunnel,dálniční tunel
-danger,dangeruos spot,nebezpečné místo
-divadlo,theatre,divadlo
-důl,mine,důl
-elektrické vedení nízkého napětí,high voltage power line,elektrické vedení nízkého napětí
-elektrické vedení vysokého napětí,low voltage power line,elektrické vedení vysokého napětí
-elektrifikovaná železnice,electrified railway,elektrifikovaná železnice
-farma,farm,farma
-golfové hřiště,golf court,golfové hřiště
-gondolová lanovka,gondola,gondolová lanovka
-historická železnice,historic railway,historická železnice
-hlavní město,capital city,hlavní město
-horská chata,alpine hut,horská chata
-horská služba,mountain rescue service,horská služba
-hospoda,pub,hospoda
-hostel,hostel,hostel
-hotel,hotel,hotel
-hrad,defensive castle,hrad
-hráz,dam,hráz
-hřbitov,cemetery,hřbitov
-hřiště,playground,hřiště
-chodník,footway,chodník
-chrám sikhů,sikh temple,chrám sikhů
-Chráněná krajinná oblast,natural protected area,Chráněná krajinná oblast
-infocentrum,information office,infocentrum
-informační tabule,information board,informační tabule
-jednosměrná ulice,oneway street,jednosměrná ulice
-jeskyně,cave entrance,jeskyně
-jez,weir,jez
-kabinová lanovka,cable car,kabinová lanovka
-kavárna,cafe,kavárna
-kemp,campsite,kemp
-kemp pro karavany,caravan site,kemp pro karavany
-kino,cinema,kino
-klášter,monastery,klášter
-knihovna,library,knihovna
-koleje tramvají,tram,koleje tramvají
-kostel,church,kostel
-kruhový objezd,roundabout,kruhový objezd
-křížek,wayside cross,křížek
-ledovec,glacier,ledovec
-lékárna,pharmacy,lékárna
-lékařské středisko,doctors,lékařské středisko
-les,forest,les
-letiště,airport,letiště
-louka,meadow,louka
-lyžařský vlek,drag lift,lyžařský vlek
-maják,lighthouse,maják
-město 10 001-50 000 obyv.,"town, pop. 10 001 to 50 000",město 10 001-50 000 obyv.
-město 50 001-100 000 obyv.,"town, pop. 50 001 to 100 000",město 50 001-100 000 obyv.
-město s méně než 10 000,"town, pop. less than 10 000",město s méně než 10 000
-město s více než 100 000 obyv.,"city, pop. more than 100 000",město s více než 100 000 obyv.
-mešita,mosque,mešita
-metro,subway,metro
-metro na povrchu,subway overground,metro na povrchu
-místo na piknik,picnic site,místo na piknik
-místo rozhledu,viewpoint,místo rozhledu
-molo,piers,molo
-most na ostatní silnici,other road bridge,most na ostatní silnici
-most na silnici 1. třídy,primary road bridge,most na silnici 1. třídy
-most na silnici 2. třídy,secondary road bridge,most na silnici 2. třídy
-most na silnici 3. třídy,tertiary road bridge,most na silnici 3. třídy
-most na silnici s chybějící klasifikací,unclassified road bridge,most na silnici s chybějící klasifikací
-MTB stezka,MTB track,MTB stezka
-MTB stezka obtížnosti 0,MTB track scale 0,MTB stezka obtížnosti 0
-MTB stezka obtížnosti 1,MTB track scale 1,MTB stezka obtížnosti 1
-MTB stezka obtížnosti 2,MTB track scale 2,MTB stezka obtížnosti 2
-MTB stezka obtížnosti 3,MTB track scale 3,MTB stezka obtížnosti 3
-"MTB stezka obtížnosti 4, 5 a 6",MTB track scale 4 to 6,"MTB stezka obtížnosti 4, 5 a 6"
-muzeum,museum,muzeum
-náboženský chrám,place of worship,náboženský chrám
-nádraží,railway station,nádraží
-Národní park,national park,Národní park
-Národní přírodní rezervace,national nature reserve,Národní přírodní rezervace
-násep,embankment,násep
-nástupiště,platform,nástupiště
-nemocnice,hospital,nemocnice
-nezpevněná cesta hlinitá,mud unpaved track,nezpevněná cesta hlinitá
-nezpevněná cesta travnatá,grass unpaved track,nezpevněná cesta travnatá
-osmc: Lázeňská stezka červená,red spa path,osmc: Lázeňská stezka červená
-osmc: Lázeňská stezka modrá,blue spa path,osmc: Lázeňská stezka modrá
-osmc: Lázeňská stezka zelená,green spa path,osmc: Lázeňská stezka zelená
-osmc: Lázeňská stezka žlutá,yellow spa path,osmc: Lázeňská stezka žlutá
-osmc: Naučná stezka červená,red nature trail,osmc: Naučná stezka červená
-osmc: Naučná stezka modrá,blue nature trail,osmc: Naučná stezka modrá
-osmc: Naučná stezka zelená,green nature trail,osmc: Naučná stezka zelená
-osmc: Naučná stezka žlutá,yellow nature trail,osmc: Naučná stezka žlutá
-osmc: Turistická odbočka k hradu červená,red hiking trail branch to a castle,osmc: Turistická odbočka k hradu červená
-osmc: Turistická odbočka k hradu modrá,blue hiking trail branch to a castle,osmc: Turistická odbočka k hradu modrá
-osmc: Turistická odbočka k hradu zelená,green hiking trail branch to a castle,osmc: Turistická odbočka k hradu zelená
-osmc: Turistická odbočka k hradu žlutá,yellow hiking trail branch to a castle,osmc: Turistická odbočka k hradu žlutá
-osmc: Turistická odbočka k pramenu červená,red hiking trail branch to a spring,osmc: Turistická odbočka k pramenu červená
-osmc: Turistická odbočka k pramenu modrá,blue hiking trail branch to a spring,osmc: Turistická odbočka k pramenu modrá
-osmc: Turistická odbočka k pramenu zelená,green hiking trail branch to a spring,osmc: Turistická odbočka k pramenu zelená
-osmc: Turistická odbočka k pramenu žlutá,yellow hiking trail branch to a spring,osmc: Turistická odbočka k pramenu žlutá
-osmc: Turistická odbočka k vrcholu červená,red hiking trail branch to a peak,osmc: Turistická odbočka k vrcholu červená
-osmc: Turistická odbočka k vrcholu modrá,blue hiking trail branch to a peak,osmc: Turistická odbočka k vrcholu modrá
-osmc: Turistická odbočka k vrcholu zelená,green hiking trail branch to a peak,osmc: Turistická odbočka k vrcholu zelená
-osmc: Turistická odbočka k vrcholu žlutá,yellow hiking trail branch to a peak,osmc: Turistická odbočka k vrcholu žlutá
-osmc: Turistická odbočka k zajímavosti červená,red hiking trail branch to a POI,osmc: Turistická odbočka k zajímavosti červená
-osmc: Turistická odbočka k zajímavosti modrá,blue hiking trail branch to a POI,osmc: Turistická odbočka k zajímavosti modrá
-osmc: Turistická odbočka k zajímavosti zelená,green hiking trail branch to a POI,osmc: Turistická odbočka k zajímavosti zelená
-osmc: Turistická odbočka k zajímavosti žlutá,yellow hiking trail branch to a POI,osmc: Turistická odbočka k zajímavosti žlutá
-osmc: Turistická trasa červená,red hiking trail,osmc: Turistická trasa červená
-osmc: Turistická trasa červená doplňková,red supplementary hiking trail,osmc: Turistická trasa červená doplňková
-osmc: Turistická trasa červená tečkovaná,red dotted hiking trail,osmc: Turistická trasa červená tečkovaná
-osmc: Turistická trasa modrá,blue hiking trail,osmc: Turistická trasa modrá
-osmc: Turistická trasa modrá doplňková,blue supplementary hiking trail,osmc: Turistická trasa modrá doplňková
-osmc: Turistická trasa modrá tečkovaná,blue dotted hiking trail,osmc: Turistická trasa modrá tečkovaná
-osmc: Turistická trasa zelená,green hiking trail,osmc: Turistická trasa zelená
-osmc: Turistická trasa zelená doplňková,green supplementary hiking trail,osmc: Turistická trasa zelená doplňková
-osmc: Turistická trasa zelená tečkovaná,green dotted hiking trail,osmc: Turistická trasa zelená tečkovaná
-osmc: Turistická trasa žlutá,yellow hiking trail,osmc: Turistická trasa žlutá
-osmc: Turistická trasa žlutá doplňková,yellow supplementary hiking trail,osmc: Turistická trasa žlutá doplňková
-osmc: Turistická trasa žlutá tečkovaná,yellow dotted hiking trail,osmc: Turistická trasa žlutá tečkovaná
-ostatní nezpevněná cesta,other unpaved track,ostatní nezpevněná cesta
-ostatní silnice,other road,ostatní silnice
-ostatní vodní tok,other water stream,ostatní vodní tok
-ovocný sad,orchard,ovocný sad
-památník,monument,památník
-památný strom,significant tree,památný strom
-"park, zahrada","park, garden","park, zahrada"
-parkoviště,parking place,parkoviště
-penzion,guest house,penzion
-pěší zóna,pedestrian area,pěší zóna
-pěšina,path,pěšina
-pitná voda,drinking water,pitná voda
-plavební kanál,water canal,plavební kanál
-plavební kanál pod povrchem,underground water canal,plavební kanál pod povrchem
-pláž,beach,pláž
-plocha určená k výstavbě,construction,plocha určená k výstavbě
-"plot, zeď","fence, wall","plot, zeď"
-podchod,underpass,podchod
-policejní stanice,police station,policejní stanice
-pomník,memorial,pomník
-posed,hunting stand,posed
-pošta,post office,pošta
-poštovní schránka,post box,poštovní schránka
-potok,stream,potok
-potok pod povrchem,underground stream,potok pod povrchem
-požární zbrojnice,fire station,požární zbrojnice
-prales,old-growth forest,prales
-pramen,spring,pramen
-prudké klesání,downhill,prudké klesání
-průmyslová plocha,industrial zone,průmyslová plocha
-příkré stoupání,uphill,příkré stoupání
-Přírodní rezervace,nature reserve,Přírodní rezervace
-přistávací plocha,runway,přistávací plocha
-přístřešek,shelter,přístřešek
-půjčovna aut,car sharing,půjčovna aut
-recyklace,recycling,recyklace
-restaurace,restaurant,restaurace
-rozcestí tras KČT,signpost,rozcestí tras KČT
-rozhledna,observation tower,rozhledna
-rychlé občerstvení,fast food,rychlé občerstvení
-řeka,river,řeka
-řeka pod povrchem,underground river,řeka pod povrchem
-řopík,bunker – pillow,řopík
-sedačková lanovka,chair lift,sedačková lanovka
-semafor,lights,semafor
-servisní lanovka,service lift,servisní lanovka
-schodiště,steps,schodiště
-silnice 1. třídy,primary road,silnice 1. třídy
-silnice 1. třídy ve výstavbě,primary road under construction,silnice 1. třídy ve výstavbě
-silnice 2. třídy,secondary road,silnice 2. třídy
-silnice 2. třídy ve výstavbě,secondary road under construction,silnice 2. třídy ve výstavbě
-silnice 3. třídy,tertiary road,silnice 3. třídy
-silnice s chybějící klasifikací,unclassified road,silnice s chybějící klasifikací
-silnice ve výstavbě,road under construction,silnice ve výstavbě
-sloup elektrického vedení,power tower,sloup elektrického vedení
-sloupek proti vjezdu,bollard,sloupek proti vjezdu
-socha,sculpture,socha
-soukromá komunikace,private road,soukromá komunikace
-sportoviště,sports area,sportoviště
-Státní hranice,national border,Státní hranice
-státní hranice,national border,státní hranice
-stojany pro jízdní kola,bicycle parking,stojany pro jízdní kola
-strniště,scrub,strniště
-synagoga,synagogue,synagoga
-škola,school,škola
-štěrková nebo kamenitá cesta,gravel track,štěrková nebo kamenitá cesta
-tábořiště,camp,tábořiště
-tabule s mapou,map board,tabule s mapou
-telefonní budka,telephone,telefonní budka
-transformační stanice,power sub station,transformační stanice
-tunel na silnici s chybějící klasifikací,unclassified road tunnel,tunel na silnici s chybějící klasifikací
-tunel ostatní silnice,other road tunnel,tunel ostatní silnice
-tunel silnice 1. třídy,primary road tunnel,tunel silnice 1. třídy
-tunel silnice 2. třídy,secondary road tunnel,tunel silnice 2. třídy
-tunel silnice 3. třídy,tertiary road tunnel,tunel silnice 3. třídy
-tunel úzkorozchodné železnice,narrow gauge railway tunnel,tunel úzkorozchodné železnice
-"útes, skála",cliff,"útes, skála"
-úzkorozchodná železnice,narrow gauge railway,úzkorozchodná železnice
-vedlejší kolej,side railway,vedlejší kolej
-veřejné toalety,public toilets,veřejné toalety
-větrná elektrárna,wind power plant,větrná elektrárna
-větrný mlýn,windmill,větrný mlýn
-věznice,prison,věznice
-vinice,vineyard,vinice
-"vinice, sad","vineyard, orchard","vinice, sad"
-vodní plocha,water area,vodní plocha
-vodojem,water tower,vodojem
-vojenský objekt,barracks,vojenský objekt
-vojenský prostor,military area,vojenský prostor
-vrchol,peak,vrchol
-vrstevnice po 10 metrech,contours (10 m),vrstevnice po 10 metrech
-vrstevnice po 100 metrech,Contours (100 m),vrstevnice po 100 metrech
-vrstevnice po 20 metrech,Contours (20 m),vrstevnice po 20 metrech
-vrstevnice po 50 metrech,Contours (50 m),vrstevnice po 50 metrech
-vysílač,transmission tower,vysílač
-výškopis,elevation,výškopis
-zahrádkářská kolonie,allotments,zahrádkářská kolonie
-zákaz vjezdu cyklistů,no access for bicycles,zákaz vjezdu cyklistů
-"zákaz vjezdu, cyklistům vjezd povolen","no accsess, bicycles allowed","zákaz vjezdu, cyklistům vjezd povolen"
-zámek,stately castle,zámek
-zamokřená půda,"march, wetland",zamokřená půda
-zastavěná plocha,residential area,zastavěná plocha
-zastávka autobusů,bus stop,zastávka autobusů
-závodní okruh,raceway,závodní okruh
-zemědělská plocha,farmland,zemědělská plocha
-zničený bunkr,bunker ruins,zničený bunkr
-zničený řopík,bunker pillow ruins,zničený řopík
-zoologická zahrada,zoo,zoologická zahrada
-zpevněná cesta,paved track,zpevněná cesta
-zrušená silnice,abandoned road,zrušená silnice
-zřícenina,ruins,zřícenina
-železnice,railway,železnice
-železniční a tramvajová zastávka,railway or tram station,železniční a tramvajová zastávka
-železniční most,railway bridge,železniční most
-železniční přejezd,railway crossing,železniční přejezd
-železniční tunel,railway tunnel,železniční tunel
-živý plot,hedge,živý plot
+cable-car,Cable car,Kabinová lanovka
+meadow,Meadow,Louka
+park-garden,"Park, garden","Park, zahrada"
+elevation,Elevation,Výškopis
+_aquaduct,Aquaduct,Akvadukt
+national-border,National border,Státní hranice
+camp,Camp,Tábořiště
+_archeological-site,Archeological site,Archeologické naleziště
+cemetery,Cemetery,Hřbitov
+vineyard,Vineyard,Vinice
+barracks,Barracks,Vojenský objekt
+playground,Playground,Hřiště
+vineyard-orchard,"Vineyard, orchard","Vinice, sad"
+residential-area,Residential area,Zastavěná plocha
+zoo,Zoo,Zoologická zahrada
+mine,Mine,Důl
+airport,Airport,Letiště
+school,School,Škola
+farmland,Farmland,Zemědělská plocha
+beach,Beach,Pláž
+forest,Forest,Les
+industrial-zone,Industrial zone,Průmyslová plocha
+parking-place,Parking place,Parkoviště
+allotments,Allotments,Zahrádkářská kolonie
+_gate,Gate,"Brána, závora"
+scrub,Scrub,Strniště
+construction,Construction,Plocha určená k výstavbě
+old-growth-forest,Old-growth forest,Prales
+power-sub-station,Power sub station,Transformační stanice
+_hillshading,Hillshading,Stínování reliéfu
+sports-area,Sports area,Sportoviště
+stream,Stream,Potok
+_cycling-shop,Cycling shop,Cyklistická prodejna
+_contours-50-m-label,Contours (50 m) label,Popis vrstevnic po 50 metrech
+water-canal,Water canal,Plavební kanál
+contours-10-m,Contours (10 m),Vrstevnice po 10 metrech
+underground-river,Underground river,Řeka pod povrchem
+contours-20-m,Contours (20 m),Vrstevnice po 20 metrech
+river,River,Řeka
+contours-50-m,Contours (50 m),Vrstevnice po 50 metrech
+underground-water-canal,Underground water canal,Plavební kanál pod povrchem
+other-water-stream,Other water stream,Ostatní vodní tok
+_canal,Canal,Plavební kanál
+_stream,Stream,Potok
+_river,River,Řeka
+dam,Dam,Hráz
+march-wetland,"March, wetland",Zamokřená půda
+_dam,Dam,Hráz
+_island,Island,Ostrov
+weir,Weir,Jez
+glacier,Glacier,Ledovec
+piers,Piers,Molo
+water-area,Water area,Vodní plocha
+primary-road-bridge,Primary road bridge,Most na silnici 1. třídy
+motorway-tunnel,Motorway tunnel,Dálniční tunel
+primary-road-tunnel,Primary road tunnel,Tunel silnice 1. třídy
+tertiary-road-tunnel,Tertiary road tunnel,Tunel silnice 3. třídy
+_grass-unpaved-track,Grass unpaved track,Nezpevněná cesta travnatá
+_other-unpaved-track,Other unpaved track,Ostatní nezpevněná cesta
+_gravel-track,Gravel track,Štěrková nebo kamenitá cesta
+_underpass,Underpass,Podchod
+mud-unpaved-track,Mud unpaved track,Nezpevněná cesta hlinitá
+grass-unpaved-track,Grass unpaved track,Nezpevněná cesta travnatá
+_mud-unpaved-track,Mud unpaved track,Nezpevněná cesta hlinitá
+_turning-circle,Turning circle,Točna pro auta
+other-unpaved-track,Other unpaved track,Ostatní nezpevněná cesta
+underpass,Underpass,Podchod
+other-road-tunnel,Other road tunnel,Tunel ostatní silnice
+paved-track,Paved track,Zpevněná cesta
+wayside-cross,Wayside cross,Křížek
+gravel-track,Gravel track,Štěrková nebo kamenitá cesta
+_airport-terminal,Airport terminal,Terminál letiště
+_railway-station,Railway station,Železniční stanice
+_partially-paved-track,Partially paved track,Částečně zpevněná cesta
+_sports-area,Sports area,"Sportoviště, dráha"
+_place-of-worship,Place of worship,Náboženský chrám
+_pedestrian-area,Pedestrian area,Pěší zóna
+_highway-area,Highway area,Prostranství
+_paved-track,Paved track,Zpevněná cesta
+cliff,Cliff,"Útes, skála"
+building,Building,Budova
+primary-road,Primary road,Silnice 1. třídy
+tertiary-road,Tertiary road,Silnice 3. třídy
+hedge,Hedge,Živý plot
+motorway-trunk-road,"Motorway, trunk road","Dálnice, rychlostní silnice"
+embankment,Embankment,Násep
+secondary-road,Secondary road,Silnice 2. třídy
+_town-pop-10-001-to-50-000,"Town, pop. 10 001 to 50 000",Město 10 001-50 000 obyv.
+_town-pop-less-than-50-000,"Town, pop. less than 50 000",Město s méně než 50 000 obyv.
+road-under-construction,Road under construction,Silnice ve výstavbě
+_city-pop-more-than-100-000,"City, pop. more than 100 000",Město s více než 100 000 obyv.
+_light-rail,Light rail,Městská rychlodráha
+_pedestrian-area-bridge,Pedestrian area bridge,Most v pěší zóně
+_contours-100-m-label,Contours (100 m) label,Popis vrstevnic po 100 metrech
+_castle,Castle,"Hrad, zámek"
+_airport,Airport,Letiště
+primary-road-under-construction,Primary road under construction,Silnice 1. třídy ve výstavbě
+_information-board,Information board,Informační tabule
+_town-pop-50-001-to-100-000,"Town, pop. 50 001 to 100 000",Město 50 001-100 000 obyv.
+_town-pop-less-than-10-000,"Town, pop. less than 10 000",Město s méně než 10 000
+_parking-aisle,Parking aisle,Parkovací pruh
+subway,Subway,Metro
+steps,Steps,Schodiště
+_bridleway,Bridleway,Stezka např. pro koně
+_other-road-under-construction,Other road under construction,Ostatní silnice ve výstavbě
+railway-tunnel,Railway tunnel,Železniční tunel
+narrow-gauge-railway,Narrow gauge railway,Úzkorozchodná železnice
+side-railway,Side railway,Vedlejší kolej
+railway-bridge,Railway bridge,Železniční most
+subway-overground,Subway overground,Metro na povrchu
+_tram-tunnel,Tram tunnel,Tunel pro tramvaj
+path,Path,Pěšina
+railway,Railway,Železnice
+electrified-railway,Electrified railway,Elektrifikovaná železnice
+footway,Footway,Chodník
+_primary-road-link,Primary road link,Přivaděč na silnici 1. třídy
+_runway-access-road,Runway access road,Příjezd na ranvej
+gondola,Gondola,Gondolová lanovka
+historic-railway,Historic railway,Historická železnice
+runway,Runway,Přistávací plocha
+chair-lift,Chair lift,Sedačková lanovka
+_secondary-road-link,Secondary road link,Přivaděč na silnici 2. třídy
+service-lift,Service lift,Servisní lanovka
+drag-lift,Drag lift,Lyžařský vlek
+_highway-or-trunk-road-link,Highway or trunk road link,Přivaděč na dálnici nebo rychlostní silnici
+_railway-stop-label,Railway stop label,Popis železniční zastávky
+_track,Track,Stezka
+_subway,Subway,Metro
+red-hiking-trail,Red hiking trail,Turistická trasa červená
+blue-nature-trail,Blue nature trail,Naučná stezka modrá
+tertiary-road-bridge,Tertiary road bridge,Most na silnici 3. třídy
+secondary-road-bridge,Secondary road bridge,Most na silnici 2. třídy
+cycleway,Cycleway,Cyklostezka
+cycling-route,Cycling route,Cyklotrasa
+tram,Tram,Koleje tramvají
+motorway-bridge,Motorway bridge,Dálniční most
+blue-hiking-trail-branch-to-a-spring,Blue hiking trail branch to a spring,Turistická odbočka k pramenu modrá
+red-hiking-trail-branch-to-a-castle,Red hiking trail branch to a castle,Turistická odbočka k hradu červená
+red-dotted-hiking-trail,Red dotted hiking trail,Turistická trasa červená tečkovaná
+blue-dotted-hiking-trail,Blue dotted hiking trail,Turistická trasa modrá tečkovaná
+blue-hiking-trail-branch-to-a-castle,Blue hiking trail branch to a castle,Turistická odbočka k hradu modrá
+_runway,Runway,Přistávací plocha
+blue-hiking-trail,Blue hiking trail,Turistická trasa modrá
+bunker-pillow,Bunker – pillow,Řopík
+blue-hiking-trail-branch-to-a-peak,Blue hiking trail branch to a peak,Turistická odbočka k vrcholu modrá
+red-hiking-trail-branch-to-a-peak,Red hiking trail branch to a peak,Turistická odbočka k vrcholu červená
+blue-hiking-trail-branch-to-a-poi,Blue hiking trail branch to a POI,Turistická odbočka k zajímavosti modrá
+red-hiking-trail-branch-to-a-poi,Red hiking trail branch to a POI,Turistická odbočka k zajímavosti červená
+red-nature-trail,Red nature trail,Naučná stezka červená
+green-nature-trail,Green nature trail,Naučná stezka zelená
+green-hiking-trail-branch-to-a-poi,Green hiking trail branch to a POI,Turistická odbočka k zajímavosti zelená
+yellow-nature-trail,Yellow nature trail,Naučná stezka žlutá
+green-hiking-trail,Green hiking trail,Turistická trasa zelená
+yellow-hiking-trail,Yellow hiking trail,Turistická trasa žlutá
+green-spa-path,Green spa path,Lázeňská stezka zelená
+green-hiking-trail-branch-to-a-spring,Green hiking trail branch to a spring,Turistická odbočka k pramenu zelená
+yellow-dotted-hiking-trail,Yellow dotted hiking trail,Turistická trasa žlutá tečkovaná
+green-supplementary-hiking-trail,Green supplementary hiking trail,Turistická trasa zelená doplňková
+green-dotted-hiking-trail,Green dotted hiking trail,Turistická trasa zelená tečkovaná
+mtb-track-scale-3,MTB track scale 3,MTB stezka obtížnosti 3
+yellow-supplementary-hiking-trail,Yellow supplementary hiking trail,Turistická trasa žlutá doplňková
+yellow-spa-path,Yellow spa path,Lázeňská stezka žlutá
+yellow-hiking-trail-branch-to-a-peak,Yellow hiking trail branch to a peak,Turistická odbočka k vrcholu žlutá
+mtb-track-scale-1,MTB track scale 1,MTB stezka obtížnosti 1
+mtb-track-scale-2,MTB track scale 2,MTB stezka obtížnosti 2
+yellow-hiking-trail-branch-to-a-castle,Yellow hiking trail branch to a castle,Turistická odbočka k hradu žlutá
+downhill,Downhill,Prudké klesání
+mtb-track-scale-0,MTB track scale 0,MTB stezka obtížnosti 0
+no-access-for-bicycles,No access for bicycles,Zákaz vjezdu cyklistů
+mtb-track-scale-4-to-6,MTB track scale 4 to 6,"MTB stezka obtížnosti 4, 5 a 6"
+yellow-hiking-trail-branch-to-a-poi,Yellow hiking trail branch to a POI,Turistická odbočka k zajímavosti žlutá
+power-tower,Power tower,Sloup elektrického vedení
+railway-or-tram-station,Railway or tram station,Železniční a tramvajová zastávka
+_town-pop-more-than-50-000,"Town, pop. more than 50 000",Město s více než 50 000 obyv.
+archeological-site,Archeological site,Archeologické naleziště
+_railway-station-label,Railway station label,Popis nádraží
+_tram-stop-label,Tram stop label,Popis zastávky tramvají
+railway-station,Railway station,Nádraží
+blue-spa-path,Blue spa path,Lázeňská stezka modrá
+low-voltage-power-line,Low voltage power line,Elektrické vedení vysokého napětí
+town-pop-50-001-to-100-000,"Town, pop. 50 001 to 100 000",Město 50 001-100 000 obyv.
+_capital-city,Capital city,Hlavní město
+picnic-site,Picnic site,Místo na piknik
+hospital,Hospital,Nemocnice
+guest-house,Guest house,Penzion
+lights,Lights,Semafor
+campsite,Campsite,Kemp
+fire-station,Fire station,Požární zbrojnice
+bus-stop,Bus stop,Zastávka autobusů
+way-continues-not-mapped-yet,"Way continues, not mapped yet","Cesta pokračuje, pouze není zmapovaná"
+cinema,Cinema,Kino
+hostel,Hostel,Hostel
+alpine-hut,Alpine hut,Horská chata
+hotel,Hotel,Hotel
+mountain-rescue-service,Mountain rescue service,Horská služba
+cafe,Cafe,Kavárna
+bicycle-parking,Bicycle parking,Stojany pro jízdní kola
+doctors,Doctors,Lékařské středisko
+water-tower,Water tower,Vodojem
+church,Church,Kostel
+lighthouse,Lighthouse,Maják
+post-box,Post box,Poštovní schránka
+viewpoint,Viewpoint,Místo rozhledu
+pharmacy,Pharmacy,Lékárna
+fast-food,Fast food,Rychlé občerstvení
+mosque,Mosque,Mešita
+synagogue,Synagogue,Synagoga
+museum,Museum,Muzeum
+hunting-stand,Hunting stand,Posed
+library,Library,Knihovna
+drinking-water,Drinking water,Pitná voda
+pub,Pub,Hospoda
+recycling,Recycling,Recyklace
+signpost,Signpost,Rozcestí tras KČT
+police-station,Police station,Policejní stanice
+restaurant,Restaurant,Restaurace
+telephone,Telephone,Telefonní budka
+sculpture,Sculpture,Socha
+prison,Prison,Věznice
+peak,Peak,Vrchol
+embassy,Embassy,Ambasáda
+sikh-temple,Sikh temple,Chrám sikhů
+monastery,Monastery,Klášter
+defensive-castle,Defensive castle,Hrad
+map-board,Map board,Tabule s mapou
+significant-tree,Significant tree,Památný strom
+roundabout,Roundabout,Kruhový objezd
+cave-entrance,Cave entrance,Jeskyně
+information-office,Information office,Infocentrum
+monument,Monument,Památník
+stately-castle,Stately castle,Zámek
+wind-power-plant,Wind power plant,Větrná elektrárna
+bollard,Bollard,Sloupek proti vjezdu
+memorial,Memorial,Pomník
+transmission-tower,Transmission tower,Vysílač
+observation-tower,Observation tower,Rozhledna
+information-board,Information board,Informační tabule
+ruins,Ruins,Zřícenina
+gate,Gate,"Brána, závora"
+bunker,Bunker,Bunkr
+_roundabout,Roundabout,Kruhový objezd
+_wayside-cross,Wayside cross,Křížek
+_memorial,Memorial,Pomník
+_spring,Spring,Pramen
+_lighthouse,Lighthouse,Maják
+_monument,Monument,Památník
+_significant-tree,Significant tree,Památný strom
+_observation-tower,Observation tower,Rozhledna
+_bollard,Bollard,Sloupek proti vjezdu
+_defensive-castle,Defensive castle,Hrad
+_windmill,Windmill,Větrný mlýn
+_peak,Peak,Vrchol
+_railway-crossing,Railway crossing,Železniční přejezd
+_transmission-tower,Transmission tower,Vysílač
+_stately-castle,Stately castle,Zámek
+_ruins,Ruins,Zřícenina
+bunker-ruins,Bunker ruins,Zničený bunkr
+bunker-pillow-ruins,Bunker pillow ruins,Zničený řopík
+city-pop-more-than-100-000,"City, pop. more than 100 000",Město s více než 100 000 obyv.
+mtb-track,MTB track,MTB stezka
+_tertiary-road-under-construction,Tertiary road under construction,Silnice 3. třídy ve výstavbě
+_map-board,Map board,Tabule s mapou
+national-park,National park,Národní park
+_information-office,Information office,Infocentrum
+nature-reserve,Nature reserve,Přírodní rezervace
+_cave-entrance,Cave entrance,Jeskyně
+_monastery,Monastery,Klášter
+capital-city,Capital city,Hlavní město
+red-supplementary-hiking-trail,Red supplementary hiking trail,Turistická trasa červená doplňková
+contours-100-m,Contours (100 m),Vrstevnice po 100 metrech
+national-nature-reserve,National nature reserve,Národní přírodní rezervace
+military-area,Military area,Vojenský prostor
+natural-protected-area,Natural protected area,Chráněná krajinná oblast
+town-pop-10-001-to-50-000,"Town, pop. 10 001 to 50 000",Město 10 001-50 000 obyv.
+blue-supplementary-hiking-trail,Blue supplementary hiking trail,Turistická trasa modrá doplňková
+secondary-road-tunnel,Secondary road tunnel,Tunel silnice 2. třídy
+farm,Farm,Farma
+unclassified-road-tunnel,Unclassified road tunnel,Tunel na silnici s chybějící klasifikací
+secondary-road-under-construction,Secondary road under construction,Silnice 2. třídy ve výstavbě
+raceway,Raceway,Závodní okruh
+orchard,Orchard,Ovocný sad
+narrow-gauge-railway-tunnel,Narrow gauge railway tunnel,Tunel úzkorozchodné železnice
+unclassified-road,Unclassified road,Silnice s chybějící klasifikací
+shelter,Shelter,Přístřešek
+spring,Spring,Pramen
+pedestrian-area,Pedestrian area,Pěší zóna
+other-road,Other road,Ostatní silnice
+red-hiking-trail-branch-to-a-spring,Red hiking trail branch to a spring,Turistická odbočka k pramenu červená
+private-road,Private road,Soukromá komunikace
+uphill,Uphill,Příkré stoupání
+fence-wall,"Fence, wall","Plot, zeď"
+green-hiking-trail-branch-to-a-castle,Green hiking trail branch to a castle,Turistická odbočka k hradu zelená
+platform,Platform,Nástupiště
+yellow-hiking-trail-branch-to-a-spring,Yellow hiking trail branch to a spring,Turistická odbočka k pramenu žlutá
+underground-stream,Underground stream,Potok pod povrchem
+no-access-bicycles-allowed,"No access, bicycles allowed","Zákaz vjezdu, cyklistům vjezd povolen"
+post-office,Post office,Pošta
+windmill,Windmill,Větrný mlýn
+railway-crossing,Railway crossing,Železniční přejezd
+_service-tunnel,Service tunnel,Tunel silnice pro dopravní obsluhu
+green-hiking-trail-branch-to-a-peak,Green hiking trail branch to a peak,Turistická odbočka k vrcholu zelená
+abandoned-road,Abandoned road,Zrušená silnice
+caravan-site,Caravan site,Kemp pro karavany
+public-toilets,Public toilets,Veřejné toalety
+golf-court,Golf court,Golfové hřiště
+place-of-worship,Place of worship,Náboženský chrám
+_dry-land,Dry land,Zemský povrch
+theatre,Theatre,Divadlo
+oneway-street,Oneway street,Jednosměrná ulice
+red-spa-path,Red spa path,Lázeňská stezka červená
+other-road-bridge,Other road bridge,Most na ostatní silnici
+cycling-shop,Cycling shop,Cyklistická prodejna
+bar,Bar,Bar
+petrol-station,Petrol station,Čerpací stanice
+high-voltage-power-line,High voltage power line,Elektrické vedení nízkého napětí
+dangeruos-spot,Dangeruos spot,Nebezpečné místo
+bus-station,Bus station,Autobusové nádraží
+car-sharing,Car sharing,Půjčovna aut
+atm,Atm,Bankomat
+bank,Bank,Banka
+partially-paved-track,Partially paved track,Částečně zpevněná cesta
+motorway-or-trunk-road-under-construction,Motorway or trunk road under construction,Dálnice nebo rychlostní silnice ve výstavbě
+town-pop-less-than-10-000,"Town, pop. less than 10 000",Město s méně než 10 000
+unclassified-road-bridge,Unclassified road bridge,Most na silnici s chybějící klasifikací

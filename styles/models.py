@@ -1659,7 +1659,8 @@ class Legend(models.Model):
 
     def create_images(self, zoom, scale_factor=1):
         for item in self.legenditem_set.filter(zoom=zoom):
-            item.create_image(scale_factor)
+            if item.name:
+                item.create_image(scale_factor)
 
     def create_all_images(self, scale_factor=1):
         for zoom in range(0, 19):
@@ -1676,7 +1677,6 @@ class Legend(models.Model):
 
     def legend_items(self, zoom):
         return self.legenditem_set.filter(zoom=zoom).exclude(image='').order_by('geometry', 'title')
-
 
 
 class LegendItem(models.Model):
@@ -1713,9 +1713,9 @@ class LegendItem(models.Model):
         return 'ID: %i, %s, %i' % (self.id, self.title, self.zoom)
 
     def save_legend(self, legend, rule, zoom):
-        related = legend.legenditem_set.filter(title=rule.name.replace('Shield: ','osmc: ').replace('trasa: ','osmc: '), zoom=zoom)
+        related = legend.legenditem_set.filter(title=rule.name, zoom=zoom)
         if not len(related):
-            self.title = rule.name.replace('Shield:','osmc: ').replace('trasa: ','osmc: ')
+            self.title = rule.name
             self.geometry = rule.styles.all()[0].layers.all()[0].geometry()
             self.zoom = zoom
             self.legend = legend
@@ -1752,7 +1752,7 @@ class LegendItem(models.Model):
         return size
 
     def create_image(self, scale_factor=1):
-        if self.title.startswith('!'):
+        if self.title.startswith('_'):
             return
         if scale_factor>=2:
             if self.image_highres and os.path.exists(self.image_highres.path):
@@ -1858,7 +1858,7 @@ class LegendItem(models.Model):
         fo.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         fo.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n')
         fo.write('<svg width="%i" height="%i" xmlns="http://www.w3.org/2000/svg">\n' % (width, height))
-        fo.write('    <text fill="black" text-anchor="left" font-family="Dejavu Sans" x="%i" y="%i" font-size="%i" >%s</text>' % (2, height-font_size/2, font_size, self.title.encode('utf-8')))
+        fo.write('    <text fill="black" text-anchor="left" font-family="Dejavu Sans" x="%i" y="%i" font-size="%i" >%s</text>' % (2, height-font_size/2, font_size, self.name_cs.encode('utf-8')))
         fo.write('</svg>')
         fo.close()
         system("rsvg-convert -o %s %s" % (path, path + '.svg'))

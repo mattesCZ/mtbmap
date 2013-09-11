@@ -5,6 +5,7 @@ import csv
 
 # Django imports
 from django.conf import settings
+from django.template.defaultfilters import slugify
 
 # Local imports
 from styles.models import LegendItem
@@ -35,3 +36,18 @@ def sync_legend_translation(filename):
                 lookup_dict[columns[i]] = row[i]
             legend_items.update(**lookup_dict)
         print 'Legend names synced successfully'
+
+def sync_slugified_titles(input_filename):
+    with open(input_filename, 'r') as rf:
+        dict_reader = csv.DictReader(rf)
+        for row in dict_reader:
+            legend_items = LegendItem.objects.filter(title=row['title'])
+            sl_title = slugify(row['name_en'])
+            if legend_items.count() and legend_items[0].title != sl_title:
+                for li in legend_items:
+                    li.rules.all().update(name=sl_title)
+                if legend_items[0].name_en != row['name_en']:
+                    legend_items.update(name_en=row['name_en'], title=sl_title)
+                else:
+                    legend_items.update(title=sl_title)
+
