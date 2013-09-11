@@ -21,45 +21,49 @@
 <h3>{% trans "Preferred ways" %}</h3>
 <div>
     <table class="preferences">
-        {% for preferred in weight_collection.preferred_set.all %}
-            <tr {% if not preferred.use %} style="display: none"{% endif %}>
-                <td class="type right-align">{{ preferred.name }}</td>
-                <td class="preference"><input type="checkbox" name="preferred__{{preferred.slug}}" {% if preferred.value %}checked="checked"{% endif %} /></td>
+        {% for preferred_value in weight_collection.preferredvalue_set.all %}
+            {% with preferred_value.preferred as p %}
+            <tr {% if not preferred_value.use %} style="display: none"{% endif %}>
+                <td class="type right-align">{{ p.name }}</td>
+                <td class="preference"><input type="checkbox" name="preferred__{{ p.slug }}" {% if preferred_value.value %}checked="checked"{% endif %} /></td>
             </tr>
+            {% endwith %}
         {% endfor %}
     </table>
 </div>
-{% for c in weight_collection.weightclass_set.all %}
-<h3 id="h-{{ c.slug }}" {% if not c.visible %} style="display: none"{% endif %}>{{ c.name }}</h3>
+{% for wcv in weight_collection.weightclassvalue_set.all %}
+{% with wcv.weight_class as wc %}
+<h3 id="h-{{ wc.slug }}" {% if not wcv.visible %} style="display: none"{% endif %}>{{ wc.name }}</h3>
 <div>
     <p>
-    {% blocktrans with link=c.link %}
+    {% blocktrans with link=wc.link %}
     Set your preference of ways with this parameters. Detailed information about parameters is on <a href="{{ link }}" target="_blank">OpenStreetMap Wiki</a>.
     {% endblocktrans %}
     </p>
-    {% if c.max != None or c.min != None %}
-    <table id="weights-limits-{{c.slug}}" class="weights-limits preferences" >
+    {% if wcv.max != None or wcv.min != None %}
+    <table id="weights-limits-{{wc.slug}}" class="weights-limits preferences" >
         <tr>
-            {% if c.max != None %}
+            {% if wcv.max != None %}
             <td class="right-align">Max:</td>
-            <td><input type="text" value="{{c.max|floatformat:'0'}}" size="2" id="weights-{{c.slug}}-max" name="{{c.slug}}__max" /></td>
+            <td><input type="text" value="{{ wcv.max|floatformat:'0' }}" size="2" id="weights-{{ wc.slug }}-max" name="{{ wc.slug }}__max" /></td>
             {% endif %}
-            {% if c.min != None %}
+            {% if wcv.min != None %}
             <td class="right-align">Min:</td>
-            <td><input type="text" value="{{c.min|floatformat:'0'}}" size="2" id="weights-{{c.slug}}-min" name="{{c.slug}}__min" /></td>
+            <td><input type="text" value="{{ wcv.min|floatformat:'0' }}" size="2" id="weights-{{ wc.slug }}-min" name="{{ wc.slug }}__min" /></td>
             {% endif %}
         </tr>
     </table>
     {% endif %}
-    {% if c.weight_set.all %}
-    <table id="weights-types-{{c.slug}}" class="weights-types preferences">
-        {% for w in c.weight_set.all %}
-        <tr {% if not w.visible %} style="display: none"{% endif %}>
+    {% if wcv.weightvalue_set.count %}
+    <table id="weights-types-{{wc.slug}}" class="weights-types preferences">
+        {% for wv in wcv.weightvalue_set.all %}
+        {% with wv.weight as w %}
+        <tr {% if not wv.visible %} style="display: none"{% endif %}>
             <td class="type right-align">{{w.name}}</td>
             <td class="preference">
-                <select class="weights-preferences" id="weights-{{c.slug}}-{{w.slug}}-preference" name="{{c.slug}}__{{w.slug}}" >
-                    {% for choice in w.PREFERENCE_CHOICES %}
-                    {% if choice.0 == w.preference %}
+                <select class="weights-preferences" id="weights-{{wc.slug}}-{{w.slug}}-preference" name="{{wc.slug}}__{{w.slug}}" >
+                    {% for choice in wv.PREFERENCE_CHOICES %}
+                    {% if choice.0 == wv.preference %}
                     <option value="{{choice.0}}" selected="selected" >{{choice.1}}</option>
                     {% else %}
                     <option value="{{choice.0}}">{{choice.1}}</option>
@@ -68,8 +72,10 @@
                 </select>
             </td>
         </tr>
+        {% endwith %}
         {% endfor %}
     </table>
     {% endif %}
 </div>
+{% endwith %}
 {% endfor %}

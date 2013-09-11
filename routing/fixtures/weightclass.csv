@@ -1,0 +1,7 @@
+slug,name_en,name_cs,link
+highway,Highway,Cesty,http://wiki.openstreetmap.org/wiki/Key:highway
+tracktype,Track type,Typ stezky,http://wiki.openstreetmap.org/wiki/Key:tracktype
+surface,Surface,Povrch,http://wiki.openstreetmap.org/wiki/Key:surface
+mtbscale,MTB scale,Obtížnost MTB,http://wiki.openstreetmap.org/wiki/Key:mtb:scale
+mtbscaleuphill,MTB scale uphill,Obtížnost jízdy do kopce,http://wiki.openstreetmap.org/wiki/Key:mtb:scale
+sac_scale,SAC scale,Obtížnost turistických tras (SAC),http://wiki.openstreetmap.org/wiki/Key:sac_scale
