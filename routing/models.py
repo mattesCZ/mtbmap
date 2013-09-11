@@ -221,38 +221,6 @@ class Way(geomodels.Model):
         else:
             return 0
 
-    def compute_class_id(self, class_conf):
-        '''
-        Compute class ID during import.
-        return int
-        '''
-        class_id = ''
-        for c in class_conf:
-            name = c['name']
-            types = c['types']
-            if self.__dict__[name]==None:
-                class_id += str(c['null'])
-            else:
-                if name=='incline':
-                    in_percents = self.incline.replace('%', '')
-                    if self.incline != in_percents:
-                        try:
-                            percents = float(in_percents)
-                        except ValueError:
-                            id = c['null']
-                        else:
-                            if percents>=0: id = types['positive']
-                            else: id = types['negative']
-                        class_id += str(id)
-                        continue
-                try:
-                    id = types[self.__dict__[name]]
-                except KeyError:
-                    print name, 'unexpected type:', self.__dict__[name]
-                    id = c['null']
-                class_id += str(id)
-        return int(class_id)
-
     def feature(self, params, status):
         '''
         Create GeoJSON Feature object.
