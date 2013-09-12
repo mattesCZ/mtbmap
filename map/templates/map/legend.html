@@ -4,6 +4,6 @@
 </header>
 <table>
     {% for item in legenditems %}
-    <tr><td><img src="{{ MEDIA_URL }}{{ item.image.name }}"></td><td>{{ item.name }}</td></tr>
+    <tr><td><img src="{{ MEDIA_URL }}{{ item.image.name }}"></td><td>{{ item.legend_item_name.name }}</td></tr>
     {% endfor %}
 </table>

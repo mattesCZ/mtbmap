@@ -8,7 +8,7 @@ from django.conf import settings
 from django.template.defaultfilters import slugify
 
 # Local imports
-from styles.models import LegendItem
+from styles.models import LegendItem, LegendItemName
 
 LANG_CODES = [lang_code for lang_code, lang_name in settings.LANGUAGES]
 
@@ -30,11 +30,11 @@ def sync_legend_translation(filename):
         reader = csv.reader(f)
         columns = reader.next()
         for row in reader:
-            legend_items = LegendItem.objects.filter(title=row[0])
+            legend_item_names = LegendItemName.objects.filter(slug=row[0])
             lookup_dict = {}
             for i in range(1, len(columns[1:]) + 1):
                 lookup_dict[columns[i]] = row[i]
-            legend_items.update(**lookup_dict)
+            legend_item_names.update(**lookup_dict)
         print 'Legend names synced successfully'
 
 def sync_slugified_titles(input_filename):
