@@ -1,0 +1,325 @@
+slug,group,order,name_en
+abandoned-road,,,Abandoned road
+airport,,,Airport
+_airport,,,Airport
+_airport-terminal,,,Airport terminal
+allotments,,,Allotments
+alpine-hut,,,Alpine hut
+_aquaduct,,,Aquaduct
+archeological-site,,,Archeological site
+_archeological-site,,,Archeological site
+atm,,,Atm
+bank,,,Bank
+bar,,,Bar
+barracks,,,Barracks
+beach,,,Beach
+bicycle-parking,,,Bicycle parking
+blue-dotted-hiking-trail,,,Blue dotted hiking trail
+blue-hiking-trail,,,Blue hiking trail
+blue-hiking-trail-branch-to-a-castle,,,Blue hiking trail branch to a castle
+blue-hiking-trail-branch-to-a-peak,,,Blue hiking trail branch to a peak
+blue-hiking-trail-branch-to-a-poi,,,Blue hiking trail branch to a POI
+blue-hiking-trail-branch-to-a-spring,,,Blue hiking trail branch to a spring
+blue-nature-trail,,,Blue nature trail
+blue-spa-path,,,Blue spa path
+blue-supplementary-hiking-trail,,,Blue supplementary hiking trail
+bollard,,,Bollard
+_bollard,,,Bollard
+_bridleway,,,Bridleway
+building,,,Building
+bunker,,,Bunker
+bunker-pillow,,,Bunker – pillow
+bunker-pillow-ruins,,,Bunker pillow ruins
+bunker-ruins,,,Bunker ruins
+bus-station,,,Bus station
+bus-stop,,,Bus stop
+cable-car,,,Cable car
+cafe,,,Cafe
+camp,,,Camp
+campsite,,,Campsite
+_canal,,,Canal
+capital-city,,,Capital city
+_capital-city,,,Capital city
+caravan-site,,,Caravan site
+car-sharing,,,Car sharing
+_castle,,,Castle
+cave-entrance,,,Cave entrance
+_cave-entrance,,,Cave entrance
+cemetery,,,Cemetery
+cinema,,,Cinema
+city-pop-more-than-100-000,,,"City, pop. more than 100 000"
+_city-pop-more-than-100-000,,,"City, pop. more than 100 000"
+cliff,,,Cliff
+construction,,,Construction
+contours-10-m,,,Contours (10 m)
+contours-100-m,,,Contours (100 m)
+_contours-100-m-label,,,Contours (100 m) label
+contours-20-m,,,Contours (20 m)
+contours-50-m,,,Contours (50 m)
+_contours-50-m-label,,,Contours (50 m) label
+cycleway,,,Cycleway
+cycling-route,,,Cycling route
+cycling-shop,,,Cycling shop
+_cycling-shop,,,Cycling shop
+dam,,,Dam
+_dam,,,Dam
+dangeruos-spot,,,Dangeruos spot
+defensive-castle,,,Defensive castle
+_defensive-castle,,,Defensive castle
+doctors,,,Doctors
+downhill,,,Downhill
+drag-lift,,,Drag lift
+drinking-water,,,Drinking water
+_dry-land,,,Dry land
+electrified-railway,,,Electrified railway
+elevation,,,Elevation
+embankment,,,Embankment
+embassy,,,Embassy
+farm,,,Farm
+farmland,,,Farmland
+fast-food,,,Fast food
+fence-wall,,,"Fence, wall"
+fire-station,,,Fire station
+footway,,,Footway
+forest,,,Forest
+gate,,,Gate
+_gate,,,Gate
+glacier,,,Glacier
+golf-court,,,Golf court
+gondola,,,Gondola
+grass-unpaved-track,,,Grass unpaved track
+_grass-unpaved-track,,,Grass unpaved track
+gravel-track,,,Gravel track
+_gravel-track,,,Gravel track
+green-dotted-hiking-trail,,,Green dotted hiking trail
+green-hiking-trail,,,Green hiking trail
+green-hiking-trail-branch-to-a-castle,,,Green hiking trail branch to a castle
+green-hiking-trail-branch-to-a-peak,,,Green hiking trail branch to a peak
+green-hiking-trail-branch-to-a-poi,,,Green hiking trail branch to a POI
+green-hiking-trail-branch-to-a-spring,,,Green hiking trail branch to a spring
+green-nature-trail,,,Green nature trail
+green-spa-path,,,Green spa path
+green-supplementary-hiking-trail,,,Green supplementary hiking trail
+guest-house,,,Guest house
+hedge,,,Hedge
+high-voltage-power-line,,,High voltage power line
+_highway-area,,,Highway area
+_highway-or-trunk-road-link,,,Highway or trunk road link
+_hillshading,,,Hillshading
+historic-railway,,,Historic railway
+hospital,,,Hospital
+hostel,,,Hostel
+hotel,,,Hotel
+hunting-stand,,,Hunting stand
+chair-lift,,,Chair lift
+church,,,Church
+industrial-zone,,,Industrial zone
+information-board,,,Information board
+_information-board,,,Information board
+information-office,,,Information office
+_information-office,,,Information office
+_island,,,Island
+library,,,Library
+lighthouse,,,Lighthouse
+_lighthouse,,,Lighthouse
+_light-rail,,,Light rail
+lights,,,Lights
+low-voltage-power-line,,,Low voltage power line
+map-board,,,Map board
+_map-board,,,Map board
+march-wetland,,,"March, wetland"
+meadow,,,Meadow
+memorial,,,Memorial
+_memorial,,,Memorial
+military-area,,,Military area
+mine,,,Mine
+monastery,,,Monastery
+_monastery,,,Monastery
+monument,,,Monument
+_monument,,,Monument
+mosque,,,Mosque
+motorway-bridge,,,Motorway bridge
+motorway-or-trunk-road-under-construction,,,Motorway or trunk road under construction
+motorway-trunk-road,,,"Motorway, trunk road"
+motorway-tunnel,,,Motorway tunnel
+mountain-rescue-service,,,Mountain rescue service
+mtb-track,,,MTB track
+mtb-track-scale-0,,,MTB track scale 0
+mtb-track-scale-1,,,MTB track scale 1
+mtb-track-scale-2,,,MTB track scale 2
+mtb-track-scale-3,,,MTB track scale 3
+mtb-track-scale-4-to-6,,,MTB track scale 4 to 6
+mud-unpaved-track,,,Mud unpaved track
+_mud-unpaved-track,,,Mud unpaved track
+museum,,,Museum
+narrow-gauge-railway,,,Narrow gauge railway
+narrow-gauge-railway-tunnel,,,Narrow gauge railway tunnel
+national-border,,,National border
+national-nature-reserve,,,National nature reserve
+national-park,,,National park
+natural-protected-area,,,Natural protected area
+nature-reserve,,,Nature reserve
+no-access-bicycles-allowed,,,"No access, bicycles allowed"
+no-access-for-bicycles,,,No access for bicycles
+observation-tower,,,Observation tower
+_observation-tower,,,Observation tower
+old-growth-forest,,,Old-growth forest
+oneway-street,,,Oneway street
+orchard,,,Orchard
+other-road,,,Other road
+other-road-bridge,,,Other road bridge
+other-road-tunnel,,,Other road tunnel
+_other-road-under-construction,,,Other road under construction
+other-unpaved-track,,,Other unpaved track
+_other-unpaved-track,,,Other unpaved track
+other-water-stream,,,Other water stream
+park-garden,,,"Park, garden"
+_parking-aisle,,,Parking aisle
+parking-place,,,Parking place
+partially-paved-track,,,Partially paved track
+_partially-paved-track,,,Partially paved track
+path,,,Path
+paved-track,,,Paved track
+_paved-track,,,Paved track
+peak,,,Peak
+_peak,,,Peak
+pedestrian-area,,,Pedestrian area
+_pedestrian-area,,,Pedestrian area
+_pedestrian-area-bridge,,,Pedestrian area bridge
+petrol-station,,,Petrol station
+pharmacy,,,Pharmacy
+picnic-site,,,Picnic site
+piers,,,Piers
+place-of-worship,,,Place of worship
+_place-of-worship,,,Place of worship
+platform,,,Platform
+playground,,,Playground
+police-station,,,Police station
+post-box,,,Post box
+post-office,,,Post office
+power-sub-station,,,Power sub station
+power-tower,,,Power tower
+primary-road,,,Primary road
+primary-road-bridge,,,Primary road bridge
+_primary-road-link,,,Primary road link
+primary-road-tunnel,,,Primary road tunnel
+primary-road-under-construction,,,Primary road under construction
+prison,,,Prison
+private-road,,,Private road
+pub,,,Pub
+public-toilets,,,Public toilets
+raceway,,,Raceway
+railway,,,Railway
+railway-bridge,,,Railway bridge
+railway-crossing,,,Railway crossing
+_railway-crossing,,,Railway crossing
+railway-or-tram-station,,,Railway or tram station
+railway-station,,,Railway station
+_railway-station,,,Railway station
+_railway-station-label,,,Railway station label
+_railway-stop-label,,,Railway stop label
+railway-tunnel,,,Railway tunnel
+recycling,,,Recycling
+red-dotted-hiking-trail,,,Red dotted hiking trail
+red-hiking-trail,,,Red hiking trail
+red-hiking-trail-branch-to-a-castle,,,Red hiking trail branch to a castle
+red-hiking-trail-branch-to-a-peak,,,Red hiking trail branch to a peak
+red-hiking-trail-branch-to-a-poi,,,Red hiking trail branch to a POI
+red-hiking-trail-branch-to-a-spring,,,Red hiking trail branch to a spring
+red-nature-trail,,,Red nature trail
+red-spa-path,,,Red spa path
+red-supplementary-hiking-trail,,,Red supplementary hiking trail
+residential-area,,,Residential area
+restaurant,,,Restaurant
+river,,,River
+_river,,,River
+road-under-construction,,,Road under construction
+roundabout,,,Roundabout
+_roundabout,,,Roundabout
+ruins,,,Ruins
+_ruins,,,Ruins
+runway,,,Runway
+_runway,,,Runway
+_runway-access-road,,,Runway access road
+scrub,,,Scrub
+sculpture,,,Sculpture
+secondary-road,,,Secondary road
+secondary-road-bridge,,,Secondary road bridge
+_secondary-road-link,,,Secondary road link
+secondary-road-tunnel,,,Secondary road tunnel
+secondary-road-under-construction,,,Secondary road under construction
+service-lift,,,Service lift
+_service-tunnel,,,Service tunnel
+shelter,,,Shelter
+school,,,School
+side-railway,,,Side railway
+significant-tree,,,Significant tree
+_significant-tree,,,Significant tree
+signpost,,,Signpost
+sikh-temple,,,Sikh temple
+sports-area,,,Sports area
+_sports-area,,,Sports area
+spring,,,Spring
+_spring,,,Spring
+stately-castle,,,Stately castle
+_stately-castle,,,Stately castle
+steps,,,Steps
+stream,,,Stream
+_stream,,,Stream
+subway,,,Subway
+_subway,,,Subway
+subway-overground,,,Subway overground
+synagogue,,,Synagogue
+telephone,,,Telephone
+tertiary-road,,,Tertiary road
+tertiary-road-bridge,,,Tertiary road bridge
+tertiary-road-tunnel,,,Tertiary road tunnel
+_tertiary-road-under-construction,,,Tertiary road under construction
+theatre,,,Theatre
+town-pop-less-than-10-000,,,"Town, pop. less than 10 000"
+_town-pop-less-than-10-000,,,"Town, pop. less than 10 000"
+_town-pop-less-than-50-000,,,"Town, pop. less than 50 000"
+_town-pop-more-than-50-000,,,"Town, pop. more than 50 000"
+town-pop-10-001-to-50-000,,,"Town, pop. 10 001 to 50 000"
+_town-pop-10-001-to-50-000,,,"Town, pop. 10 001 to 50 000"
+town-pop-50-001-to-100-000,,,"Town, pop. 50 001 to 100 000"
+_town-pop-50-001-to-100-000,,,"Town, pop. 50 001 to 100 000"
+_track,,,Track
+tram,,,Tram
+_tram-stop-label,,,Tram stop label
+_tram-tunnel,,,Tram tunnel
+transmission-tower,,,Transmission tower
+_transmission-tower,,,Transmission tower
+_turning-circle,,,Turning circle
+unclassified-road,,,Unclassified road
+unclassified-road-bridge,,,Unclassified road bridge
+unclassified-road-tunnel,,,Unclassified road tunnel
+underground-river,,,Underground river
+underground-stream,,,Underground stream
+underground-water-canal,,,Underground water canal
+underpass,,,Underpass
+_underpass,,,Underpass
+uphill,,,Uphill
+viewpoint,,,Viewpoint
+vineyard,,,Vineyard
+vineyard-orchard,,,"Vineyard, orchard"
+water-area,,,Water area
+water-canal,,,Water canal
+water-tower,,,Water tower
+way-continues-not-mapped-yet,,,"Way continues, not mapped yet"
+wayside-cross,,,Wayside cross
+_wayside-cross,,,Wayside cross
+weir,,,Weir
+windmill,,,Windmill
+_windmill,,,Windmill
+wind-power-plant,,,Wind power plant
+yellow-dotted-hiking-trail,,,Yellow dotted hiking trail
+yellow-hiking-trail,,,Yellow hiking trail
+yellow-hiking-trail-branch-to-a-castle,,,Yellow hiking trail branch to a castle
+yellow-hiking-trail-branch-to-a-peak,,,Yellow hiking trail branch to a peak
+yellow-hiking-trail-branch-to-a-poi,,,Yellow hiking trail branch to a POI
+yellow-hiking-trail-branch-to-a-spring,,,Yellow hiking trail branch to a spring
+yellow-nature-trail,,,Yellow nature trail
+yellow-spa-path,,,Yellow spa path
+yellow-supplementary-hiking-trail,,,Yellow supplementary hiking trail
+zoo,,,Zoo

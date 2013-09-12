@@ -12,42 +12,59 @@ from styles.models import LegendItem, LegendItemName
 
 LANG_CODES = [lang_code for lang_code, lang_name in settings.LANGUAGES]
 
-def create_translation_file(filename):
-    written_titles = []
+def dump_translation_file(lang_code):
+    filename = _get_locale_filename(lang_code)
+    fields = ['slug', 'name_en', 'name_%s' % lang_code]
+    _write_csv(filename, fields)
+
+def load_translation_file(lang_code):
+    filename = _get_locale_filename(lang_code)
+    name_field = 'name_%s' % lang_code
+    with open(filename, 'r') as f:
+        reader = csv.DictReader(f)
+        line = 2
+        for row_dict in reader:
+            new_value = row_dict[name_field]
+            if new_value:
+                try:
+                    lin = LegendItemName.objects.get(slug=row_dict['slug'])
+                    if getattr(lin, name_field) != new_value:
+                        setattr(lin, name_field, new_value)
+                        lin.save()
+                        print 'Updating LegendItemName(slug=%s), %s = %s' % (row_dict['slug'], name_field, new_value)
+                except LegendItemName.DoesNotExist:
+                    print 'Slug %s not found in the db, but on line %i in the input file.' % (row_dict['slug'], line)
+            line += 1
+
+def _get_locale_filename(lang_code):
+    return 'styles/locale/names_%s.csv' % lang_code
+
+def dump_default_names(filename):
+    fields = ['slug', 'group', 'order', 'name_en']
+    _write_csv(filename, fields)
+
+def load_default_names(filename):
+    with open(filename, 'r') as f:
+        reader = csv.DictReader(f)
+        for row_dict in reader:
+            slug = row_dict['slug']
+            lins = LegendItemName.objects.filter(slug=slug)
+            if lins.count():
+                row_dict.pop('slug')
+                changed = {}
+                for key, value in row_dict.iteritems():
+                    if value and value != getattr(lins[0], key):
+                            changed[key] = value
+                if changed != {}:
+                    lins.update(**changed)
+                    print 'Updating LegendItemName(slug=%s): %s' % (slug, changed)
+            else:
+                print 'Creating LegendItemName(slug=%s)' % slug
+                LegendItemName(**row_dict).save()
+
+def _write_csv(filename, fields):
     with open(filename, 'wb') as f:
         writer = csv.writer(f)
-        header = ['title']
-        for code in LANG_CODES:
-            header.append('name_%s' % code)
-        writer.writerow(header)
-        for row in LegendItem.objects.values_list(*header):
-            if not row[0] in written_titles:
-                writer.writerow(row)
-                written_titles.append(row[0])
-
-def sync_legend_translation(filename):
-    with open(filename, 'r') as f:
-        reader = csv.reader(f)
-        columns = reader.next()
-        for row in reader:
-            legend_item_names = LegendItemName.objects.filter(slug=row[0])
-            lookup_dict = {}
-            for i in range(1, len(columns[1:]) + 1):
-                lookup_dict[columns[i]] = row[i]
-            legend_item_names.update(**lookup_dict)
-        print 'Legend names synced successfully'
-
-def sync_slugified_titles(input_filename):
-    with open(input_filename, 'r') as rf:
-        dict_reader = csv.DictReader(rf)
-        for row in dict_reader:
-            legend_items = LegendItem.objects.filter(title=row['title'])
-            sl_title = slugify(row['name_en'])
-            if legend_items.count() and legend_items[0].title != sl_title:
-                for li in legend_items:
-                    li.rules.all().update(name=sl_title)
-                if legend_items[0].name_en != row['name_en']:
-                    legend_items.update(name_en=row['name_en'], title=sl_title)
-                else:
-                    legend_items.update(title=sl_title)
-
+        writer.writerow(fields)
+        for row in LegendItemName.objects.order_by('slug').values_list(*fields):
+            writer.writerow(row)
