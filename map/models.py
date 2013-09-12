@@ -41,8 +41,7 @@ class GeojsonLayer(models.Model):
     lineGeom = models.BooleanField(default=False)
     polygonGeom = models.BooleanField(default=False)
     attributes = models.TextField(null=True, blank=True)
-#    minZoom = models.PositiveIntegerField(default=13)
-#    maxZoom = models.PositiveIntegerField(default=18)
+    min_zoom = models.PositiveIntegerField(default=13)
 
     class Meta:
         translate = ('name',)
