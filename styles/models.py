@@ -438,7 +438,6 @@ class Rule(models.Model):
     SCALE_CHOICES = zip(range(0, 21), range(0, 21))
 
     name = models.CharField(max_length=200, null=True, blank=True)
-#    title = models.CharField(max_length=200, null=True, blank=True)
     abstract = models.TextField(null=True, blank=True)
     filter = models.CharField(max_length=2000, null=True, blank=True)
     minscale = models.IntegerField(choices=SCALE_CHOICES, default=18)
@@ -452,7 +451,6 @@ class Rule(models.Model):
 
     def import_rule(self, node):
         self.name = xpath_query(node, './@name')
-#        self.title = xpath_query(node, './@title')
         self.filter = xpath_query(node, './Filter')
         if not self.filter:
             elsefilter = xpath_query(node, './ElseFilter')
@@ -490,7 +488,6 @@ class Rule(models.Model):
         self.scale(scale_factor)
         rule_node = libxml2.newNode('Rule')
         set_xml_param(rule_node, 'name', self.name)
-#        set_xml_param(rule_node, 'title', self.title)
         if self.filter:
             if self.filter=='ELSEFILTER':
                 rule_node.addChild(libxml2.newNode('ElseFilter'))
@@ -951,7 +948,6 @@ class PointSymbolizer(Symbolizer):
         im = PIL.Image.open(style_path + self.file.encode('utf-8'))
         height = im.size[1]
         width = im.size[0]
-        print height, width, 'id:', self.id
         return (height, width)
 
 
@@ -1690,24 +1686,14 @@ class LegendItem(models.Model):
     SCALE_CHOICES = zip(range(0, 21), range(0, 21))
 
     legend_item_name = models.ForeignKey('LegendItemName', null=True, blank=True)
-#     title = models.CharField(max_length=200, null=True, blank=True)
-#     name = models.CharField(max_length=200, null=True, blank=True)
     image = models.ImageField(upload_to='legend/', height_field='height', width_field='width', null=True, blank=True)
     image_highres = models.ImageField(upload_to='legend/', height_field='height_highres', width_field='width_highres', null=True, blank=True)
-#     title_image = models.ImageField(upload_to='legend/', height_field='title_height', width_field='title_width', null=True, blank=True)
-#     title_image_highres = models.ImageField(upload_to='legend/', height_field='title_height_highres', width_field='title_width_highres', null=True, blank=True)
     geometry = models.CharField(max_length=200, null=True, blank=True)
-#     group = models.CharField(max_length=200, null=True, blank=True)
-#     order = models.PositiveIntegerField(null=True, blank=True)
     zoom =  models.IntegerField(choices=SCALE_CHOICES)
     height = models.PositiveIntegerField(null=True, blank=True)
     width = models.PositiveIntegerField(null=True, blank=True)
-#     title_height = models.PositiveIntegerField(null=True, blank=True)
-#     title_width = models.PositiveIntegerField(null=True, blank=True)
     height_highres = models.PositiveIntegerField(null=True, blank=True)
     width_highres = models.PositiveIntegerField(null=True, blank=True)
-#     title_height_highres = models.PositiveIntegerField(null=True, blank=True)
-#     title_width_highres = models.PositiveIntegerField(null=True, blank=True)
 
     legend = models.ForeignKey('Legend')
     rules = models.ManyToManyField('Rule', through='LegendItemRule')
@@ -1718,7 +1704,6 @@ class LegendItem(models.Model):
     def save_legend(self, legend, rule, zoom):
         related = legend.legenditem_set.select_related().filter(legend_item_name__slug=rule.name, zoom=zoom)
         if not len(related):
-#             self.title = rule.name
             self.geometry = rule.styles.all()[0].layers.all()[0].geometry()
             self.zoom = zoom
             self.legend = legend
@@ -1768,13 +1753,9 @@ class LegendItem(models.Model):
         if scale_factor>=2:
             if self.image_highres and os.path.exists(self.image_highres.path):
                 remove(self.image_highres.path)
-#             if self.title_image_highres and os.path.exists(self.title_image_highres.path):
-#                 remove(self.title_image_highres.path)
         else:
             if self.image and os.path.exists(self.image.path):
                 remove(self.image.path)
-#             if self.title_image and os.path.exists(self.title_image.path):
-#                 remove(self.title_image.path)
         size = self.image_size(scale_factor)
         name = ('%i_%i.png' % (self.zoom, self.id)).encode('utf-8')
         if scale_factor >= 2:
@@ -1817,7 +1798,7 @@ class LegendItem(models.Model):
             ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from legend_collections) as ln', user='xtesar7', password=db_password)
         else:
             # Raster... special legend creation
-            print "Raster Layer, legend not created, id %i" % self.id
+            print "Raster Layer, legend not created, id: %s, slug: %s" % (self.id, self.legend_item_name.slug)
             return 1
         l = mapnik.Layer('legend')
         l.datasource = ds
@@ -1838,7 +1819,6 @@ class LegendItem(models.Model):
         ll = (-lon, -lat, lon, lat)
         c0 = prj.forward(mapnik.Coord(ll[0],ll[1]))
         c1 = prj.forward(mapnik.Coord(ll[2],ll[3]))
-#        print c0, c1
         bbox = mapnik.Envelope(c0.x,c0.y,c1.x,c1.y)
         m.zoom_to_box(bbox)
         im = mapnik.Image(size[1], size[0])
@@ -1898,7 +1878,6 @@ class LegendItemName(models.Model):
                         remove(image_highres.path)
                     image_highres.delete()
                 image_highres.save(path, File(open(tmppath)))
-                print height, self.image_highres_en.height, self.image_highres_cs.height
             else:
                 if image:
                     if os.path.exists(image.path):

@@ -10,7 +10,6 @@ from django.conf import settings
 
 # Local imports
 from routing.models import WeightCollection, WeightClass, WeightClassValue, Weight, WeightValue, Preferred, PreferredValue
-from routing.translation import sync_with_empty_weight_collection
 
 def initialize_preferred(filename='routing/fixtures/preferred.csv'):
     with open(filename, 'r') as f:

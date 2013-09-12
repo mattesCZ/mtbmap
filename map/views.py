@@ -50,7 +50,6 @@ def legend(request):
     '''
     Legend items for given zoom.
     '''
-#    zoom = int(zoom)
     zoom = int(request.GET['zoom'])
     legenditems = Legend.objects.all()[0].legend_items(zoom)
     return TemplateResponse(request, 'map/legend.html', {'zoom': zoom, 'legenditems': legenditems})
