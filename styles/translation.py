@@ -60,7 +60,11 @@ def load_default_names(filename='styles/fixtures/default_names.csv'):
                     print 'Updating LegendItemName(slug=%s): %s' % (slug, changed)
             else:
                 print 'Creating LegendItemName(slug=%s)' % slug
-                LegendItemName(**row_dict).save()
+                data = {}
+                for key, value in row_dict.iteritems():
+                    if value:
+                        data[key] = value
+                LegendItemName(**data).save()
 
 def _write_csv(filename, fields):
     with open(filename, 'wb') as f:
