@@ -2,6 +2,7 @@
 
 # Global imports
 import simplejson as json
+from transmeta import TransMeta
 
 # Django imports
 from django.db import models
@@ -12,11 +13,16 @@ from django.utils.translation import ugettext_lazy as _
 from osm_data_processing.models import OsmPoint, OsmLine
 
 class TileLayer(models.Model):
+    __metaclass__ = TransMeta
+
     slug = models.SlugField(max_length=200, unique=True)
     name = models.CharField(max_length=200)
     attribution = models.CharField(max_length=400)
     url = models.CharField(max_length=400)
     last_update = models.DateField(null=True, blank=True)
+
+    class Meta:
+        translate = ('name',)
 
     def __unicode__(self):
         return u"%s,%s" % (self.slug, self.url)
@@ -26,6 +32,8 @@ class TileLayer(models.Model):
 
 
 class GeojsonLayer(models.Model):
+    __metaclass__ = TransMeta
+
     slug = models.SlugField(max_length=40, unique=True)
     name = models.CharField(max_length=40)
     filter = models.TextField(null=True, blank=True)
@@ -36,8 +44,11 @@ class GeojsonLayer(models.Model):
 #    minZoom = models.PositiveIntegerField(default=13)
 #    maxZoom = models.PositiveIntegerField(default=18)
 
+    class Meta:
+        translate = ('name',)
+
     def __unicode__(self):
-        return u"%s" % (self.name)
+        return u"%s" % (self.slug)
 
     def attributes_list(self):
         '''

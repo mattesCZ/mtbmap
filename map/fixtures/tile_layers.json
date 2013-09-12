@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "map.tilelayer", "fields": {"attribution": "OpenStreetMap.org a USGS", "url": "http://tile.mtbmap.cz/mtbmap_tiles/", "last_update": "2013-08-14", "name_cs": "MTB mapa", "name_en": "MTB map", "slug": "mtb-map"}}]
