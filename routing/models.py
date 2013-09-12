@@ -266,7 +266,7 @@ class WeightCollection(models.Model):
         ('bicycle', _('Bicycle')),
     )
     slug = models.SlugField(max_length=40, unique=True)
-    name = models.CharField(max_length=40)
+    name = models.CharField(verbose_name=_('name'), max_length=40)
     oneway = models.BooleanField(default=True)
     vehicle = models.CharField(max_length=40, default='bicycle', choices=VEHICLE_CHOICES)
 
@@ -386,7 +386,7 @@ class WeightClass(models.Model):
     __metaclass__ = TransMeta
 
     slug = models.SlugField(max_length=40, unique=True)
-    name = models.CharField(max_length=40)
+    name = models.CharField(verbose_name=_('name'), max_length=40)
     link = models.URLField(null=True, blank=True)
 
     class Meta:
@@ -482,7 +482,7 @@ class Preferred(models.Model):
     __metaclass__ = TransMeta
 
     slug = models.SlugField(max_length=40, unique=True)
-    name = models.CharField(max_length=40)
+    name = models.CharField(verbose_name=_('name'), max_length=40)
 
     class Meta:
         translate = ('name', )
@@ -511,7 +511,7 @@ class Weight(models.Model):
     )
     weight_class = models.ForeignKey('WeightClass')
     slug = models.SlugField(max_length=40)
-    name = models.CharField(max_length=40)
+    name = models.CharField(verbose_name=_('name'), max_length=40)
     type = models.CharField(max_length=20, null=True, blank=True, choices=GUI_CHOICES)
     description = models.TextField(null=True, blank=True)
 

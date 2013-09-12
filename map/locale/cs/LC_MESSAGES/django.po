@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-10 15:29+0200\n"
+"POT-Creation-Date: 2013-09-12 17:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Martin Tesar <osmmtb@gmail.com>\n"
 "Language-Team: Czech <>\n"
@@ -28,83 +28,87 @@ msgstr "Klesání"
 msgid "Height"
 msgstr "Výška"
 
-#: models.py:72
+#: models.py:19 models.py:38
+msgid "name"
+msgstr "název"
+
+#: models.py:82
 msgid "Perfect"
 msgstr "Dokonalé"
 
-#: models.py:73
+#: models.py:83
 msgid "Good"
 msgstr "Dobré"
 
-#: models.py:74
+#: models.py:84
 msgid "Usable"
 msgstr "Použitelné"
 
-#: models.py:75
+#: models.py:85
 msgid "Bad"
 msgstr "Špatné"
 
-#: models.py:76
+#: models.py:86
 msgid "Unusable"
 msgstr "Nepoužitelné"
 
-#: models.py:79
+#: models.py:89
 msgid "Does not bother"
 msgstr "Nijak neomezuje"
 
-#: models.py:80
+#: models.py:90
 msgid "Slow, but it is worth waiting"
 msgstr "Pomalé, ale rád si počkám"
 
-#: models.py:81
+#: models.py:91
 msgid "Slow, unusable"
 msgstr "Pomalé, nepoužitelné"
 
-#: models.py:84
+#: models.py:94
 msgid "Great"
 msgstr "Vyhovuje"
 
-#: models.py:85
+#: models.py:95
 msgid "Good, but I want more parameters"
 msgstr "Dobré, ale chci více parametrů"
 
-#: models.py:86
+#: models.py:96
 msgid "Good, but sometimes on wrong tracks"
 msgstr "Dobré, ale občas po cestách, které nechci"
 
-#: models.py:87
+#: models.py:97
 msgid "Bad, route is completely unusable"
 msgstr "Špatné, nevhodně nalezená trasa"
 
-#: models.py:88
+#: models.py:98
 msgid "Bad, I don't understand it at all"
 msgstr "Špatné, nechápu proč se to takto chová"
 
-#: models.py:93
+#: models.py:103
 msgid "Overall rating"
 msgstr "Celkové hodnocení"
 
-#: models.py:94
+#: models.py:104
 msgid "Speed"
 msgstr "Rychlost"
 
-#: models.py:95
+#: models.py:105
 msgid "Route quality"
 msgstr "Kvalita tras"
 
-#: models.py:96
+#: models.py:106
 msgid "Comment"
 msgstr "Komentář"
 
-#: printing.py:253 templates/map/base.html:33 templates/map/map.html:55
+#: printing.py:253 templates/map/base.html:33 templates/map/map.html:96
 msgid "Author"
 msgstr "Autor"
 
-#: printing.py:253 templates/map/map.html:56
+#: printing.py:253 templates/map/map.html:97
 msgid "Projection"
 msgstr "Zobrazení"
 
-#: printing.py:253 templates/map/map.html:56
+#: printing.py:253 templates/map/map.html:97
 msgid "Conformal cylindrical - Mercator"
 msgstr "Konformní válcové - mercatorovo"
 
@@ -116,19 +120,19 @@ msgstr "Data"
 msgid "Created"
 msgstr "Vytvořeno"
 
-#: views.py:191
+#: views.py:194
 msgid "Sorry, we do not have height data for the area that you have requested."
 msgstr "Omlouváme se, nemáme výšková data pro žádanou oblast nebo její část."
 
-#: views.py:196 views.py:222
+#: views.py:199 views.py:225
 msgid "You have not set any point."
 msgstr "Nezadali jste žádný bod."
 
-#: views.py:206 views.py:260
+#: views.py:209 views.py:263
 msgid "No route parameters posted."
 msgstr "Nebyly zadány žádné parametry trasy."
 
-#: views.py:303
+#: views.py:306
 msgid "Thank you for your evaluation"
 msgstr "Děkujeme za vaše hodnocení"
 
@@ -192,7 +196,7 @@ msgstr "Název mapy"
 msgid "Scale"
 msgstr "Měřítko"
 
-#: templates/map/export.html:38 templates/map/map.html:28
+#: templates/map/export.html:38 templates/map/map.html:69
 msgid "Legend"
 msgstr "Legenda"
 
@@ -208,7 +212,7 @@ msgstr "Zobrazit trasu"
 msgid "Resolution for print"
 msgstr "Rozlišení pro tisk"
 
-#: templates/map/export.html:49 templates/map/map.html:31
+#: templates/map/export.html:49 templates/map/map.html:72
 msgid "Export"
 msgstr "Export"
 
@@ -295,35 +299,35 @@ msgstr ""
 msgid "Legend for zoom %(zoom)s"
 msgstr "Legenda pro přiblížení (zoom) %(zoom)s"
 
-#: templates/map/map.html:27
+#: templates/map/map.html:68
 msgid "About"
 msgstr "O projektu"
 
-#: templates/map/map.html:29
+#: templates/map/map.html:70
 msgid "Routes"
 msgstr "Trasy"
 
-#: templates/map/map.html:30
+#: templates/map/map.html:71
 msgid "Places"
 msgstr "Místa"
 
-#: templates/map/map.html:57
+#: templates/map/map.html:98
 msgid "Data provided by"
 msgstr "Data poskytuje"
 
-#: templates/map/map.html:57
+#: templates/map/map.html:98
 msgid "and"
 msgstr "a"
 
-#: templates/map/map.html:57
+#: templates/map/map.html:98
 msgid "Version"
 msgstr "Verze"
 
-#: templates/map/map.html:57
+#: templates/map/map.html:98
 msgid "from"
 msgstr "od"
 
-#: templates/map/map.html:58
+#: templates/map/map.html:99
 #, python-format
 msgid ""
 "\n"
@@ -475,7 +479,7 @@ msgstr "Zohlednit jednosměrky:"
 msgid "Preferred ways"
 msgstr "Preferované cesty"
 
-#: templates/map/routingparams.html:36
+#: templates/map/routingparams.html:39
 #, python-format
 msgid ""
 "\n"

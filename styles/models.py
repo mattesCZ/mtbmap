@@ -14,7 +14,7 @@ from transmeta import TransMeta
 from django.db import models
 from django.core.files import File
 from django.conf import settings
-from django.utils.translation import activate
+from django.utils.translation import activate, ugettext_lazy as _
 
 # Local imports
 from styles.xmlfunctions import *
@@ -1833,11 +1833,11 @@ class LegendItemName(models.Model):
 
 #     SCALE_CHOICES = zip(range(0, 21), range(0, 21))
     slug = models.SlugField(max_length=200, unique=True)
-    name = models.CharField(max_length=200, null=True, blank=True)
+    name = models.CharField(verbose_name=_('name'), max_length=200, null=True, blank=True)
     group = models.CharField(max_length=200, null=True, blank=True)
     order = models.PositiveIntegerField(null=True, blank=True)
-    image = models.ImageField(upload_to='legend/', height_field='height', width_field='width', null=True, blank=True)
-    image_highres = models.ImageField(upload_to='legend/', height_field='height_highres', width_field='width_highres', null=True, blank=True)
+    image = models.ImageField(verbose_name=_('image'), upload_to='legend/', height_field='height', width_field='width', null=True, blank=True)
+    image_highres = models.ImageField(verbose_name=_('highres image'), upload_to='legend/', height_field='height_highres', width_field='width_highres', null=True, blank=True)
     height = models.PositiveIntegerField(null=True, blank=True)
     width = models.PositiveIntegerField(null=True, blank=True)
     height_highres = models.PositiveIntegerField(null=True, blank=True)

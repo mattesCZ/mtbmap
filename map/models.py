@@ -16,7 +16,7 @@ class TileLayer(models.Model):
     __metaclass__ = TransMeta
 
     slug = models.SlugField(max_length=200, unique=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(verbose_name=_('name'), max_length=200)
     attribution = models.CharField(max_length=400)
     url = models.CharField(max_length=400)
     last_update = models.DateField(null=True, blank=True)
@@ -35,7 +35,7 @@ class GeojsonLayer(models.Model):
     __metaclass__ = TransMeta
 
     slug = models.SlugField(max_length=40, unique=True)
-    name = models.CharField(max_length=40)
+    name = models.CharField(verbose_name=_('name'), max_length=40)
     filter = models.TextField(null=True, blank=True)
     pointGeom = models.BooleanField(default=False)
     lineGeom = models.BooleanField(default=False)
