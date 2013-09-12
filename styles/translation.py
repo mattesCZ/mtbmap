@@ -37,13 +37,13 @@ def load_translation_file(lang_code):
             line += 1
 
 def _get_locale_filename(lang_code):
-    return 'styles/locale/names_%s.csv' % lang_code
+    return 'styles/locale/%s/names.csv' % lang_code
 
-def dump_default_names(filename):
+def dump_default_names(filename='styles/fixtures/default_names.csv'):
     fields = ['slug', 'group', 'order', 'name_en']
     _write_csv(filename, fields)
 
-def load_default_names(filename):
+def load_default_names(filename='styles/fixtures/default_names.csv'):
     with open(filename, 'r') as f:
         reader = csv.DictReader(f)
         for row_dict in reader:
