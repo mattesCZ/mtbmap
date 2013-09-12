@@ -184,7 +184,7 @@ function updateTemplate(template_id) {
 	});
 }
 function setPanelsMaxHeight() {
-    maxheight = $('#map').height() - ($('#footer').height() + 70);
+    maxheight = $('#map').height() - ($('#footer').height() + 85);
     $('.main-tab-panel').css('max-height', maxheight);
     $('.subtab-panel').css('max-height', maxheight-40);
 }
