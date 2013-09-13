@@ -779,6 +779,13 @@
       <MaxScaleDenominator>400000</MaxScaleDenominator>
       <PolygonPatternSymbolizer file="../symbols/scrub.png"/>
     </Rule>
+    <Rule name="glacier">
+      <Filter>([natural]='glacier')</Filter>
+      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MaxScaleDenominator>400000</MaxScaleDenominator>
+      <LineSymbolizer stroke="rgb(153,204,255)" stroke-width="1.50" stroke-dasharray="4, 2"/>
+      <PolygonPatternSymbolizer file="../symbols/glacier2.png"/>
+    </Rule>
   </Style>
   <Style name="minor-roads-casing">
     <Rule name="motorway-trunk-road">
@@ -11265,13 +11272,6 @@
       <PolygonSymbolizer fill="rgb(114,155,249)"/>
       <LineSymbolizer stroke="rgb(80,109,177)" stroke-width="0.40"/>
     </Rule>
-    <Rule name="glacier">
-      <Filter>([natural]='glacier')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
-      <MaxScaleDenominator>400000</MaxScaleDenominator>
-      <LineSymbolizer stroke="rgb(153,204,255)" stroke-width="1.50" stroke-dasharray="4, 2"/>
-      <PolygonPatternSymbolizer file="../symbols/glacier2.png"/>
-    </Rule>
   </Style>
   <Style name="water_areas_fill">
     <Rule name="water-area">
@@ -11782,7 +11782,7 @@
           or aeroway in ('apron','aerodrome')
           or amenity in ('parking','university','college','school','hospital','kindergarten','grave_yard')
           or military = 'barracks'
-          or "natural" in ('field','beach','heath','mud','wood','fell','scrub')
+          or "natural" in ('field','beach','heath','mud','wood','fell','scrub','glacier')
           or power in ('station','sub_station')
           or tourism in ('attraction','camp_site','caravan_site','picnic_site','zoo')
        order by z_order,way_area desc
@@ -12457,7 +12457,7 @@
       from planet_osm_polygon
       where waterway in ('dock','mill_pond','riverbank','canal')
          or landuse in ('reservoir','water','basin')
-         or "natural" in ('lake','water','land','marsh','wetland','glacier')
+         or "natural" in ('lake','water','land','marsh','wetland')
       order by z_order,way_area desc
       ) as water_areas</Parameter>
       <Parameter name="password">&passwd;</Parameter>
@@ -12514,7 +12514,7 @@
       from planet_osm_polygon
       where waterway in ('dock','mill_pond','riverbank','canal')
          or landuse in ('reservoir','water','basin')
-         or "natural" in ('lake','water','land','marsh','scrub','wetland','glacier')
+         or "natural" in ('lake','water')
       order by z_order,way_area desc
       ) as water_areas_fill</Parameter>
       <Parameter name="password">&passwd;</Parameter>
