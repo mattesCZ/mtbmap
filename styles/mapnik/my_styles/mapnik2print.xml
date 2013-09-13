@@ -11660,7 +11660,7 @@
       <Parameter name="file">../../../Data/shp/world_boundaries/processed_p</Parameter>
     </Datasource>
   </Layer>
-  <Layer name="hypsometry" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+  <Layer name="hypsometry_high_35" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
     <StyleName>hypsometry_high</StyleName>
     <Datasource>
       <Parameter name="type">gdal</Parameter>
@@ -11668,7 +11668,7 @@
       <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
-  <Layer name="hypsometry" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+  <Layer name="hypsometry_high_36" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
     <StyleName>hypsometry_high</StyleName>
     <Datasource>
       <Parameter name="type">gdal</Parameter>
@@ -11676,7 +11676,7 @@
       <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
-  <Layer name="hypsometry" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+  <Layer name="hypsometry_high_37" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
     <StyleName>hypsometry_high</StyleName>
     <Datasource>
       <Parameter name="type">gdal</Parameter>
@@ -11684,7 +11684,7 @@
       <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
-  <Layer name="hypsometry" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+  <Layer name="hypsometry_high_38" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
     <StyleName>hypsometry_high</StyleName>
     <Datasource>
       <Parameter name="type">gdal</Parameter>
@@ -11692,7 +11692,7 @@
       <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
-  <Layer name="hypsometry" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+  <Layer name="hypsometry_high_39" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
     <StyleName>hypsometry_high</StyleName>
     <Datasource>
       <Parameter name="type">gdal</Parameter>
@@ -11700,7 +11700,7 @@
       <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
-  <Layer name="hypsometry" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+  <Layer name="hypsometry_high_40" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
     <StyleName>hypsometry_high</StyleName>
     <Datasource>
       <Parameter name="type">gdal</Parameter>
@@ -11708,7 +11708,7 @@
       <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
-  <Layer name="hypsometry" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+  <Layer name="hypsometry_high_41" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
     <StyleName>hypsometry_high</StyleName>
     <Datasource>
       <Parameter name="type">gdal</Parameter>
@@ -11716,7 +11716,7 @@
       <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
-  <Layer name="hypsometry" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+  <Layer name="hypsometry_high_42" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
     <StyleName>hypsometry_high</StyleName>
     <Datasource>
       <Parameter name="type">gdal</Parameter>
@@ -11724,7 +11724,31 @@
       <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
-  <Layer name="hypsometry" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+  <Layer name="hypsometry_high_43" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>hypsometry_high</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hypsometry150_43.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hypsometry_high_44" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>hypsometry_high</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hypsometry150_44.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hypsometry_high_45" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>hypsometry_high</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hypsometry150_45.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hypsometry_mid" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
     <StyleName>hypsometry_mid</StyleName>
     <Datasource>
       <Parameter name="type">gdal</Parameter>
@@ -11732,7 +11756,7 @@
       <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
-  <Layer name="hypsometry" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+  <Layer name="hypsometry_low" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
     <StyleName>hypsometry_low</StyleName>
     <Datasource>
       <Parameter name="type">gdal</Parameter>
@@ -12123,6 +12147,126 @@
       <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
+  <Layer name="hillshade_highest_43_01" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_highest</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade30_43_01.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_highest_43_02" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_highest</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade30_43_02.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_highest_43_03" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_highest</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade30_43_03.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_highest_43_04" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_highest</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade30_43_04.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_highest_43_05" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_highest</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade30_43_05.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_highest_44_01" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_highest</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade30_44_01.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_highest_44_02" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_highest</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade30_44_02.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_highest_44_03" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_highest</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade30_44_03.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_highest_44_04" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_highest</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade30_44_04.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_highest_44_05" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_highest</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade30_44_05.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_highest_45_01" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_highest</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade30_45_01.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_highest_45_02" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_highest</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade30_45_02.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_highest_45_03" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_highest</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade30_45_03.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_highest_45_04" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_highest</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade30_45_04.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_highest_45_05" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_highest</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade30_45_05.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
   <Layer name="hillshade_high_35" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
     <StyleName>shading_high</StyleName>
     <Datasource>
@@ -12184,6 +12328,30 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade150_42.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_high_43" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_high</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade150_43.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_high_44" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_high</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade150_44.tif</Parameter>
+      <Parameter name="format">tiff</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="hillshade_high_45" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
+    <StyleName>shading_high</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../Data/shadingdata/hillshade150_45.tif</Parameter>
       <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
