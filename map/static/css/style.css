@@ -20,6 +20,16 @@
     border: none;
     background: none;
 }
+#languages {
+	padding: 2px 5px 0;
+}
+#languages .active {
+	font-weight: bold;
+}
+#languages a {
+	text-decoration: underline;
+	font-weight: normal;
+}
 .main-tab-panel, .subtab-panel {
     overflow: auto;
 }
@@ -81,7 +91,7 @@ hr { /*should be rewritten for html5*/
 }
 #weights_template {
 	width: 96%;
-	margin: 1px 7px;
+	margin: 1px 7px 8px;
 }
 .line-buttons {
     display: none;

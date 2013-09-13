@@ -7,6 +7,7 @@ from textwrap import wrap
 # Django imports
 from django.db import models
 from django.contrib.gis.db import models as geomodels
+from django.utils.translation import ugettext_lazy as _
 
 ## PLANET_OSM_MODELS
 class OsmModel(geomodels.Model):
@@ -59,15 +60,16 @@ class OsmModel(geomodels.Model):
         if len(att_list)>0:
             header = self.label(att_list[0])
             if header:
-                content += '<h3>%s</h3>' % (header)
-            content += '<p class="geojsonPopup">'
+                content += u'<h3>%s</h3>' % (header)
+            content += u'<p class="geojsonPopup">'
             for attr in att_list[1:]:
                 if hasattr(self, attr) and getattr(self, attr):
-                    content += '%s: %s <br>' % (attr, getattr(self, attr))
-            content += 'OSM ID: %s' % (self.osmLink())
-            content += '</p>'
+                    field = self._meta.get_field_by_name(attr)[0]
+                    content += u'%s: %s <br>' % (field.verbose_name, getattr(self, attr))
+            content += u'%s: %s' % (_('OSM ID'), self.osmLink())
+            content += u'</p>'
         else:
-            content += '<h2>%s</h2>' % (self.osmLink())
+            content += u'<h2>%s</h2>' % (self.osmLink())
         return content
     
     def osmLink(self, url='http://www.openstreetmap.org/browse/', geometry='way'):
@@ -94,10 +96,10 @@ class OsmModel(geomodels.Model):
 
 class OsmPoint(OsmModel):
     the_geom = geomodels.PointField()
-    name = models.CharField(max_length=400, null=True, blank=True)
+    name = models.CharField(verbose_name=_('Name'), max_length=400, null=True, blank=True)
     amenity = models.CharField(max_length=200, null=True, blank=True)
-    description = models.CharField(max_length=200, null=True, blank=True)
-    ele = models.CharField(max_length=200, null=True, blank=True)
+    description = models.CharField(verbose_name=_('Description'), max_length=200, null=True, blank=True)
+    ele = models.CharField(verbose_name=_('Elevation'), max_length=200, null=True, blank=True)
     highway = models.CharField(max_length=200, null=True, blank=True)
     historic = models.CharField(max_length=200, null=True, blank=True)
     information = models.CharField(max_length=200, null=True, blank=True)
@@ -105,13 +107,13 @@ class OsmPoint(OsmModel):
     man_made = models.CharField(max_length=200, null=True, blank=True)
     natural = models.CharField(max_length=200, null=True, blank=True)
     noexit = models.CharField(max_length=200, null=True, blank=True)
-    opening_hours = models.CharField(max_length=200, null=True, blank=True)
+    opening_hours = models.CharField(verbose_name=_('Opening hours'), max_length=200, null=True, blank=True)
     place = models.CharField(max_length=200, null=True, blank=True)
     protect_class = models.CharField(max_length=200, null=True, blank=True)
     railway = models.CharField(max_length=200, null=True, blank=True)
-    ref = models.CharField(max_length=200, null=True, blank=True)
+    ref = models.CharField(verbose_name=_('Reference code'), max_length=200, null=True, blank=True)
     ruins = models.CharField(max_length=200, null=True, blank=True)
-    shop = models.CharField(max_length=200, null=True, blank=True)
+    shop = models.CharField(verbose_name=_('Shop type'), max_length=200, null=True, blank=True)
     sport = models.CharField(max_length=200, null=True, blank=True)
     tourism = models.CharField(max_length=200, null=True, blank=True)
 
@@ -122,10 +124,10 @@ class OsmPoint(OsmModel):
     
 class OsmLine(OsmModel):
     the_geom = geomodels.LineStringField()
-    name = models.CharField(max_length=400, null=True, blank=True)
-    mtbscale = models.CharField(verbose_name='mtb:scale', max_length=200, null=True, blank=True)
-    mtbdescription = models.CharField(verbose_name='mtb:description', max_length=200, null=True, blank=True)
-    mtbscaleuphill = models.CharField(verbose_name='mtb:scale:uphill', max_length=200, null=True, blank=True)
+    name = models.CharField(verbose_name=_('Name'), max_length=400, null=True, blank=True)
+    mtbscale = models.CharField(verbose_name=_('MTB scale'), max_length=200, null=True, blank=True)
+    mtbdescription = models.CharField(verbose_name=_('MTB description'), max_length=200, null=True, blank=True)
+    mtbscaleuphill = models.CharField(verbose_name=_('MTB scale uphill'), max_length=200, null=True, blank=True)
     
     objects = geomodels.GeoManager()
     

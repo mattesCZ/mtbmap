@@ -91,3 +91,7 @@ admin.site.register(PolygonPatternSymbolizer)
 admin.site.register(RasterSymbolizer)
 admin.site.register(ShieldSymbolizer)
 admin.site.register(TextSymbolizer)
+
+admin.site.register(Legend)
+admin.site.register(LegendItem)
+admin.site.register(LegendItemName)

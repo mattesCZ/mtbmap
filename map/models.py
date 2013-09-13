@@ -2,20 +2,27 @@
 
 # Global imports
 import simplejson as json
+from transmeta import TransMeta
 
 # Django imports
 from django.db import models
 from django.contrib.gis.geos import Polygon
+from django.utils.translation import ugettext_lazy as _
 
 # Local imports
 from osm_data_processing.models import OsmPoint, OsmLine
 
 class TileLayer(models.Model):
+    __metaclass__ = TransMeta
+
     slug = models.SlugField(max_length=200, unique=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(verbose_name=_('name'), max_length=200)
     attribution = models.CharField(max_length=400)
     url = models.CharField(max_length=400)
     last_update = models.DateField(null=True, blank=True)
+
+    class Meta:
+        translate = ('name',)
 
     def __unicode__(self):
         return u"%s,%s" % (self.slug, self.url)
@@ -25,18 +32,22 @@ class TileLayer(models.Model):
 
 
 class GeojsonLayer(models.Model):
+    __metaclass__ = TransMeta
+
     slug = models.SlugField(max_length=40, unique=True)
-    name = models.CharField(max_length=40)
+    name = models.CharField(verbose_name=_('name'), max_length=40)
     filter = models.TextField(null=True, blank=True)
     pointGeom = models.BooleanField(default=False)
     lineGeom = models.BooleanField(default=False)
     polygonGeom = models.BooleanField(default=False)
     attributes = models.TextField(null=True, blank=True)
-#    minZoom = models.PositiveIntegerField(default=13)
-#    maxZoom = models.PositiveIntegerField(default=18)
+    min_zoom = models.PositiveIntegerField(default=13)
+
+    class Meta:
+        translate = ('name',)
 
     def __unicode__(self):
-        return u"%s" % (self.name)
+        return u"%s" % (self.slug)
 
     def attributes_list(self):
         '''
@@ -68,31 +79,31 @@ class GeojsonLayer(models.Model):
 
 class RoutingEvaluation(models.Model):
     EVALUATION_CHOICES = (
-        (1, 'Dokonalé'),
-        (2, 'Dobré'),
-        (3, 'Použitelné'),
-        (4, 'Špatné'),
-        (5, 'Nepoužitelné'),
+        (1, _('Perfect')),
+        (2, _('Good')),
+        (3, _('Usable')),
+        (4, _('Bad')),
+        (5, _('Unusable')),
     )
     SPEED_CHOICES = (
-        (1, 'Nijak neomezuje'),
-        (2, 'Pomalé, ale rád si počkám'),
-        (3, 'Pomalé, nepoužitelné'),
+        (1, _('Does not bother')),
+        (2, _('Slow, but it is worth waiting')),
+        (3, _('Slow, unusable')),
     )
     QUALITY_CHOICES = (
-        (1, 'Vyhovuje'),
-        (2, 'Dobré, ale chci více parametrů'),
-        (3, 'Dobré, ale občas po cestách, které nechci'),
-        (4, 'Špatné, nevhodně nalezená trasa'),
-        (5, 'Špatné, nechápu proč se to takto chová'),
+        (1, _('Great')),
+        (2, _('Good, but I want more parameters')),
+        (3, _('Good, but sometimes on wrong tracks')),
+        (4, _('Bad, route is completely unusable')),
+        (5, _("Bad, I don't understand it at all")),
     )
     params = models.TextField()
     linestring = models.TextField()
     timestamp = models.DateTimeField()
-    general_evaluation = models.PositiveIntegerField(verbose_name='Celkové hodnocení', choices=EVALUATION_CHOICES, default=3)
-    speed = models.PositiveIntegerField(verbose_name='Rychlost', choices=SPEED_CHOICES, default=2)
-    quality = models.PositiveIntegerField(verbose_name='Kvalita tras', choices=QUALITY_CHOICES, default=1)
-    comment = models.TextField(verbose_name='Komentář', null=True, blank=True)
+    general_evaluation = models.PositiveIntegerField(verbose_name=_('Overall rating'), choices=EVALUATION_CHOICES, default=3)
+    speed = models.PositiveIntegerField(verbose_name=_('Speed'), choices=SPEED_CHOICES, default=2)
+    quality = models.PositiveIntegerField(verbose_name=_('Route quality'), choices=QUALITY_CHOICES, default=1)
+    comment = models.TextField(verbose_name=_('Comment'), null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
 
     def __unicode__(self):

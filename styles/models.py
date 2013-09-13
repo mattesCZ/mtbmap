@@ -8,11 +8,13 @@ from string import upper
 from os import remove, system
 import os.path
 import PIL.Image
+from transmeta import TransMeta
 
 # Django imports
 from django.db import models
 from django.core.files import File
 from django.conf import settings
+from django.utils.translation import activate, ugettext_lazy as _
 
 # Local imports
 from styles.xmlfunctions import *
@@ -22,6 +24,7 @@ zooms = [250000000000, 500000000, 200000000, 100000000, 50000000, 25000000, 1250
 
 style_path = settings.MAPNIK_STYLES
 db_password = settings.DATABASES['default']['PASSWORD']
+LANG_CODES = [lang_code for lang_code, lang_name in settings.LANGUAGES]
 
 class Map(models.Model):
 
@@ -435,7 +438,6 @@ class Rule(models.Model):
     SCALE_CHOICES = zip(range(0, 21), range(0, 21))
 
     name = models.CharField(max_length=200, null=True, blank=True)
-#    title = models.CharField(max_length=200, null=True, blank=True)
     abstract = models.TextField(null=True, blank=True)
     filter = models.CharField(max_length=2000, null=True, blank=True)
     minscale = models.IntegerField(choices=SCALE_CHOICES, default=18)
@@ -449,7 +451,6 @@ class Rule(models.Model):
 
     def import_rule(self, node):
         self.name = xpath_query(node, './@name')
-#        self.title = xpath_query(node, './@title')
         self.filter = xpath_query(node, './Filter')
         if not self.filter:
             elsefilter = xpath_query(node, './ElseFilter')
@@ -487,7 +488,6 @@ class Rule(models.Model):
         self.scale(scale_factor)
         rule_node = libxml2.newNode('Rule')
         set_xml_param(rule_node, 'name', self.name)
-#        set_xml_param(rule_node, 'title', self.title)
         if self.filter:
             if self.filter=='ELSEFILTER':
                 rule_node.addChild(libxml2.newNode('ElseFilter'))
@@ -948,7 +948,6 @@ class PointSymbolizer(Symbolizer):
         im = PIL.Image.open(style_path + self.file.encode('utf-8'))
         height = im.size[1]
         width = im.size[0]
-        print height, width, 'id:', self.id
         return (height, width)
 
 
@@ -1657,12 +1656,17 @@ class Legend(models.Model):
         self.create_images(zoom, 2)
 
     def create_images(self, zoom, scale_factor=1):
-        for item in self.legenditem_set.filter(zoom=zoom):
-            item.create_image(scale_factor)
+        for item in self.legenditem_set.select_related().filter(zoom=zoom):
+            if item.legend_item_name.name:
+                item.create_image(scale_factor)
 
     def create_all_images(self, scale_factor=1):
         for zoom in range(0, 19):
             self.create_images(zoom, scale_factor)
+
+    def create_all_name_images(self, font_size=12, scale_factor=1):
+        for lin in LegendItemName.objects.all():
+            lin.render_names(font_size, scale_factor)
 
     def estimated_min_size(self, zoom, gap):
         items = self.legend_items(zoom)
@@ -1674,45 +1678,43 @@ class Legend(models.Model):
         return width*height
 
     def legend_items(self, zoom):
-        return self.legenditem_set.filter(zoom=zoom).exclude(image='').order_by('geometry', 'title')
-
+        return self.legenditem_set.select_related().filter(zoom=zoom).exclude(image='').order_by('geometry', 'legend_item_name__slug')
 
 
 class LegendItem(models.Model):
+
     SCALE_CHOICES = zip(range(0, 21), range(0, 21))
 
-    title = models.CharField(max_length=200, null=True, blank=True)
+    legend_item_name = models.ForeignKey('LegendItemName', null=True, blank=True)
     image = models.ImageField(upload_to='legend/', height_field='height', width_field='width', null=True, blank=True)
     image_highres = models.ImageField(upload_to='legend/', height_field='height_highres', width_field='width_highres', null=True, blank=True)
-    title_image = models.ImageField(upload_to='legend/', height_field='title_height', width_field='title_width', null=True, blank=True)
-    title_image_highres = models.ImageField(upload_to='legend/', height_field='title_height_highres', width_field='title_width_highres', null=True, blank=True)
     geometry = models.CharField(max_length=200, null=True, blank=True)
-    group = models.CharField(max_length=200, null=True, blank=True)
-    order = models.PositiveIntegerField(null=True, blank=True)
     zoom =  models.IntegerField(choices=SCALE_CHOICES)
     height = models.PositiveIntegerField(null=True, blank=True)
     width = models.PositiveIntegerField(null=True, blank=True)
-    title_height = models.PositiveIntegerField(null=True, blank=True)
-    title_width = models.PositiveIntegerField(null=True, blank=True)
     height_highres = models.PositiveIntegerField(null=True, blank=True)
     width_highres = models.PositiveIntegerField(null=True, blank=True)
-    title_height_highres = models.PositiveIntegerField(null=True, blank=True)
-    title_width_highres = models.PositiveIntegerField(null=True, blank=True)
-
 
     legend = models.ForeignKey('Legend')
     rules = models.ManyToManyField('Rule', through='LegendItemRule')
 
     def __unicode__(self):
-        return 'ID: %i, %s, %i' % (self.id, self.title, self.zoom)
+        return 'ID: %i, %s, %i' % (self.id, self.legend_item_name, self.zoom)
 
     def save_legend(self, legend, rule, zoom):
-        related = legend.legenditem_set.filter(title=rule.name.replace('Shield: ','osmc: ').replace('trasa: ','osmc: '), zoom=zoom)
+        related = legend.legenditem_set.select_related().filter(legend_item_name__slug=rule.name, zoom=zoom)
         if not len(related):
-            self.title = rule.name.replace('Shield:','osmc: ').replace('trasa: ','osmc: ')
             self.geometry = rule.styles.all()[0].layers.all()[0].geometry()
             self.zoom = zoom
             self.legend = legend
+            lins = LegendItemName.objects.filter(slug=rule.name)
+            if lins.count():
+                self.legend_item_name = lins[0]
+            else:
+                lin = LegendItemName(slug=rule.name)
+                lin.save()
+                print 'Created new LegendItemName( slug=%s, id=%s). Fill other fields.' % (lin.slug, lin.id)
+                self.legend_item_name = lin
             self.save()
             lr = LegendItemRule()
             lr.legenditem_id = self
@@ -1746,18 +1748,14 @@ class LegendItem(models.Model):
         return size
 
     def create_image(self, scale_factor=1):
-        if self.title.startswith('!'):
+        if self.legend_item_name.slug.startswith('_'):
             return
         if scale_factor>=2:
             if self.image_highres and os.path.exists(self.image_highres.path):
                 remove(self.image_highres.path)
-            if self.title_image_highres and os.path.exists(self.title_image_highres.path):
-                remove(self.title_image_highres.path)
         else:
             if self.image and os.path.exists(self.image.path):
                 remove(self.image.path)
-            if self.title_image and os.path.exists(self.title_image.path):
-                remove(self.title_image.path)
         size = self.image_size(scale_factor)
         name = ('%i_%i.png' % (self.zoom, self.id)).encode('utf-8')
         if scale_factor >= 2:
@@ -1778,20 +1776,6 @@ class LegendItem(models.Model):
                 self.image.save(directory + name, File(open(tmpfilename)))
             self.save()
             remove(tmpfilename)
-        name = 'title_' + name
-        tmpfilename = directory + 'tmp/' + name
-        self.render_title(12, tmpfilename, scale_factor)
-        if scale_factor>=2:
-            if self.title_image_highres:
-                self.title_image_highres.delete()
-            self.title_image_highres.save(directory + name, File(open(tmpfilename)))
-        else:
-            if self.title_image:
-                self.title_image.delete()
-            self.title_image.save(directory + name, File(open(tmpfilename)))
-        self.save()
-        remove(tmpfilename)
-
 
     def render(self, size, path, scale_factor=1):
         s = mapnik.Style()
@@ -1814,7 +1798,7 @@ class LegendItem(models.Model):
             ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from legend_collections) as ln', user='xtesar7', password=db_password)
         else:
             # Raster... special legend creation
-            print "Raster Layer, legend not created, id %i" % self.id
+            print "Raster Layer, legend not created, id: %s, slug: %s" % (self.id, self.legend_item_name.slug)
             return 1
         l = mapnik.Layer('legend')
         l.datasource = ds
@@ -1835,7 +1819,6 @@ class LegendItem(models.Model):
         ll = (-lon, -lat, lon, lat)
         c0 = prj.forward(mapnik.Coord(ll[0],ll[1]))
         c1 = prj.forward(mapnik.Coord(ll[2],ll[3]))
-#        print c0, c1
         bbox = mapnik.Envelope(c0.x,c0.y,c1.x,c1.y)
         m.zoom_to_box(bbox)
         im = mapnik.Image(size[1], size[0])
@@ -1844,20 +1827,66 @@ class LegendItem(models.Model):
         view.save(path, 'png')
         return 0
 
-    def render_title(self, font_size, path, scale_factor=1):
+
+class LegendItemName(models.Model):
+    __metaclass__ = TransMeta
+
+#     SCALE_CHOICES = zip(range(0, 21), range(0, 21))
+    slug = models.SlugField(max_length=200, unique=True)
+    name = models.CharField(verbose_name=_('name'), max_length=200, null=True, blank=True)
+    group = models.CharField(max_length=200, null=True, blank=True)
+    order = models.PositiveIntegerField(null=True, blank=True)
+    image = models.ImageField(verbose_name=_('image'), upload_to='legend/', height_field='height', width_field='width', null=True, blank=True)
+    image_highres = models.ImageField(verbose_name=_('highres image'), upload_to='legend/', height_field='height_highres', width_field='width_highres', null=True, blank=True)
+    height = models.PositiveIntegerField(null=True, blank=True)
+    width = models.PositiveIntegerField(null=True, blank=True)
+    height_highres = models.PositiveIntegerField(null=True, blank=True)
+    width_highres = models.PositiveIntegerField(null=True, blank=True)
+
+    class Meta:
+        translate = ('name', 'image', 'image_highres',)
+
+    def __unicode__(self):
+        return self.slug
+
+    def render_names(self, font_size=12, scale_factor=1):
         font_size = scale_factor*font_size
         height = font_size + font_size/2
-        width = max(font_size*len(self.title)*2/3, 150)
-        fo = file(path + '.svg', 'w')
-        fo.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-        fo.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n')
-        fo.write('<svg width="%i" height="%i" xmlns="http://www.w3.org/2000/svg">\n' % (width, height))
-        fo.write('    <text fill="black" text-anchor="left" font-family="Dejavu Sans" x="%i" y="%i" font-size="%i" >%s</text>' % (2, height-font_size/2, font_size, self.title.encode('utf-8')))
-        fo.write('</svg>')
-        fo.close()
-        system("rsvg-convert -o %s %s" % (path, path + '.svg'))
-        remove(path + '.svg')
-        return 0
+        width = max(font_size*len(self.name)*2/3, 150)
+        for lang_code in LANG_CODES:
+            activate(lang_code)
+            image = getattr(self, 'image_%s' % lang_code)
+            image_highres = getattr(self, 'image_highres_%s' % lang_code)
+            filename = 'name_%s_%s.png' % (lang_code, self.slug)
+            if scale_factor>=2:
+                filename = 'highres_%s' % filename
+            directory = 'media/legend'
+            tmppath = os.path.join(directory, 'tmp', filename)
+            path = os.path.join(directory, filename)
+            fo = file(tmppath + '.svg', 'w')
+            fo.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+            fo.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n')
+            fo.write('<svg width="%i" height="%i" xmlns="http://www.w3.org/2000/svg">\n' % (width, height))
+            fo.write('    <text fill="black" text-anchor="left" font-family="Dejavu Sans" x="%i" y="%i" font-size="%i" >%s</text>' % (2, height-font_size/2, font_size, self.name.encode('utf-8')))
+            fo.write('</svg>')
+            fo.close()
+            system("rsvg-convert -o %s %s" % (tmppath, tmppath + '.svg'))
+            remove(tmppath + '.svg')
+            if scale_factor>=2:
+                if image_highres:
+                    if os.path.exists(image_highres.path):
+                        remove(image_highres.path)
+                    image_highres.delete()
+                image_highres.save(path, File(open(tmppath)))
+            else:
+                if image:
+                    if os.path.exists(image.path):
+                        remove(image.path)
+                    image.delete()
+                image.save(path, File(open(tmppath)))
+            self.save()
+            remove(tmppath)
+
 
 class LegendItemRule(models.Model):
     order = models.PositiveIntegerField()

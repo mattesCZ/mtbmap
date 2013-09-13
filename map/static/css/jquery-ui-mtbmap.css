@@ -109,7 +109,7 @@
 	margin-top: -8px;
 }
 .ui-accordion .ui-accordion-content {
-	padding: 1em 2.2em;
+	padding: 1em 1.2em;
 	border-top: 0;
 	overflow: auto;
         background: none;
@@ -160,7 +160,7 @@ button.ui-button-icons-only {
 	line-height: normal;
 }
 .ui-button-text-only .ui-button-text {
-	padding: .4em .6em;
+	padding: .4em .3em;
 }
 .ui-button-icon-only .ui-button-text,
 .ui-button-icons-only .ui-button-text {
@@ -214,8 +214,7 @@ input.ui-button {
 	margin-right: 7px;
 }
 .ui-buttonset .ui-button {
-	margin-left: 0;
-	margin-right: -.3em;
+	margin: 0 -.3em 0 0;
 }
 
 /* workarounds */

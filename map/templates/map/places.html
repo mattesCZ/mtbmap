@@ -1,8 +1,10 @@
+{% load i18n %}
 <header>
-    <h4>Zadejte název místa, adresu nebo souřadnice</h4>
+    <h4>{% trans "Enter place name, address or coordinates" %}</h4>
 </header>
 <input type="search" name="places-addr" value="" id="places-addr" size="25" autofocus="autofocus" />
-<input id="places-submit" type="submit" value="Hledat"/>
+<input id="places-submit" type="submit" value="{% trans "Search" %}"/>
 <div id="places-results"></div>
 <hr>
-Vyhledávání využívá služby OpenStreetMap <a href="http://wiki.openstreetmap.org/wiki/Nominatim" target="_blank">Nominatim</a>
+{% trans "Search is provided by OpenStreetmap" %}
+<a href="http://wiki.openstreetmap.org/wiki/Nominatim" target="_blank">Nominatim</a>

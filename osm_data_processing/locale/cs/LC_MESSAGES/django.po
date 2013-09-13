@@ -1,0 +1,58 @@
+# Czech language translation file.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Martin Tesar <osmmtb@gmail.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-06 14:47+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Martin Tesar <osmmtb@gmail.com>\n"
+"Language-Team: Czech <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: models.py:69
+msgid "OSM ID"
+msgstr "OSM ID"
+
+#: models.py:99 models.py:127
+msgid "Name"
+msgstr "Název"
+
+#: models.py:101
+msgid "Description"
+msgstr "Popis"
+
+#: models.py:102
+msgid "Elevation"
+msgstr "Nadmořská výška"
+
+#: models.py:110
+msgid "Opening hours"
+msgstr "Otevírací doba"
+
+#: models.py:114
+msgid "Reference code"
+msgstr "Referenční kód"
+
+#: models.py:116
+msgid "Shop type"
+msgstr "Typ obchodu"
+
+#: models.py:128
+msgid "MTB scale"
+msgstr "Obtížnost MTB"
+
+#: models.py:129
+msgid "MTB description"
+msgstr "Popis MTB"
+
+#: models.py:130
+msgid "MTB scale uphill"
+msgstr "Obtížnost jízdy do kopce"
