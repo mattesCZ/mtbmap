@@ -9731,7 +9731,7 @@
       <Filter>([natural]='spring')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
-      <TextSymbolizer dy="10" fill="rgb(80,109,177)" fontset-name="book-fonts" halo-radius="1" size="8" vertical-alignment="bottom" wrap-width="20">[name]</TextSymbolizer>
+      <TextSymbolizer dy="14" fill="rgb(80,109,177)" fontset-name="book-fonts" halo-radius="1" size="10" vertical-alignment="bottom" wrap-width="20">[name]</TextSymbolizer>
     </Rule>
     <Rule>
       <Filter>(([tourism]='alpine_hut') or ([amenity]='shelter'))</Filter>
@@ -9969,7 +9969,7 @@
       <Filter>([natural]='spring')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>12500</MaxScaleDenominator>
-      <TextSymbolizer dy="10" fill="rgb(80,109,177)" fontset-name="book-fonts" halo-radius="1" size="8" vertical-alignment="bottom" wrap-width="20">[name]</TextSymbolizer>
+      <TextSymbolizer dy="14" fill="rgb(80,109,177)" fontset-name="book-fonts" halo-radius="1" size="10" vertical-alignment="bottom" wrap-width="20">[name]</TextSymbolizer>
     </Rule>
     <Rule>
       <Filter>([natural]='bay')</Filter>
