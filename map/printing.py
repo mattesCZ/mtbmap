@@ -130,10 +130,10 @@ def map_image(zoom, left, bottom, right, top, line, orientation='n', highres=Tru
     w1 = mapnik.Coord(-e0.x, -e0.y)
 #    bottom_left = prj.forward(mapnik.Coord(left, bottom))
 #    top_right = prj.forward(mapnik.Coord(right, top))
-    boxes = {'n': mapnik.Envelope(n0.x,n0.y,n1.x,n1.y),
-             'e' : mapnik.Envelope(e0.x,e0.y,e1.x,e1.y),
-             's' : mapnik.Envelope(s0.x,s0.y,s1.x,s1.y),
-             'w' : mapnik.Envelope(w0.x,w0.y,w1.x,w1.y)
+    boxes = {'n': mapnik.Box2d(n0.x,n0.y,n1.x,n1.y),
+             'e' : mapnik.Box2d(e0.x,e0.y,e1.x,e1.y),
+             's' : mapnik.Box2d(s0.x,s0.y,s1.x,s1.y),
+             'w' : mapnik.Box2d(w0.x,w0.y,w1.x,w1.y)
             }
 
     if line:

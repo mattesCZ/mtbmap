@@ -1819,7 +1819,7 @@ class LegendItem(models.Model):
         ll = (-lon, -lat, lon, lat)
         c0 = prj.forward(mapnik.Coord(ll[0],ll[1]))
         c1 = prj.forward(mapnik.Coord(ll[2],ll[3]))
-        bbox = mapnik.Envelope(c0.x,c0.y,c1.x,c1.y)
+        bbox = mapnik.Box2d(c0.x,c0.y,c1.x,c1.y)
         m.zoom_to_box(bbox)
         im = mapnik.Image(size[1], size[0])
         mapnik.render(m, im)
