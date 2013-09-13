@@ -10572,7 +10572,7 @@
       <TextSymbolizer fill="rgb(0,0,0)" fontset-name="book-fonts" halo-radius="1" size="15" wrap-width="30">[upper]</TextSymbolizer>
     </Rule>
     <Rule name="_city-pop-more-than-100-000">
-      <Filter>([numericpop]&gt;100000)</Filter>
+      <Filter>([numericpop]&gt;100000) or ([place]='city') or ([place]='metropolis')</Filter>
       <MinScaleDenominator>50000</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(0,0,0)" fontset-name="book-fonts" halo-radius="1" size="20" wrap-width="30">[upper]</TextSymbolizer>
@@ -10596,7 +10596,7 @@
       <TextSymbolizer fill="rgb(0,0,0)" fontset-name="book-fonts" halo-radius="1" size="16" wrap-width="30">[name]</TextSymbolizer>
     </Rule>
     <Rule name="_city-pop-more-than-100-000">
-      <Filter>([numericpop]&gt;100000)</Filter>
+      <Filter>([numericpop]&gt;100000) or ([place]='city') or ([place]='metropolis')</Filter>
       <MinScaleDenominator>200000</MinScaleDenominator>
       <MaxScaleDenominator>400000</MaxScaleDenominator>
       <TextSymbolizer fill="rgb(0,0,0)" fontset-name="book-fonts" halo-radius="1" size="18" wrap-width="30">[upper]</TextSymbolizer>
@@ -10620,7 +10620,7 @@
       <TextSymbolizer allow-overlap="1" dx="10" fill="rgb(0,0,0)" fontset-name="book-fonts" halo-radius="1" horizontal-alignment="right" size="13">[name]</TextSymbolizer>
     </Rule>
     <Rule name="_city-pop-more-than-100-000">
-      <Filter>([numericpop]&gt;100000)</Filter>
+      <Filter>([numericpop]&gt;100000) or ([place]='city') or ([place]='metropolis')</Filter>
       <MinScaleDenominator>400000</MinScaleDenominator>
       <MaxScaleDenominator>750000</MaxScaleDenominator>
       <TextSymbolizer allow-overlap="1" dx="12" fill="rgb(0,0,0)" fontset-name="book-fonts" halo-radius="1" horizontal-alignment="right" size="15">[upper]</TextSymbolizer>
@@ -10638,7 +10638,7 @@
       <TextSymbolizer allow-overlap="1" dx="10" fill="rgb(0,0,0)" fontset-name="book-fonts" halo-radius="1" horizontal-alignment="right" size="13">[name]</TextSymbolizer>
     </Rule>
     <Rule name="_city-pop-more-than-100-000">
-      <Filter>([numericpop]&gt;100000)</Filter>
+      <Filter>([numericpop]&gt;100000) or ([place]='city') or ([place]='metropolis')</Filter>
       <MinScaleDenominator>750000</MinScaleDenominator>
       <MaxScaleDenominator>1500000</MaxScaleDenominator>
       <TextSymbolizer allow-overlap="1" dx="12" fill="rgb(0,0,0)" fontset-name="book-fonts" halo-radius="1" horizontal-alignment="right" size="15">[name]</TextSymbolizer>
@@ -10651,13 +10651,13 @@
       <TextSymbolizer allow-overlap="1" dx="10" fill="rgb(0,0,0)" fontset-name="book-fonts" halo-radius="1" horizontal-alignment="right" size="11">[name]</TextSymbolizer>
     </Rule>
     <Rule name="_city-pop-more-than-100-000">
-      <Filter>([numericpop]&gt;100000)</Filter>
+      <Filter>([numericpop]&gt;100000) or ([place]='city') or ([place]='metropolis')</Filter>
       <MinScaleDenominator>1500000</MinScaleDenominator>
       <MaxScaleDenominator>3000000</MaxScaleDenominator>
       <TextSymbolizer allow-overlap="1" dx="10" fill="rgb(0,0,0)" fontset-name="book-fonts" halo-radius="1" horizontal-alignment="right" size="13">[name]</TextSymbolizer>
     </Rule>
     <Rule name="_city-pop-more-than-100-000">
-      <Filter>([numericpop]&gt;100000)</Filter>
+      <Filter>([numericpop]&gt;100000) or ([place]='city') or ([place]='metropolis')</Filter>
       <MinScaleDenominator>3000000</MinScaleDenominator>
       <MaxScaleDenominator>6500000</MaxScaleDenominator>
       <TextSymbolizer dx="10" fill="rgb(0,0,0)" fontset-name="book-fonts" halo-radius="1" horizontal-alignment="right" size="10">[name]</TextSymbolizer>
@@ -10683,7 +10683,7 @@
       <PointSymbolizer file="../symbols/city15.png"/>
     </Rule>
     <Rule name="city-pop-more-than-100-000">
-      <Filter>([numericpop]&gt;100000)</Filter>
+      <Filter>([numericpop]&gt;100000) or ([place]='city') or ([place]='metropolis')</Filter>
       <MinScaleDenominator>400000</MinScaleDenominator>
       <MaxScaleDenominator>750000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/city20.png"/>
@@ -10701,7 +10701,7 @@
       <PointSymbolizer file="../symbols/city15.png"/>
     </Rule>
     <Rule name="city-pop-more-than-100-000">
-      <Filter>([numericpop]&gt;100000)</Filter>
+      <Filter>([numericpop]&gt;100000) or ([place]='city') or ([place]='metropolis')</Filter>
       <MinScaleDenominator>750000</MinScaleDenominator>
       <MaxScaleDenominator>1500000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/city20.png"/>
@@ -10713,13 +10713,13 @@
       <PointSymbolizer file="../symbols/city12.png"/>
     </Rule>
     <Rule name="city-pop-more-than-100-000">
-      <Filter>([numericpop]&gt;100000)</Filter>
+      <Filter>([numericpop]&gt;100000) or ([place]='city') or ([place]='metropolis')</Filter>
       <MinScaleDenominator>1500000</MinScaleDenominator>
       <MaxScaleDenominator>3000000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/city15.png"/>
     </Rule>
     <Rule name="city-pop-more-than-100-000">
-      <Filter>([numericpop]&gt;100000)</Filter>
+      <Filter>([numericpop]&gt;100000) or ([place]='city') or ([place]='metropolis')</Filter>
       <MinScaleDenominator>3000000</MinScaleDenominator>
       <MaxScaleDenominator>6500000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/city09.png"/>
