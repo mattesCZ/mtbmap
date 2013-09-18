@@ -68,7 +68,7 @@ def appendHeights(nodes):
     hgtArrays = {}
     zip_path = SRTM_DATA
     for i in range(len(nodes)):
-        key = 'N' + str(int(math.floor(nodes[i][0]))) + 'E0' + str(int(math.floor(nodes[i][1])))
+        key = _hgt_file_key(nodes[i][0], nodes[i][1])
         if not (hgtArrays.has_key(key)):
             zip_file = zipfile.ZipFile(zip_path + key + '.hgt.zip', 'r')
             zip_file_name = zip_file.namelist()[0]
@@ -88,11 +88,31 @@ def appendHeights(nodes):
             j=j-1
     return 0
 
+def _hgt_file_key(lat, lon):
+    ret_value = ''
+    if lat<0:
+        lat = abs(lat) + 1
+        ret_value += 'S'
+    else:
+        ret_value += 'N'
+    ret_value += _zero_prefix(int(math.floor(lat)), 2)
+    if lon<0:
+        lon = abs(lon) + 1
+        ret_value += 'W'
+    else:
+        ret_value += 'E'
+    ret_value += _zero_prefix(int(math.floor(lon)), 3)
+    return ret_value
+
+def _zero_prefix(integer, length=3):
+    value = str(integer)
+    return '0'*(length - len(value)) + value
+
 def getHeight(hgtArrays, lat, lon):
     """
     Returns height of a point on given latitude and longitude.
     """
-    return hgtArrays['N' + str(int(math.floor(lat))) + 'E0' + str(int(math.floor(lon)))][coord2array(lat)][coord2array(lon)]
+    return hgtArrays[_hgt_file_key(lat, lon)][coord2array(lat)][coord2array(lon)]
 
 def coord2array(coord):
     """
