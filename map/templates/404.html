@@ -1,9 +1,12 @@
 {% extends "map/base.html" %}
+{% load i18n %}
+
+{% block title %}<title>{% trans "MTB map of Europe" %} - {% trans "Page not found" %}</title>{% endblock %}
 
 {% block header %}
-<h3>Stránka nenalezena</h3>
+<h3>{% trans "Page not found" %}</h3>
 {% endblock %}
 
 {% block content %}
-<p>Omlouváme se, požadovaná stránka nebyla nalezena.</p>
+<p>{% trans "Sorry, requested url was not found." %}</p>
 {% endblock %}

@@ -4,23 +4,16 @@
 from copy import deepcopy
 from random import randint
 import simplejson as json
+from transmeta import TransMeta
 
 # Django imports
 from django.db import models
 from django.contrib.gis.db import models as geomodels
 from django.contrib.gis.geos import *
+from django.utils.translation import ugettext_lazy as _
 
 # Local imports
 from routing.mathfunctions import haversine
-
-SAC_SCALE_CHOICES = (
- (0, 'hiking'),
- (1, 'mountain_hiking'),
- (2, 'demanding_mountain_hiking'),
- (3, 'alpine_hiking'),
- (4, 'demanding_alpine_hiking'),
- (5, 'difficult_alpine_hiking'),
-)
 
 WEIGHTS = [1, 2, 3, 6, 12]
 MAX_WEIGHT = max(WEIGHTS)
@@ -228,38 +221,6 @@ class Way(geomodels.Model):
         else:
             return 0
 
-    def compute_class_id(self, class_conf):
-        '''
-        Compute class ID during import.
-        return int
-        '''
-        class_id = ''
-        for c in class_conf:
-            name = c['name']
-            types = c['types']
-            if self.__dict__[name]==None:
-                class_id += str(c['null'])
-            else:
-                if name=='incline':
-                    in_percents = self.incline.replace('%', '')
-                    if self.incline != in_percents:
-                        try:
-                            percents = float(in_percents)
-                        except ValueError:
-                            id = c['null']
-                        else:
-                            if percents>=0: id = types['positive']
-                            else: id = types['negative']
-                        class_id += str(id)
-                        continue
-                try:
-                    id = types[self.__dict__[name]]
-                except KeyError:
-                    print name, 'unexpected type:', self.__dict__[name]
-                    id = c['null']
-                class_id += str(id)
-        return int(class_id)
-
     def feature(self, params, status):
         '''
         Create GeoJSON Feature object.
@@ -298,17 +259,22 @@ class Way(geomodels.Model):
         return length
 
 class WeightCollection(models.Model):
+    __metaclass__ = TransMeta
+
     VEHICLE_CHOICES = (
-        ('foot', 'foot'),
-        ('bicycle', 'bicycle'),
+        ('foot', _('Foot')),
+        ('bicycle', _('Bicycle')),
     )
     slug = models.SlugField(max_length=40, unique=True)
-    name = models.CharField(max_length=40)
+    name = models.CharField(verbose_name=_('name'), max_length=40)
     oneway = models.BooleanField(default=True)
     vehicle = models.CharField(max_length=40, default='bicycle', choices=VEHICLE_CHOICES)
 
+    class Meta:
+        translate = ('name', )
+
     def __unicode__(self):
-        return u"%s" % (self.name)
+        return u"%s" % (self.slug)
 
     def get_cost_where_clause(self, params):
         '''
@@ -333,18 +299,19 @@ class WeightCollection(models.Model):
             reverse_cases += ['''WHEN reverse_cost!=length THEN reverse_cost ''']
         whereparts = []
         whereparts += self._access()
-        preferred_class_names = self.preferred_set.filter(name__in=params['preferred_classes']).values_list('name', flat=True)
-        for wc in self.weightclass_set.all():
-            if wc.name in params:
-                unpref_dict, pref_dict = wc.get_when_clauses(params[wc.name], preferred_class_names)
+        preferred_slugs = params['preferred_classes']
+        for wcv in self.weightclassvalue_set.select_related().all():
+            slug = wcv.weight_class.slug
+            if slug in params:
+                unpref_dict, pref_dict = wcv.get_when_clauses(params[slug], preferred_slugs)
                 for pref, value in pref_dict.iteritems():
                     preferred_preferences[pref] += value
                 for pref, value in unpref_dict.iteritems():
                     unpreferred_preferences[pref] += value
-                part = wc.get_where_clauses(params[wc.name])
+                part = wcv.get_where_clauses(params[slug])
                 if part:
                     whereparts.append(part)
-        cases = self._create_cases(unpreferred_preferences, preferred_preferences, preferred_class_names)
+        cases = self._create_cases(unpreferred_preferences, preferred_preferences, preferred_slugs)
         if cases:
             reverse_cases += cases
             cost = 'CASE %s ELSE "length" END' % (' '.join(cases))
@@ -353,14 +320,14 @@ class WeightCollection(models.Model):
         reverse_cost = 'CASE %s ELSE "length" END' % (' '.join(reverse_cases))
         return cost, reverse_cost, where
 
-    def _create_cases(self, unpref, pref, preferred_class_names):
+    def _create_cases(self, unpref, pref, preferred_slugs):
         '''
         Create array of WHEN clauses.
         '''
-        pref_classes_condition = ' OR '.join([p + '>0' for p in preferred_class_names])
+        pref_classes_condition = ' OR '.join([p + '>0' for p in preferred_slugs])
         cases = []
         for preference in range(4, 0, -1):
-            if preferred_class_names.count() and preference>1 and pref[preference-1]:
+            if len(preferred_slugs) and preference>1 and pref[preference-1]:
                 pref_joined_conditions = '(' + ' OR '.join(pref[preference-1]) + ') AND (' + pref_classes_condition + ')'
                 cases.append('WHEN %s THEN "length"*%s' % (pref_joined_conditions, WEIGHTS[max(preference-2, 0)]))
             if unpref[preference]:
@@ -388,48 +355,63 @@ class WeightCollection(models.Model):
         Dump weight collection params as JSON like dictionary.
         '''
         json = {}
-        json['name'] = params['global'].get('name','undefined')
+        json['slug'] = params['global'].get('slug','undefined')
         json['oneway'] = params['global'].has_key('oneway')
         json['vehicle'] = params['global'].get('vehicle', 'bicycle')
         json['preferred'] = []
-        for p in self.preferred_set.all():
-            pref_class = {"name": p.name, "use": True}
-            pref_class['value'] = p.name in params['preferred_classes']
+        for pv in self.preferredvalue_set.select_related().all():
+            pref_class = {"slug": pv.preferred.slug, "use": True}
+            pref_class['value'] = pv.preferred.slug in params['preferred_classes']
             json['preferred'].append(pref_class)
         json['classes'] = []
-        for c in self.weightclass_set.all():
-            weight_class = {"name": c.name, "visible": True}
-            if (c.max != None) and (params[c.name].has_key('max')):
-                weight_class['max'] = params[c.name]['max']
-            if (c.min != None) and (params[c.name].has_key('min')):
-                weight_class['min'] = params[c.name]['min']
-            ws = c.weight_set.all()
-            if ws.count():
+        for wcv in self.weightclassvalue_set.select_related().all():
+            slug = wcv.weight_class.slug
+            weight_class = {"slug": slug, "visible": True}
+            if (wcv.max != None) and (params[slug].has_key('max')):
+                weight_class['max'] = params[slug]['max']
+            if (wcv.min != None) and (params[slug].has_key('min')):
+                weight_class['min'] = params[slug]['min']
+            if wcv.weightvalue_set.count():
                 weight_class['features'] = []
-                for w in c.weight_set.all():
-                    weight = {"name": w.name, "visible": True}
-                    weight["value"] = params[c.name].get(w.name, w.preference)
+                for wv in wcv.weightvalue_set.all():
+                    weight_slug = wv.weight.slug
+                    weight = {"slug": weight_slug, "visible": True}
+                    weight["value"] = params[slug].get(weight_slug, wv.preference)
                     weight_class['features'].append(weight)
             json['classes'].append(weight_class)
         return json
 
 
 class WeightClass(models.Model):
-    slug = models.SlugField(max_length=40)
-    name = models.CharField(max_length=40)
+    __metaclass__ = TransMeta
+
+    slug = models.SlugField(max_length=40, unique=True)
+    name = models.CharField(verbose_name=_('name'), max_length=40)
+    link = models.URLField(null=True, blank=True)
+
+    class Meta:
+        ordering = ('slug',)
+        translate = ('name',)
+
+    def __unicode__(self):
+        return self.slug
+
+
+class WeightClassValue(models.Model):
     collection = models.ForeignKey('WeightCollection')
+    weight_class = models.ForeignKey('WeightClass')
     order = models.PositiveIntegerField(null=True, blank=True)
     max = models.FloatField(null=True, blank=True)
     min = models.FloatField(null=True, blank=True)
     visible = models.BooleanField(default=True)
 
     class Meta:
-        ordering = ('order', 'slug',)
+        ordering = ('order',)
 
     def __unicode__(self):
-        return u"%s, Collection: %s" % (self.name, self.collection.name)
+        return u"%s: %s" % (self.collection, self.weight_class)
 
-    def get_when_clauses(self, params, preferred_class_names):
+    def get_when_clauses(self, params, preferred_slugs):
         '''
         Create dictionaries for preferred and unpreferred cases.
         '''
@@ -437,21 +419,23 @@ class WeightClass(models.Model):
         default = min(WEIGHTS)
         pref_dict = {1:[],2:[],3:[],4:[]}
         unpref_dict = {1:[],2:[],3:[],4:[],5:[]}
-        for w in self.weight_set.all():
+        class_slug = self.weight_class.slug
+        for wv in self.weightvalue_set.select_related().all():
+            weight_slug = wv.weight.slug
             try:
-                preference = int(params[w.name])
+                preference = int(params[weight_slug])
             except ValueError:
-                print 'ValueError', self.name, w.name, params
+                print 'ValueError', class_slug, weight_slug, params
             else:
-                # TODO compute (un)preferred_class_names weights correctly, not only +/- 1 degree, but in range(-3, +3)
-                if preferred_class_names.count()>0 and self.name=='highway' and w.name in unpreferable_highways:
-                    least_when = ' OR '.join(['"' + p + '"<0' for p in preferred_class_names])
-                    pref_index = min(preference+1, len(unpref_dict)) 
-                    unpref_dict[pref_index].append(""" ("%s"::text='%s' AND (%s)) """ % (self.name, w.name, least_when))
+                # TODO compute (un)preferred_slugs weights correctly, not only +/- 1 degree, but in range(-3, +3)
+                if len(preferred_slugs) and class_slug=='highway' and weight_slug in unpreferable_highways:
+                    least_when = ' OR '.join(['"' + p + '"<0' for p in preferred_slugs])
+                    pref_index = min(preference+1, len(unpref_dict))
+                    unpref_dict[pref_index].append(""" ("%s"::text='%s' AND (%s)) """ % (class_slug, weight_slug, least_when))
                 if preference != default:
-                    if preferred_class_names.count()>0:
-                        pref_dict[max(preference-1, 1)].append(""" ("%s"::text='%s') """ % (self.name, w.name))
-                    unpref_dict[preference].append(""" ("%s"::text='%s') """ % (self.name, w.name))
+                    if len(preferred_slugs):
+                        pref_dict[max(preference-1, 1)].append(""" ("%s"::text='%s') """ % (class_slug, weight_slug))
+                    unpref_dict[preference].append(""" ("%s"::text='%s') """ % (class_slug, weight_slug))
         return unpref_dict, pref_dict
 
     def get_where_clauses(self, params):
@@ -459,12 +443,13 @@ class WeightClass(models.Model):
         Create sql WHERE conditions.
         '''
         andparts = []
+        class_slug = self.weight_class.slug
         if params.has_key('max'):
             try:
                 value = float(params['max'])
-                condition = '"%s"<=%s' % (self.name, value)
+                condition = '"%s"<=%s' % (class_slug, value)
             except ValueError:
-                print 'ValueError', self.name, params
+                print 'ValueError', class_slug, params
             else:
                 # only if smaller than default max value
                 if value<self.max:
@@ -473,43 +458,52 @@ class WeightClass(models.Model):
             try:
 #                print 'MINVALUE:', params['min']
                 value = float(params['min'])
-                condition = '"%s">=%s' % (self.name, value)
+                condition = '"%s">=%s' % (class_slug, value)
             except ValueError:
-                print 'ValueError', self.name, params
+                print 'ValueError', class_slug, params
             else:
                 # only if bigger than default min value
                 if value>self.min:
                     andparts.append(condition)
-        for w in self.weight_set.all():
-            preference = params[w.name]
+        for wv in self.weightvalue_set.all():
+            weight_slug = wv.weight.slug
+            preference = params[weight_slug]
             if preference=='5':
-                condition = """ "%s"::text!='%s'""" % (self.name, w.name)
+                condition = """ "%s"::text!='%s'""" % (class_slug, weight_slug)
                 andparts.append(condition)
         andcondition = ' AND '.join(andparts)
         if andcondition:
-            return '("%s" is NULL OR (%s))' % (self.name, andcondition)
+            return '("%s" is NULL OR (%s))' % (class_slug, andcondition)
         else:
             return
 
+
 class Preferred(models.Model):
-    slug = models.SlugField(max_length=40)
-    name = models.CharField(max_length=40)
+    __metaclass__ = TransMeta
+
+    slug = models.SlugField(max_length=40, unique=True)
+    name = models.CharField(verbose_name=_('name'), max_length=40)
+
+    class Meta:
+        translate = ('name', )
+
+    def __unicode__(self):
+        return u"%s" % (self.slug)
+
+
+class PreferredValue(models.Model):
     collection = models.ForeignKey('WeightCollection')
+    preferred = models.ForeignKey('Preferred')
     value = models.BooleanField(default=False)
     use = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return u"%s" % (self.name)
+        return u"%s: %s: %s" % (self.collection, self.preferred, self.value)
 
 
 class Weight(models.Model):
-    PREFERENCE_CHOICES = (
-        (1, 'Ideální'),
-        (2, 'Vhodné'),
-        (3, 'Nevadí'),
-        (4, 'Výjimečně'),
-        (5, 'Vůbec'),
-    )
+    __metaclass__ = TransMeta
+
     GUI_CHOICES = (
         ('select', 'select'),
         ('radio', 'radio'),
@@ -517,15 +511,35 @@ class Weight(models.Model):
     )
     weight_class = models.ForeignKey('WeightClass')
     slug = models.SlugField(max_length=40)
-    name = models.CharField(max_length=40)
-    preference = models.PositiveIntegerField(null=True, blank=True, choices=PREFERENCE_CHOICES)
+    name = models.CharField(verbose_name=_('name'), max_length=40)
     type = models.CharField(max_length=20, null=True, blank=True, choices=GUI_CHOICES)
-    order = models.PositiveIntegerField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+
+    class Meta:
+        ordering = ('slug',)
+        translate = ('name',)
+
+    def __unicode__(self):
+        return u"%s: %s" % (self.weight_class, self.slug)
+
+
+class WeightValue(models.Model):
+    PREFERENCE_CHOICES = (
+        (1, _('Ideal')),
+        (2, _('Suitable')),
+        (3, _('Passable')),
+        (4, _('Exceptionally')),
+        (5, _('Never')),
+    )
+
+    weight_class_value = models.ForeignKey('WeightClassValue')
+    weight = models.ForeignKey('Weight')
+    preference = models.PositiveIntegerField(null=True, blank=True, choices=PREFERENCE_CHOICES)
+    order = models.PositiveIntegerField(null=True, blank=True)
     visible = models.BooleanField(default=True)
 
     class Meta:
-        ordering = ('order', 'slug',)
+        ordering = ('order',)
 
     def __unicode__(self):
-        return u"Weight(%s)" % (self.name)
+        return u"%s: %s: %s" % (self.weight_class_value.collection, self.weight, self.preference)

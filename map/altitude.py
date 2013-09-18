@@ -1,10 +1,12 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Global imports
 import math
 from numpy import *
 import zipfile
+
+# Django imports
+from django.utils.translation import ugettext as _
 
 # Local imports
 from map.printing import svg_string_to_png
@@ -66,7 +68,7 @@ def appendHeights(nodes):
     hgtArrays = {}
     zip_path = SRTM_DATA
     for i in range(len(nodes)):
-        key = 'N' + str(int(math.floor(nodes[i][0]))) + 'E0' + str(int(math.floor(nodes[i][1])))
+        key = _hgt_file_key(nodes[i][0], nodes[i][1])
         if not (hgtArrays.has_key(key)):
             zip_file = zipfile.ZipFile(zip_path + key + '.hgt.zip', 'r')
             zip_file_name = zip_file.namelist()[0]
@@ -86,11 +88,31 @@ def appendHeights(nodes):
             j=j-1
     return 0
 
+def _hgt_file_key(lat, lon):
+    ret_value = ''
+    if lat<0:
+        lat = abs(lat) + 1
+        ret_value += 'S'
+    else:
+        ret_value += 'N'
+    ret_value += _zero_prefix(int(math.floor(lat)), 2)
+    if lon<0:
+        lon = abs(lon) + 1
+        ret_value += 'W'
+    else:
+        ret_value += 'E'
+    ret_value += _zero_prefix(int(math.floor(lon)), 3)
+    return ret_value
+
+def _zero_prefix(integer, length=3):
+    value = str(integer)
+    return '0'*(length - len(value)) + value
+
 def getHeight(hgtArrays, lat, lon):
     """
     Returns height of a point on given latitude and longitude.
     """
-    return hgtArrays['N' + str(int(math.floor(lat))) + 'E0' + str(int(math.floor(lon)))][coord2array(lat)][coord2array(lon)]
+    return hgtArrays[_hgt_file_key(lat, lon)][coord2array(lat)][coord2array(lon)]
 
 def coord2array(coord):
     """
@@ -215,9 +237,9 @@ def altitude2svg(nodes, sumdist):
         dist = dist + step
     # print ascending and descending
     ascdesc = ascending(nodes)
-    svg += '    <text fill="black" text-anchor="middle" x="550" y="20">Ascending: ' + str(ascdesc[0]) + ' Descending: ' + str(ascdesc[1]) + '</text>\n'
+    svg += '    <text fill="black" text-anchor="middle" x="550" y="20">%s: %i %s: %i</text>\n' % (_('Ascending'), ascdesc[0], _('Descending'), ascdesc[1])
 #    svg += '    <text fill="black" x="550" y="20">Descending: ' + str(ascdesc[1]) + '</text>\n'
-    svg += '    <text fill="black" x="2" y="25">Height (m)</text>\n'
+    svg += '    <text fill="black" x="2" y="25">%s (m)</text>\n' % _('Height')
     # print SVG end element
     svg += '</svg>'
     return svg

@@ -1,9 +1,10 @@
+{% load i18n %}
 <header>
-    <h4>Export výřezu mapy</h4>
+    <h4>{% trans "Map export" %}</h4>
 </header>
 <form target="_blank" action="/map/exportmap/" method="post">
     {% csrf_token %}
-    <label>Oblast exportu:</label><br>
+    <label>{% trans "Export bounds" %}:</label><br>
     <input class="export-text" type="text" name="export-top" id="export-top" value="" size="10" onchange="recalculateSize()" />
     <br>
     <input class="export-text" type="text" name="export-left" id="export-left" value="" size="10" onchange="recalculateSize()" />
@@ -12,10 +13,10 @@
     <input class="export-text" type="text" name="export-bottom" id="export-bottom" value="" size="10" onchange="recalculateSize()" />
     <br>
     <input type="hidden" name="export-bounds" id="export-bounds" value="" />
-    <label>Podle zobrazení: </label><button id="set-bounds-button">Nastav</button>
+    <button id="set-bounds-button">{% trans "Set per current view" %}</button>
 
     <hr>
-    <label>Přiblížení</label>
+    <label>{% trans "Zoom level" %}</label>
     <input type="hidden" name="export-zoom" id="export-zoom" value="" />
     <select id="export-zoom-select" onchange="recalculateSize()">
         {% for zoom in zoomRange %}
@@ -23,27 +24,27 @@
         {% endfor %}
     </select>
     <br>
-    <label>Velikost mapového pole</label>
+    <label>{% trans "Map image size" %}</label>
     <br>
     <input class="export-text" type="text" name="export-width" id="export-width" value="" size="5" onchange="recalculateBounds()" />
     x
     <input class="export-text" type="text" name="export-height" id="export-height" value="" size="5" onchange="recalculateBounds()" />
     <hr>
-    Kompoziční prvky:<br>
-    <label>Název mapy</label><input class="export-text" type="text" name="map-title" id="map-title" size="15" value="" />
+    {% trans "Map elements" %}:<br>
+    <label>{% trans "Name" %}</label><input class="export-text" type="text" name="map-title" id="map-title" size="15" value="" />
     <br>
-    <label>Měřítko</label><input id="export-scale" type="checkbox" checked="yes" value="" name="export-scale">
+    <label>{% trans "Scale" %}</label><input id="export-scale" type="checkbox" checked="yes" value="" name="export-scale">
     <br>
-    <label>Legenda</label><input id="export-legend" type="checkbox" checked="yes" value="" name="export-legend">
+    <label>{% trans "Legend" %}</label><input id="export-legend" type="checkbox" checked="yes" value="" name="export-legend">
     <br>
-    <label>Tiráž</label><input id="export-imprint" type="checkbox" checked="yes" value="" name="export-imprint" >
+    <label>{% trans "Impressum" %}</label><input id="export-imprint" type="checkbox" checked="yes" value="" name="export-imprint" >
     <br>
-    <label>Zobrazit trasu</label><input id="export-line-check" type="checkbox" value="" name="export-line-check" >
+    <label>{% trans "Display route" %}</label><input id="export-line-check" type="checkbox" value="" name="export-line-check" >
     <!--        <input type="hidden" name="export-zoom" id="export-zoom" value="" />-->
     <input type="hidden" name="export-line" id="export-line" value="" />
     <hr>
     <input type="hidden" name="export-params" id="export-params" value="" />
-    <label>Rozlišení pro tisk</label><input id="export-highres" type="checkbox" checked="yes" value="" name="export-highres" onclick="recalculateSize()" >
+    <label>{% trans "Resolution for print" %}</label><input id="export-highres" type="checkbox" checked="yes" value="" name="export-highres" onclick="recalculateSize()" >
     <br>
-    <input id="export-button" type="submit" value="Export">
+    <input id="export-button" type="submit" value="{% trans "Export" %}">
 </form>

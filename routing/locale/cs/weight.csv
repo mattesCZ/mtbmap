@@ -1,0 +1,52 @@
+slug,weight_class__slug,name_en,name_cs
+alpine_hiking,sac_scale,Alpine hiking,Alpská stezka
+asphalt,surface,Asphalt,Asfalt
+bridleway,highway,Bridleway,Stezka pro koně
+cobblestone,surface,Cobblestone,Dlažební kostky
+compacted,surface,Compacted,Zpevněný povrch
+concrete,surface,Concrete,Beton
+concrete:plates,surface,Concrete plates,Panelovka
+cycleway,highway,Cycleway,Cyklostezka
+demanding_alpine_hiking,sac_scale,Demanding alpine hiking,Obtížná alpská stezka
+demanding_mountain_hiking,sac_scale,Demanding mountain hiking,Náročná horská stezka
+difficult_alpine_hiking,sac_scale,Difficult alpine hiking,Zajištěná lezecká cesta
+dirt,surface,Dirt,Hliněný povrch
+fine_gravel,surface,Fine gravel,Šotolina
+footway,highway,Footway,Chodník
+grass,surface,Grass,Tráva
+gravel,surface,Gravel,Kamení
+ground,surface,Ground,Neupravený povrch
+hiking,sac_scale,Hiking,Lehká chůze
+living_street,highway,Living street,Obytná zóna
+motorway,highway,Motorway,Dálnice
+mountain_hiking,sac_scale,Mountain hiking,Horská stezka
+mud,surface,Mud,Bahnitý povrch
+path,highway,Path,Pěšina
+paved,surface,Paved,Dlažba
+paving_stones,surface,Paving stones,Zámková dlažba
+pebblestone,surface,Pebblestone,Štěrk
+pedestrian,highway,Pedestrian,Pěší zóna
+primary,highway,Primary,1. třída
+residential,highway,Residential,Příjezdová ulice
+road,highway,Road (not tagged yet),Chybějící klasifikace
+sand,surface,Sand,Písek
+secondary,highway,Secondary,2. třída
+service,highway,Service,Služební
+steps,highway,Steps,Schody
+tertiary,highway,Tertiary,3. třída
+track,highway,Track,Stezka
+trunk,highway,Trunk,Pro motorová vozidla
+unclassified,highway,Unclassified,Neklasifikované
+unpaved,surface,Unpaved,Nezpevněný povrch
+0,mtbscale,Easy - 0,Snadná - 0
+1,mtbscale,Normal - 1,Normální - 1
+1,tracktype,Grade 1,Zpevněná cesta
+2,tracktype,Grade 2,Pevná kamenitá cesta
+2,mtbscale,Difficult - 2,Náročná - 2
+3,tracktype,Grade 3,Částečně zpevněná cesta
+3,mtbscale,Very difficult - 3,Velmi náročná - 3
+4,tracktype,Grade 4,Nezpevněná cesta hlinitá
+4,mtbscale,Trial - 4,Trial - 4
+5,tracktype,Grade 5,Nezpevněná cesta travnatá
+5,mtbscale,Difficult trial - 5,Náročný Trial - 5
+6,mtbscale,Extreme - 6,Extrem - 6

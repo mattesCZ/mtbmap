@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Global imports
@@ -13,7 +12,9 @@ from django.template.response import TemplateResponse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils import translation
+from django.utils.translation import ugettext as _
 from django.contrib.gis.geos import Point, LineString
+from django.conf import settings
 
 # Local imports
 from map.models import *
@@ -35,8 +36,12 @@ def index(request):
         lang = 'en'
     weight_collections = WeightCollection.objects.all()
     evaluation_form = RoutingEvaluationForm()
-    tile_layer = TileLayer.objects.get(slug='mtb-map')
-    return render_to_response('map/map.html', {'tile_layer':tile_layer, 'lang': lang, 'zoomRange':range(19),
+    default_tile_layer = TileLayer.objects.get(slug='mtb-map')
+    tile_layers = TileLayer.objects.all()
+    geojson_layers = GeojsonLayer.objects.all()
+    return render_to_response('map/map.html', {'default_tile_layer':default_tile_layer, 'lang': lang, 'zoomRange':range(19),
+                                               'tile_layers':tile_layers,
+                                               'geojson_layers':geojson_layers,
                                                'weight_collections': weight_collections,
                                                'evaluation_form': evaluation_form},
                               context_instance=RequestContext(request))
@@ -45,7 +50,6 @@ def legend(request):
     '''
     Legend items for given zoom.
     '''
-#    zoom = int(zoom)
     zoom = int(request.GET['zoom'])
     legenditems = Legend.objects.all()[0].legend_items(zoom)
     return TemplateResponse(request, 'map/legend.html', {'zoom': zoom, 'legenditems': legenditems})
@@ -187,12 +191,12 @@ def altitudeprofile(request):
                 return response
             else:
                 if ret==-1:
-                    message = 'Omlouváme se, nemáme výšková data pro žádanou oblast nebo její část.'
+                    message = _('Sorry, we do not have height data for the area that you have requested.')
                     return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
                 else:
                     return render_to_response('map/height.html', {'height': ret}, context_instance=RequestContext(request))
         else:
-            message = 'Nezadali jste žádný bod.'
+            message = _('You have not set any point.')
             return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
 
 def creategpx(request):
@@ -202,7 +206,7 @@ def creategpx(request):
     try:
         params = request.POST['profile-params']
     except (KeyError, 'no points posted'):
-        message = 'No route params posted.'
+        message = _('No route parameters posted.')
         return render_to_response('error.html', {'message': message},
                                    context_instance=RequestContext(request))
     else:
@@ -218,7 +222,7 @@ def creategpx(request):
             response.write(gpx)
             return response
         else:
-            message = 'Nezadali jste žádný bod.'
+            message = _('You have not set any point.')
             return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
 
 def getheight(request):
@@ -256,7 +260,7 @@ def gettemplate(request):
     try:
         params = json.loads(request.POST['params'])
     except (KeyError, 'missing params'):
-        message = 'No route parameters posted.'
+        message = _('No route parameters posted.')
         return render_to_response('error.html', {'message': message},
                                    context_instance=RequestContext(request))
     else:
@@ -299,8 +303,21 @@ def evaluation(request):
         evaluation = form.save(commit=False)
         evaluation.timestamp = datetime.now()
         evaluation.save()
-        result['html'] = '<div id="result-dialog">Děkujeme za vaše hodnocení</div>'
+        result['html'] = '<div id="result-dialog">%s</div>' % _('Thank you for your evaluation')
     else:
         print 'invalid form'
         print form.errors
     return HttpResponse(json.dumps(result), content_type='application/json')
+
+def set_language(request, lang):
+    next = request.META.get('HTTP_REFERER', None)
+    if not next:
+        next = '/'
+    response = HttpResponseRedirect(next)
+    if request.method == 'GET':
+        lang_code = lang
+        if lang_code and translation.check_for_language(lang_code):
+            if hasattr(request, 'session'):
+                request.session['django_language'] = lang_code
+            response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang_code)
+    return response

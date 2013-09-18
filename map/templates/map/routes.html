@@ -1,74 +1,77 @@
+{% load i18n %}
 <div id="routes-tabs">
     <header>
         <nav>
             <ul>
-                <li><a href="#routes-content-routing">Vyhledávání</a></li>
-                <li><a href="#routes-content-manual">Vlastní</a></li>
-                <li><a href="#routes-content-gpx">Nahrát GPX</a></li>
+                <li><a href="#routes-content-routing">{% trans "Routing" %}</a></li>
+                <li><a href="#routes-content-manual">{% trans "Draw" %}</a></li>
+                <li><a href="#routes-content-gpx">{% trans "Upload GPX" %}</a></li>
             </ul>
         </nav>
     </header>
     <section>
         <article id="routes-content-routing" class="subtab-panel">
-	        <div id="routes-settings">
-	            <h4>Zadejte do mapy body, kterými vést trasu</h4>
-                <h5>V současné době je pokryto pouze území České republiky</h5>
-	            <form id="routes-params">
-	                <h5>Parametry vyhledávání tras:</h5>
-	                <div id="weights_template">
-	                    {% for wc in weight_collections %}
-	                        <input id="weights_template_{{ wc.id }}" value="{{ wc.id }}" name="weights__template" type="radio" />
-	                        <label for="weights_template_{{ wc.id }}">{{ wc.name }}</label>
-	                    {% endfor %}
-	                </div>
-	                <div id="routes-accordion">
-	                    {# map/routingparams.html loaded on page load/refresh #}
-	                </div>
-	            </form>
-	            <div class="line-buttons">
-	                <form onsubmit="getRoute(event)" method="POST">
-	                    {% csrf_token %}
-	                    <input class="get-route-button" type="submit" value="HLEDAT TRASU">
-	                </form>
-	                <button class="reset-line">Smazat trasu</button>
-	            </div>
-	            <div id="params-buttons">
-	                Nahrát parametry:<input id="files" type="file" name="files[]" onchange="handleTemplate(event)" size="10" class="margin">
-	                <br />
-	                Uložit parametry:
-	                <form action="/map/gettemplate/" method="post" target="_blank" class="inline-block">
-	                    {% csrf_token %}
-	                    <input type="hidden" name="params" class="params" value="" />
-	                    <input class="get-template-button" type="submit" value="Uložit"/>
-	                </form>
-	            </div>
-	        </div>
-	        <div id="routes-results" style="display: none;">
-	        	<h4>Výsledky vyhledávání</h4>
-        	    <div class="length"></div>
+            <div id="routes-settings">
+                <h4>{% trans "Set route markers directly in map" %}</h4>
+                <h5>{% trans "Our routing data cover Czech Republic only" %}</h5>
+                <form id="routes-params">
+                    <h5>{% trans "Choose some routing profile:" %}</h5>
+                    <div id="weights_template">
+                        {% for wc in weight_collections %}
+                            <input id="weights_template_{{ wc.id }}" value="{{ wc.id }}" name="weights__template" type="radio" />
+                            <label for="weights_template_{{ wc.id }}">{{ wc.name }}</label>
+                        {% endfor %}
+                    </div>
+                    <h5>{% trans "You can further refine search parameters:" %}</h5>
+                    <div id="routes-accordion">
+                        {# map/routingparams.html loaded on page load/refresh #}
+                    </div>
+                </form>
+                <div class="line-buttons">
+                    <form onsubmit="getRoute(event)" method="POST">
+                        {% csrf_token %}
+                        <input class="get-route-button" type="submit" value="{% trans "FIND ROUTE" %}">
+                    </form>
+                    <button class="reset-line">{% trans "Reset route" %}</button>
+                </div>
+                <div id="params-buttons">
+                    {% trans "Load parameters:" %}<input id="files" type="file" name="files[]" onchange="handleTemplate(event)" size="10" class="margin">
+                    <br />
+                    {% trans "Save parameters:" %}
+                    <form action="/map/gettemplate/" method="post" target="_blank" class="inline-block">
+                        {% csrf_token %}
+                        <input type="hidden" name="params" class="params" value="" />
+                        <input class="get-template-button" type="submit" value="{% trans "Save" %}"/>
+                    </form>
+                </div>
+            </div>
+            <div id="routes-results" style="display: none;">
+                <h4>{% trans "Routing results" %}</h4>
+                <div class="length"></div>
                 <br>
                 <form method="post" action="/map/altitudeprofile/" target="_blank" >
                     {% csrf_token %}
                     <input type="hidden" name="profile-params" class="profile-params" value="" />
-                    <input class="create-profile-button" type="submit" value="Vytvořit profil">
+                    <input class="create-profile-button" type="submit" value="{% trans "Create altitude profile" %}">
                 </form>
                 <form method="post" action="/map/creategpx/" target="_blank" >
                     {% csrf_token %}
                     <input type="hidden" name="profile-params" class="profile-params" value="" />
-                    <input class="create-gpx-button" type="submit" value="Vytvořit GPX">
+                    <input class="create-gpx-button" type="submit" value="{% trans "Create GPX" %}">
                 </form>
                 <br />
-                <button class="back-to-settings">Změnit parametry</button>
-                <button class="reset-line">Nové hledání</button>
+                <button class="back-to-settings">{% trans "Change parameters" %}</button>
+                <button class="reset-line">{% trans "New search" %}</button>
                 <br />
-                <button class="open-evaluation-dialog">Ohodnotit vyhledávání</button>
-                <div id="evaluation-dialog-form" title="Hodnocení vyhledané trasy">
-                	<form id="send-evaluation-form">
+                <button class="open-evaluation-dialog">{% trans "Evaluate routing" %}</button>
+                <div id="evaluation-dialog-form" title="{% trans "Evaluation of route" %}">
+                    <form id="send-evaluation-form">
                         {% csrf_token %}
                         <div>
-                        	Ohodnoťte, prosím, jak vám výsledek vyhledávání tras vyhovuje. 
-                        	Doplňte komentář, pokud nabízené možnosti nejsou dostatečné.
-                        	Děkujeme.
+                            {% blocktrans %}
+                            Please, evaluate the result of routing. Add a comment if offered
+                            choices are not sufficient. Thank you.
+                            {% endblocktrans %}
                         </div>
                         <table>
                         {{ evaluation_form.as_table }}
@@ -78,45 +81,45 @@
                 </div>
                 <form method="POST" onsubmit="sendEvaluation(event)" style="display: none">
                     {% csrf_token %}
-                    <input id="send-evaluation-button" type="submit" value="Odeslat" />
+                    <input id="send-evaluation-button" type="submit" value="{% trans "Send" %}" />
                 </form>
-	        </div>
+            </div>
             <div class="loading"></div>
         </article>
         <article id="routes-content-manual" class="subtab-panel">
-            <h4>Trasu zadejte klikáním přímo do mapy</h4>
+            <h4>{% trans "Set your route points directly in map" %}</h4>
             <div class="line-buttons">
                 <div class="length"></div>
                 <br>
-                <button class="fit-to-line">Zobrazit podle trasy</button>
-                <button class="reset-line">Smazat</button>
+                <button class="fit-to-line">{% trans "Zoom to route" %}</button>
+                <button class="reset-line">{% trans "Reset" %}</button>
                 <br />
                 <form method="post" action="/map/altitudeprofile/" target="_blank" >
                     {% csrf_token %}
                     <input type="hidden" name="profile-params" class="profile-params" value="" />
-                    <input class="create-profile-button" type="submit" value="Vytvořit profil">
+                    <input class="create-profile-button" type="submit" value="{% trans "Create altitude profile" %}">
                 </form>
                 <form method="post" action="/map/creategpx/" target="_blank" >
                     {% csrf_token %}
                     <input type="hidden" name="profile-params" class="profile-params" value="" />
-                    <input class="create-gpx-button" type="submit" value="Vytvořit GPX">
+                    <input class="create-gpx-button" type="submit" value="{% trans "Create GPX" %}">
                 </form>
             </div>
         </article>
         <article id="routes-content-gpx" class="subtab-panel">
-            <h4>Nahrajte vlastní GPX soubor</h4>
+            <h4>{% trans "Upload your own GPX file" %}</h4>
             <input id="files" type="file" name="files[]" onchange="handleGPX(event)" size="10" class="margin">
             <br>
             <div class="line-buttons">
                 <div class="length"></div>
                 <br>
-                <button class="fit-to-line">Zobrazit podle trasy</button>
-                <button class="reset-line">Smazat</button>
+                <button class="fit-to-line">{% trans "Zoom to route" %}</button>
+                <button class="reset-line">{% trans "Reset" %}</button>
                 <br />
                 <form method="post" action="/map/altitudeprofile/" target="_blank" >
                     {% csrf_token %}
                     <input type="hidden" name="profile-params" class="profile-params" value="" />
-                    <input class="create-profile-button" type="submit" value="Vytvořit profil">
+                    <input class="create-profile-button" type="submit" value="{% trans "Create altitude profile" %}">
                 </form>
             </div>
         </article>

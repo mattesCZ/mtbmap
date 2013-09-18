@@ -1,272 +1,273 @@
 {
     "slug": "mtb-easy",
-    "name": "MTB snadné",
+    "name_en": "MTB easy",
+    "name_cs": "MTB snadné",
     "oneway": true,
     "vehicle": "bicycle",
     "preferred": [
     	{
-    		"name": "osmc",
+    		"slug": "osmc",
     		"value": false,
     		"use": true
     	},
     	{
-    		"name": "class_bicycle",
+    		"slug": "class_bicycle",
     		"value": true,
     		"use": true
     	},
     	{
-    		"name": "class_mtb",
+    		"slug": "class_mtb",
     		"value": true,
     		"use": true
     	},
     	{
-    		"name": "class_mtb_technical",
+    		"slug": "class_mtb_technical",
     		"value": false,
     		"use": false
     	}
     ],
     "classes": [
         {
-            "name": "highway",
+            "slug": "highway",
             "visible": true,
             "features": [
                 { 
-                    "name": "track",
+                    "slug": "track",
                     "value": 1
                 },
                 { 
-                    "name": "path",
+                    "slug": "path",
                     "value": 1
                 },
                 { 
-                    "name": "footway",
+                    "slug": "footway",
                     "value": 3
                 },
                 { 
-                    "name": "steps",
+                    "slug": "steps",
                     "value": 4
                 },
                 { 
-                    "name": "pedestrian",
+                    "slug": "pedestrian",
                     "value": 3
                 },
                 { 
-                    "name": "unclassified",
+                    "slug": "unclassified",
                     "value": 2
                 },
                 { 
-                    "name": "cycleway",
+                    "slug": "cycleway",
                     "value": 2
                 },
                 { 
-                    "name": "bridleway",
+                    "slug": "bridleway",
                     "value": 3
                 },
                 { 
-                    "name": "residential",
+                    "slug": "residential",
                     "value": 3
                 },
                 { 
-                    "name": "living_street",
+                    "slug": "living_street",
                     "value": 3
                 },
                 { 
-                    "name": "tertiary",
+                    "slug": "tertiary",
                     "value": 4
                 },
                 { 
-                    "name": "secondary",
+                    "slug": "secondary",
                     "value": 4
                 },
                 { 
-                    "name": "primary",
+                    "slug": "primary",
                     "value": 5
                 },
                 { 
-                    "name": "road",
+                    "slug": "road",
                     "value": 5
                 },
                 { 
-                    "name": "service",
+                    "slug": "service",
                     "value": 3
                 },
                 { 
-                    "name": "trunk",
+                    "slug": "trunk",
                     "value": 5,
                     "visible": false
                 },
                 { 
-                    "name": "motorway",
+                    "slug": "motorway",
                     "value": 5,
                     "visible": false
                 }
             ]
         },
         {
-            "name": "tracktype",
+            "slug": "tracktype",
             "visible": true,
             "features": [
                 { 
-                    "name": "1",
+                    "slug": "1",
                     "value": 1
                 },
                 { 
-                    "name": "2",
+                    "slug": "2",
                     "value": 1
                 },
                 { 
-                    "name": "3",
+                    "slug": "3",
                     "value": 1
                 },
                 { 
-                    "name": "4",
+                    "slug": "4",
                     "value": 2
                 },
                 { 
-                    "name": "5",
+                    "slug": "5",
                     "value": 2
                 }
             ]
         },
         {
-            "name": "surface",
+            "slug": "surface",
             "visible": true,
             "features": [
                 { 
-                    "name": "compacted",
+                    "slug": "compacted",
                     "value": 1
                 },
                 { 
-                    "name": "fine_gravel",
+                    "slug": "fine_gravel",
                     "value": 1
                 },
                 { 
-                    "name": "grass",
+                    "slug": "grass",
                     "value": 2
                 },
                 { 
-                    "name": "ground",
+                    "slug": "ground",
                     "value": 2
                 },
                 { 
-                    "name": "dirt",
+                    "slug": "dirt",
                     "value": 3
                 },
                 { 
-                    "name": "mud",
+                    "slug": "mud",
                     "value": 3
                 },
                 { 
-                    "name": "pebblestone",
+                    "slug": "pebblestone",
                     "value": 3
                 },
                 { 
-                    "name": "gravel",
+                    "slug": "gravel",
                     "value": 2
                 },
                 { 
-                    "name": "unpaved",
+                    "slug": "unpaved",
                     "value": 1
                 },
                 { 
-                    "name": "sand",
+                    "slug": "sand",
                     "value": 4
                 },
                 { 
-                    "name": "paved",
+                    "slug": "paved",
                     "value": 3
                 },
                 { 
-                    "name": "asphalt",
+                    "slug": "asphalt",
                     "value": 3
                 },
                 { 
-                    "name": "concrete",
+                    "slug": "concrete",
                     "value": 3
                 },
                 { 
-                    "name": "paving_stones",
+                    "slug": "paving_stones",
                     "value": 4
                 },
                 { 
-                    "name": "concrete:plates",
+                    "slug": "concrete:plates",
                     "value": 4
                 },
                 { 
-                    "name": "cobblestone",
+                    "slug": "cobblestone",
                     "value": 4
                 }
             ]
         },
         {
-            "name": "mtbscale",
+            "slug": "mtbscale",
             "visible": true,
             "features": [
                 { 
-                    "name": "0",
+                    "slug": "0",
                     "value": 1
                 },
                 { 
-                    "name": "1",
+                    "slug": "1",
                     "value": 1
                 },
                 { 
-                    "name": "2",
+                    "slug": "2",
                     "value": 2
                 },
                 { 
-                    "name": "3",
+                    "slug": "3",
                     "value": 4
                 },
                 { 
-                    "name": "4",
+                    "slug": "4",
                     "value": 5
                 },
                 { 
-                    "name": "5",
+                    "slug": "5",
                     "value": 5,
                     "visible": false
                 },
                 { 
-                    "name": "6",
+                    "slug": "6",
                     "value": 5,
                     "visible": false
                 }
             ]
         },
         {
-            "name": "mtbscaleuphill",
+            "slug": "mtbscaleuphill",
             "visible": true,
             "max": 3
         },
         {
-            "name": "sac_scale",
+            "slug": "sac_scale",
             "visible": false,
             "features": [
                 { 
-                    "name": "hiking",
+                    "slug": "hiking",
                     "value": 1
                 },
                 { 
-                    "name": "mountain_hiking",
+                    "slug": "mountain_hiking",
                     "value": 3
                 },
                 { 
-                    "name": "demanding_mountain_hiking",
+                    "slug": "demanding_mountain_hiking",
                     "value": 5
                 },
                 { 
-                    "name": "alpine_hiking",
+                    "slug": "alpine_hiking",
                     "value": 5,
                     "visible": false
                 },
                 { 
-                    "name": "demanding_alpine_hiking",
+                    "slug": "demanding_alpine_hiking",
                     "value": 5,
                     "visible": false
                 },
                 { 
-                    "name": "difficult_alpine_hiking",
+                    "slug": "difficult_alpine_hiking",
                     "value": 5,
                     "visible": false
                 }

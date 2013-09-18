@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,6 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
   <body>
-     Poslali jste pouze jeden bod, jeho výška je {{ height }} metrů nad mořem.
+    {% blocktrans %}
+    You have sent just one coordinate, its height is {{ height }} meters above sea level.
+    {% endblocktrans %}
   </body>
 </html>

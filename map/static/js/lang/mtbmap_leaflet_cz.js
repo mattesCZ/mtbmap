@@ -12,6 +12,7 @@ LANG = {
     gpxNoTrackpoints: 'GPX soubor neobsahuje žádné body trasy nebo je neplatný.',
     routeNotFound: 'Trasu nebo její část jsme podle zadaných parametrů nenalezli. Zkuste prosím zpřesnit polohu zadaných bodů. Zatím je pokryto jen území ČR.',
     correctEntries: 'Opravte, prosím, chybně zadané údaje.',
-    templateNotValid: 'Soubor není platný'
+    templateNotValid: 'Soubor není platný',
+    editPermalink: 'Editovat data OSM'
 }
 
