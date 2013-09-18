@@ -53,7 +53,7 @@ def load_default_names(filename='styles/fixtures/default_names.csv'):
                 row_dict.pop('slug')
                 changed = {}
                 for key, value in row_dict.iteritems():
-                    if value and value != getattr(lins[0], key):
+                    if value and str(value) != str(getattr(lins[0], key)):
                             changed[key] = value
                 if changed != {}:
                     lins.update(**changed)

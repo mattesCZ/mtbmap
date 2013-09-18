@@ -1678,7 +1678,7 @@ class Legend(models.Model):
         return width*height
 
     def legend_items(self, zoom):
-        return self.legenditem_set.select_related().filter(zoom=zoom).exclude(image='').order_by('geometry', 'legend_item_name__slug')
+        return self.legenditem_set.select_related().filter(zoom=zoom).exclude(image='').order_by('legend_item_name__group', 'legend_item_name__order', 'legend_item_name__slug')
 
 
 class LegendItem(models.Model):
