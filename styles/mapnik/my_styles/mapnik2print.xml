@@ -303,7 +303,7 @@
   </Style>
   <Style name="contours-text100">
     <Rule name="_contours-100-m-label">
-      <MinScaleDenominator>12500</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <TextSymbolizer face-name="DejaVu Sans Book" fill="rgb(170,71,30)" halo-radius="2" placement="line" size="16" upright="right">[height]</TextSymbolizer>
     </Rule>
@@ -324,7 +324,7 @@
   </Style>
   <Style name="contours100">
     <Rule name="contours-100-m">
-      <MinScaleDenominator>12500</MinScaleDenominator>
+      <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="1.20"/>
     </Rule>
