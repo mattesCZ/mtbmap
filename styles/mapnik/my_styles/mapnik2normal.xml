@@ -170,6 +170,18 @@
       <MaxScaleDenominator>3000000</MaxScaleDenominator>
       <TextSymbolizer dy="7" fill="rgb(80,109,177)" fontset-name="book-fonts" halo-radius="1" size="10" wrap-width="30">[name]</TextSymbolizer>
     </Rule>
+    <Rule>
+      <Filter>(([way_area]&gt;=50000000) and (([natural]='lake') or ([natural]='water') or ([landuse]='reservoir') or ([landuse]='water')))</Filter>
+      <MinScaleDenominator>3000000</MinScaleDenominator>
+      <MaxScaleDenominator>6500000</MaxScaleDenominator>
+      <TextSymbolizer dy="7" fill="rgb(80,109,177)" fontset-name="book-fonts" halo-radius="1" size="10" wrap-width="30">[name]</TextSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>(([way_area]&gt;=400000000) and (([natural]='lake') or ([natural]='water') or ([landuse]='reservoir') or ([landuse]='water')))</Filter>
+      <MinScaleDenominator>6500000</MinScaleDenominator>
+      <MaxScaleDenominator>12500000</MaxScaleDenominator>
+      <TextSymbolizer dy="7" fill="rgb(80,109,177)" fontset-name="book-fonts" halo-radius="1" size="10" wrap-width="30">[name]</TextSymbolizer>
+    </Rule>
   </Style>
   <Style name="barriers">
     <Rule name="fence-wall">
@@ -266,13 +278,13 @@
       <PointSymbolizer file="../symbols/capital16.png"/>
       <TextSymbolizer allow-overlap="1" dy="-9" fill="rgb(0,0,0)" fontset-name="book-fonts" halo-radius="1" horizontal-alignment="right" size="18">[upper]</TextSymbolizer>
     </Rule>
-    <Rule name="capital-city">
+<!--    <Rule name="capital-city">
       <Filter>(([place]='city') or ([place]='metropolis') or ([place]='town'))</Filter>
       <MinScaleDenominator>6500000</MinScaleDenominator>
       <MaxScaleDenominator>12500000</MaxScaleDenominator>
       <PointSymbolizer file="../symbols/capital12.png"/>
       <TextSymbolizer dy="-8" fill="rgb(0,0,0)" fontset-name="book-fonts" halo-radius="1" horizontal-alignment="right" size="14">[upper]</TextSymbolizer>
-    </Rule>
+    </Rule>-->
   </Style>
   <Style name="cliffs">
     <Rule name="embankment">
@@ -353,7 +365,7 @@
       <Filter>([place]='country')</Filter>
       <MinScaleDenominator>3000000</MinScaleDenominator>
       <MaxScaleDenominator>25000000</MaxScaleDenominator>
-      <TextSymbolizer fill="rgb(157,108,157)" fontset-name="book-fonts" halo-radius="1" size="18">[name]</TextSymbolizer>
+      <TextSymbolizer fill="rgb(31,31,31)" fontset-name="book-fonts" halo-radius="1" size="18">[name]</TextSymbolizer>
     </Rule>
   </Style>
   <Style name="cycleway">
@@ -1823,7 +1835,7 @@
     </Rule>
     <Rule name="mtb-track">
       <MinScaleDenominator>1500000</MinScaleDenominator>
-      <MaxScaleDenominator>12500000</MaxScaleDenominator>
+      <MaxScaleDenominator>6500000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(113,0,104)" stroke-width="1" stroke-opacity="1" stroke-linejoin="round" stroke-linecap="round"/>
     </Rule>
   </Style>
@@ -8945,12 +8957,6 @@
       <MaxScaleDenominator>6500000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(252,152,53)" stroke-width="2.00"/>
     </Rule>
-    <Rule name="motorway-trunk-road">
-      <Filter>(([highway]='motorway') or ([highway]='trunk'))</Filter>
-      <MinScaleDenominator>6500000</MinScaleDenominator>
-      <MaxScaleDenominator>12500000</MaxScaleDenominator>
-      <LineSymbolizer stroke="rgb(252,152,53)" stroke-width="1.50"/>
-    </Rule>
   </Style>
   <Style name="roads-casing">
     <Rule name="secondary-road">
@@ -9018,12 +9024,6 @@
       <MinScaleDenominator>1500000</MinScaleDenominator>
       <MaxScaleDenominator>6500000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(20,20,20)" stroke-width="3.50"/>
-    </Rule>
-    <Rule name="motorway-trunk-road">
-      <Filter>(([highway]='motorway') or ([highway]='trunk'))</Filter>
-      <MinScaleDenominator>6500000</MinScaleDenominator>
-      <MaxScaleDenominator>12500000</MaxScaleDenominator>
-      <LineSymbolizer stroke="rgb(20,20,20)" stroke-width="3.00"/>
     </Rule>
   </Style>
   <Style name="roads-text">
@@ -10764,9 +10764,16 @@
       <LineSymbolizer stroke="rgb(80,109,177)" stroke-width="0.40"/>
     </Rule>
     <Rule name="water-area">
-      <Filter>(([natural]='lake') or ([natural]='water') or (([landuse]='reservoir') and ([way_area]&gt;=500000)))</Filter>
+      <Filter>(([natural]='lake') or ([natural]='water') or ([landuse]='reservoir')) and ([way_area]&gt;=5000000)</Filter>
       <MinScaleDenominator>1500000</MinScaleDenominator>
       <MaxScaleDenominator>6500000</MaxScaleDenominator>
+      <PolygonSymbolizer fill="rgb(114,155,249)"/>
+      <LineSymbolizer stroke="rgb(80,109,177)" stroke-width="0.40"/>
+    </Rule>
+    <Rule name="water-area">
+      <Filter>(([natural]='lake') or ([natural]='water') or ([landuse]='reservoir')) and ([way_area]&gt;=50000000)</Filter>
+      <MinScaleDenominator>6500000</MinScaleDenominator>
+      <MaxScaleDenominator>12500000</MaxScaleDenominator>
       <PolygonSymbolizer fill="rgb(114,155,249)"/>
       <LineSymbolizer stroke="rgb(80,109,177)" stroke-width="0.40"/>
     </Rule>
@@ -10905,6 +10912,12 @@
       <MinScaleDenominator>1500000</MinScaleDenominator>
       <MaxScaleDenominator>6500000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(80,109,177)" stroke-width="0.80" stroke-linejoin="round" stroke-linecap="round"/>
+    </Rule>
+    <Rule name="river">
+      <Filter>([waterway]='river')</Filter>
+      <MinScaleDenominator>6500000</MinScaleDenominator>
+      <MaxScaleDenominator>12500000</MaxScaleDenominator>
+      <LineSymbolizer stroke="rgb(80,109,177)" stroke-width="0.60" stroke-linejoin="round" stroke-linecap="round"/>
     </Rule>
   </Style>
   <Style name="water_lines_fill">
@@ -11045,6 +11058,12 @@
       <Filter>([waterway]='river')</Filter>
       <MinScaleDenominator>1500000</MinScaleDenominator>
       <MaxScaleDenominator>6500000</MaxScaleDenominator>
+      <LineSymbolizer stroke="rgb(114,155,249)" stroke-width="0.40" stroke-linejoin="round" stroke-linecap="round"/>
+    </Rule>
+    <Rule name="river">
+      <Filter>([waterway]='river')</Filter>
+      <MinScaleDenominator>6500000</MinScaleDenominator>
+      <MaxScaleDenominator>12500000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(114,155,249)" stroke-width="0.40" stroke-linejoin="round" stroke-linecap="round"/>
     </Rule>
     <Rule name="weir">
@@ -12782,7 +12801,7 @@
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
   </Layer>
-  <Layer name="placenames-large" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" clear-label-cache="1" minzoom="1000" maxzoom="250000000000">
+  <Layer name="placenames-large" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" clear-label-cache="0" minzoom="1000" maxzoom="250000000000">
     <StyleName>capital</StyleName>
     <StyleName>country</StyleName>
     <Datasource>
