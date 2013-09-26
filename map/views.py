@@ -61,7 +61,8 @@ def routingparams(request):
     try:
         template_id = request.GET['template_id']
         weight_collection = WeightCollection.objects.get(pk=template_id)
-    except (KeyError, 'template not found'):
+    except (KeyError):
+        # template not found
         weight_collection = WeightCollection.objects.all()[0]
     return TemplateResponse(request, 'map/routingparams.html', {'weight_collection': weight_collection})
 
@@ -72,7 +73,8 @@ def exportmap(request):
     try:
         zoom = int(request.POST['export-zoom'])
         bounds = request.POST['export-bounds'].replace('(', '').replace(')', '')
-    except (KeyError, 'no zoom posted'):
+    except (KeyError):
+        # no zoom posted
         return render_to_response('map/map.html', {},
                                   context_instance=RequestContext(request))
     else:
@@ -98,7 +100,8 @@ def exportmap(request):
         highres = False
         try:
             checked_line = request.POST['export-line-check']
-        except (KeyError, 'line not checked'):
+        except (KeyError):
+            # line not checked
             line = None
         else:
             raw_line = request.POST['export-line']
@@ -116,7 +119,8 @@ def exportmap(request):
                 line = None
         try:
             highres = request.POST['export-highres']
-        except (KeyError, 'highres not checked'):
+        except (KeyError):
+            # highres not checked
             highres = False
             map_im = map_image(zoom, left, bottom, right, top, line, orientation, highres)
         else:
@@ -124,20 +128,23 @@ def exportmap(request):
             map_im = map_image(zoom, left, bottom, right, top, line, orientation, highres)
         try:
             renderlegend = request.POST['export-legend']
-        except (KeyError, 'export-legend not checked'):
+        except (KeyError):
+            # export-legend not checked
             legend_im = Image.new('RGBA', (0, 0), 'white')
         else:
             legend = Legend.objects.all()[0]
             legend_im = legend_image(legend, zoom, gap, 'side', map_im.size[1], highres)
         try:
             renderscale = request.POST['export-scale']
-        except (KeyError, 'export-scale not checked'):
+        except (KeyError):
+            # export-scale not checked
             scalebar_im = Image.new('RGBA', (0, 0), 'white')
         else:
             scalebar_im = scalebar_image(zoom, (top+bottom)/2, highres)
         try:
             renderimprint = request.POST['export-imprint']
-        except (KeyError, 'export-imprint not checked'):
+        except (KeyError):
+            # export-imprint not checked
             imprint_im = Image.new('RGBA', (0, 0), 'white')
         else:
             imprint_im = imprint_image(tile_layer.attribution, map_im.size[0], 20, 12, highres)
@@ -170,7 +177,8 @@ def altitudeprofile(request):
     '''
     try:
         params = request.POST['profile-params']
-    except (KeyError, 'no points posted'):
+    except (KeyError):
+        # no points posted
         return render_to_response('map/map.html', {},
                                   context_instance=RequestContext(request))
     else:
@@ -205,7 +213,8 @@ def creategpx(request):
     '''
     try:
         params = request.POST['profile-params']
-    except (KeyError, 'no points posted'):
+    except (KeyError):
+        # no points posted
         message = _('No route parameters posted.')
         return render_to_response('error.html', {'message': message},
                                    context_instance=RequestContext(request))
@@ -242,7 +251,8 @@ def findroute(request):
     try:
         params = json.loads(request.POST['params'])
         line = request.POST['routing-line']
-    except (KeyError, 'invalid route points'):
+    except (KeyError):
+        # invalid route points
         return render_to_response('map/map.html', {},
                                   context_instance=RequestContext(request))
     else:
@@ -259,7 +269,8 @@ def gettemplate(request):
     '''
     try:
         params = json.loads(request.POST['params'])
-    except (KeyError, 'missing params'):
+    except (KeyError):
+        # missing params
         message = _('No route parameters posted.')
         return render_to_response('error.html', {'message': message},
                                    context_instance=RequestContext(request))
@@ -277,12 +288,14 @@ def getjsondata(request):
     '''
     try:
         bounds = json.loads(request.GET['bounds'])
-    except (KeyError, JSONDecodeError, 'invalid bounds'):
+    except (KeyError, JSONDecodeError):
+        # invalid bounds
         bounds = [-0.001, -0.001, 0.001, 0.001]
     try:
         layer_slug = request.GET['slug']
         layer = GeojsonLayer.objects.get(slug=layer_slug)
-    except (KeyError, GeojsonLayer.DoesNotExist, 'unknown layer'):
+    except (KeyError, GeojsonLayer.DoesNotExist):
+        # unknown layer
         return HttpResponse(None, content_type='application/json')
     geojson = layer.geojson_feature_collection(bounds)
     return HttpResponse(json.dumps(geojson), content_type='application/json')
