@@ -1787,7 +1787,6 @@ class LegendItem(models.Model):
             mapnik_rule.max_scale = zooms[0]
             mapnik_rule.min_scale = zooms[19]
             s.rules.append(mapnik_rule)
-        ds = None
         if self.geometry in ('Point', 'LineString', 'Collection'):
             ds = mapnik.GeoJSON(file='styles/fixtures/geojson_%s.json' % self.geometry.lower())
         else:
@@ -1797,7 +1796,7 @@ class LegendItem(models.Model):
         if self.geometry=='LineString':
             size = (size[1], 3*size[1])
         if self.geometry=='Collection':
-            size = (max(size[0], 50), max(size[1], 50))
+            size = (35, 50)
         l = mapnik.Layer('legend')
         l.datasource = ds
         l.styles.append('Legend_style')
