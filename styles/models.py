@@ -1788,18 +1788,16 @@ class LegendItem(models.Model):
             mapnik_rule.min_scale = zooms[19]
             s.rules.append(mapnik_rule)
         ds = None
-        if self.geometry=='Point':
-            ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from legend_points) as ln', user='xtesar7', password=db_password)
-        elif self.geometry=='LineString':
-            size = (size[1], 3*size[1])
-            ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from legend_linestrings) as ln', user='xtesar7', password=db_password)
-        elif self.geometry=='Collection':
-            size = (max(size[0], 50), max(size[1], 50))
-            ds = mapnik.PostGIS(dbname='legend', host='localhost', port=5432, table='(select * from legend_collections) as ln', user='xtesar7', password=db_password)
+        if self.geometry in ('Point', 'LineString', 'Collection'):
+            ds = mapnik.GeoJSON(file='styles/fixtures/geojson_%s.json' % self.geometry.lower())
         else:
             # Raster... special legend creation
             print "Raster Layer, legend not created, id: %s, slug: %s" % (self.id, self.legend_item_name.slug)
             return 1
+        if self.geometry=='LineString':
+            size = (size[1], 3*size[1])
+        if self.geometry=='Collection':
+            size = (max(size[0], 50), max(size[1], 50))
         l = mapnik.Layer('legend')
         l.datasource = ds
         l.styles.append('Legend_style')
