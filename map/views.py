@@ -29,17 +29,13 @@ def index(request):
     '''
     Main map page.
     '''
-    lang = translation.get_language_from_request(request)
-    if lang in ('cs', 'sk', 'cz', 'cs-cz'):
-        lang = 'cz'
-    else:
-        lang = 'en'
     weight_collections = WeightCollection.objects.all()
     evaluation_form = RoutingEvaluationForm()
     default_tile_layer = TileLayer.objects.get(slug='mtb-map')
     tile_layers = TileLayer.objects.all()
     geojson_layers = GeojsonLayer.objects.all()
-    return render_to_response('map/map.html', {'default_tile_layer':default_tile_layer, 'lang': lang, 'zoomRange':range(19),
+    return render_to_response('map/map.html', {'default_tile_layer':default_tile_layer,
+                                               'zoomRange':range(19),
                                                'tile_layers':tile_layers,
                                                'geojson_layers':geojson_layers,
                                                'weight_collections': weight_collections,
