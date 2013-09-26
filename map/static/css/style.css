@@ -54,6 +54,9 @@ table.preferences td {
 	width: 50%;
 	padding: 0 5px;
 }
+#tab-legend tr > td:first-child {
+	text-align: center;
+}
 .right-align {
 	text-align: right;
 }
