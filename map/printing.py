@@ -32,6 +32,9 @@ def svg_string_to_png(svg_string, png_image_path, width, height):
 
 def legend_image(legend, zoom, gap, position='side', max_edge=None, highres=True):
     items = legend.legend_items(zoom).select_related()
+    if not items.count():
+        # no legend items for this zoom, return empty Image
+        return Image.new('RGBA', (0, 0), 'white')
     if highres:
         gap = 2*gap
         params = items.aggregate(Max('width_highres'), Max('legend_item_name__width_highres'))
