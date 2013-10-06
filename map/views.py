@@ -20,7 +20,7 @@ from django.conf import settings
 from map.models import *
 from styles.models import Legend
 from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
-from map.altitude import altitude_image, height
+from map.altitude import AltitudeProfile, height
 from routing.core import MultiRoute, line_string_to_points, create_gpx, RouteParams
 from routing.models import WeightCollection
 from map.forms import RoutingEvaluationForm
@@ -184,21 +184,23 @@ def altitudeprofile(request):
                 latlng = part.replace('LatLng(', '').replace(')', '').split(',')
                 point = [float(latlng[0]), float(latlng[1])]
                 points.append(point)
-            im = altitude_image(points)
-            try:
-                ret = int(im)
-            except:
-                # not an integer, it must be image
-                response = HttpResponse(content_type='image/png')
-                im.save(response, 'png')
-                response['Content-Disposition'] = 'attachment; filename="altitudeprofile.png"'
-                return response
+            if len(points) == 1:
+                res = height(points[0])
             else:
-                if ret==-1:
-                    message = _('Sorry, we do not have height data for the area that you have requested.')
-                    return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
+                altitude_profile = AltitudeProfile(points)
+                if altitude_profile.status < 0:
+                    res = -10000
                 else:
-                    return render_to_response('map/height.html', {'height': ret}, context_instance=RequestContext(request))
+                    im = altitude_profile.png_profile()
+                    response = HttpResponse(content_type='image/png')
+                    im.save(response, 'png')
+                    response['Content-Disposition'] = 'attachment; filename="altitudeprofile.png"'
+                    return response
+            if res<=-10000:
+                message = _('Sorry, we do not have height data for the area that you have requested.')
+                return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
+            else:
+                return render_to_response('map/height.html', {'height': res}, context_instance=RequestContext(request))
         else:
             message = _('You have not set any point.')
             return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
