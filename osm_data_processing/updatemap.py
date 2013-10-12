@@ -18,7 +18,7 @@ def exists(name, path):
 
 def downloadFile(source, datadir):
     os.chdir(datadir)
-    return os.system('wget -t 3 -N ' + source)
+    return os.system('wget -nv -t 3 -N ' + source)
 
 
 def applyBBox(osmosis, north, west, south, east, datadir, filename, format):
