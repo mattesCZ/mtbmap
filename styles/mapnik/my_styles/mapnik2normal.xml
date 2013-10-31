@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE Map [ <!ENTITY % ent SYSTEM "../inc/ent.xml.inc"> %ent; ]>
-<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" background-color="rgb(114,155,249)" font-directory="/usr/share/fonts/truetype/ttf-dejavu" minimum-version="2.1.0">
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" background-color="rgb(114,155,249)" font-directory="/usr/share/fonts/truetype/ttf-dejavu" minimum-version="2.2.0">
   <FontSet name="book-fonts">
     <Font face-name="DejaVu Sans Book"/>
   </FontSet>
@@ -11308,7 +11308,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -11325,7 +11325,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -11339,7 +11339,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -11961,7 +11961,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -11981,7 +11981,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12001,7 +12001,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12018,7 +12018,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12038,7 +12038,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12052,7 +12052,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12066,7 +12066,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12080,7 +12080,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12095,7 +12095,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12109,7 +12109,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12123,7 +12123,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12137,7 +12137,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12151,7 +12151,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12171,7 +12171,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12186,7 +12186,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12200,7 +12200,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12216,7 +12216,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12235,7 +12235,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12251,7 +12251,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12276,7 +12276,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12290,7 +12290,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12308,7 +12308,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12331,7 +12331,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12345,7 +12345,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12382,7 +12382,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12396,7 +12396,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12410,7 +12410,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12426,7 +12426,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12440,7 +12440,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12454,7 +12454,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12468,7 +12468,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12482,7 +12482,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12499,7 +12499,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12513,7 +12513,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12527,7 +12527,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12541,7 +12541,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12555,7 +12555,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12571,7 +12571,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12588,7 +12588,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12602,7 +12602,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12616,7 +12616,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12634,7 +12634,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12652,7 +12652,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12668,7 +12668,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12682,7 +12682,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12701,7 +12701,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12719,7 +12719,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12741,7 +12741,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12760,7 +12760,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12778,7 +12778,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12796,7 +12796,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12815,7 +12815,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12831,7 +12831,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12847,7 +12847,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12877,7 +12877,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12904,7 +12904,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12924,7 +12924,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12940,7 +12940,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
@@ -12954,7 +12954,7 @@
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
       <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">gisczech</Parameter>
+      <Parameter name="dbname">mtbmap_data</Parameter>
       <Parameter name="estimate_extent">1</Parameter>
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
