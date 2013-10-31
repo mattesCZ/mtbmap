@@ -1,15 +1,15 @@
-# Django example settings for mtbmap project.
+# -*- coding: utf-8 -*-
+# Django default settings for mtbmap project.
+# See also settings_local.py to override these defaults.
 
-import os.path
-from django.conf.global_settings import DATABASE_ROUTERS
-ROOT_PATH = os.path.dirname(__file__)
+import django.conf.global_settings as GLOBAL_SETTINGS
 
 # Set DEBUG to True, if you want to see debug messages
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('User ADMIN', 'user@admin.com'),
+#    ('John Doe', 'admin@example.com'),
 )
 
 MANAGERS = ADMINS
@@ -18,22 +18,25 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'default_db',                      # Or path to database file if using sqlite3.
+        'NAME': 'mtbmap_default',                      # Or path to database file if using sqlite3.
         'USER': 'user',                      # Not used with sqlite3.
-        'PASSWORD': 'passWORD',                  # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     },
     'osm_data': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'geographic_data_db',                      # Or path to database file if using sqlite3.
+        'NAME': 'mtbmap_data',                      # Or path to database file if using sqlite3.
         'USER': 'user',                      # Not used with sqlite3.
-        'PASSWORD': 'passWORD',                  # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
 DATABASE_ROUTERS = ['mtbmap.dbrouters.OsmDataRouter']
+
+ALLOWED_HOSTS = ['.example.com']
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -41,11 +44,11 @@ DATABASE_ROUTERS = ['mtbmap.dbrouters.OsmDataRouter']
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Europe/Prague'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 SITE_ID = 1
 
@@ -57,9 +60,11 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+URL_BASE = '/'
+
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.join(ROOT_PATH, '../media')
+MEDIA_ROOT = ''
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -86,17 +91,17 @@ STATICFILES_DIRS = (
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
+#    'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'really-secret-key'
+SECRET_KEY = '----really-secret-key----'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
+#    'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
 )
@@ -104,6 +109,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -132,8 +138,7 @@ INSTALLED_APPS = (
     'routing',
     'osm_data_processing',
     'height_data_processing',
-    'south',
-    'captcha',
+#     'south',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -162,9 +167,19 @@ LOGGING = {
     }
 }
 
-MAPNIK_STYLES = '/path/to/mapnik/styles/directory/'
-SRTM_DATA = '/path/to/shadingdata/directory/'
+LANGUAGES = (
+    ('en', u'English'),
+    ('cs', u'Česky'),
+)
 
-RECAPTCHA_PUBLIC_KEY = '---your public key---'
-RECAPTCHA_PRIVATE_KEY = '---your private key---'
-#RECAPTCHA_USE_SSL = True
+TEMPLATE_CONTEXT_PROCESSORS = GLOBAL_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
+#    'django.core.context_processors.request',
+)
+
+MAPNIK_STYLES = '/path/to/xml/styles/'
+SRTM_DATA = '/path/to/srtm/version2/data/'
+
+try:
+    from settings_local import *
+except ImportError:
+    print >> sys.stderr, "Local settings not found - defaults will cause errors."
