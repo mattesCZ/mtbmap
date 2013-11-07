@@ -137,3 +137,24 @@ hr { /*should be rewritten for html5*/
 #main-tabs .ui-button.highlight:hover {
     background-color: #00008B;
 }
+.file-upload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.file-upload.ui-button {
+    padding: 0.4em 1em;
+}
+.file-upload input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    /*font-size: 20px;*/
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 100%;
+}
+

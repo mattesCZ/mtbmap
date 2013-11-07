@@ -35,13 +35,14 @@
                     <button class="reset-line">{% trans "Reset route" %}</button>
                 </div>
                 <div id="params-buttons">
-                    {% trans "Load parameters:" %}<input id="files" type="file" name="files[]" onchange="handleTemplate(event)" size="10" class="margin">
-                    <br />
-                    {% trans "Save parameters:" %}
+                    <div class="file-upload ui-button ui-widget ui-state-default ui-corner-all">
+                        <span>{% trans "Load parameters" %}</span>
+                        <input id="files" type="file" name="files[]" onchange="handleTemplate(event)" size="10" class="margin upload">
+                    </div>
                     <form action="/map/gettemplate/" method="post" target="_blank" class="inline-block">
                         {% csrf_token %}
                         <input type="hidden" name="params" class="params" value="" />
-                        <input class="get-template-button" type="submit" value="{% trans "Save" %}"/>
+                        <input class="get-template-button" type="submit" value="{% trans "Save parameters" %}"/>
                     </form>
                 </div>
             </div>
@@ -108,7 +109,10 @@
         </article>
         <article id="routes-content-gpx" class="subtab-panel">
             <h4>{% trans "Upload your own GPX file" %}</h4>
-            <input id="files" type="file" name="files[]" onchange="handleGPX(event)" size="10" class="margin">
+            <div class="file-upload ui-button ui-widget ui-state-default ui-corner-all">
+                <span>{% trans "Upload" %}</span>
+                <input id="files" type="file" name="files[]" onchange="handleGPX(event)" size="10" class="margin">
+            </div>
             <br>
             <div class="line-buttons">
                 <div class="length"></div>
