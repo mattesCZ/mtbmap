@@ -1,5 +1,5 @@
-mtbmap
-======
+MTB Map
+=======
 
 Web map for mountain biking and hiking based on OpenStreetMap data. It is available on [mtbmap.cz](http://mtbmap.cz/)
 
