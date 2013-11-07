@@ -21,7 +21,7 @@ DATABASES = {
         'NAME': 'mtbmap_default',                      # Or path to database file if using sqlite3.
         'USER': 'johndoe',                      # Not used with sqlite3.
         'PASSWORD': 'johnDoesPasswd',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     },
     'osm_data': {
@@ -29,7 +29,7 @@ DATABASES = {
         'NAME': 'mtbmap_data',                      # Or path to database file if using sqlite3.
         'USER': 'johndoe',                      # Not used with sqlite3.
         'PASSWORD': 'johnDoesPasswd',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }

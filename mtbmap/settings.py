@@ -2,6 +2,7 @@
 # Django default settings for mtbmap project.
 # See also settings_local.py to override these defaults.
 
+import sys
 import django.conf.global_settings as GLOBAL_SETTINGS
 
 # Set DEBUG to True, if you want to see debug messages
