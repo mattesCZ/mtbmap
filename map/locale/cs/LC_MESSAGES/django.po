@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-12 17:02+0200\n"
+"POT-Creation-Date: 2013-11-07 11:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Martin Tesar <osmmtb@gmail.com>\n"
 "Language-Team: Czech <>\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: altitude.py:220
+#: altitude.py:161
 msgid "Ascending"
 msgstr "Stoupání"
 
-#: altitude.py:220
+#: altitude.py:161
 msgid "Descending"
 msgstr "Klesání"
 
-#: altitude.py:222
+#: altitude.py:163
 msgid "Height"
 msgstr "Výška"
 
@@ -100,39 +100,39 @@ msgstr "Kvalita tras"
 msgid "Comment"
 msgstr "Komentář"
 
-#: printing.py:253 templates/map/base.html:33 templates/map/map.html:96
+#: printing.py:256 templates/map/base.html:33 templates/map/map.html:96
 msgid "Author"
 msgstr "Autor"
 
-#: printing.py:253 templates/map/map.html:97
+#: printing.py:256 templates/map/map.html:97
 msgid "Projection"
 msgstr "Zobrazení"
 
-#: printing.py:253 templates/map/map.html:97
+#: printing.py:256 templates/map/map.html:97
 msgid "Conformal cylindrical - Mercator"
 msgstr "Konformní válcové - mercatorovo"
 
-#: printing.py:253
+#: printing.py:256
 msgid "Data"
 msgstr "Data"
 
-#: printing.py:253
+#: printing.py:256
 msgid "Created"
 msgstr "Vytvořeno"
 
-#: views.py:194
+#: views.py:200
 msgid "Sorry, we do not have height data for the area that you have requested."
 msgstr "Omlouváme se, nemáme výšková data pro žádanou oblast nebo její část."
 
-#: views.py:199 views.py:225
+#: views.py:205 views.py:232
 msgid "You have not set any point."
 msgstr "Nezadali jste žádný bod."
 
-#: views.py:209 views.py:263
+#: views.py:216 views.py:272
 msgid "No route parameters posted."
 msgstr "Nebyly zadány žádné parametry trasy."
 
-#: views.py:306
+#: views.py:317
 msgid "Thank you for your evaluation"
 msgstr "Děkujeme za vaše hodnocení"
 
@@ -254,7 +254,7 @@ msgid ""
 "tab Routes.\n"
 "</p>\n"
 "<p>\n"
-"    In case of any questions, remarks or new ideas, do not hesitate to send\n"
+"    In case of any questions, remarks or new ideas, don't hesitate to send\n"
 "    us an email. Address is in the bottom left corner.\n"
 "</p>\n"
 "<p>\n"
@@ -263,6 +263,9 @@ msgid ""
 "    are on our OpenStreetMap\n"
 "    <a href=\"http://wiki.openstreetmap.org/wiki/MTB_map_Europe\" target="
 "\"_blank\" >Wiki page</a>.\n"
+"    Developers can look at our <a href=\"https://github.com/mattesCZ/mtbmap/"
+"\" target=\"_blank\" >\n"
+"    GitHub project pages</a>.\n"
 "</p>\n"
 msgstr ""
 "\n"
@@ -292,6 +295,9 @@ msgstr ""
 "    Další detaily, či návody jak přispívat do projektu OpenStreetMap jsou\n"
 "    na našich <a href=\"http://wiki.openstreetmap.org/wiki/MTB_map_Europe\" "
 "target=\"_blank\" >Wiki stránkách</a>.\n"
+"    Zdrojové kódy projektu MTB mapy jsou k dispozici <a href=\"https://github.com/mattesCZ/mtbmap/"
+"\" target=\"_blank\" >\n"
+"    zde</a>.\n"
 "</p>\n"
 
 #: templates/map/legend.html:3
