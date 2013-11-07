@@ -7,4 +7,4 @@ It shows mountain bike, cycling and hiking tracks in Europe.
 
 Since June 2013 we offer configurable online routing service for planning MTB and hiking trips (Czech Republic only).
 
-Installation and configuration process will be documented soon.
+Installation and configuration process is documented on [wiki](https://github.com/mattesCZ/mtbmap/wiki).
