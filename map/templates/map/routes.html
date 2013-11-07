@@ -30,7 +30,7 @@
                 <div class="line-buttons">
                     <form onsubmit="getRoute(event)" method="POST">
                         {% csrf_token %}
-                        <input class="get-route-button" type="submit" value="{% trans "FIND ROUTE" %}">
+                        <input class="highlight get-route-button" type="submit" value="{% trans "FIND ROUTE" %}">
                     </form>
                     <button class="reset-line">{% trans "Reset route" %}</button>
                 </div>
