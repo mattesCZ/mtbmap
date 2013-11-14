@@ -136,6 +136,16 @@ hr { /*should be rewritten for html5*/
 	text-align: center;
 	font-weight: bold;
 }
+#main-tabs-nav {
+    text-align: center;
+    height: 2.35em;
+}
+#main-tabs-nav li {
+    display: inline-block;
+    float: none;
+    margin: 0;
+    top: 0px;
+}
 #main-tabs .ui-button.highlight {
     border-color: rgba(0,0,0,0.25);
     background-color: #06D;
