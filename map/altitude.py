@@ -253,7 +253,7 @@ class AltitudeProfile:
                 if (j==len(self.nodes)-1):
                     return NONE_HEIGHT
                 while j>0:
-                    self.nodes[j-1].height = nodes[j].height
+                    self.nodes[j-1].height = self.nodes[j].height
                     j=j-1
         if (self.nodes[0].height == NONE_HEIGHT):
             # First node has missing height, find first node with height and
