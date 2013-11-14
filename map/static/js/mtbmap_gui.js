@@ -32,6 +32,13 @@ $(document).ready(function() {
             } else if (MTBMAP.activePanel=='export') {
                 setCurrentBounds();
             }
+            if (MTBMAP.activePanel.length > 0) {
+                if (MTBMAP.activePanel != 'legend') {
+                    $('#close-main-tab-panel').show();
+                }
+            } else {
+                $('#close-main-tab-panel').hide();
+            }
         }
     });
     // initialize routes sub-tabs menu
@@ -149,7 +156,7 @@ $(document).ready(function() {
     });
     $('.open-evaluation-dialog').button().click(function() {
     	$('#evaluation-dialog-form').dialog('open');
-    })
+    });
     // $('.send-evaluation-button').button();
     if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
         $('#params-buttons').hide();
@@ -165,6 +172,17 @@ $(document).ready(function() {
         $('#export-zoom').val($('#export-zoom-select').val());
         $('#export-line').val(MTBMAP.activeLine.routeLatLngs());
     });
+    $closeButton = $('#close-main-tab-panel');
+    $closeButton.button({
+        icons: {
+            primary: 'ui-icon-close'
+        },
+        text: false
+    }).click(function(event) {
+        $closeButton.hide();
+        $('a[href="#tab-' + MTBMAP.activePanel + '"]').click();
+        // $('#tab-' + MTBMAP.activePanel).hide();
+    });
     $('#main-tabs').show();
 });
 $(window).resize(function(event) {
@@ -175,6 +193,7 @@ function updateLegend(zoom) {
         zoom: zoom
     }, function(data) {
         $('#tab-legend').html(data);
+        $('#close-main-tab-panel').show();
     });
 }
 function updateTemplate(template_id) {

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-07 13:29+0100\n"
+"POT-Creation-Date: 2013-11-14 13:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Martin Tesar <osmmtb@gmail.com>\n"
 "Language-Team: Czech <>\n"
@@ -100,15 +100,15 @@ msgstr "Kvalita tras"
 msgid "Comment"
 msgstr "Komentář"
 
-#: printing.py:256 templates/map/base.html:33 templates/map/map.html:96
+#: printing.py:256 templates/map/base.html:33 templates/map/map.html:97
 msgid "Author"
 msgstr "Autor"
 
-#: printing.py:256 templates/map/map.html:97
+#: printing.py:256 templates/map/map.html:98
 msgid "Projection"
 msgstr "Zobrazení"
 
-#: printing.py:256 templates/map/map.html:97
+#: printing.py:256 templates/map/map.html:98
 msgid "Conformal cylindrical - Mercator"
 msgstr "Konformní válcové - mercatorovo"
 
@@ -275,8 +275,8 @@ msgstr ""
 "\"http://openstreetmap.org/\" target=\"_blank\" >OpenStreetMap</a>.    Tato "
 "data vytrvale obohacují nadšení uživatelé o&nbsp;nové cesty, body zájmu a "
 "jiné objekty.\n"
-"    Na našem serveru aktualizujeme tyto příspěvky jednou týdně a s "
-"určitou časovou prodlevou\n"
+"    Na našem serveru aktualizujeme tyto příspěvky jednou týdně a s určitou "
+"časovou prodlevou\n"
 "    se vykreslí i do mapy. Export map v příslušné záložce probíhá vždy z "
 "našich aktuálních\n"
 "    dat. Můžete tak získat aktuální mapu v tiskové kvalitě.\n"
@@ -317,23 +317,27 @@ msgstr "Trasy"
 msgid "Places"
 msgstr "Místa"
 
-#: templates/map/map.html:98
+#: templates/map/map.html:74
+msgid "Close"
+msgstr "Zavřít"
+
+#: templates/map/map.html:99
 msgid "Data provided by"
 msgstr "Data poskytuje"
 
-#: templates/map/map.html:98
+#: templates/map/map.html:99
 msgid "and"
 msgstr "a"
 
-#: templates/map/map.html:98
+#: templates/map/map.html:99
 msgid "Version"
 msgstr "Verze"
 
-#: templates/map/map.html:98
+#: templates/map/map.html:99
 msgid "from"
 msgstr "od"
 
-#: templates/map/map.html:99
+#: templates/map/map.html:100
 #, python-format
 msgid ""
 "\n"

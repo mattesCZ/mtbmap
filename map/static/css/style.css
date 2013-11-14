@@ -157,4 +157,11 @@ hr { /*should be rewritten for html5*/
     filter: alpha(opacity=0);
     width: 100%;
 }
-
+#close-main-tab-panel {
+    position: absolute;
+    top: 57px;
+    right: 14px;
+    z-index: 10;
+    height: 1.3em;
+    width: 1.3em;
+}
