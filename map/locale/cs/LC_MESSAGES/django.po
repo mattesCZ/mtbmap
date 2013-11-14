@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-14 13:59+0100\n"
+"POT-Creation-Date: 2013-11-14 16:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Martin Tesar <osmmtb@gmail.com>\n"
 "Language-Team: Czech <>\n"
@@ -24,7 +24,7 @@ msgstr "Stoupání"
 msgid "Descending"
 msgstr "Klesání"
 
-#: altitude.py:163
+#: altitude.py:163 templates/map/export.html:30
 msgid "Height"
 msgstr "Výška"
 
@@ -181,8 +181,8 @@ msgid "Zoom level"
 msgstr "Přiblížení"
 
 #: templates/map/export.html:27
-msgid "Map image size"
-msgstr "Velikost mapového pole"
+msgid "Width"
+msgstr "Šířka"
 
 #: templates/map/export.html:33
 msgid "Map elements"
@@ -196,23 +196,23 @@ msgstr "Název mapy"
 msgid "Scale"
 msgstr "Měřítko"
 
-#: templates/map/export.html:38 templates/map/map.html:69
+#: templates/map/export.html:37 templates/map/map.html:69
 msgid "Legend"
 msgstr "Legenda"
 
-#: templates/map/export.html:40
+#: templates/map/export.html:38
 msgid "Impressum"
 msgstr "Tiráž"
 
-#: templates/map/export.html:42
+#: templates/map/export.html:39
 msgid "Display route"
 msgstr "Zobrazit trasu"
 
-#: templates/map/export.html:47
+#: templates/map/export.html:43
 msgid "Resolution for print"
 msgstr "Rozlišení pro tisk"
 
-#: templates/map/export.html:49 templates/map/map.html:72
+#: templates/map/export.html:45 templates/map/map.html:72
 msgid "Export"
 msgstr "Export"
 
@@ -503,6 +503,9 @@ msgstr ""
 "informace k jednotlivým parametrům jsou na <a href=\"%(link)s\" target="
 "\"_blank\">Wiki</a> projektu OpenStreetMap.\n"
 "    "
+
+#~ msgid "Map image size"
+#~ msgstr "Velikost mapového pole"
 
 #~ msgid "Save"
 #~ msgstr "Uložit:"

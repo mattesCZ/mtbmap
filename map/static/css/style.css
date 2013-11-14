@@ -34,9 +34,17 @@
     overflow: auto;
 }
 p {
+    font-size: 13px;
+    line-height: 18px;
+    margin: 10px 20px 4px;
+    padding: 0;
     text-align: justify;
-    padding: 0 0.6em;
-    font-size: small;
+}
+h3 {
+    margin: 12px 0 6px;
+}
+h4 {
+    margin: 10px 0 5px;
 }
 h5 {
 	font-size: 11px;
@@ -164,4 +172,7 @@ hr { /*should be rewritten for html5*/
     z-index: 10;
     height: 1.3em;
     width: 1.3em;
+}
+#tab-export input[type="checkbox"] {
+    margin-right: 12px;
 }
