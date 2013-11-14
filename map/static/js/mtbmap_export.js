@@ -1,10 +1,10 @@
 // handling user export
 function setCurrentBounds() {
     bounds = map.getBounds();
-    $('#export-left').val(bounds.getSouthWest().lng.toFixed(6));
-    $('#export-bottom').val(bounds.getSouthWest().lat.toFixed(6));
-    $('#export-right').val(bounds.getNorthEast().lng.toFixed(6));
-    $('#export-top').val(bounds.getNorthEast().lat.toFixed(6));
+    $('#export-left').val(bounds.getSouthWest().lng.toFixed(5));
+    $('#export-bottom').val(bounds.getSouthWest().lat.toFixed(5));
+    $('#export-right').val(bounds.getNorthEast().lng.toFixed(5));
+    $('#export-top').val(bounds.getNorthEast().lat.toFixed(5));
     $('#export-zoom-select').val(map.getZoom());
     setMapImageSize();
     userChanged = false;
