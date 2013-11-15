@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-12 17:02+0200\n"
+"POT-Creation-Date: 2013-11-14 16:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Martin Tesar <osmmtb@gmail.com>\n"
 "Language-Team: Czech <>\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: altitude.py:220
+#: altitude.py:161
 msgid "Ascending"
 msgstr "Stoupání"
 
-#: altitude.py:220
+#: altitude.py:161
 msgid "Descending"
 msgstr "Klesání"
 
-#: altitude.py:222
+#: altitude.py:163 templates/map/export.html:30
 msgid "Height"
 msgstr "Výška"
 
@@ -100,39 +100,39 @@ msgstr "Kvalita tras"
 msgid "Comment"
 msgstr "Komentář"
 
-#: printing.py:253 templates/map/base.html:33 templates/map/map.html:96
+#: printing.py:256 templates/map/base.html:33 templates/map/map.html:97
 msgid "Author"
 msgstr "Autor"
 
-#: printing.py:253 templates/map/map.html:97
+#: printing.py:256 templates/map/map.html:98
 msgid "Projection"
 msgstr "Zobrazení"
 
-#: printing.py:253 templates/map/map.html:97
+#: printing.py:256 templates/map/map.html:98
 msgid "Conformal cylindrical - Mercator"
 msgstr "Konformní válcové - mercatorovo"
 
-#: printing.py:253
+#: printing.py:256
 msgid "Data"
 msgstr "Data"
 
-#: printing.py:253
+#: printing.py:256
 msgid "Created"
 msgstr "Vytvořeno"
 
-#: views.py:194
+#: views.py:200
 msgid "Sorry, we do not have height data for the area that you have requested."
 msgstr "Omlouváme se, nemáme výšková data pro žádanou oblast nebo její část."
 
-#: views.py:199 views.py:225
+#: views.py:205 views.py:232
 msgid "You have not set any point."
 msgstr "Nezadali jste žádný bod."
 
-#: views.py:209 views.py:263
+#: views.py:216 views.py:272
 msgid "No route parameters posted."
 msgstr "Nebyly zadány žádné parametry trasy."
 
-#: views.py:306
+#: views.py:317
 msgid "Thank you for your evaluation"
 msgstr "Děkujeme za vaše hodnocení"
 
@@ -181,8 +181,8 @@ msgid "Zoom level"
 msgstr "Přiblížení"
 
 #: templates/map/export.html:27
-msgid "Map image size"
-msgstr "Velikost mapového pole"
+msgid "Width"
+msgstr "Šířka"
 
 #: templates/map/export.html:33
 msgid "Map elements"
@@ -196,23 +196,23 @@ msgstr "Název mapy"
 msgid "Scale"
 msgstr "Měřítko"
 
-#: templates/map/export.html:38 templates/map/map.html:69
+#: templates/map/export.html:37 templates/map/map.html:69
 msgid "Legend"
 msgstr "Legenda"
 
-#: templates/map/export.html:40
+#: templates/map/export.html:38
 msgid "Impressum"
 msgstr "Tiráž"
 
-#: templates/map/export.html:42
+#: templates/map/export.html:39
 msgid "Display route"
 msgstr "Zobrazit trasu"
 
-#: templates/map/export.html:47
+#: templates/map/export.html:43
 msgid "Resolution for print"
 msgstr "Rozlišení pro tisk"
 
-#: templates/map/export.html:49 templates/map/map.html:72
+#: templates/map/export.html:45 templates/map/map.html:72
 msgid "Export"
 msgstr "Export"
 
@@ -254,7 +254,7 @@ msgid ""
 "tab Routes.\n"
 "</p>\n"
 "<p>\n"
-"    In case of any questions, remarks or new ideas, do not hesitate to send\n"
+"    In case of any questions, remarks or new ideas, don't hesitate to send\n"
 "    us an email. Address is in the bottom left corner.\n"
 "</p>\n"
 "<p>\n"
@@ -263,6 +263,9 @@ msgid ""
 "    are on our OpenStreetMap\n"
 "    <a href=\"http://wiki.openstreetmap.org/wiki/MTB_map_Europe\" target="
 "\"_blank\" >Wiki page</a>.\n"
+"    Developers can look at our <a href=\"https://github.com/mattesCZ/mtbmap/"
+"\" target=\"_blank\" >\n"
+"    GitHub project pages</a>.\n"
 "</p>\n"
 msgstr ""
 "\n"
@@ -272,8 +275,8 @@ msgstr ""
 "\"http://openstreetmap.org/\" target=\"_blank\" >OpenStreetMap</a>.    Tato "
 "data vytrvale obohacují nadšení uživatelé o&nbsp;nové cesty, body zájmu a "
 "jiné objekty.\n"
-"and     Na našem serveru aktualizujeme tyto příspěvky jednou týdně a s "
-"určitou časovou prodlevou\n"
+"    Na našem serveru aktualizujeme tyto příspěvky jednou týdně a s určitou "
+"časovou prodlevou\n"
 "    se vykreslí i do mapy. Export map v příslušné záložce probíhá vždy z "
 "našich aktuálních\n"
 "    dat. Můžete tak získat aktuální mapu v tiskové kvalitě.\n"
@@ -292,6 +295,9 @@ msgstr ""
 "    Další detaily, či návody jak přispívat do projektu OpenStreetMap jsou\n"
 "    na našich <a href=\"http://wiki.openstreetmap.org/wiki/MTB_map_Europe\" "
 "target=\"_blank\" >Wiki stránkách</a>.\n"
+"    Zdrojové kódy projektu MTB mapy jsou k dispozici <a href=\"https://"
+"github.com/mattesCZ/mtbmap/\" target=\"_blank\" >\n"
+"    zde</a>.\n"
 "</p>\n"
 
 #: templates/map/legend.html:3
@@ -311,23 +317,27 @@ msgstr "Trasy"
 msgid "Places"
 msgstr "Místa"
 
-#: templates/map/map.html:98
+#: templates/map/map.html:74
+msgid "Close"
+msgstr "Zavřít"
+
+#: templates/map/map.html:99
 msgid "Data provided by"
 msgstr "Data poskytuje"
 
-#: templates/map/map.html:98
+#: templates/map/map.html:99
 msgid "and"
 msgstr "a"
 
-#: templates/map/map.html:98
+#: templates/map/map.html:99
 msgid "Version"
 msgstr "Verze"
 
-#: templates/map/map.html:98
+#: templates/map/map.html:99
 msgid "from"
 msgstr "od"
 
-#: templates/map/map.html:99
+#: templates/map/map.html:100
 #, python-format
 msgid ""
 "\n"
@@ -386,48 +396,44 @@ msgstr "HLEDAT TRASU"
 msgid "Reset route"
 msgstr "Smazat trasu"
 
-#: templates/map/routes.html:38
-msgid "Load parameters:"
-msgstr "Nahrát parametry:"
+#: templates/map/routes.html:39
+msgid "Load parameters"
+msgstr "Nahrát parametry"
 
-#: templates/map/routes.html:40
-msgid "Save parameters:"
-msgstr "Uložit parametry:"
+#: templates/map/routes.html:45
+msgid "Save parameters"
+msgstr "Uložit parametry"
 
-#: templates/map/routes.html:44
-msgid "Save"
-msgstr "Uložit:"
-
-#: templates/map/routes.html:49
+#: templates/map/routes.html:50
 msgid "Routing results"
 msgstr "Výsledky vyhledávání"
 
-#: templates/map/routes.html:55 templates/map/routes.html.py:100
-#: templates/map/routes.html:122
+#: templates/map/routes.html:56 templates/map/routes.html.py:101
+#: templates/map/routes.html:126
 msgid "Create altitude profile"
 msgstr "Vytvořit profil"
 
-#: templates/map/routes.html:60 templates/map/routes.html.py:105
+#: templates/map/routes.html:61 templates/map/routes.html.py:106
 msgid "Create GPX"
 msgstr "Vytvořit GPX"
 
-#: templates/map/routes.html:63
+#: templates/map/routes.html:64
 msgid "Change parameters"
 msgstr "Změnit parametry"
 
-#: templates/map/routes.html:64
+#: templates/map/routes.html:65
 msgid "New search"
 msgstr "Nové hledání"
 
-#: templates/map/routes.html:66
+#: templates/map/routes.html:67
 msgid "Evaluate routing"
 msgstr "Ohodnotit vyhledávání"
 
-#: templates/map/routes.html:67
+#: templates/map/routes.html:68
 msgid "Evaluation of route"
 msgstr "Ohodnocení vyhledané trasy"
 
-#: templates/map/routes.html:71
+#: templates/map/routes.html:72
 msgid ""
 "\n"
 "                            Please, evaluate the result of routing. Add a "
@@ -443,25 +449,29 @@ msgstr ""
 "                            Děkujeme.\n"
 "                            "
 
-#: templates/map/routes.html:84
+#: templates/map/routes.html:85
 msgid "Send"
 msgstr "Odeslat"
 
-#: templates/map/routes.html:90
+#: templates/map/routes.html:91
 msgid "Set your route points directly in map"
 msgstr "Zadejte trasu přímo do mapy"
 
-#: templates/map/routes.html:94 templates/map/routes.html.py:116
+#: templates/map/routes.html:95 templates/map/routes.html.py:120
 msgid "Zoom to route"
 msgstr "Zobrazit podle trasy"
 
-#: templates/map/routes.html:95 templates/map/routes.html.py:117
+#: templates/map/routes.html:96 templates/map/routes.html.py:121
 msgid "Reset"
 msgstr "Smazat"
 
-#: templates/map/routes.html:110
+#: templates/map/routes.html:111
 msgid "Upload your own GPX file"
 msgstr "Nahrajte vlastní GPX soubor"
+
+#: templates/map/routes.html:113
+msgid "Upload"
+msgstr "Nahrát GPX"
 
 #: templates/map/routingparams.html:2
 msgid "Global settings"
@@ -493,6 +503,12 @@ msgstr ""
 "informace k jednotlivým parametrům jsou na <a href=\"%(link)s\" target="
 "\"_blank\">Wiki</a> projektu OpenStreetMap.\n"
 "    "
+
+#~ msgid "Map image size"
+#~ msgstr "Velikost mapového pole"
+
+#~ msgid "Save"
+#~ msgstr "Uložit:"
 
 #~ msgid "Routing parameters:"
 #~ msgstr "Parametry vyhledávání"

@@ -5,12 +5,12 @@
 <form target="_blank" action="/map/exportmap/" method="post">
     {% csrf_token %}
     <label>{% trans "Export bounds" %}:</label><br>
-    <input class="export-text" type="text" name="export-top" id="export-top" value="" size="10" onchange="recalculateSize()" />
+    <input class="export-text" type="text" name="export-top" id="export-top" value="" size="7" onchange="recalculateSize()" />
     <br>
-    <input class="export-text" type="text" name="export-left" id="export-left" value="" size="10" onchange="recalculateSize()" />
-    <input class="export-text" type="text" name="export-right" id="export-right" value="" size="10" onchange="recalculateSize()" />
+    <input class="export-text" type="text" name="export-left" id="export-left" value="" size="7" onchange="recalculateSize()" />
+    <input class="export-text" type="text" name="export-right" id="export-right" value="" size="7" onchange="recalculateSize()" />
     <br>
-    <input class="export-text" type="text" name="export-bottom" id="export-bottom" value="" size="10" onchange="recalculateSize()" />
+    <input class="export-text" type="text" name="export-bottom" id="export-bottom" value="" size="7" onchange="recalculateSize()" />
     <br>
     <input type="hidden" name="export-bounds" id="export-bounds" value="" />
     <button id="set-bounds-button">{% trans "Set per current view" %}</button>
@@ -24,27 +24,23 @@
         {% endfor %}
     </select>
     <br>
-    <label>{% trans "Map image size" %}</label>
-    <br>
+    <label>{% trans "Width" %}</label>
     <input class="export-text" type="text" name="export-width" id="export-width" value="" size="5" onchange="recalculateBounds()" />
-    x
+    <br>
+    <label>{% trans "Height" %}</label>
     <input class="export-text" type="text" name="export-height" id="export-height" value="" size="5" onchange="recalculateBounds()" />
     <hr>
     {% trans "Map elements" %}:<br>
     <label>{% trans "Name" %}</label><input class="export-text" type="text" name="map-title" id="map-title" size="15" value="" />
     <br>
-    <label>{% trans "Scale" %}</label><input id="export-scale" type="checkbox" checked="yes" value="" name="export-scale">
-    <br>
-    <label>{% trans "Legend" %}</label><input id="export-legend" type="checkbox" checked="yes" value="" name="export-legend">
-    <br>
-    <label>{% trans "Impressum" %}</label><input id="export-imprint" type="checkbox" checked="yes" value="" name="export-imprint" >
-    <br>
+    <label>{% trans "Scale" %}</label><input id="export-scale" type="checkbox" checked="checked" value="" name="export-scale">
+    <label>{% trans "Legend" %}</label><input id="export-legend" type="checkbox" checked="checked" value="" name="export-legend">
+    <label>{% trans "Impressum" %}</label><input id="export-imprint" type="checkbox" checked="checked" value="" name="export-imprint" >
     <label>{% trans "Display route" %}</label><input id="export-line-check" type="checkbox" value="" name="export-line-check" >
-    <!--        <input type="hidden" name="export-zoom" id="export-zoom" value="" />-->
     <input type="hidden" name="export-line" id="export-line" value="" />
     <hr>
     <input type="hidden" name="export-params" id="export-params" value="" />
     <label>{% trans "Resolution for print" %}</label><input id="export-highres" type="checkbox" checked="yes" value="" name="export-highres" onclick="recalculateSize()" >
     <br>
-    <input id="export-button" type="submit" value="{% trans "Export" %}">
+    <input id="export-button" class="highlight" type="submit" value="{% trans "Export" %}">
 </form>

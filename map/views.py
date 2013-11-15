@@ -20,7 +20,7 @@ from django.conf import settings
 from map.models import *
 from styles.models import Legend
 from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
-from map.altitude import altitude_image, height
+from map.altitude import AltitudeProfile, height
 from routing.core import MultiRoute, line_string_to_points, create_gpx, RouteParams
 from routing.models import WeightCollection
 from map.forms import RoutingEvaluationForm
@@ -29,17 +29,13 @@ def index(request):
     '''
     Main map page.
     '''
-    lang = translation.get_language_from_request(request)
-    if lang in ('cs', 'sk', 'cz', 'cs-cz'):
-        lang = 'cz'
-    else:
-        lang = 'en'
     weight_collections = WeightCollection.objects.all()
     evaluation_form = RoutingEvaluationForm()
     default_tile_layer = TileLayer.objects.get(slug='mtb-map')
     tile_layers = TileLayer.objects.all()
     geojson_layers = GeojsonLayer.objects.all()
-    return render_to_response('map/map.html', {'default_tile_layer':default_tile_layer, 'lang': lang, 'zoomRange':range(19),
+    return render_to_response('map/map.html', {'default_tile_layer':default_tile_layer,
+                                               'zoomRange':range(19),
                                                'tile_layers':tile_layers,
                                                'geojson_layers':geojson_layers,
                                                'weight_collections': weight_collections,
@@ -61,7 +57,8 @@ def routingparams(request):
     try:
         template_id = request.GET['template_id']
         weight_collection = WeightCollection.objects.get(pk=template_id)
-    except (KeyError, 'template not found'):
+    except (KeyError):
+        # template not found
         weight_collection = WeightCollection.objects.all()[0]
     return TemplateResponse(request, 'map/routingparams.html', {'weight_collection': weight_collection})
 
@@ -72,7 +69,8 @@ def exportmap(request):
     try:
         zoom = int(request.POST['export-zoom'])
         bounds = request.POST['export-bounds'].replace('(', '').replace(')', '')
-    except (KeyError, 'no zoom posted'):
+    except (KeyError):
+        # no zoom posted
         return render_to_response('map/map.html', {},
                                   context_instance=RequestContext(request))
     else:
@@ -98,7 +96,8 @@ def exportmap(request):
         highres = False
         try:
             checked_line = request.POST['export-line-check']
-        except (KeyError, 'line not checked'):
+        except (KeyError):
+            # line not checked
             line = None
         else:
             raw_line = request.POST['export-line']
@@ -116,7 +115,8 @@ def exportmap(request):
                 line = None
         try:
             highres = request.POST['export-highres']
-        except (KeyError, 'highres not checked'):
+        except (KeyError):
+            # highres not checked
             highres = False
             map_im = map_image(zoom, left, bottom, right, top, line, orientation, highres)
         else:
@@ -124,20 +124,23 @@ def exportmap(request):
             map_im = map_image(zoom, left, bottom, right, top, line, orientation, highres)
         try:
             renderlegend = request.POST['export-legend']
-        except (KeyError, 'export-legend not checked'):
+        except (KeyError):
+            # export-legend not checked
             legend_im = Image.new('RGBA', (0, 0), 'white')
         else:
             legend = Legend.objects.all()[0]
             legend_im = legend_image(legend, zoom, gap, 'side', map_im.size[1], highres)
         try:
             renderscale = request.POST['export-scale']
-        except (KeyError, 'export-scale not checked'):
+        except (KeyError):
+            # export-scale not checked
             scalebar_im = Image.new('RGBA', (0, 0), 'white')
         else:
             scalebar_im = scalebar_image(zoom, (top+bottom)/2, highres)
         try:
             renderimprint = request.POST['export-imprint']
-        except (KeyError, 'export-imprint not checked'):
+        except (KeyError):
+            # export-imprint not checked
             imprint_im = Image.new('RGBA', (0, 0), 'white')
         else:
             imprint_im = imprint_image(tile_layer.attribution, map_im.size[0], 20, 12, highres)
@@ -170,7 +173,8 @@ def altitudeprofile(request):
     '''
     try:
         params = request.POST['profile-params']
-    except (KeyError, 'no points posted'):
+    except (KeyError):
+        # no points posted
         return render_to_response('map/map.html', {},
                                   context_instance=RequestContext(request))
     else:
@@ -180,21 +184,23 @@ def altitudeprofile(request):
                 latlng = part.replace('LatLng(', '').replace(')', '').split(',')
                 point = [float(latlng[0]), float(latlng[1])]
                 points.append(point)
-            im = altitude_image(points)
-            try:
-                ret = int(im)
-            except:
-                # not an integer, it must be image
-                response = HttpResponse(content_type='image/png')
-                im.save(response, 'png')
-                response['Content-Disposition'] = 'attachment; filename="altitudeprofile.png"'
-                return response
+            if len(points) == 1:
+                res = height(points[0])
             else:
-                if ret==-1:
-                    message = _('Sorry, we do not have height data for the area that you have requested.')
-                    return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
+                altitude_profile = AltitudeProfile(points)
+                if altitude_profile.status < 0:
+                    res = -10000
                 else:
-                    return render_to_response('map/height.html', {'height': ret}, context_instance=RequestContext(request))
+                    im = altitude_profile.png_profile()
+                    response = HttpResponse(content_type='image/png')
+                    im.save(response, 'png')
+                    response['Content-Disposition'] = 'attachment; filename="altitudeprofile.png"'
+                    return response
+            if res<=-10000:
+                message = _('Sorry, we do not have height data for the area that you have requested.')
+                return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
+            else:
+                return render_to_response('map/height.html', {'height': res}, context_instance=RequestContext(request))
         else:
             message = _('You have not set any point.')
             return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
@@ -205,7 +211,8 @@ def creategpx(request):
     '''
     try:
         params = request.POST['profile-params']
-    except (KeyError, 'no points posted'):
+    except (KeyError):
+        # no points posted
         message = _('No route parameters posted.')
         return render_to_response('error.html', {'message': message},
                                    context_instance=RequestContext(request))
@@ -242,7 +249,8 @@ def findroute(request):
     try:
         params = json.loads(request.POST['params'])
         line = request.POST['routing-line']
-    except (KeyError, 'invalid route points'):
+    except (KeyError):
+        # invalid route points
         return render_to_response('map/map.html', {},
                                   context_instance=RequestContext(request))
     else:
@@ -259,7 +267,8 @@ def gettemplate(request):
     '''
     try:
         params = json.loads(request.POST['params'])
-    except (KeyError, 'missing params'):
+    except (KeyError):
+        # missing params
         message = _('No route parameters posted.')
         return render_to_response('error.html', {'message': message},
                                    context_instance=RequestContext(request))
@@ -277,12 +286,14 @@ def getjsondata(request):
     '''
     try:
         bounds = json.loads(request.GET['bounds'])
-    except (KeyError, JSONDecodeError, 'invalid bounds'):
+    except (KeyError, JSONDecodeError):
+        # invalid bounds
         bounds = [-0.001, -0.001, 0.001, 0.001]
     try:
         layer_slug = request.GET['slug']
         layer = GeojsonLayer.objects.get(slug=layer_slug)
-    except (KeyError, GeojsonLayer.DoesNotExist, 'unknown layer'):
+    except (KeyError, GeojsonLayer.DoesNotExist):
+        # unknown layer
         return HttpResponse(None, content_type='application/json')
     geojson = layer.geojson_feature_collection(bounds)
     return HttpResponse(json.dumps(geojson), content_type='application/json')

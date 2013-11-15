@@ -1,16 +1,4 @@
 slug,group,order,name_en
-_capital-city,00_place,1,Capital city
-capital-city,00_place,1,Capital city
-_city-pop-more-than-100-000,00_place,2,"City, pop. more than 100 000"
-city-pop-more-than-100-000,00_place,2,"City, pop. more than 100 000"
-_town-pop-50-001-to-100-000,00_place,3,"Town, pop. 50 001 to 100 000"
-_town-pop-more-than-50-000,00_place,3,"Town, pop. more than 50 000"
-town-pop-50-001-to-100-000,00_place,3,"Town, pop. 50 001 to 100 000"
-_town-pop-10-001-to-50-000,00_place,4,"Town, pop. 10 001 to 50 000"
-_town-pop-less-than-50-000,00_place,4,"Town, pop. less than 50 000"
-town-pop-10-001-to-50-000,00_place,4,"Town, pop. 10 001 to 50 000"
-_town-pop-less-than-10-000,00_place,5,"Town, pop. less than 10 000"
-town-pop-less-than-10-000,00_place,5,"Town, pop. less than 10 000"
 cycling-route,01_cycling,1,Cycling route
 mtb-track,01_cycling,2,MTB track
 mtb-track-scale-0,01_cycling,3,MTB track scale 0
@@ -20,7 +8,9 @@ mtb-track-scale-3,01_cycling,6,MTB track scale 3
 mtb-track-scale-4-to-6,01_cycling,7,MTB track scale 4 to 6
 downhill,01_cycling,8,Downhill
 uphill,01_cycling,9,Uphill
-dangeruos-spot,01_cycling,10,Dangeruos spot
+dangeruos-spot,01_cycling,10,Dangeruos MTB spot
+no-access-for-bicycles,01_cycling,21,No access for bicycles
+no-access-bicycles-allowed,01_cycling,22,"No access, bicycles allowed"
 red-hiking-trail,02_hiking-trails,1,Red hiking trail
 red-dotted-hiking-trail,02_hiking-trails,2,Red dotted hiking trail
 red-supplementary-hiking-trail,02_hiking-trails,3,Red supplementary hiking trail
@@ -113,19 +103,10 @@ oneway-street,03_highway,61,Oneway street
 _roundabout,03_highway,62,Roundabout
 _turning-circle,03_highway,62,Turning circle
 roundabout,03_highway,62,Roundabout
-lights,03_highway,63,Lights
-_gate,03_highway,64,Gate
-gate,03_highway,64,Gate
-_bollard,03_highway,65,Bollard
-bollard,03_highway,65,Bollard
 private-road,03_highway,66,Private road
-no-access-for-bicycles,03_highway,67,No access for bicycles
-no-access-bicycles-allowed,03_highway,68,"No access, bicycles allowed"
-bicycle-parking,03_highway,69,Bicycle parking
 _highway-area,03_highway,71,Highway area
 _pedestrian-area,03_highway,72,Pedestrian area
 _parking-aisle,03_highway,73,Parking aisle
-way-continues-not-mapped-yet,03_highway,99,"Way continues, not mapped yet"
 railway,04_public-transport,1,Railway
 electrified-railway,04_public-transport,2,Electrified railway
 railway-bridge,04_public-transport,3,Railway bridge
@@ -148,100 +129,36 @@ gondola,04_public-transport,22,Gondola
 chair-lift,04_public-transport,23,Chair lift
 drag-lift,04_public-transport,24,Drag lift
 service-lift,04_public-transport,25,Service lift
-_railway-station,04_public-transport,31,Railway station
-railway-station,04_public-transport,31,Railway station
-railway-or-tram-station,04_public-transport,32,Railway or tram station
-bus-station,04_public-transport,33,Bus station
-bus-stop,04_public-transport,34,Bus stop
-_railway-station-label,04_public-transport,35,Railway station label
-_railway-stop-label,04_public-transport,36,Railway stop label
-_tram-stop-label,04_public-transport,37,Tram stop label
-_airport,04_public-transport,41,Airport
-airport,04_public-transport,41,Airport
 _runway,04_public-transport,42,Runway
 runway,04_public-transport,42,Runway
 _runway-access-road,04_public-transport,43,Runway access road
 _airport-terminal,04_public-transport,44,Airport terminal
-church,05_historic,1,Church
-mosque,05_historic,2,Mosque
-sikh-temple,05_historic,3,Sikh temple
-synagogue,05_historic,4,Synagogue
-_monastery,05_historic,5,Monastery
-monastery,05_historic,5,Monastery
-_wayside-cross,05_historic,6,Wayside cross
-wayside-cross,05_historic,6,Wayside cross
-_place-of-worship,05_historic,7,Place of worship
-place-of-worship,05_historic,7,Place of worship
-_monument,05_historic,11,Monument
-monument,05_historic,11,Monument
-_memorial,05_historic,12,Memorial
-memorial,05_historic,12,Memorial
-sculpture,05_historic,13,Sculpture
-_castle,05_historic,20,Castle
-_stately-castle,05_historic,21,Stately castle
-stately-castle,05_historic,21,Stately castle
-_defensive-castle,05_historic,22,Defensive castle
-defensive-castle,05_historic,22,Defensive castle
-_ruins,05_historic,23,Ruins
-ruins,05_historic,23,Ruins
-_archeological-site,05_historic,31,Archeological site
-archeological-site,05_historic,31,Archeological site
-_windmill,05_historic,32,Windmill
-windmill,05_historic,32,Windmill
-bunker,05_historic,33,Bunker
-bunker-pillow,05_historic,34,Bunker – pillow
-bunker-ruins,05_historic,35,Bunker ruins
-bunker-pillow-ruins,05_historic,36,Bunker – pillow ruins
-theatre,06_service,1,Theatre
-cinema,06_service,2,Cinema
-library,06_service,3,Library
-museum,06_service,4,Museum
-embassy,06_service,5,Embassy
-drinking-water,06_service,6,Drinking water
-public-toilets,06_service,7,Public toilets
-recycling,06_service,8,Recycling
-hospital,06_service,11,Hospital
-doctors,06_service,12,Doctors
-pharmacy,06_service,13,Pharmacy
-mountain-rescue-service,06_service,14,Mountain rescue service
-police-station,06_service,21,Police station
-fire-station,06_service,22,Fire station
-prison,06_service,23,Prison
-post-office,06_service,24,Post office
-post-box,06_service,25,Post box
-telephone,06_service,26,Telephone
-bank,06_service,27,Bank
-atm,06_service,28,Atm
-_cycling-shop,06_service,29,Cycling shop
-cycling-shop,06_service,29,Cycling shop
-car-sharing,06_service,30,Car sharing
-petrol-station,06_service,31,Petrol station
-camp,07_tourism,2,Camp
-campsite,07_tourism,3,Campsite
-caravan-site,07_tourism,4,Caravan site
-picnic-site,07_tourism,5,Picnic site
-hotel,07_tourism,11,Hotel
-guest-house,07_tourism,12,Guest house
-hostel,07_tourism,13,Hostel
-alpine-hut,07_tourism,14,Alpine hut
-shelter,07_tourism,15,Shelter
-restaurant,07_tourism,21,Restaurant
-pub,07_tourism,22,Pub
-bar,07_tourism,23,Bar
-cafe,07_tourism,24,Cafe
-fast-food,07_tourism,25,Fast food
-information-office,07_tourism,31,Information office
-_information-office,07_tourism,32,Information office
-information-board,07_tourism,32,Information board
-_information-board,07_tourism,33,Information board
-map-board,07_tourism,33,Map board
-_map-board,07_tourism,34,Map board
-signpost,07_tourism,34,Signpost
-_cave-entrance,07_tourism,41,Cave entrance
-cave-entrance,07_tourism,41,Cave entrance
-_significant-tree,07_tourism,42,Significant tree
-significant-tree,07_tourism,42,Significant tree
-viewpoint,07_tourism,43,Viewpoint
+water-area,06_water,1,Water area
+_river,06_water,2,River
+river,06_water,2,River
+_stream,06_water,3,Stream
+stream,06_water,3,Stream
+_canal,06_water,4,Canal
+water-canal,06_water,4,Water canal
+other-water-stream,06_water,5,Other water stream
+underground-river,06_water,6,Underground river
+underground-stream,06_water,7,Underground stream
+underground-water-canal,06_water,8,Underground water canal
+_aquaduct,06_water,9,Aquaduct
+weir,06_water,10,Weir
+_spring,06_water,11,Spring
+spring,06_water,11,Spring
+_hillshading,07_natural,10,Hillshading
+_contours-100-m-label,07_natural,11,Contours (100 m) label
+contours-100-m,07_natural,11,Contours (100 m)
+_contours-50-m-label,07_natural,12,Contours (50 m) label
+contours-50-m,07_natural,12,Contours (50 m)
+contours-20-m,07_natural,13,Contours (20 m)
+contours-10-m,07_natural,14,Contours (10 m)
+cliff,07_natural,21,Cliff
+_peak,07_natural,22,Peak
+peak,07_natural,22,Peak
+elevation,07_natural,23,Elevation
 national-border,08_man-made,1,National border
 fence-wall,08_man-made,2,"Fence, wall"
 hedge,08_man-made,3,Hedge
@@ -251,7 +168,6 @@ dam,08_man-made,5,Dam
 high-voltage-power-line,08_man-made,6,High voltage power line
 low-voltage-power-line,08_man-made,7,Low voltage power line
 power-tower,08_man-made,8,Power tower
-power-sub-station,08_man-made,9,Power sub station
 wind-power-plant,08_man-made,10,Wind power plant
 _transmission-tower,08_man-made,11,Transmission tower
 transmission-tower,08_man-made,11,Transmission tower
@@ -261,65 +177,149 @@ lighthouse,08_man-made,13,Lighthouse
 _observation-tower,08_man-made,14,Observation tower
 observation-tower,08_man-made,14,Observation tower
 hunting-stand,08_man-made,15,Hunting stand
-water-area,09_water,1,Water area
-_river,09_water,2,River
-river,09_water,2,River
-_stream,09_water,3,Stream
-stream,09_water,3,Stream
-_canal,09_water,4,Canal
-water-canal,09_water,4,Water canal
-other-water-stream,09_water,5,Other water stream
-underground-river,09_water,6,Underground river
-underground-stream,09_water,7,Underground stream
-underground-water-canal,09_water,8,Underground water canal
-_aquaduct,09_water,9,Aquaduct
-weir,09_water,10,Weir
-_spring,09_water,11,Spring
-spring,09_water,11,Spring
-national-park,10_natural,1,National park
-national-nature-reserve,10_natural,2,National nature reserve
-natural-protected-area,10_natural,3,Natural protected area
-nature-reserve,10_natural,4,Nature reserve
-_hillshading,10_natural,10,Hillshading
-_contours-100-m-label,10_natural,11,Contours (100 m) label
-contours-100-m,10_natural,11,Contours (100 m)
-_contours-50-m-label,10_natural,12,Contours (50 m) label
-contours-50-m,10_natural,12,Contours (50 m)
-contours-20-m,10_natural,13,Contours (20 m)
-contours-10-m,10_natural,14,Contours (10 m)
-cliff,10_natural,21,Cliff
-_peak,10_natural,22,Peak
-peak,10_natural,22,Peak
-elevation,10_natural,23,Elevation
-_dry-land,11_landuse,1,Dry land
-_island,11_landuse,1,Island
-glacier,11_landuse,1,Glacier
-forest,11_landuse,2,Forest
-old-growth-forest,11_landuse,3,Old-growth forest
-scrub,11_landuse,4,Scrub
-march-wetland,11_landuse,5,"March, wetland"
-beach,11_landuse,6,Beach
-meadow,11_landuse,7,Meadow
-farm,11_landuse,11,Farm
-farmland,11_landuse,12,Farmland
-vineyard-orchard,11_landuse,13,"Vineyard, orchard"
-vineyard,11_landuse,14,Vineyard
-orchard,11_landuse,15,Orchard
-park-garden,11_landuse,16,"Park, garden"
-golf-court,11_landuse,17,Golf court
-playground,11_landuse,18,Playground
-_sports-area,11_landuse,19,Sports area
-sports-area,11_landuse,19,Sports area
-cemetery,11_landuse,20,Cemetery
-zoo,11_landuse,21,Zoo
-building,11_landuse,31,Building
-residential-area,11_landuse,32,Residential area
-school,11_landuse,33,School
-allotments,11_landuse,34,Allotments
-industrial-zone,11_landuse,35,Industrial zone
-construction,11_landuse,36,Construction
-mine,11_landuse,37,Mine
-piers,11_landuse,38,Piers
-parking-place,11_landuse,39,Parking place
-military-area,11_landuse,41,Military area
-barracks,11_landuse,42,Barracks
+_capital-city,20_place,1,Capital city
+capital-city,20_place,1,Capital city
+_city-pop-more-than-100-000,20_place,2,"City, pop. more than 100 000"
+city-pop-more-than-100-000,20_place,2,"City, pop. more than 100 000"
+_town-pop-50-001-to-100-000,20_place,3,"Town, pop. 50 001 to 100 000"
+_town-pop-more-than-50-000,20_place,3,"Town, pop. more than 50 000"
+town-pop-50-001-to-100-000,20_place,3,"Town, pop. 50 001 to 100 000"
+_town-pop-10-001-to-50-000,20_place,4,"Town, pop. 10 001 to 50 000"
+_town-pop-less-than-50-000,20_place,4,"Town, pop. less than 50 000"
+town-pop-10-001-to-50-000,20_place,4,"Town, pop. 10 001 to 50 000"
+_town-pop-less-than-10-000,20_place,5,"Town, pop. less than 10 000"
+town-pop-less-than-10-000,20_place,5,"Town, pop. less than 10 000"
+church,21_historic,1,Church
+mosque,21_historic,2,Mosque
+sikh-temple,21_historic,3,Sikh temple
+synagogue,21_historic,4,Synagogue
+_monastery,21_historic,5,Monastery
+monastery,21_historic,5,Monastery
+_wayside-cross,21_historic,6,Wayside cross
+wayside-cross,21_historic,6,Wayside cross
+_place-of-worship,21_historic,7,Place of worship
+place-of-worship,21_historic,7,Place of worship
+_monument,21_historic,11,Monument
+monument,21_historic,11,Monument
+_memorial,21_historic,12,Memorial
+memorial,21_historic,12,Memorial
+sculpture,21_historic,13,Sculpture
+_castle,21_historic,20,Castle
+_stately-castle,21_historic,21,Stately castle
+stately-castle,21_historic,21,Stately castle
+_defensive-castle,21_historic,22,Defensive castle
+defensive-castle,21_historic,22,Defensive castle
+_ruins,21_historic,23,Ruins
+ruins,21_historic,23,Ruins
+_archeological-site,21_historic,31,Archeological site
+archeological-site,21_historic,31,Archeological site
+_windmill,21_historic,32,Windmill
+windmill,21_historic,32,Windmill
+bunker,21_historic,33,Bunker
+bunker-pillow,21_historic,34,Bunker – pillow
+bunker-ruins,21_historic,35,Bunker ruins
+bunker-pillow-ruins,21_historic,36,Bunker – pillow ruins
+theatre,22_service,1,Theatre
+cinema,22_service,2,Cinema
+library,22_service,3,Library
+museum,22_service,4,Museum
+embassy,22_service,5,Embassy
+drinking-water,22_service,6,Drinking water
+public-toilets,22_service,7,Public toilets
+recycling,22_service,8,Recycling
+hospital,22_service,11,Hospital
+doctors,22_service,12,Doctors
+pharmacy,22_service,13,Pharmacy
+mountain-rescue-service,22_service,14,Mountain rescue service
+police-station,22_service,21,Police station
+fire-station,22_service,22,Fire station
+prison,22_service,23,Prison
+post-office,22_service,24,Post office
+post-box,22_service,25,Post box
+telephone,22_service,26,Telephone
+bank,22_service,27,Bank
+atm,22_service,28,Atm
+_cycling-shop,22_service,29,Cycling shop
+cycling-shop,22_service,29,Cycling shop
+car-sharing,22_service,30,Car sharing
+petrol-station,22_service,31,Petrol station
+campsite,23_tourism,3,Campsite
+caravan-site,23_tourism,4,Caravan site
+picnic-site,23_tourism,5,Picnic site
+hotel,23_tourism,11,Hotel
+guest-house,23_tourism,12,Guest house
+hostel,23_tourism,13,Hostel
+alpine-hut,23_tourism,14,Alpine hut
+shelter,23_tourism,15,Shelter
+bicycle-parking,23_tourism,16,Bicycle parking
+restaurant,23_tourism,21,Restaurant
+pub,23_tourism,22,Pub
+bar,23_tourism,23,Bar
+cafe,23_tourism,24,Cafe
+fast-food,23_tourism,25,Fast food
+information-office,23_tourism,31,Information office
+_information-office,23_tourism,32,Information office
+information-board,23_tourism,32,Information board
+_information-board,23_tourism,33,Information board
+map-board,23_tourism,33,Map board
+_map-board,23_tourism,34,Map board
+signpost,23_tourism,34,Signpost
+_cave-entrance,23_tourism,41,Cave entrance
+cave-entrance,23_tourism,41,Cave entrance
+_significant-tree,23_tourism,42,Significant tree
+significant-tree,23_tourism,42,Significant tree
+viewpoint,23_tourism,43,Viewpoint
+_railway-station,24_transport-points,31,Railway station
+railway-station,24_transport-points,31,Railway station
+railway-or-tram-station,24_transport-points,32,Railway or tram station
+bus-station,24_transport-points,33,Bus station
+bus-stop,24_transport-points,34,Bus stop
+_railway-station-label,24_transport-points,35,Railway station label
+_railway-stop-label,24_transport-points,36,Railway stop label
+_tram-stop-label,24_transport-points,37,Tram stop label
+lights,24_transport-points,63,Lights
+_gate,24_transport-points,64,Gate
+gate,24_transport-points,64,Gate
+_bollard,24_transport-points,65,Bollard
+bollard,24_transport-points,65,Bollard
+way-continues-not-mapped-yet,24_transport-points,71,"Way continues, not mapped yet"
+_airport,24_transport-points,81,Airport
+airport,24_transport-points,81,Airport
+national-park,61_landuse,1,National park
+natural-protected-area,61_landuse,2,Natural protected area
+national-nature-reserve,61_landuse,3,National nature reserve
+nature-reserve,61_landuse,4,Nature reserve
+_dry-land,61_landuse,5,Dry land
+_island,61_landuse,5,Island
+glacier,61_landuse,5,Glacier
+forest,61_landuse,6,Forest
+old-growth-forest,61_landuse,7,Old-growth forest
+scrub,61_landuse,8,Scrub
+march-wetland,61_landuse,9,"March, wetland"
+beach,61_landuse,10,Beach
+meadow,61_landuse,10,Meadow
+farm,61_landuse,11,Farm
+farmland,61_landuse,12,Farmland
+vineyard-orchard,61_landuse,13,"Vineyard, orchard"
+vineyard,61_landuse,14,Vineyard
+orchard,61_landuse,15,Orchard
+park-garden,61_landuse,16,"Park, garden"
+golf-court,61_landuse,17,Golf court
+playground,61_landuse,18,Playground
+_sports-area,61_landuse,19,Sports area
+sports-area,61_landuse,19,Sports area
+cemetery,61_landuse,20,Cemetery
+zoo,61_landuse,21,Zoo
+camp,61_landuse,22,Camp
+building,61_landuse,31,Building
+residential-area,61_landuse,32,Residential area
+school,61_landuse,33,School
+allotments,61_landuse,34,Allotments
+industrial-zone,61_landuse,35,Industrial zone
+power-sub-station,61_landuse,36,Power sub station
+construction,61_landuse,37,Construction
+mine,61_landuse,38,Mine
+piers,61_landuse,39,Piers
+parking-place,61_landuse,40,Parking place
+military-area,61_landuse,41,Military area
+barracks,61_landuse,42,Barracks

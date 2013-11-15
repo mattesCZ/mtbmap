@@ -1,0 +1,46 @@
+# -*- coding: utf-8 -*-
+# Local django settings for mtbmap project.
+
+import os.path
+ROOT_PATH = os.path.join(os.path.dirname(__file__), '..')
+
+# Set DEBUG to True, if you want to see debug messages
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
+ADMINS = (
+    ('John Doe', 'admin@example.com'),
+)
+
+MANAGERS = ADMINS
+
+# see also MapRouter to set proper database settings
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'mtbmap_default',                      # Or path to database file if using sqlite3.
+        'USER': 'johndoe',                      # Not used with sqlite3.
+        'PASSWORD': 'johnDoesPasswd',                  # Not used with sqlite3.
+        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    },
+    'osm_data': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'mtbmap_data',                      # Or path to database file if using sqlite3.
+        'USER': 'johndoe',                      # Not used with sqlite3.
+        'PASSWORD': 'johnDoesPasswd',                  # Not used with sqlite3.
+        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
+ALLOWED_HOSTS = ['.example.com']
+
+MEDIA_ROOT = os.path.join(ROOT_PATH, 'media')
+
+STATIC_ROOT = ''
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = '----John-Does-Secret-Key----'
+
+MAPNIK_STYLES = os.path.join(ROOT_PATH, 'styles/mapnik/my_styles/')
+SRTM_DATA = os.path.join(ROOT_PATH, 'Data/shadingdata/SRTMv2/')

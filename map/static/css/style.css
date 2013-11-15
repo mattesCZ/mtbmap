@@ -34,9 +34,17 @@
     overflow: auto;
 }
 p {
+    font-size: 13px;
+    line-height: 18px;
+    margin: 10px 20px 4px;
+    padding: 0;
     text-align: justify;
-    padding: 0 0.6em;
-    font-size: small;
+}
+h3 {
+    margin: 12px 0 6px;
+}
+h4 {
+    margin: 10px 0 5px;
 }
 h5 {
 	font-size: 11px;
@@ -53,6 +61,9 @@ table.preferences {
 table.preferences td {
 	width: 50%;
 	padding: 0 5px;
+}
+#tab-legend tr > td:first-child {
+	text-align: center;
 }
 .right-align {
 	text-align: right;
@@ -124,4 +135,54 @@ hr { /*should be rewritten for html5*/
 .error-message {
 	text-align: center;
 	font-weight: bold;
+}
+#main-tabs-nav {
+    text-align: center;
+    height: 2.35em;
+}
+#main-tabs-nav li {
+    display: inline-block;
+    float: none;
+    margin: 0;
+    top: 0px;
+}
+#main-tabs .ui-button.highlight {
+    border-color: rgba(0,0,0,0.25);
+    background-color: #06D;
+    background-image: none;
+    color: #FFF;
+}
+#main-tabs .ui-button.highlight:hover {
+    background-color: #00008B;
+}
+.file-upload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.file-upload.ui-button {
+    padding: 0.4em 1em;
+}
+.file-upload input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    /*font-size: 20px;*/
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 100%;
+}
+#close-main-tab-panel {
+    position: absolute;
+    top: 57px;
+    right: 14px;
+    z-index: 10;
+    height: 1.3em;
+    width: 1.3em;
+}
+#tab-export input[type="checkbox"] {
+    margin-right: 12px;
 }

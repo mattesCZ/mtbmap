@@ -31,6 +31,5 @@ backup*
 ############################
 leaflet-src.js
 media/legend
-settings*.py
+settings_local.py
 map/static/admin
-

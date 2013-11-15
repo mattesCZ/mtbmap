@@ -2,6 +2,7 @@
 
 # Global imports
 from datetime import datetime
+import re
 
 # Django imports
 from django.db import connections, transaction
@@ -91,7 +92,7 @@ def _add_line_attributes():
                                    ELSE "class:bicycle"
                               END AS class_bicycle"""
     query = '''SELECT osm_id, tracktype, oneway, access, %s, foot, incline,
-                      width, surface, smoothness, maxspeed, "mtb:scale" as mtbscale,
+                      width, surface, smoothness, maxspeed,
                       "mtb:scale:uphill" as mtbscaleuphill, sac_scale, network,
                       replace(highway, '_link', '') AS highway, %s, "class:bicycle:mtb" as class_mtb,
                       "class:bicycle:mtb:technical" as class_mtb_technical
@@ -148,7 +149,7 @@ def _add_routes_attributes():
     '''
     start = datetime.now()
     cursor = connections[MAP_DB].cursor()
-    routes_query = '''SELECT osm_id FROM planet_osm_routes2 WHERE osmcsymbol0<>'mtb:white:mtb_mtb' and osmcsymbol0 is not null;'''
+    routes_query = '''SELECT osm_id, "mtb:scale", osmcsymbol0 FROM planet_osm_routes2 WHERE (osmcsymbol0<>'mtb:white:mtb_mtb' and osmcsymbol0 is not null) or "mtb:scale" is not null;'''
     cursor.execute(routes_query)
     evaluated = 0
     updated = 0
@@ -158,7 +159,14 @@ def _add_routes_attributes():
             break
         for row in routes_rows:
             osm_id = row[0]
-            updated += Way.objects.filter(osm_id=osm_id).update(osmc=1)
+            mtbscale = None
+            if row[1]:
+                mtbscale = re.sub(r'[^0-9]', '', row[1])
+            osmc = row[2]
+            if osmc != 'mtb:white:mtb_mtb':
+                updated += Way.objects.filter(osm_id=osm_id).update(osmc=1, mtbscale=mtbscale)
+            else:
+                updated += Way.objects.filter(osm_id=osm_id).update(mtbscale=mtbscale)
         evaluated += 100
         if not evaluated % 1000:
             print evaluated, 'evaluated records:'
