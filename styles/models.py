@@ -686,6 +686,7 @@ class LineSymbolizer(Symbolizer):
     stroke_linecap = models.CharField('stroke-linecap', max_length=8, choices=LINECAP, default='butt', null=True, blank=True)
     stroke_dasharray = models.CharField('stroke-dasharray', max_length=200, null=True, blank=True)
     offset = models.DecimalField('offset', max_digits=5, decimal_places=2, null=True, blank=True)
+    smooth = models.DecimalField('stroke-opacity', max_digits=3, decimal_places=2, null=True, blank=True)
 
     def __unicode__(self):
         return 'ID: %i, %s, %s, %s' % (self.id, self.stroke, self.stroke_width, self.stroke_dasharray)
@@ -699,6 +700,7 @@ class LineSymbolizer(Symbolizer):
         self.stroke_linecap = xpath_query(node, "./@stroke-linecap")
         self.stroke_dasharray = xpath_query(node, "./@stroke-dasharray")
         self.offset = xpath_query(node, "./@offset")
+        self.smooth = xpath_query(node, "./@smooth")
         self.save()
         return self
 
@@ -724,6 +726,7 @@ class LineSymbolizer(Symbolizer):
         set_xml_param(symbolizer_node, 'stroke-linecap', self.stroke_linecap)
         set_xml_param(symbolizer_node, 'stroke-dasharray', self.stroke_dasharray)
         set_xml_param(symbolizer_node, 'offset', self.offset)
+        set_xml_param(symbolizer_node, 'smooth', self.smooth)
         return symbolizer_node
 
     def mapnik(self, scale_factor=1):
@@ -746,6 +749,8 @@ class LineSymbolizer(Symbolizer):
                 s.add_dash(float(dash_parts[i]), float(dash_parts[i+1]))
 #        if self.offset:
 #            s.dashoffset = self.offset
+        if self.smooth:
+            s.smooth = float(self.smooth)
         ls.stroke = s
         return ls
 

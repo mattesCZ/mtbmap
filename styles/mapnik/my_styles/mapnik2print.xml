@@ -319,28 +319,28 @@
     <Rule name="contours-10-m">
       <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="0.60"/>
+      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="0.60" smooth="0.4"/>
     </Rule>
   </Style>
   <Style name="contours100">
     <Rule name="contours-100-m">
       <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
-      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="1.20"/>
+      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="1.20" smooth="0.4"/>
     </Rule>
   </Style>
   <Style name="contours20">
     <Rule name="contours-20-m">
       <MinScaleDenominator>50000</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="0.60"/>
+      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="0.60" smooth="0.4"/>
     </Rule>
   </Style>
   <Style name="contours50">
     <Rule name="contours-50-m">
       <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="1.20"/>
+      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="1.20" smooth="0.4"/>
     </Rule>
     <Rule name="contours-50-m">
       <MinScaleDenominator>100000</MinScaleDenominator>
