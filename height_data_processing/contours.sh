@@ -14,6 +14,11 @@ rm $HGTFILES/srtm.*
 
 gdal_merge.py -v -o $HGTFILES/srtm.tif -ul_lr 11.70 51.60 19.20 48.3 $HGTFILES/srtm_*_*/*.tif
 
-gdal_contour -i 5 -snodata -32767 -a height $HGTFILES/srtm.tif $HGTFILES/srtm.shp
-/usr/lib/postgresql/8.4/bin/shp2pgsql -d -I -g way $HGTFILES/srtm.shp contours | psql -q gisczech
+gdal_contour -i 10 -snodata -32767 -a height $HGTFILES/srtm.tif $HGTFILES/srtm.shp
 
+# If table contours does not exist or you want to drop and recreate it,
+# uncomment next line to prepare it.
+#/usr/lib/postgresql/9.1/bin/shp2pgsql -d -I -g way $HGTFILES/srtm.shp contours | psql -q contours
+
+# Append shapefile to existing contours table
+/usr/lib/postgresql/9.1/bin/shp2pgsql -a -g way $HGTFILES/srtm.shp contours | psql -q contours
