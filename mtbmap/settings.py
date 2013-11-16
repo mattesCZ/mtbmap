@@ -139,7 +139,7 @@ INSTALLED_APPS = (
     'routing',
     'osm_data_processing',
     'height_data_processing',
-#     'south',
+    'south',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
