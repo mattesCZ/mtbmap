@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-14 16:33+0100\n"
+"POT-Creation-Date: 2013-11-18 11:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Martin Tesar <osmmtb@gmail.com>\n"
 "Language-Team: Czech <>\n"
@@ -163,6 +163,10 @@ msgid ""
 msgstr ""
 "Vypadá to, že jsme v našem systému něco pokazili. Omlouváme se za "
 "komplikace. Pokusíme se to opravit."
+
+#: templates/map/base.html:6
+msgid "Map for mountainbiking and hiking"
+msgstr "Mapa pro jízdu na horském kole a turistiku"
 
 #: templates/map/export.html:3
 msgid "Map export"
