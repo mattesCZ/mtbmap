@@ -175,7 +175,7 @@ $(document).ready(function() {
     $closeButton = $('#close-main-tab-panel');
     $closeButton.button({
         icons: {
-            primary: 'ui-icon-close'
+            primary: 'ui-icon-closethick'
         },
         text: false
     }).click(function(event) {
