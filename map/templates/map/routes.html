@@ -98,7 +98,7 @@
                 <form method="post" action="/map/altitudeprofile/" target="_blank" >
                     {% csrf_token %}
                     <input type="hidden" name="profile-params" class="profile-params" value="" />
-                    <input class="create-profile-button" type="submit" value="{% trans "Create altitude profile" %}">
+                    <input class="create-profile-button highlight" type="submit" value="{% trans "Create altitude profile" %}">
                 </form>
                 <form method="post" action="/map/creategpx/" target="_blank" >
                     {% csrf_token %}
@@ -109,7 +109,7 @@
         </article>
         <article id="routes-content-gpx" class="subtab-panel">
             <h4>{% trans "Upload your own GPX file" %}</h4>
-            <div class="file-upload ui-button ui-widget ui-state-default ui-corner-all">
+            <div class="file-upload highlight ui-button ui-widget ui-state-default ui-corner-all">
                 <span>{% trans "Upload" %}</span>
                 <input id="files" type="file" name="files[]" onchange="handleGPX(event)" size="10" class="margin">
             </div>
