@@ -11,7 +11,7 @@ import PIL.Image
 from transmeta import TransMeta
 
 # Django imports
-from django.db import models
+from django.db import models, transaction
 from django.core.files import File
 from django.conf import settings
 from django.utils.translation import activate, ugettext_lazy as _
@@ -48,53 +48,60 @@ class Map(models.Model):
     def __unicode__(self):
         return '%i, %s, %s' % (self.id, self.name, self.url)
 
+    @transaction.commit_manually
     def import_map(self, path, name=None):
-        # open document and create xPath context
-        doc = libxml2.readFile(path, 'utf-8', 2)
-        ctxt = doc.xpathNewContext()
+        try:
+            # open document and create xPath context
+            doc = libxml2.readFile(path, 'utf-8', 2)
+            ctxt = doc.xpathNewContext()
 
-        # save basic map info
-        self.srs = xpath_query(ctxt, '/Map/@srs')
-        self.background_color = xpath_query(ctxt, '/Map/@background-color')
-        self.background_image = xpath_query(ctxt, '/Map/@background-image')
-        self.font_directory = xpath_query(ctxt, '/Map/@font-directory')
-        self.buffer_size = xpath_query(ctxt, '/Map/@buffer-size')
-        self.paths_from_xml = xpath_query(ctxt, '/Map/@paths-from-xml')
-        self.minimum_version = xpath_query(ctxt, '/Map/@minimum-version')
+            # save basic map info
+            self.srs = xpath_query(ctxt, '/Map/@srs')
+            self.background_color = xpath_query(ctxt, '/Map/@background-color')
+            self.background_image = xpath_query(ctxt, '/Map/@background-image')
+            self.font_directory = xpath_query(ctxt, '/Map/@font-directory')
+            self.buffer_size = xpath_query(ctxt, '/Map/@buffer-size')
+            self.paths_from_xml = xpath_query(ctxt, '/Map/@paths-from-xml')
+            self.minimum_version = xpath_query(ctxt, '/Map/@minimum-version')
 
-        # use filename without extension as map name
-        if not name:
-            name = path.split('/')[-1].split('.')[0]
-        self.name = name
-        print 'Using "%s" as new Map name...' % name
-        self.save()
+            # use filename without extension as map name
+            if not name:
+                name = path.split('/')[-1].split('.')[0]
+            self.name = name
+            print 'Using "%s" as new Map name...' % name
+            self.save()
 
-        # save styles
-        style_nodes = ctxt.xpathEval('//Style')
-        for node in style_nodes:
-            style = Style()
-            new_style = style.import_style(node)
-            stylemap = StyleMap()
-            stylemap.map_id = self
-            stylemap.style_id = new_style
-            stylemap.save()
+            # save styles
+            style_nodes = ctxt.xpathEval('//Style')
+            for node in style_nodes:
+                style = Style()
+                new_style = style.import_style(node)
+                stylemap = StyleMap()
+                stylemap.map_id = self
+                stylemap.style_id = new_style
+                stylemap.save()
 
-        # save layers
-        layer_nodes = ctxt.xpathEval('//Layer')
-        order = 0
-        for node in layer_nodes:
-            layer = Layer()
-            new_layer = layer.import_layer(node, self)
-            maplayer = MapLayer()
-            maplayer.map_id = self
-            maplayer.layer_id = new_layer
-            maplayer.layer_order = order
-            maplayer.save()
-            order += 1
+            # save layers
+            layer_nodes = ctxt.xpathEval('//Layer')
+            order = 0
+            for node in layer_nodes:
+                layer = Layer()
+                new_layer = layer.import_layer(node, self)
+                maplayer = MapLayer()
+                maplayer.map_id = self
+                maplayer.layer_id = new_layer
+                maplayer.layer_order = order
+                maplayer.save()
+                order += 1
 
-        ctxt.xpathFreeContext()
-        doc.freeDoc()
-        return self
+            ctxt.xpathFreeContext()
+            doc.freeDoc()
+        except Exception:
+            transaction.rollback()
+            return None
+        else:
+            transaction.commit()
+            return self
 
     def write_xml_doc(self, outputfile, scale_factor=1):
         output_doc = libxml2.parseDoc('<Map/>')
@@ -298,7 +305,7 @@ class Gdal(DataSource):
 
     def mapnik(self):
         file = os.path.join(style_path, self.file)
-        return mapnik.Gdal(file=file)
+        return mapnik.Gdal(file=str(file))
 
     def geometry(self):
         return self.mapnik().type().name
@@ -370,7 +377,7 @@ class Shape(DataSource):
 
     def mapnik(self):
         file = os.path.join(style_path, self.file)
-        return mapnik.Shapefile(file=file)
+        return mapnik.Shapefile(file=str(file))
 
     def geometry(self):
         return self.mapnik().type().name
@@ -1783,6 +1790,12 @@ class LegendItem(models.Model):
             remove(tmpfilename)
 
     def render(self, size, path, scale_factor=1):
+        if self.geometry in ('Point', 'LineString', 'Collection'):
+            ds = mapnik.GeoJSON(file='styles/fixtures/geojson_%s.json' % self.geometry.lower())
+        else:
+            # Raster... special legend creation should be provided
+            print "Raster Layer, legend not created, id: %s, slug: %s" % (self.id, self.legend_item_name.slug)
+            return 1
         s = mapnik.Style()
         for rule in self.rules.all().order_by('legenditemrule__order'):
             rule.filter = None
@@ -1792,12 +1805,6 @@ class LegendItem(models.Model):
             mapnik_rule.max_scale = zooms[0]
             mapnik_rule.min_scale = zooms[19]
             s.rules.append(mapnik_rule)
-        if self.geometry in ('Point', 'LineString', 'Collection'):
-            ds = mapnik.GeoJSON(file='styles/fixtures/geojson_%s.json' % self.geometry.lower())
-        else:
-            # Raster... special legend creation
-            print "Raster Layer, legend not created, id: %s, slug: %s" % (self.id, self.legend_item_name.slug)
-            return 1
         if self.geometry=='LineString':
             size = (size[1], 3*size[1])
         if self.geometry=='Collection':
