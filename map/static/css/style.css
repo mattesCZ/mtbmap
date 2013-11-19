@@ -151,6 +151,7 @@ hr { /*should be rewritten for html5*/
     background-color: #06D;
     background-image: none;
     color: #FFF;
+    font-weight: bold;
 }
 #main-tabs .ui-button.highlight:hover {
     background-color: #00008B;
