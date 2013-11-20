@@ -68,7 +68,6 @@ class Map(models.Model):
             if not name:
                 name = path.split('/')[-1].split('.')[0]
             self.name = name
-            print 'Using "%s" as new Map name...' % name
             self.save()
 
             # save styles
