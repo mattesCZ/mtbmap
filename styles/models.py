@@ -274,12 +274,7 @@ class DataSource(models.Model):
 
 
 class Gdal(DataSource):
-    FORMAT_CHOICES = (
-        ('png', 'png'),
-        ('tiff', 'tiff'),
-    )
     file = models.CharField(max_length=400)
-    format = models.CharField(max_length=4, choices=FORMAT_CHOICES, null=True, blank=True)
 
     def __unicode__(self):
         return 'ID: %i, %s, %s' % (self.id, self.type, self.file)
@@ -287,13 +282,11 @@ class Gdal(DataSource):
     def import_datasource(self, node):
         self.type = 'gdal'
         self.file = xpath_query(node, "./Parameter[@name='file']")
-        self.format = xpath_query(node, "./Parameter[@name='format']")
         self.save()
         return self
 
     def xml_params(self, node):
         add_xml_node_with_param(node, 'Parameter', self.file, 'name', 'file')
-        add_xml_node_with_param(node, 'Parameter', self.format, 'name', 'format')
 
     def mapnik(self):
         file = os.path.join(style_path, self.file)
