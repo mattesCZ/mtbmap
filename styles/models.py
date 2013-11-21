@@ -738,11 +738,11 @@ class LineSymbolizer(Symbolizer):
             dash_parts = self.stroke_dasharray.split(',')
             for i in range(0, len(dash_parts), 2):
                 s.add_dash(float(dash_parts[i]), float(dash_parts[i+1]))
-#        if self.offset:
-#            s.dashoffset = self.offset
-        if self.smooth:
-            s.smooth = float(self.smooth)
         ls.stroke = s
+        if self.offset:
+            ls.offset = float(self.offset)
+        if self.smooth:
+            ls.smooth = float(self.smooth)
         return ls
 
     def symbol_size(self):
