@@ -490,7 +490,7 @@ class Rule(models.Model):
             rule_node.addChild(symbolizer.specialized().get_xml(scale_factor))
         return rule_node
 
-    def mapnik(self, scale_factor=1):
+    def mapnik(self, scale_factor=1, offset=True):
         self.scale(scale_factor)
         rule = mapnik.Rule()
         if self.filter:
@@ -505,7 +505,10 @@ class Rule(models.Model):
         if self.name:
             rule.name = self.name.encode('utf-8')
         for symbolizer in self.symbolizers.all().order_by('symbolizerrule__order'):
-            rule.symbols.append(symbolizer.specialized().mapnik(scale_factor))
+            spec_symbolizer = symbolizer.specialized()
+            if not offset and spec_symbolizer.symbtype in ['Line', 'LinePattern']:
+                spec_symbolizer.offset = 0
+            rule.symbols.append(spec_symbolizer.mapnik(scale_factor))
         return rule
 
     def save_copy(self):
@@ -1721,7 +1724,9 @@ class LegendItem(models.Model):
             rule.filter = None
 #            rule.maxscale = 0
 #            rule.minscale = 18
-            mapnik_rule = rule.mapnik(scale_factor)
+
+            # TODO: offset should not be disabled for all rules. Use Rule.name ! notation.
+            mapnik_rule = rule.mapnik(scale_factor=scale_factor, offset=False)
             mapnik_rule.max_scale = zooms[0]
             mapnik_rule.min_scale = zooms[19]
             s.rules.append(mapnik_rule)
