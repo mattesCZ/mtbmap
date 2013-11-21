@@ -511,26 +511,6 @@ class Rule(models.Model):
             rule.symbols.append(spec_symbolizer.mapnik(scale_factor))
         return rule
 
-    def save_copy(self):
-        pk = self.pk
-        copy = self
-        copy.pk = None
-        copy.save()
-        orig = Rule.objects.get(pk=pk)
-        for style in orig.styles.all().order_by('rulestyle__order'):
-            newrs = RuleStyle()
-            newrs.rule_id = copy
-            newrs.style_id = style
-            newrs.order = orig.rulestyle_set.all()[0].order
-            newrs.save()
-        for symbolizer in orig.symbolizers.all().order_by('symbolizerrule__order'):
-            newsr = SymbolizerRule()
-            newsr.rule_id = copy
-            newsr.symbid = symbolizer
-            newsr.order = symbolizer.symbolizerrule_set.all()[0].order
-            newsr.save()
-        return copy
-
 
 class RuleStyle(models.Model):
     order = models.PositiveIntegerField()
@@ -750,10 +730,6 @@ class LineSymbolizer(Symbolizer):
 
 
 class LinePatternSymbolizer(Symbolizer):
-    TYPE = (
-        ('png', 'png'),
-        ('tiff', 'tiff'),
-    )
     file = models.CharField(max_length=400)
 
     def __unicode__(self):
