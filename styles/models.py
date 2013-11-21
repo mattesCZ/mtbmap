@@ -497,7 +497,7 @@ class Rule(models.Model):
             if self.filter=='ELSEFILTER':
                 rule.set_else
             else:
-                rule.filter = mapnik.Filter(self.filter.encode('utf-8'))
+                rule.filter = mapnik.Expression(self.filter.encode('utf-8'))
         if self.maxscale:
             rule.max_scale = zooms[self.maxscale]
         if self.minscale:
