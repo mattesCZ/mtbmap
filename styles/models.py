@@ -38,7 +38,11 @@ class StylesModel(models.Model):
 
     def import_xml_properties(self, node):
         for property in self.PROPERTIES:
-            setattr(self, property, xpath_query(node, './@%s' % self._xml_property_name(property)))
+            default = getattr(self, property)
+            value = xpath_query(node, './@%s' % self._xml_property_name(property))
+            # Don't replace empty string for None
+            if not (default=='' and value==None):
+                setattr(self, property, value)
 
     def zoom_to_scale(self, zoom, max=True):
         if not max:
@@ -59,17 +63,16 @@ class StylesModel(models.Model):
 class Map(StylesModel):
     PROPERTIES = (
         'srs', 'background_color', 'background_image', 'font_directory', 'buffer_size',
-        'paths_from_xml', 'minimum_version',
+        'paths_from_xml', 'maximum_extent', 'minimum_version',
     )
-    background_color = models.CharField('Background color', max_length=200,
-                                 null=True, blank=True, default='rgba(255, 255, 255, 0)')
-    background_image = models.CharField('Background image', max_length=400,
-                                 null=True, blank=True)
-    font_directory = models.CharField('Font directory', max_length=400,
-                                 null=True, blank=True)
     name = models.CharField(max_length=200)
+    background_color = models.CharField(max_length=200, null=True, blank=True,
+                                        default='rgba(255, 255, 255, 0)')
+    background_image = models.CharField(max_length=400, null=True, blank=True)
+    font_directory = models.CharField(max_length=400, null=True, blank=True)
     srs = models.CharField('Spatial reference system', max_length=400)
-    buffer_size = models.PositiveIntegerField('Buffer size', default=0, null=True, blank=True)
+    buffer_size = models.PositiveIntegerField(default=0, null=True, blank=True)
+    maximum_extent = models.CharField(max_length=400, null=True, blank=True)
     paths_from_xml = models.NullBooleanField(default=True)
     minimum_version = models.CharField(max_length=20, null=True, blank=True)
 
@@ -119,8 +122,9 @@ class Map(StylesModel):
                 order += 1
             ctxt.xpathFreeContext()
             doc.freeDoc()
-        except Exception:
+        except Exception as e:
             transaction.rollback()
+            print e
             return None
         else:
             transaction.commit()
@@ -146,6 +150,9 @@ class Map(StylesModel):
         f.close()
 
     def mapnik(self, height=100, width=100, scale_factor=1):
+        # TODO:
+        # Handle unused attributes (paths_from_xml, font_directory, minimum_version)
+        # if necessary.
         m = mapnik.Map(height, width)
         if self.background_color:
             m.background_color = mapnik.Color(self.background_color.encode('utf-8'))
@@ -154,6 +161,8 @@ class Map(StylesModel):
         m.srs = self.srs.encode('utf-8')
         if self.buffer_size:
             m.buffer_size = self.buffer_size
+        if self.maximum_extent:
+            m.maximum_extent = self.maximum_extent.encode('utf-8')
         for style in self.styles.all():
             m.append_style(style.name.encode('utf-8'), style.mapnik(scale_factor))
         for layer in self.layers.all().order_by('maplayer__layer_order'):
@@ -170,18 +179,21 @@ class Map(StylesModel):
 class Layer(StylesModel):
     PROPERTIES = (
         'name', 'srs', 'clear_label_cache', 'cache_features', 'minzoom', 'maxzoom',
-        'queryable',
+        'queryable', 'status', 'abstract', 'title',
     )
     ZOOM_CHOICES = zip(range(0, 21), range(0, 21))
-    clear_label_cache = models.NullBooleanField()
     name = models.CharField(max_length=200)
-    srs = models.CharField('Spatial reference system', max_length=200)
-    datasource = models.ForeignKey('DataSource')
+    status = models.NullBooleanField()
+    clear_label_cache = models.NullBooleanField()
     cache_features = models.NullBooleanField()
+    srs = models.CharField('Spatial reference system', max_length=200)
+    abstract = models.TextField(default='')
+    title = models.CharField(max_length=200, default='')
     minzoom = models.IntegerField(choices=ZOOM_CHOICES, default=18, null=True, blank=True)
     maxzoom = models.IntegerField(choices=ZOOM_CHOICES, default=0, null=True, blank=True)
     queryable = models.NullBooleanField()
 
+    datasource = models.ForeignKey('DataSource')
     maps = models.ManyToManyField('Map', through='MapLayer')
     styles = models.ManyToManyField('Style', through='StyleLayer')
 
@@ -227,6 +239,8 @@ class Layer(StylesModel):
             layer.minzoom = zooms[self.minzoom + 1]
         if self.maxzoom:
             layer.maxzoom = zooms[self.maxzoom]
+        if not self.status==None:
+            layer.status = self.status
         layer.datasource = self.datasource.mapnik()
         for style in self.styles.all():
             layer.styles.append(style.name.encode('utf-8'))
@@ -247,6 +261,7 @@ class Layer(StylesModel):
 
 
 class DataSource(models.Model):
+    # TODO: sync Datasource with current mapnik version.
     TYPE_CHOICES = (
         ('gdal', 'gdal'),
         ('postgis', 'postgis'),
@@ -394,8 +409,9 @@ class MapLayer(models.Model):
 
 
 class Style(StylesModel):
-    PROPERTIES = ('name',)
+    PROPERTIES = ('name', 'opacity',)
     name = models.CharField(max_length=200)
+    opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
 
     maps = models.ManyToManyField('Map', through='StyleMap')
     layers = models.ManyToManyField('Layer', through='StyleLayer')
@@ -429,6 +445,8 @@ class Style(StylesModel):
 
     def mapnik(self, scale_factor=1):
         style = mapnik.Style()
+        if self.opacity:
+            style.opacity = self.opacity
         for rule in self.rules.all().order_by('rulestyle__order'):
             style.rules.append(rule.mapnik(scale_factor))
         return style
@@ -446,10 +464,11 @@ class StyleMap(models.Model):
 
 class Rule(StylesModel):
 # TODO: Add AlsoFilter
-    PROPERTIES = ('name', 'filter', 'minscale', 'maxscale',)
+    PROPERTIES = ('name', 'title', 'filter', 'minscale', 'maxscale',)
     SCALE_CHOICES = zip(range(0, 21), range(0, 21))
 
     name = models.CharField(max_length=200, null=True, blank=True)
+    title = models.CharField(max_length=200, null=True, blank=True)
     filter = models.CharField(max_length=2000, null=True, blank=True)
     minscale = models.IntegerField(choices=SCALE_CHOICES, default=18)
     maxscale = models.IntegerField(choices=SCALE_CHOICES, default=0)
@@ -462,6 +481,7 @@ class Rule(StylesModel):
 
     def import_rule(self, node):
         self.name = xpath_query(node, './@name')
+        self.title = xpath_query(node, './@title')
         self.filter = xpath_query(node, './Filter')
         if not self.filter:
             elsefilter = xpath_query(node, './ElseFilter')
@@ -498,6 +518,7 @@ class Rule(StylesModel):
         self.scale(scale_factor)
         node = libxml2.newNode('Rule')
         set_xml_param(node, 'name', self.name)
+        set_xml_param(node, 'title', self.title)
         if self.filter:
             if self.filter=='ELSEFILTER':
                 node.addChild(libxml2.newNode('ElseFilter'))
@@ -590,7 +611,7 @@ class SymbolizerRule(models.Model):
 class BuildingSymbolizer(Symbolizer):
     PROPERTIES = ('fill', 'fill_opacity', 'height',)
     fill = models.CharField(max_length=200, default='rgb(127, 127, 127)', null=True, blank=True)
-    fill_opacity = models.DecimalField('fill-opacity', max_digits=3, decimal_places=2, null=True, blank=True)
+    fill_opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
     height = models.PositiveIntegerField()
 
     def __unicode__(self):
@@ -627,13 +648,13 @@ class LineSymbolizer(Symbolizer):
         ('square', 'square'),
     )
     stroke = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True, blank=True)
-    stroke_width = models.DecimalField('stroke-width', max_digits=5, decimal_places=2, null=True, blank=True)
-    stroke_opacity = models.DecimalField('stroke-opacity', max_digits=3, decimal_places=2, null=True, blank=True)
-    stroke_linejoin = models.CharField('stroke-linejoin', max_length=15, choices=LINEJOIN, default='round', null=True, blank=True)
-    stroke_linecap = models.CharField('stroke-linecap', max_length=8, choices=LINECAP, default='butt', null=True, blank=True)
-    stroke_dasharray = models.CharField('stroke-dasharray', max_length=200, null=True, blank=True)
-    offset = models.DecimalField('offset', max_digits=5, decimal_places=2, null=True, blank=True)
-    smooth = models.DecimalField('stroke-opacity', max_digits=3, decimal_places=2, null=True, blank=True)
+    stroke_width = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    stroke_opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
+    stroke_linejoin = models.CharField(max_length=15, choices=LINEJOIN, default='round', null=True, blank=True)
+    stroke_linecap = models.CharField(max_length=8, choices=LINECAP, default='butt', null=True, blank=True)
+    stroke_dasharray = models.CharField(max_length=200, null=True, blank=True)
+    offset = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    smooth = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
 
     def __unicode__(self):
         return 'ID: %i, %s, %s, %s' % (self.id, self.stroke, self.stroke_width, self.stroke_dasharray)
@@ -691,6 +712,7 @@ class LineSymbolizer(Symbolizer):
 
 class LinePatternSymbolizer(Symbolizer):
     PROPERTIES = ('file',)
+    # TODO: add 'base' property
     file = models.CharField(max_length=400)
 
     def __unicode__(self):
@@ -742,12 +764,12 @@ class MarkersSymbolizer(Symbolizer):
     opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
     fill = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True, blank=True)
     stroke = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True, blank=True)
-    stroke_width = models.DecimalField('stroke-width', max_digits=5, decimal_places=2, null=True, blank=True)
-    stroke_opacity = models.DecimalField('stroke-opacity', max_digits=3, decimal_places=2, null=True, blank=True)
+    stroke_width = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    stroke_opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
     height = models.PositiveIntegerField()
     width = models.PositiveIntegerField()
     placement = models.CharField(max_length=10, choices=PLACEMENT, null=True, blank=True)
-    ignore_placement = models.NullBooleanField('ignore-placement')
+    ignore_placement = models.NullBooleanField()
     marker_type = models.CharField(max_length=10, choices=MARKER_TYPE, null=True, blank=True)
 
     def __unicode__(self):
@@ -782,7 +804,7 @@ class PointSymbolizer(Symbolizer):
     allow_overlap = models.NullBooleanField()
     opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
     transform = models.CharField(max_length=200, null=True, blank=True)
-    ignore_placement = models.NullBooleanField('ignore-placement')
+    ignore_placement = models.NullBooleanField()
 
     def __unicode__(self):
         return 'ID: %i, %s' % (self.id, self.file)
@@ -821,7 +843,7 @@ class PointSymbolizer(Symbolizer):
 class PolygonSymbolizer(Symbolizer):
     PROPERTIES = ('fill', 'fill_opacity', 'gamma',)
     fill = models.CharField(max_length=200, default='rgb(127, 127, 127)', null=True, blank=True)
-    fill_opacity = models.DecimalField('fill-opacity', max_digits=3, decimal_places=2, null=True, blank=True)
+    fill_opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
     gamma = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
 
     def __unicode__(self):
@@ -1118,6 +1140,11 @@ class ShieldSymbolizer(Symbolizer):
 
 
 class TextSymbolizer(Symbolizer):
+    # TODO:
+    # Add other properties to class methods: orientation, placement_type,
+    # placements, upright, rotate_displacement, halo_rasterizer, largest_bbox_only
+    #
+    # Add support to placement type: list
     PROPERTIES = (
         'allow_overlap', 'avoid_edges', 'character_spacing', 'clip', 'dx', 'dy',
         'face_name', 'fill', 'fontset_name', 'force_odd_labels', 'halo_fill',
@@ -1127,7 +1154,7 @@ class TextSymbolizer(Symbolizer):
         'opacity', 'orientation', 'placement', 'placement_type', 'placements',
         'rotate_displacement', 'size', 'spacing', 'text_ratio', 'text_transform',
         'upright', 'vertical_alignment', 'wrap_before', 'wrap_character',
-        'wrap_width',
+        'wrap_width', 'halo_rasterizer', 'largest_bbox_only',
     )
     CONTENT_PROPERTY = 'name'
     HORIZONTAL = (
@@ -1159,25 +1186,26 @@ class TextSymbolizer(Symbolizer):
         ('right', 'right'),
         ('left', 'left'),
         ('auto', 'auto'),
+        ('right_only', 'right_only'),
+        ('left_only', 'left_only'),
     )
+    HALO_RASTERIZER = (
+        ('fast', 'fast'),
+        ('full', 'full'),
+    )
+
+    # content field
     name = models.CharField(max_length=200, null=True, blank=True)
-    face_name = models.CharField(max_length=200, null=True, blank=True)
-    fontset_name = models.CharField(max_length=200, null=True, blank=True)
-    size = models.PositiveIntegerField(null=True, blank=True)
+
+    # whole symbolizer options
     text_ratio = models.PositiveIntegerField(null=True, blank=True)
-    wrap_character = models.CharField(max_length=200, null=True, blank=True)
     wrap_width = models.PositiveIntegerField(null=True, blank=True)
     wrap_before = models.NullBooleanField()
-    text_transform = models.CharField(max_length=200, choices=TEXT_TRANSFORM, null=True, blank=True)
-    line_spacing = models.PositiveIntegerField(null=True, blank=True)
-    character_spacing = models.PositiveIntegerField(null=True, blank=True)
     spacing = models.PositiveIntegerField(null=True, blank=True)
     label_position_tolerance = models.PositiveIntegerField(null=True, blank=True)
     force_odd_labels = models.NullBooleanField()
     max_char_angle_delta = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
-    fill = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True, blank=True)
-    halo_fill = models.CharField(max_length=200, null=True, blank=True)
-    halo_radius = models.PositiveIntegerField(null=True, blank=True)
+    halo_rasterizer = models.CharField(max_length=10, choices=HALO_RASTERIZER, null=True, blank=True)
     dx = models.IntegerField(null=True, blank=True)
     dy = models.IntegerField(null=True, blank=True)
     avoid_edges = models.NullBooleanField()
@@ -1191,11 +1219,24 @@ class TextSymbolizer(Symbolizer):
     minimum_padding = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     minimum_path_length = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     orientation = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    rotate_displacement = models.NullBooleanField()
     placement_type = models.CharField(max_length=10, choices=PLACEMENT_TYPE, null=True, blank=True)
     placements = models.TextField(null=True, blank=True)
     upright = models.CharField(max_length=10, choices=UPRIGHT, null=True, blank=True)
     clip = models.NullBooleanField()
-    rotate_displacement = models.NullBooleanField()
+    largest_bbox_only = models.NullBooleanField()
+
+    # character formatting
+    face_name = models.CharField(max_length=200, null=True, blank=True)
+    fontset_name = models.CharField(max_length=200, null=True, blank=True)
+    size = models.PositiveIntegerField(null=True, blank=True)
+    fill = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True, blank=True)
+    halo_fill = models.CharField(max_length=200, null=True, blank=True)
+    halo_radius = models.PositiveIntegerField(null=True, blank=True)
+    character_spacing = models.PositiveIntegerField(null=True, blank=True)
+    line_spacing = models.PositiveIntegerField(null=True, blank=True)
+    wrap_character = models.CharField(max_length=200, null=True, blank=True)
+    text_transform = models.CharField(max_length=200, choices=TEXT_TRANSFORM, null=True, blank=True)
 
     def __unicode__(self):
         return 'ID: %i, %i, %s' % (self.id, self.size, self.fill)
@@ -1301,12 +1342,6 @@ class TextSymbolizer(Symbolizer):
             ts.minimum_path_length = self.minimum_path_length
         if self.clip:
             ts.clip = self.clip
-# TODO:
-#    orientation = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
-#    placement_type = models.CharField(max_length=10, choices=PLACEMENT_TYPE, null=True, blank=True)
-#    placements = models.TextField()
-#    upright = models.CharField(max_length=10, choices=UPRIGHT, null=True, blank=True)
-#    rotate_displacement = models.NullBooleanField()
         return ts
 
     def symbol_size(self):
