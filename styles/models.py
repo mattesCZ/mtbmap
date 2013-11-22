@@ -26,7 +26,34 @@ style_path = settings.MAPNIK_STYLES
 db_password = settings.DATABASES['default']['PASSWORD']
 LANG_CODES = [lang_code for lang_code, lang_name in settings.LANGUAGES]
 
-class Map(models.Model):
+class StylesModel(models.Model):
+    PROPERTIES = ()
+
+    class Meta:
+        abstract = True
+
+    def write_xml_properties(self, node):
+        for property in self.PROPERTIES:
+            set_xml_param(node, property.replace('_','-'), getattr(self, property))
+
+    def zoom_to_scale(self, zoom, max=True):
+        if not max:
+            # minzoom
+            zoom += 1
+        return str(zooms[zoom])
+
+    def scale_to_zoom(self, scale, max=True):
+        zoom = zooms.index(int(scale))
+        if not max:
+            zoom -= 1
+        return zoom
+
+
+class Map(StylesModel):
+    PROPERTIES = (
+        'srs', 'background_color', 'background_image', 'font_directory', 'buffer_size',
+        'paths_from_xml', 'minimum_version',
+    )
     background_color = models.CharField('Background color', max_length=200,
                                  null=True, blank=True, default='rgba(255, 255, 255, 0)')
     background_image = models.CharField('Background image', max_length=400,
@@ -38,7 +65,6 @@ class Map(models.Model):
     buffer_size = models.PositiveIntegerField('Buffer size', default=0, null=True, blank=True)
     paths_from_xml = models.NullBooleanField(default=True)
     minimum_version = models.CharField(max_length=20, null=True, blank=True)
-    url = models.CharField(max_length=200, null=True, blank=True)
 
     layers = models.ManyToManyField('Layer', through='MapLayer')
     styles = models.ManyToManyField('Style', through='StyleMap')
@@ -101,13 +127,7 @@ class Map(models.Model):
     def write_xml_doc(self, outputfile, scale_factor=1):
         output_doc = libxml2.parseDoc('<Map/>')
         root_node = output_doc.getRootElement()
-        set_xml_param(root_node, 'srs', self.srs)
-        set_xml_param(root_node, 'background-color', self.background_color)
-        set_xml_param(root_node, 'background-image', self.background_image)
-        set_xml_param(root_node, 'font-directory', self.font_directory)
-        set_xml_param(root_node, 'buffer-size', self.buffer_size)
-        set_xml_param(root_node, 'paths-from-xml', self.paths_from_xml)
-        set_xml_param(root_node, 'minimum-version', self.minimum_version)
+        self.write_xml_properties(root_node)
         add_xml_fonts(root_node)
         for style in self.styles.all().order_by('name'):
             root_node.addChild(style.get_xml(scale_factor))
@@ -145,7 +165,11 @@ class Map(models.Model):
         legend.create()
 
 
-class Layer(models.Model):
+class Layer(StylesModel):
+    PROPERTIES = (
+        'name', 'srs', 'clear_label_cache', 'cache_features', 'minzoom', 'maxzoom',
+        'queryable',
+    )
     ZOOM_CHOICES = zip(range(0, 21), range(0, 21))
     clear_label_cache = models.NullBooleanField()
     name = models.CharField(max_length=200)
@@ -191,18 +215,12 @@ class Layer(models.Model):
         return self
 
     def get_xml(self):
-        layer_node = libxml2.newNode('Layer')
-        set_xml_param(layer_node, 'name', self.name)
-        set_xml_param(layer_node, 'srs', self.srs)
-        set_xml_param(layer_node, 'clear-label-cache', self.clear_label_cache)
-        set_xml_param(layer_node, 'cache-features', self.cache_features)
-        set_xml_param(layer_node, 'minzoom', str(zooms[self.minzoom + 1]))
-        set_xml_param(layer_node, 'maxzoom', str(zooms[self.maxzoom]))
-        set_xml_param(layer_node, 'queryable', self.queryable)
+        node = libxml2.newNode('Layer')
+        self.write_xml_properties(node)
         for style in self.styles.all():
-            add_xml_node(layer_node, 'StyleName', style.name)
-        layer_node.addChild(self.datasource.get_xml())
-        return layer_node
+            add_xml_node(node, 'StyleName', style.name)
+        node.addChild(self.datasource.get_xml())
+        return node
 
     def mapnik(self):
         layer = mapnik.Layer(self.name.encode('utf-8'))
@@ -221,6 +239,16 @@ class Layer(models.Model):
 
     def geometry(self):
         return self.datasource.geometry()
+
+    def write_xml_properties(self, node):
+        # zooms must be converted to scale
+        minzoom = self.minzoom
+        maxzoom = self.maxzoom
+        self.minzoom = self.zoom_to_scale(zoom=self.minzoom, max=False)
+        self.maxzoom = self.zoom_to_scale(zoom=self.maxzoom, max=True)
+        super(Layer, self).write_xml_properties(node)
+        self.minzoom = minzoom
+        self.maxzoom = maxzoom
 
 
 class DataSource(models.Model):
@@ -374,7 +402,8 @@ class MapLayer(models.Model):
     layer_id = models.ForeignKey('Layer')
 
 
-class Style(models.Model):
+class Style(StylesModel):
+    PROPERTIES = ('name',)
     name = models.CharField(max_length=200)
 
     maps = models.ManyToManyField('Map', through='StyleMap')
@@ -401,11 +430,11 @@ class Style(models.Model):
         return self
 
     def get_xml(self, scale_factor=1):
-        style_node = libxml2.newNode('Style')
-        set_xml_param(style_node, 'name', self.name)
+        node = libxml2.newNode('Style')
+        self.write_xml_properties(node)
         for rule in self.rules.all().order_by('rulestyle__order'):
-            style_node.addChild(rule.get_xml(scale_factor))
-        return style_node
+            node.addChild(rule.get_xml(scale_factor))
+        return node
 
     def mapnik(self, scale_factor=1):
         style = mapnik.Style()
@@ -424,8 +453,9 @@ class StyleMap(models.Model):
     map_id = models.ForeignKey('Map')
 
 
-class Rule(models.Model):
+class Rule(StylesModel):
 # TODO: Add AlsoFilter
+    PROPERTIES = ('name', 'filter', 'minscale', 'maxscale',)
     SCALE_CHOICES = zip(range(0, 21), range(0, 21))
 
     name = models.CharField(max_length=200, null=True, blank=True)
@@ -448,10 +478,10 @@ class Rule(models.Model):
                 self.filter = 'ELSEFILTER'
         minscale = xpath_query(node, './MinScaleDenominator')
         if minscale:
-            self.minscale = zooms.index(int(minscale)) - 1
+            self.minscale = self.scale_to_zoom(scale=minscale, max=False)
         maxscale = xpath_query(node, './MaxScaleDenominator')
         if maxscale:
-            self.maxscale = zooms.index(int(maxscale))
+            self.maxscale = self.scale_to_zoom(scale=maxscale, max=True)
         self.save()
         elements = node.xpathEval('./*')
         order = 0
@@ -475,20 +505,20 @@ class Rule(models.Model):
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
-        rule_node = libxml2.newNode('Rule')
-        set_xml_param(rule_node, 'name', self.name)
+        node = libxml2.newNode('Rule')
+        set_xml_param(node, 'name', self.name)
         if self.filter:
             if self.filter=='ELSEFILTER':
-                rule_node.addChild(libxml2.newNode('ElseFilter'))
+                node.addChild(libxml2.newNode('ElseFilter'))
             else:
                 filter_node = libxml2.newNode('Filter')
                 filter_node.setContent(self.filter)
-                rule_node.addChild(filter_node)
-        add_xml_node(rule_node, 'MinScaleDenominator', str(zooms[self.minscale + 1]))
-        add_xml_node(rule_node, 'MaxScaleDenominator', str(zooms[self.maxscale]))
+                node.addChild(filter_node)
+        add_xml_node(node, 'MinScaleDenominator', str(zooms[self.minscale + 1]))
+        add_xml_node(node, 'MaxScaleDenominator', str(zooms[self.maxscale]))
         for symbolizer in self.symbolizers.all().order_by('symbolizerrule__order'):
-            rule_node.addChild(symbolizer.specialized().get_xml(scale_factor))
-        return rule_node
+            node.addChild(symbolizer.specialized().get_xml(scale_factor))
+        return node
 
     def mapnik(self, scale_factor=1, offset=True):
         self.scale(scale_factor)
@@ -518,7 +548,7 @@ class RuleStyle(models.Model):
     style_id = models.ForeignKey('Style')
 
 
-class Symbolizer(models.Model):
+class Symbolizer(StylesModel):
     # TODO: Add DebugSymbolizer
     SYMBOLIZER_CHOICES = (
         ('Building', 'Building'),
@@ -603,6 +633,7 @@ class SymbolizerRule(models.Model):
 
 
 class BuildingSymbolizer(Symbolizer):
+    PROPERTIES = ('fill', 'fill_opacity', 'height',)
     fill = models.CharField(max_length=200, default='rgb(127, 127, 127)', null=True, blank=True)
     fill_opacity = models.DecimalField('fill-opacity', max_digits=3, decimal_places=2, null=True, blank=True)
     height = models.PositiveIntegerField()
@@ -624,17 +655,19 @@ class BuildingSymbolizer(Symbolizer):
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
-        symbolizer_node = libxml2.newNode('BuildingSymbolizer')
-        set_xml_param(symbolizer_node, 'fill', self.fill)
-        set_xml_param(symbolizer_node, 'fill-opacity', self.fill_opacity)
-        set_xml_param(symbolizer_node, 'height', self.height)
-        return symbolizer_node
+        node = libxml2.newNode('BuildingSymbolizer')
+        self.write_xml_properties(node)
+        return node
 
     def symbol_size(self):
         return (self.height, 0)
 
 
 class LineSymbolizer(Symbolizer):
+    PROPERTIES = (
+        'stroke', 'stroke_width', 'stroke_opacity', 'stroke_linejoin',
+        'stroke_linecap', 'stroke_dasharray', 'offset', 'smooth',
+    )
     LINEJOIN = (
         ('bevel', 'bevel'),
         ('round', 'round'),
@@ -685,16 +718,9 @@ class LineSymbolizer(Symbolizer):
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
-        symbolizer_node = libxml2.newNode('LineSymbolizer')
-        set_xml_param(symbolizer_node, 'stroke', self.stroke)
-        set_xml_param(symbolizer_node, 'stroke-width', self.stroke_width)
-        set_xml_param(symbolizer_node, 'stroke-opacity', self.stroke_opacity)
-        set_xml_param(symbolizer_node, 'stroke-linejoin', self.stroke_linejoin)
-        set_xml_param(symbolizer_node, 'stroke-linecap', self.stroke_linecap)
-        set_xml_param(symbolizer_node, 'stroke-dasharray', self.stroke_dasharray)
-        set_xml_param(symbolizer_node, 'offset', self.offset)
-        set_xml_param(symbolizer_node, 'smooth', self.smooth)
-        return symbolizer_node
+        node = libxml2.newNode('LineSymbolizer')
+        self.write_xml_properties(node)
+        return node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
@@ -730,6 +756,7 @@ class LineSymbolizer(Symbolizer):
 
 
 class LinePatternSymbolizer(Symbolizer):
+    PROPERTIES = ('file',)
     file = models.CharField(max_length=400)
 
     def __unicode__(self):
@@ -748,9 +775,9 @@ class LinePatternSymbolizer(Symbolizer):
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
-        symbolizer_node = libxml2.newNode('LinePatternSymbolizer')
-        set_xml_param(symbolizer_node, 'file', self.file)
-        return symbolizer_node
+        node = libxml2.newNode('LinePatternSymbolizer')
+        self.write_xml_properties(node)
+        return node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
@@ -765,6 +792,11 @@ class LinePatternSymbolizer(Symbolizer):
 
 
 class MarkersSymbolizer(Symbolizer):
+    PROPERTIES = (
+        'allow_overlap', 'file', 'fill', 'height', 'ignore_placement', 'marker_type',
+        'max_error', 'opacity', 'placement', 'spacing', 'stroke', 'stroke_opacity',
+        'stroke_width', 'transform', 'width',
+    )
     PLACEMENT = (
         ('point', 'point'),
         ('line', 'line'),
@@ -824,23 +856,9 @@ class MarkersSymbolizer(Symbolizer):
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
-        symbolizer_node = libxml2.newNode('MarkersSymbolizer')
-        set_xml_param(symbolizer_node, 'allow_overlap', self.allow_overlap)
-        set_xml_param(symbolizer_node, 'spacing', self.spacing)
-        set_xml_param(symbolizer_node, 'max_error', self.max_error)
-        set_xml_param(symbolizer_node, 'file', self.file)
-        set_xml_param(symbolizer_node, 'transform', self.transform)
-        set_xml_param(symbolizer_node, 'opacity', self.opacity)
-        set_xml_param(symbolizer_node, 'fill', self.fill)
-        set_xml_param(symbolizer_node, 'stroke', self.stroke)
-        set_xml_param(symbolizer_node, 'stroke_width', self.stroke_width)
-        set_xml_param(symbolizer_node, 'stroke_opacity', self.stroke_opacity)
-        set_xml_param(symbolizer_node, 'height', self.height)
-        set_xml_param(symbolizer_node, 'width', self.width)
-        set_xml_param(symbolizer_node, 'placement', self.placement)
-        set_xml_param(symbolizer_node, 'ignore_placement', self.ignore_placement)
-        set_xml_param(symbolizer_node, 'marker_type', self.marker_type)
-        return symbolizer_node
+        node = libxml2.newNode('MarkersSymbolizer')
+        self.write_xml_properties(node)
+        return node
 
     def symbol_size(self):
         im = PIL.Image.open(style_path + self.file.encode('utf-8'))
@@ -850,6 +868,7 @@ class MarkersSymbolizer(Symbolizer):
 
 
 class PointSymbolizer(Symbolizer):
+    PROPERTIES = ('file', 'allow_overlap', 'opacity', 'transform', 'ignore_placement',)
     file = models.CharField(max_length=400)
     allow_overlap = models.NullBooleanField()
     opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
@@ -876,13 +895,9 @@ class PointSymbolizer(Symbolizer):
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
-        symbolizer_node = libxml2.newNode('PointSymbolizer')
-        set_xml_param(symbolizer_node, 'file', self.file)
-        set_xml_param(symbolizer_node, 'allow-overlap', self.allow_overlap)
-        set_xml_param(symbolizer_node, 'opacity', self.opacity)
-        set_xml_param(symbolizer_node, 'transform', self.transform)
-        set_xml_param(symbolizer_node, 'ignore-placement', self.ignore_placement)
-        return symbolizer_node
+        node = libxml2.newNode('PointSymbolizer')
+        self.write_xml_properties(node)
+        return node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
@@ -905,6 +920,7 @@ class PointSymbolizer(Symbolizer):
 
 
 class PolygonSymbolizer(Symbolizer):
+    PROPERTIES = ('fill', 'fill_opacity', 'gamma',)
     fill = models.CharField(max_length=200, default='rgb(127, 127, 127)', null=True, blank=True)
     fill_opacity = models.DecimalField('fill-opacity', max_digits=3, decimal_places=2, null=True, blank=True)
     gamma = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
@@ -922,11 +938,9 @@ class PolygonSymbolizer(Symbolizer):
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
-        symbolizer_node = libxml2.newNode('PolygonSymbolizer')
-        set_xml_param(symbolizer_node, 'fill', self.fill)
-        set_xml_param(symbolizer_node, 'fill-opacity', self.fill_opacity)
-        set_xml_param(symbolizer_node, 'gamma', self.gamma)
-        return symbolizer_node
+        node = libxml2.newNode('PolygonSymbolizer')
+        self.write_xml_properties(node)
+        return node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
@@ -944,6 +958,7 @@ class PolygonSymbolizer(Symbolizer):
 
 
 class PolygonPatternSymbolizer(Symbolizer):
+    PROPERTIES = ('file',)
     file = models.CharField(max_length=400)
 
     def __unicode__(self):
@@ -962,9 +977,9 @@ class PolygonPatternSymbolizer(Symbolizer):
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
-        symbolizer_node = libxml2.newNode('PolygonPatternSymbolizer')
-        set_xml_param(symbolizer_node, 'file', self.file)
-        return symbolizer_node
+        node = libxml2.newNode('PolygonPatternSymbolizer')
+        self.write_xml_properties(node)
+        return node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
@@ -979,6 +994,7 @@ class PolygonPatternSymbolizer(Symbolizer):
 
 
 class RasterSymbolizer(Symbolizer):
+    PROPERTIES = ('opacity', 'comp_op', 'scaling',)
     COMP_OP = (
         ('grain_merge', 'grain_merge'),
         ('grain_merge2', 'grain_merge2'),
@@ -1012,11 +1028,9 @@ class RasterSymbolizer(Symbolizer):
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
-        symbolizer_node = libxml2.newNode('RasterSymbolizer')
-        set_xml_param(symbolizer_node, 'opacity', self.opacity)
-        set_xml_param(symbolizer_node, 'comp-op', self.comp_op)
-        set_xml_param(symbolizer_node, 'scaling', self.scaling)
-        return symbolizer_node
+        node = libxml2.newNode('RasterSymbolizer')
+        self.write_xml_properties(node)
+        return node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
@@ -1034,6 +1048,17 @@ class RasterSymbolizer(Symbolizer):
 
 
 class ShieldSymbolizer(Symbolizer):
+    PROPERTIES = (
+        'allow_overlap', 'avoid_edges', 'character_spacing', 'dx', 'dy',
+        'face_name', 'file', 'fill', 'fontset_name', 'halo_fill',
+        'halo_radius', 'horizontal_alignment', 'justify_alignment',
+        'line_spacing', 'minimum_distance', 'minimum_padding',
+        'opacity', 'placement', 'shield_dx', 'shield_dy', 'size',
+        'spacing', 'text_opacity', 'text_transform', 'transform',
+        'unlock_image', 'vertical_alignment', 'wrap_before',
+        'wrap_character', 'wrap_width',
+    )
+    CONTENT_PROPERTY = 'name'
     HORIZONTAL = (
         ('left', 'left'),
         ('middle', 'middle'),
@@ -1157,40 +1182,10 @@ class ShieldSymbolizer(Symbolizer):
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
-        symbolizer_node = libxml2.newNode('ShieldSymbolizer')
-        set_xml_param(symbolizer_node, 'allow-overlap', self.allow_overlap)
-        set_xml_param(symbolizer_node, 'avoid-edges', self.avoid_edges)
-        set_xml_param(symbolizer_node, 'character-spacing', self.character_spacing)
-        set_xml_param(symbolizer_node, 'dx', self.dx)
-        set_xml_param(symbolizer_node, 'dy', self.dy)
-        set_xml_param(symbolizer_node, 'face-name', self.face_name)
-        set_xml_param(symbolizer_node, 'file', self.file)
-        set_xml_param(symbolizer_node, 'fill', self.fill)
-        set_xml_param(symbolizer_node, 'fontset-name', self.fontset_name)
-        set_xml_param(symbolizer_node, 'halo-fill', self.halo_fill)
-        set_xml_param(symbolizer_node, 'halo-radius', self.halo_radius)
-        set_xml_param(symbolizer_node, 'horizontal-alignment', self.horizontal_alignment)
-        set_xml_param(symbolizer_node, 'justify-alignment', self.justify_alignment)
-        set_xml_param(symbolizer_node, 'line-spacing', self.line_spacing)
-        set_xml_param(symbolizer_node, 'minimum-distance', self.minimum_distance)
-        set_xml_param(symbolizer_node, 'minimum-padding', self.minimum_padding)
-        # comment name, no_text for mapnik
-        set_xml_content(symbolizer_node, self.name)
-        set_xml_param(symbolizer_node, 'opacity', self.opacity)
-        set_xml_param(symbolizer_node, 'placement', self.placement)
-        set_xml_param(symbolizer_node, 'shield-dx', self.shield_dx)
-        set_xml_param(symbolizer_node, 'shiled-dy', self.shield_dy)
-        set_xml_param(symbolizer_node, 'size', self.size)
-        set_xml_param(symbolizer_node, 'spacing', self.spacing)
-        set_xml_param(symbolizer_node, 'text-opacity', self.text_opacity)
-        set_xml_param(symbolizer_node, 'text-transform', self.text_transform)
-        set_xml_param(symbolizer_node, 'unlock-image', self.unlock_image)
-        set_xml_param(symbolizer_node, 'vertical-alignment', self.vertical_alignment)
-        set_xml_param(symbolizer_node, 'wrap-before', self.wrap_before)
-        set_xml_param(symbolizer_node, 'wrap-character', self.wrap_character)
-        set_xml_param(symbolizer_node, 'wrap-width', self.wrap_width)
-        set_xml_param(symbolizer_node, 'transform', self.transform)
-        return symbolizer_node
+        node = libxml2.newNode('ShieldSymbolizer')
+        set_xml_content(node, self.name)
+        self.write_xml_properties(node)
+        return node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
@@ -1282,6 +1277,18 @@ class ShieldSymbolizer(Symbolizer):
 
 
 class TextSymbolizer(Symbolizer):
+    PROPERTIES = (
+        'allow_overlap', 'avoid_edges', 'character_spacing', 'clip', 'dx', 'dy',
+        'face_name', 'fill', 'fontset_name', 'force_odd_labels', 'halo_fill',
+        'halo_radius', 'horizontal_alignment', 'justify_alignment',
+        'label_position_tolerance', 'line_spacing', 'max_char_angle_delta',
+        'minimum_distance', 'minimum_padding', 'minimum_path_length',
+        'opacity', 'orientation', 'placement', 'placement_type', 'placements',
+        'rotate_displacement', 'size', 'spacing', 'text_ratio', 'text_transform',
+        'upright', 'vertical_alignment', 'wrap_before', 'wrap_character',
+        'wrap_width',
+    )
+    CONTENT_PROPERTY = 'name'
     HORIZONTAL = (
         ('left', 'left'),
         ('middle', 'middle'),
@@ -1422,43 +1429,10 @@ class TextSymbolizer(Symbolizer):
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
-        symbolizer_node = libxml2.newNode('TextSymbolizer')
-        set_xml_param(symbolizer_node, 'allow-overlap', self.allow_overlap)
-        set_xml_param(symbolizer_node, 'avoid-edges', self.avoid_edges)
-        set_xml_param(symbolizer_node, 'character-spacing', self.character_spacing)
-        set_xml_param(symbolizer_node, 'dx', self.dx)
-        set_xml_param(symbolizer_node, 'dy', self.dy)
-        set_xml_param(symbolizer_node, 'face-name', self.face_name)
-        set_xml_param(symbolizer_node, 'fill', self.fill)
-        set_xml_param(symbolizer_node, 'fontset-name', self.fontset_name)
-        set_xml_param(symbolizer_node, 'halo-fill', self.halo_fill)
-        set_xml_param(symbolizer_node, 'halo-radius', self.halo_radius)
-        set_xml_param(symbolizer_node, 'horizontal-alignment', self.horizontal_alignment)
-        set_xml_param(symbolizer_node, 'justify-alignment', self.justify_alignment)
-        set_xml_param(symbolizer_node, 'label-position-tolerance', self.label_position_tolerance)
-        set_xml_param(symbolizer_node, 'line-spacing', self.line_spacing)
-        set_xml_param(symbolizer_node, 'max-char-angle-delta', self.max_char_angle_delta)
-        set_xml_param(symbolizer_node, 'minimum-distance', self.minimum_distance)
-        set_xml_content(symbolizer_node, self.name)
-        set_xml_param(symbolizer_node, 'opacity', self.opacity)
-        set_xml_param(symbolizer_node, 'placement', self.placement)
-        set_xml_param(symbolizer_node, 'size', self.size)
-        set_xml_param(symbolizer_node, 'spacing', self.spacing)
-        set_xml_param(symbolizer_node, 'text-transform', self.text_transform)
-        set_xml_param(symbolizer_node, 'text-ratio', self.text_ratio)
-        set_xml_param(symbolizer_node, 'vertical-alignment', self.vertical_alignment)
-        set_xml_param(symbolizer_node, 'wrap-before', self.wrap_before)
-        set_xml_param(symbolizer_node, 'wrap-character', self.wrap_character)
-        set_xml_param(symbolizer_node, 'wrap-width', self.wrap_width)
-        set_xml_param(symbolizer_node, 'minimum-padding', self.minimum_padding)
-        set_xml_param(symbolizer_node, 'minimum-path-length', self.minimum_path_length)
-        set_xml_param(symbolizer_node, 'orientation', self.orientation)
-        set_xml_param(symbolizer_node, 'placement-type', self.placement_type)
-        set_xml_param(symbolizer_node, 'placements', self.placements)
-        set_xml_param(symbolizer_node, 'upright', self.upright)
-        set_xml_param(symbolizer_node, 'clip', self.clip)
-        set_xml_param(symbolizer_node, 'rotate-displacement', self.rotate_displacement)
-        return symbolizer_node
+        node = libxml2.newNode('TextSymbolizer')
+        set_xml_content(node, self.name)
+        self.write_xml_properties(node)
+        return node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
