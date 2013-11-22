@@ -273,12 +273,8 @@ class DataSource(models.Model):
         return ds.import_datasource(node)
 
     def specialized(self):
-        if self.type=='gdal':
-            return self.gdal
-        elif self.type=='postgis':
-            return self.postgis
-        elif self.type=='shape':
-            return self.shape
+        if hasattr(self, self.type):
+            return getattr(self, self.type)
         else:
             print "not specialized"
             return self
@@ -575,28 +571,7 @@ class Symbolizer(StylesModel):
         return specialized_symbolizer
 
     def specialized(self):
-        if self.symbtype=='Building':
-            return self.buildingsymbolizer
-        elif self.symbtype=='Line':
-            return self.linesymbolizer
-        elif self.symbtype=='LinePattern':
-            return self.linepatternsymbolizer
-        elif self.symbtype=='Markers':
-            return self.markerssymbolizer
-        elif self.symbtype=='Point':
-            return self.pointsymbolizer
-        elif self.symbtype=='Polygon':
-            return self.polygonsymbolizer
-        elif self.symbtype=='PolygonPattern':
-            return self.polygonpatternsymbolizer
-        elif self.symbtype=='Raster':
-            return self.rastersymbolizer
-        elif self.symbtype=='Shield':
-            return self.shieldsymbolizer
-        elif self.symbtype=='Text':
-            return self.textsymbolizer
-        else:
-            return self
+        return getattr(self, self.symbtype.lower() + 'symbolizer')
 
     def scale(self, factor=1):
         pass
