@@ -1198,18 +1198,6 @@ class Legend(models.Model):
                             l = LegendItem()
                             l.save_legend(self, rule, zoom)
 
-    def create_legenditems(self, zoom):
-        for li in self.legenditem_set.filter(zoom=zoom):
-            li.delete()
-        for layer in self.map.layers.all().order_by('maplayer__layer_order'):
-            for style in layer.styles.all():
-                for rule in style.rules.all().order_by('rulestyle__order').exclude(maxscale__gt=zoom).exclude(minscale__lt=zoom):
-                    if rule.name:
-                        l = LegendItem()
-                        l.save_legend(self, rule, zoom)
-        self.create_images(zoom)
-        self.create_images(zoom, 2)
-
     def create_images(self, zoom, scale_factor=1):
         for item in self.legenditem_set.select_related().filter(zoom=zoom):
             if item.legend_item_name.name:
@@ -1222,15 +1210,6 @@ class Legend(models.Model):
     def create_all_name_images(self, font_size=12, scale_factor=1):
         for lin in LegendItemName.objects.all():
             lin.render_names(font_size, scale_factor)
-
-    def estimated_min_size(self, zoom, gap):
-        items = self.legend_items(zoom)
-        params = items.aggregate(models.Max('width'), models.Max('title_width'))
-        width = 3*gap + params['width'] + params['title_width']
-        height = gap
-        for item in items:
-            height += max(item.title_height, item.height)
-        return width*height
 
     def legend_items(self, zoom):
         return self.legenditem_set.select_related().filter(zoom=zoom).exclude(image='').order_by('legend_item_name__group', 'legend_item_name__order', 'legend_item_name__slug')
