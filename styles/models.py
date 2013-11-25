@@ -1023,83 +1023,103 @@ class TextStylesModel(Symbolizer):
             if self.wrap_width:
                 self.wrap_width = int(factor * self.wrap_width)
             if self.minimum_padding:
-                ss.minimum_padding = self.minimum_padding
+                self.minimum_padding = int(factor * self.minimum_padding)
             if self.minimum_path_length:
-                ss.minimum_path_length = self.minimum_path_length
-
-
-class TextSymbolizer(TextStylesModel):
-    def __unicode__(self):
-        return 'ID: %i, %i, %s' % (self.id, self.size, self.fill)
+                self.minimum_path_length = int(factor * self.minimum_path_length)
 
     def mapnik(self, scale_factor=1):
+        """
+        NOTE: does not support HarfBuzz branch properties and other new stuff like
+        largest_bbox_only etc.
+        """
         self.scale(scale_factor)
-        ts = mapnik.TextSymbolizer()
-        ts.allow_overlap = self.allow_overlap
-        ts.avoid_edges = self.avoid_edges
+        if self.name:
+            name = mapnik.Expression(self.name.encode('utf-8'))
+        else:
+            name = mapnik.Expression('[osm_id]')
+        font_name = 'DejaVu Sans Bold'
+        if self.face_name:
+            font_name = self.face_name.encode('utf-8')
+        text_size = 10
+        if self.size != None:
+            text_size = self.size
+        text_color = mapnik.Color('black')
+        if self.fill:
+            text_color = mapnik.Color(self.fill.encode('utf-8'))
+        if self.symbtype == 'Shield':
+            path = mapnik.PathExpression(style_path + self.file.encode('utf-8'))
+            mapnik_symbolizer = mapnik.ShieldSymbolizer(name, font_name, text_size, text_color, path)
+        else:
+            mapnik_symbolizer = mapnik.TextSymbolizer(name, font_name, text_size, text_color)
+
+        mapnik_symbolizer.allow_overlap = self.allow_overlap
+        mapnik_symbolizer.avoid_edges = self.avoid_edges
         if self.character_spacing:
-            ts.character_spacing = self.character_spacing
+            mapnik_symbolizer.character_spacing = self.character_spacing
+        if self.clip:
+            mapnik_symbolizer.clip = self.clip
         displacement = (0, 0)
         if self.dx:
             displacement = (self.dx, 0)
         if self.dy:
             displacement = (displacement[0], self.dy)
-        ts.displacement = displacement
-        if self.face_name:
-            ts.face_name = self.face_name.encode('utf-8')
-        if self.fill:
-            ts.fill = mapnik.Color(self.fill.encode('utf-8'))
+        mapnik_symbolizer.displacement = displacement
         if self.fontset_name:
             fs = mapnik.FontSet(self.fontset_name.encode('utf-8'))
             fs.add_face_name(self.fontset_name.encode('utf-8'))
-            ts.fontset = fs
-        ts.force_odd_labels = self.force_odd_labels
+            mapnik_symbolizer.fontset = fs
+        mapnik_symbolizer.force_odd_labels = self.force_odd_labels
         if self.halo_fill:
-            ts.halo_fill = mapnik.Color(self.halo_fill.encode('utf-8'))
+            mapnik_symbolizer.halo_fill = mapnik.Color(self.halo_fill.encode('utf-8'))
         if self.halo_radius:
-            ts.halo_radius = self.halo_radius
+            mapnik_symbolizer.halo_radius = self.halo_radius
         if self.horizontal_alignment:
-            ts.horizontal_alignment = mapnik.horizontal_alignment.names[self.horizontal_alignment.encode('utf-8')]
+            mapnik_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.names[self.horizontal_alignment.encode('utf-8')]
         if self.justify_alignment:
-            ts.justify_alignment = mapnik.justify_alignment.names[self.justify_alignment.encode('utf-8')]
+            mapnik_symbolizer.justify_alignment = mapnik.justify_alignment.names[self.justify_alignment.encode('utf-8')]
         if self.label_position_tolerance:
-            ts.label_position_tolerance = self.label_position_tolerance
+            mapnik_symbolizer.label_position_tolerance = self.label_position_tolerance
         if self.line_spacing:
-            ts.line_spacing = self.line_spacing
+            mapnik_symbolizer.line_spacing = self.line_spacing
         if self.max_char_angle_delta:
-            ts.maximum_angle_char_delta = float(self.max_char_angle_delta)
+            mapnik_symbolizer.maximum_angle_char_delta = float(self.max_char_angle_delta)
         if self.minimum_distance:
-            ts.minimum_distance = self.minimum_distance
+            mapnik_symbolizer.minimum_distance = self.minimum_distance
+        if self.minimum_padding:
+            mapnik_symbolizer.minimum_padding = self.minimum_padding
+        if self.minimum_path_length:
+            mapnik_symbolizer.minimum_path_length = self.minimum_path_length
         if self.opacity:
-            ts.text_opacity = self.opacity
+            mapnik_symbolizer.text_opacity = self.opacity
+        if self.orientation:
+            mapnik_symbolizer.orientation = self.orientation
         if self.placement:
-            ts.label_placement = mapnik.label_placement.names[self.placement.encode('utf-8')]
-        if self.size != None:
-            ts.text_size = self.size
+            mapnik_symbolizer.label_placement = mapnik.label_placement.names[self.placement.encode('utf-8')]
         if self.spacing:
-            ts.label_spacing = self.spacing
+            mapnik_symbolizer.label_spacing = self.spacing
+        if self.text_ratio:
+            mapnik_symbolizer.text_ratio = self.text_ratio
         if self.text_transform:
             if self.text_transform == 'none' or self.text_transform == 'capitalize':
-                ts.text_transform = mapnik.text_transform.names[self.text_transform.encode('utf-8')]
+                mapnik_symbolizer.text_transform = mapnik.text_transform.names[self.text_transform.encode('utf-8')]
             else:
                 name = self.text_transform.encode('utf-8')[2:] + 'case'
-                ts.text_transform = mapnik.text_transform.names[name]
-        if self.text_ratio:
-            ts.text_ratio = self.text_ratio
+                mapnik_symbolizer.text_transform = mapnik.text_transform.names[name]
         if self.vertical_alignment:
-            ts.vertical_alignment = mapnik.vertical_alignment.names[self.vertical_alignment.encode('utf-8')]
-        ts.wrap_before = self.wrap_before
+            mapnik_symbolizer.vertical_alignment = mapnik.vertical_alignment.names[self.vertical_alignment.encode('utf-8')]
+        mapnik_symbolizer.wrap_before = self.wrap_before
         if self.wrap_character:
-            ts.wrap_char = self.wrap_character.encode('utf-8')
+            mapnik_symbolizer.wrap_char = self.wrap_character.encode('utf-8')
         if self.wrap_width:
-            ts.wrap_width = self.wrap_width
-        if self.minimum_padding:
-            ts.minimum_padding = self.minimum_padding
-        if self.minimum_path_length:
-            ts.minimum_path_length = self.minimum_path_length
-        if self.clip:
-            ts.clip = self.clip
-        return ts
+            mapnik_symbolizer.wrap_width = self.wrap_width
+        if self.halo_rasterizer:
+            mapnik_symbolizer.halo_rasterizer = mapnik.halo_rasterizer.names[self.halo_rasterizer.encode('utf-8')]
+        return mapnik_symbolizer
+
+
+class TextSymbolizer(TextStylesModel):
+    def __unicode__(self):
+        return 'ID: %i, %i, %s' % (self.id, self.size, self.fill)
 
     def symbol_size(self):
         if not self.dx:
@@ -1134,82 +1154,25 @@ class ShieldSymbolizer(TextStylesModel):
                 self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
 
     def mapnik(self, scale_factor=1):
-        self.scale(scale_factor)
-        if self.name:
-            name = mapnik.Expression(self.name.encode('utf-8'))
+        mapnik_symbolizer = super(ShieldSymbolizer, self).mapnik(scale_factor)
+        if self.text_opacity:
+            mapnik_symbolizer.text_opacity = self.text_opacity
         else:
-            name = mapnik.Expression('[osm_id]')
-        font_name = 'DejaVu Sans Bold'
-        if self.face_name:
-            font_name = self.face_name.encode('utf-8')
-        text_size = 10
-        if self.size != None:
-            text_size = self.size
-        text_color = mapnik.Color('black')
-        if self.fill:
-            text_color = mapnik.Color(self.fill.encode('utf-8'))
-        path = mapnik.PathExpression(style_path + self.file.encode('utf-8'))
-        ss = mapnik.ShieldSymbolizer(name, font_name, text_size, text_color, path)
-        ss.allow_overlap = self.allow_overlap
-        ss.avoid_edges = self.avoid_edges
-        if self.character_spacing:
-            ss.character_spacing = self.character_spacing
-        displacement = (0, 0)
-        if self.dx:
-            displacement = (self.dx, 0)
-        if self.dy:
-            displacement = (displacement[0], self.dy)
-        ss.displacement = displacement
-        if self.fontset_name:
-            fs = mapnik.Fontset(self.fontset_name.encode('utf-8'))
-            fs.add_face_name(self.fontset_name.encode('utf-8'))
-            ss.fontset = fs
-        if self.halo_fill:
-            ss.halo_fill = mapnik.Color(self.halo_fill.encode('utf-8'))
-        if self.halo_radius:
-            ss.halo_radius = self.halo_radius
-        if self.horizontal_alignment:
-            ss.horizontal_alignment = mapnik.horizontal_alignment.names[self.horizontal_alignment.encode('utf-8')]
-        if self.justify_alignment:
-            ss.justify_alignment = mapnik.justify_alignment.names[self.justify_alignment.encode('utf-8')]
-        if self.line_spacing:
-            ss.line_spacing = self.line_spacing
-        if self.minimum_distance:
-            ss.minimum_distance = self.minimum_distance
-        if self.minimum_padding:
-            ss.minimum_padding = self.minimum_padding
+            # reset the default to overwrite super().mapnik()
+            mapnik_symbolizer.text_opacity = 1.0
         if self.opacity:
-            ss.opacity = self.opacity
-        if self.placement:
-            ss.label_placement = mapnik.label_placement.names[self.placement.encode('utf-8')]
+            mapnik_symbolizer.opacity = self.opacity
+        if not self.unlock_image is None:
+            mapnik_symbolizer.unlock_image = self.unlock_image
         shield_displacement = (0, 0)
         if self.dx:
             shield_displacement = (self.shield_dx, 0)
         if self.dy:
             shield_displacement = (shield_displacement[0], self.shield_dy)
-        ss.shield_displacement = shield_displacement
-        if self.spacing:
-            ss.label_spacing = self.spacing
-        if self.text_opacity:
-            ss.text_opacity = self.text_opacity
-        if self.text_transform:
-            if self.text_transform == 'none' or self.text_transform == 'capitalize':
-                ss.text_transform = mapnik.text_transform.names[self.text_transform.encode('utf-8')]
-            else:
-                name = self.text_transform.encode('utf-8')[2:] + 'case'
-                ss.text_transform = mapnik.text_transform.names[name]
-        if self.unlock_image:
-            ss.unlock_image = self.unlock_image
-        if self.vertical_alignment:
-            ss.vertical_alignment = mapnik.vertical_alignment.names[self.vertical_alignment.encode('utf-8')]
-        ss.wrap_before = self.wrap_before
-        if self.wrap_character:
-            ss.wrap_char = self.wrap_character.encode('utf-8')
-        if self.wrap_width:
-            ss.wrap_width = self.wrap_width
+        mapnik_symbolizer.shield_displacement = shield_displacement
         if self.transform:
-            ss.transform = self.transform.encode('utf-8')
-        return ss
+            mapnik_symbolizer.transform = self.transform.encode('utf-8')
+        return mapnik_symbolizer
 
     def symbol_size(self):
         width, height = self.image_size()
