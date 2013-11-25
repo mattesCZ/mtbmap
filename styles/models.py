@@ -99,7 +99,7 @@ class Map(StylesModel):
             self.save()
 
             # save styles
-            style_nodes = ctxt.xpathEval('//Style')
+            style_nodes = ctxt.xpathEval('/Map/Style')
             for node in style_nodes:
                 style = Style()
                 new_style = style.import_style(node)
@@ -109,7 +109,7 @@ class Map(StylesModel):
                 stylemap.save()
 
             # save layers
-            layer_nodes = ctxt.xpathEval('//Layer')
+            layer_nodes = ctxt.xpathEval('/Map/Layer')
             order = 0
             for node in layer_nodes:
                 layer = Layer()
