@@ -598,7 +598,7 @@ class Symbolizer(StylesModel):
         pass
 
     def symbol_size(self):
-        # tuple (height, width)
+        # tuple (width, height)
         return (None, None)
 
     def get_xml(self, scale_factor=1):
@@ -608,6 +608,9 @@ class Symbolizer(StylesModel):
         if self.CONTENT_PROPERTY:
             set_xml_content(node, getattr(self, self.CONTENT_PROPERTY))
         return node
+
+    def image_size(self, image_field_name='file'):
+        return PIL.Image.open(style_path + getattr(self, image_field_name).encode('utf-8'))
 
 
 class SymbolizerRule(models.Model):
@@ -630,7 +633,7 @@ class BuildingSymbolizer(Symbolizer):
             self.height = int(factor * self.height)
 
     def symbol_size(self):
-        return (self.height, 0)
+        return (0, self.height)
 
 
 class LineSymbolizer(Symbolizer):
@@ -703,7 +706,7 @@ class LineSymbolizer(Symbolizer):
             self.stroke_width = 1
         if not self.offset:
             self.offset = 0
-        return (0, self.stroke_width + abs(self.offset))
+        return (self.stroke_width + abs(self.offset), 0)
 
 
 class LinePatternSymbolizer(Symbolizer):
@@ -725,10 +728,7 @@ class LinePatternSymbolizer(Symbolizer):
         return lps
 
     def symbol_size(self):
-        im = PIL.Image.open(style_path + self.file.encode('utf-8'))
-        height = im.size[1]
-        width = im.size[0]
-        return (height, width)
+        return self.image_size()
 
 
 class MarkersSymbolizer(Symbolizer):
@@ -776,10 +776,8 @@ class MarkersSymbolizer(Symbolizer):
                 self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
 
     def symbol_size(self):
-        im = PIL.Image.open(style_path + self.file.encode('utf-8'))
-        height = im.size[1]
-        width = im.size[0]
-        return (max(height, self.stroke_width), width)
+        width, height = self.image_size()
+        return (width, max(height, self.stroke_width))
 
 
 class PointSymbolizer(Symbolizer):
@@ -812,10 +810,7 @@ class PointSymbolizer(Symbolizer):
         return ps
 
     def symbol_size(self):
-        im = PIL.Image.open(style_path + self.file.encode('utf-8'))
-        height = im.size[1]
-        width = im.size[0]
-        return (height, width)
+        return self.image_size()
 
 
 class PolygonSymbolizer(Symbolizer):
@@ -860,10 +855,7 @@ class PolygonPatternSymbolizer(Symbolizer):
         return pps
 
     def symbol_size(self):
-        im = PIL.Image.open(style_path + self.file.encode('utf-8'))
-        height = im.size[1]
-        width = im.size[0]
-        return (height, width)
+        return self.image_size()
 
 
 class RasterSymbolizer(Symbolizer):
@@ -1112,7 +1104,7 @@ class TextSymbolizer(TextStylesModel):
     def symbol_size(self):
         if not self.dx:
             self.dx = 0
-        return (self.size + abs(self.dx), 0)
+        return (0, self.size + abs(self.dx))
 
 
 class ShieldSymbolizer(TextStylesModel):
@@ -1220,14 +1212,12 @@ class ShieldSymbolizer(TextStylesModel):
         return ss
 
     def symbol_size(self):
-        im = PIL.Image.open(style_path + self.file.encode('utf-8'))
-        height = im.size[1]
-        width = im.size[0]
+        width, height = self.image_size()
         if not self.dx:
             self.dx = 0
         if not self.dy:
             self.dy = 0
-        return (height + abs(self.dx), width + abs(self.dy))
+        return (width + abs(self.dy), height + abs(self.dx))
 
 
 class Legend(models.Model):
@@ -1339,7 +1329,7 @@ class LegendItem(models.Model):
                 specialized = symbolizer.specialized()
                 specialized.scale(scale_factor)
                 symb_size = specialized.symbol_size()
-                size = (max(size[0], int(symb_size[0]) + 1), max(size[1], int(symb_size[1]) + 1))
+                size = (max(size[0], int(symb_size[1]) + 1), max(size[1], int(symb_size[0]) + 1))
                 # increase the size, if polygon has an outline
                 if self.geometry=='Collection' and 'Line' in symbolizer.symbtype:
                     add_outline = max(add_outline, int(float(symb_size[1]) + 0.5))
