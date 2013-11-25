@@ -601,6 +601,14 @@ class Symbolizer(StylesModel):
         # tuple (height, width)
         return (None, None)
 
+    def get_xml(self, scale_factor=1):
+        node = libxml2.newNode(self.symbtype + 'Symbolizer')
+        self.scale(scale_factor)
+        self.write_xml_properties(node)
+        if self.CONTENT_PROPERTY:
+            set_xml_content(node, getattr(self, self.CONTENT_PROPERTY))
+        return node
+
 
 class SymbolizerRule(models.Model):
     order = models.PositiveIntegerField()
@@ -620,12 +628,6 @@ class BuildingSymbolizer(Symbolizer):
     def scale(self, factor=1):
         if factor != 1:
             self.height = int(factor * self.height)
-
-    def get_xml(self, scale_factor=1):
-        self.scale(scale_factor)
-        node = libxml2.newNode('BuildingSymbolizer')
-        self.write_xml_properties(node)
-        return node
 
     def symbol_size(self):
         return (self.height, 0)
@@ -670,12 +672,6 @@ class LineSymbolizer(Symbolizer):
                 self.stroke_dasharray = ', '.join(dash_parts)
             if self.offset:
                 self.offset *= factor
-
-    def get_xml(self, scale_factor=1):
-        self.scale(scale_factor)
-        node = libxml2.newNode('LineSymbolizer')
-        self.write_xml_properties(node)
-        return node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
@@ -722,12 +718,6 @@ class LinePatternSymbolizer(Symbolizer):
         if factor == 2:
             if self.file:
                 self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
-
-    def get_xml(self, scale_factor=1):
-        self.scale(scale_factor)
-        node = libxml2.newNode('LinePatternSymbolizer')
-        self.write_xml_properties(node)
-        return node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
@@ -785,12 +775,6 @@ class MarkersSymbolizer(Symbolizer):
             if self.file:
                 self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
 
-    def get_xml(self, scale_factor=1):
-        self.scale(scale_factor)
-        node = libxml2.newNode('MarkersSymbolizer')
-        self.write_xml_properties(node)
-        return node
-
     def symbol_size(self):
         im = PIL.Image.open(style_path + self.file.encode('utf-8'))
         height = im.size[1]
@@ -813,12 +797,6 @@ class PointSymbolizer(Symbolizer):
         if factor == 2:
             if self.file:
                 self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
-
-    def get_xml(self, scale_factor=1):
-        self.scale(scale_factor)
-        node = libxml2.newNode('PointSymbolizer')
-        self.write_xml_properties(node)
-        return node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
@@ -849,12 +827,6 @@ class PolygonSymbolizer(Symbolizer):
     def __unicode__(self):
         return 'ID: %i, %s, %s' % (self.id, self.fill, self.fill_opacity)
 
-    def get_xml(self, scale_factor=1):
-        self.scale(scale_factor)
-        node = libxml2.newNode('PolygonSymbolizer')
-        self.write_xml_properties(node)
-        return node
-
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
         ps = mapnik.PolygonSymbolizer()
@@ -881,12 +853,6 @@ class PolygonPatternSymbolizer(Symbolizer):
         if factor == 2:
             if self.file:
                 self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
-
-    def get_xml(self, scale_factor=1):
-        self.scale(scale_factor)
-        node = libxml2.newNode('PolygonPatternSymbolizer')
-        self.write_xml_properties(node)
-        return node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
@@ -924,12 +890,6 @@ class RasterSymbolizer(Symbolizer):
 
     def __unicode__(self):
         return 'ID: %i, %s, %s' % (self.id, self.comp_op, self.opacity)
-
-    def get_xml(self, scale_factor=1):
-        self.scale(scale_factor)
-        node = libxml2.newNode('RasterSymbolizer')
-        self.write_xml_properties(node)
-        return node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
@@ -1080,13 +1040,6 @@ class TextSymbolizer(TextStylesModel):
     def __unicode__(self):
         return 'ID: %i, %i, %s' % (self.id, self.size, self.fill)
 
-    def get_xml(self, scale_factor=1):
-        self.scale(scale_factor)
-        node = libxml2.newNode('TextSymbolizer')
-        set_xml_content(node, self.name)
-        self.write_xml_properties(node)
-        return node
-
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
         ts = mapnik.TextSymbolizer()
@@ -1178,7 +1131,7 @@ class ShieldSymbolizer(TextStylesModel):
         return 'ID: %i, %s' % (self.id, self.file)
 
     def scale(self, factor=1):
-        super(ShieldSymbolizer, self).scale(2)
+        super(ShieldSymbolizer, self).scale(factor)
         if factor != 1:
             if self.shield_dx:
                 self.shield_dx = int(factor * self.shield_dx)
@@ -1187,13 +1140,6 @@ class ShieldSymbolizer(TextStylesModel):
         if factor == 2:
             if self.file:
                 self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
-
-    def get_xml(self, scale_factor=1):
-        self.scale(scale_factor)
-        node = libxml2.newNode('ShieldSymbolizer')
-        set_xml_content(node, self.name)
-        self.write_xml_properties(node)
-        return node
 
     def mapnik(self, scale_factor=1):
         self.scale(scale_factor)
