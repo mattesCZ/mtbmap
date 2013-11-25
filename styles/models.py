@@ -1283,7 +1283,7 @@ class LegendItem(models.Model):
                 lr.save()
 
     def image_size(self, scale_factor=1):
-        size = (12, 12)
+        size = (12 * int(scale_factor), 12 * int(scale_factor))
         add_outline = 0
         for rule in self.rules.order_by('legenditemrule__order'):
             for symbolizer in rule.symbolizers.all().order_by('symbolizerrule__order'):
@@ -1351,7 +1351,7 @@ class LegendItem(models.Model):
         if self.geometry=='LineString':
             size = (3*size[1], size[1])
         if self.geometry=='Collection':
-            size = (50, 35)
+            size = (50 * int(scale_factor), 35 * int(scale_factor))
         width, height = size
         l = mapnik.Layer('legend')
         l.datasource = ds
