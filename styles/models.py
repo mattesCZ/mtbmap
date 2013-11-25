@@ -610,7 +610,7 @@ class Symbolizer(StylesModel):
         return node
 
     def image_size(self, image_field_name='file'):
-        return PIL.Image.open(style_path + getattr(self, image_field_name).encode('utf-8'))
+        return PIL.Image.open(style_path + getattr(self, image_field_name).encode('utf-8')).size
 
 
 class SymbolizerRule(models.Model):
@@ -1329,10 +1329,10 @@ class LegendItem(models.Model):
                 specialized = symbolizer.specialized()
                 specialized.scale(scale_factor)
                 symb_size = specialized.symbol_size()
-                size = (max(size[0], int(symb_size[1]) + 1), max(size[1], int(symb_size[0]) + 1))
+                size = (max(size[0], int(symb_size[0]) + 1), max(size[1], int(symb_size[1]) + 1))
                 # increase the size, if polygon has an outline
                 if self.geometry=='Collection' and 'Line' in symbolizer.symbtype:
-                    add_outline = max(add_outline, int(float(symb_size[1]) + 0.5))
+                    add_outline = max(add_outline, int(float(symb_size[0]) + 0.5))
         if add_outline:
             size = (size[0] + add_outline, size[1] + add_outline)
         return size
@@ -1386,14 +1386,15 @@ class LegendItem(models.Model):
             mapnik_rule.min_scale = zooms[19]
             s.rules.append(mapnik_rule)
         if self.geometry=='LineString':
-            size = (size[1], 3*size[1])
+            size = (3*size[1], size[1])
         if self.geometry=='Collection':
-            size = (35, 50)
+            size = (50, 35)
+        width, height = size
         l = mapnik.Layer('legend')
         l.datasource = ds
         l.styles.append('Legend_style')
         # create map object with specified width and height
-        m = mapnik.Map(size[1], size[0])
+        m = mapnik.Map(width, height)
         # transparent background
         m.background = mapnik.Color('rgba(0,0,0,0)')
         m.append_style('Legend_style', s)
@@ -1401,18 +1402,18 @@ class LegendItem(models.Model):
         prj = mapnik.Projection("+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over")
         lon = 0.01
         lat = 0.01
-        if size[0] > size[1]:
-            lat = lat * size[0] / size[1]
+        if height > width:
+            lat = lat * height / width
         else:
-            lon = lat * size[1] / size[0]
+            lon = lat * width / height
         ll = (-lon, -lat, lon, lat)
         c0 = prj.forward(mapnik.Coord(ll[0],ll[1]))
         c1 = prj.forward(mapnik.Coord(ll[2],ll[3]))
         bbox = mapnik.Box2d(c0.x,c0.y,c1.x,c1.y)
         m.zoom_to_box(bbox)
-        im = mapnik.Image(size[1], size[0])
+        im = mapnik.Image(width, height)
         mapnik.render(m, im)
-        view = im.view(0, 0, size[1], size[0])
+        view = im.view(0, 0, width, height)
         view.save(path, 'png')
         return 0
 
