@@ -41,7 +41,7 @@ class StylesModel(models.Model):
             default = getattr(self, property)
             value = xpath_query(node, './@%s' % self._xml_property_name(property))
             # Don't replace empty string for None
-            if not (default=='' and value==None):
+            if not (str(default)=='' and value==None):
                 setattr(self, property, value)
 
     def zoom_to_scale(self, zoom, max=True):
@@ -946,200 +946,7 @@ class RasterSymbolizer(Symbolizer):
         return (0, 0)
 
 
-class ShieldSymbolizer(Symbolizer):
-    PROPERTIES = (
-        'allow_overlap', 'avoid_edges', 'character_spacing', 'dx', 'dy',
-        'face_name', 'file', 'fill', 'fontset_name', 'halo_fill',
-        'halo_radius', 'horizontal_alignment', 'justify_alignment',
-        'line_spacing', 'minimum_distance', 'minimum_padding',
-        'opacity', 'placement', 'shield_dx', 'shield_dy', 'size',
-        'spacing', 'text_opacity', 'text_transform', 'transform',
-        'unlock_image', 'vertical_alignment', 'wrap_before',
-        'wrap_character', 'wrap_width',
-    )
-    CONTENT_PROPERTY = 'name'
-    HORIZONTAL = (
-        ('left', 'left'),
-        ('middle', 'middle'),
-        ('right', 'right'),
-    )
-    PLACEMENT = (
-        ('point', 'point'),
-        ('line', 'line'),
-        ('vertex', 'vertex'),
-    )
-    TEXT_TRANSFORM = (
-        ('none', 'none'),
-        ('toupper', 'toupper'),
-        ('tolower', 'tolower'),
-    )
-    VERTICAL = (
-        ('top', 'top'),
-        ('middle', 'middle'),
-        ('bottom', 'bottom'),
-    )
-    allow_overlap = models.NullBooleanField()
-    avoid_edges = models.NullBooleanField()
-    character_spacing = models.PositiveIntegerField(null=True, blank=True)
-    dx = models.IntegerField(null=True, blank=True)
-    dy = models.IntegerField(null=True, blank=True)
-    face_name = models.CharField(max_length=200, null=True, blank=True)
-    file = models.CharField(max_length=400)
-    fill = models.CharField(max_length=200, default='rgb(0, 0, 0)', null=True, blank=True)
-    fontset_name = models.CharField(max_length=200, null=True, blank=True)
-    halo_fill = models.CharField(max_length=200, null=True, blank=True)
-    halo_radius = models.PositiveIntegerField(null=True, blank=True)
-    horizontal_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True, blank=True)
-    justify_alignment = models.CharField(max_length=10, choices=HORIZONTAL, null=True, blank=True)
-    line_spacing = models.PositiveIntegerField(null=True, blank=True)
-    minimum_distance = models.PositiveIntegerField(null=True, blank=True)
-    minimum_padding = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
-    name = models.CharField(max_length=200, null=True, blank=True)
-    opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
-    placement = models.CharField(max_length=10, choices=PLACEMENT, null=True, blank=True)
-    shield_dx = models.IntegerField(null=True, blank=True)
-    shield_dy = models.IntegerField(null=True, blank=True)
-    size = models.PositiveIntegerField(null=True, blank=True)
-    spacing = models.PositiveIntegerField(null=True, blank=True)
-    text_opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
-    text_transform = models.CharField(max_length=200, choices=TEXT_TRANSFORM, null=True, blank=True)
-    unlock_image = models.NullBooleanField()
-    vertical_alignment = models.CharField(max_length=10, choices=VERTICAL, null=True, blank=True)
-    wrap_before = models.NullBooleanField()
-    wrap_character = models.CharField(max_length=200, null=True, blank=True)
-    wrap_width = models.PositiveIntegerField(null=True, blank=True)
-    transform = models.CharField(max_length=200, null=True, blank=True)
-
-    def __unicode__(self):
-        return 'ID: %i, %s' % (self.id, self.file)
-
-    def scale(self, factor=1):
-        if factor != 1:
-            if self.character_spacing:
-                self.character_spacing = int(factor * self.character_spacing)
-            if self.dx:
-                self.dx = int(factor * self.dx)
-            if self.dy:
-                self.dy = int(factor * self.dy)
-            if self.halo_radius:
-                self.halo_radius = int(factor * self.halo_radius)
-            if self.line_spacing:
-                self.line_spacing = int(factor * self.line_spacing)
-            if self.minimum_distance:
-                self.minimum_distance = int(factor * self.minimum_distance)
-            if self.minimum_padding:
-                self.minimum_padding = float(factor * self.minimum_padding)
-            if self.shield_dx:
-                self.shield_dx = int(factor * self.shield_dx)
-            if self.shield_dy:
-                self.shield_dy = int(factor * self.shield_dy)
-            if self.size:
-                self.size = int(factor * self.size)
-            if self.spacing:
-                self.spacing = int(factor * self.spacing)
-            if self.wrap_width:
-                self.wrap_width = int(factor * self.wrap_width)
-        if factor == 2:
-            if self.file:
-                self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
-
-    def get_xml(self, scale_factor=1):
-        self.scale(scale_factor)
-        node = libxml2.newNode('ShieldSymbolizer')
-        set_xml_content(node, self.name)
-        self.write_xml_properties(node)
-        return node
-
-    def mapnik(self, scale_factor=1):
-        self.scale(scale_factor)
-        if self.name:
-            name = mapnik.Expression(self.name.encode('utf-8'))
-        else:
-            name = mapnik.Expression('[osm_id]')
-        font_name = 'DejaVu Sans Bold'
-        if self.face_name:
-            font_name = self.face_name.encode('utf-8')
-        text_size = 10
-        if self.size != None:
-            text_size = self.size
-        text_color = mapnik.Color('black')
-        if self.fill:
-            text_color = mapnik.Color(self.fill.encode('utf-8'))
-        path = mapnik.PathExpression(style_path + self.file.encode('utf-8'))
-        ss = mapnik.ShieldSymbolizer(name, font_name, text_size, text_color, path)
-        ss.allow_overlap = self.allow_overlap
-        ss.avoid_edges = self.avoid_edges
-        if self.character_spacing:
-            ss.character_spacing = self.character_spacing
-        displacement = (0, 0)
-        if self.dx:
-            displacement = (self.dx, 0)
-        if self.dy:
-            displacement = (displacement[0], self.dy)
-        ss.displacement = displacement
-        if self.fontset_name:
-            fs = mapnik.Fontset(self.fontset_name.encode('utf-8'))
-            fs.add_face_name(self.fontset_name.encode('utf-8'))
-            ss.fontset = fs
-        if self.halo_fill:
-            ss.halo_fill = mapnik.Color(self.halo_fill.encode('utf-8'))
-        if self.halo_radius:
-            ss.halo_radius = self.halo_radius
-        if self.horizontal_alignment:
-            ss.horizontal_alignment = mapnik.horizontal_alignment.names[self.horizontal_alignment.encode('utf-8')]
-        if self.justify_alignment:
-            ss.justify_alignment = mapnik.justify_alignment.names[self.justify_alignment.encode('utf-8')]
-        if self.line_spacing:
-            ss.line_spacing = self.line_spacing
-        if self.minimum_distance:
-            ss.minimum_distance = self.minimum_distance
-        if self.minimum_padding:
-            ss.minimum_padding = self.minimum_padding
-        if self.opacity:
-            ss.opacity = self.opacity
-        if self.placement:
-            ss.label_placement = mapnik.label_placement.names[self.placement.encode('utf-8')]
-        shield_displacement = (0, 0)
-        if self.dx:
-            shield_displacement = (self.shield_dx, 0)
-        if self.dy:
-            shield_displacement = (shield_displacement[0], self.shield_dy)
-        ss.shield_displacement = shield_displacement
-        if self.spacing:
-            ss.label_spacing = self.spacing
-        if self.text_opacity:
-            ss.text_opacity = self.text_opacity
-        if self.text_transform:
-            if self.text_transform == 'none' or self.text_transform == 'capitalize':
-                ss.text_transform = mapnik.text_transform.names[self.text_transform.encode('utf-8')]
-            else:
-                name = self.text_transform.encode('utf-8')[2:] + 'case'
-                ss.text_transform = mapnik.text_transform.names[name]
-        if self.unlock_image:
-            ss.unlock_image = self.unlock_image
-        if self.vertical_alignment:
-            ss.vertical_alignment = mapnik.vertical_alignment.names[self.vertical_alignment.encode('utf-8')]
-        ss.wrap_before = self.wrap_before
-        if self.wrap_character:
-            ss.wrap_char = self.wrap_character.encode('utf-8')
-        if self.wrap_width:
-            ss.wrap_width = self.wrap_width
-        if self.transform:
-            ss.transform = self.transform.encode('utf-8')
-        return ss
-
-    def symbol_size(self):
-        im = PIL.Image.open(style_path + self.file.encode('utf-8'))
-        height = im.size[1]
-        width = im.size[0]
-        if not self.dx:
-            self.dx = 0
-        if not self.dy:
-            self.dy = 0
-        return (height + abs(self.dx), width + abs(self.dy))
-
-
-class TextSymbolizer(Symbolizer):
+class TextStylesModel(Symbolizer):
     # TODO:
     # Add other properties to class methods: orientation, placement_type,
     # placements, upright, rotate_displacement, halo_rasterizer, largest_bbox_only
@@ -1238,8 +1045,8 @@ class TextSymbolizer(Symbolizer):
     wrap_character = models.CharField(max_length=200, null=True, blank=True)
     text_transform = models.CharField(max_length=200, choices=TEXT_TRANSFORM, null=True, blank=True)
 
-    def __unicode__(self):
-        return 'ID: %i, %i, %s' % (self.id, self.size, self.fill)
+    class Meta:
+        abstract = True
 
     def scale(self, factor=1):
         if factor != 1:
@@ -1267,6 +1074,11 @@ class TextSymbolizer(Symbolizer):
                 ss.minimum_padding = self.minimum_padding
             if self.minimum_path_length:
                 ss.minimum_path_length = self.minimum_path_length
+
+
+class TextSymbolizer(TextStylesModel):
+    def __unicode__(self):
+        return 'ID: %i, %i, %s' % (self.id, self.size, self.fill)
 
     def get_xml(self, scale_factor=1):
         self.scale(scale_factor)
@@ -1348,6 +1160,128 @@ class TextSymbolizer(Symbolizer):
         if not self.dx:
             self.dx = 0
         return (self.size + abs(self.dx), 0)
+
+
+class ShieldSymbolizer(TextStylesModel):
+    PROPERTIES = TextStylesModel().PROPERTIES + (
+        'file', 'opacity', 'text_opacity', 'unlock_image', 'shield_dx', 'shield_dy',
+        'transform',
+    )
+    file = models.CharField(max_length=400)
+    text_opacity = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
+    unlock_image = models.NullBooleanField()
+    shield_dx = models.IntegerField(null=True, blank=True)
+    shield_dy = models.IntegerField(null=True, blank=True)
+    transform = models.CharField(max_length=200, null=True, blank=True)
+
+    def __unicode__(self):
+        return 'ID: %i, %s' % (self.id, self.file)
+
+    def scale(self, factor=1):
+        super(ShieldSymbolizer, self).scale(2)
+        if factor != 1:
+            if self.shield_dx:
+                self.shield_dx = int(factor * self.shield_dx)
+            if self.shield_dy:
+                self.shield_dy = int(factor * self.shield_dy)
+        if factor == 2:
+            if self.file:
+                self.file = '/'.join(self.file.split('/')[0:-1]) + '/print-' + self.file.split('/')[-1]
+
+    def get_xml(self, scale_factor=1):
+        self.scale(scale_factor)
+        node = libxml2.newNode('ShieldSymbolizer')
+        set_xml_content(node, self.name)
+        self.write_xml_properties(node)
+        return node
+
+    def mapnik(self, scale_factor=1):
+        self.scale(scale_factor)
+        if self.name:
+            name = mapnik.Expression(self.name.encode('utf-8'))
+        else:
+            name = mapnik.Expression('[osm_id]')
+        font_name = 'DejaVu Sans Bold'
+        if self.face_name:
+            font_name = self.face_name.encode('utf-8')
+        text_size = 10
+        if self.size != None:
+            text_size = self.size
+        text_color = mapnik.Color('black')
+        if self.fill:
+            text_color = mapnik.Color(self.fill.encode('utf-8'))
+        path = mapnik.PathExpression(style_path + self.file.encode('utf-8'))
+        ss = mapnik.ShieldSymbolizer(name, font_name, text_size, text_color, path)
+        ss.allow_overlap = self.allow_overlap
+        ss.avoid_edges = self.avoid_edges
+        if self.character_spacing:
+            ss.character_spacing = self.character_spacing
+        displacement = (0, 0)
+        if self.dx:
+            displacement = (self.dx, 0)
+        if self.dy:
+            displacement = (displacement[0], self.dy)
+        ss.displacement = displacement
+        if self.fontset_name:
+            fs = mapnik.Fontset(self.fontset_name.encode('utf-8'))
+            fs.add_face_name(self.fontset_name.encode('utf-8'))
+            ss.fontset = fs
+        if self.halo_fill:
+            ss.halo_fill = mapnik.Color(self.halo_fill.encode('utf-8'))
+        if self.halo_radius:
+            ss.halo_radius = self.halo_radius
+        if self.horizontal_alignment:
+            ss.horizontal_alignment = mapnik.horizontal_alignment.names[self.horizontal_alignment.encode('utf-8')]
+        if self.justify_alignment:
+            ss.justify_alignment = mapnik.justify_alignment.names[self.justify_alignment.encode('utf-8')]
+        if self.line_spacing:
+            ss.line_spacing = self.line_spacing
+        if self.minimum_distance:
+            ss.minimum_distance = self.minimum_distance
+        if self.minimum_padding:
+            ss.minimum_padding = self.minimum_padding
+        if self.opacity:
+            ss.opacity = self.opacity
+        if self.placement:
+            ss.label_placement = mapnik.label_placement.names[self.placement.encode('utf-8')]
+        shield_displacement = (0, 0)
+        if self.dx:
+            shield_displacement = (self.shield_dx, 0)
+        if self.dy:
+            shield_displacement = (shield_displacement[0], self.shield_dy)
+        ss.shield_displacement = shield_displacement
+        if self.spacing:
+            ss.label_spacing = self.spacing
+        if self.text_opacity:
+            ss.text_opacity = self.text_opacity
+        if self.text_transform:
+            if self.text_transform == 'none' or self.text_transform == 'capitalize':
+                ss.text_transform = mapnik.text_transform.names[self.text_transform.encode('utf-8')]
+            else:
+                name = self.text_transform.encode('utf-8')[2:] + 'case'
+                ss.text_transform = mapnik.text_transform.names[name]
+        if self.unlock_image:
+            ss.unlock_image = self.unlock_image
+        if self.vertical_alignment:
+            ss.vertical_alignment = mapnik.vertical_alignment.names[self.vertical_alignment.encode('utf-8')]
+        ss.wrap_before = self.wrap_before
+        if self.wrap_character:
+            ss.wrap_char = self.wrap_character.encode('utf-8')
+        if self.wrap_width:
+            ss.wrap_width = self.wrap_width
+        if self.transform:
+            ss.transform = self.transform.encode('utf-8')
+        return ss
+
+    def symbol_size(self):
+        im = PIL.Image.open(style_path + self.file.encode('utf-8'))
+        height = im.size[1]
+        width = im.size[0]
+        if not self.dx:
+            self.dx = 0
+        if not self.dy:
+            self.dy = 0
+        return (height + abs(self.dx), width + abs(self.dy))
 
 
 class Legend(models.Model):
