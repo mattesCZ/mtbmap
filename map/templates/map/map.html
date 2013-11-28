@@ -97,8 +97,10 @@ MTBMAP.overlayLayers["{{ geojson_layer.slug }}"].addTo(map);
     {% trans "Author" %}: Martin Tesař, osmmtb&nbsp;(at)&nbsp;gmail.com<br>
     {% trans "Projection" %}: {% trans "Conformal cylindrical - Mercator" %}<br>
     {% trans "Data provided by" %} <a href="http://openstreetmap.org/" target="_blank" >OpenStreetMap</a> {% trans "and" %}&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a> | {% trans "Version" %}: {{ default_tile_layer.last_update.isoformat }} {% trans "from" %} <a href="http://download.geofabrik.de/osm/" target="_blank" >Geofabrik.de</a><br>
-    {% blocktrans with lab_link='<a href="http://sitola.fi.muni.cz" target="_blank" > SITOLA </a>' %}
-    Hardware provided by {{ lab_link }} laboratory
-    {% endblocktrans %} 
+    {% blocktrans with lab_link='<a href="http://sitola.fi.muni.cz" target="_blank" >SITOLA</a>' %}
+    Hardware provided by {{ lab_link }} laboratory,
+    {% endblocktrans %}
+    <a href="http://fi.muni.cz" target="_blank" >{% trans "Faculty of Informatics" %}</a>,
+    <a href="http://muni.cz" target="_blank" >{% trans "Masaryk University" %}</a>
 </footer>
 {% endblock %}

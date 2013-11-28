@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-18 11:55+0100\n"
+"POT-Creation-Date: 2013-11-28 07:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Martin Tesar <osmmtb@gmail.com>\n"
 "Language-Team: Czech <>\n"
@@ -345,12 +345,20 @@ msgstr "od"
 #, python-format
 msgid ""
 "\n"
-"    Hardware provided by %(lab_link)s laboratory\n"
+"    Hardware provided by %(lab_link)s laboratory,\n"
 "    "
 msgstr ""
 "\n"
-"    Hardware poskytuje laboratoř %(lab_link)s\n"
+"    Hardware poskytuje laboratoř %(lab_link)s,\n"
 "    "
+
+#: templates/map/map.html:103
+msgid "Faculty of Informatics"
+msgstr "Fakulta informatiky"
+
+#: templates/map/map.html:104
+msgid "Masaryk University"
+msgstr "Masarykova univerzita"
 
 #: templates/map/places.html:3
 msgid "Enter place name, address or coordinates"
