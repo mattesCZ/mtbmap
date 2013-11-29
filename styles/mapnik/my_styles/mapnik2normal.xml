@@ -42,7 +42,7 @@
       <Filter>(([access]='private') or ([access]='no'))</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/noAccess.png" minimum-distance="6" placement="line" spacing="12"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="6" placement="line" spacing="12" file="../symbols/noAccess.png"/>
     </Rule>
   </Style>
   <Style name="admin-01234">
@@ -278,13 +278,6 @@
       <PointSymbolizer file="../symbols/capital16.png"/>
       <TextSymbolizer allow-overlap="1" dy="-9" fill="rgb(0,0,0)" fontset-name="book-fonts" halo-radius="1" horizontal-alignment="right" size="18">[upper]</TextSymbolizer>
     </Rule>
-<!--    <Rule name="capital-city">
-      <Filter>(([place]='city') or ([place]='metropolis') or ([place]='town'))</Filter>
-      <MinScaleDenominator>6500000</MinScaleDenominator>
-      <MaxScaleDenominator>12500000</MaxScaleDenominator>
-      <PointSymbolizer file="../symbols/capital12.png"/>
-      <TextSymbolizer dy="-8" fill="rgb(0,0,0)" fontset-name="book-fonts" halo-radius="1" horizontal-alignment="right" size="14">[upper]</TextSymbolizer>
-    </Rule>-->
   </Style>
   <Style name="cliffs">
     <Rule name="embankment">
@@ -331,28 +324,28 @@
     <Rule name="contours-10-m">
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="0.30" smooth="0.4"/>
+      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="0.30" smooth="0.40"/>
     </Rule>
   </Style>
   <Style name="contours100">
     <Rule name="contours-100-m">
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>400000</MaxScaleDenominator>
-      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="0.60" smooth="0.4"/>
+      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="0.60" smooth="0.40"/>
     </Rule>
   </Style>
   <Style name="contours20">
     <Rule name="contours-20-m">
       <MinScaleDenominator>100000</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
-      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="0.30" smooth="0.4"/>
+      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="0.30" smooth="0.40"/>
     </Rule>
   </Style>
   <Style name="contours50">
     <Rule name="contours-50-m">
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="0.60" smooth="0.4"/>
+      <LineSymbolizer stroke="rgb(170,71,30)" stroke-width="0.60" smooth="0.40"/>
     </Rule>
     <Rule name="contours-50-m">
       <MinScaleDenominator>200000</MinScaleDenominator>
@@ -2032,13 +2025,13 @@
       <Filter>([access]='no' or [access]='private') and ([bicycle]='yes' or [bicycle]='designated' or [bicycle]='permissive')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/noAccessYesBicycle.png" minimum-distance="10" placement="line" spacing="20"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="20" file="../symbols/noAccessYesBicycle.png"/>
     </Rule>
     <Rule name="no-access-for-bicycles">
       <Filter>[bicycle]='no' or [bicycle]='private' or [bicycle]='destination'</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/noBicycle.png" minimum-distance="10" placement="line" spacing="20"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="20" file="../symbols/noBicycle.png"/>
     </Rule>
   </Style>
   <Style name="noncased-ways-bridges">
@@ -2109,289 +2102,289 @@
       <Filter>([osmcsymbol0] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_backslash.png"/>
     </Rule>
     <Rule name="red-nature-trail">
       <Filter>([osmcsymbol0] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_backslash.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol0] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_bowl.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol0] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_bowl.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol0] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_L.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol0] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_L.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol0] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_turned_T.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol0] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_turned_T.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol0] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_triangle.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol0] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_triangle.png"/>
     </Rule>
     <Rule name="red-spa-path">
       <Filter>([osmcsymbol0] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_corner.png"/>
     </Rule>
     <Rule name="red-spa-path">
       <Filter>([osmcsymbol0] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_corner.png"/>
     </Rule>
     <Rule name="blue-nature-trail">
       <Filter>([osmcsymbol0] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_backslash.png"/>
     </Rule>
     <Rule name="blue-nature-trail">
       <Filter>([osmcsymbol0] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_backslash.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol0] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_bowl.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol0] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_bowl.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol0] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_L.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol0] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_L.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol0] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_turned_T.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol0] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_turned_T.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol0] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_triangle.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol0] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_triangle.png"/>
     </Rule>
     <Rule name="blue-spa-path">
       <Filter>([osmcsymbol0] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_corner.png"/>
     </Rule>
     <Rule name="blue-spa-path">
       <Filter>([osmcsymbol0] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_corner.png"/>
     </Rule>
     <Rule name="green-nature-trail">
       <Filter>([osmcsymbol0] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_backslash.png"/>
     </Rule>
     <Rule name="green-nature-trail">
       <Filter>([osmcsymbol0] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_backslash.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol0] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_bowl.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol0] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_bowl.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol0] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_L.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol0] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_L.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol0] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_turned_T.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol0] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_turned_T.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol0] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_triangle.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol0] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_triangle.png"/>
     </Rule>
     <Rule name="green-spa-path">
       <Filter>([osmcsymbol0] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_corner.png"/>
     </Rule>
     <Rule name="green-spa-path">
       <Filter>([osmcsymbol0] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_corner.png"/>
     </Rule>
     <Rule name="yellow-nature-trail">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_backslash.png"/>
     </Rule>
     <Rule name="yellow-nature-trail">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_backslash.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_bowl.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_bowl.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_L.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_L.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_turned_T.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_turned_T.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_triangle.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_triangle.png"/>
     </Rule>
     <Rule name="yellow-spa-path">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_corner.png"/>
     </Rule>
     <Rule name="yellow-spa-path">
       <Filter>([osmcsymbol0] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_corner.png"/>
     </Rule>
   </Style>
   <Style name="osmc-shield1">
@@ -2399,289 +2392,289 @@
       <Filter>([osmcsymbol1] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_backslash.png"/>
     </Rule>
     <Rule name="red-nature-trail">
       <Filter>([osmcsymbol1] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_backslash.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol1] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_bowl.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol1] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_bowl.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol1] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_L.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol1] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_L.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol1] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_turned_T.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol1] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_turned_T.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol1] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_triangle.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol1] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_triangle.png"/>
     </Rule>
     <Rule name="red-spa-path">
       <Filter>([osmcsymbol1] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_corner.png"/>
     </Rule>
     <Rule name="red-spa-path">
       <Filter>([osmcsymbol1] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_corner.png"/>
     </Rule>
     <Rule name="blue-nature-trail">
       <Filter>([osmcsymbol1] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_backslash.png"/>
     </Rule>
     <Rule name="blue-nature-trail">
       <Filter>([osmcsymbol1] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_backslash.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol1] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_bowl.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol1] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_bowl.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol1] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_L.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol1] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_L.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol1] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_turned_T.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol1] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_turned_T.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol1] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_triangle.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol1] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_triangle.png"/>
     </Rule>
     <Rule name="blue-spa-path">
       <Filter>([osmcsymbol1] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_corner.png"/>
     </Rule>
     <Rule name="blue-spa-path">
       <Filter>([osmcsymbol1] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_corner.png"/>
     </Rule>
     <Rule name="green-nature-trail">
       <Filter>([osmcsymbol1] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_backslash.png"/>
     </Rule>
     <Rule name="green-nature-trail">
       <Filter>([osmcsymbol1] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_backslash.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol1] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_bowl.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol1] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_bowl.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol1] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_L.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol1] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_L.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol1] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_turned_T.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol1] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_turned_T.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol1] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_triangle.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol1] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_triangle.png"/>
     </Rule>
     <Rule name="green-spa-path">
       <Filter>([osmcsymbol1] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_corner.png"/>
     </Rule>
     <Rule name="green-spa-path">
       <Filter>([osmcsymbol1] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_corner.png"/>
     </Rule>
     <Rule name="yellow-nature-trail">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_backslash.png"/>
     </Rule>
     <Rule name="yellow-nature-trail">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_backslash.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_bowl.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_bowl.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_L.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_L.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_turned_T.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_turned_T.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_triangle.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_triangle.png"/>
     </Rule>
     <Rule name="yellow-spa-path">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_corner.png"/>
     </Rule>
     <Rule name="yellow-spa-path">
       <Filter>([osmcsymbol1] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_corner.png"/>
     </Rule>
   </Style>
   <Style name="osmc-shield2">
@@ -2689,289 +2682,289 @@
       <Filter>([osmcsymbol2] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_backslash.png"/>
     </Rule>
     <Rule name="red-nature-trail">
       <Filter>([osmcsymbol2] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_backslash.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol2] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_bowl.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol2] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_bowl.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol2] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_L.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol2] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_L.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol2] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_turned_T.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol2] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_turned_T.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol2] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_triangle.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol2] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_triangle.png"/>
     </Rule>
     <Rule name="red-spa-path">
       <Filter>([osmcsymbol2] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_corner.png"/>
     </Rule>
     <Rule name="red-spa-path">
       <Filter>([osmcsymbol2] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_corner.png"/>
     </Rule>
     <Rule name="blue-nature-trail">
       <Filter>([osmcsymbol2] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_backslash.png"/>
     </Rule>
     <Rule name="blue-nature-trail">
       <Filter>([osmcsymbol2] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_backslash.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol2] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_bowl.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol2] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_bowl.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol2] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_L.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol2] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_L.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol2] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_turned_T.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol2] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_turned_T.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol2] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_triangle.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol2] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_triangle.png"/>
     </Rule>
     <Rule name="blue-spa-path">
       <Filter>([osmcsymbol2] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_corner.png"/>
     </Rule>
     <Rule name="blue-spa-path">
       <Filter>([osmcsymbol2] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_corner.png"/>
     </Rule>
     <Rule name="green-nature-trail">
       <Filter>([osmcsymbol2] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_backslash.png"/>
     </Rule>
     <Rule name="green-nature-trail">
       <Filter>([osmcsymbol2] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_backslash.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol2] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_bowl.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol2] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_bowl.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol2] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_L.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol2] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_L.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol2] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_turned_T.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol2] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_turned_T.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol2] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_triangle.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol2] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_triangle.png"/>
     </Rule>
     <Rule name="green-spa-path">
       <Filter>([osmcsymbol2] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_corner.png"/>
     </Rule>
     <Rule name="green-spa-path">
       <Filter>([osmcsymbol2] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_corner.png"/>
     </Rule>
     <Rule name="yellow-nature-trail">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_backslash.png"/>
     </Rule>
     <Rule name="yellow-nature-trail">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_backslash.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_bowl.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_bowl.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_L.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_L.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_turned_T.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_turned_T.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_triangle.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_triangle.png"/>
     </Rule>
     <Rule name="yellow-spa-path">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_corner.png"/>
     </Rule>
     <Rule name="yellow-spa-path">
       <Filter>([osmcsymbol2] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_corner.png"/>
     </Rule>
   </Style>
   <Style name="osmc-shield3">
@@ -2979,289 +2972,289 @@
       <Filter>([osmcsymbol3] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_backslash.png"/>
     </Rule>
     <Rule name="red-nature-trail">
       <Filter>([osmcsymbol3] = 'red:white:red_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_backslash.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol3] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_bowl.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol3] = 'red:white:red_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_bowl.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol3] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_L.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol3] = 'red:white:red_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_L.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol3] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_turned_T.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol3] = 'red:white:red_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_turned_T.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol3] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_triangle.png"/>
     </Rule>
     <Rule name="red-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol3] = 'red:white:red_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_triangle.png"/>
     </Rule>
     <Rule name="red-spa-path">
       <Filter>([osmcsymbol3] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_corner.png"/>
     </Rule>
     <Rule name="red-spa-path">
       <Filter>([osmcsymbol3] = 'red:white:red_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/red-white-red_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/red-white-red_corner.png"/>
     </Rule>
     <Rule name="blue-nature-trail">
       <Filter>([osmcsymbol3] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_backslash.png"/>
     </Rule>
     <Rule name="blue-nature-trail">
       <Filter>([osmcsymbol3] = 'blue:white:blue_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_backslash.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol3] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_bowl.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol3] = 'blue:white:blue_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_bowl.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol3] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_L.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol3] = 'blue:white:blue_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_L.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol3] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_turned_T.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol3] = 'blue:white:blue_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_turned_T.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol3] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_triangle.png"/>
     </Rule>
     <Rule name="blue-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol3] = 'blue:white:blue_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_triangle.png"/>
     </Rule>
     <Rule name="blue-spa-path">
       <Filter>([osmcsymbol3] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_corner.png"/>
     </Rule>
     <Rule name="blue-spa-path">
       <Filter>([osmcsymbol3] = 'blue:white:blue_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/blue-white-blue_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/blue-white-blue_corner.png"/>
     </Rule>
     <Rule name="green-nature-trail">
       <Filter>([osmcsymbol3] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_backslash.png"/>
     </Rule>
     <Rule name="green-nature-trail">
       <Filter>([osmcsymbol3] = 'green:white:green_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_backslash.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol3] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_bowl.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol3] = 'green:white:green_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_bowl.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol3] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_L.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol3] = 'green:white:green_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_L.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol3] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_turned_T.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol3] = 'green:white:green_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_turned_T.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol3] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_triangle.png"/>
     </Rule>
     <Rule name="green-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol3] = 'green:white:green_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_triangle.png"/>
     </Rule>
     <Rule name="green-spa-path">
       <Filter>([osmcsymbol3] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_corner.png"/>
     </Rule>
     <Rule name="green-spa-path">
       <Filter>([osmcsymbol3] = 'green:white:green_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/green-white-green_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/green-white-green_corner.png"/>
     </Rule>
     <Rule name="yellow-nature-trail">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_backslash.png"/>
     </Rule>
     <Rule name="yellow-nature-trail">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_backslash')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_backslash.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_backslash.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_bowl.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-spring">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_bowl')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_bowl.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_bowl.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_L.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-castle">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_L')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_L.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_L.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_turned_T.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-poi">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_turned_T')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_turned_T.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_turned_T.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_triangle.png"/>
     </Rule>
     <Rule name="yellow-hiking-trail-branch-to-a-peak">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_triangle')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_triangle.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_triangle.png"/>
     </Rule>
     <Rule name="yellow-spa-path">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_corner.png"/>
     </Rule>
     <Rule name="yellow-spa-path">
       <Filter>([osmcsymbol3] = 'yellow:white:yellow_corner')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
-      <ShieldSymbolizer face-name="DejaVu Sans Bold" file="../symbols/osmc/yellow-white-yellow_corner.png" minimum-distance="10" placement="line" spacing="100"/>
+      <ShieldSymbolizer face-name="DejaVu Sans Bold" minimum-distance="10" placement="line" spacing="100" file="../symbols/osmc/yellow-white-yellow_corner.png"/>
     </Rule>
   </Style>
   <Style name="osmc-track0">
@@ -11182,7 +11175,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hypsometry150_35.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hypsometry_high_36" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11190,7 +11182,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hypsometry150_36.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hypsometry_high_37" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11198,7 +11189,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hypsometry150_37.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hypsometry_high_38" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11206,7 +11196,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hypsometry150_38.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hypsometry_high_39" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11214,7 +11203,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hypsometry150_39.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hypsometry_high_40" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11222,7 +11210,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hypsometry150_40.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hypsometry_high_41" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11230,7 +11217,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hypsometry150_41.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hypsometry_high_42" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11238,7 +11224,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hypsometry150_42.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hypsometry_high_43" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11246,7 +11231,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hypsometry150_43.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hypsometry_high_44" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11254,7 +11238,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hypsometry150_44.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hypsometry_high_45" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11262,7 +11245,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hypsometry150_45.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hypsometry_mid" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11270,7 +11252,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hypsometry500_europe.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hypsometry_low" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11278,7 +11259,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hypsometry1500_europe.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="necountries" srs="+init=epsg:4326" minzoom="1000" maxzoom="250000000000">
@@ -11349,7 +11329,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_35_01.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_35_02" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11357,7 +11336,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_35_02.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_35_03" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11365,7 +11343,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_35_03.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_35_04" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11373,7 +11350,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_35_04.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_35_05" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11381,7 +11357,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_35_05.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_36_01" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11389,7 +11364,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_36_01.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_36_02" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11397,7 +11371,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_36_02.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_36_03" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11405,7 +11378,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_36_03.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_36_04" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11413,7 +11385,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_36_04.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_36_05" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11421,7 +11392,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_36_05.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_37_01" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11429,7 +11399,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_37_01.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_37_02" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11437,7 +11406,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_37_02.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_37_03" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11445,7 +11413,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_37_03.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_37_04" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11453,7 +11420,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_37_04.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_37_05" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11461,7 +11427,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_37_05.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_38_01" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11469,7 +11434,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_38_01.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_38_02" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11477,7 +11441,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_38_02.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_38_03" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11485,7 +11448,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_38_03.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_38_04" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11493,7 +11455,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_38_04.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_38_05" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11501,7 +11462,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_38_05.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_39_01" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11509,7 +11469,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_39_01.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_39_02" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11517,7 +11476,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_39_02.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_39_03" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11525,7 +11483,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_39_03.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_39_04" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11533,7 +11490,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_39_04.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_39_05" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11541,7 +11497,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_39_05.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_40_01" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11549,7 +11504,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_40_01.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_40_02" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11557,7 +11511,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_40_02.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_40_03" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11565,7 +11518,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_40_03.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_40_04" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11573,7 +11525,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_40_04.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_40_05" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11581,7 +11532,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_40_05.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_41_01" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11589,7 +11539,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_41_01.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_41_02" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11597,7 +11546,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_41_02.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_41_03" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11605,7 +11553,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_41_03.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_41_04" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11613,7 +11560,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_41_04.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_41_05" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11621,7 +11567,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_41_05.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_42_01" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11629,7 +11574,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_42_01.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_42_02" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11637,7 +11581,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_42_02.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_42_03" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11645,7 +11588,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_42_03.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_42_04" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11653,7 +11595,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_42_04.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_42_05" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11661,7 +11602,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_42_05.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_43_01" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11669,7 +11609,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_43_01.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_43_02" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11677,7 +11616,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_43_02.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_43_03" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11685,7 +11623,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_43_03.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_43_04" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11693,7 +11630,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_43_04.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_43_05" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11701,7 +11637,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_43_05.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_44_01" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11709,7 +11644,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_44_01.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_44_02" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11717,7 +11651,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_44_02.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_44_03" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11725,7 +11658,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_44_03.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_44_04" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11733,7 +11665,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_44_04.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_44_05" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11741,7 +11672,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_44_05.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_45_01" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11749,7 +11679,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_45_01.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_45_02" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11757,7 +11686,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_45_02.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_45_03" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11765,7 +11693,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_45_03.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_45_04" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11773,7 +11700,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_45_04.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_highest_45_05" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11781,7 +11707,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade30_45_05.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_high_35" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11789,7 +11714,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade150_35.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_high_36" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11797,7 +11721,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade150_36.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_high_37" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11805,7 +11728,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade150_37.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_high_38" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11813,7 +11735,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade150_38.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_high_39" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11821,7 +11742,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade150_39.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_high_40" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11829,7 +11749,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade150_40.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_high_41" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11837,7 +11756,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade150_41.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_high_42" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11845,7 +11763,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade150_42.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_high_43" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11853,7 +11770,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade150_43.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_high_44" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11861,7 +11777,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade150_44.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_high_45" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11869,7 +11784,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade150_45.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_mid" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11877,7 +11791,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade500_europe.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
     </Datasource>
   </Layer>
   <Layer name="hillshade_low" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -11885,65 +11798,6 @@
     <Datasource>
       <Parameter name="type">gdal</Parameter>
       <Parameter name="file">../../../Data/shadingdata/hillshade1500_europe.tif</Parameter>
-      <Parameter name="format">tiff</Parameter>
-    </Datasource>
-  </Layer>
-  <Layer name="contours10" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs" minzoom="1000" maxzoom="250000000000">
-    <StyleName>contours10</StyleName>
-    <Datasource>
-      <Parameter name="type">postgis</Parameter>
-      <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 10 = 0 AND height::integer % 50 != 0) as "contours10"</Parameter>
-      <Parameter name="password">&passwd;</Parameter>
-      <Parameter name="host">localhost</Parameter>
-      <Parameter name="port">5432</Parameter>
-      <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">contours</Parameter>
-      <Parameter name="estimate_extent">1</Parameter>
-      <Parameter name="extent">-180,-89.99,180,89.99</Parameter>
-    </Datasource>
-  </Layer>
-  <Layer name="contours20" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs" minzoom="1000" maxzoom="250000000000">
-    <StyleName>contours20</StyleName>
-    <Datasource>
-      <Parameter name="type">postgis</Parameter>
-      <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 20 = 0 AND height::integer % 100 != 0) as "contours20"</Parameter>
-      <Parameter name="password">&passwd;</Parameter>
-      <Parameter name="host">localhost</Parameter>
-      <Parameter name="port">5432</Parameter>
-      <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">contours</Parameter>
-      <Parameter name="estimate_extent">1</Parameter>
-      <Parameter name="extent">-180,-89.99,180,89.99</Parameter>
-    </Datasource>
-  </Layer>
-  <Layer name="contours50" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs" minzoom="1000" maxzoom="250000000000">
-    <StyleName>contours-text50</StyleName>
-    <StyleName>contours50</StyleName>
-    <Datasource>
-      <Parameter name="type">postgis</Parameter>
-      <Parameter name="table">(SELECT way,height::integer FROM contours WHERE height::integer % 50 = 0 AND height::integer % 100 != 0) as "contours50"</Parameter>
-      <Parameter name="password">&passwd;</Parameter>
-      <Parameter name="host">localhost</Parameter>
-      <Parameter name="port">5432</Parameter>
-      <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">contours</Parameter>
-      <Parameter name="estimate_extent">1</Parameter>
-      <Parameter name="extent">-180,-89.99,180,89.99</Parameter>
-    </Datasource>
-  </Layer>
-  <Layer name="contours100" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs" minzoom="1000" maxzoom="250000000000">
-    <StyleName>contours-text100</StyleName>
-    <StyleName>contours100</StyleName>
-    <Datasource>
-      <Parameter name="type">postgis</Parameter>
-      <Parameter name="table">(SELECT way,height::integer FROM contours WHERE height::integer % 100 = 0) as "contours100"</Parameter>
-      <Parameter name="password">&passwd;</Parameter>
-      <Parameter name="host">localhost</Parameter>
-      <Parameter name="port">5432</Parameter>
-      <Parameter name="user">xtesar7</Parameter>
-      <Parameter name="dbname">contours</Parameter>
-      <Parameter name="estimate_extent">1</Parameter>
-      <Parameter name="extent">-180,-89.99,180,89.99</Parameter>
     </Datasource>
   </Layer>
   <Layer name="water_lines" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
@@ -12801,7 +12655,7 @@
       <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
     </Datasource>
   </Layer>
-  <Layer name="placenames-large" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" clear-label-cache="0" minzoom="1000" maxzoom="250000000000">
+  <Layer name="placenames-large" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" clear-label-cache="1" minzoom="1000" maxzoom="250000000000">
     <StyleName>capital</StyleName>
     <StyleName>country</StyleName>
     <Datasource>
