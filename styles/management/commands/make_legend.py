@@ -7,7 +7,7 @@ import os
 from django.core.management.base import BaseCommand
 
 # Local imports
-from styles.models import Map
+from styles.models import Map, Legend
 
 class Command(BaseCommand):
     args = '<path_to_map_style.xml map_style_name>'
@@ -28,7 +28,10 @@ class Command(BaseCommand):
                     self.stderr.write('Error occurred during style import.')
                     return
             else:
-                m.legend.delete()
+                try:
+                    m.legend.delete()
+                except Legend.DoesNotExist:
+                    pass
                 self.stdout.write('Using previously imported style, old legend deleted.')
             self.stdout.write('Creating new legend items...')
             m.create_legend()
