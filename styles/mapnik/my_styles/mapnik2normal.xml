@@ -11800,6 +11800,64 @@
       <Parameter name="file">../../../Data/shadingdata/hillshade1500_europe.tif</Parameter>
     </Datasource>
   </Layer>
+  <Layer name="contours10" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs" minzoom="1000" maxzoom="250000000000">
+    <StyleName>contours10</StyleName>
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 10 = 0 AND height::integer % 50 != 0) as "contours10"</Parameter>
+      <Parameter name="password">&passwd;</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">xtesar7</Parameter>
+      <Parameter name="dbname">contours</Parameter>
+      <Parameter name="estimate_extent">1</Parameter>
+      <Parameter name="extent">-180,-89.99,180,89.99</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="contours20" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs" minzoom="1000" maxzoom="250000000000">
+    <StyleName>contours20</StyleName>
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="table">(SELECT way,height FROM contours WHERE height::integer % 20 = 0 AND height::integer % 100 != 0) as "contours20"</Parameter>
+      <Parameter name="password">&passwd;</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">xtesar7</Parameter>
+      <Parameter name="dbname">contours</Parameter>
+      <Parameter name="estimate_extent">1</Parameter>
+      <Parameter name="extent">-180,-89.99,180,89.99</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="contours50" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs" minzoom="1000" maxzoom="250000000000">
+    <StyleName>contours-text50</StyleName>
+    <StyleName>contours50</StyleName>
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="table">(SELECT way,height::integer FROM contours WHERE height::integer % 50 = 0 AND height::integer % 100 != 0) as "contours50"</Parameter>
+      <Parameter name="password">&passwd;</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">xtesar7</Parameter>
+      <Parameter name="dbname">contours</Parameter>
+      <Parameter name="estimate_extent">1</Parameter>
+      <Parameter name="extent">-180,-89.99,180,89.99</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="contours100" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs" minzoom="1000" maxzoom="250000000000">
+    <StyleName>contours-text100</StyleName>
+    <StyleName>contours100</StyleName>
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="table">(SELECT way,height::integer FROM contours WHERE height::integer % 100 = 0) as "contours100"</Parameter>
+      <Parameter name="password">&passwd;</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">xtesar7</Parameter>
+      <Parameter name="dbname">contours</Parameter>
+      <Parameter name="estimate_extent">1</Parameter>
+      <Parameter name="extent">-180,-89.99,180,89.99</Parameter>
+    </Datasource>
+  </Layer>
   <Layer name="water_lines" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" minzoom="1000" maxzoom="250000000000">
     <StyleName>water_lines_casing</StyleName>
     <Datasource>
