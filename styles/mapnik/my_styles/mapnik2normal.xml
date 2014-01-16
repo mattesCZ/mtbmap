@@ -223,13 +223,6 @@
       <MaxScaleDenominator>400000</MaxScaleDenominator>
       <PolygonSymbolizer fill="rgb(188,169,169)"/>
     </Rule>
-    <Rule name="_sports-area">
-      <Filter>([leisure]='track')</Filter>
-      <MinScaleDenominator>1000</MinScaleDenominator>
-      <MaxScaleDenominator>750000</MaxScaleDenominator>
-      <PolygonSymbolizer fill="rgb(116,220,186)"/>
-      <LineSymbolizer stroke="rgb(136,136,136)" stroke-width="0.50"/>
-    </Rule>
     <Rule name="_place-of-worship">
       <Filter>([amenity]='place_of_worship')</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
@@ -9148,7 +9141,8 @@
     <Rule name="sports-area">
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>750000</MaxScaleDenominator>
-      <PolygonSymbolizer fill="rgb(51,204,153)"/>
+      <PolygonSymbolizer fill="rgb(116,220,186)"/>
+      <LineSymbolizer stroke="rgb(136,136,136)" stroke-width="0.50"/>
     </Rule>
   </Style>
   <Style name="stations">
@@ -11314,7 +11308,7 @@
     <StyleName>sports_grounds</StyleName>
     <Datasource>
       <Parameter name="type">postgis</Parameter>
-      <Parameter name="table">(select way,leisure from planet_osm_polygon where leisure in ('sports_centre','stadium', 'pitch') order by z_order,way_area desc) as sports_grounds</Parameter>
+      <Parameter name="table">(select way,leisure from planet_osm_polygon where leisure in ('sports_centre','stadium', 'pitch', 'track') order by z_order,way_area desc) as sports_grounds</Parameter>
       <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
@@ -12074,7 +12068,6 @@
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way,building,leisure,railway,amenity,aeroway from planet_osm_polygon
        where building is not null
-          or leisure in ('pitch','track')
           or railway='station'
           or amenity='place_of_worship'
           or aeroway='terminal'
