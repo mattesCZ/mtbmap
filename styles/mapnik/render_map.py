@@ -1,8 +1,9 @@
 #!/usr/bin/python
-from mapnik import *
+from mapnik import Image, Map, Projection, Box2d, Coord, load_map, render
 import sys
+import os
 
-def centerToBbox(lat, lon, zoom, imgx, imgy):
+def center_to_bbox(lat, lon, zoom, imgx, imgy):
     base = 0.000005364418 # longitude range of 1 pixel at zoom 18
     west = lon - (imgx*base*(2**(18-zoom-1)))
     east = lon + (imgx*base*(2**(18-zoom-1)))
@@ -25,7 +26,7 @@ if __name__ == "__main__":
     imgx = 500
     imgy = 400
 
-    ll = centerToBbox(lat, lon, zoom, imgx, imgy)
+    ll = center_to_bbox(lat, lon, zoom, imgx, imgy)
     m = Map(imgx,imgy)
     load_map(m,mapfile)
     prj = Projection("+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over")
@@ -37,4 +38,3 @@ if __name__ == "__main__":
     render(m, im)
     view = im.view(0,0,imgx,imgy) # x,y,width,height
     view.save(map_uri,'png')
-
