@@ -44,3 +44,13 @@ SECRET_KEY = '----John-Does-Secret-Key----'
 
 MAPNIK_STYLES = os.path.join(ROOT_PATH, 'styles/mapnik/my_styles/')
 SRTM_DATA = os.path.join(ROOT_PATH, 'Data/shadingdata/SRTMv2/')
+
+# update OSM data settings
+OSM_DATADIR = os.path.join(ROOT_PATH, 'Data/')
+OSM_DOWNLOAD = True
+OSM_FORMAT = 'pbf'
+OSM_SOURCE_URI = 'http://download.geofabrik.de/europe-latest.osm.pbf'
+
+OSM2PGSQL = os.path.join(ROOT_PATH, 'sw/osm2pgsql/osm2pgsql')
+OSM2PGSQL_STYLE = os.path.join(ROOT_PATH, 'osm_data_processing/config/mtbmap.style')
+OSM2PGSQL_CACHE = 2048
