@@ -4,11 +4,13 @@
 from osm_data_processing.relations2lines.relations2lines import run
 
 # Global imports
-import string, os
+import string
+import os
 import datetime
 
 # Django imports
 from django.conf import settings
+
 
 def exists(name, path):
     if os.path.exists(path):
@@ -18,17 +20,22 @@ def exists(name, path):
         print 'correct variable %s in configuration file' % (name)
         raise UpdateError('Please, correct variable %s in configuration file' % (name))
 
+
 def download_file(source, datadir):
     os.chdir(datadir)
     return os.system('wget -nv -t 3 -N %s' % (source))
 
+
 def load_db(osm2pgsql, database, file, style, cache, port):
-    load_command = '%s -s -d %s %s -S %s -C %s -P %s --number-processes 8 ' % (osm2pgsql, database, file, style, cache, port)
+    load_command = ('%s -s -d %s %s -S %s -C %s -P %s --number-processes 8 '
+                    % (osm2pgsql, database, file, style, cache, port))
     return os.system(load_command)
+
 
 class UpdateError(Exception):
     def __init__(self, msg):
         self.msg = msg
+
 
 def updatemap():
     try:
@@ -50,7 +57,7 @@ def updatemap():
         osm2pgsql = settings.OSM2PGSQL
         exists('osm2pgsql', osm2pgsql)
         format = settings.OSM_FORMAT
-        if (format=='pbf' or format=='xml'):
+        if (format == 'pbf' or format == 'xml'):
             print 'Using %s format.' % (format)
         else:
             raise UpdateError('Incorrect format, use xml or pbf.')
@@ -68,7 +75,7 @@ def updatemap():
         if (settings.OSM_DOWNLOAD):
             print 'Downloading file %s from %s ...' % (source[1], source[0])
             result = download_file(source[0], datadir)
-            if (result!=0):
+            if (result != 0):
                 raise UpdateError('An error occurred while downloading file %s' % (source[1]))
             else:
                 source_file = source[1]

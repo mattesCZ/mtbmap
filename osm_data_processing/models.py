@@ -9,13 +9,14 @@ from django.db import models
 from django.contrib.gis.db import models as geomodels
 from django.utils.translation import ugettext_lazy as _
 
+
 ## PLANET_OSM_MODELS
 class OsmModel(geomodels.Model):
     osm_id = models.BigIntegerField()
-    
+
     class Meta:
         abstract = True
-        
+
     def __unicode__(self):
         return u"OsmModel(%s)" % (self.osm_id)
 
@@ -32,15 +33,15 @@ class OsmModel(geomodels.Model):
         feature["properties"]["popupContent"] = self.popupContent(tags)
         feature["properties"]["label"] = self._wrapText(self.label(tags[0]), 30)
         return feature
-    
+
     def geojson_feature_string(self, tags=[]):
         '''
         Dump GeoJSON representation as string.
         '''
         return json.dumps(self.geojson_feature(tags))
-    
+
     def has_geometry(self):
-        return hasattr(self, "the_geom") and self.the_geom != None 
+        return hasattr(self, "the_geom") and self.the_geom is not None
 
     def label(self, attribute='name'):
         '''
@@ -50,14 +51,14 @@ class OsmModel(geomodels.Model):
             return getattr(self, attribute)
         else:
             return ""
-    
+
     def popupContent(self, att_list):
         '''
-        Feature popup content, label created from first item in attribute 
+        Feature popup content, label created from first item in attribute
         list is used as heading.
         '''
         content = ''
-        if len(att_list)>0:
+        if len(att_list) > 0:
             header = self.label(att_list[0])
             if header:
                 content += u'<h3>%s</h3>' % (header)
@@ -71,7 +72,7 @@ class OsmModel(geomodels.Model):
         else:
             content += u'<h2>%s</h2>' % (self.osmLink())
         return content
-    
+
     def osmLink(self, url='http://www.openstreetmap.org/browse/', geometry='way'):
         '''
         HTML anchor linking to OSM browse page by default.
@@ -86,13 +87,13 @@ class OsmModel(geomodels.Model):
                 geometry = 'relation'
         href = '%s%s/%s' % (url, geometry, self.osm_id)
         return '<a target="_blank" href="%s">%s</a>' % (href, self.osm_id)
-    
+
     def _wrapText(self, text, width=70, wrap_str='<br>'):
         if text:
             return wrap_str.join(wrap(text, width))
         else:
             return ''
-        
+
 
 class OsmPoint(OsmModel):
     the_geom = geomodels.PointField()
@@ -118,17 +119,16 @@ class OsmPoint(OsmModel):
     tourism = models.CharField(max_length=200, null=True, blank=True)
 
     objects = geomodels.GeoManager()
-    
+
     def osmLink(self, url='http://www.openstreetmap.org/browse/', geometry='node'):
         return super(OsmPoint, self).osmLink(url, geometry)
-    
+
+
 class OsmLine(OsmModel):
     the_geom = geomodels.LineStringField()
     name = models.CharField(verbose_name=_('Name'), max_length=400, null=True, blank=True)
     mtbscale = models.CharField(verbose_name=_('MTB scale'), max_length=200, null=True, blank=True)
     mtbdescription = models.CharField(verbose_name=_('MTB description'), max_length=200, null=True, blank=True)
     mtbscaleuphill = models.CharField(verbose_name=_('MTB scale uphill'), max_length=200, null=True, blank=True)
-    
-    objects = geomodels.GeoManager()
-    
 
+    objects = geomodels.GeoManager()

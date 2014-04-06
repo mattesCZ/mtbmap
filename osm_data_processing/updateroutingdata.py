@@ -17,6 +17,7 @@ MAP_DB = 'osm_data'
 sac_scale_values = ['hiking', 'mountain_hiking', 'demanding_mountain_hiking',
                     'alpine_hiking', 'demanding_alpine_hiking', 'difficult_alpine_hiking']
 
+
 def copy_ways():
     '''
     copy data generated with osm2po to routing_way table
@@ -36,6 +37,7 @@ def copy_ways():
     print 'Total time:', total_seconds(datetime.now()-start)
     print 'Run python vacuum_full.py now'
 
+
 def add_attributes():
     '''
     Add attributes from osm2pgsql created database to our Way objects
@@ -49,6 +51,7 @@ def add_attributes():
     print 'Total time:', total_seconds(datetime.now()-start)
     print 'Run python vacuum_full.py again'
 
+
 def _row_to_arguments(row):
     '''
     Get database row as column:value pairs dictionary, create kwargs suitable for Way updates
@@ -57,7 +60,8 @@ def _row_to_arguments(row):
     update_args = {}
     for key, value in row.items():
         if value:
-            if key in ('tracktype', 'width', 'mtbscale', 'mtbscaleuphill', 'class_bicycle', 'class_mtb', 'class_mtb_technical'):
+            if key in ('tracktype', 'width', 'mtbscale', 'mtbscaleuphill', 'class_bicycle',
+                       'class_mtb', 'class_mtb_technical'):
                 floatvalue = _to_float(value)
                 if key == 'width':
                     update_args[key] = floatvalue
@@ -73,8 +77,10 @@ def _row_to_arguments(row):
                 update_args[key] = value
     return update_args
 
+
 def _update_reverse_cost():
     Way.objects.filter(reverse_cost__lt=1000000).update(reverse_cost=F('length'))
+
 
 def _add_line_attributes():
     '''
@@ -117,6 +123,7 @@ def _add_line_attributes():
     print updated, 'ways (lines) updated successfully,', evaluated, 'lines evaluated.'
     print 'Time:', total_seconds(datetime.now()-start)
 
+
 def _add_polygon_attributes():
     '''
     Copy useful attributes from planet_osm_polygon for routable areas
@@ -129,7 +136,9 @@ def _add_polygon_attributes():
     null_ways_osm_ids = Way.objects.filter(highway__isnull=True).distinct('osm_id').values_list('osm_id', flat=True)
     print len(null_ways_osm_ids), 'IDs to be evaluated...'
     for osm_id in null_ways_osm_ids:
-        query = '''SELECT osm_id, tracktype, oneway, access, bicycle, foot, incline, width, surface, smoothness, maxspeed, "mtb:scale" as mtbscale, "mtb:scale:uphill" as mtbscaleuphill, sac_scale, network, highway FROM planet_osm_polygon WHERE osm_id=%s; ''' % osm_id
+        query = '''SELECT osm_id, tracktype, oneway, access, bicycle, foot, incline, width, surface, smoothness,
+            maxspeed, "mtb:scale" as mtbscale, "mtb:scale:uphill" as mtbscaleuphill, sac_scale, network, highway
+            FROM planet_osm_polygon WHERE osm_id=%s; ''' % osm_id
         cursor.execute(query)
         description = cursor.description
         rows = [dict(zip([col[0] for col in description], row)) for row in cursor.fetchall()]
@@ -143,13 +152,16 @@ def _add_polygon_attributes():
     print updated, 'ways (areas) updated successfully'
     print 'Time:', total_seconds(datetime.now()-start)
 
+
 def _add_routes_attributes():
     '''
     Copy useful attributes from planet_osm_routes2, this time only osmc
     '''
     start = datetime.now()
     cursor = connections[MAP_DB].cursor()
-    routes_query = '''SELECT osm_id, "mtb:scale", osmcsymbol0 FROM planet_osm_routes2 WHERE (osmcsymbol0<>'mtb:white:mtb_mtb' and osmcsymbol0 is not null) or "mtb:scale" is not null;'''
+    routes_query = '''SELECT osm_id, "mtb:scale", osmcsymbol0 FROM planet_osm_routes2
+                      WHERE (osmcsymbol0<>'mtb:white:mtb_mtb' AND osmcsymbol0 IS NOT NULL)
+                        OR "mtb:scale" IS NOT NULL;'''
     cursor.execute(routes_query)
     evaluated = 0
     updated = 0
@@ -184,12 +196,13 @@ def _to_float(value):
         return r
     except ValueError:
         try:
-            cleansed = value.replace(',', '.').replace('+', '.3').replace('-','.7').replace('grade', '')
+            cleansed = value.replace(',', '.').replace('+', '.3').replace('-', '.7').replace('grade', '')
             r = float(cleansed)
             return r
         except ValueError:
             print value
             return None
+
 
 def vacuum(conn):
     query = "VACUUM FULL"
