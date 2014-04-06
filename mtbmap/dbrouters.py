@@ -1,12 +1,13 @@
 MAP_DB = 'osm_data'
 apps = [
-        'osm_data_processing',
-#        'south'
-        ]
+    'osm_data_processing',
+    # 'south'
+]
 
 models = [
-           'way'
-           ]
+    'way'
+]
+
 
 class OsmDataRouter(object):
     """
@@ -37,7 +38,7 @@ class OsmDataRouter(object):
            obj2._meta.app_label in apps or \
            obj1._meta.module_name in models or \
            obj2._meta.module_name in models:
-           return True
+            return True
         return None
 
     def allow_syncdb(self, db, model):
