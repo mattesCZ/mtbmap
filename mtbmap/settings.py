@@ -10,7 +10,7 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-#    ('John Doe', 'admin@example.com'),
+    # ('John Doe', 'admin@example.com'),
 )
 
 MANAGERS = ADMINS
@@ -18,20 +18,20 @@ MANAGERS = ADMINS
 # see also MapRouter to set proper database settings
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'mtbmap_default',                      # Or path to database file if using sqlite3.
-        'USER': 'user',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'mtbmap_default',
+        'USER': 'user',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     },
     'osm_data': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'mtbmap_data',                      # Or path to database file if using sqlite3.
-        'USER': 'user',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'mtbmap_data',
+        'USER': 'user',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
 }
 DATABASE_ROUTERS = ['mtbmap.dbrouters.OsmDataRouter']
@@ -92,9 +92,9 @@ STATICFILES_DIRS = (
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
-#    'django.contrib.staticfiles.finders.FileSystemFinder',
+    # 'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -102,9 +102,9 @@ SECRET_KEY = '----really-secret-key----'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-#    'django.template.loaders.filesystem.Loader',
+    # 'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    # 'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -174,7 +174,7 @@ LANGUAGES = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = GLOBAL_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
-#    'django.core.context_processors.request',
+    # 'django.core.context_processors.request',
 )
 
 MAPNIK_STYLES = '/path/to/xml/styles/'
