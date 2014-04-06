@@ -25,6 +25,7 @@ from routing.core import MultiRoute, line_string_to_points, create_gpx, RoutePar
 from routing.models import WeightCollection
 from map.forms import RoutingEvaluationForm
 
+
 def index(request):
     '''
     Main map page.
@@ -34,13 +35,14 @@ def index(request):
     default_tile_layer = TileLayer.objects.get(slug='mtb-map')
     tile_layers = TileLayer.objects.all()
     geojson_layers = GeojsonLayer.objects.all()
-    return render_to_response('map/map.html', {'default_tile_layer':default_tile_layer,
-                                               'zoomRange':range(19),
-                                               'tile_layers':tile_layers,
-                                               'geojson_layers':geojson_layers,
+    return render_to_response('map/map.html', {'default_tile_layer': default_tile_layer,
+                                               'zoomRange': range(19),
+                                               'tile_layers': tile_layers,
+                                               'geojson_layers': geojson_layers,
                                                'weight_collections': weight_collections,
                                                'evaluation_form': evaluation_form},
                               context_instance=RequestContext(request))
+
 
 def legend(request):
     '''
@@ -49,6 +51,7 @@ def legend(request):
     zoom = int(request.GET['zoom'])
     legenditems = Legend.objects.all()[0].legend_items(zoom)
     return TemplateResponse(request, 'map/legend.html', {'zoom': zoom, 'legenditems': legenditems})
+
 
 def routingparams(request):
     '''
@@ -61,6 +64,7 @@ def routingparams(request):
         # template not found
         weight_collection = WeightCollection.objects.all()[0]
     return TemplateResponse(request, 'map/routingparams.html', {'weight_collection': weight_collection})
+
 
 def exportmap(request):
     '''
@@ -107,7 +111,7 @@ def exportmap(request):
                     latlng = part.replace('LatLng(', '').replace(')', '').split(',')
                     point = Point(float(latlng[1]), float(latlng[0]))
                     points.append(point)
-                if len(points)>1:
+                if len(points) > 1:
                     line = LineString(points).geojson
                 else:
                     line = None
@@ -144,7 +148,7 @@ def exportmap(request):
             imprint_im = Image.new('RGBA', (0, 0), 'white')
         else:
             imprint_im = imprint_image(tile_layer.attribution, map_im.size[0], 20, 12, highres)
-        if len(map_title)>0 and not map_title.startswith('orlice_'):
+        if len(map_title) > 0 and not map_title.startswith('orlice_'):
             name_im = name_image(map_title, map_im.size[0])
         else:
             name_im = Image.new('RGBA', (0, 0), 'white')
@@ -166,6 +170,7 @@ def exportmap(request):
         response['Content-Disposition'] = 'attachment; filename="map.png"'
         im.save(response, 'png')
         return response
+
 
 def altitudeprofile(request):
     '''
@@ -196,7 +201,7 @@ def altitudeprofile(request):
                     im.save(response, 'png')
                     response['Content-Disposition'] = 'attachment; filename="altitudeprofile.png"'
                     return response
-            if res<=-10000:
+            if res <= -10000:
                 message = _('Sorry, we do not have height data for the area that you have requested.')
                 return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
             else:
@@ -204,6 +209,7 @@ def altitudeprofile(request):
         else:
             message = _('You have not set any point.')
             return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
+
 
 def creategpx(request):
     '''
@@ -215,7 +221,7 @@ def creategpx(request):
         # no points posted
         message = _('No route parameters posted.')
         return render_to_response('error.html', {'message': message},
-                                   context_instance=RequestContext(request))
+                                  context_instance=RequestContext(request))
     else:
         points = []
         if len(params):
@@ -232,6 +238,7 @@ def creategpx(request):
             message = _('You have not set any point.')
             return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
 
+
 def getheight(request):
     '''
     Returns height above sea level at given coordinates.
@@ -241,6 +248,7 @@ def getheight(request):
     point = [float(latlng[0]), float(latlng[1])]
     point_height = height(point)
     return HttpResponse(point_height, content_type='text/html')
+
 
 def findroute(request):
     '''
@@ -261,6 +269,7 @@ def findroute(request):
         print "Length:", multiroute.length, status, multiroute.search_index()
         return HttpResponse(json.dumps(geojson), content_type='application/json')
 
+
 def gettemplate(request):
     '''
     Create JSON file with route parameters.
@@ -271,7 +280,7 @@ def gettemplate(request):
         # missing params
         message = _('No route parameters posted.')
         return render_to_response('error.html', {'message': message},
-                                   context_instance=RequestContext(request))
+                                  context_instance=RequestContext(request))
     else:
         routeparams = RouteParams(params)
         json_params = routeparams.dump_params()
@@ -279,6 +288,7 @@ def gettemplate(request):
         response['Content-Disposition'] = 'attachment; filename="template.json"'
         response.write(json.dumps(json_params, indent=4, sort_keys=True))
         return response
+
 
 def getjsondata(request):
     '''
@@ -297,6 +307,7 @@ def getjsondata(request):
         return HttpResponse(None, content_type='application/json')
     geojson = layer.geojson_feature_collection(bounds)
     return HttpResponse(json.dumps(geojson), content_type='application/json')
+
 
 def evaluation(request):
     '''
@@ -319,6 +330,7 @@ def evaluation(request):
         print 'invalid form'
         print form.errors
     return HttpResponse(json.dumps(result), content_type='application/json')
+
 
 def set_language(request, lang):
     next = request.META.get('HTTP_REFERER', None)

@@ -10,13 +10,13 @@ from django.forms import ModelForm, Textarea, HiddenInput
 # Local imports
 from map.models import RoutingEvaluation
 
+
 class RoutingEvaluationForm(ModelForm):
     class Meta:
         model = RoutingEvaluation
         exclude = ('timestamp',)
         widgets = {
-            'comment': Textarea(attrs={'rows':4}),
+            'comment': Textarea(attrs={'rows': 4}),
             'params': HiddenInput(),
             'linestring': HiddenInput()
         }
-#    captcha = ReCaptchaField(attrs={'theme': 'clean'}, label='Opište text')

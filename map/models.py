@@ -12,6 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 # Local imports
 from osm_data_processing.models import OsmPoint, OsmLine
 
+
 class TileLayer(models.Model):
     __metaclass__ = TransMeta
 
@@ -28,7 +29,7 @@ class TileLayer(models.Model):
         return u"%s,%s" % (self.slug, self.url)
 
     def as_dict(self):
-        return {'slug':self.slug, 'name':self.name, 'url':self.url}
+        return {'slug': self.slug, 'name': self.name, 'url': self.url}
 
 
 class GeojsonLayer(models.Model):
@@ -71,8 +72,8 @@ class GeojsonLayer(models.Model):
             lines = OsmLine.objects.filter(the_geom__bboverlaps=bounding_box).filter(**filter)[:200]
             features += [line.geojson_feature(att_list) for line in lines]
         feature_collection = {
-            "type":"FeatureCollection",
-            "features":features
+            "type": "FeatureCollection",
+            "features": features
         }
         return json.dumps(feature_collection)
 
@@ -100,7 +101,8 @@ class RoutingEvaluation(models.Model):
     params = models.TextField()
     linestring = models.TextField()
     timestamp = models.DateTimeField()
-    general_evaluation = models.PositiveIntegerField(verbose_name=_('Overall rating'), choices=EVALUATION_CHOICES, default=3)
+    general_evaluation = models.PositiveIntegerField(verbose_name=_('Overall rating'),
+                                                     choices=EVALUATION_CHOICES, default=3)
     speed = models.PositiveIntegerField(verbose_name=_('Speed'), choices=SPEED_CHOICES, default=2)
     quality = models.PositiveIntegerField(verbose_name=_('Route quality'), choices=QUALITY_CHOICES, default=1)
     comment = models.TextField(verbose_name=_('Comment'), null=True, blank=True)

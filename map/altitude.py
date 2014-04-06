@@ -15,6 +15,7 @@ from routing.mathfunctions import haversine
 
 NONE_HEIGHT = -32768
 
+
 def height(point):
     """
     Get height of point with coordinates: (lat,lon)
@@ -25,25 +26,27 @@ def height(point):
     else:
         return hgt
 
+
 def hgt_file_key(lat, lon):
     """
     Compute height file key for given coordinates.
     Format is (N|S).nn.(W|E).nnn
     """
     ret_value = ''
-    if lat<0:
+    if lat < 0:
         lat = abs(lat) + 1
         ret_value += 'S'
     else:
         ret_value += 'N'
     ret_value += _zero_prefix(int(math.floor(lat)), 2)
-    if lon<0:
+    if lon < 0:
         lon = abs(lon) + 1
         ret_value += 'W'
     else:
         ret_value += 'E'
     ret_value += _zero_prefix(int(math.floor(lon)), 3)
     return ret_value
+
 
 def _zero_prefix(integer, length=3):
     """
@@ -61,7 +64,7 @@ class HgtFile:
         zip_file_name = zip_file.namelist()[0]
         hgt_string = zip_file.read(zip_file_name)
         zip_file.close()
-        self.file = flipud(((fromstring(string=hgt_string, dtype='int16')).byteswap()).reshape(1201,1201))
+        self.file = flipud(((fromstring(string=hgt_string, dtype='int16')).byteswap()).reshape(1201, 1201))
 
     def height(self, lat, lon):
         """
@@ -95,53 +98,63 @@ class AltitudeProfile:
         svg = ''
         # write SVG headers
         svg += '<?xml version="1.0" encoding="UTF-8"?>\n'
-        svg += '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n'
-        svg += '<svg width="1010" height="300" viewBox="0 0 1010 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">\n'
+        svg += '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"'
+        svg += ' "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n'
+        svg += '<svg width="1010" height="300" viewBox="0 0 1010 300" xmlns="http://www.w3.org/2000/svg"'
+        svg += ' xmlns:xlink="http://www.w3.org/1999/xlink">\n'
         # draw altitude fields
-        svg += '    <rect x="0" y="0" width="1010" height="300" fill="white" />\n    <rect x="35" y="30" width="950" height="246" fill="none" stroke="black" stroke-width="1" />\n'
+        svg += '    <rect x="0" y="0" width="1010" height="300" fill="white" />\n'
+        svg += '    <rect x="35" y="30" width="950" height="246" fill="none" stroke="black" stroke-width="1" />\n'
         max_height = -10000
         min_height = 10000
         # find min/max height
         for node in self.nodes:
-            if (node.height>max_height):
+            if (node.height > max_height):
                 max_height = node.height
             if (node.height < min_height):
                 min_height = node.height
         # avoids division by zero
-        if (max_height == min_height): max_height = max_height + 1
+        if (max_height == min_height):
+            max_height = max_height + 1
         # constants for mapping real distances and heights into the picture
-        normY = float(max_height - min_height)/200
-        normX = self.sumdist/950
+        normY = float(max_height - min_height) / 200
+        normX = self.sumdist / 950
         # begin drawing polyline
-        svg += '    <path fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M '
-        x=35
-        y=0
+        svg += '    <path fill="none" stroke="black" stroke-width="2" stroke-linecap="round"'
+        svg += ' stroke-linejoin="round" d="M '
+        x = 35
+        y = 0
         diff = 0
         for node in self.nodes:
             # xf is the shift on x-axis, diff is the remainder after rounding
             xf = (node.dist/normX) + diff
             diff = xf - round(xf)
             x = x + round(xf)
-            y = 255 - round((node.height-min_height)/normY)
+            y = 255 - round((node.height-min_height) / normY)
             svg += str(int(x)) + " " + str(int(y)) + " L "
-        maxY = int(255-round(((max_height-min_height)/normY)))
+        maxY = int(255 - round(((max_height-min_height) / normY)))
         # finish drawing polyline
         svg += ' "/>\n'
         #print height lines
         svg += '    <text fill="black" text-anchor="end" x="30" y="256">' + str(min_height) + '</text>\n'
         svg += '    <line stroke = "red" stroke-dasharray="2,2" x1="35" y1="255" x2="985" y2="255"/>\n'
-        svg += '    <text fill="black" text-anchor="end" x="30" y="' + str(maxY + 4) + '">' + str(max_height) + '</text>\n'
-        svg += '    <line stroke = "red" stroke-dasharray="2,2" x1="35" y1="' + str(maxY) + '" x2="985" y2="' + str(maxY) + '"/>\n'
-        svg += '    <text fill="black" text-anchor="middle" x="985" y="288">' + str(round(self.sumdist,1)) + ' km</text>\n'
+        svg += '    <text fill="black" text-anchor="end" x="30"'
+        svg += ' y="' + str(maxY + 4) + '">' + str(max_height) + '</text>\n'
+        svg += '    <line stroke = "red" stroke-dasharray="2,2"'
+        svg += ' x1="35" y1="' + str(maxY) + '" x2="985" y2="' + str(maxY) + '"/>\n'
+        svg += '    <text fill="black" text-anchor="middle" x="985"'
+        svg += ' y="288">' + str(round(self.sumdist, 1)) + ' km</text>\n'
         # assign 'h' max_height floored to hundreds
         h = (max_height/100) * 100
-        # avoid label colissions
+        # avoid label collisions
         if (max_height-h) < (max_height-min_height)/20.0:
             h = h-100
-        while h > (min_height + (max_height-min_height)/10): # conditoin avoids label colissions
+        while h > (min_height + (max_height-min_height)/10):  # condition avoids label collisions
             hcoord = int(255-round((h-min_height)/normY))
-            svg += '    <line stroke = "black" stroke-dasharray="2,2" x1="35" y1="' + str(hcoord) + '" x2="985" y2="' + str(hcoord) + '"/>\n'
-            svg += '    <text fill="black" text-anchor="end" x="30" y="' + str(hcoord + 4) + '">' + str(h) + '</text>\n'
+            svg += '    <line stroke = "black" stroke-dasharray="2,2"'
+            svg += ' x1="35" y1="' + str(hcoord) + '" x2="985" y2="' + str(hcoord) + '"/>\n'
+            svg += '    <text fill="black" text-anchor="end" x="30"'
+            svg += ' y="' + str(hcoord + 4) + '">' + str(h) + '</text>\n'
             h = h - 100
         # print distance markers, +/- 5 markers
         if self.sumdist > 25:
@@ -152,14 +165,18 @@ class AltitudeProfile:
             step = 0.2
         dist = step
         svg += '    <text fill="black" text-anchor="middle" x="35" y="288">0</text>\n'
-        while (dist < self.sumdist - self.sumdist/20): # condition 'self.sumdist/20' avoids label colission
-            svg += '    <line stroke ="black" x1="' + str(round(dist/normX) + 35) + '" y1="276" x2="' + str(round(dist/normX) + 35) + '" y2="269"/>\n'
-            svg += '    <text fill="black" text-anchor="middle" x="' + str(round(dist/normX) + 35) + '" y="288">' + str(dist) + '</text>\n'
+        while (dist < self.sumdist - self.sumdist/20):  # condition 'self.sumdist/20' avoids label collision
+            svg += '    <line stroke ="black" x1="' + str(round(dist/normX) + 35) + '" y1="276"'
+            svg += ' x2="' + str(round(dist/normX) + 35) + '" y2="269"/>\n'
+            svg += '    <text fill="black" text-anchor="middle" x="' + str(round(dist/normX) + 35)
+            svg += '" y="288">' + str(dist) + '</text>\n'
             dist = dist + step
         # print ascending and descending
         ascdesc = self.ascending()
-        svg += '    <text fill="black" text-anchor="middle" x="550" y="20">%s: %i %s: %i</text>\n' % (_('Ascending'), ascdesc[0], _('Descending'), ascdesc[1])
-    #    svg += '    <text fill="black" x="550" y="20">Descending: ' + str(ascdesc[1]) + '</text>\n'
+        svg += '    <text fill="black" text-anchor="middle" x="550" y="20">%s: %i %s: %i</text>\n' % (_('Ascending'),
+                                                                                                      ascdesc[0],
+                                                                                                      _('Descending'),
+                                                                                                      ascdesc[1])
         svg += '    <text fill="black" x="2" y="25">%s (m)</text>\n' % _('Height')
         # print SVG end element
         svg += '</svg>'
@@ -213,8 +230,8 @@ class AltitudeProfile:
                     new_node = ProfileNode(newlat, newlon)
                     new_node.dist = haversine(analyzed_nodes[-1].lon, analyzed_nodes[-1].lat, newlon, newlat)
                     analyzed_nodes.append(new_node)
-                    index=len(analyzed_nodes)-1
-                    node.dist=node.dist - analyzed_nodes[index].dist
+                    index = len(analyzed_nodes) - 1
+                    node.dist = node.dist - analyzed_nodes[index].dist
             analyzed_nodes.append(node)
             previous = node
         # return new list of nodes
@@ -227,7 +244,7 @@ class AltitudeProfile:
         hgt_files = {}
         for node in self.nodes:
             key = hgt_file_key(node.lat, node.lon)
-            if not hgt_files.has_key(key):
+            if not (key in hgt_files):
                 try:
                     hgt_files[key] = HgtFile(node)
                 except IOError:
@@ -244,28 +261,28 @@ class AltitudeProfile:
             node = self.nodes[i]
             node.height = node.srtm_height()
             if (node.height == NONE_HEIGHT) and (i > 1):
-                node.height=self.nodes[i-1].height
+                node.height = self.nodes[i - 1].height
             # Parsing missing height data
-            if (node.height == NONE_HEIGHT) :
-                j=1
-                while (self.nodes[j].height == NONE_HEIGHT) and j < len(self.nodes)-1:
-                    j=j+1
-                if (j==len(self.nodes)-1):
+            if (node.height == NONE_HEIGHT):
+                j = 1
+                while (self.nodes[j].height == NONE_HEIGHT) and j < len(self.nodes) - 1:
+                    j = j + 1
+                if (j == len(self.nodes) - 1):
                     return NONE_HEIGHT
-                while j>0:
-                    self.nodes[j-1].height = self.nodes[j].height
-                    j=j-1
+                while j > 0:
+                    self.nodes[j - 1].height = self.nodes[j].height
+                    j = j - 1
         if (self.nodes[0].height == NONE_HEIGHT):
             # First node has missing height, find first node with height and
             # copy this value to all previous nodes.
-            j=1
-            while (self.nodes[j].height == NONE_HEIGHT) and j < len(self.nodes)-1:
-                j=j+1
-            if (j == len(self.nodes)-1):
+            j = 1
+            while (self.nodes[j].height == NONE_HEIGHT) and j < len(self.nodes) - 1:
+                j = j + 1
+            if (j == len(self.nodes) - 1):
                 return NONE_HEIGHT
-            while j>0:
-                self.nodes[j-1].height = self.nodes[j].height
-                j=j-1
+            while j > 0:
+                self.nodes[j - 1].height = self.nodes[j].height
+                j = j - 1
         return 0
 
     def ascending(self):
@@ -274,10 +291,12 @@ class AltitudeProfile:
         """
         asc = 0
         desc = 0
-        for i in range(len(self.nodes)-1):
-            dif = self.nodes[i+1].height-self.nodes[i].height
-            if dif > 0: asc = asc + dif
-            else: desc = desc - dif
+        for i in range(len(self.nodes) - 1):
+            dif = self.nodes[i + 1].height - self.nodes[i].height
+            if dif > 0:
+                asc = asc + dif
+            else:
+                desc = desc - dif
         return [asc, desc]
 
 
