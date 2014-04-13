@@ -20,6 +20,7 @@ MAX_WEIGHT = max(WEIGHTS)
 MIN_WEIGHT = min(WEIGHTS)
 THRESHOLD = 2*max(WEIGHTS)
 
+
 class Way(geomodels.Model):
     class_id = models.BigIntegerField(null=True, blank=True)
     length = models.FloatField(null=True, blank=True)
@@ -71,9 +72,9 @@ class Way(geomodels.Model):
         ux = b.x - a.x
         uy = b.y - a.y
         t = ((point.x - a.x)*ux + (point.y - a.y)*uy)/(ux**2 + uy**2)
-        if t<=0:
+        if t <= 0:
             ret = a
-        elif t>=1:
+        elif t >= 1:
             ret = b
         else:
             x = a.x + ux*t
@@ -86,7 +87,8 @@ class Way(geomodels.Model):
         Find nearest segment of Way to the given point.
         return tuple (linestring, index of starting point of segment)
         '''
-        distances = [ LineString(self.the_geom[i], self.the_geom[i+1]).distance(point) for i in range(len(self.the_geom)-1)]
+        distances = [LineString(self.the_geom[i], self.the_geom[i+1]).distance(point)
+                     for i in range(len(self.the_geom)-1)]
         index = distances.index(min(distances))
         return LineString(self.the_geom[index], self.the_geom[index+1]), index
 
@@ -109,7 +111,7 @@ class Way(geomodels.Model):
         '''
         start_split, start_index = self.point_intersection(start)
         end_split, end_index = self.point_intersection(end)
-        if start_index<end_index:
+        if start_index < end_index:
             geometry = LineString([start_split] + self.the_geom[start_index+1:end_index+1] + [end_split])
         else:
             geometry = LineString([end_split] + self.the_geom[end_index+1:start_index+1] + [start_split])
@@ -165,30 +167,31 @@ class Way(geomodels.Model):
         Compute weight according to given parameters.
         return int
         '''
-        if self.highway=='temp':
+        if self.highway == 'temp':
             # Rare case, probably impossible to find correct route
             # Temporary Way should be deleted
             print 'returning temp weight', self.length, self.id
             return THRESHOLD
-        preferences = {'highway':MIN_WEIGHT, 'tracktype':MIN_WEIGHT, 'sac_scale':MIN_WEIGHT, 'mtbscale':MIN_WEIGHT, 'surface':MIN_WEIGHT, 'osmc':MIN_WEIGHT}
+        preferences = {'highway': MIN_WEIGHT, 'tracktype': MIN_WEIGHT, 'sac_scale': MIN_WEIGHT,
+                       'mtbscale': MIN_WEIGHT, 'surface': MIN_WEIGHT, 'osmc': MIN_WEIGHT}
         for feature_name in preferences.keys():
             feature_value = self.__dict__[feature_name]
-            if feature_value!=None and params.has_key(feature_name):
-                if params[feature_name].has_key('min'):
+            if feature_value is not None and feature_name in params:
+                if 'min' in params[feature_name]:
                     try:
                         minvalue = float(params[feature_name]['min'])
                     except ValueError:
                         pass
                     else:
-                        if feature_value<minvalue:
+                        if feature_value < minvalue:
                             return MAX_WEIGHT
-                if params[feature_name].has_key('max'):
+                if 'max' in params[feature_name]:
                     try:
                         maxvalue = float(params[feature_name]['max'])
                     except ValueError:
                         pass
                     else:
-                        if feature_value>maxvalue:
+                        if feature_value > maxvalue:
                             return MAX_WEIGHT
                 try:
                     preferences[feature_name] = int(params[feature_name][str(feature_value)])
@@ -206,7 +209,7 @@ class Way(geomodels.Model):
         '''
         shift = 0
         neg = 0
-        if params.has_key('preferred_classes'):
+        if 'preferred_classes' in params:
             preferred_classes = params['preferred_classes']
             for p in preferred_classes:
                 value = getattr(self, p)
@@ -216,7 +219,7 @@ class Way(geomodels.Model):
         # TODO returning neg or shift possible, see get_when_clauses TODO
         if neg < 0:
             return -1
-        elif shift >0:
+        elif shift > 0:
             return 1
         else:
             return 0
@@ -234,7 +237,6 @@ class Way(geomodels.Model):
             weight = len(WEIGHTS)
         return {
             'type': 'Feature',
-#            'id': self.id,
             'properties': {
                 'weight': weight,
                 'length': self.length,
@@ -257,6 +259,7 @@ class Way(geomodels.Model):
             lon2, lat2 = coords[i+1]
             length += haversine(lon1, lat1, lon2, lat2)
         return length
+
 
 class WeightCollection(models.Model):
     __metaclass__ = TransMeta
@@ -284,16 +287,18 @@ class WeightCollection(models.Model):
         where = '(id IS NOT NULL)'
         cost = 'length'
         reverse_cost = ''
-        unpreferred_preferences = {1:[],2:[],3:[],4:[],5:[]}
-        preferred_preferences = {1:[],2:[],3:[],4:[]}
+        unpreferred_preferences = {1: [], 2: [], 3: [], 4: [], 5: []}
+        preferred_preferences = {1: [], 2: [], 3: [], 4: []}
         reverse_cases = []
         # conditions for oneways
         if self.vehicle == 'bicycle':
             # bicycles are allowed to go in some oneways reversely
-            reverse_cases += ['''WHEN (bicycle!='opposite' OR bicycle IS NULL) AND reverse_cost!=length THEN reverse_cost ''']
+            reverse_cases += ['''WHEN (bicycle!='opposite' OR bicycle IS NULL)
+                AND reverse_cost!=length THEN reverse_cost ''']
         elif self.vehicle == 'foot':
             # consider oneway only on paths, tracks, steps and footways
-            reverse_cases += ['''WHEN highway IN ('path', 'track', 'steps', 'footway') AND reverse_cost!=length THEN reverse_cost ''']
+            reverse_cases += ['''WHEN highway IN ('path', 'track', 'steps', 'footway')
+                AND reverse_cost!=length THEN reverse_cost ''']
         else:
             # probably car, never route on oneway=yes
             reverse_cases += ['''WHEN reverse_cost!=length THEN reverse_cost ''']
@@ -327,8 +332,9 @@ class WeightCollection(models.Model):
         pref_classes_condition = ' OR '.join([p + '>0' for p in preferred_slugs])
         cases = []
         for preference in range(4, 0, -1):
-            if len(preferred_slugs) and preference>1 and pref[preference-1]:
-                pref_joined_conditions = '(' + ' OR '.join(pref[preference-1]) + ') AND (' + pref_classes_condition + ')'
+            if len(preferred_slugs) and preference > 1 and pref[preference-1]:
+                pref_joined_conditions = ('(' + ' OR '.join(pref[preference-1]) + ')'
+                                          ' AND (' + pref_classes_condition + ')')
                 cases.append('WHEN %s THEN "length"*%s' % (pref_joined_conditions, WEIGHTS[max(preference-2, 0)]))
             if unpref[preference]:
                 unpref_joined_conditions = ' OR '.join(unpref[preference])
@@ -343,7 +349,8 @@ class WeightCollection(models.Model):
         access_clauses = []
         default_access = '''(access IS NULL OR access NOT IN ('no', 'private'))'''
         if self.vehicle in ('bicycle', 'foot'):
-            access_restrictions = '''((access IS NULL OR access NOT IN ('no', 'private')) OR (access IN ('no', 'private') AND %s IN ('yes', 'designated')))''' % (self.vehicle)
+            access_restrictions = '''((access IS NULL OR access NOT IN ('no', 'private')) OR
+                (access IN ('no', 'private') AND %s IN ('yes', 'designated')))''' % (self.vehicle)
             vehicle_restrictions = '''(%s IS NULL OR NOT %s IN ('no', 'private'))''' % (self.vehicle, self.vehicle)
             access_clauses += [access_restrictions, vehicle_restrictions]
         else:
@@ -355,8 +362,8 @@ class WeightCollection(models.Model):
         Dump weight collection params as JSON like dictionary.
         '''
         json = {}
-        json['slug'] = params['global'].get('slug','undefined')
-        json['oneway'] = params['global'].has_key('oneway')
+        json['slug'] = params['global'].get('slug', 'undefined')
+        json['oneway'] = 'oneway' in params['global']
         json['vehicle'] = params['global'].get('vehicle', 'bicycle')
         json['preferred'] = []
         for pv in self.preferredvalue_set.select_related().all():
@@ -367,9 +374,9 @@ class WeightCollection(models.Model):
         for wcv in self.weightclassvalue_set.select_related().all():
             slug = wcv.weight_class.slug
             weight_class = {"slug": slug, "visible": True}
-            if (wcv.max != None) and (params[slug].has_key('max')):
+            if (wcv.max is not None) and ('max' in params[slug]):
                 weight_class['max'] = params[slug]['max']
-            if (wcv.min != None) and (params[slug].has_key('min')):
+            if (wcv.min is not None) and ('min' in params[slug]):
                 weight_class['min'] = params[slug]['min']
             if wcv.weightvalue_set.count():
                 weight_class['features'] = []
@@ -417,8 +424,8 @@ class WeightClassValue(models.Model):
         '''
         unpreferable_highways = ('track', 'path', 'bridleway')
         default = min(WEIGHTS)
-        pref_dict = {1:[],2:[],3:[],4:[]}
-        unpref_dict = {1:[],2:[],3:[],4:[],5:[]}
+        pref_dict = {1: [], 2: [], 3: [], 4: []}
+        unpref_dict = {1: [], 2: [], 3: [], 4: [], 5: []}
         class_slug = self.weight_class.slug
         for wv in self.weightvalue_set.select_related().all():
             weight_slug = wv.weight.slug
@@ -428,10 +435,11 @@ class WeightClassValue(models.Model):
                 print 'ValueError', class_slug, weight_slug, params
             else:
                 # TODO compute (un)preferred_slugs weights correctly, not only +/- 1 degree, but in range(-3, +3)
-                if len(preferred_slugs) and class_slug=='highway' and weight_slug in unpreferable_highways:
+                if len(preferred_slugs) and class_slug == 'highway' and weight_slug in unpreferable_highways:
                     least_when = ' OR '.join(['"' + p + '"<0' for p in preferred_slugs])
                     pref_index = min(preference+1, len(unpref_dict))
-                    unpref_dict[pref_index].append(""" ("%s"::text='%s' AND (%s)) """ % (class_slug, weight_slug, least_when))
+                    unpref_dict[pref_index].append(""" ("%s"::text='%s' AND (%s)) """
+                                                   % (class_slug, weight_slug, least_when))
                 if preference != default:
                     if len(preferred_slugs):
                         pref_dict[max(preference-1, 1)].append(""" ("%s"::text='%s') """ % (class_slug, weight_slug))
@@ -444,7 +452,7 @@ class WeightClassValue(models.Model):
         '''
         andparts = []
         class_slug = self.weight_class.slug
-        if params.has_key('max'):
+        if 'max' in params:
             try:
                 value = float(params['max'])
                 condition = '"%s"<=%s' % (class_slug, value)
@@ -452,9 +460,9 @@ class WeightClassValue(models.Model):
                 print 'ValueError', class_slug, params
             else:
                 # only if smaller than default max value
-                if value<self.max:
+                if value < self.max:
                     andparts.append(condition)
-        if params.has_key('min'):
+        if 'min' in params:
             try:
 #                print 'MINVALUE:', params['min']
                 value = float(params['min'])
@@ -463,12 +471,12 @@ class WeightClassValue(models.Model):
                 print 'ValueError', class_slug, params
             else:
                 # only if bigger than default min value
-                if value>self.min:
+                if value > self.min:
                     andparts.append(condition)
         for wv in self.weightvalue_set.all():
             weight_slug = wv.weight.slug
             preference = params[weight_slug]
-            if preference=='5':
+            if preference == '5':
                 condition = """ "%s"::text!='%s'""" % (class_slug, weight_slug)
                 andparts.append(condition)
         andcondition = ' AND '.join(andparts)

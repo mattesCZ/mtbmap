@@ -6,9 +6,11 @@ from django.contrib import admin
 # Local imports
 from routing.models import *
 
+
 class WeightInline(admin.TabularInline):
     model = Weight
     extra = 1
+
 
 class WeightClassAdmin(admin.ModelAdmin):
     inlines = [WeightInline]

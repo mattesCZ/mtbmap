@@ -9,7 +9,9 @@ import csv
 from django.conf import settings
 
 # Local imports
-from routing.models import WeightCollection, WeightClass, WeightClassValue, Weight, WeightValue, Preferred, PreferredValue
+from routing.models import WeightCollection, WeightClass, WeightClassValue, \
+    Weight, WeightValue, Preferred, PreferredValue
+
 
 def initialize_preferred(filename='routing/fixtures/preferred.csv'):
     with open(filename, 'r') as f:
@@ -17,11 +19,13 @@ def initialize_preferred(filename='routing/fixtures/preferred.csv'):
         for row_dict in reader:
             Preferred(**row_dict).save()
 
+
 def initialize_weightclass(filename='routing/fixtures/weightclass.csv'):
     with open(filename, 'r') as f:
         reader = csv.DictReader(f)
         for row_dict in reader:
             WeightClass(**row_dict).save()
+
 
 def initialize_weight(filename='routing/fixtures/weight.csv'):
     with open(filename, 'r') as f:
@@ -29,7 +33,8 @@ def initialize_weight(filename='routing/fixtures/weight.csv'):
         for row_dict in reader:
             weight_class_slug = row_dict.pop('weight_class')
             weight_class = WeightClass.objects.get(slug=weight_class_slug)
-            Weight(weight_class=weight_class,**row_dict).save()
+            Weight(weight_class=weight_class, **row_dict).save()
+
 
 def import_json_template(filename):
     """
@@ -59,15 +64,15 @@ def import_json_template(filename):
                                     visible=c['visible'])
         wc_value.save()
         feature_order = 0
-        for feature in c.get('features',[]):
+        for feature in c.get('features', []):
             weight = Weight.objects.get(weight_class=weight_class, slug=feature['slug'])
             weight_value = WeightValue(weight_class_value=wc_value,
-                                  weight=weight,
-                                  preference=feature['value'],
-                                  order=feature_order,
-                                  visible=feature.get('visible', True))
+                                       weight=weight,
+                                       preference=feature['value'],
+                                       order=feature_order,
+                                       visible=feature.get('visible', True))
             weight_value.save()
-            feature_order +=1
+            feature_order += 1
         class_order += 1
     for p in json_template['preferred']:
         preferred = Preferred.objects.get(slug=p['slug'])

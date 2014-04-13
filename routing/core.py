@@ -16,14 +16,17 @@ from routing.mathfunctions import total_seconds, hypotenuse
 
 MAP_DB = 'osm_data'
 
+
 def line_string_to_points(line_string):
     '''
     Parse line geometry, represented as a string.
     return array of GEOS Points
     '''
-    latlngs = [coord.strip().replace('LatLng(', '').replace(')','') for coord in line_string.replace('[', '').replace(']', '').split(',')]
+    latlngs = [coord.strip().replace('LatLng(', '').replace(')', '')
+               for coord in line_string.replace('[', '').replace(']', '').split(',')]
     point_strings = [latlngs[i+1] + ' ' + latlngs[i] for i in range(0, len(latlngs), 2)]
     return [GEOSGeometry('SRID=4326;POINT(%s)' % point) for point in point_strings]
+
 
 class RoutePoint:
     '''
@@ -51,18 +54,23 @@ class RoutePoint:
         found = False
         while not found:
             bbox = point.buffer(radius).envelope
-            ways = Way.objects.filter(the_geom__bboverlaps=bbox).extra(where=[self.params.where]).distance(point).order_by('distance')
+            ways = (Way.objects
+                    .filter(the_geom__bboverlaps=bbox)
+                    .extra(where=[self.params.where])
+                    .distance(point)
+                    .order_by('distance')
+                    )
             if ways.count():
                 best_weight = ways[0].weight(self.params.raw_params) * ways[0].distance.km
                 nearest_way = ways[0]
                 for way in ways:
                     distance = way.distance.km
-                    if distance>best_weight:
-                        found=True
+                    if distance > best_weight:
+                        found = True
                         break
                     else:
                         weighted_distance = way.weight(self.params.raw_params) * way.distance.km
-                        if weighted_distance<best_weight:
+                        if weighted_distance < best_weight:
                             best_weight = weighted_distance
                             nearest_way = way
             if radius > LIMIT_DISTANCE:
@@ -70,12 +78,12 @@ class RoutePoint:
                 return None
             radius *= 2
         return nearest_way
-    
+
     def delete_temp_ways(self):
         '''
         Delete splitted temporal ways at the end of route search.
         '''
-        if self.status=='found':
+        if self.status == 'found':
             self.to_source.delete()
             self.to_target.delete()
 
@@ -93,10 +101,10 @@ class MultiRoute:
         self.status = 'init'
         self.geojson_features = []
         self.route_points = self._create_route_points()
-        
+
     def _create_route_points(self):
         return [RoutePoint(point, self.params) for point in self.points]
-            
+
     def geojson(self):
         '''
         Create GeoJSON like object of type FeatureCollection.
@@ -114,7 +122,7 @@ class MultiRoute:
         '''
         Compute ratio between cost and real length of the road
         '''
-        if self.length>0:
+        if self.length > 0:
             return self.cost/self.length
         else:
             return -1
@@ -125,9 +133,9 @@ class MultiRoute:
         '''
         start = datetime.now()
         for point in self.route_points:
-            if point.status=='notfound':
+            if point.status == 'notfound':
                 self.status = 'notfound'
-        if self.status!='notfound':
+        if self.status != 'notfound':
             for i in range(len(self.route_points)-1):
                 start_point = self.route_points[i]
                 end_point = self.route_points[i+1]
@@ -140,11 +148,12 @@ class MultiRoute:
                 self.geojson_features += route.geojson()
         for point in self.route_points:
             point.delete_temp_ways()
-        if self.status=='init':
+        if self.status == 'init':
             self.status = 'success'
         end = datetime.now()
         print 'Find MultiRoute duration:', total_seconds(end - start)
         return self.status
+
 
 class Route:
     '''
@@ -181,7 +190,7 @@ class Route:
             to_start_way = self.start_route_point.to_nearest_way
             end_id = self.end_route_point.vertice_id
             to_end_way = deepcopy(self.end_route_point.to_nearest_way)
-            
+
             limit_way = self.insert_limit_way(start_id, end_id, start_point, end_point)
             # use dijkstra or astar search
             edge_ids = self.astar(start_id, end_id)
@@ -230,16 +239,15 @@ class Route:
             else:
                 next_node = way.source
                 way.the_geom.reverse()
-            corrected_ways.append(way) 
+            corrected_ways.append(way)
         return corrected_ways
-    
 
     def geojson(self):
         '''
         Route GeoJSON representation.
         Finds route at first, if it is initialized only.
         '''
-        if self.status=='init':
+        if self.status == 'init':
             self.find_best_route()
         return [way.feature(self.params.raw_params, self.status) for way in self.ways]
 
@@ -247,7 +255,7 @@ class Route:
         '''
         Compute ratio between cost and real length of the road.
         '''
-        if self.length>0:
+        if self.length > 0:
             return self.cost/self.length
         else:
             return -1
@@ -262,7 +270,8 @@ class Route:
         cursor = connections[MAP_DB].cursor()
         sql = self.params.sql_astar_buffer(self._st_buffer())
 #        print self.params.sql_astar
-        cursor.execute("SELECT id2 AS edge_id, cost FROM pgr_astar(%s, %s, %s, false, %s)", [sql, source, target, self.params.reverse])
+        cursor.execute("SELECT id2 AS edge_id, cost FROM pgr_astar(%s, %s, %s, false, %s)",
+                       [sql, source, target, self.params.reverse])
         rows = cursor.fetchall()
         edge_ids = [elem[0] for elem in rows]
         self.cost = sum([elem[1] for elem in rows])
@@ -277,7 +286,8 @@ class Route:
         return array of edge IDs of Way objects
         '''
         cursor = connections[MAP_DB].cursor()
-        cursor.execute("SELECT edge_id FROM shortest_path(%s, %s, %s, false, %s)", [self.params.sql_dijkstra, source, target, self.params.reverse])
+        cursor.execute("SELECT edge_id FROM shortest_path(%s, %s, %s, false, %s)",
+                       [self.params.sql_dijkstra, source, target, self.params.reverse])
         rows = cursor.fetchall()
         edge_ids = [elem[0] for elem in rows]
         self.cost = sum([elem[1] for elem in rows])
@@ -288,25 +298,25 @@ class Route:
         Insert into DB Way between start and end points. Can be used as threshold for route searching.
         return Way
         '''
-        limit_way = Way( name='',
-                         x1=start_point.x,
-                         x2=end_point.x,
-                         y1=start_point.y,
-                         y2=end_point.y,
-                         source=start_id,
-                         target=end_id,
-                         highway='temp'
-                    )
+        limit_way = Way(name='',
+                        x1=start_point.x,
+                        x2=end_point.x,
+                        y1=start_point.y,
+                        y2=end_point.y,
+                        source=start_id,
+                        target=end_id,
+                        highway='temp'
+                        )
         line = LineString((limit_way.x1, limit_way.y1), (limit_way.x2, limit_way.y2))
         line.set_srid(4326)
         limit_way.the_geom = line
-        limit_way.save()        
+        limit_way.save()
         # workaround to compute correct length
         limit_way.length = THRESHOLD * Way.objects.length().get(pk=limit_way.id).length.km
         limit_way.reverse_cost = limit_way.length
         limit_way.save()
         return limit_way
-    
+
     def _st_buffer(self):
         '''
         Returns buffer around line connecting start and end point.
@@ -315,7 +325,7 @@ class Route:
         start_point = self.start_route_point.point
         end_point = self.end_route_point.point
         dist_divised = hypotenuse(start_point.x, start_point.y, end_point.x, end_point.y)/5
-        radius = max(0.02,dist_divised)
+        radius = max(0.02, dist_divised)
         buffer = LineString(start_point, end_point).buffer(radius)
         buffer.set_srid(4326)
         return buffer.ewkt
@@ -327,7 +337,7 @@ class RouteParams:
     '''
     def __init__(self, flat_params):
         self.raw_params = self._recreate_params(flat_params)
-        self.reverse = self.raw_params['global'].has_key('oneway')
+        self.reverse = 'oneway' in self.raw_params['global']
         self.where = '(id IS NOT NULL)'
         self.cost = 'length'
         self.reverse_cost = 'reverse_cost'
@@ -343,9 +353,11 @@ class RouteParams:
         '''
         where = 'WHERE ' + self.where + " OR highway='temp'"
         if self.reverse:
-            return 'SELECT id, source::int4, target::int4, %s AS cost, %s AS reverse_cost, x1, x2, y1, y2 FROM routing_way %s' % (self.cost, self.reverse_cost, where)
+            return ('SELECT id, source::int4, target::int4, %s AS cost, %s AS reverse_cost, x1, x2, y1, y2 '
+                    'FROM routing_way %s' % (self.cost, self.reverse_cost, where))
         else:
-            return 'SELECT id, source::int4, target::int4, %s AS cost, x1, x2, y1, y2 FROM routing_way %s' % (self.cost, where)
+            return ('SELECT id, source::int4, target::int4, %s AS cost, x1, x2, y1, y2 FROM routing_way %s'
+                    % (self.cost, where))
 
     def weighted_ways_dijkstra(self):
         '''
@@ -354,7 +366,8 @@ class RouteParams:
         '''
         where = "WHERE " + self.where + " OR highway='temp'"
         if self.reverse:
-            return 'SELECT id, source::int4, target::int4, %s AS cost, %s AS reverse_cost FROM routing_way %s' % (self.cost, self.reverse_cost, where)
+            return ('SELECT id, source::int4, target::int4, %s AS cost, %s AS reverse_cost FROM routing_way %s'
+                    % (self.cost, self.reverse_cost, where))
         else:
             return 'SELECT id, source::int4, target::int4, %s AS cost FROM routing_way %s' % (self.cost, where)
 
@@ -370,10 +383,10 @@ class RouteParams:
         Create cost column definition and where clause.
         '''
         self.cost, self.reverse_cost, self.where = self.weight_collection.get_cost_where_clause(self.raw_params)
-    
+
     def _preferred_classes(self):
         preferred_classes = []
-        if self.raw_params.has_key('preferred'):
+        if 'preferred' in self.raw_params:
             preferred_classes += self.raw_params['preferred'].keys()
         return preferred_classes
 
@@ -388,10 +401,11 @@ class RouteParams:
                 new[weight_class] = {}
             new[weight_class][feature] = p['value']
         return new
-    
+
     def dump_params(self):
         collection = WeightCollection.objects.get(slug='empty')
         return collection.dump_params(self.raw_params)
+
 
 def create_gpx(points):
     '''
@@ -412,5 +426,3 @@ def create_gpx(points):
         rte_node.addChild(rtept)
     root_node.addChild(rte_node)
     return output.serialize('utf-8', 1)
-        
-    

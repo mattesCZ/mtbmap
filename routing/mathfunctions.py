@@ -3,6 +3,7 @@
 # Global imports
 from math import radians, cos, sin, asin, sqrt
 
+
 def haversine(lon1, lat1, lon2, lat2):
     """
     Calculate the great circle distance between two points
@@ -18,14 +19,16 @@ def haversine(lon1, lat1, lon2, lat2):
     km = 6378.137 * c
     return km
 
+
 def total_seconds(time_diff):
     """
     Calculate datetime.timedelta in total seconds. Needed for Python versions < 2.7.
     """
     return (time_diff.microseconds + (time_diff.seconds + time_diff.days * 24 * 3600) * 1e6) / 1e6
 
+
 def hypotenuse(x1, y1, x2, y2):
     """
     Calculate length of hypotenuse for given coordinates.
     """
-    return sqrt((x2-x1)**2 + (y2-y1)**2)
+    return sqrt((x2 - x1)**2 + (y2 - y1)**2)
