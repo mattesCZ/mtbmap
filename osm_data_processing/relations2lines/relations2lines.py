@@ -8,12 +8,13 @@ import time
 from copy import deepcopy
 from sys import setrecursionlimit
 
-def run(dbname, port):
+def run(db_name, user, port):
     bboxquery = ''' ST_Intersects(way, ST_Transform(ST_GeomFromText('POLYGON((-5 60, -5 35, 30 35, 30 60, -5 60))', 4326), 900913)::geometry) '''
     print time.strftime("%H:%M:%S", time.localtime()), " - script started"
     print "  Searching RelationIDs and Lines in planet_osm_line..."
     # Create connection to DB server.
-    connection = connect("dbname='" + dbname + "' user='xtesar7' password='' port='" + port + "'");
+    connection = connect("dbname='{db_name}' user='{user}' password='' port='{port}'"
+                         .format(db_name=db_name, user=user, port=port))
     relationCursor = connection.cursor()
     auxiliaryCursor = connection.cursor()
     wayCursor = connection.cursor()
