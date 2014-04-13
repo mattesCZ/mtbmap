@@ -8,6 +8,7 @@ from map.models import TileLayer
 from osm_data_processing.updatemap import updatemap
 from osm_data_processing.create_osm_objects import copy_osmpoints, copy_osmlines
 
+
 class Command(BaseCommand):
     args = '<configuration file path>'
     help = 'Update data used for map rendering and timestamp.'

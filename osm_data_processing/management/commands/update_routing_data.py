@@ -5,6 +5,7 @@ from django.core.management.base import BaseCommand
 # Local imports
 from osm_data_processing.updateroutingdata import copy_ways, add_attributes
 
+
 class Command(BaseCommand):
     args = '<configuration file path>'
     help = 'Update data used for routing.'
