@@ -7,6 +7,7 @@ from django.conf import settings
 # Local imports
 from styles.translation import load_default_names, load_translation_file
 
+
 class Command(BaseCommand):
     help = 'Load or update names of map objects used in legend.'
 

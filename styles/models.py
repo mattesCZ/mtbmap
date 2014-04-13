@@ -20,11 +20,13 @@ from django.utils.translation import activate, ugettext_lazy as _
 from styles.xmlfunctions import *
 
 zooms = [250000000000, 500000000, 200000000, 100000000, 50000000, 25000000, 12500000,
-6500000, 3000000, 1500000, 750000, 400000, 200000, 100000, 50000, 25000, 12500, 5000, 2500, 1000, 500, 250, 125]
+         6500000, 3000000, 1500000, 750000, 400000, 200000, 100000, 50000, 25000, 12500,
+         5000, 2500, 1000, 500, 250, 125]
 
 style_path = settings.MAPNIK_STYLES
 db_password = settings.DATABASES['default']['PASSWORD']
 LANG_CODES = [lang_code for lang_code, lang_name in settings.LANGUAGES]
+
 
 class StylesModel(models.Model):
     PROPERTIES = ()
@@ -41,7 +43,7 @@ class StylesModel(models.Model):
             default = getattr(self, property)
             value = xpath_query(node, './@%s' % self._xml_property_name(property))
             # Don't replace empty string for None
-            if not (str(default)=='' and value==None):
+            if not (str(default) == '' and value is None):
                 setattr(self, property, value)
 
     def zoom_to_scale(self, zoom, max=True):
@@ -239,7 +241,7 @@ class Layer(StylesModel):
             layer.minzoom = zooms[self.minzoom + 1]
         if self.maxzoom:
             layer.maxzoom = zooms[self.maxzoom]
-        if not self.status==None:
+        if self.status is not None:
             layer.status = self.status
         layer.datasource = self.datasource.mapnik()
         for style in self.styles.all():
@@ -485,7 +487,7 @@ class Rule(StylesModel):
         self.filter = xpath_query(node, './Filter')
         if not self.filter:
             elsefilter = xpath_query(node, './ElseFilter')
-            if elsefilter != None:
+            if elsefilter is not None:
                 self.filter = 'ELSEFILTER'
         minscale = xpath_query(node, './MinScaleDenominator')
         if minscale:
@@ -520,7 +522,7 @@ class Rule(StylesModel):
         set_xml_param(node, 'name', self.name)
         set_xml_param(node, 'title', self.title)
         if self.filter:
-            if self.filter=='ELSEFILTER':
+            if self.filter == 'ELSEFILTER':
                 node.addChild(libxml2.newNode('ElseFilter'))
             else:
                 filter_node = libxml2.newNode('Filter')
@@ -536,7 +538,7 @@ class Rule(StylesModel):
         self.scale(scale_factor)
         rule = mapnik.Rule()
         if self.filter:
-            if self.filter=='ELSEFILTER':
+            if self.filter == 'ELSEFILTER':
                 rule.set_else
             else:
                 rule.filter = mapnik.Expression(self.filter.encode('utf-8'))
@@ -1041,7 +1043,7 @@ class TextStylesModel(Symbolizer):
         if self.face_name:
             font_name = self.face_name.encode('utf-8')
         text_size = 10
-        if self.size != None:
+        if self.size is not None:
             text_size = self.size
         text_color = mapnik.Color('black')
         if self.fill:
@@ -1074,7 +1076,8 @@ class TextStylesModel(Symbolizer):
         if self.halo_radius:
             mapnik_symbolizer.halo_radius = self.halo_radius
         if self.horizontal_alignment:
-            mapnik_symbolizer.horizontal_alignment = mapnik.horizontal_alignment.names[self.horizontal_alignment.encode('utf-8')]
+            mapnik_symbolizer.horizontal_alignment = (mapnik.horizontal_alignment
+                                                      .names[self.horizontal_alignment.encode('utf-8')])
         if self.justify_alignment:
             mapnik_symbolizer.justify_alignment = mapnik.justify_alignment.names[self.justify_alignment.encode('utf-8')]
         if self.label_position_tolerance:
@@ -1106,7 +1109,8 @@ class TextStylesModel(Symbolizer):
                 name = self.text_transform.encode('utf-8')[2:] + 'case'
                 mapnik_symbolizer.text_transform = mapnik.text_transform.names[name]
         if self.vertical_alignment:
-            mapnik_symbolizer.vertical_alignment = mapnik.vertical_alignment.names[self.vertical_alignment.encode('utf-8')]
+            mapnik_symbolizer.vertical_alignment = (mapnik.vertical_alignment
+                                                    .names[self.vertical_alignment.encode('utf-8')])
         mapnik_symbolizer.wrap_before = self.wrap_before
         if self.wrap_character:
             mapnik_symbolizer.wrap_char = self.wrap_character.encode('utf-8')
@@ -1212,16 +1216,18 @@ class Legend(models.Model):
             lin.render_names(font_size, scale_factor)
 
     def legend_items(self, zoom):
-        return self.legenditem_set.select_related().filter(zoom=zoom).exclude(image='').order_by('legend_item_name__group', 'legend_item_name__order', 'legend_item_name__slug')
+        return (self.legenditem_set.select_related().filter(zoom=zoom).exclude(image='')
+                .order_by('legend_item_name__group', 'legend_item_name__order', 'legend_item_name__slug'))
 
 
 class LegendItem(models.Model):
     SCALE_CHOICES = zip(range(0, 21), range(0, 21))
     legend_item_name = models.ForeignKey('LegendItemName', null=True, blank=True)
     image = models.ImageField(upload_to='legend/', height_field='height', width_field='width', null=True, blank=True)
-    image_highres = models.ImageField(upload_to='legend/', height_field='height_highres', width_field='width_highres', null=True, blank=True)
+    image_highres = models.ImageField(upload_to='legend/', height_field='height_highres', width_field='width_highres',
+                                      null=True, blank=True)
     geometry = models.CharField(max_length=200, null=True, blank=True)
-    zoom =  models.IntegerField(choices=SCALE_CHOICES)
+    zoom = models.IntegerField(choices=SCALE_CHOICES)
     height = models.PositiveIntegerField(null=True, blank=True)
     width = models.PositiveIntegerField(null=True, blank=True)
     height_highres = models.PositiveIntegerField(null=True, blank=True)
@@ -1266,14 +1272,14 @@ class LegendItem(models.Model):
         add_outline = 0
         for rule in self.rules.order_by('legenditemrule__order'):
             for symbolizer in rule.symbolizers.all().order_by('symbolizerrule__order'):
-                if symbolizer.symbtype=='Text':
+                if symbolizer.symbtype == 'Text':
                     continue
                 specialized = symbolizer.specialized()
                 specialized.scale(scale_factor)
                 symb_size = specialized.symbol_size()
                 size = (max(size[0], int(symb_size[0]) + 1), max(size[1], int(symb_size[1]) + 1))
                 # increase the size, if polygon has an outline
-                if self.geometry=='Collection' and 'Line' in symbolizer.symbtype:
+                if self.geometry == 'Collection' and 'Line' in symbolizer.symbtype:
                     add_outline = max(add_outline, int(float(symb_size[0]) + 0.5))
         if add_outline:
             size = (size[0] + add_outline, size[1] + add_outline)
@@ -1282,7 +1288,7 @@ class LegendItem(models.Model):
     def create_image(self, scale_factor=1):
         if self.legend_item_name.slug.startswith('_'):
             return
-        if scale_factor>=2:
+        if scale_factor >= 2:
             if self.image_highres and os.path.exists(self.image_highres.path):
                 remove(self.image_highres.path)
         else:
@@ -1298,7 +1304,7 @@ class LegendItem(models.Model):
             #render() returns non-zero integer, ie. image is not rendered
             pass
         else:
-            if scale_factor>=2:
+            if scale_factor >= 2:
                 if self.image_highres:
                     self.image_highres.delete()
                 self.image_highres.save(directory + name, File(open(tmpfilename)))
@@ -1327,9 +1333,9 @@ class LegendItem(models.Model):
             mapnik_rule.max_scale = zooms[0]
             mapnik_rule.min_scale = zooms[19]
             s.rules.append(mapnik_rule)
-        if self.geometry=='LineString':
-            size = (3*size[1], size[1])
-        if self.geometry=='Collection':
+        if self.geometry == 'LineString':
+            size = (3 * size[1], size[1])
+        if self.geometry == 'Collection':
             size = (50 * int(scale_factor), 35 * int(scale_factor))
         width, height = size
         l = mapnik.Layer('legend')
@@ -1341,7 +1347,8 @@ class LegendItem(models.Model):
         m.background = mapnik.Color('rgba(0,0,0,0)')
         m.append_style('Legend_style', s)
         m.layers.append(l)
-        prj = mapnik.Projection("+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over")
+        prj = mapnik.Projection('+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 '
+                                '+units=m +nadgrids=@null +no_defs +over')
         lon = 0.01
         lat = 0.01
         if height > width:
@@ -1349,9 +1356,9 @@ class LegendItem(models.Model):
         else:
             lon = lat * width / height
         ll = (-lon, -lat, lon, lat)
-        c0 = prj.forward(mapnik.Coord(ll[0],ll[1]))
-        c1 = prj.forward(mapnik.Coord(ll[2],ll[3]))
-        bbox = mapnik.Box2d(c0.x,c0.y,c1.x,c1.y)
+        c0 = prj.forward(mapnik.Coord(ll[0], ll[1]))
+        c1 = prj.forward(mapnik.Coord(ll[2], ll[3]))
+        bbox = mapnik.Box2d(c0.x, c0.y, c1.x, c1.y)
         m.zoom_to_box(bbox)
         im = mapnik.Image(width, height)
         mapnik.render(m, im)
@@ -1367,8 +1374,11 @@ class LegendItemName(models.Model):
     name = models.CharField(verbose_name=_('name'), max_length=200, null=True, blank=True)
     group = models.CharField(max_length=200, null=True, blank=True)
     order = models.PositiveIntegerField(null=True, blank=True)
-    image = models.ImageField(verbose_name=_('image'), upload_to='legend/', height_field='height', width_field='width', null=True, blank=True)
-    image_highres = models.ImageField(verbose_name=_('highres image'), upload_to='legend/', height_field='height_highres', width_field='width_highres', null=True, blank=True)
+    image = models.ImageField(verbose_name=_('image'), upload_to='legend/', height_field='height',
+                              width_field='width', null=True, blank=True)
+    image_highres = models.ImageField(verbose_name=_('highres image'), upload_to='legend/',
+                                      height_field='height_highres', width_field='width_highres',
+                                      null=True, blank=True)
     height = models.PositiveIntegerField(null=True, blank=True)
     width = models.PositiveIntegerField(null=True, blank=True)
     height_highres = models.PositiveIntegerField(null=True, blank=True)
@@ -1389,21 +1399,23 @@ class LegendItemName(models.Model):
             image = getattr(self, 'image_%s' % lang_code)
             image_highres = getattr(self, 'image_highres_%s' % lang_code)
             filename = 'name_%s_%s.png' % (lang_code, self.slug)
-            if scale_factor>=2:
+            if scale_factor >= 2:
                 filename = 'highres_%s' % filename
             directory = 'media/legend'
             tmppath = os.path.join(directory, 'tmp', filename)
             path = os.path.join(directory, filename)
             fo = file(tmppath + '.svg', 'w')
             fo.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-            fo.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n')
+            fo.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" '
+                     '"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n')
             fo.write('<svg width="%i" height="%i" xmlns="http://www.w3.org/2000/svg">\n' % (width, height))
-            fo.write('    <text fill="black" text-anchor="left" font-family="Dejavu Sans" x="%i" y="%i" font-size="%i" >%s</text>' % (2, height-font_size/2, font_size, self.name.encode('utf-8')))
+            fo.write('    <text fill="black" text-anchor="left" font-family="Dejavu Sans" x="%i" y="%i" font-size="%i"'
+                     ' >%s</text>' % (2, height-font_size/2, font_size, self.name.encode('utf-8')))
             fo.write('</svg>')
             fo.close()
             system("rsvg-convert -o %s %s" % (tmppath, tmppath + '.svg'))
             remove(tmppath + '.svg')
-            if scale_factor>=2:
+            if scale_factor >= 2:
                 if image_highres:
                     if os.path.exists(image_highres.path):
                         remove(image_highres.path)

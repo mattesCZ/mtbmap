@@ -9,12 +9,13 @@ from django.core.management.base import BaseCommand
 # Local imports
 from styles.models import Map, Legend
 
+
 class Command(BaseCommand):
     args = '<path_to_map_style.xml map_style_name>'
     help = 'Import style into the database and create legend.'
 
     def handle(self, *args, **options):
-        if len(args)==2:
+        if len(args) == 2:
             path = args[0]
             name = args[1]
             m, created = Map.objects.get_or_create(name=name)

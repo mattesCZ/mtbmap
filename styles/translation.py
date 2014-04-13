@@ -12,10 +12,12 @@ from styles.models import LegendItem, LegendItemName
 
 LANG_CODES = [lang_code for lang_code, lang_name in settings.LANGUAGES]
 
+
 def dump_translation_file(lang_code):
     filename = _get_locale_filename(lang_code)
     fields = ['slug', 'name_en', 'name_%s' % lang_code]
     _write_csv(filename, fields)
+
 
 def load_translation_file(lang_code):
     filename = _get_locale_filename(lang_code)
@@ -36,12 +38,15 @@ def load_translation_file(lang_code):
                     print 'Slug %s not found in the db, but on line %i in the input file.' % (row_dict['slug'], line)
             line += 1
 
+
 def _get_locale_filename(lang_code):
     return 'styles/locale/%s/names.csv' % lang_code
+
 
 def dump_default_names(filename='styles/fixtures/default_names.csv'):
     fields = ['slug', 'group', 'order', 'name_en']
     _write_csv(filename, fields)
+
 
 def load_default_names(filename='styles/fixtures/default_names.csv'):
     with open(filename, 'r') as f:
@@ -65,6 +70,7 @@ def load_default_names(filename='styles/fixtures/default_names.csv'):
                     if value:
                         data[key] = value
                 LegendItemName(**data).save()
+
 
 def _write_csv(filename, fields):
     with open(filename, 'wb') as f:

@@ -2,12 +2,14 @@
 # -*- coding: utf-8 -*-
 import libxml2
 
+
 def xpath_query(ctxt, query):
     node = ctxt.xpathEval(query)
     if node:
         return node[0].getContent()
     else:
         return None
+
 
 def add_xml_fonts(parent_node):
     add_xml_font(parent_node, 'book-fonts', 'DejaVu Sans Book')
@@ -23,6 +25,7 @@ def add_xml_fonts(parent_node):
     add_xml_font(parent_node, 'cond-serif-bold-fonts', 'DejaVu Serif Condensed Bold')
     add_xml_font(parent_node, 'extralight-fonts', 'DejaVu Sans ExtraLight')
 
+
 def add_xml_font(parent_node, name, faceName):
     fontset = libxml2.newNode('FontSet')
     fontset.setProp('name', name)
@@ -31,21 +34,23 @@ def add_xml_font(parent_node, name, faceName):
     fontset.addChild(font)
     parent_node.addChild(fontset)
 
+
 def add_xml_node(parent_node, name, value):
-    if value != None:
+    if value is not None:
         node = libxml2.newNode(name)
         node.setContent(str(value))
         parent_node.addChild(node)
 
+
 def attr_to_string(value):
-    if value == None:
+    if value is None:
         return None
-    elif value == True:
+    elif value is True:
         return '1'
-    elif value == False:
+    elif value is False:
         return '0'
     else:
-        if type(value).__name__=='unicode':
+        if type(value).__name__ == 'unicode':
             if len(value) > 0:
                 return str(value.encode('utf-8'))
             else:
@@ -53,24 +58,28 @@ def attr_to_string(value):
         else:
             return str(value)
 
+
 def add_xml_css(node, parameter_name, parameter_value):
-    if attr_to_string(parameter_value) != None:
+    if attr_to_string(parameter_value) is not None:
         cssnode = libxml2.newNode('CssParameter')
         cssnode.setProp('name', parameter_name.replace('_', '-'))
         cssnode.setContent(attr_to_string(parameter_value))
         node.addChild(cssnode)
 
+
 def set_xml_param(parent_node, parameter_name, parameter_value):
-    if attr_to_string(parameter_value) != None:
+    if attr_to_string(parameter_value) is not None:
         parent_node.setProp(parameter_name, attr_to_string(parameter_value))
 
+
 def add_xml_node_with_param(parent_node, node_name, node_value, parameter_name, parameter_value):
-    if attr_to_string(node_value) != None:
+    if attr_to_string(node_value) is not None:
         node = libxml2.newNode(node_name)
         node.setContent(attr_to_string(node_value))
         set_xml_param(node, parameter_name, parameter_value)
         parent_node.addChild(node)
 
+
 def set_xml_content(node, value):
-    if attr_to_string(value) != None:
+    if attr_to_string(value) is not None:
         node.setContent(attr_to_string(value))

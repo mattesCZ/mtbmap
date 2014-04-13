@@ -3,6 +3,7 @@
 from styles.models import *
 from django.contrib import admin
 
+
 class MapLayerInline(admin.TabularInline):
     model = MapLayer
     extra = 1
@@ -14,7 +15,7 @@ class StyleLayerInline(admin.StackedInline):
 
 
 class RuleStyleInline(admin.StackedInline):
-    model= RuleStyle
+    model = RuleStyle
     extra = 0
 
 
@@ -61,7 +62,7 @@ class SymbolizerAdmin(admin.ModelAdmin):
 
     def specialized_type(self, obj):
         spec = obj.specialized()
-        spec_type = unicode(type(spec)).split('.')[-1].replace("'>","")
+        spec_type = unicode(type(spec)).split('.')[-1].replace("'>", "")
         ret = spec_type + ', ' + unicode(spec)
         return ret
 
