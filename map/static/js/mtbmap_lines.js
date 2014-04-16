@@ -67,7 +67,7 @@ MTBMAP.GpxLine = MTBMAP.Line.extend({
             return;
         }
         var $gpx = jQuery(gpxdoc),
-            root = $gpx.find("gpx");
+            root = $gpx.find('gpx');
         if (!root.length) {
             alert(LANG.gpxNotValid);
             return;
@@ -86,19 +86,19 @@ MTBMAP.GpxLine = MTBMAP.Line.extend({
     },
     _findTrackPoints: function (root) {
         var gpxLine = this,
-            tracks = root.find("trk"),
+            tracks = root.find('trk'),
             trkPts = [];
         tracks.each(function () {
-            var segments = jQuery(this).find("trkseg");
+            var segments = jQuery(this).find('trkseg');
             if (segments.length) {
-                trkPts = trkPts.concat(gpxLine._findPoints(segments, "trkpt"));
+                trkPts = trkPts.concat(gpxLine._findPoints(segments, 'trkpt'));
             }
         });
         return trkPts;
     },
     _findRoutePoints: function (root) {
-        var routes = root.find("rte");
-        return this._findPoints(routes, "rtept");
+        var routes = root.find('rte');
+        return this._findPoints(routes, 'rtept');
     },
     _findPoints: function (parentElements, name) {
         var pts = [];
@@ -106,8 +106,8 @@ MTBMAP.GpxLine = MTBMAP.Line.extend({
             parentElements.each(function () {
                 var pointElements = jQuery(this).find(name);
                 pointElements.each(function () {
-                    var lat = jQuery(this).attr("lat"),
-                        lon = jQuery(this).attr("lon"),
+                    var lat = jQuery(this).attr('lat'),
+                        lon = jQuery(this).attr('lon'),
                         point = new L.LatLng(lat, lon);
                     pts.push(point);
                 });
@@ -285,7 +285,7 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
         jQuery('#id_params').val(JSON.stringify(params));
         jQuery('#id_linestring').val('[' + latlngs + ']');
         var form = jQuery('#send-evaluation-form').serializeArray();
-        jQuery.post("/map/evaluation/", {
+        jQuery.post('/map/evaluation/', {
             'form': JSON.stringify(form)
         }, function(data) {
             if (data.valid) {
@@ -305,7 +305,7 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
         } else {
             var params = jQuery('#routes-params').serializeArray();
             jQuery('.loading').addClass('ajax-loading');
-            jQuery.post("/map/findroute/", {
+            jQuery.post('/map/findroute/', {
                 'params':JSON.stringify(params),
                 'routing-line': '['+ latlngs + ']'
             }, function(data) {

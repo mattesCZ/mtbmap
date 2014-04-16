@@ -106,7 +106,7 @@ jQuery(document).ready(function() {
         modal: false,
         width: 'auto',
         buttons: {
-            "Odeslat": function(event) {
+            'Odeslat': function(event) {
                 var form = jQuery('#send-evaluation-form');
                 var thisDialog = jQuery(this);
                 if (!form.valid) {
@@ -118,12 +118,12 @@ jQuery(document).ready(function() {
                     jQuery('#id_params').val(JSON.stringify(params));
                     jQuery('#id_linestring').val('[' + latlngs + ']');
                     form = jQuery('#send-evaluation-form').serializeArray();
-                    jQuery.post("/map/evaluation/", {
+                    jQuery.post('/map/evaluation/', {
                         'form': JSON.stringify(form)
                     }, function(data) {
                         if (data.valid) {
                             jQuery('#evaluation-dialog-form').html(data.html);
-                            thisDialog.dialog( "close" );
+                            thisDialog.dialog( 'close' );
                             var ThanksDialog = jQuery(data.html);
                             ThanksDialog.dialog({
                                 title: LANG.thanks,
@@ -141,8 +141,8 @@ jQuery(document).ready(function() {
                     });
                 }
             },
-            "Storno": function() {
-                jQuery( this ).dialog( "close" );
+            'Storno': function() {
+                jQuery( this ).dialog( 'close' );
             }
         }
     });
@@ -190,7 +190,7 @@ jQuery(window).resize(function() {
 });
 
 function updateLegend(zoom) {
-    jQuery.get("/map/legend/", {
+    jQuery.get('/map/legend/', {
         zoom: zoom
     }, function(data) {
         jQuery('#tab-legend').html(data);
@@ -200,9 +200,9 @@ function updateLegend(zoom) {
 
 function updateTemplate(templateId) {
     jQuery('#routes-accordion').accordion({animate: false});
-    jQuery.get("/map/routingparams/", {'template_id': templateId }, function(data) {
+    jQuery.get('/map/routingparams/', {'template_id': templateId }, function(data) {
         jQuery('#routes-accordion').html(data)
-            .accordion("refresh").accordion({active: false})
+            .accordion('refresh').accordion({active: false})
             .show().accordion({animate: 400});
     });
 }

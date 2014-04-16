@@ -25,7 +25,7 @@ function setupPost(e) {
         crossDomain: false, // obviates need for sameOrigin test
         beforeSend: function(xhr, settings) {
             if (!csrfSafeMethod(settings.type)) {
-                xhr.setRequestHeader("X-CSRFToken", csrfToken);
+                xhr.setRequestHeader('X-CSRFToken', csrfToken);
             }
         }
     });

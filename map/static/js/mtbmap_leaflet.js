@@ -2,13 +2,13 @@
 // add map controls
 // topright position, first is on top
 map.addControl(L.control.zoom({
-    position:"topright"
+    position:'topright'
 }));
 MTBMAP.layersControl = new L.Control.Layers(MTBMAP.baseLayers, MTBMAP.overlayLayers);
 map.addControl(MTBMAP.layersControl);
 // bottomright position, first is the lowest
 map.addControl(L.control.scale({
-    position:"bottomright",
+    position:'bottomright',
     imperial:false,
     maxWidth:200
 }));
@@ -17,7 +17,7 @@ map.addControl(new L.Control.Permalink({
     text: LANG.editPermalink,
     useAnchor: false,
     position: 'bottomright',
-    urlBase: "http://www.openstreetmap.org/edit.html"
+    urlBase: 'http://www.openstreetmap.org/edit.html'
 }));
 map.addControl(new L.Control.Permalink({
     text: 'Permalink',
@@ -37,8 +37,8 @@ function geojsonOverlay(slug, name, minZoom) {
 		pointToLayer: function (feature, latlng) {
 			return L.circleMarker(latlng, {
 				radius: 7,
-				fillColor: "#fff",
-				color: "#f22",
+				fillColor: '#fff',
+				color: '#f22',
 				weight: 1.5
 			});
 		},
@@ -53,7 +53,7 @@ function geojsonOverlayLines(slug, name, minZoom) {
 	return new MTBMAP.AjaxGeojsonLayerGroup(null, {
 		style: {
 			opacity: 0.3,
-			color: "#EEE",
+			color: '#EEE',
 			weight: 4,
 			smoothFactor: 2
 		},

@@ -33,7 +33,7 @@
     "nonew": true,
     "undef": true,
     "unused": true,
-    // "quotmark": "single",
+    "quotmark": "single",
 
     // whitespace
     "indent": 4,

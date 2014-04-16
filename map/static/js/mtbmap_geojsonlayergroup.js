@@ -39,8 +39,8 @@ MTBMAP.AjaxGeojsonLayerGroup = MTBMAP.GeojsonLayerGroup.extend({
         this.dataBounds = null;
     },
     options: {
-        name: "",
-        slug: "",
+        name: '',
+        slug: '',
         minZoom: 13,
         maxZoom: 18,
         layersControl: null
