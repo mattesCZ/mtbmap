@@ -229,7 +229,7 @@ def scalebar_image(zoom, lat_center, highres=True):
     y_bottom = height - x_start/2
     y_text = y_top - x_start
     line_style = ('stroke:black; stroke-width:%ipx; stroke-linecap:butt; stroke-linejoin:miter;'
-                  ' stroke-opacity:1" % (line_width)')
+                  ' stroke-opacity:1' % line_width)
     svg = ''
     if units == 'km':
         real_line_length = real_line_length/1000
