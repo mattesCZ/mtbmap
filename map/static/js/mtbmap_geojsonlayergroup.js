@@ -1,4 +1,4 @@
-MTBMAP.GeojsonLayerGroup = L.GeoJSON.extend({
+MTB.GeojsonLayerGroup = L.GeoJSON.extend({
     initialize: function(geojson, options) {
         L.GeoJSON.prototype.initialize.call(this, null, options);
         this._featureIDS = [];
@@ -32,9 +32,9 @@ MTBMAP.GeojsonLayerGroup = L.GeoJSON.extend({
     }
 });
 
-MTBMAP.AjaxGeojsonLayerGroup = MTBMAP.GeojsonLayerGroup.extend({
+MTB.AjaxGeojsonLayerGroup = MTB.GeojsonLayerGroup.extend({
     initialize: function(data, options) {
-        MTBMAP.GeojsonLayerGroup.prototype.initialize.call(this, data, options);
+        MTB.GeojsonLayerGroup.prototype.initialize.call(this, data, options);
         this.active = false;
         this.dataBounds = null;
     },

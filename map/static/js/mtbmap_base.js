@@ -1,7 +1,7 @@
-var MTBMAP = {};
-MTBMAP.activePanel = '';
-MTBMAP.routePanels = ['routing', 'manual', 'gpx'];
-MTBMAP.activeRoutesPanel = MTBMAP.routePanels[0];
-MTBMAP.lines = {};
-MTBMAP.baseLayers = {};
-MTBMAP.overlayLayers = {};
+var MTB = {};
+MTB.activePanel = '';
+MTB.routePanels = ['routing', 'manual', 'gpx'];
+MTB.activeRoutesPanel = MTB.routePanels[0];
+MTB.lines = {};
+MTB.baseLayers = {};
+MTB.overlayLayers = {};

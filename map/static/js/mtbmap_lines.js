@@ -1,4 +1,4 @@
-MTBMAP.Line = L.Polyline.extend({
+MTB.Line = L.Polyline.extend({
     initialize : function(latlngs, options) {
         L.Polyline.prototype.initialize.call(this, latlngs, options);
         this.visible = false;
@@ -56,7 +56,7 @@ MTBMAP.Line = L.Polyline.extend({
         return this.getLatLngs();
     }
 });
-MTBMAP.GpxLine = MTBMAP.Line.extend({
+MTB.GpxLine = MTB.Line.extend({
     parseGPX: function (data) {
         this.reset();
         var gpxdoc;
@@ -120,9 +120,9 @@ MTBMAP.GpxLine = MTBMAP.Line.extend({
     }
 });
 
-MTBMAP.SimpleLine = MTBMAP.Line.extend({
+MTB.SimpleLine = MTB.Line.extend({
     initialize : function(latlngs, options) {
-        MTBMAP.Line.prototype.initialize.call(this, latlngs, options);
+        MTB.Line.prototype.initialize.call(this, latlngs, options);
         this.markersGroup = new L.LayerGroup([]);
         this.markerIcon = L.icon({
             iconUrl : '../static/js/images/line-marker.png',
@@ -233,9 +233,9 @@ MTBMAP.SimpleLine = MTBMAP.Line.extend({
         return segmentIndex;
     }
 });
-MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
+MTB.RoutingLine = MTB.SimpleLine.extend({
     initialize : function(latlngs, options) {
-        MTBMAP.SimpleLine.prototype.initialize.call(this, latlngs, options);
+        MTB.SimpleLine.prototype.initialize.call(this, latlngs, options);
         this.routesGroup = new L.LayerGroup([]);
         this.resultsShown = false;
     },
@@ -314,7 +314,7 @@ MTBMAP.RoutingLine = MTBMAP.SimpleLine.extend({
                     lPopup(position, LANG.routeNotFound, true);
                 }
                 if (data.features.length) {
-                    var geojsonLine = new MTBMAP.GeojsonLayerGroup(data, {
+                    var geojsonLine = new MTB.GeojsonLayerGroup(data, {
                         style: routeStyle,
                         onEachFeature: onEachLineFeature
                     });

@@ -4,8 +4,8 @@
 map.addControl(L.control.zoom({
     position:'topright'
 }));
-MTBMAP.layersControl = new L.Control.Layers(MTBMAP.baseLayers, MTBMAP.overlayLayers);
-map.addControl(MTBMAP.layersControl);
+MTB.layersControl = new L.Control.Layers(MTB.baseLayers, MTB.overlayLayers);
+map.addControl(MTB.layersControl);
 // bottomright position, first is the lowest
 map.addControl(L.control.scale({
     position:'bottomright',
@@ -21,7 +21,7 @@ map.addControl(new L.Control.Permalink({
 }));
 map.addControl(new L.Control.Permalink({
     text: 'Permalink',
-    layers: MTBMAP.layersControl,
+    layers: MTB.layersControl,
     position: 'bottomright'
 }));
 
@@ -29,7 +29,7 @@ map.addControl(new L.Control.Permalink({
 // geojson overlays
 // create Ajax Geojson Layer
 function geojsonOverlay(slug, name, minZoom) {
-	return new MTBMAP.AjaxGeojsonLayerGroup(null, {
+	return new MTB.AjaxGeojsonLayerGroup(null, {
 		style: {
 			opacity: 1,
 			fillOpacity: 0
@@ -45,12 +45,12 @@ function geojsonOverlay(slug, name, minZoom) {
 		onEachFeature: onEachFeature,
 		name: name,
 		slug: slug,
-		layersControl: MTBMAP.layersControl,
+		layersControl: MTB.layersControl,
 		minZoom: minZoom
 	});
 }
 function geojsonOverlayLines(slug, name, minZoom) {
-	return new MTBMAP.AjaxGeojsonLayerGroup(null, {
+	return new MTB.AjaxGeojsonLayerGroup(null, {
 		style: {
 			opacity: 0.3,
 			color: '#EEE',
@@ -60,7 +60,7 @@ function geojsonOverlayLines(slug, name, minZoom) {
 		onEachFeature: onEachFeature,
 		name: name,
 		slug: slug,
-		layersControl: MTBMAP.layersControl,
+		layersControl: MTB.layersControl,
 		minZoom: minZoom
 	});
 }
@@ -72,7 +72,7 @@ map.on('moveend', onMapMoveEnd);
 map.on('click', onMapClick);
 // update legend on map zoom
 function onMapZoom() {
-    if (MTBMAP.activePanel === 'legend') {
+    if (MTB.activePanel === 'legend') {
         updateLegend(map.getZoom());
     }
 }
@@ -87,16 +87,16 @@ function onMapMoveEnd() {
     jQuery.cookie('zoom', map.getZoom(), {
         expires: 7
     });
-    if (MTBMAP.activePanel === 'export' && !userChanged) {
+    if (MTB.activePanel === 'export' && !userChanged) {
         setCurrentBounds();
     }
 }
 function onMapClick(e){
-    if (MTBMAP.activePanel === 'routes' &&
-            (MTBMAP.activeRoutesPanel === 'manual' || MTBMAP.activeRoutesPanel === 'routing')) {
-        MTBMAP.activeLine.addPoint(e.latlng);
-        if (!MTBMAP.activeLine.visible) {
-            MTBMAP.activeLine.show();
+    if (MTB.activePanel === 'routes' &&
+            (MTB.activeRoutesPanel === 'manual' || MTB.activeRoutesPanel === 'routing')) {
+        MTB.activeLine.addPoint(e.latlng);
+        if (!MTB.activeLine.visible) {
+            MTB.activeLine.show();
         }
     }
 }

@@ -12,7 +12,7 @@
     "predef": [
         "L",  // Leaflet library
         "jQuery",
-        "MTBMAP",
+        "MTB",
         "map",
         "LANG"
     ],

@@ -20,10 +20,10 @@ if ($.cookie('latitude') && $.cookie('longitude') && $.cookie('zoom')) {
     initZoom = $.cookie('zoom');
 }
 // create map object, set initial view
-MTBMAP.map = L.map('map', {
+MTB.map = L.map('map', {
     zoomControl: false
 }).setView(initLatlng, initZoom);
-var map = MTBMAP.map;
+var map = MTB.map;
 // start geolocation
 map.locate({
     setView: true,
@@ -31,22 +31,22 @@ map.locate({
 });
 // define tile layers
 {% for tile_layer in tile_layers %}
-MTBMAP.baseLayers["{{ tile_layer.name }}"] = new L.TileLayer( "{{ tile_layer.url }}{z}/{x}/{y}.png", {
+MTB.baseLayers["{{ tile_layer.name }}"] = new L.TileLayer( "{{ tile_layer.url }}{z}/{x}/{y}.png", {
     maxZoom: 18,
     attribution: '{{ tile_layer.attribution|safe }}'
 });
 {% endfor %}
-MTBMAP.baseLayers["{{ default_tile_layer.name }}"].addTo(map);
+MTB.baseLayers["{{ default_tile_layer.name }}"].addTo(map);
 </script>
 <script src="{{ STATIC_URL }}js/mtbmap_leaflet.js"></script>
 <script>
 {% for geojson_layer in geojson_layers %}
 {% if geojson_layer.lineGeom %}
-    MTBMAP.overlayLayers["{{ geojson_layer.slug }}"] = geojsonOverlayLines("{{ geojson_layer.slug }}", "{{ geojson_layer.name }}", {{ geojson_layer.min_zoom }});
+    MTB.overlayLayers["{{ geojson_layer.slug }}"] = geojsonOverlayLines("{{ geojson_layer.slug }}", "{{ geojson_layer.name }}", {{ geojson_layer.min_zoom }});
 {% else %}
-    MTBMAP.overlayLayers["{{ geojson_layer.slug }}"] = geojsonOverlay("{{ geojson_layer.slug }}", "{{ geojson_layer.name }}", {{ geojson_layer.min_zoom }});
+    MTB.overlayLayers["{{ geojson_layer.slug }}"] = geojsonOverlay("{{ geojson_layer.slug }}", "{{ geojson_layer.name }}", {{ geojson_layer.min_zoom }});
 {% endif %}
-MTBMAP.overlayLayers["{{ geojson_layer.slug }}"].addTo(map);
+MTB.overlayLayers["{{ geojson_layer.slug }}"].addTo(map);
 {% endfor %}
 </script>
 <script src="{{ STATIC_URL }}js/mtbmap_gui.js"></script>
