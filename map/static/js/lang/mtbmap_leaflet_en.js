@@ -14,5 +14,5 @@ LANG = {
     correctEntries: 'Correct your entries, please.',
     templateNotValid: 'Template is not valid',
     editPermalink: 'Edit OSM data'
-}
+};
 

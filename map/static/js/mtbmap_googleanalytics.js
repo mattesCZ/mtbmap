@@ -2,6 +2,7 @@ var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-24431945-1']);
 _gaq.push(['_trackPageview']);
 
+/* jshint ignore:start */
 (function() {
     var ga = document.createElement('script');
     ga.type = 'text/javascript';
@@ -10,3 +11,4 @@ _gaq.push(['_trackPageview']);
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(ga, s);
 })();
+/* jshint ignore:end */

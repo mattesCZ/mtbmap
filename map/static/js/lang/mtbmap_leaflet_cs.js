@@ -14,5 +14,5 @@ LANG = {
     correctEntries: 'Opravte, prosím, chybně zadané údaje.',
     templateNotValid: 'Soubor není platný',
     editPermalink: 'Editovat data OSM'
-}
+};
 

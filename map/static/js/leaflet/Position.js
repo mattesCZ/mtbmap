@@ -6,8 +6,8 @@ L.Control.Position = L.Control.extend({
         this._map = map;
         this.latlng = map.getCenter();
         this.zoom = map.getZoom();
-        var className = 'leaflet-control-position';
-        container = L.DomUtil.create('div', className);
+        var className = 'leaflet-control-position',
+            container = L.DomUtil.create('div', className);
         this.container = container;
         this._update();
         map.on('mousemove', this._setLatLng, this);
@@ -15,15 +15,15 @@ L.Control.Position = L.Control.extend({
         return container;
     },
     _update: function() {
-        this.container.innerHTML = this.latlng.lat.toFixed(5)
-                                     + ', ' + this.latlng.lng.toFixed(5)
-                                     + ', z' + this.zoom;
+        this.container.innerHTML = this.latlng.lat.toFixed(5) +
+                                     ', ' + this.latlng.lng.toFixed(5) +
+                                     ', z' + this.zoom;
     },
     _setLatLng: function(e) {
         this.latlng = e.latlng;
         this._update();
     },
-    _setZoom: function(e) {
+    _setZoom: function() {
         this.zoom = this._map.getZoom();
         this._update();
     }

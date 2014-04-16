@@ -71,28 +71,29 @@ map.on('zoomend', onMapZoom);
 map.on('moveend', onMapMoveEnd);
 map.on('click', onMapClick);
 // update legend on map zoom
-function onMapZoom(e) {
-    if (MTBMAP.activePanel=='legend') {
+function onMapZoom() {
+    if (MTBMAP.activePanel === 'legend') {
         updateLegend(map.getZoom());
     }
 }
 var userChanged = false;
-function onMapMoveEnd(e) {
-    $.cookie('latitude', map.getCenter().lat, {
+function onMapMoveEnd() {
+    jQuery.cookie('latitude', map.getCenter().lat, {
         expires: 7
     });
-    $.cookie('longitude', map.getCenter().lng, {
+    jQuery.cookie('longitude', map.getCenter().lng, {
         expires: 7
     });
-    $.cookie('zoom', map.getZoom(), {
+    jQuery.cookie('zoom', map.getZoom(), {
         expires: 7
     });
-    if (MTBMAP.activePanel=='export' && !userChanged) {
+    if (MTBMAP.activePanel === 'export' && !userChanged) {
         setCurrentBounds();
     }
 }
 function onMapClick(e){
-    if (MTBMAP.activePanel=='routes' && (MTBMAP.activeRoutesPanel=='manual' || MTBMAP.activeRoutesPanel=='routing')) {
+    if (MTBMAP.activePanel === 'routes' &&
+            (MTBMAP.activeRoutesPanel === 'manual' || MTBMAP.activeRoutesPanel === 'routing')) {
         MTBMAP.activeLine.addPoint(e.latlng);
         if (!MTBMAP.activeLine.visible) {
             MTBMAP.activeLine.show();
