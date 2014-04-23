@@ -9,13 +9,13 @@
     "browser": true,
     "devel": true,
     "node": true,
-    "predef": [
-        "L",  // Leaflet library
-        "jQuery",
-        "MTB",
-        "map",
-        "LANG"
-    ],
+    "globals": {
+        "L": false,
+        "jQuery": false,
+        "MTB": true,
+        "LANG": true,
+        "map": true
+    },
     "strict": false,
     // "es3": true,
 
