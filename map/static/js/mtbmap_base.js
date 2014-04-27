@@ -5,3 +5,10 @@ MTB.activeRoutesPanel = MTB.routePanels[0];
 MTB.lines = {};
 MTB.baseLayers = {};
 MTB.overlayLayers = {};
+
+MTB.UTILS = {};
+MTB.UTILS.LAYERS = {};
+MTB.EVENTS = {};
+MTB.EXPORT = {};
+MTB.GUI = {};
+MTB.ROUTES = {};

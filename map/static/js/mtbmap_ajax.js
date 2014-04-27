@@ -1,9 +1,11 @@
 // methods for ajax requests
-function csrfSafeMethod(method) {
-    // these HTTP methods do not require CSRF protection
+MTB.UTILS.AJAX = {};
+
+MTB.UTILS.AJAX.csrfSafeMethod = function(method) {
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-}
-function getCookie(name) {
+};
+
+MTB.UTILS.AJAX.getCookie = function(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
         var cookies = document.cookie.split(';');
@@ -17,16 +19,17 @@ function getCookie(name) {
         }
     }
     return cookieValue;
-}
-function setupPost(e) {
-    var csrfToken = getCookie('csrftoken');
-    e.preventDefault();
+};
+
+MTB.UTILS.AJAX.setupPost = function(event) {
+    var csrfToken = MTB.UTILS.AJAX.getCookie('csrftoken');
+    event.preventDefault();
     jQuery.ajaxSetup({
         crossDomain: false, // obviates need for sameOrigin test
         beforeSend: function(xhr, settings) {
-            if (!csrfSafeMethod(settings.type)) {
+            if (!MTB.UTILS.AJAX.csrfSafeMethod(settings.type)) {
                 xhr.setRequestHeader('X-CSRFToken', csrfToken);
             }
         }
     });
-}
+};

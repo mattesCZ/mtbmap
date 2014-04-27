@@ -1,21 +1,25 @@
 // handling places
-function submitOnEnter(inputID, submitID) {
+MTB.GUI.submitOnEnter = function(inputID, submitID) {
     jQuery('#' + inputID).keyup(function(event){
         if(event.keyCode === 13){
             jQuery('#' + submitID).click();
         }
     });
-}
-function addrSearch() {
+};
+
+MTB.GUI.addrSearch = function() {
     var input = jQuery('#places-addr').val();
 
     jQuery.getJSON('http://nominatim.openstreetmap.org/search?format=json&limit=5&q=' + input, function(data) {
-        var items = [];
+        var items = [],
+            idField = 'osm_id',
+            typeField = 'osm_type',
+            nameField = 'display_name';
 
         jQuery.each(data, function(key, val) {
-            items.push('<li id="' + val.osm_id + '" ><a href="#" onclick="chooseAddr(' + val.lat +
-                ', ' + val.lon + ', \'' + val.type + '\', ' + val.osm_id + ', \'' + val.osm_type +
-                '\');return false;">' + val.display_name + '</a><span id="osm-id"></span>' +
+            items.push('<li id="' + val[idField] + '" ><a href="#" onclick="MTB.GUI.chooseAddr(' + val.lat +
+                ', ' + val.lon + ', \'' + val.type + '\', ' + val[idField] + ', \'' + val[typeField] +
+                '\');return false;">' + val[nameField] + '</a><span id="osm-id"></span>' +
                 '<span id="elevation"></span></li>');
         });
         jQuery('#places-results').empty();
@@ -33,9 +37,10 @@ function addrSearch() {
             }).appendTo('#places-results');
         }
     });
-}
+};
+
 // zoom into given latlng and get elevation data
-function chooseAddr(lat, lng, type, osmID, osmType) {
+MTB.GUI.chooseAddr = function(lat, lng, type, osmID, osmType) {
     var location = new L.LatLng(lat, lng);
     map.panTo(location);
     if (type === 'city' || type === 'administrative') {
@@ -43,10 +48,10 @@ function chooseAddr(lat, lng, type, osmID, osmType) {
     } else {
         map.setZoom(14);
     }
-    jQuery('#' + osmID + ' > #osm-id').html('<p>OSM ID: ' + osmLink(osmID, osmType) + '</p>');
+    jQuery('#' + osmID + ' > #osm-id').html('<p>OSM ID: ' + MTB.UTILS.osmLink(osmID, osmType) + '</p>');
     jQuery.get('/map/getheight/', {
         'profile-point': location.toString()
     }, function(data) {
         jQuery('#' + osmID + ' > #elevation').html('<p>' + LANG.elevation + ': ' + data + ' m</p>');
     });
-}
+};

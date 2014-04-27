@@ -30,7 +30,7 @@ MTB.Line = L.Polyline.extend({
         }
     },
     distanceString: function() {
-        return LANG.distance + ': ' + distanceWithUnits(this.getDistance());
+        return LANG.distance + ': ' + MTB.UTILS.distanceWithUnits(this.getDistance());
     },
     getDistance: function() {
         var d = 0,
@@ -190,12 +190,12 @@ MTB.SimpleLine = MTB.Line.extend({
         this._redraw(latlngs);
     },
     _marker: function(latlng) {
-        var m = new L.marker(latlng, {
+        var m = L.marker(latlng, {
             'draggable': true,
             'icon': this.markerIcon
         });
-        m.on('dragend', _markerDragEnd);
-        m.on('click', _markerClick);
+        m.on('dragend', MTB.EVENTS._markerDragEnd);
+        m.on('click', MTB.EVENTS._markerClick);
         m.parentLine = this;
         return m;
     },
@@ -280,10 +280,10 @@ MTB.RoutingLine = MTB.SimpleLine.extend({
         return L.polyline(this.routeLatLngs(), {}).getBounds();
     },
     sendEvaluation: function() {
-        var latlngs = this.getLatLngs();
-        var params = jQuery('#routes-params').serializeArray();
+        var latLngs = this.getLatLngs(),
+            params = jQuery('#routes-params').serializeArray();
         jQuery('#id_params').val(JSON.stringify(params));
-        jQuery('#id_linestring').val('[' + latlngs + ']');
+        jQuery('#id_linestring').val('[' + latLngs + ']');
         var form = jQuery('#send-evaluation-form').serializeArray();
         jQuery.post('/map/evaluation/', {
             'form': JSON.stringify(form)
@@ -301,7 +301,7 @@ MTB.RoutingLine = MTB.SimpleLine.extend({
         this.routesGroup.clearLayers();
         var latlngs = this.getLatLngs();
         if (latlngs.length<=1) {
-            lPopup(map.getCenter(), '<h3>' + LANG.addPoints + '</h3>', true);
+            MTB.GUI.lPopup(map.getCenter(), '<h3>' + LANG.addPoints + '</h3>', true);
         } else {
             var params = jQuery('#routes-params').serializeArray();
             jQuery('.loading').addClass('ajax-loading');
@@ -311,12 +311,12 @@ MTB.RoutingLine = MTB.SimpleLine.extend({
             }, function(data) {
                 if (data.properties.status==='notfound') {
                     var position = L.polyline(_this.getLatLngs(), {}).getBounds().getCenter();
-                    lPopup(position, LANG.routeNotFound, true);
+                    MTB.GUI.lPopup(position, LANG.routeNotFound, true);
                 }
                 if (data.features.length) {
                     var geojsonLine = new MTB.GeojsonLayerGroup(data, {
-                        style: routeStyle,
-                        onEachFeature: onEachLineFeature
+                        style: MTB.ROUTES.routeStyle,
+                        onEachFeature: MTB.EVENTS.onEachLineFeature
                     });
                     _this.routesGroup.addLayer(geojsonLine);
                     geojsonLine.bringToFront();
@@ -335,9 +335,9 @@ MTB.RoutingLine = MTB.SimpleLine.extend({
         var gLine = new L.Polyline([], {});
         this.routesGroup.eachLayer(function (layer) {
             layer.eachLayer(function (sublayer) {
-                gLine.spliceLatLngs(gLine.getLatLngs().length-1,1);
+                gLine.spliceLatLngs(gLine.getLatLngs().length - 1, 1);
                 var newLatLngs = sublayer.getLatLngs();
-                for (var i in newLatLngs) {
+                for (var i = 0; i < newLatLngs.length; i++) {
                     gLine.addLatLng(newLatLngs[i]);
                 }
             });
@@ -352,31 +352,32 @@ MTB.RoutingLine = MTB.SimpleLine.extend({
     }
 });
 // distance parameter in km
-function distanceWithUnits(distance) {
+MTB.UTILS.distanceWithUnits = function(distance) {
     if (distance>1) {
         return distance.toFixed(2) + ' km';
     } else {
         return Math.round(distance*1000) + ' m';
     }
-}
-function _markerClick() {
+};
+
+MTB.EVENTS._markerClick = function() {
     this.parentLine.removePoint(this);
-}
-function _markerDragEnd() {
+};
+
+MTB.EVENTS._markerDragEnd = function() {
     this.parentLine._updateLine();
-}
+};
 
-
-
-function routeStyle(feature) {
+MTB.ROUTES.routeStyle = function(feature) {
     return {
-        color: weightColor(feature.properties.weight),
+        color: MTB.ROUTES.weightColor(feature.properties.weight),
         weight: 6,
         opacity: 1,
         smoothFactor: 2
     };
-}
-function weightColor(weight) {
+};
+
+MTB.ROUTES.weightColor = function(weight) {
     if (weight === 1) {
         return '#2222ff';
     }
@@ -392,8 +393,9 @@ function weightColor(weight) {
     else {
         return '#ff3322';
     }
-}
-function highlightLine(e) {
+};
+
+MTB.EVENTS.highlightLine = function(e) {
     var lineLayer = e.target;
     lineLayer.setStyle({
         weight: 10,
@@ -401,30 +403,32 @@ function highlightLine(e) {
         opacity: 0.6
     });
     lineLayer.bringToFront();
-}
-function onEachLineFeature(feature, layer) {
-    layer.bindPopup(lineFeatureInfo(feature));
+};
+
+MTB.EVENTS.onEachLineFeature = function(feature, layer) {
+    layer.bindPopup(MTB.ROUTES.lineFeatureInfo(feature));
     layer.on({
-        mouseover: highlightLine,
-        mouseout: resetHighlight
+        mouseover: MTB.EVENTS.highlightLine,
+        mouseout: MTB.EVENTS.resetHighlight
     });
-}
-function lineFeatureInfo(feature) {
+};
+
+MTB.ROUTES.lineFeatureInfo = function(feature) {
     var info = '';
     if (feature.properties) {
         if (feature.properties.name) {
             info += '<h3>' + feature.properties.name + '<h3>';
         }
         info += '<p>';
-        info += LANG.length + ': ' + distanceWithUnits(feature.properties.length);
+        info += LANG.length + ': ' + MTB.UTILS.distanceWithUnits(feature.properties.length);
         info += '<br>';
         info += LANG.weight + ': ' + feature.properties.weight.toString();
         var idName = 'osm_id';
         if (feature.properties[idName]) {
             info += '<br>';
-            info += 'OSM ID: ' + osmLink(feature.properties[idName], 'way');
+            info += 'OSM ID: ' + MTB.UTILS.osmLink(feature.properties[idName], 'way');
         }
         info += '</p>';
     }
     return info;
-}
+};

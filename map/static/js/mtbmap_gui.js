@@ -18,7 +18,7 @@ jQuery(document).ready(function() {
     // set focus on map
     jQuery('#map').focus();
     // set height of main panel
-    setPanelsMaxHeight();
+    MTB.GUI.setPanelsMaxHeight();
     // initialize main tabs menu
     jQuery('#main-tabs').tabs({
         collapsible: true,
@@ -26,11 +26,11 @@ jQuery(document).ready(function() {
         activate: function(event, ui) {
             MTB.activePanel = ui.newPanel.selector.replace('#tab-', '');
             if (MTB.activePanel === 'legend') {
-                updateLegend(map.getZoom());
+                MTB.GUI.updateLegend(map.getZoom());
             } else if (MTB.activePanel === 'places') {
                 jQuery('#places-addr').focus().select();
             } else if (MTB.activePanel === 'export') {
-                setCurrentBounds();
+                MTB.EXPORT.setCurrentBounds();
             }
             if (MTB.activePanel.length > 0) {
                 if (MTB.activePanel !== 'legend') {
@@ -60,9 +60,9 @@ jQuery(document).ready(function() {
         }
     });
     // tab places interaction
-    submitOnEnter('places-addr', 'places-submit');
+    MTB.GUI.submitOnEnter('places-addr', 'places-submit');
     jQuery('#places-submit').button().click(function() {
-        addrSearch();
+        MTB.GUI.addrSearch();
     });
     // tab routes interaction
     jQuery('#routes-accordion').accordion({
@@ -77,27 +77,27 @@ jQuery(document).ready(function() {
         jQuery('#weights_template > input').prop('checked', false);
         jQuery('#' + this.htmlFor).prop('checked', true);
         var templateId = jQuery('#' + this.htmlFor).val();
-        updateTemplate(templateId);
+        MTB.GUI.updateTemplate(templateId);
     });
     // force update template button and get params
     jQuery('#weights_template > label').first().click();
-    jQuery('.fit-to-line').button().click(function(event) {
+    jQuery('.fit-to-line').button().click(function() {
         MTB.activeLine.fitMapView();
     });
-    jQuery('.reset-line').button().click(function(event) {
+    jQuery('.reset-line').button().click(function() {
         MTB.activeLine.reset();
     });
-    jQuery('.create-profile-button').button().click(function(event) {
+    jQuery('.create-profile-button').button().click(function() {
         jQuery('.profile-params').val(MTB.activeLine.routeLatLngs());
     });
-    jQuery('.create-gpx-button').button().click(function(event) {
+    jQuery('.create-gpx-button').button().click(function() {
         jQuery('.profile-params').val(MTB.activeLine.routeLatLngs());
     });
     jQuery('.get-route-button').button();
-    jQuery('.back-to-settings').button().click(function(event){
+    jQuery('.back-to-settings').button().click(function(){
         MTB.activeLine.showSettings();
     });
-    jQuery('.get-template-button').button().click(function(event) {
+    jQuery('.get-template-button').button().click(function() {
         var params = jQuery('#routes-params').serializeArray();
         jQuery('.params').val(JSON.stringify(params));
     });
@@ -112,7 +112,7 @@ jQuery(document).ready(function() {
                 if (!form.valid) {
                     return;
                 } else {
-                    setupPost(event);
+                    MTB.UTILS.AJAX.setupPost(event);
                     var latlngs = MTB.activeLine.getLatLngs();
                     var params = jQuery('#routes-params').serializeArray();
                     jQuery('#id_params').val(JSON.stringify(params));
@@ -165,11 +165,11 @@ jQuery(document).ready(function() {
     // tab export interaction
     jQuery('#set-bounds-button').button().click(function(event) {
         event.preventDefault();
-        setCurrentBounds();
+        MTB.EXPORT.setCurrentBounds();
     });
-    jQuery('#export-button').button().click(function(event) {
+    jQuery('#export-button').button().click(function() {
         // set range parameters for map export
-        jQuery('#export-bounds').val(getBounds().toBBoxString());
+        jQuery('#export-bounds').val(MTB.EXPORT.getBounds().toBBoxString());
         jQuery('#export-zoom').val(jQuery('#export-zoom-select').val());
         jQuery('#export-line').val(MTB.activeLine.routeLatLngs());
     });
@@ -179,78 +179,83 @@ jQuery(document).ready(function() {
             primary: 'ui-icon-closethick'
         },
         text: false
-    }).click(function(event) {
+    }).click(function() {
         $closeButton.hide();
         jQuery('a[href="#tab-' + MTB.activePanel + '"]').click();
     });
     jQuery('#main-tabs').show();
 });
 jQuery(window).resize(function() {
-    setPanelsMaxHeight();
+    MTB.GUI.setPanelsMaxHeight();
 });
 
-function updateLegend(zoom) {
+MTB.GUI.updateLegend = function(zoom) {
     jQuery.get('/map/legend/', {
         zoom: zoom
     }, function(data) {
         jQuery('#tab-legend').html(data);
         jQuery('#close-main-tab-panel').show();
     });
-}
+};
 
-function updateTemplate(templateId) {
+MTB.GUI.updateTemplate = function(templateId) {
     jQuery('#routes-accordion').accordion({animate: false});
     jQuery.get('/map/routingparams/', {'template_id': templateId }, function(data) {
         jQuery('#routes-accordion').html(data)
             .accordion('refresh').accordion({active: false})
             .show().accordion({animate: 400});
     });
-}
-function setPanelsMaxHeight() {
+};
+
+MTB.GUI.setPanelsMaxHeight = function() {
     var maxheight = jQuery('#map').height() - (jQuery('#footer').height() + 85);
     jQuery('.main-tab-panel').css('max-height', maxheight);
     jQuery('.subtab-panel').css('max-height', maxheight - 40);
-}
+};
 ////////////////////////////////////////////////////////////////////////////////
 // GUI functions for routes
-function getRoute(e) {
-    setupPost(e);
+MTB.GUI.getRoute = function(e) {
+    MTB.UTILS.AJAX.setupPost(e);
     MTB.activeLine.getRoute();
-}
-function sendEvaluation(e) {
+};
+
+MTB.GUI.sendEvaluation = function(e) {
     var form = jQuery('#send-evaluation-form');
     if (form.valid) {
-        setupPost(e);
+        MTB.UTILS.AJAX.setupPost(e);
         MTB.activeLine.sendEvaluation();
     }
-}
-function handleGPX(e) {
+};
+
+MTB.GUI.handleGPX = function(e) {
     var files = e.target.files;
     for (var i = 0, f; f = files[i]; i++) {
         var reader = new FileReader();
         // Closure to capture the file information.
-        reader.onload = (function(theFile) {
+        reader.onload = (function() {
             return function(e) {
                 MTB.activeLine.parseGPX(e.target.result);
             };
         })(f);
         reader.readAsText(f);
     }
-}
-function handleTemplate(e) {
+};
+
+MTB.GUI.handleTemplate = function(e) {
     var files = e.target.files;
     for (var i = 0, f; f = files[i]; i++) {
         var reader = new FileReader();
         // Closure to capture the file information.
-        reader.onload = (function(theFile) {
+        reader.onload = (function() {
             return function(e) {
-                fillRouteParams(e.target.result);
+                MTB.GUI.fillRouteParams(e.target.result);
             };
         })(f);
         reader.readAsText(f);
     }
-}
-function fillRouteParams(params) {
+};
+
+MTB.GUI.fillRouteParams = function(params) {
     var jsonParams, i;
     try {
         jsonParams = jQuery.parseJSON(params);
@@ -273,12 +278,12 @@ function fillRouteParams(params) {
     }
     for (i = 0; i < jsonParams.classes.length; i++) {
         var cl = jsonParams.classes[i];
-        if (cl.max != null) {
+        if (jQuery.isNumeric(cl.max)) {
             jQuery('input[name=' + cl.slug + '__max]').attr('value', cl.max);
         }
-        if (cl.min != null) {
+        if (jQuery.isNumeric(cl.min)) {
             jQuery('input[name=' + cl.slug + '__min]').attr('value', cl.min);
-        };
+        }
         if (cl.features) {
             var fts = cl.features;
             for (var j=0; j<fts.length; j++) {
@@ -303,15 +308,15 @@ function fillRouteParams(params) {
             jQuery('#h-' + cl.slug).css('display', 'none');
         }
     }
-}
+};
 
-function osmLink(osmId, osmType) {
+MTB.UTILS.osmLink= function(osmId, osmType) {
     return '<a href="http://www.openstreetmap.org/browse/' + osmType + '/' + osmId + '" target="_blank">' + osmId + '</a>';
-}
-// shortcut for leaflet popup
-function lPopup(position, content, hideTip) {
+};
+
+MTB.GUI.lPopup = function(position, content, hideTip) {
     var popup = L.popup().setLatLng(position).setContent(content).openOn(map);
     if (hideTip) {
         L.DomUtil.addClass(popup._tipContainer, 'hidden');
     }
-}
+};

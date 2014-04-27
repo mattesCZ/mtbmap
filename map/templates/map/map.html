@@ -42,9 +42,9 @@ MTB.baseLayers["{{ default_tile_layer.name }}"].addTo(map);
 <script>
 {% for geojson_layer in geojson_layers %}
 {% if geojson_layer.lineGeom %}
-    MTB.overlayLayers["{{ geojson_layer.slug }}"] = geojsonOverlayLines("{{ geojson_layer.slug }}", "{{ geojson_layer.name }}", {{ geojson_layer.min_zoom }});
+    MTB.overlayLayers["{{ geojson_layer.slug }}"] = MTB.UTILS.LAYERS.geojsonOverlayLines("{{ geojson_layer.slug }}", "{{ geojson_layer.name }}", {{ geojson_layer.min_zoom }});
 {% else %}
-    MTB.overlayLayers["{{ geojson_layer.slug }}"] = geojsonOverlay("{{ geojson_layer.slug }}", "{{ geojson_layer.name }}", {{ geojson_layer.min_zoom }});
+    MTB.overlayLayers["{{ geojson_layer.slug }}"] = MTB.UTILS.LAYERS.geojsonOverlay("{{ geojson_layer.slug }}", "{{ geojson_layer.name }}", {{ geojson_layer.min_zoom }});
 {% endif %}
 MTB.overlayLayers["{{ geojson_layer.slug }}"].addTo(map);
 {% endfor %}

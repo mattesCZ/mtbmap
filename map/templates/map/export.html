@@ -5,12 +5,12 @@
 <form target="_blank" action="/map/exportmap/" method="post">
     {% csrf_token %}
     <label>{% trans "Export bounds" %}:</label><br>
-    <input class="export-text" type="text" name="export-top" id="export-top" value="" size="7" onchange="recalculateSize()" />
+    <input class="export-text" type="text" name="export-top" id="export-top" value="" size="7" onchange="MTB.EXPORT.recalculateSize()" />
     <br>
-    <input class="export-text" type="text" name="export-left" id="export-left" value="" size="7" onchange="recalculateSize()" />
-    <input class="export-text" type="text" name="export-right" id="export-right" value="" size="7" onchange="recalculateSize()" />
+    <input class="export-text" type="text" name="export-left" id="export-left" value="" size="7" onchange="MTB.EXPORT.recalculateSize()" />
+    <input class="export-text" type="text" name="export-right" id="export-right" value="" size="7" onchange="MTB.EXPORT.recalculateSize()" />
     <br>
-    <input class="export-text" type="text" name="export-bottom" id="export-bottom" value="" size="7" onchange="recalculateSize()" />
+    <input class="export-text" type="text" name="export-bottom" id="export-bottom" value="" size="7" onchange="MTB.EXPORT.recalculateSize()" />
     <br>
     <input type="hidden" name="export-bounds" id="export-bounds" value="" />
     <button id="set-bounds-button">{% trans "Set per current view" %}</button>
@@ -18,17 +18,17 @@
     <hr>
     <label>{% trans "Zoom level" %}</label>
     <input type="hidden" name="export-zoom" id="export-zoom" value="" />
-    <select id="export-zoom-select" onchange="recalculateSize()">
+    <select id="export-zoom-select" onchange="MTB.EXPORT.recalculateSize()">
         {% for zoom in zoomRange %}
         <option value="{{ zoom }}">{{ zoom }}</option>
         {% endfor %}
     </select>
     <br>
     <label>{% trans "Width" %}</label>
-    <input class="export-text" type="text" name="export-width" id="export-width" value="" size="5" onchange="recalculateBounds()" />
+    <input class="export-text" type="text" name="export-width" id="export-width" value="" size="5" onchange="MTB.EXPORT.recalculateBounds()" />
     <br>
     <label>{% trans "Height" %}</label>
-    <input class="export-text" type="text" name="export-height" id="export-height" value="" size="5" onchange="recalculateBounds()" />
+    <input class="export-text" type="text" name="export-height" id="export-height" value="" size="5" onchange="MTB.EXPORT.recalculateBounds()" />
     <hr>
     {% trans "Map elements" %}:<br>
     <label>{% trans "Name" %}</label><input class="export-text" type="text" name="map-title" id="map-title" size="15" value="" />
@@ -40,7 +40,7 @@
     <input type="hidden" name="export-line" id="export-line" value="" />
     <hr>
     <input type="hidden" name="export-params" id="export-params" value="" />
-    <label>{% trans "Resolution for print" %}</label><input id="export-highres" type="checkbox" checked="yes" value="" name="export-highres" onclick="recalculateSize()" >
+    <label>{% trans "Resolution for print" %}</label><input id="export-highres" type="checkbox" checked="yes" value="" name="export-highres" onclick="MTB.EXPORT.recalculateSize()" >
     <br>
     <input id="export-button" class="highlight" type="submit" value="{% trans "Export" %}">
 </form>

@@ -28,56 +28,54 @@ map.addControl(new L.Control.Permalink({
 ////////////////////////////////////////////////////////////////////////////////
 // geojson overlays
 // create Ajax Geojson Layer
-function geojsonOverlay(slug, name, minZoom) {
-	return new MTB.AjaxGeojsonLayerGroup(null, {
-		style: {
-			opacity: 1,
-			fillOpacity: 0
-		},
-		pointToLayer: function (feature, latlng) {
-			return L.circleMarker(latlng, {
-				radius: 7,
-				fillColor: '#fff',
-				color: '#f22',
-				weight: 1.5
-			});
-		},
-		onEachFeature: onEachFeature,
-		name: name,
-		slug: slug,
-		layersControl: MTB.layersControl,
-		minZoom: minZoom
-	});
-}
-function geojsonOverlayLines(slug, name, minZoom) {
-	return new MTB.AjaxGeojsonLayerGroup(null, {
-		style: {
-			opacity: 0.3,
-			color: '#EEE',
-			weight: 4,
-			smoothFactor: 2
-		},
-		onEachFeature: onEachFeature,
-		name: name,
-		slug: slug,
-		layersControl: MTB.layersControl,
-		minZoom: minZoom
-	});
-}
+MTB.UTILS.LAYERS.geojsonOverlay = function(slug, name, minZoom) {
+    return new MTB.AjaxGeojsonLayerGroup(null, {
+        style: {
+            opacity: 1,
+            fillOpacity: 0
+        },
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, {
+                radius: 7,
+                fillColor: '#fff',
+                color: '#f22',
+                weight: 1.5
+            });
+        },
+        onEachFeature: MTB.EVENTS.onEachFeature,
+        name: name,
+        slug: slug,
+        layersControl: MTB.layersControl,
+        minZoom: minZoom
+    });
+};
+
+MTB.UTILS.LAYERS.geojsonOverlayLines = function(slug, name, minZoom) {
+    return new MTB.AjaxGeojsonLayerGroup(null, {
+        style: {
+            opacity: 0.3,
+            color: '#EEE',
+            weight: 4,
+            smoothFactor: 2
+        },
+        onEachFeature: MTB.EVENTS.onEachFeature,
+        name: name,
+        slug: slug,
+        layersControl: MTB.layersControl,
+        minZoom: minZoom
+    });
+};
 
 ////////////////////////////////////////////////////////////////////////////////
-// add map events
-map.on('zoomend', onMapZoom);
-map.on('moveend', onMapMoveEnd);
-map.on('click', onMapClick);
 // update legend on map zoom
-function onMapZoom() {
+MTB.EVENTS.onMapZoom = function() {
     if (MTB.activePanel === 'legend') {
-        updateLegend(map.getZoom());
+        MTB.GUI.updateLegend(map.getZoom());
     }
-}
-var userChanged = false;
-function onMapMoveEnd() {
+};
+
+MTB.userChanged = false;
+MTB.EVENTS.onMapMoveEnd = function() {
     jQuery.cookie('latitude', map.getCenter().lat, {
         expires: 7
     });
@@ -87,11 +85,12 @@ function onMapMoveEnd() {
     jQuery.cookie('zoom', map.getZoom(), {
         expires: 7
     });
-    if (MTB.activePanel === 'export' && !userChanged) {
-        setCurrentBounds();
+    if (MTB.activePanel === 'export' && !MTB.userChanged) {
+        MTB.EXPORT.setCurrentBounds();
     }
-}
-function onMapClick(e){
+};
+
+MTB.EVENTS.onMapClick = function(e){
     if (MTB.activePanel === 'routes' &&
             (MTB.activeRoutesPanel === 'manual' || MTB.activeRoutesPanel === 'routing')) {
         MTB.activeLine.addPoint(e.latlng);
@@ -99,4 +98,9 @@ function onMapClick(e){
             MTB.activeLine.show();
         }
     }
-}
+};
+
+// add map events
+map.on('zoomend', MTB.EVENTS.onMapZoom);
+map.on('moveend', MTB.EVENTS.onMapMoveEnd);
+map.on('click', MTB.EVENTS.onMapClick);

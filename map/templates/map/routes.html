@@ -28,7 +28,7 @@
                     </div>
                 </form>
                 <div class="line-buttons">
-                    <form onsubmit="getRoute(event)" method="POST">
+                    <form onsubmit="MTB.GUI.getRoute(event)" method="POST">
                         {% csrf_token %}
                         <input class="highlight get-route-button" type="submit" value="{% trans "FIND ROUTE" %}">
                     </form>
@@ -37,7 +37,7 @@
                 <div id="params-buttons">
                     <div class="file-upload ui-button ui-widget ui-state-default ui-corner-all">
                         <span>{% trans "Load parameters" %}</span>
-                        <input id="files" type="file" name="files[]" onchange="handleTemplate(event)" size="10" class="margin upload">
+                        <input id="files" type="file" name="files[]" onchange="MTB.GUI.handleTemplate(event)" size="10" class="margin upload">
                     </div>
                     <form action="/map/gettemplate/" method="post" target="_blank" class="inline-block">
                         {% csrf_token %}
@@ -80,7 +80,7 @@
                     </form>
                     <div class="error-message"></div>
                 </div>
-                <form method="POST" onsubmit="sendEvaluation(event)" style="display: none">
+                <form method="POST" onsubmit="MTB.GUI.sendEvaluation(event)" style="display: none">
                     {% csrf_token %}
                     <input id="send-evaluation-button" type="submit" value="{% trans "Send" %}" />
                 </form>
@@ -111,7 +111,7 @@
             <h4>{% trans "Upload your own GPX file" %}</h4>
             <div class="file-upload highlight ui-button ui-widget ui-state-default ui-corner-all">
                 <span>{% trans "Upload" %}</span>
-                <input id="files" type="file" name="files[]" onchange="handleGPX(event)" size="10" class="margin">
+                <input id="files" type="file" name="files[]" onchange="MTB.GUI.handleGPX(event)" size="10" class="margin">
             </div>
             <br>
             <div class="line-buttons">

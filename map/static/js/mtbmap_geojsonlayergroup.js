@@ -82,14 +82,15 @@ MTB.AjaxGeojsonLayerGroup = MTB.GeojsonLayerGroup.extend({
         }
     },
     _updateData: function () {
-        var oldDataBounds = this.dataBounds;
-        var viewBounds = this._map.getBounds();
-        if (oldDataBounds && oldDataBounds.contains(viewBounds)) {
-            return;
-        } else {
-            var newDataBounds = this._extendBounds(viewBounds);
+        if (this._needsUpdate()) {
+            var newDataBounds = this._extendBounds(this._map.getBounds());
             this._getData(newDataBounds);
         }
+    },
+    _needsUpdate: function () {
+        var oldDataBounds = this.dataBounds,
+            viewBounds = this._map.getBounds();
+        return !(oldDataBounds && oldDataBounds.contains(viewBounds));
     },
     _extendBounds: function (bounds) {
         var north = bounds.getNorthWest().lat,
@@ -113,10 +114,10 @@ MTB.AjaxGeojsonLayerGroup = MTB.GeojsonLayerGroup.extend({
         });
     }
 });
-function onEachFeature(feature, layer) {
+MTB.EVENTS.onEachFeature = function(feature, layer) {
     layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight
+        mouseover: MTB.EVENTS.highlightFeature,
+        mouseout: MTB.EVENTS.resetHighlight
     });
     if (feature.properties && feature.properties.popupContent) {
         layer.bindPopup(feature.properties.popupContent);
@@ -124,8 +125,8 @@ function onEachFeature(feature, layer) {
     if (feature.properties && feature.properties.label) {
         layer.bindLabel(feature.properties.label);
     }
-}
-function highlightFeature(e) {
+};
+MTB.EVENTS.highlightFeature = function(e) {
     var layer = e.target;
     layer.setStyle({
         opacity: 1,
@@ -134,8 +135,8 @@ function highlightFeature(e) {
     if (!L.Browser.ie && !L.Browser.opera) {
         layer.bringToFront();
     }
-}
-function resetHighlight(e) {
+};
+MTB.EVENTS.resetHighlight = function(e) {
     var layer = e.target;
     layer.parentGroup.resetStyle(layer);
-}
+};

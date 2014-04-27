@@ -1,16 +1,17 @@
 // handling user export
-function setCurrentBounds() {
+MTB.EXPORT.setCurrentBounds = function() {
     var bounds = map.getBounds();
     jQuery('#export-left').val(bounds.getSouthWest().lng.toFixed(5));
     jQuery('#export-bottom').val(bounds.getSouthWest().lat.toFixed(5));
     jQuery('#export-right').val(bounds.getNorthEast().lng.toFixed(5));
     jQuery('#export-top').val(bounds.getNorthEast().lat.toFixed(5));
     jQuery('#export-zoom-select').val(map.getZoom());
-    setMapImageSize();
-    userChanged = false;
-}
-function setMapImageSize() {
-    var bounds = getBounds(),
+    MTB.EXPORT.setMapImageSize();
+    MTB.userChanged = false;
+};
+
+MTB.EXPORT.setMapImageSize = function() {
+    var bounds = MTB.EXPORT.getBounds(),
         zoom = parseInt(jQuery('#export-zoom-select').val()),
         topLeft = map.project(bounds.getNorthWest(), zoom),
         bottomRight = map.project(bounds.getSouthEast(), zoom),
@@ -23,8 +24,9 @@ function setMapImageSize() {
         jQuery('#export-width').val(Math.round(width));
         jQuery('#export-height').val(Math.round(height));
     }
-}
-function getBounds() {
+};
+
+MTB.EXPORT.getBounds = function() {
     var exportLeft = jQuery('#export-left').val(),
         exportBottom = jQuery('#export-bottom').val(),
         exportRight = jQuery('#export-right').val(),
@@ -32,22 +34,23 @@ function getBounds() {
     if (!exportLeft || !exportBottom || !exportRight || !exportTop) {
         return map.getBounds();
     } else {
-        var southWest = new L.LatLng(exportBottom, exportLeft);
-        var northEast = new L.LatLng(exportTop, exportRight);
-        var bounds = new L.LatLngBounds(southWest, northEast);
-        return bounds;
+        var southWest = L.latLng(exportBottom, exportLeft);
+        var northEast = L.latLng(exportTop, exportRight);
+        return L.latLngBounds(southWest, northEast);
     }
-}
-function recalculateSize() {
-    userChanged = true;
-    setMapImageSize();
-}
-function recalculateBounds() {
-    userChanged = true;
+};
+
+MTB.EXPORT.recalculateSize = function() {
+    MTB.userChanged = true;
+    MTB.EXPORT.setMapImageSize();
+};
+
+MTB.EXPORT.recalculateBounds = function() {
+    MTB.userChanged = true;
     var imgx = parseInt(jQuery('#export-width').val()),
         imgy = parseInt(jQuery('#export-height').val());
     if (imgx>0 && imgy>0) {
-        var center = getBounds().getCenter(),
+        var center = MTB.EXPORT.getBounds().getCenter(),
             exportZoom = parseInt(jQuery('#export-zoom-select').val()),
             centerPixel = map.project(center, exportZoom),
             sc = (jQuery('#export-highres').is(':checked')) ? 4 : 2,
@@ -60,7 +63,5 @@ function recalculateBounds() {
         jQuery('#export-right').val(southEast.lng.toFixed(6));
         jQuery('#export-top').val(northWest.lat.toFixed(6));
         jQuery('#export-bottom').val(southEast.lat.toFixed(6));
-    } else {
-        return;
     }
-}
+};
