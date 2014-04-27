@@ -23,9 +23,8 @@ if ($.cookie('latitude') && $.cookie('longitude') && $.cookie('zoom')) {
 MTB.map = L.map('map', {
     zoomControl: false
 }).setView(initLatlng, initZoom);
-var map = MTB.map;
 // start geolocation
-map.locate({
+MTB.map.locate({
     setView: true,
     maxZoom: 16
 });
@@ -36,7 +35,7 @@ MTB.baseLayers["{{ tile_layer.name }}"] = new L.TileLayer( "{{ tile_layer.url }}
     attribution: '{{ tile_layer.attribution|safe }}'
 });
 {% endfor %}
-MTB.baseLayers["{{ default_tile_layer.name }}"].addTo(map);
+MTB.baseLayers["{{ default_tile_layer.name }}"].addTo(MTB.map);
 </script>
 <script src="{{ STATIC_URL }}js/mtbmap_leaflet.js"></script>
 <script>
@@ -46,7 +45,7 @@ MTB.baseLayers["{{ default_tile_layer.name }}"].addTo(map);
 {% else %}
     MTB.overlayLayers["{{ geojson_layer.slug }}"] = MTB.UTILS.LAYERS.geojsonOverlay("{{ geojson_layer.slug }}", "{{ geojson_layer.name }}", {{ geojson_layer.min_zoom }});
 {% endif %}
-MTB.overlayLayers["{{ geojson_layer.slug }}"].addTo(map);
+MTB.overlayLayers["{{ geojson_layer.slug }}"].addTo(MTB.map);
 {% endfor %}
 </script>
 <script src="{{ STATIC_URL }}js/mtbmap_gui.js"></script>
