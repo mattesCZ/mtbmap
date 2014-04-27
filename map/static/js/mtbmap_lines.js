@@ -9,14 +9,14 @@ MTB.Line = L.Polyline.extend({
     },
     show: function() {
         if (!this.visible) {
-            map.addLayer(this);
+            MTB.map.addLayer(this);
             this._showButtons();
             this.visible = true;
         }
     },
     hide: function() {
         if (this.visible) {
-            map.removeLayer(this);
+            MTB.map.removeLayer(this);
             this._hideButtons();
             this.visible = false;
         }
@@ -24,9 +24,9 @@ MTB.Line = L.Polyline.extend({
     fitMapView: function() {
         var latlngs = this.routeLatLngs();
         if (latlngs.length>1) {
-            map.fitBounds(this.getBounds());
+            MTB.map.fitBounds(this.getBounds());
         } else if (latlngs.length === 1) {
-            map.panTo(latlngs[0]);
+            MTB.map.panTo(latlngs[0]);
         }
     },
     distanceString: function() {
@@ -141,8 +141,8 @@ MTB.SimpleLine = MTB.Line.extend({
     },
     show: function() {
         if (!this.visible) {
-            map.addLayer(this);
-            map.addLayer(this.markersGroup);
+            MTB.map.addLayer(this);
+            MTB.map.addLayer(this.markersGroup);
             // map.addLayer(this.routesGroup);
             this._showButtons();
             this.visible = true;
@@ -150,8 +150,8 @@ MTB.SimpleLine = MTB.Line.extend({
     },
     hide: function() {
         if (this.visible) {
-            map.removeLayer(this);
-            map.removeLayer(this.markersGroup);
+            MTB.map.removeLayer(this);
+            MTB.map.removeLayer(this.markersGroup);
             // map.removeLayer(this.routesGroup);
             this._hideButtons();
             this.visible = false;
@@ -249,9 +249,9 @@ MTB.RoutingLine = MTB.SimpleLine.extend({
     show: function() {
         var thisLine = this;
         if (!this.visible) {
-            map.addLayer(this);
-            map.addLayer(this.markersGroup);
-            map.addLayer(this.routesGroup);
+            MTB.map.addLayer(this);
+            MTB.map.addLayer(this.markersGroup);
+            MTB.map.addLayer(this.routesGroup);
             this.on('line-changed', thisLine._onLineChange);
             this._showButtons();
             this.visible = true;
@@ -259,9 +259,9 @@ MTB.RoutingLine = MTB.SimpleLine.extend({
     },
     hide: function() {
         if (this.visible) {
-            map.removeLayer(this);
-            map.removeLayer(this.markersGroup);
-            map.removeLayer(this.routesGroup);
+            MTB.map.removeLayer(this);
+            MTB.map.removeLayer(this.markersGroup);
+            MTB.map.removeLayer(this.routesGroup);
             this._hideButtons();
             this.visible = false;
         }
@@ -301,7 +301,7 @@ MTB.RoutingLine = MTB.SimpleLine.extend({
         this.routesGroup.clearLayers();
         var latlngs = this.getLatLngs();
         if (latlngs.length<=1) {
-            MTB.GUI.lPopup(map.getCenter(), '<h3>' + LANG.addPoints + '</h3>', true);
+            MTB.GUI.lPopup(MTB.map.getCenter(), '<h3>' + LANG.addPoints + '</h3>', true);
         } else {
             var params = jQuery('#routes-params').serializeArray();
             jQuery('.loading').addClass('ajax-loading');
@@ -320,7 +320,7 @@ MTB.RoutingLine = MTB.SimpleLine.extend({
                     });
                     _this.routesGroup.addLayer(geojsonLine);
                     geojsonLine.bringToFront();
-                    map.fitBounds(geojsonLine.getBounds());
+                    MTB.map.fitBounds(geojsonLine.getBounds());
                 }
             }).always( function () {
                 jQuery('.loading').removeClass('ajax-loading');

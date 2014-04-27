@@ -26,7 +26,7 @@ jQuery(document).ready(function() {
         activate: function(event, ui) {
             MTB.activePanel = ui.newPanel.selector.replace('#tab-', '');
             if (MTB.activePanel === 'legend') {
-                MTB.GUI.updateLegend(map.getZoom());
+                MTB.GUI.updateLegend(MTB.map.getZoom());
             } else if (MTB.activePanel === 'places') {
                 jQuery('#places-addr').focus().select();
             } else if (MTB.activePanel === 'export') {
@@ -315,7 +315,7 @@ MTB.UTILS.osmLink= function(osmId, osmType) {
 };
 
 MTB.GUI.lPopup = function(position, content, hideTip) {
-    var popup = L.popup().setLatLng(position).setContent(content).openOn(map);
+    var popup = L.popup().setLatLng(position).setContent(content).openOn(MTB.map);
     if (hideTip) {
         L.DomUtil.addClass(popup._tipContainer, 'hidden');
     }

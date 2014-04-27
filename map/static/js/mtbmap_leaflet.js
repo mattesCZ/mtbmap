@@ -1,25 +1,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 // add map controls
 // topright position, first is on top
-map.addControl(L.control.zoom({
+MTB.map.addControl(L.control.zoom({
     position:'topright'
 }));
 MTB.layersControl = new L.Control.Layers(MTB.baseLayers, MTB.overlayLayers);
-map.addControl(MTB.layersControl);
+MTB.map.addControl(MTB.layersControl);
 // bottomright position, first is the lowest
-map.addControl(L.control.scale({
+MTB.map.addControl(L.control.scale({
     position:'bottomright',
     imperial:false,
     maxWidth:200
 }));
-map.addControl(new L.Control.Position({}));
-map.addControl(new L.Control.Permalink({
+MTB.map.addControl(new L.Control.Position({}));
+MTB.map.addControl(new L.Control.Permalink({
     text: LANG.editPermalink,
     useAnchor: false,
     position: 'bottomright',
     urlBase: 'http://www.openstreetmap.org/edit.html'
 }));
-map.addControl(new L.Control.Permalink({
+MTB.map.addControl(new L.Control.Permalink({
     text: 'Permalink',
     layers: MTB.layersControl,
     position: 'bottomright'
@@ -70,19 +70,19 @@ MTB.UTILS.LAYERS.geojsonOverlayLines = function(slug, name, minZoom) {
 // update legend on map zoom
 MTB.EVENTS.onMapZoom = function() {
     if (MTB.activePanel === 'legend') {
-        MTB.GUI.updateLegend(map.getZoom());
+        MTB.GUI.updateLegend(MTB.map.getZoom());
     }
 };
 
 MTB.userChanged = false;
 MTB.EVENTS.onMapMoveEnd = function() {
-    jQuery.cookie('latitude', map.getCenter().lat, {
+    jQuery.cookie('latitude', MTB.map.getCenter().lat, {
         expires: 7
     });
-    jQuery.cookie('longitude', map.getCenter().lng, {
+    jQuery.cookie('longitude', MTB.map.getCenter().lng, {
         expires: 7
     });
-    jQuery.cookie('zoom', map.getZoom(), {
+    jQuery.cookie('zoom', MTB.map.getZoom(), {
         expires: 7
     });
     if (MTB.activePanel === 'export' && !MTB.userChanged) {
@@ -101,6 +101,6 @@ MTB.EVENTS.onMapClick = function(e){
 };
 
 // add map events
-map.on('zoomend', MTB.EVENTS.onMapZoom);
-map.on('moveend', MTB.EVENTS.onMapMoveEnd);
-map.on('click', MTB.EVENTS.onMapClick);
+MTB.map.on('zoomend', MTB.EVENTS.onMapZoom);
+MTB.map.on('moveend', MTB.EVENTS.onMapMoveEnd);
+MTB.map.on('click', MTB.EVENTS.onMapClick);

@@ -42,11 +42,11 @@ MTB.GUI.addrSearch = function() {
 // zoom into given latlng and get elevation data
 MTB.GUI.chooseAddr = function(lat, lng, type, osmID, osmType) {
     var location = new L.LatLng(lat, lng);
-    map.panTo(location);
+    MTB.map.panTo(location);
     if (type === 'city' || type === 'administrative') {
-        map.setZoom(12);
+        MTB.map.setZoom(12);
     } else {
-        map.setZoom(14);
+        MTB.map.setZoom(14);
     }
     jQuery('#' + osmID + ' > #osm-id').html('<p>OSM ID: ' + MTB.UTILS.osmLink(osmID, osmType) + '</p>');
     jQuery.get('/map/getheight/', {

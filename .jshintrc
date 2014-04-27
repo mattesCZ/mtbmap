@@ -13,8 +13,7 @@
         "L": false,
         "jQuery": false,
         "MTB": true,
-        "LANG": true,
-        "map": true
+        "LANG": true
     },
     "strict": false,
     // "es3": true,

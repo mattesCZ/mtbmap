@@ -58,7 +58,7 @@ MTB.AjaxGeojsonLayerGroup = MTB.GeojsonLayerGroup.extend({
         this._map = null;
     },
     _remove: function () {
-        this.eachLayer(map.removeLayer, map);
+        this.eachLayer(MTB.map.removeLayer, MTB.map);
         this.active = false;
     },
     _update: function () {
@@ -73,7 +73,7 @@ MTB.AjaxGeojsonLayerGroup = MTB.GeojsonLayerGroup.extend({
                 this.options.layersControl.removeLayer(this);
             }
         } else {
-            this.eachLayer(map.addLayer, map);
+            this.eachLayer(MTB.map.addLayer, MTB.map);
             if (this.options.layersControl) {
                 this.options.layersControl.addOverlay(this, this.options.name);
             }

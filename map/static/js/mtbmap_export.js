@@ -1,11 +1,11 @@
 // handling user export
 MTB.EXPORT.setCurrentBounds = function() {
-    var bounds = map.getBounds();
+    var bounds = MTB.map.getBounds();
     jQuery('#export-left').val(bounds.getSouthWest().lng.toFixed(5));
     jQuery('#export-bottom').val(bounds.getSouthWest().lat.toFixed(5));
     jQuery('#export-right').val(bounds.getNorthEast().lng.toFixed(5));
     jQuery('#export-top').val(bounds.getNorthEast().lat.toFixed(5));
-    jQuery('#export-zoom-select').val(map.getZoom());
+    jQuery('#export-zoom-select').val(MTB.map.getZoom());
     MTB.EXPORT.setMapImageSize();
     MTB.userChanged = false;
 };
@@ -13,8 +13,8 @@ MTB.EXPORT.setCurrentBounds = function() {
 MTB.EXPORT.setMapImageSize = function() {
     var bounds = MTB.EXPORT.getBounds(),
         zoom = parseInt(jQuery('#export-zoom-select').val()),
-        topLeft = map.project(bounds.getNorthWest(), zoom),
-        bottomRight = map.project(bounds.getSouthEast(), zoom),
+        topLeft = MTB.map.project(bounds.getNorthWest(), zoom),
+        bottomRight = MTB.map.project(bounds.getSouthEast(), zoom),
         width = bottomRight.x - topLeft.x,
         height = bottomRight.y - topLeft.y;
     if (jQuery('#export-highres').is(':checked')) {
@@ -32,7 +32,7 @@ MTB.EXPORT.getBounds = function() {
         exportRight = jQuery('#export-right').val(),
         exportTop = jQuery('#export-top').val();
     if (!exportLeft || !exportBottom || !exportRight || !exportTop) {
-        return map.getBounds();
+        return MTB.map.getBounds();
     } else {
         var southWest = L.latLng(exportBottom, exportLeft);
         var northEast = L.latLng(exportTop, exportRight);
@@ -52,12 +52,12 @@ MTB.EXPORT.recalculateBounds = function() {
     if (imgx>0 && imgy>0) {
         var center = MTB.EXPORT.getBounds().getCenter(),
             exportZoom = parseInt(jQuery('#export-zoom-select').val()),
-            centerPixel = map.project(center, exportZoom),
+            centerPixel = MTB.map.project(center, exportZoom),
             sc = (jQuery('#export-highres').is(':checked')) ? 4 : 2,
             northWestPixel = new L.Point(centerPixel.x - imgx/sc, centerPixel.y - imgy/sc),
             southEastPixel = new L.Point(centerPixel.x + imgx/sc, centerPixel.y + imgy/sc),
-            northWest = map.unproject(northWestPixel, exportZoom),
-            southEast = map.unproject(southEastPixel, exportZoom);
+            northWest = MTB.map.unproject(northWestPixel, exportZoom),
+            southEast = MTB.map.unproject(southEastPixel, exportZoom);
 
         jQuery('#export-left').val(northWest.lng.toFixed(6));
         jQuery('#export-right').val(southEast.lng.toFixed(6));
