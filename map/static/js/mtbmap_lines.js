@@ -30,7 +30,7 @@ MTB.Line = L.Polyline.extend({
         }
     },
     distanceString: function() {
-        return LANG.distance + ': ' + MTB.UTILS.distanceWithUnits(this.getDistance());
+        return MTB.LANG.distance + ': ' + MTB.UTILS.distanceWithUnits(this.getDistance());
     },
     getDistance: function() {
         var d = 0,
@@ -63,20 +63,20 @@ MTB.GpxLine = MTB.Line.extend({
         try {
             gpxdoc = jQuery.parseXML(data);
         } catch (err) {
-            alert(LANG.gpxNotValid);
+            alert(MTB.LANG.gpxNotValid);
             return;
         }
         var $gpx = jQuery(gpxdoc),
             root = $gpx.find('gpx');
         if (!root.length) {
-            alert(LANG.gpxNotValid);
+            alert(MTB.LANG.gpxNotValid);
             return;
         }
         var points = [];
         points = points.concat(this._findRoutePoints(root));
         points = points.concat(this._findTrackPoints(root));
         if (!points.length) {
-            alert(LANG.gpxNoTrackpoints);
+            alert(MTB.LANG.gpxNoTrackpoints);
             return;
         }
         this.setLatLngs(points);
@@ -113,7 +113,7 @@ MTB.GpxLine = MTB.Line.extend({
                 });
             });
         } catch (err) {
-            alert(LANG.gpxNotValid);
+            alert(MTB.LANG.gpxNotValid);
             return [];
         }
         return pts;
@@ -301,7 +301,7 @@ MTB.RoutingLine = MTB.SimpleLine.extend({
         this.routesGroup.clearLayers();
         var latlngs = this.getLatLngs();
         if (latlngs.length<=1) {
-            MTB.GUI.lPopup(MTB.map.getCenter(), '<h3>' + LANG.addPoints + '</h3>', true);
+            MTB.GUI.lPopup(MTB.map.getCenter(), '<h3>' + MTB.LANG.addPoints + '</h3>', true);
         } else {
             var params = jQuery('#routes-params').serializeArray();
             jQuery('.loading').addClass('ajax-loading');
@@ -311,7 +311,7 @@ MTB.RoutingLine = MTB.SimpleLine.extend({
             }, function(data) {
                 if (data.properties.status==='notfound') {
                     var position = L.polyline(_this.getLatLngs(), {}).getBounds().getCenter();
-                    MTB.GUI.lPopup(position, LANG.routeNotFound, true);
+                    MTB.GUI.lPopup(position, MTB.LANG.routeNotFound, true);
                 }
                 if (data.features.length) {
                     var geojsonLine = new MTB.GeojsonLayerGroup(data, {
@@ -420,9 +420,9 @@ MTB.ROUTES.lineFeatureInfo = function(feature) {
             info += '<h3>' + feature.properties.name + '<h3>';
         }
         info += '<p>';
-        info += LANG.length + ': ' + MTB.UTILS.distanceWithUnits(feature.properties.length);
+        info += MTB.LANG.length + ': ' + MTB.UTILS.distanceWithUnits(feature.properties.length);
         info += '<br>';
-        info += LANG.weight + ': ' + feature.properties.weight.toString();
+        info += MTB.LANG.weight + ': ' + feature.properties.weight.toString();
         var idName = 'osm_id';
         if (feature.properties[idName]) {
             info += '<br>';

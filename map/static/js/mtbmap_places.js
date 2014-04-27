@@ -25,7 +25,7 @@ MTB.GUI.addrSearch = function() {
         jQuery('#places-results').empty();
         if (items.length !== 0) {
             jQuery('<p>', {
-                html: LANG.searchResults + ': '
+                html: MTB.LANG.searchResults + ': '
             }).appendTo('#places-results');
             jQuery('<ul>', {
                 'class': 'results-list',
@@ -33,7 +33,7 @@ MTB.GUI.addrSearch = function() {
             }).appendTo('#places-results');
         } else {
             jQuery('<p>', {
-                html: LANG.noResults
+                html: MTB.LANG.noResults
             }).appendTo('#places-results');
         }
     });
@@ -52,6 +52,6 @@ MTB.GUI.chooseAddr = function(lat, lng, type, osmID, osmType) {
     jQuery.get('/map/getheight/', {
         'profile-point': location.toString()
     }, function(data) {
-        jQuery('#' + osmID + ' > #elevation').html('<p>' + LANG.elevation + ': ' + data + ' m</p>');
+        jQuery('#' + osmID + ' > #elevation').html('<p>' + MTB.LANG.elevation + ': ' + data + ' m</p>');
     });
 };

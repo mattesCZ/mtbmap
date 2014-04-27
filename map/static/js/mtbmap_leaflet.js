@@ -14,7 +14,7 @@ MTB.map.addControl(L.control.scale({
 }));
 MTB.map.addControl(new L.Control.Position({}));
 MTB.map.addControl(new L.Control.Permalink({
-    text: LANG.editPermalink,
+    text: MTB.LANG.editPermalink,
     useAnchor: false,
     position: 'bottomright',
     urlBase: 'http://www.openstreetmap.org/edit.html'

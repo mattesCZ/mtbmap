@@ -1,4 +1,4 @@
-LANG = {
+MTB.LANG = {
     fileAPIError: 'Zpracování souborů (File API) není v tomto prohlížeči podporováno. Zkuste prohlížeč kompatibilní s HTML5.',
     searchResults: 'Výsledky hledání',
     noResults: 'Nic nenalezeno',

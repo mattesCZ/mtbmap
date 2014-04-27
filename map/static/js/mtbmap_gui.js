@@ -54,7 +54,7 @@ jQuery(document).ready(function() {
             MTB.activeLine.updateDistance();
             if (MTB.activeRoutesPanel === 'gpx') {
                 if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
-                    jQuery('#routes-content-gpx').html('<h4>' + LANG.fileAPIError + '</h4>');
+                    jQuery('#routes-content-gpx').html('<h4>' + MTB.LANG.fileAPIError + '</h4>');
                 }
             }
         }
@@ -126,7 +126,7 @@ jQuery(document).ready(function() {
                             thisDialog.dialog( 'close' );
                             var ThanksDialog = jQuery(data.html);
                             ThanksDialog.dialog({
-                                title: LANG.thanks,
+                                title: MTB.LANG.thanks,
                                 show: 'clip',
                                 hide: 'clip',
                                 buttons: {
@@ -136,7 +136,7 @@ jQuery(document).ready(function() {
                                 }
                             });
                         } else {
-                            jQuery('#evaluation-dialog-form .error-message').html(LANG.correctEntries);
+                            jQuery('#evaluation-dialog-form .error-message').html(MTB.LANG.correctEntries);
                         }
                     });
                 }
@@ -260,7 +260,7 @@ MTB.GUI.fillRouteParams = function(params) {
     try {
         jsonParams = jQuery.parseJSON(params);
     } catch (err) {
-        alert(LANG.templateNotValid);
+        alert(MTB.LANG.templateNotValid);
         return;
     }
     jQuery('select[name=global__vehicle] > option').attr('selected', false);

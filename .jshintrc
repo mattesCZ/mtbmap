@@ -12,8 +12,7 @@
     "globals": {
         "L": false,
         "jQuery": false,
-        "MTB": true,
-        "LANG": true
+        "MTB": true
     },
     "strict": false,
     // "es3": true,

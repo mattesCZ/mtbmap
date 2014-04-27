@@ -1,4 +1,4 @@
-LANG = {
+MTB.LANG = {
     fileAPIError: 'The File API is not fully supported, try HTML5 compatible browser.',
     searchResults: 'Search results',
     noResults: 'No results found',
