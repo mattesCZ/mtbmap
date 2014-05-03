@@ -23,7 +23,7 @@ MTB.Line = L.Polyline.extend({
     },
     fitMapView: function() {
         var latlngs = this.routeLatLngs();
-        if (latlngs.length>1) {
+        if (latlngs.length > 1) {
             MTB.map.fitBounds(this.getBounds());
         } else if (latlngs.length === 1) {
             MTB.map.panTo(latlngs[0]);
@@ -36,9 +36,9 @@ MTB.Line = L.Polyline.extend({
         var d = 0,
             latlngs = this.routeLatLngs();
         for (var i = 1; i < latlngs.length; i++) {
-            d += latlngs[i-1].distanceTo(latlngs[i]);
+            d += latlngs[i - 1].distanceTo(latlngs[i]);
         }
-        return d/1000;
+        return d / 1000;
     },
     updateDistance: function() {
         jQuery('.length').html(this.distanceString());
@@ -108,7 +108,7 @@ MTB.GpxLine = MTB.Line.extend({
                 pointElements.each(function () {
                     var lat = jQuery(this).attr('lat'),
                         lon = jQuery(this).attr('lon'),
-                        point = new L.LatLng(lat, lon);
+                        point = L.latLng(lat, lon);
                     pts.push(point);
                 });
             });
@@ -123,15 +123,12 @@ MTB.GpxLine = MTB.Line.extend({
 MTB.SimpleLine = MTB.Line.extend({
     initialize : function(latlngs, options) {
         MTB.Line.prototype.initialize.call(this, latlngs, options);
-        this.markersGroup = new L.LayerGroup([]);
+        this.markersGroup = L.layerGroup([]);
         this.markerIcon = L.icon({
             iconUrl : '../static/js/images/line-marker.png',
             iconSize : [9, 9]
         });
         this.on('click', this.onClick);
-        // this.on('mouseover', this.onMouseover);
-        // this.on('mouseout', this.onMouseout);
-        // this.routesGroup = new L.LayerGroup([]);
     },
     reset: function() {
         this.setLatLngs([]);
@@ -143,7 +140,6 @@ MTB.SimpleLine = MTB.Line.extend({
         if (!this.visible) {
             MTB.map.addLayer(this);
             MTB.map.addLayer(this.markersGroup);
-            // map.addLayer(this.routesGroup);
             this._showButtons();
             this.visible = true;
         }
@@ -152,7 +148,6 @@ MTB.SimpleLine = MTB.Line.extend({
         if (this.visible) {
             MTB.map.removeLayer(this);
             MTB.map.removeLayer(this.markersGroup);
-            // map.removeLayer(this.routesGroup);
             this._hideButtons();
             this.visible = false;
         }
@@ -204,24 +199,18 @@ MTB.SimpleLine = MTB.Line.extend({
             segmentIndex = this._nearestSegment(clickLatlng);
         this.insertPoint(clickLatlng, segmentIndex);
     },
-    // onMouseover: function (event) {
-        // L.DomUtil.addClass(document.body, 'target-cursor');
-    // },
-    // onMouseout: function (event) {
-        // L.DomUtil.removeClass(document.body, 'target-cursor');
-    // },
     _nearestSegment: function (clickLatlng) {
         var minDist = 41000000,
-            segmentIndex = 0;
-        var latlngs = this.getLatLngs();
+            segmentIndex = 0,
+            latlngs = this.getLatLngs();
         for (var i=1; i < latlngs.length; i++) {
-            var p = {};
+            var p = {},
+                p1 = {},
+                p2 = {};
             p.x = clickLatlng.lng;
             p.y = clickLatlng.lat;
-            var p1 = {};
             p1.x = latlngs[i-1].lng;
             p1.y = latlngs[i-1].lat;
-            var p2 = {};
             p2.x = latlngs[i].lng;
             p2.y = latlngs[i].lat;
             var dist = L.LineUtil.pointToSegmentDistance(p, p1, p2);
@@ -236,7 +225,7 @@ MTB.SimpleLine = MTB.Line.extend({
 MTB.RoutingLine = MTB.SimpleLine.extend({
     initialize : function(latlngs, options) {
         MTB.SimpleLine.prototype.initialize.call(this, latlngs, options);
-        this.routesGroup = new L.LayerGroup([]);
+        this.routesGroup = L.layerGroup([]);
         this.resultsShown = false;
     },
     reset: function() {
@@ -247,12 +236,12 @@ MTB.RoutingLine = MTB.SimpleLine.extend({
         this.hide();
     },
     show: function() {
-        var thisLine = this;
+        var _this = this;
         if (!this.visible) {
             MTB.map.addLayer(this);
             MTB.map.addLayer(this.markersGroup);
             MTB.map.addLayer(this.routesGroup);
-            this.on('line-changed', thisLine._onLineChange);
+            this.on('line-changed', _this._onLineChange);
             this._showButtons();
             this.visible = true;
         }
@@ -332,7 +321,7 @@ MTB.RoutingLine = MTB.SimpleLine.extend({
     },
     // get latLngs from geojson layer group
     routeLatLngs: function () {
-        var gLine = new L.Polyline([], {});
+        var gLine = L.polyline([], {});
         this.routesGroup.eachLayer(function (layer) {
             layer.eachLayer(function (sublayer) {
                 gLine.spliceLatLngs(gLine.getLatLngs().length - 1, 1);

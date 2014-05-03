@@ -41,7 +41,7 @@ MTB.GUI.addrSearch = function() {
 
 // zoom into given latlng and get elevation data
 MTB.GUI.chooseAddr = function(lat, lng, type, osmID, osmType) {
-    var location = new L.LatLng(lat, lng);
+    var location = L.latLng(lat, lng);
     MTB.map.panTo(location);
     if (type === 'city' || type === 'administrative') {
         MTB.map.setZoom(12);

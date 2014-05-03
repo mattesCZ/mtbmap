@@ -7,12 +7,12 @@ MTB.GeojsonLayerGroup = L.GeoJSON.extend({
         }
     },
     addGeojsonData: function(geojson) {
-        var ids = this._featureIDS;
-        var features = geojson.features;
+        var ids = this._featureIDS,
+            features = geojson.features;
         if (features) {
-            for (var i = 0; i<features.length; i++) {
+            for (var i = 0; i < features.length; i++) {
                 if (features[i].id) {
-                    if (jQuery.inArray(features[i].id, ids) !== -1) {
+                    if (ids.indexOf(features[i]) >= 0) {
                         geojson.features[i].geometry = null;
                     } else {
                         ids.push(features[i].id);
@@ -47,7 +47,6 @@ MTB.AjaxGeojsonLayerGroup = MTB.GeojsonLayerGroup.extend({
     },
     onAdd: function (map) {
         this._map = map;
-        // this.dataBounds = null;
         map.on({
             'moveend': this._update
         }, this);
@@ -97,23 +96,24 @@ MTB.AjaxGeojsonLayerGroup = MTB.GeojsonLayerGroup.extend({
             east = bounds.getSouthEast().lng,
             south = bounds.getSouthEast().lat,
             west = bounds.getNorthWest().lng,
-            extendedNorthWest = new L.LatLng(north + (north-south), west - (east-west)),
-            extendedSouthEast = new L.LatLng(south - (north-south), east + (east-west));
+            extendedNorthWest = L.latLng(north + (north-south), west - (east-west)),
+            extendedSouthEast = L.latLng(south - (north-south), east + (east-west));
         return bounds.extend(extendedNorthWest).extend(extendedSouthEast);
     },
     _getData: function (bounds) {
-        var thisLayer = this;
+        var _this = this;
         this.dataBounds = bounds;
         jQuery.get('/map/getjsondata/', {
             'bounds': '[' + bounds.toBBoxString() + ']',
-            'slug': thisLayer.options.slug
+            'slug': _this.options.slug
         }, function(data) {
             // TODO add data to layer
             var geojson = jQuery.parseJSON(data);
-            thisLayer.addGeojsonData(geojson);
+            _this.addGeojsonData(geojson);
         });
     }
 });
+
 MTB.EVENTS.onEachFeature = function(feature, layer) {
     layer.on({
         mouseover: MTB.EVENTS.highlightFeature,
@@ -126,6 +126,7 @@ MTB.EVENTS.onEachFeature = function(feature, layer) {
         layer.bindLabel(feature.properties.label);
     }
 };
+
 MTB.EVENTS.highlightFeature = function(e) {
     var layer = e.target;
     layer.setStyle({
@@ -136,6 +137,7 @@ MTB.EVENTS.highlightFeature = function(e) {
         layer.bringToFront();
     }
 };
+
 MTB.EVENTS.resetHighlight = function(e) {
     var layer = e.target;
     layer.parentGroup.resetStyle(layer);

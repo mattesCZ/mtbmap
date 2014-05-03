@@ -20,7 +20,8 @@ jQuery(document).ready(function() {
     // set height of main panel
     MTB.GUI.setPanelsMaxHeight();
     // initialize main tabs menu
-    jQuery('#main-tabs').tabs({
+    var mainTabs = jQuery('#main-tabs');
+    mainTabs.tabs({
         collapsible: true,
         active: false,
         activate: function(event, ui) {
@@ -71,16 +72,18 @@ jQuery(document).ready(function() {
         heightStyle: 'content'
     });
     // initialize weights_template radio
-    jQuery('#weights_template').buttonset();
-    jQuery('#weights_template > label').click(function(event) {
+    var weightsTemplate = jQuery('#weights_template');
+    weightsTemplate.buttonset();
+    weightsTemplate.children('label').click(function(event) {
         event.preventDefault();
-        jQuery('#weights_template > input').prop('checked', false);
-        jQuery('#' + this.htmlFor).prop('checked', true);
-        var templateId = jQuery('#' + this.htmlFor).val();
+        weightsTemplate.children('input').prop('checked', false);
+        var $input = jQuery('#' + this.htmlFor);
+        $input.prop('checked', true);
+        var templateId = $input.val();
         MTB.GUI.updateTemplate(templateId);
     });
     // force update template button and get params
-    jQuery('#weights_template > label').first().click();
+    weightsTemplate.children('label').first().click();
     jQuery('.fit-to-line').button().click(function() {
         MTB.activeLine.fitMapView();
     });
@@ -101,31 +104,31 @@ jQuery(document).ready(function() {
         var params = jQuery('#routes-params').serializeArray();
         jQuery('.params').val(JSON.stringify(params));
     });
-    jQuery('#evaluation-dialog-form').dialog({
+    var evaluationFormDialog = jQuery('#evaluation-dialog-form'),
+        evaluationFormSend = jQuery('#send-evaluation-form');
+    evaluationFormDialog.dialog({
         autoOpen: false,
         modal: false,
         width: 'auto',
         buttons: {
             'Odeslat': function(event) {
-                var form = jQuery('#send-evaluation-form');
-                var thisDialog = jQuery(this);
-                if (!form.valid) {
-                    return;
-                } else {
+                var form = evaluationFormSend,
+                    thisDialog = jQuery(this);
+                if (form.valid) {
                     MTB.UTILS.AJAX.setupPost(event);
-                    var latlngs = MTB.activeLine.getLatLngs();
-                    var params = jQuery('#routes-params').serializeArray();
+                    var latLngs = MTB.activeLine.getLatLngs(),
+                        params = jQuery('#routes-params').serializeArray();
                     jQuery('#id_params').val(JSON.stringify(params));
-                    jQuery('#id_linestring').val('[' + latlngs + ']');
-                    form = jQuery('#send-evaluation-form').serializeArray();
+                    jQuery('#id_linestring').val('[' + latLngs + ']');
+                    form = evaluationFormSend.serializeArray();
                     jQuery.post('/map/evaluation/', {
                         'form': JSON.stringify(form)
                     }, function(data) {
                         if (data.valid) {
-                            jQuery('#evaluation-dialog-form').html(data.html);
-                            thisDialog.dialog( 'close' );
-                            var ThanksDialog = jQuery(data.html);
-                            ThanksDialog.dialog({
+                            evaluationFormDialog.html(data.html);
+                            thisDialog.dialog('close');
+                            var thanksDialog = jQuery(data.html);
+                            thanksDialog.dialog({
                                 title: MTB.LANG.thanks,
                                 show: 'clip',
                                 hide: 'clip',
@@ -136,17 +139,17 @@ jQuery(document).ready(function() {
                                 }
                             });
                         } else {
-                            jQuery('#evaluation-dialog-form .error-message').html(MTB.LANG.correctEntries);
+                            evaluationFormDialog.find('.error-message').html(MTB.LANG.correctEntries);
                         }
                     });
                 }
             },
             'Storno': function() {
-                jQuery( this ).dialog( 'close' );
+                jQuery(this).dialog('close');
             }
         }
     });
-    jQuery('#send-evaluation-form').validate({
+    evaluationFormSend.validate({
         rules: {
             'comment': 'required',
             'email': {
@@ -158,7 +161,6 @@ jQuery(document).ready(function() {
     jQuery('.open-evaluation-dialog').button().click(function() {
         jQuery('#evaluation-dialog-form').dialog('open');
     });
-    // jQuery('.send-evaluation-button').button();
     if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
         jQuery('#params-buttons').hide();
     }
@@ -183,7 +185,7 @@ jQuery(document).ready(function() {
         $closeButton.hide();
         jQuery('a[href="#tab-' + MTB.activePanel + '"]').click();
     });
-    jQuery('#main-tabs').show();
+    mainTabs.show();
 });
 jQuery(window).resize(function() {
     MTB.GUI.setPanelsMaxHeight();

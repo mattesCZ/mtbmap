@@ -54,8 +54,8 @@ MTB.EXPORT.recalculateBounds = function() {
             exportZoom = parseInt(jQuery('#export-zoom-select').val()),
             centerPixel = MTB.map.project(center, exportZoom),
             sc = (jQuery('#export-highres').is(':checked')) ? 4 : 2,
-            northWestPixel = new L.Point(centerPixel.x - imgx/sc, centerPixel.y - imgy/sc),
-            southEastPixel = new L.Point(centerPixel.x + imgx/sc, centerPixel.y + imgy/sc),
+            northWestPixel = L.point(centerPixel.x - imgx/sc, centerPixel.y - imgy/sc),
+            southEastPixel = L.point(centerPixel.x + imgx/sc, centerPixel.y + imgy/sc),
             northWest = MTB.map.unproject(northWestPixel, exportZoom),
             southEast = MTB.map.unproject(southEastPixel, exportZoom);
 

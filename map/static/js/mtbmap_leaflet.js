@@ -1,5 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
-// add map controls
+// Add map controls
 // topright position, first is on top
 MTB.map.addControl(L.control.zoom({
     position:'topright'
