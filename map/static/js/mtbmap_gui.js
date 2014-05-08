@@ -297,9 +297,11 @@ MTB.GUI.fillRouteParams = function(params) {
                     }
                 });
                 if (fts[j].visible) {
-                    jQuery('select[name="' + cl.slug + '__'+ fts[j].slug +'"]').parent().parent().css('display', 'table-row');
+                    jQuery('select[name="' + cl.slug + '__'+ fts[j].slug +'"]')
+                        .parent().parent().css('display', 'table-row');
                 } else {
-                    jQuery('select[name="' + cl.slug + '__'+ fts[j].slug +'"]').parent().parent().css('display', 'none');
+                    jQuery('select[name="' + cl.slug + '__'+ fts[j].slug +'"]')
+                        .parent().parent().css('display', 'none');
                 }
             }
         }
@@ -312,7 +314,8 @@ MTB.GUI.fillRouteParams = function(params) {
 };
 
 MTB.UTILS.osmLink= function(osmId, osmType) {
-    return '<a href="http://www.openstreetmap.org/browse/' + osmType + '/' + osmId + '" target="_blank">' + osmId + '</a>';
+    return '<a href="http://www.openstreetmap.org/browse/' + osmType + '/' +
+        osmId + '" target="_blank">' + osmId + '</a>';
 };
 
 MTB.GUI.lPopup = function(position, content, hideTip) {

@@ -36,7 +36,7 @@
     // whitespace
     "indent": 4,
     "trailing": true,
-    "maxlen": 160
+    "maxlen": 120
 
     // code simplicity - not enforced but nice to check from time to time
     // "maxstatements": 20,
