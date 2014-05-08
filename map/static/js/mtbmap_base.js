@@ -14,3 +14,5 @@ MTB.activePanel = '';
 MTB.routePanels = ['routing', 'manual', 'gpx'];
 MTB.activeRoutesPanel = MTB.routePanels[0];
 MTB.lines = {};
+MTB.initLatlng = L.latLng(49.5, 16.0);
+MTB.initZoom = 6;

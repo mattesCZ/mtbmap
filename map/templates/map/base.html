@@ -4,15 +4,15 @@
     <head>
         <meta charset="utf-8">
         <meta name="description" content="{% trans 'Map for mountain biking and hiking' %}">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         {% block title %}<title>{% trans "MTB map of Europe" %}</title>{% endblock %}
 
         <!-- Load our color and font preferences -->
         <link href="{{ STATIC_URL }}favicon.ico" rel="shortcut icon" type="image/x-icon">
-        {% block css %}<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css"/>{% endblock %}
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/leaflet/leaflet.css" />
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/leaflet/leaflet.label.css" />
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery-ui-mtbmap.css" />
+        {% block css %}<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">{% endblock %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/leaflet/leaflet.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/leaflet/leaflet.label.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery-ui-mtbmap.css">
         <script src="{{ STATIC_URL }}js/leaflet/leaflet.js"></script>
         <script src="{{ STATIC_URL }}js/leaflet/Permalink.js"></script>
         <script src="{{ STATIC_URL }}js/leaflet/Position.js"></script>

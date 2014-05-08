@@ -11,33 +11,36 @@
 <script src="{{ STATIC_URL }}js/mtbmap_places.js"></script>
 <script src="{{ STATIC_URL }}js/mtbmap_export.js"></script>
 <script>
-// default initial position and zoom, central Europe
-var initLatlng = new L.LatLng(49.50, 16.00);
-var initZoom = 6;
 // read last position cookies
 if ($.cookie('latitude') && $.cookie('longitude') && $.cookie('zoom')) {
-    initLatlng = new L.LatLng($.cookie('latitude'), $.cookie('longitude'));
-    initZoom = $.cookie('zoom');
+    MTB.initLatlng = L.latLng($.cookie('latitude'), $.cookie('longitude'));
+    MTB.initZoom = $.cookie('zoom');
 }
+
 // create map object, set initial view
 MTB.map = L.map('map', {
     zoomControl: false
-}).setView(initLatlng, initZoom);
+}).setView(MTB.initLatlng, MTB.initZoom);
+
 // start geolocation
 MTB.map.locate({
     setView: true,
     maxZoom: 16
 });
+
 // define tile layers
 {% for tile_layer in tile_layers %}
-MTB.baseLayers["{{ tile_layer.name }}"] = new L.TileLayer( "{{ tile_layer.url }}{z}/{x}/{y}.png", {
+MTB.baseLayers["{{ tile_layer.name }}"] = L.tileLayer( "{{ tile_layer.url }}{z}/{x}/{y}.png", {
     maxZoom: 18,
     attribution: '{{ tile_layer.attribution|safe }}'
 });
 {% endfor %}
 MTB.baseLayers["{{ default_tile_layer.name }}"].addTo(MTB.map);
 </script>
+
 <script src="{{ STATIC_URL }}js/mtbmap_leaflet.js"></script>
+
+
 <script>
 {% for geojson_layer in geojson_layers %}
 {% if geojson_layer.lineGeom %}
@@ -48,8 +51,10 @@ MTB.baseLayers["{{ default_tile_layer.name }}"].addTo(MTB.map);
 MTB.overlayLayers["{{ geojson_layer.slug }}"].addTo(MTB.map);
 {% endfor %}
 </script>
+
 <script src="{{ STATIC_URL }}js/mtbmap_gui.js"></script>
 {% endblock %}
+
 {% block main %}
 <div id="main-tabs" class="main-column" style="display: none">
     <header>
@@ -92,10 +97,16 @@ MTB.overlayLayers["{{ geojson_layer.slug }}"].addTo(MTB.map);
 {% endblock %}
 
 {% block footer %}
-<footer id="footer"  class="main-column ui-widget ui-widget-content ui-corner-all">
+<footer id="footer" class="main-column ui-widget ui-widget-content ui-corner-all">
     {% trans "Author" %}: Martin Tesař, osmmtb&nbsp;(at)&nbsp;gmail.com<br>
+
     {% trans "Projection" %}: {% trans "Conformal cylindrical - Mercator" %}<br>
-    {% trans "Data provided by" %} <a href="http://openstreetmap.org/" target="_blank" >OpenStreetMap</a> {% trans "and" %}&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a> | {% trans "Version" %}: {{ default_tile_layer.last_update.isoformat }} {% trans "from" %} <a href="http://download.geofabrik.de/osm/" target="_blank" >Geofabrik.de</a><br>
+
+    {% trans "Data provided by" %} <a href="http://openstreetmap.org/" target="_blank" >OpenStreetMap</a>
+    {% trans "and" %}&nbsp;<a href="http://dds.cr.usgs.gov/srtm/" >USGS</a> |
+    {% trans "Version" %}: {{ default_tile_layer.last_update.isoformat }} {% trans "from" %}
+    <a href="http://download.geofabrik.de/osm/" target="_blank" >Geofabrik.de</a><br>
+
     {% blocktrans with lab_link='<a href="http://sitola.fi.muni.cz" target="_blank" >SITOLA</a>' %}
     Hardware provided by {{ lab_link }} laboratory,
     {% endblocktrans %}

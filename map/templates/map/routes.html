@@ -18,7 +18,7 @@
                     <h5>{% trans "Choose some routing profile:" %}</h5>
                     <div id="weights_template">
                         {% for wc in weight_collections %}
-                            <input id="weights_template_{{ wc.id }}" value="{{ wc.id }}" name="weights__template" type="radio" />
+                            <input id="weights_template_{{ wc.id }}" value="{{ wc.id }}" name="weights__template" type="radio">
                             <label for="weights_template_{{ wc.id }}">{{ wc.name }}</label>
                         {% endfor %}
                     </div>
@@ -39,10 +39,10 @@
                         <span>{% trans "Load parameters" %}</span>
                         <input id="files" type="file" name="files[]" onchange="MTB.GUI.handleTemplate(event)" size="10" class="margin upload">
                     </div>
-                    <form action="/map/gettemplate/" method="post" target="_blank" class="inline-block">
+                    <form action="{% url 'map.views.gettemplate' %}" method="post" target="_blank" class="inline-block">
                         {% csrf_token %}
-                        <input type="hidden" name="params" class="params" value="" />
-                        <input class="get-template-button" type="submit" value="{% trans "Save parameters" %}"/>
+                        <input type="hidden" name="params" class="params" value="">
+                        <input class="get-template-button" type="submit" value="{% trans "Save parameters" %}">
                     </form>
                 </div>
             </div>
@@ -50,20 +50,20 @@
                 <h4>{% trans "Routing results" %}</h4>
                 <div class="length"></div>
                 <br>
-                <form method="post" action="/map/altitudeprofile/" target="_blank" >
+                <form method="post" action="{% url 'map.views.altitudeprofile' %}" target="_blank" >
                     {% csrf_token %}
-                    <input type="hidden" name="profile-params" class="profile-params" value="" />
+                    <input type="hidden" name="profile-params" class="profile-params" value="">
                     <input class="create-profile-button" type="submit" value="{% trans "Create altitude profile" %}">
                 </form>
-                <form method="post" action="/map/creategpx/" target="_blank" >
+                <form method="post" action="{% url 'map.views.creategpx' %}" target="_blank" >
                     {% csrf_token %}
-                    <input type="hidden" name="profile-params" class="profile-params" value="" />
+                    <input type="hidden" name="profile-params" class="profile-params" value="">
                     <input class="create-gpx-button" type="submit" value="{% trans "Create GPX" %}">
                 </form>
-                <br />
+                <br>
                 <button class="back-to-settings">{% trans "Change parameters" %}</button>
                 <button class="reset-line">{% trans "New search" %}</button>
-                <br />
+                <br>
                 <button class="open-evaluation-dialog">{% trans "Evaluate routing" %}</button>
                 <div id="evaluation-dialog-form" title="{% trans "Evaluation of route" %}">
                     <form id="send-evaluation-form">
@@ -82,7 +82,7 @@
                 </div>
                 <form method="POST" onsubmit="MTB.GUI.sendEvaluation(event)" style="display: none">
                     {% csrf_token %}
-                    <input id="send-evaluation-button" type="submit" value="{% trans "Send" %}" />
+                    <input id="send-evaluation-button" type="submit" value="{% trans "Send" %}">
                 </form>
             </div>
             <div class="loading"></div>
@@ -94,15 +94,15 @@
                 <br>
                 <button class="fit-to-line">{% trans "Zoom to route" %}</button>
                 <button class="reset-line">{% trans "Reset" %}</button>
-                <br />
-                <form method="post" action="/map/altitudeprofile/" target="_blank" >
+                <br>
+                <form method="post" action="{% url 'map.views.altitudeprofile' %}" target="_blank" >
                     {% csrf_token %}
-                    <input type="hidden" name="profile-params" class="profile-params" value="" />
+                    <input type="hidden" name="profile-params" class="profile-params" value="">
                     <input class="create-profile-button highlight" type="submit" value="{% trans "Create altitude profile" %}">
                 </form>
-                <form method="post" action="/map/creategpx/" target="_blank" >
+                <form method="post" action="{% url 'map.views.creategpx' %}" target="_blank" >
                     {% csrf_token %}
-                    <input type="hidden" name="profile-params" class="profile-params" value="" />
+                    <input type="hidden" name="profile-params" class="profile-params" value="">
                     <input class="create-gpx-button" type="submit" value="{% trans "Create GPX" %}">
                 </form>
             </div>
@@ -119,10 +119,10 @@
                 <br>
                 <button class="fit-to-line">{% trans "Zoom to route" %}</button>
                 <button class="reset-line">{% trans "Reset" %}</button>
-                <br />
-                <form method="post" action="/map/altitudeprofile/" target="_blank" >
+                <br>
+                <form method="post" action="{% url 'map.views.altitudeprofile' %}" target="_blank" >
                     {% csrf_token %}
-                    <input type="hidden" name="profile-params" class="profile-params" value="" />
+                    <input type="hidden" name="profile-params" class="profile-params" value="">
                     <input class="create-profile-button" type="submit" value="{% trans "Create altitude profile" %}">
                 </form>
             </div>

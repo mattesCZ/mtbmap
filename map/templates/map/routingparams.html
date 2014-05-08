@@ -3,7 +3,9 @@
 <div>
     <table class="preferences">
         <tr>
-            <td class="type right-align"><label for="weights-global-vehicle">{% trans "Vehicle:" %}</label></td>
+            <td class="type right-align">
+                <label for="weights-global-vehicle">{% trans "Vehicle:" %}</label>
+            </td>
             <td class="preference">
                 <select class="weights-preferences" id="weights-global-vehicle" name="global__vehicle">
                     {% for vehicle in weight_collection.VEHICLE_CHOICES %}
@@ -13,8 +15,12 @@
             </td>
         </tr>
         <tr>
-            <td class="type right-align"><label for="weights-global-oneway">{% trans "Consider oneways:" %}</label></td>
-            <td class="preference"><input type="checkbox" name="global__oneway" {% if weight_collection.oneway %}checked="checked"{% endif %} /></td>
+            <td class="type right-align">
+                <label for="weights-global-oneway">{% trans "Consider oneways:" %}</label>
+            </td>
+            <td class="preference">
+                <input id="weights-global-oneway" type="checkbox" name="global__oneway" {% if weight_collection.oneway %}checked="checked"{% endif %}>
+            </td>
         </tr>
     </table>
 </div>
@@ -24,8 +30,12 @@
         {% for preferred_value in weight_collection.preferredvalue_set.all %}
             {% with preferred_value.preferred as p %}
             <tr {% if not preferred_value.use %} style="display: none"{% endif %}>
-                <td class="type right-align">{{ p.name }}</td>
-                <td class="preference"><input type="checkbox" name="preferred__{{ p.slug }}" {% if preferred_value.value %}checked="checked"{% endif %} /></td>
+                <td class="type right-align">
+                    <label for="preferred__{{ p.slug }}">{{ p.name }}</label>
+                </td>
+                <td class="preference">
+                    <input type="checkbox" name="preferred__{{ p.slug }}" id="preferred__{{ p.slug }}" {% if preferred_value.value %}checked="checked"{% endif %}>
+                </td>
             </tr>
             {% endwith %}
         {% endfor %}
@@ -33,7 +43,9 @@
 </div>
 {% for wcv in weight_collection.weightclassvalue_set.all %}
 {% with wcv.weight_class as wc %}
-<h3 id="h-{{ wc.slug }}" {% if not wcv.visible %} style="display: none"{% endif %}>{{ wc.name }}</h3>
+<h3 id="h-{{ wc.slug }}" {% if not wcv.visible %} style="display: none"{% endif %}>
+    {{ wc.name }}
+</h3>
 <div>
     <p>
     {% blocktrans with link=wc.link %}
@@ -44,12 +56,20 @@
     <table id="weights-limits-{{wc.slug}}" class="weights-limits preferences" >
         <tr>
             {% if wcv.max != None %}
-            <td class="right-align">Max:</td>
-            <td><input type="text" value="{{ wcv.max|floatformat:'0' }}" size="2" id="weights-{{ wc.slug }}-max" name="{{ wc.slug }}__max" /></td>
+            <td class="right-align">
+                <label for="weights-{{ wc.slug }}-max">Max:</label>
+            </td>
+            <td>
+                <input type="text" value="{{ wcv.max|floatformat:'0' }}" size="2" id="weights-{{ wc.slug }}-max" name="{{ wc.slug }}__max">
+            </td>
             {% endif %}
             {% if wcv.min != None %}
-            <td class="right-align">Min:</td>
-            <td><input type="text" value="{{ wcv.min|floatformat:'0' }}" size="2" id="weights-{{ wc.slug }}-min" name="{{ wc.slug }}__min" /></td>
+            <td class="right-align">
+                <label for="weights-{{ wc.slug }}-min">Min:</label>
+            </td>
+            <td>
+                <input type="text" value="{{ wcv.min|floatformat:'0' }}" size="2" id="weights-{{ wc.slug }}-min" name="{{ wc.slug }}__min">
+            </td>
             {% endif %}
         </tr>
     </table>
@@ -59,7 +79,7 @@
         {% for wv in wcv.weightvalue_set.all %}
         {% with wv.weight as w %}
         <tr {% if not wv.visible %} style="display: none"{% endif %}>
-            <td class="type right-align">{{w.name}}</td>
+            <td class="type right-align"><label for="weights-{{wc.slug}}-{{w.slug}}-preference">{{w.name}}</label></td>
             <td class="preference">
                 <select class="weights-preferences" id="weights-{{wc.slug}}-{{w.slug}}-preference" name="{{wc.slug}}__{{w.slug}}" >
                     {% for choice in wv.PREFERENCE_CHOICES %}
