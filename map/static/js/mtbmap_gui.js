@@ -231,30 +231,28 @@ MTB.GUI.sendEvaluation = function(e) {
 
 MTB.GUI.handleGPX = function(e) {
     var files = e.target.files;
-    for (var i = 0, f; f = files[i]; i++) {
-        var reader = new FileReader();
-        // Closure to capture the file information.
-        reader.onload = (function() {
-            return function(e) {
-                MTB.activeLine.parseGPX(e.target.result);
-            };
-        })(f);
-        reader.readAsText(f);
-    }
+    var f = files[0],
+        reader = new FileReader();
+    // Closure to capture the file information.
+    reader.onloadend = (function() {
+        return function(e) {
+            MTB.activeLine.parseGPX(e.target.result);
+        };
+    })(f);
+    reader.readAsText(f);
 };
 
 MTB.GUI.handleTemplate = function(e) {
     var files = e.target.files;
-    for (var i = 0, f; f = files[i]; i++) {
-        var reader = new FileReader();
-        // Closure to capture the file information.
-        reader.onload = (function() {
-            return function(e) {
-                MTB.GUI.fillRouteParams(e.target.result);
-            };
-        })(f);
-        reader.readAsText(f);
-    }
+    var f = files[0],
+        reader = new FileReader();
+    // Closure to capture the file information.
+    reader.onloadend = (function() {
+        return function(e) {
+            MTB.GUI.fillRouteParams(e.target.result);
+        };
+    })(f);
+    reader.readAsText(f);
 };
 
 MTB.GUI.fillRouteParams = function(params) {
@@ -289,6 +287,7 @@ MTB.GUI.fillRouteParams = function(params) {
         if (cl.features) {
             var fts = cl.features;
             for (var j=0; j<fts.length; j++) {
+                /* jshint loopfunc:true */
                 jQuery('select[name="' + cl.slug + '__'+ fts[j].slug +'"] option').each(function () {
                     var $this = jQuery(this);
                     if ($this.val() === fts[j].value) {
