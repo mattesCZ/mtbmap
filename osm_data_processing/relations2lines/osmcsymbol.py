@@ -8,48 +8,49 @@ acceptedSymbols = ['bar', 'dot', 'backslash', 'bowl', 'L', 'turned_T', 'triangle
 # other symbols are now rendered as 'bar' for simplicity
 otherSymbols = ['diamond', 'cross', 'circle', 'fork', 'rectangle', 'lower', 'yes']
 
+
 class OsmcSymbol:
-    def __init__(self, osmcString):
-        self.parts = osmcString.replace('\\', 'backslash').split(':')
+    def __init__(self, osmc_string):
+        self.parts = osmc_string.replace('\\', 'backslash').split(':')
         self.wayColor = None
         self.bgColor = None
         self.fgColor = None
         self.symbol = None
         self.text = None
         if len(self.parts):
-            self._parseParts()
+            self._parse_parts()
 
-    def _parseParts(self):
+    def _parse_parts(self):
         if len(self.parts) >= 1:
             self.wayColor = self.parts[0]
         if len(self.parts) >= 2:
             self.bgColor = self.parts[1]
         if len(self.parts) >= 3:
-            fgParts = self.parts[2].split('_', 1)
-            if len(fgParts) == 2:
-                if fgParts[1] in otherSymbols:
-                    fgParts[1] = 'bar'
-                    self.parts[2] = '_'.join(fgParts)
-                self.fgColor = fgParts[0]
-                self.symbol = fgParts[1]
+            fg_parts = self.parts[2].split('_', 1)
+            if len(fg_parts) == 2:
+                if fg_parts[1] in otherSymbols:
+                    fg_parts[1] = 'bar'
+                    self.parts[2] = '_'.join(fg_parts)
+                self.fgColor = fg_parts[0]
+                self.symbol = fg_parts[1]
             else:
-                if len(fgParts) == 1:
-                    self.symbol = fgParts[0]
+                if len(fg_parts) == 1:
+                    self.symbol = fg_parts[0]
         if len(self.parts) >= 4:
             self.text = ':'.join(self.parts[3:])
 
-    def isAccepted(self):
+    def is_accepted(self):
         return ((self.wayColor in acceptedWayColors)
                 and (self.bgColor in acceptedBgColors)
                 and (self.fgColor == self.wayColor)
                 and (self.symbol in acceptedSymbols))
 
-    def getStringValue(self, maxNumberOfParts=3):
-        return ':'.join(self.parts[0:maxNumberOfParts])
+    def get_string_value(self, max_number_of_parts=3):
+        return ':'.join(self.parts[0:max_number_of_parts])
 
     def __lt__(self, other):
-        if (self.isAccepted() and other.isAccepted()):
-            if (self.symbol == other.symbol):
+        if self.is_accepted() and other.is_accepted():
+            if self.symbol == other.symbol:
                 return acceptedWayColors.index(self.wayColor) > acceptedWayColors.index(other.wayColor)
             else:
                 return acceptedSymbols.index(self.symbol) > acceptedSymbols.index(other.symbol)

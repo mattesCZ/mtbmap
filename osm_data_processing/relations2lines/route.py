@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import lineelement
+from .lineelement import LineElement
+
 
 class Route:
-    def __init__(self, id, relation):
-        self.id = id
+    def __init__(self, r_id, relation):
+        self.id = r_id
         self.geometry = None
         self.highway = None
         self.tracktype = None
@@ -16,19 +17,19 @@ class Route:
         self.nextRoutes = []
         self.offset = None
 
-        lineElement = lineelement.LineElement(relation)
-        self.osmcSigns = [lineElement]
+        line_element = LineElement(relation)
+        self.osmcSigns = [line_element]
         self.numOfSigns = 1
 
-    def addSign(self, relation):
-        le = lineelement.LineElement(relation)
-        if (not le in self.osmcSigns):
+    def add_sign(self, relation):
+        le = LineElement(relation)
+        if not le in self.osmcSigns:
             self.osmcSigns.append(le)
             self.numOfSigns += 1
             # first item in osmcSigns has the highest priority
             self.osmcSigns.sort(reverse=True)
 
-    def getValuesRow(self):
+    def get_values_row(self):
             values = str(self.id) + ", '" + self.geometry + "'"
             if self.highway is not None:
                 values += ", '" + self.highway + "'"
@@ -54,7 +55,6 @@ class Route:
                 else:
                     values += "'" + self.osmcSigns[i].osmcSymbol + "', NULL"
             return values
-
 
     def __lt__(self, other):
         return self.id < other.id
