@@ -2,7 +2,6 @@
 
 # Global imports
 from PIL import Image
-import simplejson as json
 from datetime import datetime
 
 # Django imports
@@ -10,9 +9,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.template.response import TemplateResponse
 from django.http import HttpResponse, HttpResponseRedirect
-from django.core.urlresolvers import reverse
 from django.utils import translation
-from django.utils.translation import ugettext as _
 from django.contrib.gis.geos import Point, LineString
 from django.conf import settings
 
@@ -27,9 +24,9 @@ from map.forms import RoutingEvaluationForm
 
 
 def index(request):
-    '''
+    """
     Main map page.
-    '''
+    """
     weight_collections = WeightCollection.objects.all()
     evaluation_form = RoutingEvaluationForm()
     default_tile_layer = TileLayer.objects.get(slug='mtb-map')
@@ -45,35 +42,35 @@ def index(request):
 
 
 def legend(request):
-    '''
+    """
     Legend items for given zoom.
-    '''
+    """
     zoom = int(request.GET['zoom'])
     legenditems = Legend.objects.all()[0].legend_items(zoom)
     return TemplateResponse(request, 'map/legend.html', {'zoom': zoom, 'legenditems': legenditems})
 
 
 def routingparams(request):
-    '''
+    """
     Route parameters and preferences template for given id.
-    '''
+    """
     try:
         template_id = request.GET['template_id']
         weight_collection = WeightCollection.objects.get(pk=template_id)
-    except (KeyError):
+    except KeyError:
         # template not found
         weight_collection = WeightCollection.objects.all()[0]
     return TemplateResponse(request, 'map/routingparams.html', {'weight_collection': weight_collection})
 
 
 def exportmap(request):
-    '''
+    """
     Export map, response is PNG image.
-    '''
+    """
     try:
         zoom = int(request.POST['export-zoom'])
         bounds = request.POST['export-bounds'].replace('(', '').replace(')', '')
-    except (KeyError):
+    except KeyError:
         # no zoom posted
         return render_to_response('map/map.html', {},
                                   context_instance=RequestContext(request))
@@ -97,13 +94,8 @@ def exportmap(request):
         right = float(bounds.split(',')[2])
         zoom = int(zoom)
         gap = 5
-        highres = False
-        try:
-            checked_line = request.POST['export-line-check']
-        except (KeyError):
-            # line not checked
-            line = None
-        else:
+        line = None
+        if 'export-line-check' in request.POST:
             raw_line = request.POST['export-line']
             points = []
             if len(raw_line):
@@ -113,50 +105,38 @@ def exportmap(request):
                     points.append(point)
                 if len(points) > 1:
                     line = LineString(points).geojson
-                else:
-                    line = None
-            else:
-                line = None
-        try:
-            highres = request.POST['export-highres']
-        except (KeyError):
-            # highres not checked
-            highres = False
-            map_im = map_image(zoom, left, bottom, right, top, line, orientation, highres)
+
+        highres = 'export-highres' in request.POST
+        map_im = map_image(zoom, left, bottom, right, top, line, orientation, highres)
+
+        if 'export-legend' in request.POST:
+            legend_obj = Legend.objects.all()[0]
+            legend_im = legend_image(legend_obj, zoom, gap, 'side', map_im.size[1], highres)
         else:
-            highres = True
-            map_im = map_image(zoom, left, bottom, right, top, line, orientation, highres)
-        try:
-            renderlegend = request.POST['export-legend']
-        except (KeyError):
             # export-legend not checked
             legend_im = Image.new('RGBA', (0, 0), 'white')
+
+        if 'export-scale' in request.POST:
+            scalebar_im = scalebar_image(zoom, (top+bottom)/2, highres)
         else:
-            legend = Legend.objects.all()[0]
-            legend_im = legend_image(legend, zoom, gap, 'side', map_im.size[1], highres)
-        try:
-            renderscale = request.POST['export-scale']
-        except (KeyError):
             # export-scale not checked
             scalebar_im = Image.new('RGBA', (0, 0), 'white')
+
+        if 'export-imprint' in request.POST:
+            imprint_im = imprint_image(tile_layer.attribution, map_im.size[0], 20, 12, highres)
         else:
-            scalebar_im = scalebar_image(zoom, (top+bottom)/2, highres)
-        try:
-            renderimprint = request.POST['export-imprint']
-        except (KeyError):
             # export-imprint not checked
             imprint_im = Image.new('RGBA', (0, 0), 'white')
-        else:
-            imprint_im = imprint_image(tile_layer.attribution, map_im.size[0], 20, 12, highres)
+
         if len(map_title) > 0 and not map_title.startswith('orlice_'):
             name_im = name_image(map_title, map_im.size[0])
         else:
             name_im = Image.new('RGBA', (0, 0), 'white')
-        height = map_im.size[1] + name_im.size[1] + scalebar_im.size[1] + imprint_im.size[1]
-        width = map_im.size[0] + legend_im.size[0]
+        im_height = map_im.size[1] + name_im.size[1] + scalebar_im.size[1] + imprint_im.size[1]
+        im_width = map_im.size[0] + legend_im.size[0]
 
         y_base = 0
-        im = Image.new('RGBA', (width, height), 'white')
+        im = Image.new('RGBA', (im_width, im_height), 'white')
         im.paste(name_im, (map_im.size[0]/2 - name_im.size[0]/2, 0))
         y_base += name_im.size[1]
         im.paste(scalebar_im, (map_im.size[0]/2 - scalebar_im.size[0]/2, y_base))
@@ -173,12 +153,12 @@ def exportmap(request):
 
 
 def altitudeprofile(request):
-    '''
+    """
     Return altitude profile image.
-    '''
+    """
     try:
         params = request.POST['profile-params']
-    except (KeyError):
+    except KeyError:
         # no points posted
         return render_to_response('map/map.html', {},
                                   context_instance=RequestContext(request))
@@ -212,12 +192,12 @@ def altitudeprofile(request):
 
 
 def creategpx(request):
-    '''
+    """
     Return GPX file for given points.
-    '''
+    """
     try:
         params = request.POST['profile-params']
-    except (KeyError):
+    except KeyError:
         # no points posted
         message = _('No route parameters posted.')
         return render_to_response('error.html', {'message': message},
@@ -240,9 +220,9 @@ def creategpx(request):
 
 
 def getheight(request):
-    '''
+    """
     Returns height above sea level at given coordinates.
-    '''
+    """
     get_value = request.GET['profile-point']
     latlng = get_value.replace('LatLng(', '').replace(')', '').split(',')
     point = [float(latlng[0]), float(latlng[1])]
@@ -251,13 +231,13 @@ def getheight(request):
 
 
 def findroute(request):
-    '''
+    """
     Search for route between multiple points.
-    '''
+    """
     try:
         params = json.loads(request.POST['params'])
         line = request.POST['routing-line']
-    except (KeyError):
+    except KeyError:
         # invalid route points
         return render_to_response('map/map.html', {},
                                   context_instance=RequestContext(request))
@@ -271,12 +251,12 @@ def findroute(request):
 
 
 def gettemplate(request):
-    '''
+    """
     Create JSON file with route parameters.
-    '''
+    """
     try:
         params = json.loads(request.POST['params'])
-    except (KeyError):
+    except KeyError:
         # missing params
         message = _('No route parameters posted.')
         return render_to_response('error.html', {'message': message},
@@ -291,9 +271,9 @@ def gettemplate(request):
 
 
 def getjsondata(request):
-    '''
+    """
     Returns GeoJSON feature collection for given bounding box and layer id.
-    '''
+    """
     try:
         bounds = json.loads(request.GET['bounds'])
     except (KeyError, JSONDecodeError):
@@ -310,21 +290,22 @@ def getjsondata(request):
 
 
 def evaluation(request):
-    '''
+    """
     Parse evaluation form.
-    '''
+    """
     json_form = json.loads(request.POST['form'])
     form_dict = {}
     for item in json_form:
         form_dict[item['name']] = item['value']
     form = RoutingEvaluationForm(form_dict)
-    result = {}
-    result['valid'] = form.is_valid()
+    result = {
+        'valid': form.is_valid()
+    }
     if form.is_valid():
         print 'VALID'
-        evaluation = form.save(commit=False)
-        evaluation.timestamp = datetime.now()
-        evaluation.save()
+        evaluation_obj = form.save(commit=False)
+        evaluation_obj.timestamp = datetime.now()
+        evaluation_obj.save()
         result['html'] = '<div id="result-dialog">%s</div>' % _('Thank you for your evaluation')
     else:
         print 'invalid form'
@@ -333,10 +314,10 @@ def evaluation(request):
 
 
 def set_language(request, lang):
-    next = request.META.get('HTTP_REFERER', None)
-    if not next:
-        next = '/'
-    response = HttpResponseRedirect(next)
+    redirect_url = request.META.get('HTTP_REFERER', None)
+    if not redirect_url:
+        redirect_url = '/'
+    response = HttpResponseRedirect(redirect_url)
     if request.method == 'GET':
         lang_code = lang
         if lang_code and translation.check_for_language(lang_code):

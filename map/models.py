@@ -48,28 +48,28 @@ class GeojsonLayer(models.Model):
         translate = ('name',)
 
     def __unicode__(self):
-        return u"%s" % (self.slug)
+        return u"%s" % self.slug
 
     def attributes_list(self):
-        '''
+        """
         Cast attributes string to list.
-        '''
+        """
         return [attr.strip() for attr in self.attributes.split(',')]
 
-    def geojson_feature_collection(self, bbox=[-180.0, -90.0, 180.0, 90.0]):
-        '''
+    def geojson_feature_collection(self, bbox=(-180.0, -90.0, 180.0, 90.0)):
+        """
         Create geojson feature collection with instances that intersects
         given bounding box.
-        '''
+        """
         bounding_box = Polygon.from_bbox(bbox)
-        filter = json.loads(self.filter)
+        layer_filter = json.loads(self.filter)
         att_list = self.attributes_list()
         features = []
         if self.pointGeom:
-            points = OsmPoint.objects.filter(the_geom__bboverlaps=bounding_box).filter(**filter)[:200]
+            points = OsmPoint.objects.filter(the_geom__bboverlaps=bounding_box).filter(**layer_filter)[:200]
             features += [point.geojson_feature(att_list) for point in points]
         if self.lineGeom:
-            lines = OsmLine.objects.filter(the_geom__bboverlaps=bounding_box).filter(**filter)[:200]
+            lines = OsmLine.objects.filter(the_geom__bboverlaps=bounding_box).filter(**layer_filter)[:200]
             features += [line.geojson_feature(att_list) for line in lines]
         feature_collection = {
             "type": "FeatureCollection",

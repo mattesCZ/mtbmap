@@ -1,9 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-'''
+"""
 Functions for creation of printable maps.
-'''
+"""
 
 # Global imports
 import mapnik
@@ -22,14 +22,14 @@ from django.utils.translation import ugettext as _
 from mtbmap.settings import MAPNIK_STYLES
 
 
-def svg_string_to_png(svg_string, png_image_path, width, height):
+def svg_string_to_png(svg_string, width, height):
     img = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
     ctx = cairo.Context(img)
     handler = rsvg.Handle(None, svg_string)
     handler.render_cairo(ctx)
-    buffer = StringIO()
-    img.write_to_png(buffer)
-    return Image.open(StringIO(buffer.getvalue()))
+    io_buffer = StringIO()
+    img.write_to_png(io_buffer)
+    return Image.open(StringIO(io_buffer.getvalue()))
 
 
 def legend_image(legend, zoom, gap, position='side', max_edge=None, highres=True):
@@ -38,7 +38,7 @@ def legend_image(legend, zoom, gap, position='side', max_edge=None, highres=True
         # no legend items for this zoom, return empty Image
         return Image.new('RGBA', (0, 0), 'white')
     if highres:
-        gap = 2*gap
+        gap *= 2
         params = items.aggregate(Max('width_highres'), Max('legend_item_name__width_highres'))
         max_image_width = params['width_highres__max'] + 2*gap
         max_name_width = params['legend_item_name__width_highres__max']
@@ -118,7 +118,6 @@ def map_image(zoom, left, bottom, right, top, line, orientation='n', highres=Tru
         imgx = 2*imgx
         imgy = 2*imgy
 
-#    info = 'x%i, y%i, l%s, b%s, r%s, t%s' % (imgx, imgy, left, bottom, right, top)
     m = mapnik.Map(imgx, imgy)
     mapnik.load_map(m, mapfile)
     prj = mapnik.Projection('+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0'
@@ -177,10 +176,10 @@ def name_image(name, width, highres=True):
     font_size = 24
     if highres:
         # width is doubled in exportmap()
-        height = 2 * height
-        font_size = 2 * font_size
+        height *= 2
+        font_size *= 2
     svg = ''
-    svg += ('<?xml version="1.0" encoding="UTF-8"?>\n')
+    svg += '<?xml version="1.0" encoding="UTF-8"?>\n'
     svg += ('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"'
             '"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n')
     svg += ('<svg width="%i" height="%i" xmlns="http://www.w3.org/2000/svg" id="name">\n' % (width, height))
@@ -188,15 +187,17 @@ def name_image(name, width, highres=True):
     svg += ('    <text fill="black" text-anchor="middle" font-family="Dejavu Sans" x="%i" y="%i"'
             ' font-size="%i">%s</text>' % (width/2, height-10, font_size, name))
     # print SVG end element
-    svg += ('</svg>')
-    im = svg_string_to_png(svg, 'name.png', width, height)
+    svg += '</svg>'
+    im = svg_string_to_png(svg, width, height)
     return im
 
 
+DEGREE_M = 111319.49079327358  # length of one degree at equator in meters
+BASE_RANGE = 0.000005364418029785156  # longitude range of 1 pixel at zoom 18
+
+
 def scalebar_image(zoom, lat_center, highres=True):
-    DEGREE_M = 111319.49079327358
-    base = 0.000005364418029785156  # longitude range of 1 pixel at zoom 18
-    zoom_conversion = base*2**(18-zoom)
+    zoom_conversion = BASE_RANGE*2**(18-zoom)
     lat_conversion = cos(radians(lat_center))
     # pixel length at given latitude and zoom in real world in meters
     pixel = DEGREE_M*zoom_conversion*lat_conversion
@@ -216,11 +217,11 @@ def scalebar_image(zoom, lat_center, highres=True):
     real_line_length = int(round(real_line_length, -int(log10(real_line_length))))
 
     if highres:
-        font_size = 2*font_size
-        x_start = 2*x_start
-        height = 2*height
-        scale_line_length = 2*scale_line_length
-        line_width = 2*line_width
+        font_size *= 2
+        x_start *= 2
+        height *= 2
+        scale_line_length *= 2
+        line_width *= 2
 
     width = scale_line_length + 4*x_start
     x_middle = scale_line_length/2 + x_start
@@ -232,7 +233,7 @@ def scalebar_image(zoom, lat_center, highres=True):
                   ' stroke-opacity:1' % line_width)
     svg = ''
     if units == 'km':
-        real_line_length = real_line_length/1000
+        real_line_length *= 0.001
     # write SVG headers
     svg += '<?xml version="1.0" encoding="UTF-8"?>\n'
     svg += ('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"'
@@ -250,7 +251,7 @@ def scalebar_image(zoom, lat_center, highres=True):
                                                                           x_end, y_bottom, y_top)
     svg += ('    <text fill="black" text-anchor="middle" font-size="%i" font-family="Dejavu Sans"'
             ' x="%i" y="%i">0</text>\n' % (font_size, x_start, y_text))
-    if (real_line_length % 2):
+    if real_line_length % 2:
         svg += ('    <text fill="black" text-anchor="middle" font-size="%i" font-family="Dejavu Sans" x="%i"'
                 ' y="%i">%s</text>\n' % (font_size, x_middle, y_text, real_line_length/2.0))
     else:
@@ -263,15 +264,15 @@ def scalebar_image(zoom, lat_center, highres=True):
     # print SVG end element
     svg += '</svg>\n'
 
-    png_scalebar = svg_string_to_png(svg, 'scalebar.png', width, height)
+    png_scalebar = svg_string_to_png(svg, width, height)
     return png_scalebar
 
 
 def imprint_image(attribution='Data: OpenStreetMap, CC-BY-SA', width=500, height=40, font_size=20, highres=True):
     if highres:
         # width is doubled in exportmap()
-        height = 2*height
-        font_size = 2*font_size
+        height *= 2
+        font_size *= 2
     today = date.today().strftime('%d. %m. %Y')
     text = ('%s: Martin Tesař | %s: %s | %s: %s | %s: %s | www.mtbmap.cz' % (_('Author'), _('Projection'),
             _('Conformal cylindrical - Mercator'), _('Data'), attribution, _('Created'), today))
@@ -284,5 +285,5 @@ def imprint_image(attribution='Data: OpenStreetMap, CC-BY-SA', width=500, height
             ' x="%i" y="%i">%s</text>\n' % (font_size, width/2, height-font_size/2, text))
     svg += '</svg>\n'
 
-    png_imprint = svg_string_to_png(svg, 'imprint.png', width, height)
+    png_imprint = svg_string_to_png(svg, width, height)
     return png_imprint

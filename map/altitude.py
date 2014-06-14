@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 # Global imports
-import math
 from numpy import *
 import zipfile
 
@@ -9,7 +8,7 @@ import zipfile
 from django.utils.translation import ugettext as _
 
 # Local imports
-from map.printing import svg_string_to_png
+from .printing import svg_string_to_png
 from mtbmap.settings import SRTM_DATA
 from routing.mathfunctions import haversine
 
@@ -64,27 +63,28 @@ class HgtFile:
         zip_file_name = zip_file.namelist()[0]
         hgt_string = zip_file.read(zip_file_name)
         zip_file.close()
-        self.file = flipud(((fromstring(string=hgt_string, dtype='int16')).byteswap()).reshape(1201, 1201))
+        self.file = flipud(((fromstring(string=hgt_string, dtype='int16')).byteswap(False)).reshape(1201, 1201))
 
     def height(self, lat, lon):
         """
         Get height of corresponding pixel value in height file.
         """
-        return self.file[self._coord2array(lat)][self._coord2array(lon)]
+        return self.file[self.coord2array(lat)][self.coord2array(lon)]
 
-    def _coord2array(self, coord):
+    @staticmethod
+    def coord2array(coord):
         """
         Procedure which maps given latitude or longitude coordination to
         hgtArray rows or columns.
         """
-        decPart = coord - math.floor(coord)
-        return int(round(1200*decPart))
+        dec_part = coord - math.floor(coord)
+        return int(round(1200*dec_part))
 
 
 class AltitudeProfile:
     def __init__(self, points):
         self.input_nodes = [ProfileNode(point[0], point[1]) for point in points]
-        self.sumdist = self._compute_distances(self.input_nodes)
+        self.sumdist = self.compute_distances(self.input_nodes)
         self.nodes = self._insert_nodes(self.input_nodes)
         self.status = self._initialize_hgt_files()
         self.status -= self._compute_heights()
@@ -109,53 +109,52 @@ class AltitudeProfile:
         min_height = 10000
         # find min/max height
         for node in self.nodes:
-            if (node.height > max_height):
+            if node.height > max_height:
                 max_height = node.height
-            if (node.height < min_height):
+            if node.height < min_height:
                 min_height = node.height
         # avoids division by zero
-        if (max_height == min_height):
-            max_height = max_height + 1
+        if max_height == min_height:
+            max_height += 1
         # constants for mapping real distances and heights into the picture
-        normY = float(max_height - min_height) / 200
-        normX = self.sumdist / 950
+        norm_y = float(max_height - min_height) / 200
+        norm_x = self.sumdist / 950
         # begin drawing polyline
         svg += '    <path fill="none" stroke="black" stroke-width="2" stroke-linecap="round"'
         svg += ' stroke-linejoin="round" d="M '
         x = 35
-        y = 0
-        diff = 0
+        difference = 0
         for node in self.nodes:
             # xf is the shift on x-axis, diff is the remainder after rounding
-            xf = (node.dist/normX) + diff
-            diff = xf - round(xf)
+            xf = (node.dist/norm_x) + difference
+            difference = xf - round(xf)
             x = x + round(xf)
-            y = 255 - round((node.height-min_height) / normY)
+            y = 255 - round((node.height-min_height) / norm_y)
             svg += str(int(x)) + " " + str(int(y)) + " L "
-        maxY = int(255 - round(((max_height-min_height) / normY)))
+        max_y = int(255 - round(((max_height-min_height) / norm_y)))
         # finish drawing polyline
         svg += ' "/>\n'
         #print height lines
         svg += '    <text fill="black" text-anchor="end" x="30" y="256">' + str(min_height) + '</text>\n'
         svg += '    <line stroke = "red" stroke-dasharray="2,2" x1="35" y1="255" x2="985" y2="255"/>\n'
         svg += '    <text fill="black" text-anchor="end" x="30"'
-        svg += ' y="' + str(maxY + 4) + '">' + str(max_height) + '</text>\n'
+        svg += ' y="' + str(max_y + 4) + '">' + str(max_height) + '</text>\n'
         svg += '    <line stroke = "red" stroke-dasharray="2,2"'
-        svg += ' x1="35" y1="' + str(maxY) + '" x2="985" y2="' + str(maxY) + '"/>\n'
+        svg += ' x1="35" y1="' + str(max_y) + '" x2="985" y2="' + str(max_y) + '"/>\n'
         svg += '    <text fill="black" text-anchor="middle" x="985"'
         svg += ' y="288">' + str(round(self.sumdist, 1)) + ' km</text>\n'
         # assign 'h' max_height floored to hundreds
         h = (max_height/100) * 100
         # avoid label collisions
         if (max_height-h) < (max_height-min_height)/20.0:
-            h = h-100
+            h -= 100
         while h > (min_height + (max_height-min_height)/10):  # condition avoids label collisions
-            hcoord = int(255-round((h-min_height)/normY))
+            h_coord = int(255-round((h-min_height)/norm_y))
             svg += '    <line stroke = "black" stroke-dasharray="2,2"'
-            svg += ' x1="35" y1="' + str(hcoord) + '" x2="985" y2="' + str(hcoord) + '"/>\n'
+            svg += ' x1="35" y1="' + str(h_coord) + '" x2="985" y2="' + str(h_coord) + '"/>\n'
             svg += '    <text fill="black" text-anchor="end" x="30"'
-            svg += ' y="' + str(hcoord + 4) + '">' + str(h) + '</text>\n'
-            h = h - 100
+            svg += ' y="' + str(h_coord + 4) + '">' + str(h) + '</text>\n'
+            h -= 100
         # print distance markers, +/- 5 markers
         if self.sumdist > 25:
             step = int(round(self.sumdist/50)*10)
@@ -165,12 +164,12 @@ class AltitudeProfile:
             step = 0.2
         dist = step
         svg += '    <text fill="black" text-anchor="middle" x="35" y="288">0</text>\n'
-        while (dist < self.sumdist - self.sumdist/20):  # condition 'self.sumdist/20' avoids label collision
-            svg += '    <line stroke ="black" x1="' + str(round(dist/normX) + 35) + '" y1="276"'
-            svg += ' x2="' + str(round(dist/normX) + 35) + '" y2="269"/>\n'
-            svg += '    <text fill="black" text-anchor="middle" x="' + str(round(dist/normX) + 35)
+        while dist < self.sumdist - self.sumdist/20:  # condition 'self.sumdist/20' avoids label collision
+            svg += '    <line stroke ="black" x1="' + str(round(dist/norm_x) + 35) + '" y1="276"'
+            svg += ' x2="' + str(round(dist/norm_x) + 35) + '" y2="269"/>\n'
+            svg += '    <text fill="black" text-anchor="middle" x="' + str(round(dist/norm_x) + 35)
             svg += '" y="288">' + str(dist) + '</text>\n'
-            dist = dist + step
+            dist += step
         # print ascending and descending
         ascdesc = self.ascending()
         svg += '    <text fill="black" text-anchor="middle" x="550" y="20">%s: %i %s: %i</text>\n' % (_('Ascending'),
@@ -189,9 +188,10 @@ class AltitudeProfile:
         if self.status != 0:
             return NONE_HEIGHT
         svg = self.svg_profile()
-        return svg_string_to_png(svg, 'altitude.png', 1010, 300)
+        return svg_string_to_png(svg, 1010, 300)
 
-    def _compute_distances(self, nodes):
+    @staticmethod
+    def compute_distances(nodes):
         """
         Compute distance to previous node and sum of distances.
         """
@@ -210,7 +210,7 @@ class AltitudeProfile:
         # Threshold defines which nodes should be divided.
         # If the overall distance is less than 50 km, threshold is 100m, because of
         # the granularity of height data.
-        if (self.sumdist < 50):
+        if self.sumdist < 50:
             threshold = 0.1
         else:
             threshold = self.sumdist/500
@@ -243,13 +243,13 @@ class AltitudeProfile:
         """
         hgt_files = {}
         for node in self.nodes:
-            key = hgt_file_key(node.lat, node.lon)
-            if not (key in hgt_files):
+            file_key = hgt_file_key(node.lat, node.lon)
+            if not (file_key in hgt_files):
                 try:
-                    hgt_files[key] = HgtFile(node)
+                    hgt_files[file_key] = HgtFile(node)
                 except IOError:
                     return NONE_HEIGHT
-            node.hgt_file = hgt_files[key]
+            node.hgt_file = hgt_files[file_key]
         return 0
 
     def _compute_heights(self):
@@ -263,26 +263,26 @@ class AltitudeProfile:
             if (node.height == NONE_HEIGHT) and (i > 1):
                 node.height = self.nodes[i - 1].height
             # Parsing missing height data
-            if (node.height == NONE_HEIGHT):
+            if node.height == NONE_HEIGHT:
                 j = 1
                 while (self.nodes[j].height == NONE_HEIGHT) and j < len(self.nodes) - 1:
-                    j = j + 1
-                if (j == len(self.nodes) - 1):
+                    j += 1
+                if j == len(self.nodes) - 1:
                     return NONE_HEIGHT
                 while j > 0:
                     self.nodes[j - 1].height = self.nodes[j].height
-                    j = j - 1
-        if (self.nodes[0].height == NONE_HEIGHT):
+                    j -= 1
+        if self.nodes[0].height == NONE_HEIGHT:
             # First node has missing height, find first node with height and
             # copy this value to all previous nodes.
             j = 1
             while (self.nodes[j].height == NONE_HEIGHT) and j < len(self.nodes) - 1:
-                j = j + 1
-            if (j == len(self.nodes) - 1):
+                j += 1
+            if j == len(self.nodes) - 1:
                 return NONE_HEIGHT
             while j > 0:
                 self.nodes[j - 1].height = self.nodes[j].height
-                j = j - 1
+                j -= 1
         return 0
 
     def ascending(self):
