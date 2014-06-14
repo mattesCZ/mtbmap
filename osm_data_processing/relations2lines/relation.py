@@ -1,10 +1,6 @@
-import symbol
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 from osmcsymbol import OsmcSymbol
-
-__author__="xtesar7"
 
 keys = ['network', 'osmc:symbol', 'mtb:scale', 'mtb:scale:uphill']
 

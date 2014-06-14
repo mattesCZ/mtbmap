@@ -1,9 +1,6 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import lineelement
-
-__author__="xtesar7"
 
 class Route:
     def __init__(self, id, relation):

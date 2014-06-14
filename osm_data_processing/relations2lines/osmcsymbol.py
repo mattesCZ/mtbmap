@@ -1,9 +1,6 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-__author__="xtesar7"
-
-#order is important
+# order is important
 acceptedWayColors = ['red', 'blue', 'green', 'yellow', 'mtb']
 acceptedBgColors = ['white']
 acceptedFgColors = acceptedWayColors

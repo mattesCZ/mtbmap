@@ -1,7 +1,6 @@
-__author__="xtesar7"
+# -*- coding: utf-8 -*-
 
 from psycopg2 import *
-import sys
 import relation
 import route
 import time

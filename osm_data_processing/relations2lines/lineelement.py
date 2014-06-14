@@ -1,7 +1,4 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
-
-__author__="xtesar7"
 
 from osmcsymbol import OsmcSymbol
 
