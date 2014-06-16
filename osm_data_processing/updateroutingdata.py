@@ -19,9 +19,9 @@ sac_scale_values = ['hiking', 'mountain_hiking', 'demanding_mountain_hiking',
 
 
 def copy_ways():
-    '''
+    """
     copy data generated with osm2po to routing_way table
-    '''
+    """
     start = datetime.now()
     cursor = connections[MAP_DB].cursor()
     cursor.execute('DELETE FROM routing_way')
@@ -39,9 +39,9 @@ def copy_ways():
 
 
 def add_attributes():
-    '''
+    """
     Add attributes from osm2pgsql created database to our Way objects
-    '''
+    """
     start = datetime.now()
     _update_reverse_cost()
     _add_line_attributes()
@@ -53,10 +53,10 @@ def add_attributes():
 
 
 def _row_to_arguments(row):
-    '''
+    """
     Get database row as column:value pairs dictionary, create kwargs suitable for Way updates
     return
-    '''
+    """
     update_args = {}
     for key, value in row.items():
         if value:
@@ -70,7 +70,7 @@ def _row_to_arguments(row):
                         update_args[key] = int(floatvalue)
                     else:
                         update_args[key] = None
-            elif key in ('sac_scale'):
+            elif key == 'sac_scale':
                 if value in sac_scale_values:
                     update_args[key] = sac_scale_values.index(value)
             else:
@@ -83,9 +83,9 @@ def _update_reverse_cost():
 
 
 def _add_line_attributes():
-    '''
+    """
     Copy useful attributes from planet_osm_line
-    '''
+    """
     start = datetime.now()
     cursor = connections[MAP_DB].cursor()
     column_bicycle = """CASE WHEN (cycleway IN ('opposite','opposite_lane')
@@ -97,13 +97,13 @@ def _add_line_attributes():
     column_class_bicycle = """CASE WHEN ("class:bicycle:touring" IS NOT NULL) THEN "class:bicycle:touring"
                                    ELSE "class:bicycle"
                               END AS class_bicycle"""
-    query = '''SELECT osm_id, tracktype, oneway, access, %s, foot, incline,
+    query = """SELECT osm_id, tracktype, oneway, access, %s, foot, incline,
                       width, surface, smoothness, maxspeed,
                       "mtb:scale:uphill" as mtbscaleuphill, sac_scale, network,
                       replace(highway, '_link', '') AS highway, %s, "class:bicycle:mtb" as class_mtb,
                       "class:bicycle:mtb:technical" as class_mtb_technical
                FROM planet_osm_line
-               WHERE osm_id>0; ''' % (column_bicycle, column_class_bicycle)
+               WHERE osm_id>0; """ % (column_bicycle, column_class_bicycle)
     cursor.execute(query)
     description = cursor.description
     evaluated = 0
@@ -125,9 +125,9 @@ def _add_line_attributes():
 
 
 def _add_polygon_attributes():
-    '''
+    """
     Copy useful attributes from planet_osm_polygon for routable areas
-    '''
+    """
     start = datetime.now()
     cursor = connections[MAP_DB].cursor()
     evaluated = 0
@@ -136,9 +136,9 @@ def _add_polygon_attributes():
     null_ways_osm_ids = Way.objects.filter(highway__isnull=True).distinct('osm_id').values_list('osm_id', flat=True)
     print len(null_ways_osm_ids), 'IDs to be evaluated...'
     for osm_id in null_ways_osm_ids:
-        query = '''SELECT osm_id, tracktype, oneway, access, bicycle, foot, incline, width, surface, smoothness,
+        query = """SELECT osm_id, tracktype, oneway, access, bicycle, foot, incline, width, surface, smoothness,
             maxspeed, "mtb:scale" as mtbscale, "mtb:scale:uphill" as mtbscaleuphill, sac_scale, network, highway
-            FROM planet_osm_polygon WHERE osm_id=%s; ''' % osm_id
+            FROM planet_osm_polygon WHERE osm_id=%s; """ % osm_id
         cursor.execute(query)
         description = cursor.description
         rows = [dict(zip([col[0] for col in description], row)) for row in cursor.fetchall()]
@@ -154,14 +154,14 @@ def _add_polygon_attributes():
 
 
 def _add_routes_attributes():
-    '''
+    """
     Copy useful attributes from planet_osm_routes2, this time only osmc
-    '''
+    """
     start = datetime.now()
     cursor = connections[MAP_DB].cursor()
-    routes_query = '''SELECT osm_id, "mtb:scale", osmcsymbol0 FROM planet_osm_routes2
+    routes_query = """SELECT osm_id, "mtb:scale", osmcsymbol0 FROM planet_osm_routes2
                       WHERE (osmcsymbol0<>'mtb:white:mtb_mtb' AND osmcsymbol0 IS NOT NULL)
-                        OR "mtb:scale" IS NOT NULL;'''
+                        OR "mtb:scale" IS NOT NULL;"""
     cursor.execute(routes_query)
     evaluated = 0
     updated = 0
@@ -187,9 +187,9 @@ def _add_routes_attributes():
 
 
 def _to_float(value):
-    '''
+    """
     String to float for width and mtbscale parsing.
-    '''
+    """
     # Replace expected characters to floatable strings
     try:
         r = float(value)
