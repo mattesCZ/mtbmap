@@ -2,7 +2,6 @@
 
 # Global imports
 from math import log
-import libxml2
 import mapnik
 from string import upper
 from os import remove, system
@@ -35,31 +34,34 @@ class StylesModel(models.Model):
         abstract = True
 
     def write_xml_properties(self, node):
-        for property in self.PROPERTIES:
-            set_xml_param(node, self._xml_property_name(property), getattr(self, property))
+        for prop in self.PROPERTIES:
+            set_xml_param(node, self._xml_property_name(prop), getattr(self, prop))
 
     def import_xml_properties(self, node):
-        for property in self.PROPERTIES:
-            default = getattr(self, property)
-            value = xpath_query(node, './@%s' % self._xml_property_name(property))
+        for prop in self.PROPERTIES:
+            default = getattr(self, prop)
+            value = xpath_query(node, './@%s' % self._xml_property_name(prop))
             # Don't replace empty string for None
             if not (str(default) == '' and value is None):
-                setattr(self, property, value)
+                setattr(self, prop, value)
 
-    def zoom_to_scale(self, zoom, max=True):
-        if not max:
+    @staticmethod
+    def zoom_to_scale(zoom, maximum=True):
+        if not maximum:
             # minzoom
             zoom += 1
         return str(zooms[zoom])
 
-    def scale_to_zoom(self, scale, max=True):
+    @staticmethod
+    def scale_to_zoom(scale, maximum=True):
         zoom = zooms.index(int(scale))
-        if not max:
+        if not maximum:
             zoom -= 1
         return zoom
 
-    def _xml_property_name(self, property):
-        return property.replace('_', '-')
+    @staticmethod
+    def _xml_property_name(prop):
+        return prop.replace('_', '-')
 
 
 class Map(StylesModel):
@@ -141,8 +143,8 @@ class Map(StylesModel):
             root_node.addChild(style.get_xml(scale_factor))
         for layer in self.layers.all().order_by('maplayer__layer_order'):
             root_node.addChild(layer.get_xml())
-        str = output_doc.serialize('utf-8', 1)
-        lines = str.split('\n')
+        output_string = output_doc.serialize('utf-8', 1)
+        lines = output_string.split('\n')
 
         # insert doctype and external entities, ie. password
         lines.insert(1, '<!DOCTYPE Map [ <!ENTITY % ent SYSTEM "../inc/ent.xml.inc"> %ent; ]>')
@@ -202,20 +204,20 @@ class Layer(StylesModel):
     def __unicode__(self):
         return 'ID: %i, %s' % (self.id, self.name)
 
-    def import_layer(self, node, map):
+    def import_layer(self, node, map_object):
         self.import_xml_properties(node)
         datasource = DataSource()
         self.datasource = datasource.import_datasource(node.xpathEval('./Datasource')[0])
         if self.minzoom:
-            self.minzoom = self.scale_to_zoom(scale=self.minzoom, max=False)
+            self.minzoom = self.scale_to_zoom(scale=self.minzoom, maximum=False)
         if self.maxzoom:
-            self.maxzoom = self.scale_to_zoom(scale=self.maxzoom, max=True)
+            self.maxzoom = self.scale_to_zoom(scale=self.maxzoom, maximum=True)
         self.save()
         style_names = node.xpathEval('./StyleName/text()')
         for style_name in style_names:
             stylelayer = StyleLayer()
             stylelayer.layer_id = self
-            stylemaps = StyleMap.objects.filter(map_id=map)
+            stylemaps = StyleMap.objects.filter(map_id=map_object)
             for sm in stylemaps:
                 if sm.style_id.name == unicode(style_name.getContent()):
                     stylelayer.style_id = sm.style_id
@@ -255,8 +257,8 @@ class Layer(StylesModel):
         # zooms must be converted to scale
         minzoom = self.minzoom
         maxzoom = self.maxzoom
-        self.minzoom = self.zoom_to_scale(zoom=self.minzoom, max=False)
-        self.maxzoom = self.zoom_to_scale(zoom=self.maxzoom, max=True)
+        self.minzoom = self.zoom_to_scale(zoom=self.minzoom, maximum=False)
+        self.maxzoom = self.zoom_to_scale(zoom=self.maxzoom, maximum=True)
         super(Layer, self).write_xml_properties(node)
         self.minzoom = minzoom
         self.maxzoom = maxzoom
@@ -277,7 +279,6 @@ class DataSource(models.Model):
 
     def import_datasource(self, node):
         self.type = xpath_query(node, "./Parameter[@name='type']")
-        ds = None
         if self.type == 'gdal':
             ds = Gdal()
         elif self.type == 'postgis':
@@ -325,8 +326,8 @@ class Gdal(DataSource):
         add_xml_node_with_param(node, 'Parameter', self.file, 'name', 'file')
 
     def mapnik(self):
-        file = os.path.join(style_path, self.file)
-        return mapnik.Gdal(file=str(file))
+        f = os.path.join(style_path, self.file)
+        return mapnik.Gdal(file=str(f))
 
     def geometry(self):
         return self.mapnik().type().name
@@ -397,8 +398,8 @@ class Shape(DataSource):
         add_xml_node_with_param(node, 'Parameter', self.encoding, 'name', 'encoding')
 
     def mapnik(self):
-        file = os.path.join(style_path, self.file)
-        return mapnik.Shapefile(file=str(file))
+        f = os.path.join(style_path, self.file)
+        return mapnik.Shapefile(file=str(f))
 
     def geometry(self):
         return self.mapnik().type().name
@@ -491,10 +492,10 @@ class Rule(StylesModel):
                 self.filter = 'ELSEFILTER'
         minscale = xpath_query(node, './MinScaleDenominator')
         if minscale:
-            self.minscale = self.scale_to_zoom(scale=minscale, max=False)
+            self.minscale = self.scale_to_zoom(scale=minscale, maximum=False)
         maxscale = xpath_query(node, './MaxScaleDenominator')
         if maxscale:
-            self.maxscale = self.scale_to_zoom(scale=maxscale, max=True)
+            self.maxscale = self.scale_to_zoom(scale=maxscale, maximum=True)
         self.save()
         elements = node.xpathEval('./*')
         order = 0
@@ -539,7 +540,7 @@ class Rule(StylesModel):
         rule = mapnik.Rule()
         if self.filter:
             if self.filter == 'ELSEFILTER':
-                rule.set_else
+                rule.set_else(True)
             else:
                 rule.filter = mapnik.Expression(self.filter.encode('utf-8'))
         if self.maxscale:
@@ -584,7 +585,8 @@ class Symbolizer(StylesModel):
     def __unicode__(self):
         return 'ID: %i, %s' % (self.id, self.symbtype)
 
-    def import_symbolizer(self, node):
+    @staticmethod
+    def import_symbolizer(node):
         specialized_symbolizer = globals()[node.name]()
         specialized_symbolizer.symbtype = node.name.replace('Symbolizer', '')
         specialized_symbolizer.import_xml_properties(node)
@@ -601,7 +603,7 @@ class Symbolizer(StylesModel):
 
     def symbol_size(self):
         # tuple (width, height)
-        return (None, None)
+        return None, None
 
     def get_xml(self, scale_factor=1):
         node = libxml2.newNode(self.symbtype + 'Symbolizer')
@@ -635,7 +637,7 @@ class BuildingSymbolizer(Symbolizer):
             self.height = int(factor * self.height)
 
     def symbol_size(self):
-        return (0, self.height)
+        return 0, self.height
 
 
 class LineSymbolizer(Symbolizer):
@@ -708,7 +710,7 @@ class LineSymbolizer(Symbolizer):
             self.stroke_width = 1
         if not self.offset:
             self.offset = 0
-        return (self.stroke_width + abs(self.offset), 0)
+        return self.stroke_width + abs(self.offset), 0
 
 
 class LinePatternSymbolizer(Symbolizer):
@@ -779,7 +781,7 @@ class MarkersSymbolizer(Symbolizer):
 
     def symbol_size(self):
         width, height = self.image_size()
-        return (width, max(height, self.stroke_width))
+        return width, max(height, self.stroke_width)
 
 
 class PointSymbolizer(Symbolizer):
@@ -836,7 +838,7 @@ class PolygonSymbolizer(Symbolizer):
         return ps
 
     def symbol_size(self):
-        return (0, 0)
+        return 0, 0
 
 
 class PolygonPatternSymbolizer(Symbolizer):
@@ -897,7 +899,7 @@ class RasterSymbolizer(Symbolizer):
         return rs
 
     def symbol_size(self):
-        return (0, 0)
+        return 0, 0
 
 
 class TextStylesModel(Symbolizer):
@@ -1128,7 +1130,7 @@ class TextSymbolizer(TextStylesModel):
     def symbol_size(self):
         if not self.dx:
             self.dx = 0
-        return (0, self.size + abs(self.dx))
+        return 0, self.size + abs(self.dx)
 
 
 class ShieldSymbolizer(TextStylesModel):
@@ -1184,7 +1186,7 @@ class ShieldSymbolizer(TextStylesModel):
             self.dx = 0
         if not self.dy:
             self.dy = 0
-        return (width + abs(self.dy), height + abs(self.dx))
+        return width + abs(self.dy), height + abs(self.dx)
 
 
 class Legend(models.Model):
@@ -1211,7 +1213,8 @@ class Legend(models.Model):
         for zoom in range(0, 19):
             self.create_images(zoom, scale_factor)
 
-    def create_all_name_images(self, font_size=12, scale_factor=1):
+    @staticmethod
+    def create_all_name_images(font_size=12, scale_factor=1):
         for lin in LegendItemName.objects.all():
             lin.render_names(font_size, scale_factor)
 
@@ -1391,14 +1394,14 @@ class LegendItemName(models.Model):
         return self.slug
 
     def render_names(self, font_size=12, scale_factor=1):
-        font_size = scale_factor*font_size
+        font_size = scale_factor * font_size
         height = font_size + font_size/2
         width = max(font_size*len(self.name)*2/3, 150)
-        for lang_code in LANG_CODES:
-            activate(lang_code)
-            image = getattr(self, 'image_%s' % lang_code)
-            image_highres = getattr(self, 'image_highres_%s' % lang_code)
-            filename = 'name_%s_%s.png' % (lang_code, self.slug)
+        for code in LANG_CODES:
+            activate(code)
+            image = getattr(self, 'image_%s' % code)
+            image_highres = getattr(self, 'image_highres_%s' % code)
+            filename = 'name_%s_%s.png' % (code, self.slug)
             if scale_factor >= 2:
                 filename = 'highres_%s' % filename
             directory = 'media/legend'

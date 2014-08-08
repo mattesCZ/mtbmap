@@ -60,7 +60,8 @@ class SymbolizerAdmin(admin.ModelAdmin):
     list_display = ('specialized_type', 'id', )
     search_fields = ['id', 'symbtype']
 
-    def specialized_type(self, obj):
+    @staticmethod
+    def specialized_type(obj):
         spec = obj.specialized()
         spec_type = unicode(type(spec)).split('.')[-1].replace("'>", "")
         ret = spec_type + ', ' + unicode(spec)

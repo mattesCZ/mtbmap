@@ -1,7 +1,6 @@
 #!/usr/bin/python
 from mapnik import Image, Map, Projection, Box2d, Coord, load_map, render
 import sys
-import os
 
 
 def center_to_bbox(lat, lon, zoom, imgx, imgy):
@@ -11,7 +10,7 @@ def center_to_bbox(lat, lon, zoom, imgx, imgy):
     north = lat + base
     south = lat - base
     print "range: ", (west, lat - (imgy*base*(2**(18-zoom-1))), east, lat + (imgy*base*(2**(18-zoom-1))))
-    return (west, south, east, north)
+    return west, south, east, north
 
 if __name__ == "__main__":
     mapfile = "my_styles/mapnik2normal.xml"

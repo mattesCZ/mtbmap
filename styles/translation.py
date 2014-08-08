@@ -5,12 +5,11 @@ import csv
 
 # Django imports
 from django.conf import settings
-from django.template.defaultfilters import slugify
 
 # Local imports
-from styles.models import LegendItem, LegendItemName
+from styles.models import LegendItemName
 
-LANG_CODES = [lang_code for lang_code, lang_name in settings.LANGUAGES]
+LANG_CODES = [code for code, name in settings.LANGUAGES]
 
 
 def dump_translation_file(lang_code):

@@ -26,11 +26,11 @@ def add_xml_fonts(parent_node):
     add_xml_font(parent_node, 'extralight-fonts', 'DejaVu Sans ExtraLight')
 
 
-def add_xml_font(parent_node, name, faceName):
+def add_xml_font(parent_node, name, face_name):
     fontset = libxml2.newNode('FontSet')
     fontset.setProp('name', name)
     font = libxml2.newNode('Font')
-    font.setProp('face-name', faceName)
+    font.setProp('face-name', face_name)
     fontset.addChild(font)
     parent_node.addChild(fontset)
 
