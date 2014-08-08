@@ -3,6 +3,7 @@
 # Global imports
 from PIL import Image
 from datetime import datetime
+from simplejson import JSONDecodeError
 
 # Django imports
 from django.shortcuts import render_to_response
