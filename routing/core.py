@@ -11,17 +11,17 @@ from django.db import connections
 from django.contrib.gis.geos import *
 
 # Local imports
-from routing.models import Way, WeightCollection, WEIGHTS, THRESHOLD
+from routing.models import Way, WeightCollection, THRESHOLD
 from routing.mathfunctions import total_seconds, hypotenuse
 
 MAP_DB = 'osm_data'
 
 
 def line_string_to_points(line_string):
-    '''
+    """
     Parse line geometry, represented as a string.
     return array of GEOS Points
-    '''
+    """
     latlngs = [coord.strip().replace('LatLng(', '').replace(')', '')
                for coord in line_string.replace('[', '').replace(']', '').split(',')]
     point_strings = [latlngs[i+1] + ' ' + latlngs[i] for i in range(0, len(latlngs), 2)]
@@ -29,10 +29,10 @@ def line_string_to_points(line_string):
 
 
 class RoutePoint:
-    '''
+    """
     Represents points given by user. Finds optimal way, splits it
     and creates vertice for routing.
-    '''
+    """
     def __init__(self, point, params):
         self.status = 'init'
         self.point = point
@@ -43,15 +43,15 @@ class RoutePoint:
             self.status = 'found'
 
     def find_nearest_way(self, point):
-        '''
+        """
         Find nearest way from given point(latlon) and apply weight of the way.
         return Way
-        '''
+        """
         # initial distance radius in degrees
-        LIMIT_DISTANCE = 0.05
+        limit_distance = 0.05
         radius = 0.002
-        bbox = point.buffer(radius).envelope
         found = False
+        nearest_way = None
         while not found:
             bbox = point.buffer(radius).envelope
             ways = (Way.objects
@@ -73,26 +73,26 @@ class RoutePoint:
                         if weighted_distance < best_weight:
                             best_weight = weighted_distance
                             nearest_way = way
-            if radius > LIMIT_DISTANCE:
+            if radius > limit_distance:
                 self.status = 'notfound'
                 return None
             radius *= 2
         return nearest_way
 
     def delete_temp_ways(self):
-        '''
+        """
         Delete splitted temporal ways at the end of route search.
-        '''
+        """
         if self.status == 'found':
             self.to_source.delete()
             self.to_target.delete()
 
 
 class MultiRoute:
-    '''
+    """
     Wrapper for route searching, contains all route points and connects
     results of route search.
-    '''
+    """
     def __init__(self, points, flat_params):
         self.params = RouteParams(flat_params)
         self.points = points
@@ -106,9 +106,9 @@ class MultiRoute:
         return [RoutePoint(point, self.params) for point in self.points]
 
     def geojson(self):
-        '''
+        """
         Create GeoJSON like object of type FeatureCollection.
-        '''
+        """
         return {
             'type': 'FeatureCollection',
             'properties': {
@@ -119,18 +119,18 @@ class MultiRoute:
         }
 
     def search_index(self):
-        '''
+        """
         Compute ratio between cost and real length of the road
-        '''
+        """
         if self.length > 0:
             return self.cost/self.length
         else:
             return -1
 
     def find_multiroute(self):
-        '''
+        """
         Find route between all points, according to given params.
-        '''
+        """
         start = datetime.now()
         for point in self.route_points:
             if point.status == 'notfound':
@@ -156,10 +156,10 @@ class MultiRoute:
 
 
 class Route:
-    '''
+    """
     Represents route between start and end point. Triggers astar or dijkstra
     search.
-    '''
+    """
     def __init__(self, start_point, end_point, params):
         self.status = 'init'
         self.start_route_point = start_point
@@ -170,9 +170,9 @@ class Route:
         self.ways = None
 
     def find_best_route(self):
-        '''
+        """
         Find route with minimal cost.
-        '''
+        """
         start_point = self.start_route_point.point
         end_point = self.end_route_point.point
         start_way = self.start_route_point.nearest_way
@@ -212,19 +212,21 @@ class Route:
             limit_way.delete()
             return self.status
 
-    def _get_routed_ways(self, edge_ids):
-        '''
+    @staticmethod
+    def _get_routed_ways(edge_ids):
+        """
         Retreive route ways from database in order.
-        '''
+        """
         unordered = Way.objects.filter(pk__in=edge_ids)
         for way in unordered:
             way.index = edge_ids.index(way.id)
         return sorted(unordered, key=operator.attrgetter('index'))
 
-    def _correct_ways_orientation(self, ways):
-        '''
+    @staticmethod
+    def _correct_ways_orientation(ways):
+        """
         Correct orientation of ways geometry, so that end points are connected.
-        '''
+        """
         first = ways[0]
         corrected_ways = []
         if first.source < 0:
@@ -243,29 +245,29 @@ class Route:
         return corrected_ways
 
     def geojson(self):
-        '''
+        """
         Route GeoJSON representation.
         Finds route at first, if it is initialized only.
-        '''
+        """
         if self.status == 'init':
             self.find_best_route()
         return [way.feature(self.params.raw_params, self.status) for way in self.ways]
 
     def search_index(self):
-        '''
+        """
         Compute ratio between cost and real length of the road.
-        '''
+        """
         if self.length > 0:
             return self.cost/self.length
         else:
             return -1
 
     def astar(self, source, target):
-        '''
+        """
         Search route from source to target points with A Star algorithm
         implemented by pgRouting.
         return array of edge IDs of Way objects
-        '''
+        """
 #        start = datetime.now()
         cursor = connections[MAP_DB].cursor()
         sql = self.params.sql_astar_buffer(self._st_buffer())
@@ -280,11 +282,11 @@ class Route:
         return edge_ids
 
     def dijkstra(self, source, target):
-        '''
+        """
         Search route from source to target points with Dijkstra algorithm
         implemented by pgRouting.
         return array of edge IDs of Way objects
-        '''
+        """
         cursor = connections[MAP_DB].cursor()
         cursor.execute("SELECT edge_id FROM shortest_path(%s, %s, %s, false, %s)",
                        [self.params.sql_dijkstra, source, target, self.params.reverse])
@@ -293,11 +295,12 @@ class Route:
         self.cost = sum([elem[1] for elem in rows])
         return edge_ids
 
-    def insert_limit_way(self, start_id, end_id, start_point, end_point):
-        '''
+    @staticmethod
+    def insert_limit_way(start_id, end_id, start_point, end_point):
+        """
         Insert into DB Way between start and end points. Can be used as threshold for route searching.
         return Way
-        '''
+        """
         limit_way = Way(name='',
                         x1=start_point.x,
                         x2=end_point.x,
@@ -318,23 +321,23 @@ class Route:
         return limit_way
 
     def _st_buffer(self):
-        '''
+        """
         Returns buffer around line connecting start and end point.
         Represented as Extended Well-Known Text (EWKT).
-        '''
+        """
         start_point = self.start_route_point.point
         end_point = self.end_route_point.point
         dist_divised = hypotenuse(start_point.x, start_point.y, end_point.x, end_point.y)/5
         radius = max(0.02, dist_divised)
-        buffer = LineString(start_point, end_point).buffer(radius)
-        buffer.set_srid(4326)
-        return buffer.ewkt
+        line_buffer = LineString(start_point, end_point).buffer(radius)
+        line_buffer.set_srid(4326)
+        return line_buffer.ewkt
 
 
 class RouteParams:
-    '''
+    """
     Parameters and preferences of route search.
-    '''
+    """
     def __init__(self, flat_params):
         self.raw_params = self._recreate_params(flat_params)
         self.reverse = 'oneway' in self.raw_params['global']
@@ -347,10 +350,10 @@ class RouteParams:
         self._cost_and_where()
 
     def weighted_ways_astar(self):
-        '''
+        """
         Create sql query for pgRouting A Star.
         return sql query string
-        '''
+        """
         where = 'WHERE ' + self.where + " OR highway='temp'"
         if self.reverse:
             return ('SELECT id, source::int4, target::int4, %s AS cost, %s AS reverse_cost, x1, x2, y1, y2 '
@@ -360,10 +363,10 @@ class RouteParams:
                     % (self.cost, where))
 
     def weighted_ways_dijkstra(self):
-        '''
+        """
         Create sql query for pgRouting Dijkstra.
         return sql query string
-        '''
+        """
         where = "WHERE " + self.where + " OR highway='temp'"
         if self.reverse:
             return ('SELECT id, source::int4, target::int4, %s AS cost, %s AS reverse_cost FROM routing_way %s'
@@ -371,17 +374,17 @@ class RouteParams:
         else:
             return 'SELECT id, source::int4, target::int4, %s AS cost FROM routing_way %s' % (self.cost, where)
 
-    def sql_astar_buffer(self, buffer):
+    def sql_astar_buffer(self, line_buffer):
         old = self.where
-        self.where = "(the_geom && ST_GeomFromText('%s')) AND (%s)" % (buffer, self.where)
+        self.where = "(the_geom && ST_GeomFromText('%s')) AND (%s)" % (line_buffer, self.where)
         sql_astar = self.weighted_ways_astar()
         self.where = old
         return sql_astar
 
     def _cost_and_where(self):
-        '''
+        """
         Create cost column definition and where clause.
-        '''
+        """
         self.cost, self.reverse_cost, self.where = self.weight_collection.get_cost_where_clause(self.raw_params)
 
     def _preferred_classes(self):
@@ -390,10 +393,11 @@ class RouteParams:
             preferred_classes += self.raw_params['preferred'].keys()
         return preferred_classes
 
-    def _recreate_params(self, flat_params):
-        '''
+    @staticmethod
+    def _recreate_params(flat_params):
+        """
         Given flat JSON like object, create better python dictionary.
-        '''
+        """
         new = {}
         for p in flat_params:
             weight_class, feature = p['name'].split('__')
@@ -408,9 +412,9 @@ class RouteParams:
 
 
 def create_gpx(points):
-    '''
+    """
     Simple creation of GPX XML string.
-    '''
+    """
     output = libxml2.parseDoc('<gpx/>')
     root_node = output.getRootElement()
     root_node.setProp('creator', 'http://mtbmap.cz/')

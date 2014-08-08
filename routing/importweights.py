@@ -40,15 +40,15 @@ def import_json_template(filename):
     """
     Import weight classes and their parameters into the database.
     """
-    file = open(filename, 'r')
-    json_template = json.loads(file.read())
-    file.close()
+    f = open(filename, 'r')
+    json_template = json.loads(f.read())
+    f.close()
     slug = json_template['slug']
     oneway = json_template['oneway']
     vehicle = json_template['vehicle']
     if WeightCollection.objects.filter(slug=slug).count():
         WeightCollection.objects.filter(slug=slug).delete()
-    weight_collection = WeightCollection(slug=slug, vehicle=vehicle)
+    weight_collection = WeightCollection(slug=slug, vehicle=vehicle, oneway=oneway)
     for lang_code, lang_name in settings.LANGUAGES:
         local_name = 'name_%s' % lang_code
         setattr(weight_collection, local_name, json_template.get(local_name, ''))
@@ -81,5 +81,3 @@ def import_json_template(filename):
                                          use=p['use'],
                                          value=p['value'])
         preferred_value.save()
-#     if slug!='empty' and WeightCollection.objects.filter(slug='empty').count():
-#         sync_with_empty_weight_collection(weight_collection)

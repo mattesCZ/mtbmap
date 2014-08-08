@@ -62,10 +62,10 @@ class Way(geomodels.Model):
         return u"Way(%s, %s)" % (self.osm_id, self.highway)
 
     def point_intersection(self, point):
-        '''
+        """
         Project Point(latlon) on the way.
         return tuple (projected point on the way, index of the previous way coordinate)
-        '''
+        """
         segment, index = self._nearest_segment(point)
         a = Point(segment[0])
         b = Point(segment[-1])
@@ -83,38 +83,38 @@ class Way(geomodels.Model):
         return ret, index
 
     def _nearest_segment(self, point):
-        '''
+        """
         Find nearest segment of Way to the given point.
         return tuple (linestring, index of starting point of segment)
-        '''
+        """
         distances = [LineString(self.the_geom[i], self.the_geom[i+1]).distance(point)
-                     for i in range(len(self.the_geom)-1)]
+                     for i in range(len(self.the_geom.coords)-1)]
         index = distances.index(min(distances))
         return LineString(self.the_geom[index], self.the_geom[index+1]), index
 
     def lines_to_endpoints(self, point):
-        '''
+        """
         Project point attribute on this Way, find out geometries of this Way
         splitted in intersection point.
         return tuple (line to source, line to target)
-        '''
+        """
         split_point, index = self.point_intersection(point)
         to_source = LineString(self.the_geom[:index+1] + [split_point])
-        to_target = LineString([split_point] + self.the_geom[index+1:])
-        return (to_source, to_target)
+        to_target = LineString([split_point] + self.the_geom.coords[index + 1:])
+        return to_source, to_target
 
     def point_to_point(self, start, end):
-        '''
+        """
         Project two points(latlon) on the way, find line between the projections.
         Used when both points have this Way as nearest_way.
         return Way with correctly computed geometry and length
-        '''
+        """
         start_split, start_index = self.point_intersection(start)
         end_split, end_index = self.point_intersection(end)
         if start_index < end_index:
-            geometry = LineString([start_split] + self.the_geom[start_index+1:end_index+1] + [end_split])
+            geometry = LineString([start_split] + self.the_geom.coords[start_index+1:end_index+1] + [end_split])
         else:
-            geometry = LineString([end_split] + self.the_geom[end_index+1:start_index+1] + [start_split])
+            geometry = LineString([end_split] + self.the_geom.coords[end_index+1:start_index+1] + [start_split])
         way = deepcopy(self)
         way.id = None
         way.the_geom = geometry
@@ -123,11 +123,11 @@ class Way(geomodels.Model):
         return way
 
     def split(self, point):
-        '''
+        """
         Split Way in the projected point, save both parts to the database.
         Way source or target are random negative values (new vertice).
         return tuple(way to source, way to target, new routing vertice ID)
-        '''
+        """
         to_source = deepcopy(self)
         to_source.id = None
         to_target = deepcopy(self)
@@ -160,13 +160,13 @@ class Way(geomodels.Model):
             to_target.reverse_cost = to_target.length
         to_source.save()
         to_target.save()
-        return (to_source, to_target, vertice, way_to_intersection)
+        return to_source, to_target, vertice, way_to_intersection
 
     def weight(self, params):
-        '''
+        """
         Compute weight according to given parameters.
         return int
-        '''
+        """
         if self.highway == 'temp':
             # Rare case, probably impossible to find correct route
             # Temporary Way should be deleted
@@ -195,7 +195,7 @@ class Way(geomodels.Model):
                             return MAX_WEIGHT
                 try:
                     preferences[feature_name] = int(params[feature_name][str(feature_value)])
-                except KeyError, ValueError:
+                except (KeyError, ValueError):
                     preferences[feature_name] = MIN_WEIGHT
         weight = max(preferences.values())
         weight -= self._preferred_shift(params)
@@ -204,9 +204,9 @@ class Way(geomodels.Model):
         return WEIGHTS[weight-1]
 
     def _preferred_shift(self, params):
-        '''
+        """
         Calculate preference shift for preferred or unpreferred ways
-        '''
+        """
         shift = 0
         neg = 0
         if 'preferred_classes' in params:
@@ -225,10 +225,10 @@ class Way(geomodels.Model):
             return 0
 
     def feature(self, params, status):
-        '''
+        """
         Create GeoJSON Feature object.
         return JSON like dictionary
-        '''
+        """
         # weight is here a preference in the interval 1-5,
         # index of real weight defined in WEIGHTS + 1
         try:
@@ -248,10 +248,10 @@ class Way(geomodels.Model):
         }
 
     def compute_length(self):
-        '''
+        """
         Compute approximate length using haversine formula.
         return length in kilometers
-        '''
+        """
         coords = self.the_geom.coords
         length = 0
         for i in range(len(coords)-1):
@@ -277,31 +277,30 @@ class WeightCollection(models.Model):
         translate = ('name', )
 
     def __unicode__(self):
-        return u"%s" % (self.slug)
+        return u"%s" % self.slug
 
     def get_cost_where_clause(self, params):
-        '''
+        """
         Create cost column definition and where clause.
         Returns tuple (cost_clause, reverse_cost_clause, where_clause)
-        '''
+        """
         where = '(id IS NOT NULL)'
         cost = 'length'
-        reverse_cost = ''
         unpreferred_preferences = {1: [], 2: [], 3: [], 4: [], 5: []}
         preferred_preferences = {1: [], 2: [], 3: [], 4: []}
         reverse_cases = []
         # conditions for oneways
         if self.vehicle == 'bicycle':
             # bicycles are allowed to go in some oneways reversely
-            reverse_cases += ['''WHEN (bicycle!='opposite' OR bicycle IS NULL)
-                AND reverse_cost!=length THEN reverse_cost ''']
+            reverse_cases += ["""WHEN (bicycle!='opposite' OR bicycle IS NULL)
+                AND reverse_cost!=length THEN reverse_cost """]
         elif self.vehicle == 'foot':
             # consider oneway only on paths, tracks, steps and footways
-            reverse_cases += ['''WHEN highway IN ('path', 'track', 'steps', 'footway')
-                AND reverse_cost!=length THEN reverse_cost ''']
+            reverse_cases += ["""WHEN highway IN ('path', 'track', 'steps', 'footway')
+                AND reverse_cost!=length THEN reverse_cost """]
         else:
             # probably car, never route on oneway=yes
-            reverse_cases += ['''WHEN reverse_cost!=length THEN reverse_cost ''']
+            reverse_cases += ["""WHEN reverse_cost!=length THEN reverse_cost """]
         whereparts = []
         whereparts += self._access()
         preferred_slugs = params['preferred_classes']
@@ -325,10 +324,11 @@ class WeightCollection(models.Model):
         reverse_cost = 'CASE %s ELSE "length" END' % (' '.join(reverse_cases))
         return cost, reverse_cost, where
 
-    def _create_cases(self, unpref, pref, preferred_slugs):
-        '''
+    @staticmethod
+    def _create_cases(unpref, pref, preferred_slugs):
+        """
         Create array of WHEN clauses.
-        '''
+        """
         pref_classes_condition = ' OR '.join([p + '>0' for p in preferred_slugs])
         cases = []
         for preference in range(4, 0, -1):
@@ -342,35 +342,35 @@ class WeightCollection(models.Model):
         return cases
 
     def _access(self):
-        '''
+        """
         Create access clause according to given role (car, bike, pedestrian,...)
-        '''
+        """
         # TODO: add vehicle access control, needs vehicle column in database and model
         access_clauses = []
-        default_access = '''(access IS NULL OR access NOT IN ('no', 'private'))'''
+        default_access = """(access IS NULL OR access NOT IN ('no', 'private'))"""
         if self.vehicle in ('bicycle', 'foot'):
-            access_restrictions = '''((access IS NULL OR access NOT IN ('no', 'private')) OR
-                (access IN ('no', 'private') AND %s IN ('yes', 'designated')))''' % (self.vehicle)
-            vehicle_restrictions = '''(%s IS NULL OR NOT %s IN ('no', 'private'))''' % (self.vehicle, self.vehicle)
+            access_restrictions = """((access IS NULL OR access NOT IN ('no', 'private')) OR
+                (access IN ('no', 'private') AND %s IN ('yes', 'designated')))""" % self.vehicle
+            vehicle_restrictions = """(%s IS NULL OR NOT %s IN ('no', 'private'))""" % (self.vehicle, self.vehicle)
             access_clauses += [access_restrictions, vehicle_restrictions]
         else:
             access_clauses.append(default_access)
         return access_clauses
 
     def dump_params(self, params):
-        '''
+        """
         Dump weight collection params as JSON like dictionary.
-        '''
-        json = {}
-        json['slug'] = params['global'].get('slug', 'undefined')
-        json['oneway'] = 'oneway' in params['global']
-        json['vehicle'] = params['global'].get('vehicle', 'bicycle')
-        json['preferred'] = []
+        """
+        json_params = dict()
+        json_params['slug'] = params['global'].get('slug', 'undefined')
+        json_params['oneway'] = 'oneway' in params['global']
+        json_params['vehicle'] = params['global'].get('vehicle', 'bicycle')
+        json_params['preferred'] = []
         for pv in self.preferredvalue_set.select_related().all():
-            pref_class = {"slug": pv.preferred.slug, "use": True}
+            pref_class = dict(slug=pv.preferred.slug, use=True)
             pref_class['value'] = pv.preferred.slug in params['preferred_classes']
-            json['preferred'].append(pref_class)
-        json['classes'] = []
+            json_params['preferred'].append(pref_class)
+        json_params['classes'] = []
         for wcv in self.weightclassvalue_set.select_related().all():
             slug = wcv.weight_class.slug
             weight_class = {"slug": slug, "visible": True}
@@ -382,11 +382,11 @@ class WeightCollection(models.Model):
                 weight_class['features'] = []
                 for wv in wcv.weightvalue_set.all():
                     weight_slug = wv.weight.slug
-                    weight = {"slug": weight_slug, "visible": True}
+                    weight = dict(slug=weight_slug, visible=True)
                     weight["value"] = params[slug].get(weight_slug, wv.preference)
                     weight_class['features'].append(weight)
-            json['classes'].append(weight_class)
-        return json
+            json_params['classes'].append(weight_class)
+        return json_params
 
 
 class WeightClass(models.Model):
@@ -419,9 +419,9 @@ class WeightClassValue(models.Model):
         return u"%s: %s" % (self.collection, self.weight_class)
 
     def get_when_clauses(self, params, preferred_slugs):
-        '''
+        """
         Create dictionaries for preferred and unpreferred cases.
-        '''
+        """
         unpreferable_highways = ('track', 'path', 'bridleway')
         default = min(WEIGHTS)
         pref_dict = {1: [], 2: [], 3: [], 4: []}
@@ -447,9 +447,9 @@ class WeightClassValue(models.Model):
         return unpref_dict, pref_dict
 
     def get_where_clauses(self, params):
-        '''
+        """
         Create sql WHERE conditions.
-        '''
+        """
         andparts = []
         class_slug = self.weight_class.slug
         if 'max' in params:
@@ -496,7 +496,7 @@ class Preferred(models.Model):
         translate = ('name', )
 
     def __unicode__(self):
-        return u"%s" % (self.slug)
+        return u"%s" % self.slug
 
 
 class PreferredValue(models.Model):

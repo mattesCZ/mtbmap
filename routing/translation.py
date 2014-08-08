@@ -8,9 +8,9 @@ import os.path
 from django.conf import settings
 
 # Local imports
-from routing.models import *
+from .models import *
 
-LANG_CODES = [lang_code for lang_code, lang_name in settings.LANGUAGES]
+LANG_CODES = [code for code, name in settings.LANGUAGES]
 MODEL_NAMES = ['WeightClass', 'Weight', 'Preferred']
 
 
