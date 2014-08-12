@@ -99,8 +99,8 @@ class Way(geomodels.Model):
         return tuple (line to source, line to target)
         """
         split_point, index = self.point_intersection(point)
-        to_source = LineString(self.the_geom[:index+1] + [split_point])
-        to_target = LineString([split_point] + self.the_geom.coords[index + 1:])
+        to_source = LineString(list(self.the_geom.coords[:index+1]) + [split_point])
+        to_target = LineString([split_point] + list(self.the_geom.coords[index + 1:]))
         return to_source, to_target
 
     def point_to_point(self, start, end):
@@ -112,14 +112,13 @@ class Way(geomodels.Model):
         start_split, start_index = self.point_intersection(start)
         end_split, end_index = self.point_intersection(end)
         if start_index < end_index:
-            geometry = LineString([start_split] + self.the_geom.coords[start_index+1:end_index+1] + [end_split])
+            geometry = LineString([start_split] + list(self.the_geom.coords[start_index+1:end_index+1]) + [end_split])
         else:
-            geometry = LineString([end_split] + self.the_geom.coords[end_index+1:start_index+1] + [start_split])
+            geometry = LineString([end_split] + list(self.the_geom.coords[end_index+1:start_index+1]) + [start_split])
         way = deepcopy(self)
         way.id = None
         way.the_geom = geometry
         way.length = way.compute_length()
-        print way.length
         return way
 
     def split(self, point):

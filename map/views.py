@@ -247,7 +247,7 @@ def findroute(request):
         multiroute = MultiRoute(points, params)
         status = multiroute.find_multiroute()
         geojson = multiroute.geojson()
-        print "Length:", multiroute.length, status, multiroute.search_index()
+        # print "Length:", multiroute.length, status, multiroute.search_index()
         return HttpResponse(json.dumps(geojson), content_type='application/json')
 
 
@@ -303,7 +303,6 @@ def evaluation(request):
         'valid': form.is_valid()
     }
     if form.is_valid():
-        print 'VALID'
         evaluation_obj = form.save(commit=False)
         evaluation_obj.timestamp = datetime.now()
         evaluation_obj.save()
