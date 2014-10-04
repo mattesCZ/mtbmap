@@ -26,9 +26,11 @@ def copy_ways():
     cursor = connections[MAP_DB].cursor()
     cursor.execute('DELETE FROM routing_way')
     insert = """
-       insert into routing_way (class_id, length, name, x1, y1, x2, y2, reverse_cost, osm_id, source, target, the_geom)
-       select clazz, km, osm_name, x1, y1, x2, y2, reverse_cost, osm_id, source, target, geom_way
-       from osm_2po_4pgr
+        insert into routing_way (class_id, length, name, x1, y1, x2, y2, reverse_cost, osm_id, source, target, the_geom)
+        select clazz, km,
+            case when osm_name is null then '' else osm_name end as osm_name,
+            x1, y1, x2, y2, reverse_cost, osm_id, source, target, geom_way
+        from osm_2po_4pgr
     """
     cursor.execute(insert)
     transaction.commit_unless_managed(using=MAP_DB)

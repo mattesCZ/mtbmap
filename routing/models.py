@@ -24,7 +24,7 @@ THRESHOLD = 2*max(WEIGHTS)
 class Way(geomodels.Model):
     class_id = models.BigIntegerField(null=True, blank=True)
     length = models.FloatField(null=True, blank=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, default='', blank=True)
     x1 = models.FloatField()
     y1 = models.FloatField()
     x2 = models.FloatField()
