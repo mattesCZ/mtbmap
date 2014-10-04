@@ -176,6 +176,8 @@ def _add_routes_attributes():
             mtbscale = None
             if row[1]:
                 mtbscale = re.sub(r'[^0-9]', '', row[1])
+                if mtbscale == '':
+                    mtbscale = None
             osmc = row[2]
             if osmc != 'mtb:white:mtb_mtb':
                 updated += Way.objects.filter(osm_id=osm_id).update(osmc=1, mtbscale=mtbscale)
