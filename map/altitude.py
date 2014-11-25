@@ -9,7 +9,7 @@ from django.utils.translation import ugettext as _
 
 # Local imports
 from .printing import svg_string_to_png
-from mtbmap.settings import SRTM_DATA
+from django.conf import settings
 from routing.mathfunctions import haversine
 
 NONE_HEIGHT = -32768
@@ -58,7 +58,7 @@ def _zero_prefix(integer, length=3):
 class HgtFile:
     def __init__(self, node):
         self.key = hgt_file_key(node.lat, node.lon)
-        zip_path = SRTM_DATA
+        zip_path = settings.SRTM_DATA
         zip_file = zipfile.ZipFile(zip_path + self.key + '.hgt.zip', 'r')
         zip_file_name = zip_file.namelist()[0]
         hgt_string = zip_file.read(zip_file_name)

@@ -4,7 +4,7 @@
 # Global imports
 import os
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mtbmap.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mtbmap.settings.local'
 MAP_DB = 'osm_data'
 
 # Django imports

@@ -2,6 +2,9 @@
 #############################
 sw
 
+# secrets file
+mtbmap/settings/secrets.json
+
 # local copies #
 ################
 *.local
@@ -31,5 +34,4 @@ backup*
 ############################
 leaflet-src.js
 media/legend
-settings_local.py
 map/static/admin

@@ -19,7 +19,7 @@ from django.db.models import Max
 from django.utils.translation import ugettext as _
 
 # Local imports
-from mtbmap.settings import MAPNIK_STYLES
+from django.conf import settings
 
 
 def svg_string_to_png(svg_string, width, height):
@@ -100,9 +100,9 @@ def legend_image(legend, zoom, gap, position='side', max_edge=None, highres=True
 
 
 def map_image(zoom, left, bottom, right, top, line, orientation='n', highres=True):
-    mapfile = MAPNIK_STYLES + "mapnik2normal.xml"
+    mapfile = settings.MAPNIK_STYLES + "mapnik2normal.xml"
     if orientation != 'n':
-        mapfile = MAPNIK_STYLES + "mapnik2orlice_%s.xml" % str(orientation)
+        mapfile = settings.MAPNIK_STYLES + "mapnik2orlice_%s.xml" % str(orientation)
     base = 0.000005364418029785156  # longitude range of 1 pixel at zoom 18
     zoom_conversion = base*2**(18-zoom)
     imgx = int(round((right - left)/zoom_conversion))
@@ -112,9 +112,9 @@ def map_image(zoom, left, bottom, right, top, line, orientation='n', highres=Tru
     if orientation in ('w', 'e'):
         imgx, imgy = imgy, imgx
     if highres:
-        mapfile = MAPNIK_STYLES + "mapnik2print.xml"
+        mapfile = settings.MAPNIK_STYLES + "mapnik2print.xml"
         if orientation != 'n':
-            mapfile = MAPNIK_STYLES + "mapnik2print_orlice_%s.xml" % str(orientation)
+            mapfile = settings.MAPNIK_STYLES + "mapnik2print_orlice_%s.xml" % str(orientation)
         imgx = 2*imgx
         imgy = 2*imgy
 

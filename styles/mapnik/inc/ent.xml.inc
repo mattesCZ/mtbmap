@@ -1,1 +1,1 @@
-<!ENTITY passwd "YourDatabasePassword">
+<!ENTITY passwd "Pr8hory">
