@@ -24,6 +24,12 @@ MTB.map.addControl(new L.Control.Permalink({
     position: 'bottomright'
 }));
 
+MTB.map.on('locationfound', function(event) {
+    if (L.UrlUtil.hash() === '') {
+        var latlng = L.latLng(event.latlng.lat, event.latlng.lng);
+        MTB.map.setView(latlng, 16);
+    }
+});
 ////////////////////////////////////////////////////////////////////////////////
 // geojson overlays
 // create Ajax Geojson Layer

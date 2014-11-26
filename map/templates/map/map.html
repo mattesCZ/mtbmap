@@ -23,10 +23,7 @@ MTB.map = L.map('map', {
 }).setView(MTB.initLatlng, MTB.initZoom);
 
 // start geolocation
-MTB.map.locate({
-    setView: true,
-    maxZoom: 16
-});
+MTB.map.locate();
 
 // define tile layers
 {% for tile_layer in tile_layers %}
