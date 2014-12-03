@@ -699,7 +699,7 @@
       <Filter>(([landuse]='farm') or ([landuse]='farmland'))</Filter>
       <MinScaleDenominator>500</MinScaleDenominator>
       <MaxScaleDenominator>200000</MaxScaleDenominator>
-      <PolygonSymbolizer fill="rgb(234,216,189)"/>
+      <PolygonSymbolizer fill="rgb(242,235,216)"/>
     </Rule>
     <Rule name="industrial-zone">
       <Filter>(([landuse]='industrial') or ([landuse]='railway'))</Filter>
