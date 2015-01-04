@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Local django settings for mtbmap project.
+# Production django settings for mtbmap project.
 
 from .base import *
 
@@ -7,6 +7,8 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['.mtbmap.cz', '.tchor.fi.muni.cz']
+
+DATABASES['osm_data']['NAME'] = get_secret('DB_NAME_DATA_MASTER')
 
 OSM2PGSQL_CACHE = 24576
 
