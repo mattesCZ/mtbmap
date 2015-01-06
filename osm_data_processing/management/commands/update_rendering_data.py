@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import sys
+
 # Django imports
 from django.core.management.base import BaseCommand
 from django.core.mail import mail_admins
@@ -32,3 +34,4 @@ class Command(BaseCommand):
             '''.format(msg=error.msg)
             mail_admins('[mtbmap update]', message)
             self.stderr.write(message)
+            sys.exit(1)
