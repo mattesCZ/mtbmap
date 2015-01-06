@@ -9,13 +9,11 @@ import subprocess
 # Local imports
 from mtbmap.settings import production as settings
 
-SECRETS_PATH = os.path.join(settings.ROOT_PATH, 'mtbmap/settings/secrets.json')
-
 
 def swap_db():
     normal_style_filename = os.path.join(settings.MAPNIK_STYLES, 'mapnik2normal.xml')
     print_style_filename = os.path.join(settings.MAPNIK_STYLES, 'mapnik2print.xml')
-    with open(SECRETS_PATH, 'r') as fs:
+    with open(settings.SECRETS_PATH, 'r') as fs:
         secrets = json.loads(fs.read())
         old_master = secrets['DB_NAME_DATA_MASTER']
         new_master = secrets['DB_NAME_DATA_UPDATE']
@@ -30,11 +28,11 @@ def _update_db_names(secrets, new_master, new_update):
 
     secrets['DB_NAME_DATA_MASTER'] = new_master
     secrets['DB_NAME_DATA_UPDATE'] = new_update
-    tmp_path = SECRETS_PATH + '.tmp'
+    tmp_path = settings.SECRETS_PATH + '.tmp'
 
     with open(tmp_path, 'w') as f:
         f.write(json.dumps(secrets, indent=4, separators=(',', ': ')))
-    shutil.copyfile(tmp_path, SECRETS_PATH)
+    shutil.copyfile(tmp_path, settings.SECRETS_PATH)
     os.remove(tmp_path)
 
 

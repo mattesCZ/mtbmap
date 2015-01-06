@@ -19,7 +19,9 @@ here = lambda *dirs: join(abspath(dirname(__file__)), *dirs)
 ROOT_PATH = here('..', '..')
 root = lambda *dirs: join(abspath(ROOT_PATH), *dirs)
 
-with open(here('secrets.json')) as f:
+SECRETS_PATH = here('secrets.json')
+
+with open(SECRETS_PATH) as f:
     secrets = json.loads(f.read())
 
 
