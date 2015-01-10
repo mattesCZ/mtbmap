@@ -17,7 +17,6 @@ def swap_db():
         secrets = json.loads(fs.read())
         old_master = secrets['DB_NAME_DATA_MASTER']
         new_master = secrets['DB_NAME_DATA_UPDATE']
-        print old_master, new_master
 
         _replace(old_master, new_master, normal_style_filename)
         _replace(old_master, new_master, print_style_filename)
