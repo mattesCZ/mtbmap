@@ -7,8 +7,7 @@ Functions for creation of printable maps.
 
 # Global imports
 import mapnik
-import cairo
-import rsvg
+import cairosvg
 from math import cos, radians, log10
 from datetime import date
 from StringIO import StringIO
@@ -22,13 +21,9 @@ from django.utils.translation import ugettext as _
 from django.conf import settings
 
 
-def svg_string_to_png(svg_string, width, height):
-    img = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
-    ctx = cairo.Context(img)
-    handler = rsvg.Handle(None, svg_string)
-    handler.render_cairo(ctx)
+def svg_string_to_png(svg_string):
     io_buffer = StringIO()
-    img.write_to_png(io_buffer)
+    cairosvg.svg2png(bytestring=svg_string.encode('utf-8'), write_to=io_buffer)
     return Image.open(StringIO(io_buffer.getvalue()))
 
 
@@ -180,7 +175,7 @@ def name_image(name, width, highres=True):
         font_size *= 2
     svg = ''
     svg += '<?xml version="1.0" encoding="UTF-8"?>\n'
-    svg += ('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"'
+    svg += ('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" '
             '"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n')
     svg += ('<svg width="%i" height="%i" xmlns="http://www.w3.org/2000/svg" id="name">\n' % (width, height))
     svg += '    <rect x="0" y="0" width="%i" height="%i" style="fill:white;stroke:none" />\n' % (width, height)
@@ -188,7 +183,7 @@ def name_image(name, width, highres=True):
             ' font-size="%i">%s</text>' % (width/2, height-10, font_size, name))
     # print SVG end element
     svg += '</svg>'
-    im = svg_string_to_png(svg, width, height)
+    im = svg_string_to_png(svg)
     return im
 
 
@@ -257,14 +252,14 @@ def scalebar_image(zoom, lat_center, highres=True):
     else:
         svg += ('    <text fill="black" text-anchor="middle" font-size="%i" font-family="Dejavu Sans" x="%i"'
                 ' y="%i">%i</text>\n' % (font_size, x_middle, y_text, real_line_length/2))
-    svg += ('    <text fill="black" text-anchor="middle" font-size="%i" font-family="Dejavu Sans" x="%i"'
-            ' y="%i">%s</text>\n' % (font_size, x_end, y_text, real_line_length))
-    svg += ('    <text fill="black" text-anchor="middle" font-size="%i" font-family="Dejavu Sans" x="%i"'
-            ' y="%i">%s</text>\n' % (font_size, x_end + 2*x_start, y_text, units))
+    svg += ('    <text fill="black" text-anchor="end" font-size="%i" font-family="Dejavu Sans" x="%i"'
+            ' y="%i">%s</text>\n' % (font_size, x_end + 4, y_text, int(real_line_length)))
+    svg += ('    <text fill="black" text-anchor="start" font-size="%i" font-family="Dejavu Sans" x="%i" dx="0"'
+            ' y="%i">%s</text>\n' % (font_size, x_end + 6, y_text, units))
     # print SVG end element
     svg += '</svg>\n'
 
-    png_scalebar = svg_string_to_png(svg, width, height)
+    png_scalebar = svg_string_to_png(svg)
     return png_scalebar
 
 
@@ -285,5 +280,5 @@ def imprint_image(attribution='Data: OpenStreetMap, CC-BY-SA', width=500, height
             ' x="%i" y="%i">%s</text>\n' % (font_size, width/2, height-font_size/2, text))
     svg += '</svg>\n'
 
-    png_imprint = svg_string_to_png(svg, width, height)
+    png_imprint = svg_string_to_png(svg)
     return png_imprint

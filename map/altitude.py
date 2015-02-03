@@ -131,17 +131,19 @@ class AltitudeProfile:
             x = x + round(xf)
             y = 255 - round((node.height-min_height) / norm_y)
             svg += str(int(x)) + " " + str(int(y)) + " L "
+        svg += str(int(x)) + " " + str(int(y))
         max_y = int(255 - round(((max_height-min_height) / norm_y)))
         # finish drawing polyline
-        svg += ' "/>\n'
+        svg += '"/>\n'
+        print svg
         #print height lines
-        svg += '    <text fill="black" text-anchor="end" x="30" y="256">' + str(min_height) + '</text>\n'
+        svg += '    <text fill="black" font-family="sans" font-size="12" text-anchor="end" x="30" y="256">' + str(min_height) + '</text>\n'
         svg += '    <line stroke = "red" stroke-dasharray="2,2" x1="35" y1="255" x2="985" y2="255"/>\n'
-        svg += '    <text fill="black" text-anchor="end" x="30"'
+        svg += '    <text fill="black" font-family="sans" font-size="12" text-anchor="end" x="30"'
         svg += ' y="' + str(max_y + 4) + '">' + str(max_height) + '</text>\n'
         svg += '    <line stroke = "red" stroke-dasharray="2,2"'
         svg += ' x1="35" y1="' + str(max_y) + '" x2="985" y2="' + str(max_y) + '"/>\n'
-        svg += '    <text fill="black" text-anchor="middle" x="985"'
+        svg += '    <text fill="black" font-family="sans" font-size="12" text-anchor="middle" x="985"'
         svg += ' y="288">' + str(round(self.sumdist, 1)) + ' km</text>\n'
         # assign 'h' max_height floored to hundreds
         h = (max_height/100) * 100
@@ -152,7 +154,7 @@ class AltitudeProfile:
             h_coord = int(255-round((h-min_height)/norm_y))
             svg += '    <line stroke = "black" stroke-dasharray="2,2"'
             svg += ' x1="35" y1="' + str(h_coord) + '" x2="985" y2="' + str(h_coord) + '"/>\n'
-            svg += '    <text fill="black" text-anchor="end" x="30"'
+            svg += '    <text fill="black" font-family="sans" font-size="12" text-anchor="end" x="30"'
             svg += ' y="' + str(h_coord + 4) + '">' + str(h) + '</text>\n'
             h -= 100
         # print distance markers, +/- 5 markers
@@ -163,20 +165,20 @@ class AltitudeProfile:
         else:
             step = 0.2
         dist = step
-        svg += '    <text fill="black" text-anchor="middle" x="35" y="288">0</text>\n'
+        svg += '    <text fill="black" font-family="sans" font-size="12" text-anchor="middle" x="35" y="288">0</text>\n'
         while dist < self.sumdist - self.sumdist/20:  # condition 'self.sumdist/20' avoids label collision
             svg += '    <line stroke ="black" x1="' + str(round(dist/norm_x) + 35) + '" y1="276"'
             svg += ' x2="' + str(round(dist/norm_x) + 35) + '" y2="269"/>\n'
-            svg += '    <text fill="black" text-anchor="middle" x="' + str(round(dist/norm_x) + 35)
+            svg += '    <text fill="black" font-family="sans" font-size="12" text-anchor="middle" x="' + str(round(dist/norm_x) + 35)
             svg += '" y="288">' + str(dist) + '</text>\n'
             dist += step
         # print ascending and descending
         ascdesc = self.ascending()
-        svg += '    <text fill="black" text-anchor="middle" x="550" y="20">%s: %i %s: %i</text>\n' % (_('Ascending'),
+        svg += '    <text fill="black" font-family="sans" font-size="12" text-anchor="middle" x="550" y="20">%s: %i %s: %i</text>\n' % (_('Ascending'),
                                                                                                       ascdesc[0],
                                                                                                       _('Descending'),
                                                                                                       ascdesc[1])
-        svg += '    <text fill="black" x="2" y="25">%s (m)</text>\n' % _('Height')
+        svg += '    <text fill="black" font-family="sans" font-size="12" x="2" y="25">%s (m)</text>\n' % _('Height')
         # print SVG end element
         svg += '</svg>'
         return svg
@@ -188,7 +190,7 @@ class AltitudeProfile:
         if self.status != 0:
             return NONE_HEIGHT
         svg = self.svg_profile()
-        return svg_string_to_png(svg, 1010, 300)
+        return svg_string_to_png(svg)
 
     @staticmethod
     def compute_distances(nodes):
