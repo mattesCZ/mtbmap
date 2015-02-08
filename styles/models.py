@@ -466,7 +466,7 @@ class StyleMap(models.Model):
 
 
 class Rule(StylesModel):
-# TODO: Add AlsoFilter
+    # TODO: Add AlsoFilter
     PROPERTIES = ('name', 'title', 'filter', 'minscale', 'maxscale',)
     SCALE_CHOICES = zip(range(0, 21), range(0, 21))
 
@@ -1168,7 +1168,7 @@ class ShieldSymbolizer(TextStylesModel):
             mapnik_symbolizer.text_opacity = 1.0
         if self.opacity:
             mapnik_symbolizer.opacity = self.opacity
-        if not self.unlock_image is None:
+        if self.unlock_image is not None:
             mapnik_symbolizer.unlock_image = self.unlock_image
         shield_displacement = (0, 0)
         if self.dx:
@@ -1304,7 +1304,7 @@ class LegendItem(models.Model):
         directory = 'media/legend/'
         tmpfilename = directory + 'tmp/' + name
         if self.render(size, tmpfilename, scale_factor):
-            #render() returns non-zero integer, ie. image is not rendered
+            # render() returns non-zero integer, ie. image is not rendered
             pass
         else:
             if scale_factor >= 2:
@@ -1394,7 +1394,7 @@ class LegendItemName(models.Model):
         return self.slug
 
     def render_names(self, font_size=12, scale_factor=1):
-        font_size = scale_factor * font_size
+        font_size *= scale_factor
         height = font_size + font_size/2
         width = max(font_size*len(self.name)*2/3, 150)
         for code in LANG_CODES:

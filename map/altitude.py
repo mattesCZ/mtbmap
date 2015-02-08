@@ -136,7 +136,7 @@ class AltitudeProfile:
         # finish drawing polyline
         svg += '"/>\n'
 
-        #print height lines
+        # print height lines
         svg += '    <text fill="black" font-family="sans" font-size="12" text-anchor="end" x="30" y="256">' + str(min_height) + '</text>\n'
         svg += '    <line stroke = "red" stroke-dasharray="2,2" x1="35" y1="255" x2="985" y2="255"/>\n'
         svg += '    <text fill="black" font-family="sans" font-size="12" text-anchor="end" x="30"'
@@ -174,10 +174,9 @@ class AltitudeProfile:
             dist += step
         # print ascending and descending
         ascdesc = self.ascending()
-        svg += '    <text fill="black" font-family="sans" font-size="12" text-anchor="middle" x="550" y="20">%s: %i %s: %i</text>\n' % (_('Ascending'),
-                                                                                                      ascdesc[0],
-                                                                                                      _('Descending'),
-                                                                                                      ascdesc[1])
+        svg += '    <text fill="black" font-family="sans" font-size="12" text-anchor="middle" x="550" y="20">%s: %i %s: %i</text>\n' % (
+            _('Ascending'), ascdesc[0],
+            _('Descending'), ascdesc[1])
         svg += '    <text fill="black" font-family="sans" font-size="12" x="2" y="25">%s (m)</text>\n' % _('Height')
         # print SVG end element
         svg += '</svg>'
