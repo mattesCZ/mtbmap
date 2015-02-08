@@ -135,7 +135,7 @@ class AltitudeProfile:
         max_y = int(255 - round(((max_height-min_height) / norm_y)))
         # finish drawing polyline
         svg += '"/>\n'
-        print svg
+
         #print height lines
         svg += '    <text fill="black" font-family="sans" font-size="12" text-anchor="end" x="30" y="256">' + str(min_height) + '</text>\n'
         svg += '    <line stroke = "red" stroke-dasharray="2,2" x1="35" y1="255" x2="985" y2="255"/>\n'

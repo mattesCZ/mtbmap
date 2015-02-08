@@ -94,16 +94,21 @@ def legend_image(legend, zoom, gap, position='side', max_edge=None, highres=True
     return Image.open(StringIO(image.tostring('png')))
 
 
-def map_image(zoom, left, bottom, right, top, line, orientation='n', highres=True):
-    mapfile = settings.MAPNIK_STYLES + "mapnik2normal.xml"
-    if orientation != 'n':
-        mapfile = settings.MAPNIK_STYLES + "mapnik2orlice_%s.xml" % str(orientation)
+def get_image_size(zoom, top, left, bottom, right):
     base = 0.000005364418029785156  # longitude range of 1 pixel at zoom 18
     zoom_conversion = base*2**(18-zoom)
     imgx = int(round((right - left)/zoom_conversion))
     lat_center = (top + bottom)/2
     latitude_conversion = zoom_conversion * cos(radians(lat_center))
     imgy = int(round((top - bottom)/latitude_conversion))
+    return imgx, imgy
+
+
+def map_image(zoom, left, bottom, right, top, line, orientation='n', highres=True):
+    mapfile = settings.MAPNIK_STYLES + "mapnik2normal.xml"
+    if orientation != 'n':
+        mapfile = settings.MAPNIK_STYLES + "mapnik2orlice_%s.xml" % str(orientation)
+    imgx, imgy = get_image_size(zoom, top, left, bottom, right)
     if orientation in ('w', 'e'):
         imgx, imgy = imgy, imgx
     if highres:
