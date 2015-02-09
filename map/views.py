@@ -11,13 +11,14 @@ from django.template import RequestContext
 from django.template.response import TemplateResponse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import translation
+from django.utils.translation import ugettext as _
 from django.contrib.gis.geos import Point, LineString
 from django.conf import settings
 
 # Local imports
 from map.models import *
 from styles.models import Legend
-from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image
+from map.printing import name_image, map_image, legend_image, scalebar_image, imprint_image, get_image_size
 from map.altitude import AltitudeProfile, height
 from routing.core import MultiRoute, line_string_to_points, create_gpx, RouteParams
 from routing.models import WeightCollection
@@ -94,6 +95,10 @@ def exportmap(request):
         left = float(bounds.split(',')[0])
         right = float(bounds.split(',')[2])
         zoom = int(zoom)
+        map_x, map_y = get_image_size(zoom, top, left, bottom, right)
+        if map_x * map_y > 6000000:
+            message = _('Sorry, requested image is too big. Try export of smaller area.')
+            return render_to_response('error.html', {'message': message}, context_instance=RequestContext(request))
         gap = 5
         line = None
         if 'export-line-check' in request.POST:
