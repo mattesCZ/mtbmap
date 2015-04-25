@@ -10,10 +10,6 @@ from .route import Route
 
 
 def run(db_name, user, port):
-    bbox_query = '''
-        ST_Intersects(way, ST_Transform(ST_GeomFromText(
-            'POLYGON((-5 60, -5 35, 30 35, 30 60, -5 60))', 4326), 900913)::geometry)
-    '''
     print time.strftime("%H:%M:%S", time.localtime()), " - script started"
     print "  Searching RelationIDs and Lines in planet_osm_line..."
     # Create connection to DB server.
@@ -33,11 +29,13 @@ def run(db_name, user, port):
                        END AS "mtb:scale"
             , "mtb:scale:uphill", network, "osmc:symbol"
             FROM planet_osm_line
-            WHERE %s AND (("osmc:symbol" IS NOT NULL OR kct_red IS NOT NULL
+            WHERE ("osmc:symbol" IS NOT NULL OR kct_red IS NOT NULL
                 OR kct_blue IS NOT NULL OR kct_green IS NOT NULL
-                OR kct_yellow IS NOT NULL OR ("mtb:scale" IS NOT NULL AND (("access"<>'private' AND "access"<>'no') OR "access" IS NULL OR ("access" IN ('private', 'no') AND bicycle='yes')))
-                OR "mtb:scale:uphill" IS NOT NULL OR ("highway"='track' AND "tracktype"='grade1')))
-        ''' % bbox_query)
+                OR kct_yellow IS NOT NULL
+                OR ("mtb:scale" IS NOT NULL
+                  AND (("access"<>'private' AND "access"<>'no') OR "access" IS NULL OR ("access" IN ('private', 'no') AND bicycle='yes')))
+                OR "mtb:scale:uphill" IS NOT NULL OR ("highway"='track' AND "tracktype"='grade1'))
+        ''')
     while True:
         # Fetch some of the result.
         rows = relation_cursor.fetchmany(100)
@@ -46,11 +44,11 @@ def run(db_name, user, port):
         if not rows:
             break
 
-        #relations have negative osm_id in planet_osm_line table
-        #lines have positive osm_id in planet_osm_line table
+        # relations have negative osm_id in planet_osm_line table
+        # lines have positive osm_id in planet_osm_line table
         for row in rows:
             if row[0] < 0:
-                #osm_id is not a primary key
+                # osm_id is not a primary key
                 if not (row[0] in relation_ids):
                     relation_ids.append(-row[0])
             else:
@@ -96,9 +94,9 @@ def run(db_name, user, port):
     for r in list_of_routes:
         auxiliary_cursor.execute('''
             SELECT way, highway, tracktype FROM planet_osm_line
-              WHERE %s AND osm_id=%s AND (("access"<>'private' AND "access"<>'no') OR "access" IS NULL
+              WHERE osm_id=%s AND (("access"<>'private' AND "access"<>'no') OR "access" IS NULL
                 OR ("access" IN ('private', 'no') AND bicycle='yes'))
-        ''' % (bbox_query, r.id))
+        ''' % r.id)
         row = auxiliary_cursor.fetchone()
         # Some route IDs from relations may not be present in line table, ie. out of bounding box, those are ignored
         if row is not None:
@@ -133,7 +131,7 @@ def run(db_name, user, port):
         for rid in previous_route_ids:
             routes[routes[r].id].previousRoutes.append(rid)
 
-    #remove unconnected tracks with highway=track and tracktype=grade1 and mtb:scale is null
+    # remove unconnected tracks with highway=track and tracktype=grade1 and mtb:scale is null
     print time.strftime("%H:%M:%S", time.localtime()), "  Removing disconnected tracks."
     routes = remove_unconnected(routes, nodes)
     print "  Tracks removed."
@@ -155,7 +153,6 @@ def run(db_name, user, port):
     if len(list_of_routes) > 1000:
         setrecursionlimit(len(list_of_routes))
     for r in list_of_routes:
-#        print "For cycle: ", r.id, r.osmcSigns[0]
         set_offset(routes, r.id, "next")
         set_offset(routes, r.id, "previous")
     print time.strftime("%H:%M:%S", time.localtime()), " - offset is found."
@@ -212,7 +209,7 @@ def run(db_name, user, port):
     # commit the result into the database
     auxiliary_cursor.close()
     connection.commit()
-    
+
     print time.strftime("%H:%M:%S", time.localtime()), " - Relations2lines finished successfully."
 
 
@@ -351,7 +348,7 @@ def remove_unconnected(routes, nodes):
                 component.append(n)
                 new_to_search = routes[n].previousRoutes + routes[n].nextRoutes
                 for new in new_to_search:
-                    if not new in parsed:
+                    if new not in parsed:
                         neighbours.append(new)
             parsed.append(n)
         if connected:
