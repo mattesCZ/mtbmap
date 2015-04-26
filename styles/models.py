@@ -12,6 +12,7 @@ import logging
 
 # Django imports
 from django.db import models, transaction
+from django.db.models.loading import get_model
 from django.core.files import File
 from django.conf import settings
 from django.utils.translation import activate, ugettext_lazy as _
@@ -590,7 +591,7 @@ class Symbolizer(StylesModel):
 
     @staticmethod
     def import_symbolizer(node):
-        specialized_symbolizer = globals()[node.name]()
+        specialized_symbolizer = get_model('styles', node.name)()
         specialized_symbolizer.symbtype = node.name.replace('Symbolizer', '')
         specialized_symbolizer.import_xml_properties(node)
         if specialized_symbolizer.CONTENT_PROPERTY:

@@ -7,15 +7,13 @@ import logging
 
 # Django imports
 from django.conf import settings
-
-# Local imports
-# TODO use 'import models' and get model with 'models.__dict__[model_name]' or similar
-from .models import WeightClass, Weight, Preferred  # accessed with globals()[model_name]
+from django.db.models.loading import get_model
 
 LANG_CODES = [code for code, name in settings.LANGUAGES]
 MODEL_NAMES = ['WeightClass', 'Weight', 'Preferred']
 
 logger = logging.getLogger(__name__)
+APP_NAME = 'routing'
 
 
 def dump_translation_files(lang_code):
@@ -34,7 +32,7 @@ def load_translation_files(lang_code):
     directory = _get_locale_directory(lang_code)
     for model_name in MODEL_NAMES:
         filename = os.path.join(directory, '%s.csv' % model_name.lower())
-        model = globals()[model_name]
+        model = get_model(APP_NAME, model_name)
         with open(filename, 'r') as f:
             reader = csv.DictReader(f)
             line = 2
@@ -63,7 +61,7 @@ def _write_csv(filename, model_name, fields):
     with open(filename, 'wb') as f:
         writer = csv.writer(f)
         writer.writerow(fields)
-        model = globals()[model_name]
+        model = get_model(APP_NAME, model_name)
         if 'slug' in fields:
             for row in model.objects.order_by('slug').values_list(*fields):
                 writer.writerow(row)
