@@ -3,15 +3,19 @@
 # Global imports
 import csv
 import os.path
+import logging
 
 # Django imports
 from django.conf import settings
 
 # Local imports
-from .models import *
+# TODO use 'import models' and get model with 'models.__dict__[model_name]' or similar
+from .models import WeightClass, Weight, Preferred  # accessed with globals()[model_name]
 
 LANG_CODES = [code for code, name in settings.LANGUAGES]
 MODEL_NAMES = ['WeightClass', 'Weight', 'Preferred']
+
+logger = logging.getLogger(__name__)
 
 
 def dump_translation_files(lang_code):
@@ -45,9 +49,9 @@ def load_translation_files(lang_code):
                         if getattr(obj, name_field) != new_value:
                             setattr(obj, name_field, new_value)
                             obj.save()
-                            print 'Updating slug=%s, %s = %s' % (row_dict['slug'], name_field, new_value)
+                            logger.info('Updating slug=%s, %s = %s' % (row_dict['slug'], name_field, new_value))
                     except model.DoesNotExist:
-                        print 'Slug %s on line %i not found in the db!' % (row_dict['slug'], line)
+                        logger.warn('Slug %s on line %i not found in the db!' % (row_dict['slug'], line))
                 line += 1
 
 

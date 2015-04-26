@@ -5,6 +5,7 @@ from copy import deepcopy
 from random import randint
 import simplejson as json
 from transmeta import TransMeta
+import logging
 
 # Django imports
 from django.db import models
@@ -19,6 +20,8 @@ WEIGHTS = [1, 2, 3, 6, 12]
 MAX_WEIGHT = max(WEIGHTS)
 MIN_WEIGHT = min(WEIGHTS)
 THRESHOLD = 2*max(WEIGHTS)
+
+logger = logging.getLogger(__name__)
 
 
 class Way(geomodels.Model):
@@ -169,7 +172,7 @@ class Way(geomodels.Model):
         if self.highway == 'temp':
             # Rare case, probably impossible to find correct route
             # Temporary Way should be deleted
-            print 'returning temp weight', self.length, self.id
+            logger.warn('Returning temp weight: Length: %s, ID: %i' % (self.length, self.id))
             return THRESHOLD
         preferences = {'highway': MIN_WEIGHT, 'tracktype': MIN_WEIGHT, 'sac_scale': MIN_WEIGHT,
                        'mtbscale': MIN_WEIGHT, 'surface': MIN_WEIGHT, 'osmc': MIN_WEIGHT}
@@ -431,7 +434,8 @@ class WeightClassValue(models.Model):
             try:
                 preference = int(params[weight_slug])
             except ValueError:
-                print 'ValueError', class_slug, weight_slug, params
+                logger.error('ValueError {class_slug}, {weight_slug}, {params}'
+                             .format(class_slug=class_slug, weight_slug=weight_slug, params=params), exc_info=True)
             else:
                 # TODO compute (un)preferred_slugs weights correctly, not only +/- 1 degree, but in range(-3, +3)
                 if len(preferred_slugs) and class_slug == 'highway' and weight_slug in unpreferable_highways:
@@ -456,18 +460,19 @@ class WeightClassValue(models.Model):
                 value = float(params['max'])
                 condition = '"%s"<=%s' % (class_slug, value)
             except ValueError:
-                print 'ValueError', class_slug, params
+                logger.error('ValueError {class_slug}, {params}'
+                             .format(class_slug=class_slug, params=params), exc_info=True)
             else:
                 # only if smaller than default max value
                 if value < self.max:
                     andparts.append(condition)
         if 'min' in params:
             try:
-#                print 'MINVALUE:', params['min']
                 value = float(params['min'])
                 condition = '"%s">=%s' % (class_slug, value)
             except ValueError:
-                print 'ValueError', class_slug, params
+                logger.error('ValueError {class_slug}, {params}'
+                             .format(class_slug=class_slug, params=params), exc_info=True)
             else:
                 # only if bigger than default min value
                 if value > self.min:

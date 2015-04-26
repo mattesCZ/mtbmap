@@ -3,15 +3,17 @@
 from psycopg2 import *
 from copy import deepcopy
 from sys import setrecursionlimit
-import time
+import logging
 
 from .relation import Relation
 from .route import Route
 
+logger = logging.getLogger(__name__)
+
 
 def run(db_name, user, port):
-    print time.strftime("%H:%M:%S", time.localtime()), " - script started"
-    print "  Searching RelationIDs and Lines in planet_osm_line..."
+    logger.info('Relations2lines script started')
+    logger.info('  Searching RelationIDs and Lines in planet_osm_line...')
     # Create connection to DB server.
     connection = connect("dbname='{db_name}' user='{user}' password='' port='{port}'"
                          .format(db_name=db_name, user=user, port=port))
@@ -57,8 +59,9 @@ def run(db_name, user, port):
                              + str(row[3]) + ";" + str(row[4]))
                 relations.append(Relation(line_info))
 
-    print time.strftime("%H:%M:%S", time.localtime()), " - RelationIDs and Lines found."
-    print "  Getting Relation details from planet_osm_rels..."
+    logger.info('RelationIDs and Lines found.')
+    logger.info('Getting Relation details from planet_osm_rels...')
+
     # Select important columns just for our IDs
     for r_id in relation_ids:
         relation_cursor.execute('''
@@ -70,16 +73,16 @@ def run(db_name, user, port):
         # Make Relation object with parsed data
         relations.append(Relation(row))
 
-    print time.strftime("%H:%M:%S", time.localtime()), " - relations details found."
-    print "  Making single routes from relations with all osmc:symbols..."
+    logger.info('Relations details found.')
+    logger.info('Making single routes from relations with all osmc:symbols...')
 
     # Find final routes and append all corresponding osmcSymbols
     routes = routes_from_rels(relations)
 
     list_of_routes = routes.values()
     list_of_routes.sort()
-    print time.strftime("%H:%M:%S", time.localtime()), " - routes now have osmc:symbols."
-    print "  Finding firstNode and lastNode for each route in planet_osm_ways..."
+    logger.info('Routes now have osmc:symbols.')
+    logger.info('Finding firstNode and lastNode for each route in planet_osm_ways...')
 
     # Clean previous routes.
     auxiliary_cursor.execute("DROP TABLE IF EXISTS planet_osm_routes2")
@@ -111,11 +114,10 @@ def run(db_name, user, port):
             first_end_nodes = way_cursor.fetchone()
             routes[r.id].firstNode = first_end_nodes[0]
             routes[r.id].lastNode = first_end_nodes[1]
-#            print r.id, ": ", routes[r.id].firstNode, ", ", routes[r.id].lastNode
         else:
             routes.pop(r.id)
-    print time.strftime("%H:%M:%S", time.localtime()), " - firstNodes and lastNodes are found."
-    print "  Finding route neighbours based on first and last nodes..."
+    logger.info('Found firstNodes and lastNodes.')
+    logger.info('Finding route neighbours based on first and last nodes...')
 
     # Find end nodes and their routes
     nodes = find_nodes(routes)
@@ -132,11 +134,12 @@ def run(db_name, user, port):
             routes[routes[r].id].previousRoutes.append(rid)
 
     # remove unconnected tracks with highway=track and tracktype=grade1 and mtb:scale is null
-    print time.strftime("%H:%M:%S", time.localtime()), "  Removing disconnected tracks."
+    logger.info('Removing disconnected tracks.')
     routes = remove_unconnected(routes, nodes)
-    print "  Tracks removed."
+    logger.info('Tracks removed.')
 
-    print time.strftime("%H:%M:%S", time.localtime()), "  Finding dangerous nodes (column warning)."
+    logger.info('Finding dangerous nodes (column warning).')
+
     # Find nodeIDs, where track's attribute mtb:scale changes rapidly (difference >= 2),
     # create new column warning in planet_osm_lines with the difference
     danger_nodes = find_dangerous_nodes(nodes, routes)
@@ -144,8 +147,8 @@ def run(db_name, user, port):
     insert_danger_nodes(danger_nodes, point_cursor)
     point_cursor.close()
 
-    print time.strftime("%H:%M:%S", time.localtime()), " - neighbours are found."
-    print "  Determining offset for each route..."
+    logger.info('Neighbours are found.')
+    logger.info('Determining offset for each route...')
 
     # Find offset polarity
 #    listOfRoutes = routes.values()
@@ -155,8 +158,9 @@ def run(db_name, user, port):
     for r in list_of_routes:
         set_offset(routes, r.id, "next")
         set_offset(routes, r.id, "previous")
-    print time.strftime("%H:%M:%S", time.localtime()), " - offset is found."
-    print "  Inserting of routes into new empty table planet_osm_routes2..."
+
+    logger.info('Offset is found.')
+    logger.info("Inserting of routes into new empty table planet_osm_routes2...")
 
     # Determine maximum number of different osmcSymbols at one route
     max_signs = 0
@@ -179,6 +183,7 @@ def run(db_name, user, port):
         ALTER TABLE planet_osm_routes2
           ADD offsetSide integer;
     ''')
+
     # Add columns for maximum number of osmcSymbols
     for column in range(max_signs):
         auxiliary_cursor.execute('''
@@ -198,19 +203,18 @@ def run(db_name, user, port):
                 INSERT INTO planet_osm_routes2
                   VALUES (%s)
             ''' % row)
-    print " Finished inserting routes into new table."
+    logger.info('Finished inserting routes into new table.')
 
-    print "Relations:   ", len(relations)
-    print "max Signs:   ", max_signs
-    print "Routes:      ", len(routes)
-    print "Nodes:       ", len(nodes)
-#    print "Danger nodes:", len(dangerNodes)
+    logger.info('Relations: %i' % len(relations))
+    logger.info('Max Signs: %i' % max_signs)
+    logger.info('Routes: %i' % len(routes))
+    logger.info('Nodes: %i' % len(nodes))
 
     # commit the result into the database
     auxiliary_cursor.close()
     connection.commit()
 
-    print time.strftime("%H:%M:%S", time.localtime()), " - Relations2lines finished successfully."
+    logger.info('Relations2lines finished successfully.')
 
 
 def routes_from_rels(relations):
@@ -243,7 +247,6 @@ def find_nodes(routes):
 def set_offset(routes, current_id, direction):
     if routes[current_id].offset is None:
         routes[current_id].offset = -1
-#    print "Correct order: ", currentId
     if direction == "next":
         for next_id in routes[current_id].nextRoutes:
             if not (next_id in routes):
@@ -355,8 +358,8 @@ def remove_unconnected(routes, nodes):
             connected_grade_one += component
         else:
             disconnected_grade_one += component
-    print time.strftime("%H:%M:%S", time.localtime()), ("  Components found, connection determined,"
-                                                        " now cleaning after removal...")
+
+    logger.info("Components found, connection determined, now cleaning after removal...")
     for r_id in disconnected_grade_one:
         if len(routes[r_id].osmcSigns) <= 1:
             r = routes.pop(r_id)

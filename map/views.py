@@ -4,6 +4,7 @@
 from PIL import Image
 from datetime import datetime
 from simplejson import JSONDecodeError
+import logging
 
 # Django imports
 from django.shortcuts import render_to_response
@@ -23,6 +24,8 @@ from map.altitude import AltitudeProfile, height
 from routing.core import MultiRoute, line_string_to_points, create_gpx, RouteParams
 from routing.models import WeightCollection
 from map.forms import RoutingEvaluationForm
+
+logger = logging.getLogger(__name__)
 
 
 def index(request):
@@ -252,7 +255,7 @@ def findroute(request):
         multiroute = MultiRoute(points, params)
         status = multiroute.find_multiroute()
         geojson = multiroute.geojson()
-        # print "Length:", multiroute.length, status, multiroute.search_index()
+        logger.debug('Length:', multiroute.length, status, multiroute.search_index())
         return HttpResponse(json.dumps(geojson), content_type='application/json')
 
 
@@ -313,8 +316,7 @@ def evaluation(request):
         evaluation_obj.save()
         result['html'] = '<div id="result-dialog">%s</div>' % _('Thank you for your evaluation')
     else:
-        print 'invalid form'
-        print form.errors
+        logger.warn('Invalid evaluation form. Errors: %s' % form.errors)
     return HttpResponse(json.dumps(result), content_type='application/json')
 
 

@@ -8,6 +8,7 @@ from os import remove, system
 import os.path
 import PIL.Image
 from transmeta import TransMeta
+import logging
 
 # Django imports
 from django.db import models, transaction
@@ -25,6 +26,8 @@ zooms = [250000000000, 500000000, 200000000, 100000000, 50000000, 25000000, 1250
 style_path = settings.MAPNIK_STYLES
 db_password = settings.DATABASES['default']['PASSWORD']
 LANG_CODES = [lang_code for lang_code, lang_name in settings.LANGUAGES]
+
+logger = logging.getLogger(__name__)
 
 
 class StylesModel(models.Model):
@@ -128,7 +131,7 @@ class Map(StylesModel):
             doc.freeDoc()
         except Exception as e:
             transaction.rollback()
-            print e
+            logger.exception(e)
             return None
         else:
             transaction.commit()
@@ -294,7 +297,7 @@ class DataSource(models.Model):
         if hasattr(self, self.type):
             return getattr(self, self.type)
         else:
-            print "not specialized"
+            logger.debug('not specialized')
             return self
 
     def get_xml(self):
@@ -1254,7 +1257,7 @@ class LegendItem(models.Model):
             else:
                 lin = LegendItemName(slug=rule.name)
                 lin.save()
-                print 'Created new LegendItemName( slug=%s, id=%s). Fill other fields.' % (lin.slug, lin.id)
+                logger.info('Created new LegendItemName( slug=%s, id=%s). Fill other fields.' % (lin.slug, lin.id))
                 self.legend_item_name = lin
             self.save()
             lr = LegendItemRule()
@@ -1322,8 +1325,8 @@ class LegendItem(models.Model):
         if self.geometry in ('Point', 'LineString', 'Collection'):
             ds = mapnik.GeoJSON(file='styles/fixtures/geojson_%s.json' % self.geometry.lower())
         else:
-            # Raster... special legend creation should be provided
-            print "Raster Layer, legend not created, id: %s, slug: %s" % (self.id, self.legend_item_name.slug)
+            # Raster, special legend creation should be provided
+            logger.warn('Raster Layer, legend not created, id: %s, slug: %s' % (self.id, self.legend_item_name.slug))
             return 1
         s = mapnik.Style()
         for rule in self.rules.all().order_by('legenditemrule__order'):

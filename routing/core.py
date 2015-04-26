@@ -5,6 +5,7 @@ from datetime import datetime
 import libxml2
 import operator
 from copy import deepcopy
+import logging
 
 # Django imports
 from django.db import connections
@@ -15,6 +16,8 @@ from routing.models import Way, WeightCollection, THRESHOLD
 from routing.mathfunctions import total_seconds, hypotenuse
 
 MAP_DB = 'osm_data'
+
+logger = logging.getLogger(__name__)
 
 
 def line_string_to_points(line_string):
@@ -151,7 +154,7 @@ class MultiRoute:
         if self.status == 'init':
             self.status = 'success'
         end = datetime.now()
-        print 'Find MultiRoute duration:', total_seconds(end - start)
+        logger.info('MultiRoute search duration: %s' % total_seconds(end - start))
         return self.status
 
 
@@ -268,17 +271,13 @@ class Route:
         implemented by pgRouting.
         return array of edge IDs of Way objects
         """
-#        start = datetime.now()
         cursor = connections[MAP_DB].cursor()
         sql = self.params.sql_astar_buffer(self._st_buffer())
-#        print self.params.sql_astar
         cursor.execute("SELECT id2 AS edge_id, cost FROM pgr_astar(%s, %s, %s, false, %s)",
                        [sql, source, target, self.params.reverse])
         rows = cursor.fetchall()
         edge_ids = [elem[0] for elem in rows]
         self.cost = sum([elem[1] for elem in rows])
-#        end = datetime.now()
-#        print 'astar finished', total_seconds(end - start)
         return edge_ids
 
     def dijkstra(self, source, target):

@@ -1,15 +1,20 @@
 #!/usr/bin/python
 from mapnik import Image, Map, Projection, Box2d, Coord, load_map, render
 import sys
+import logging
+
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
 
 def center_to_bbox(lat, lon, zoom, imgx, imgy):
     base = 0.000005364418  # longitude range of 1 pixel at zoom 18
-    west = lon - (imgx*base*(2**(18-zoom-1)))
-    east = lon + (imgx*base*(2**(18-zoom-1)))
+    lon_half = imgx * base * (2**(18 - zoom - 1))
+    lat_half = imgy * base * (2**(18 - zoom - 1))
+    west = lon - lon_half
+    east = lon + lon_half
     north = lat + base
     south = lat - base
-    print "range: ", (west, lat - (imgy*base*(2**(18-zoom-1))), east, lat + (imgy*base*(2**(18-zoom-1))))
+    logging.info("range: bottomleft(%s, %s), topright(%s, %s)" % (west, lat - lat_half, east, lat + lat_half))
     return west, south, east, north
 
 if __name__ == "__main__":

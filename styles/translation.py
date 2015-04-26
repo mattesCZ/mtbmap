@@ -2,6 +2,7 @@
 
 # Global imports
 import csv
+import logging
 
 # Django imports
 from django.conf import settings
@@ -10,6 +11,8 @@ from django.conf import settings
 from styles.models import LegendItemName
 
 LANG_CODES = [code for code, name in settings.LANGUAGES]
+
+logger = logging.getLogger(__name__)
 
 
 def dump_translation_file(lang_code):
@@ -32,9 +35,9 @@ def load_translation_file(lang_code):
                     if getattr(lin, name_field) != new_value:
                         setattr(lin, name_field, new_value)
                         lin.save()
-                        print 'Updating LegendItemName(slug=%s), %s = %s' % (row_dict['slug'], name_field, new_value)
+                        logger.info('Updating LegendItemName(slug=%s), %s = %s' % (row_dict['slug'], name_field, new_value))
                 except LegendItemName.DoesNotExist:
-                    print 'Slug %s not found in the db, but on line %i in the input file.' % (row_dict['slug'], line)
+                    logger.warn('Slug %s not found in the db, but on line %i in the input file.' % (row_dict['slug'], line), exc_info=True)
             line += 1
 
 
@@ -61,9 +64,9 @@ def load_default_names(filename='styles/fixtures/default_names.csv'):
                             changed[key] = value
                 if changed != {}:
                     lins.update(**changed)
-                    print 'Updating LegendItemName(slug=%s): %s' % (slug, changed)
+                    logger.info('Updating LegendItemName(slug=%s): %s' % (slug, changed))
             else:
-                print 'Creating LegendItemName(slug=%s)' % slug
+                logger.info('Creating LegendItemName(slug=%s)' % slug)
                 data = {}
                 for key, value in row_dict.iteritems():
                     if value:

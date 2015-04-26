@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
+import logging
+
 from .osmcsymbol import OsmcSymbol
+
+logger = logging.getLogger(__name__)
 
 keys = ['network', 'osmc:symbol', 'mtb:scale', 'mtb:scale:uphill']
 
@@ -81,7 +85,7 @@ class Relation:
         else:
             return False
         symbol = self.rawTags[self.rawTags.index('kct_' + color)+1]
-        if not symbol in kct_osmc_pairs:
+        if symbol not in kct_osmc_pairs:
             symbol = 'yes'
         new_osmc_value = color + ':white:' + color + '_' + kct_osmc_pairs[symbol]
         self.osmcSymbol = new_osmc_value
@@ -96,5 +100,5 @@ class Relation:
                     member_id = int(member.lstrip('w'))
                     parts.append(member_id)
                 except ValueError:
-                    print 'Member ' + member + ' starts with "w", but it is not a way!'
+                    logger.debug('Found relation member starts with "w", but it is not a way: %s' % member)
         return parts

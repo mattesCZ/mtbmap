@@ -3,6 +3,7 @@
 # Global imports
 from datetime import datetime
 import re
+import logging
 
 # Django imports
 from django.db import connections, transaction
@@ -16,6 +17,8 @@ MAP_DB = 'osm_data'
 
 sac_scale_values = ['hiking', 'mountain_hiking', 'demanding_mountain_hiking',
                     'alpine_hiking', 'demanding_alpine_hiking', 'difficult_alpine_hiking']
+
+logger = logging.getLogger(__name__)
 
 
 def copy_ways():
@@ -35,9 +38,11 @@ def copy_ways():
     cursor.execute(insert)
     transaction.commit_unless_managed(using=MAP_DB)
     count = Way.objects.all().count()
-    print count, " ways inserted successfully"
-    print 'Total time:', total_seconds(datetime.now()-start)
-    print 'Run python vacuum_full.py now'
+    logger.info('%i ways inserted successfully' % count)
+    logger.info('Total time: %s' % total_seconds(datetime.now()-start))
+
+    # TODO should enable running VACUUM automatically
+    logger.info('Run VACUUM FULL to speed up other processing.')
 
 
 def add_attributes():
@@ -49,9 +54,11 @@ def add_attributes():
     _add_line_attributes()
     _add_polygon_attributes()
     _add_routes_attributes()
-    print 'All attributes updated successfully.'
-    print 'Total time:', total_seconds(datetime.now()-start)
-    print 'Run python vacuum_full.py again'
+    logger.info('All attributes updated successfully.')
+    logger.info('Total time: %s' % total_seconds(datetime.now()-start))
+
+    # TODO should enable running VACUUM automatically
+    logger.info('Run VACUUM FULL to speed up routing.')
 
 
 def _row_to_arguments(row):
@@ -120,10 +127,10 @@ def _add_line_attributes():
             updated += Way.objects.filter(osm_id=osm_id).update(**update_args)
         evaluated += 100
         if not evaluated % 1000:
-            print evaluated, 'evaluated ways...'
+            logger.info('%i evaluated ways...' % evaluated)
     cursor.close()
-    print updated, 'ways (lines) updated successfully,', evaluated, 'lines evaluated.'
-    print 'Time:', total_seconds(datetime.now()-start)
+    logger.info('%i ways (lines) updated successfully, %i lines evaluated.' % (updated, evaluated))
+    logger.info('Time: %s' % total_seconds(datetime.now()-start))
 
 
 def _add_polygon_attributes():
@@ -136,7 +143,7 @@ def _add_polygon_attributes():
     updated = 0
     # highway areas are still without attributes
     null_ways_osm_ids = Way.objects.filter(highway__isnull=True).distinct('osm_id').values_list('osm_id', flat=True)
-    print len(null_ways_osm_ids), 'IDs to be evaluated...'
+    logger.info('%i IDs to be evaluated...' % len(null_ways_osm_ids))
     for osm_id in null_ways_osm_ids:
         query = """SELECT osm_id, tracktype, oneway, access, bicycle, foot, incline, width, surface, smoothness,
             maxspeed, "mtb:scale" as mtbscale, "mtb:scale:uphill" as mtbscaleuphill, sac_scale, network, highway
@@ -149,10 +156,10 @@ def _add_polygon_attributes():
             updated += Way.objects.filter(osm_id=osm_id).update(**update_args)
         evaluated += 1
         if not evaluated % 1000:
-            print evaluated, 'evaluated ways...'
+            logger.info('%i evaluated ways...' % evaluated)
     cursor.close()
-    print updated, 'ways (areas) updated successfully'
-    print 'Time:', total_seconds(datetime.now()-start)
+    logger.info('%i ways (areas) updated successfully.' % updated)
+    logger.info('Time: %s' % total_seconds(datetime.now()-start))
 
 
 def _add_routes_attributes():
@@ -185,9 +192,9 @@ def _add_routes_attributes():
                 updated += Way.objects.filter(osm_id=osm_id).update(mtbscale=mtbscale)
         evaluated += 100
         if not evaluated % 1000:
-            print evaluated, 'evaluated records:'
-    print updated, 'osmc attrs updated successfully'
-    print 'Time:', total_seconds(datetime.now()-start)
+            logger.info('%i evaluated records...' % evaluated)
+    logger.info('%i osmc attrs updated successfully.' % updated)
+    logger.info('Time: %s' % total_seconds(datetime.now()-start))
 
 
 def _to_float(value):
@@ -204,17 +211,17 @@ def _to_float(value):
             r = float(cleansed)
             return r
         except ValueError:
-            print value
+            logger.debug('Unexpected type of value. Cannot be cleansed and parsed to float: %s' % value, exc_info=True)
             return None
 
 
 def vacuum(conn):
     query = "VACUUM FULL"
-    print 'running %s' % query
+    logger.info('running %s' % query)
     old_isolation_level = conn.isolation_level
     conn.isolation_level = 0
     cursor = conn.cursor()
     cursor.execute(query)
     cursor.close()
     conn.isolation_level = old_isolation_level
-    print '%s finished successfully' % query
+    logger.info('%s finished successfully' % query)
