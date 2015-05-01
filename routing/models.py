@@ -172,7 +172,7 @@ class Way(geomodels.Model):
         if self.highway == 'temp':
             # Rare case, probably impossible to find correct route
             # Temporary Way should be deleted
-            logger.warn('Returning temp weight: Length: %s, ID: %i' % (self.length, self.id))
+            logger.warn('Returning temp weight: Length: %s, ID: %s' % (self.length, self.id))
             return THRESHOLD
         preferences = {'highway': MIN_WEIGHT, 'tracktype': MIN_WEIGHT, 'sac_scale': MIN_WEIGHT,
                        'mtbscale': MIN_WEIGHT, 'surface': MIN_WEIGHT, 'osmc': MIN_WEIGHT}
