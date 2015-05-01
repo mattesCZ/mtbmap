@@ -5,9 +5,9 @@
 
 killprocess(){
 	PNUM=`pgrep -f "$1"`
-	if [ PNUM -gt 0 ];
+	if [ $PNUM -gt 0 ];
 	then
-		kill -9 $1
+		kill $PNUM
 	fi
 	return 0
 }
