@@ -15,5 +15,5 @@ su ${MTBMAP_USER} -c "bash ${MTBMAP_DIR}/osm_data_processing/update_rendering_da
 su ${TIREX_USER} -c "bash ${MTBMAP_DIR}/osm_data_processing/restart_tirex.sh" &&
 
 # reload apache
-apachectl configtest &&
+apache2ctl configtest &&
 service apache2 reload
