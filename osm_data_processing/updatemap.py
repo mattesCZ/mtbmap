@@ -88,7 +88,7 @@ def updatemap():
     else:
         logger.info('OSM data successfully loaded to database, running relations2lines.py...')
     # relations2lines
-    run(database, user, str(port))
+    run(database, user, host, str(port))
 
     # return source file creation date
     return date

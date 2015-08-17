@@ -11,12 +11,12 @@ from .route import Route
 logger = logging.getLogger(__name__)
 
 
-def run(db_name, user, port):
+def run(db_name, user, host, port):
     logger.info('Relations2lines script started')
     logger.info('  Searching RelationIDs and Lines in planet_osm_line...')
     # Create connection to DB server.
-    connection = connect("dbname='{db_name}' user='{user}' password='' port='{port}'"
-                         .format(db_name=db_name, user=user, port=port))
+    connection = connect("dbname='{db_name}' user='{user}' password='' host='{host}' port='{port}'"
+                         .format(db_name=db_name, user=user, host=host, port=port))
     relation_cursor = connection.cursor()
     auxiliary_cursor = connection.cursor()
     way_cursor = connection.cursor()
