@@ -30,9 +30,9 @@ def download_file(source, data_dir):
     return os.system('wget -nv -t 3 -N %s' % source)
 
 
-def load_db(osm2pgsql, database, filename, style, cache, port):
-    load_command = ('%s -s -d %s %s -S %s -C %s -P %s --number-processes 8 '
-                    % (osm2pgsql, database, filename, style, cache, port))
+def load_db(osm2pgsql, database, filename, style, cache, host, port):
+    load_command = ('%s -s -d %s %s -S %s -C %s -H %s -P %s --number-processes 8 '
+                    % (osm2pgsql, database, filename, style, cache, host, port))
     return os.system(load_command)
 
 
@@ -42,6 +42,7 @@ def updatemap():
     database = settings.DATABASES['osm_data']['NAME']
     logger.info('database name set to : %s' % database)
     user = settings.DATABASES['osm_data']['USER']
+    host = settings.DATABASES['osm_data']['HOST']
     port = settings.DATABASES['osm_data']['PORT']
     style = settings.OSM2PGSQL_STYLE
     exists('OSM2PGSQL_STYLE', style)
@@ -82,7 +83,7 @@ def updatemap():
     date = datetime.date.fromtimestamp(datetime_in_sec)
 
     # osm2pgsql
-    if load_db(osm2pgsql, database, data_dir + source_file, style, cache, port) != 0:
+    if load_db(osm2pgsql, database, data_dir + source_file, style, cache, host, port) != 0:
         raise UpdateError('An osm2pgsql error occurred. Database was probably cleaned.')
     else:
         logger.info('OSM data successfully loaded to database, running relations2lines.py...')
