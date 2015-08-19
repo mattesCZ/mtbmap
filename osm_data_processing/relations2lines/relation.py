@@ -54,15 +54,17 @@ class Relation:
             self.parse_tags()
 
     def parse_tags(self):
-        if 'network' in self.rawTags:
-            self.network = self.rawTags[self.rawTags.index('network')+1]
+        tags = [tag for i, tag in enumerate(self.rawTags) if not i % 2]
+        values = [tag for i, tag in enumerate(self.rawTags) if i % 2]
+        if 'network' in tags:
+            self.network = values[tags.index('network')]
             self.network = self.network[:3]
-        if 'mtb:scale' in self.rawTags:
-            self.mtbScale = self.rawTags[self.rawTags.index('mtb:scale')+1].replace('\\', 'backslash')
-        if 'mtb:scale:uphill' in self.rawTags:
-            self.mtbUphill = self.rawTags[self.rawTags.index('mtb:scale:uphill')+1].replace('\\', 'backslash')
-        if 'osmc:symbol' in self.rawTags:
-            osmc_string = self.rawTags[self.rawTags.index('osmc:symbol')+1].replace('\\', 'backslash')
+        if 'mtb:scale' in tags:
+            self.mtbScale = values[tags.index('mtb:scale')].replace('\\', 'backslash')
+        if 'mtb:scale:uphill' in tags:
+            self.mtbUphill = values[tags.index('mtb:scale:uphill')].replace('\\', 'backslash')
+        if 'osmc:symbol' in tags:
+            osmc_string = values[tags.index('osmc:symbol')].replace('\\', 'backslash')
             symbol = OsmcSymbol(osmc_string)
             if symbol.is_accepted():
                 self.osmcSymbol = symbol.get_string_value(3)
