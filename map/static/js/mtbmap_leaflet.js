@@ -3,6 +3,13 @@
 MTB.map.addControl(L.control.zoom({
     position:'topright'
 }));
+
+// quick and dirty addition of waymarkedtrails overlay
+MTB.overlayLayers.WayMarkedTrailsHiking = L.tileLayer('http://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: 'waymarkedtrails.org'
+}).addTo(MTB.map);
+
 MTB.layersControl = new L.Control.Layers(MTB.baseLayers, MTB.overlayLayers);
 MTB.map.addControl(MTB.layersControl);
 // bottomright position, first is the lowest
