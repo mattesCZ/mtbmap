@@ -9,6 +9,10 @@ mtbmap/settings/secrets.json
 ################
 *.local
 
+# compiled source #
+###################
+*.pyc
+
 # data files #
 ##############
 data/osm2po
