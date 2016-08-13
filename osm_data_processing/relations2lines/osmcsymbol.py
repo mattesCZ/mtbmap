@@ -33,9 +33,16 @@ class OsmcSymbol:
                     self.parts[2] = '_'.join(fg_parts)
                 self.fgColor = fg_parts[0]
                 self.symbol = fg_parts[1]
+                if self.fgColor != self.wayColor and self.bgColor == self.wayColor:
+                    # treat symbols like red:red:white_bar the same way as red:white:red_bar
+                    self.bgColor = self.fgColor
+                    self.fgColor = self.wayColor
             else:
                 if len(fg_parts) == 1:
                     self.symbol = fg_parts[0]
+
+                    # treat symbols like red:white:dot like red:white:red_dot
+                    self.fgColor = self.wayColor
         if len(self.parts) >= 4:
             self.text = ':'.join(self.parts[3:])
 
@@ -45,8 +52,11 @@ class OsmcSymbol:
                 and (self.fgColor == self.wayColor)
                 and (self.symbol in acceptedSymbols))
 
-    def get_string_value(self, max_number_of_parts=3):
-        return ':'.join(self.parts[0:max_number_of_parts])
+    def get_string_value(self):
+        if len(self.parts) < 3:
+            return ':'.join(self.parts)
+
+        return ':'.join([self.wayColor, self.bgColor, self.fgColor + '_' + self.symbol])
 
     def __lt__(self, other):
         if self.is_accepted() and other.is_accepted():
