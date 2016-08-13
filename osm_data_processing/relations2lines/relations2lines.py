@@ -91,7 +91,7 @@ def run(db_name, user, host, port):
                              " FROM planet_osm_line WHERE osm_id = 0")
     auxiliary_cursor.execute("DELETE FROM geometry_columns WHERE f_table_name = 'planet_osm_routes2'")
     auxiliary_cursor.execute("INSERT INTO geometry_columns VALUES ('', 'public', 'planet_osm_routes2'," +
-                             " 'way', 2, 900913, 'LINESTRING')")
+                             " 'way', 2, 3857, 'LINESTRING')")
 
     # Add important information to each route
     for r in list_of_routes:
@@ -319,7 +319,7 @@ def insert_danger_nodes(nodes, cursor):
             cursor.execute("select lat, lon from planet_osm_nodes where id=%s" % dnID)
             node_lat_lon = cursor.fetchone()
             if node_lat_lon:
-                geometry_command = "ST_SetSRID(ST_Point( %s, %s),900913) " % (str(node_lat_lon[1]/100.0), str(node_lat_lon[0]/100.0))
+                geometry_command = "ST_SetSRID(ST_Point( %s, %s),3857) " % (str(node_lat_lon[1]/100.0), str(node_lat_lon[0]/100.0))
                 point_values = str(dnID) + ", " + geometry_command + ", " + str(nodes[dnID])
                 cursor.execute("INSERT INTO planet_osm_point (osm_id, way, warning) VALUES (%s)" % point_values)
 
