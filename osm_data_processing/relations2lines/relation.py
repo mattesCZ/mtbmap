@@ -54,17 +54,17 @@ class Relation:
             self.parse_tags()
 
     def parse_tags(self):
-        tags = [tag for i, tag in enumerate(self.rawTags) if not i % 2]
-        values = [tag for i, tag in enumerate(self.rawTags) if i % 2]
+        tags = dict(zip(self.rawTags[::2], self.rawTags[1::2]))
+        cleanse_func = lambda x: tags[x].replace('\\', 'backslash')
         if 'network' in tags:
-            self.network = values[tags.index('network')]
+            self.network = tags['network']
             self.network = self.network[:3]
         if 'mtb:scale' in tags:
-            self.mtbScale = values[tags.index('mtb:scale')].replace('\\', 'backslash')
+            self.mtbScale = cleanse_func('mtb:scale')
         if 'mtb:scale:uphill' in tags:
-            self.mtbUphill = values[tags.index('mtb:scale:uphill')].replace('\\', 'backslash')
+            self.mtbUphill = cleanse_func('mtb:scale:uphill')
         if 'osmc:symbol' in tags:
-            osmc_string = values[tags.index('osmc:symbol')].replace('\\', 'backslash')
+            osmc_string = cleanse_func('osmc:symbol')
             symbol = OsmcSymbol(osmc_string)
             if symbol.is_accepted():
                 self.osmcSymbol = symbol.get_string_value(3)
