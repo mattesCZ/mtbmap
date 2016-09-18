@@ -67,7 +67,7 @@ class Relation:
             osmc_string = cleanse_func('osmc:symbol')
             symbol = OsmcSymbol(osmc_string)
             if symbol.is_accepted():
-                self.osmcSymbol = symbol.get_string_value(3)
+                self.osmcSymbol = symbol.get_string_value()
             else:
                 self.osmcSymbol = None
         elif self.parse_kct():
