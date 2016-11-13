@@ -31,8 +31,8 @@ def download_file(source, data_dir):
 
 
 def load_db(osm2pgsql, database, filename, style, cache, host, port):
-    load_command = ('%s -s -d %s %s -S %s -C %s -H %s -P %s --number-processes 8 '
-                    % (osm2pgsql, database, filename, style, cache, host, port))
+    load_command = ('%s -s -d %s %s -S %s -C %s -H %s -P %s --number-processes 8 --flat-nodes %s '
+                    % (osm2pgsql, database, filename, style, cache, host, port, os.path.join(settings.OSM_DATADIR, 'flat-nodes.cache')))
     return os.system(load_command)
 
 
