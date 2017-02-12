@@ -12,5 +12,4 @@ urlpatterns = patterns('map.views',
     (r'^map/findroute/$', 'findroute'),
     (r'^map/gettemplate/$', 'gettemplate'),
     (r'^map/getjsondata/$', 'getjsondata'),
-    (r'^map/evaluation/$', 'evaluation'),
 )

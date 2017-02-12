@@ -136,10 +136,6 @@ msgstr "Nezadali jste žádný bod."
 msgid "No route parameters posted."
 msgstr "Nebyly zadány žádné parametry trasy."
 
-#: views.py:314
-msgid "Thank you for your evaluation"
-msgstr "Děkujeme za vaše hodnocení"
-
 #: templates/404.html:4 templates/map/base.html:8
 msgid "MTB map of Europe"
 msgstr "MTB mapa Evropy"
@@ -442,30 +438,6 @@ msgstr "Změnit parametry"
 #: templates/map/routes.html:65
 msgid "New search"
 msgstr "Nové hledání"
-
-#: templates/map/routes.html:67
-msgid "Evaluate routing"
-msgstr "Ohodnotit vyhledávání"
-
-#: templates/map/routes.html:68
-msgid "Evaluation of route"
-msgstr "Ohodnocení vyhledané trasy"
-
-#: templates/map/routes.html:72
-msgid ""
-"\n"
-"                            Please, evaluate the result of routing. Add a "
-"comment if offered\n"
-"                            choices are not sufficient. Thank you.\n"
-"                            "
-msgstr ""
-"\n"
-"                            Ohodnoťte, prosím, jak vám výsledek vyhledávání "
-"tras vyhovuje.\n"
-"                            Doplňte komentář, pokud nabízené možnosti nejsou "
-"dostatečné.\n"
-"                            Děkujeme.\n"
-"                            "
 
 #: templates/map/routes.html:85
 msgid "Send"

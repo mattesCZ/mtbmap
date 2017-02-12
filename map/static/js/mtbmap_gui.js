@@ -104,63 +104,6 @@ jQuery(document).ready(function() {
         var params = jQuery('#routes-params').serializeArray();
         jQuery('.params').val(JSON.stringify(params));
     });
-    var evaluationFormDialog = jQuery('#evaluation-dialog-form'),
-        evaluationFormSend = jQuery('#send-evaluation-form');
-    evaluationFormDialog.dialog({
-        autoOpen: false,
-        modal: false,
-        width: 'auto',
-        buttons: {
-            'Odeslat': function(event) {
-                var form = evaluationFormSend,
-                    thisDialog = jQuery(this);
-                if (form.valid) {
-                    MTB.UTILS.AJAX.setupPost(event);
-                    var latLngs = MTB.activeLine.getLatLngs(),
-                        params = jQuery('#routes-params').serializeArray();
-                    jQuery('#id_params').val(JSON.stringify(params));
-                    jQuery('#id_linestring').val('[' + latLngs + ']');
-                    form = evaluationFormSend.serializeArray();
-                    jQuery.post('/map/evaluation/', {
-                        'form': JSON.stringify(form)
-                    }, function(data) {
-                        if (data.valid) {
-                            evaluationFormDialog.html(data.html);
-                            thisDialog.dialog('close');
-                            var thanksDialog = jQuery(data.html);
-                            thanksDialog.dialog({
-                                title: MTB.LANG.thanks,
-                                show: 'clip',
-                                hide: 'clip',
-                                buttons: {
-                                    'Close': function() {
-                                        jQuery(this).dialog('close');
-                                    }
-                                }
-                            });
-                        } else {
-                            evaluationFormDialog.find('.error-message').html(MTB.LANG.correctEntries);
-                        }
-                    });
-                }
-            },
-            'Storno': function() {
-                jQuery(this).dialog('close');
-            }
-        }
-    });
-    evaluationFormSend.validate({
-        rules: {
-            'comment': 'required',
-            'email': {
-                required: true,
-                email: true
-            }
-        }
-    });
-    jQuery('.open-evaluation-dialog').button().click(function() {
-        jQuery('#evaluation-dialog-form').dialog('open');
-    });
     if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
         jQuery('#params-buttons').hide();
     }
@@ -219,14 +162,6 @@ MTB.GUI.setPanelsMaxHeight = function() {
 MTB.GUI.getRoute = function(e) {
     MTB.UTILS.AJAX.setupPost(e);
     MTB.activeLine.getRoute();
-};
-
-MTB.GUI.sendEvaluation = function(e) {
-    var form = jQuery('#send-evaluation-form');
-    if (form.valid) {
-        MTB.UTILS.AJAX.setupPost(e);
-        MTB.activeLine.sendEvaluation();
-    }
 };
 
 MTB.GUI.handleGPX = function(e) {

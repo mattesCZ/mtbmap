@@ -76,37 +76,3 @@ class GeojsonLayer(models.Model):
             "features": features
         }
         return json.dumps(feature_collection)
-
-
-class RoutingEvaluation(models.Model):
-    EVALUATION_CHOICES = (
-        (1, _('Perfect')),
-        (2, _('Good')),
-        (3, _('Usable')),
-        (4, _('Bad')),
-        (5, _('Unusable')),
-    )
-    SPEED_CHOICES = (
-        (1, _('Does not bother')),
-        (2, _('Slow, but it is worth waiting')),
-        (3, _('Slow, unusable')),
-    )
-    QUALITY_CHOICES = (
-        (1, _('Great')),
-        (2, _('Good, but I want more parameters')),
-        (3, _('Good, but sometimes on wrong tracks')),
-        (4, _('Bad, route is completely unusable')),
-        (5, _("Bad, I don't understand it at all")),
-    )
-    params = models.TextField()
-    linestring = models.TextField()
-    timestamp = models.DateTimeField()
-    general_evaluation = models.PositiveIntegerField(verbose_name=_('Overall rating'),
-                                                     choices=EVALUATION_CHOICES, default=3)
-    speed = models.PositiveIntegerField(verbose_name=_('Speed'), choices=SPEED_CHOICES, default=2)
-    quality = models.PositiveIntegerField(verbose_name=_('Route quality'), choices=QUALITY_CHOICES, default=1)
-    comment = models.TextField(verbose_name=_('Comment'), null=True, blank=True)
-    email = models.EmailField(null=True, blank=True)
-
-    def __unicode__(self):
-        return u"%s, From: %s, Comment: '%s')" % (self.timestamp.date(), self.email, self.comment[:40])

@@ -8,4 +8,3 @@ from map.models import *
 
 admin.site.register(TileLayer)
 admin.site.register(GeojsonLayer)
-admin.site.register(RoutingEvaluation)

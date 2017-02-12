@@ -268,23 +268,6 @@ MTB.RoutingLine = MTB.SimpleLine.extend({
     getBounds: function() {
         return L.polyline(this.routeLatLngs(), {}).getBounds();
     },
-    sendEvaluation: function() {
-        var latLngs = this.getLatLngs(),
-            params = jQuery('#routes-params').serializeArray();
-        jQuery('#id_params').val(JSON.stringify(params));
-        jQuery('#id_linestring').val('[' + latLngs + ']');
-        var form = jQuery('#send-evaluation-form').serializeArray();
-        jQuery.post('/map/evaluation/', {
-            'form': JSON.stringify(form)
-        }, function(data) {
-            if (data.valid) {
-                form[0].reset();
-                alert('Thanks');
-            } else {
-                alert('Some parameters are not valid');
-            }
-        });
-    },
     getRoute: function() {
         var _this = this;
         this.routesGroup.clearLayers();

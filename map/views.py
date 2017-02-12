@@ -2,7 +2,6 @@
 
 # Global imports
 from PIL import Image
-from datetime import datetime
 from simplejson import JSONDecodeError
 import logging
 
@@ -23,7 +22,6 @@ from map.printing import name_image, map_image, legend_image, scalebar_image, im
 from map.altitude import AltitudeProfile, height
 from routing.core import MultiRoute, line_string_to_points, create_gpx, RouteParams
 from routing.models import WeightCollection
-from map.forms import RoutingEvaluationForm
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +31,6 @@ def index(request):
     Main map page.
     """
     weight_collections = WeightCollection.objects.all()
-    evaluation_form = RoutingEvaluationForm()
     default_tile_layer = TileLayer.objects.get(slug='mtb-map')
     tile_layers = TileLayer.objects.all()
     geojson_layers = GeojsonLayer.objects.all()
@@ -41,8 +38,7 @@ def index(request):
                                                'zoomRange': range(19),
                                                'tile_layers': tile_layers,
                                                'geojson_layers': geojson_layers,
-                                               'weight_collections': weight_collections,
-                                               'evaluation_form': evaluation_form},
+                                               'weight_collections': weight_collections},
                               context_instance=RequestContext(request))
 
 
@@ -296,28 +292,6 @@ def getjsondata(request):
         return HttpResponse(None, content_type='application/json')
     geojson = layer.geojson_feature_collection(bounds)
     return HttpResponse(json.dumps(geojson), content_type='application/json')
-
-
-def evaluation(request):
-    """
-    Parse evaluation form.
-    """
-    json_form = json.loads(request.POST['form'])
-    form_dict = {}
-    for item in json_form:
-        form_dict[item['name']] = item['value']
-    form = RoutingEvaluationForm(form_dict)
-    result = {
-        'valid': form.is_valid()
-    }
-    if form.is_valid():
-        evaluation_obj = form.save(commit=False)
-        evaluation_obj.timestamp = datetime.now()
-        evaluation_obj.save()
-        result['html'] = '<div id="result-dialog">%s</div>' % _('Thank you for your evaluation')
-    else:
-        logger.warn('Invalid evaluation form. Errors: %s' % form.errors)
-    return HttpResponse(json.dumps(result), content_type='application/json')
 
 
 def set_language(request, lang):

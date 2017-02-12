@@ -63,27 +63,6 @@
                 <br>
                 <button class="back-to-settings">{% trans "Change parameters" %}</button>
                 <button class="reset-line">{% trans "New search" %}</button>
-                <br>
-                <button class="open-evaluation-dialog">{% trans "Evaluate routing" %}</button>
-                <div id="evaluation-dialog-form" title="{% trans "Evaluation of route" %}">
-                    <form id="send-evaluation-form">
-                        {% csrf_token %}
-                        <div>
-                            {% blocktrans %}
-                            Please, evaluate the result of routing. Add a comment if offered
-                            choices are not sufficient. Thank you.
-                            {% endblocktrans %}
-                        </div>
-                        <table>
-                        {{ evaluation_form.as_table }}
-                        </table>
-                    </form>
-                    <div class="error-message"></div>
-                </div>
-                <form method="POST" onsubmit="MTB.GUI.sendEvaluation(event)" style="display: none">
-                    {% csrf_token %}
-                    <input id="send-evaluation-button" type="submit" value="{% trans "Send" %}">
-                </form>
             </div>
             <div class="loading"></div>
         </article>
