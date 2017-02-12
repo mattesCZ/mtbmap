@@ -66,11 +66,17 @@ MTB.overlayLayers["{{ geojson_layer.slug }}"].addTo(MTB.map);
         </div>
         <nav>
             <ul id="main-tabs-nav">
-                <li><a href="#tab-home">{% trans "About" %}</a></li>
-                <li><a href="#tab-legend">{% trans "Legend" %}</a></li>
-                <li><a href="#tab-routes">{% trans "Routes" %}</a></li>
-                <li><a href="#tab-places">{% trans "Places" %}</a></li>
-                <li><a href="#tab-export">{% trans "Export" %}</a></li>
+              <li>
+                <a href="#tab-home">{% trans "About" %}</a>
+              </li><li>
+                <a href="#tab-legend">{% trans "Legend" %}</a>
+              </li><li>
+                <a href="#tab-routes">{% trans "Routes" %}</a>
+              </li><li>
+                <a href="#tab-places">{% trans "Places" %}</a>
+              </li><li>
+                <a href="#tab-export">{% trans "Export" %}</a>
+              </li>
             </ul>
             <button id="close-main-tab-panel" style="display: none" >{% trans "Close" %}</button>
         </nav>
@@ -80,7 +86,7 @@ MTB.overlayLayers["{{ geojson_layer.slug }}"].addTo(MTB.map);
             {% include "map/home.html" %}
         </article>
         <article id="tab-legend" class="main-tab-panel"></article>
-        <article id="tab-routes" class="main-tab-panel"> 
+        <article id="tab-routes" class="main-tab-panel">
             {% include "map/routes.html" %}
         </article>
         <article id="tab-places" class="main-tab-panel">

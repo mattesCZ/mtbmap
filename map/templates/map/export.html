@@ -15,7 +15,7 @@
     <input type="hidden" name="export-bounds" id="export-bounds" value="">
     <button id="set-bounds-button">{% trans "Set per current view" %}</button>
 
-    <hr>
+    <div class="hr"></div>
     <label for="export-zoom-select">{% trans "Zoom level" %}</label>
     <input type="hidden" name="export-zoom" id="export-zoom" value="">
     <select id="export-zoom-select" onchange="MTB.EXPORT.recalculateSize()">
@@ -29,7 +29,7 @@
     <br>
     <label for="export-height">{% trans "Height" %}</label>
     <input class="export-text" type="text" name="export-height" id="export-height" value="" size="5" onchange="MTB.EXPORT.recalculateBounds()">
-    <hr>
+    <div class="hr"></div>
     {% trans "Map elements" %}:<br>
     <label for="map-title">{% trans "Name" %}</label><input class="export-text" type="text" name="map-title" id="map-title" size="15" value="">
     <br>
@@ -38,7 +38,7 @@
     <label for="export-imprint">{% trans "Impressum" %}</label><input id="export-imprint" type="checkbox" checked="checked" value="" name="export-imprint" >
     <label for="export-line-check">{% trans "Display route" %}</label><input id="export-line-check" type="checkbox" value="" name="export-line-check" >
     <input type="hidden" name="export-line" id="export-line" value="">
-    <hr>
+    <div class="hr"></div>
     <input type="hidden" name="export-params" id="export-params" value="">
     <label for="export-highres">{% trans "Resolution for print" %}</label><input id="export-highres" type="checkbox" checked="yes" value="" name="export-highres" onclick="MTB.EXPORT.recalculateSize()" >
     <br>

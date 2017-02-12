@@ -153,7 +153,7 @@ MTB.GUI.updateTemplate = function(templateId) {
 };
 
 MTB.GUI.setPanelsMaxHeight = function() {
-    var maxheight = jQuery('#map').height() - (jQuery('#footer').height() + 85);
+    var maxheight = jQuery('#map').height() - (jQuery('#footer').height() + 110);
     jQuery('.main-tab-panel').css('max-height', maxheight);
     jQuery('.subtab-panel').css('max-height', maxheight - 40);
 };
