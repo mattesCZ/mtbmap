@@ -33,12 +33,17 @@ jQuery(document).ready(function() {
             } else if (MTB.activePanel === 'export') {
                 MTB.EXPORT.setCurrentBounds();
             }
+            $closeButton = jQuery('#close-main-tab-panel');
+            $closeButton.removeClass('second-tabs');
             if (MTB.activePanel.length > 0) {
                 if (MTB.activePanel !== 'legend') {
-                    jQuery('#close-main-tab-panel').show();
+                    $closeButton.show();
+                }
+                if (MTB.activePanel === 'routes') {
+                    $closeButton.addClass('second-tabs');
                 }
             } else {
-                jQuery('#close-main-tab-panel').hide();
+                $closeButton.hide();
             }
         }
     });

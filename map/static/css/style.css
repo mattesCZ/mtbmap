@@ -83,7 +83,7 @@ a:hover {
     text-decoration: underline;
 }
 .hr {
-    background: #444;
+    background: #ddd;
     width: 90%;
     height: 1px;
     margin: 8px 5%;
@@ -97,7 +97,7 @@ a:hover {
     padding: 0 5px;
 }
 .export-text { /* export input text fields */
-    margin: 2px;
+    margin: 4px;
 }
 .results-list { /* results of places search */
     text-align: left;
@@ -144,19 +144,31 @@ a:hover {
 }
 #main-tabs-nav {
     background: #f0f0f0;
-    padding-top: 8px;
+    border-radius: 0 0 8px 8px;
+    border-top: 1px solid #ddd;
+    box-sizing: border-box;
+    height: 30px;
+    margin-top: 8px;
+    padding: 0;
     text-align: center;
-    height: 29px;
 }
 #main-tabs-nav li {
-    display: inline-block;
-    float: none;
+    background: none;
     margin: 0;
-    top: 0;
+    width: 20%;
+}
+#main-tabs-nav li.ui-state-active {
+    background: #fefefe;
+}
+#main-tabs-nav li a,
+#routes-tabs li a {
+    box-sizing: border-box;
+    width: 100%;
 }
 .ui-tabs-anchor,
 #main-tabs-nav a:focus {
     outline: none;
+    background: none;
 }
 #main-tabs .ui-button.highlight {
     border-color: rgba(0,0,0,0.25);
@@ -182,12 +194,18 @@ a:hover {
   padding-top: 8px;
 }
 #routes-tabs ul {
-  background: #e4e4e4;
-  padding-top: .2em;
+  background: #f0f0f0;
+  border-top: 1px solid #ddd;
+  padding: 0;
   margin-top: -10px;
 }
 #routes-tabs li {
+  background: none;
   margin: 0;
+  width: 33.33%;
+}
+#routes-tabs li.ui-state-active {
+  background: #fefefe;
 }
 .file-upload {
     position: relative;
@@ -214,9 +232,13 @@ a:hover {
     top: 70px;
     right: 14px;
     z-index: 10;
-    height: 1.3em;
-    width: 1.3em;
+    height: 20px;
+    width: 22px;
 }
+#close-main-tab-panel.second-tabs {
+    top: 100px;
+}
+
 #tab-export input[type="checkbox"] {
     margin-right: 12px;
 }
