@@ -154,6 +154,7 @@ a:hover {
 }
 #main-tabs-nav li {
     background: none;
+    height: 29px;
     margin: 0;
     width: 20%;
 }
