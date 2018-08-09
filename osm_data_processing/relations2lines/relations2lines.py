@@ -54,9 +54,7 @@ def run(db_name, user, host, port):
                 if not (row[0] in relation_ids):
                     relation_ids.append(-row[0])
             else:
-                # 0: osm_id; 1: mtb:scale; 2: mtb:scale:uphill; 3: network; 4: "osmc:symbol"
-                line_info = (";".join([str(row[0]), row[1], row[2], row[4]]))
-                relations.append(Relation(line_info, 'line'))
+                relations.append(Relation(row, 'line'))
 
     logger.info('RelationIDs and Lines found.')
     logger.info('Getting Relation details from planet_osm_rels...')
