@@ -274,7 +274,7 @@ def imprint_image(attribution='Data: OpenStreetMap, CC-BY-SA', width=500, height
         height *= 2
         font_size *= 2
     today = date.today().strftime('%d. %m. %Y')
-    text = ('%s: Martin Tesař | %s: %s | %s: %s | %s: %s | www.mtbmap.cz' % (_('Author'), _('Projection'),
+    text = (u'%s: Martin Tesař | %s: %s | %s: %s | %s: %s | www.mtbmap.cz' % (_('Author'), _('Projection'),
             _('Conformal cylindrical - Mercator'), _('Data'), attribution, _('Created'), today))
     svg = '<?xml version="1.0" encoding="UTF-8"?>\n'
     svg += '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"'
