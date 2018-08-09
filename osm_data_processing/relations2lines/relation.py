@@ -22,27 +22,27 @@ kct_osmc_pairs = {
 
 
 class Relation:
-    def __init__(self, row):
-        if str(row).startswith('LINE'):
+    def __init__(self, row, source):
+        if source == "line":
             attrs = row.split(';')
-            self.id = int(attrs[1])
-            self.lines = [int(attrs[1])]
-            if attrs[2] == 'None':
+            self.id = int(attrs[0])
+            self.lines = [int(attrs[0])]
+            if attrs[1] == 'None':
                 self.mtbScale = None
             else:
-                self.mtbScale = attrs[2].replace("'", "")
-            if attrs[3] == 'None':
+                self.mtbScale = attrs[1].replace("'", "")
+            if attrs[2] == 'None':
                 self.mtbUphill = None
             else:
-                self.mtbUphill = attrs[3].replace("'", "")
-            if attrs[4] == 'None':
+                self.mtbUphill = attrs[2].replace("'", "")
+            if attrs[3] == 'None':
                 self.network = None
             else:
-                self.network = attrs[4]
-            if attrs[5] == 'None':
+                self.network = attrs[3]
+            if attrs[4] == 'None':
                 self.osmcSymbol = 'mtb:white:mtb_mtb'
             else:
-                self.osmcSymbol = attrs[5]
+                self.osmcSymbol = attrs[4]
         else:
             self.id = -row[0]
             self.lines = self.parse_members(row[1])

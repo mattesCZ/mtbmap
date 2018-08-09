@@ -55,9 +55,8 @@ def run(db_name, user, host, port):
                     relation_ids.append(-row[0])
             else:
                 # 0: osm_id; 1: mtb:scale; 2: mtb:scale:uphill; 3: network; 4: "osmc:symbol"
-                line_info = ("LINE;" + str(row[0]) + ";" + str(row[1]) + ";" + str(row[2]) + ";"
-                             + str(row[3]) + ";" + str(row[4]))
-                relations.append(Relation(line_info))
+                line_info = (";".join([str(row[0]), row[1], row[2], row[4]]))
+                relations.append(Relation(line_info, 'line'))
 
     logger.info('RelationIDs and Lines found.')
     logger.info('Getting Relation details from planet_osm_rels...')
@@ -70,8 +69,9 @@ def run(db_name, user, host, port):
                 WHERE id=%s
         ''' % r_id)
         row = relation_cursor.fetchone()
+
         # Make Relation object with parsed data
-        relations.append(Relation(row))
+        relations.append(Relation(row, 'rels'))
 
     logger.info('Relations details found.')
     logger.info('Making single routes from relations with all osmc:symbols...')
