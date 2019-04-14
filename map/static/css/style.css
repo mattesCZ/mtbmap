@@ -25,16 +25,16 @@
     background: none;
 }
 #languages {
-  border-radius: 4px 4px 0 0;
-	padding: 7px 5px 0;
-  background: #f0f0f0;
+    border-radius: 4px 4px 0 0;
+    padding: 5px;
+    background: #f0f0f0;
 }
 #languages .active {
-	font-weight: bold;
+    font-weight: bold;
 }
 #languages a {
-	text-decoration: underline;
-	font-weight: normal;
+    text-decoration: underline;
+    font-weight: normal;
 }
 .main-tab-panel, .subtab-panel {
     overflow: auto;
@@ -148,7 +148,6 @@ a:hover {
     border-top: 1px solid #ddd;
     box-sizing: border-box;
     height: 30px;
-    margin-top: 8px;
     padding: 0;
     text-align: center;
 }
