@@ -1014,6 +1014,30 @@
       <MaxScaleDenominator>200000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(255,192,203)" stroke-width="1.20" stroke-linejoin="round"/>
     </Rule>
+    <Rule name="_tertiary-road-link">
+      <Filter>(([highway]='tertiary_link') and not (([tunnel]='yes')))</Filter>
+      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MaxScaleDenominator>5000</MaxScaleDenominator>
+      <LineSymbolizer stroke="rgb(20,20,20)" stroke-width="14.00" stroke-linejoin="round" stroke-linecap="round"/>
+    </Rule>
+    <Rule name="_tertiary-road-link">
+      <Filter>(([highway]='tertiary_link') and not (([tunnel]='yes')))</Filter>
+      <MinScaleDenominator>5000</MinScaleDenominator>
+      <MaxScaleDenominator>25000</MaxScaleDenominator>
+      <LineSymbolizer stroke="rgb(20,20,20)" stroke-width="10.00" stroke-linejoin="round" stroke-linecap="round"/>
+    </Rule>
+    <Rule name="_tertiary-road-link">
+      <Filter>(([highway]='tertiary_link') and not (([tunnel]='yes')))</Filter>
+      <MinScaleDenominator>25000</MinScaleDenominator>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <LineSymbolizer stroke="rgb(20,20,20)" stroke-width="7.00" stroke-linejoin="round" stroke-linecap="round"/>
+    </Rule>
+    <Rule name="_tertiary-road-link">
+      <Filter>(([highway]='tertiary_link') and not (([tunnel]='yes')))</Filter>
+      <MinScaleDenominator>100000</MinScaleDenominator>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <LineSymbolizer stroke="rgb(20,20,20)" stroke-width="2.90" stroke-linejoin="round" stroke-linecap="round"/>
+    </Rule>
     <Rule name="_secondary-road-link">
       <Filter>(([highway]='secondary_link') and not (([tunnel]='yes')))</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
@@ -1606,6 +1630,30 @@
     </Rule>
   </Style>
   <Style name="minor-roads-fill-links">
+    <Rule name="_tertiary-road-link">
+      <Filter>(([highway]='tertiary_link') and not (([tunnel]='yes')))</Filter>
+      <MinScaleDenominator>1000</MinScaleDenominator>
+      <MaxScaleDenominator>5000</MaxScaleDenominator>
+      <LineSymbolizer stroke="rgb(255,255,253)" stroke-width="12.00" stroke-linejoin="round" stroke-linecap="round"/>
+    </Rule>
+    <Rule name="_tertiary-road-link">
+      <Filter>(([highway]='tertiary_link') and not (([tunnel]='yes')))</Filter>
+      <MinScaleDenominator>5000</MinScaleDenominator>
+      <MaxScaleDenominator>25000</MaxScaleDenominator>
+      <LineSymbolizer stroke="rgb(255,255,253)" stroke-width="8.00" stroke-linejoin="round" stroke-linecap="round"/>
+    </Rule>
+    <Rule name="_tertiary-road-link">
+      <Filter>(([highway]='tertiary_link') and not (([tunnel]='yes')))</Filter>
+      <MinScaleDenominator>25000</MinScaleDenominator>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <LineSymbolizer stroke="rgb(255,255,253)" stroke-width="5.50" stroke-linejoin="round" stroke-linecap="round"/>
+    </Rule>
+    <Rule name="_tertiary-road-link">
+      <Filter>(([highway]='tertiary_link') and not (([tunnel]='yes')))</Filter>
+      <MinScaleDenominator>100000</MinScaleDenominator>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <LineSymbolizer stroke="rgb(255,255,253)" stroke-width="1.40" stroke-linejoin="round" stroke-linecap="round"/>
+    </Rule>
     <Rule name="_secondary-road-link">
       <Filter>(([highway]='secondary_link') and not (([tunnel]='yes')))</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
@@ -8669,19 +8717,19 @@
       <LineSymbolizer stroke-width="4.50"/>
     </Rule>
     <Rule name="tertiary-road-bridge">
-      <Filter>([highway]='tertiary')</Filter>
+      <Filter>(([highway]='tertiary') or ([highway]='tertiary_link'))</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer stroke-width="16.00"/>
     </Rule>
     <Rule name="tertiary-road-bridge">
-      <Filter>([highway]='tertiary')</Filter>
+      <Filter>(([highway]='tertiary') or ([highway]='tertiary_link'))</Filter>
       <MinScaleDenominator>5000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer stroke-width="11.00"/>
     </Rule>
     <Rule name="tertiary-road-bridge">
-      <Filter>([highway]='tertiary')</Filter>
+      <Filter>(([highway]='tertiary') or ([highway]='tertiary_link'))</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer stroke-width="7.50"/>
@@ -8791,19 +8839,19 @@
       <LineSymbolizer stroke="rgb(255,255,255)" stroke-width="3.50" stroke-linejoin="round" stroke-linecap="round"/>
     </Rule>
     <Rule name="tertiary-road-bridge">
-      <Filter>([highway]='tertiary')</Filter>
+      <Filter>(([highway]='tertiary') or ([highway]='tertiary_link'))</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(255,255,253)" stroke-width="14.00" stroke-linejoin="round" stroke-linecap="round"/>
     </Rule>
     <Rule name="tertiary-road-bridge">
-      <Filter>([highway]='tertiary')</Filter>
+      <Filter>(([highway]='tertiary') or ([highway]='tertiary_link'))</Filter>
       <MinScaleDenominator>5000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(255,255,253)" stroke-width="9.50" stroke-linejoin="round" stroke-linecap="round"/>
     </Rule>
     <Rule name="tertiary-road-bridge">
-      <Filter>([highway]='tertiary')</Filter>
+      <Filter>(([highway]='tertiary') or ([highway]='tertiary_link'))</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(255,255,253)" stroke-width="6.00" stroke-linejoin="round" stroke-linecap="round"/>
@@ -10442,13 +10490,13 @@
       <LineSymbolizer stroke="rgb(20,20,20)" stroke-width="17.50" stroke-dasharray="4, 2"/>
     </Rule>
     <Rule name="tertiary-road-tunnel">
-      <Filter>([highway]='tertiary')</Filter>
+      <Filter>(([highway]='tertiary') or ([highway]='tertiary_link'))</Filter>
       <MinScaleDenominator>50000</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(20,20,20)" stroke-width="6.00" stroke-dasharray="4, 2"/>
     </Rule>
     <Rule name="tertiary-road-tunnel">
-      <Filter>([highway]='tertiary')</Filter>
+      <Filter>(([highway]='tertiary') or ([highway]='tertiary_link'))</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(20,20,20)" stroke-width="7.50" stroke-dasharray="4, 2"/>
@@ -10478,7 +10526,7 @@
       <LineSymbolizer stroke="rgb(80,80,80)" stroke-width="4.50" stroke-dasharray="4, 2"/>
     </Rule>
     <Rule name="tertiary-road-tunnel">
-      <Filter>([highway]='tertiary')</Filter>
+      <Filter>(([highway]='tertiary') or ([highway]='tertiary_link'))</Filter>
       <MinScaleDenominator>5000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(20,20,20)" stroke-width="11.00" stroke-dasharray="4, 2"/>
@@ -10508,7 +10556,7 @@
       <LineSymbolizer stroke="rgb(80,80,80)" stroke-width="11.00" stroke-dasharray="4, 2"/>
     </Rule>
     <Rule name="tertiary-road-tunnel">
-      <Filter>([highway]='tertiary')</Filter>
+      <Filter>(([highway]='tertiary') or ([highway]='tertiary_link'))</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(20,20,20)" stroke-width="16.00" stroke-dasharray="4, 2"/>
@@ -10600,13 +10648,13 @@
       <LineSymbolizer stroke="rgb(236,189,128)" stroke-width="15.00" stroke-linejoin="round" stroke-linecap="round"/>
     </Rule>
     <Rule name="tertiary-road-tunnel">
-      <Filter>([highway]='tertiary')</Filter>
+      <Filter>(([highway]='tertiary') or ([highway]='tertiary_link'))</Filter>
       <MinScaleDenominator>50000</MinScaleDenominator>
       <MaxScaleDenominator>100000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(231,231,231)" stroke-width="4.50" stroke-linejoin="round" stroke-linecap="round"/>
     </Rule>
     <Rule name="tertiary-road-tunnel">
-      <Filter>([highway]='tertiary')</Filter>
+      <Filter>(([highway]='tertiary') or ([highway]='tertiary_link'))</Filter>
       <MinScaleDenominator>25000</MinScaleDenominator>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(231,231,231)" stroke-width="6.00" stroke-linejoin="round" stroke-linecap="round"/>
@@ -10636,13 +10684,13 @@
       <LineSymbolizer stroke="rgb(150,150,150)" stroke-width="3.00" stroke-linejoin="round" stroke-linecap="round"/>
     </Rule>
     <Rule name="tertiary-road-tunnel">
-      <Filter>([highway]='tertiary')</Filter>
+      <Filter>(([highway]='tertiary') or ([highway]='tertiary_link'))</Filter>
       <MinScaleDenominator>5000</MinScaleDenominator>
       <MaxScaleDenominator>25000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(231,231,231)" stroke-width="9.40" stroke-linejoin="round" stroke-linecap="round"/>
     </Rule>
     <Rule name="tertiary-road-tunnel">
-      <Filter>([highway]='tertiary')</Filter>
+      <Filter>(([highway]='tertiary') or ([highway]='tertiary_link'))</Filter>
       <MinScaleDenominator>1000</MinScaleDenominator>
       <MaxScaleDenominator>5000</MaxScaleDenominator>
       <LineSymbolizer stroke="rgb(231,231,231)" stroke-width="13.00" stroke-linejoin="round" stroke-linecap="round"/>
@@ -11996,7 +12044,7 @@
     <StyleName>tunnels-fill</StyleName>
     <Datasource>
       <Parameter name="type">postgis</Parameter>
-      <Parameter name="table">(select way,highway from planet_osm_line where highway in ('motorway','motorway_link','trunk','trunk_link','primary','primary_link','secondary','secondary_link','tertiary','residential','unclassified','minor') and tunnel in ('yes','true','1') order by z_order) as roads</Parameter>
+      <Parameter name="table">(select way,highway from planet_osm_line where highway in ('motorway','motorway_link','trunk','trunk_link','primary','primary_link','secondary','secondary_link','tertiary','tertiary_link','residential','unclassified','minor') and tunnel in ('yes','true','1') order by z_order) as roads</Parameter>
       <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
       <Parameter name="port">5432</Parameter>
@@ -12134,7 +12182,7 @@
       <Parameter name="table">(select way,highway,service,
        case when tunnel in ('yes','true','1') then 'yes'::text else tunnel end as tunnel
        from planet_osm_line
-       where highway in ('motorway','motorway_link','trunk','trunk_link','primary','primary_link','secondary','secondary_link','tertiary','residential','unclassified','minor','road','service','pedestrian','raceway','living_street')
+       where highway in ('motorway','motorway_link','trunk','trunk_link','primary','primary_link','secondary','secondary_link','tertiary','tertiary_link','residential','unclassified','minor','road','service','pedestrian','raceway','living_street')
        order by z_order) as roads</Parameter>
       <Parameter name="password">&passwd;</Parameter>
       <Parameter name="host">localhost</Parameter>
@@ -12206,7 +12254,7 @@
       <Parameter name="type">postgis</Parameter>
       <Parameter name="table">(select way,highway
        from planet_osm_roads
-       where highway in ('motorway', 'trunk', 'primary', 'secondary', 'motorway_link', 'trunk_link', 'primary_link', 'secondary_link')
+       where highway in ('motorway', 'trunk', 'primary', 'secondary', 'motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary_link')
        order by z_order
       ) as roads</Parameter>
       <Parameter name="password">&passwd;</Parameter>
@@ -12228,7 +12276,7 @@
               or (railway='rail' and service in ('spur','siding','yard'))
             then 'spur-siding-yard'::text else railway end as railway
        from planet_osm_roads
-       where highway in ('motorway', 'trunk', 'primary', 'secondary', 'motorway_link', 'trunk_link', 'primary_link', 'secondary_link')
+       where highway in ('motorway', 'trunk', 'primary', 'secondary', 'motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary_link')
           or railway is not null
        order by z_order
       ) as roads</Parameter>
